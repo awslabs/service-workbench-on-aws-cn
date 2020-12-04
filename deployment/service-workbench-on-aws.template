@@ -1,0 +1,450 @@
+---
+AWSTemplateFormatVersion: 2010-09-09
+
+Description: >
+  (SO0144) Service Workbench on AWS Solution: - A platform that provides researchers with one-click access to collaborative workspace environments operating across teams, universities, and datasets while enabling university IT stakeholders to manage, monitor, and control spending, apply security best practices, and comply with corporate governance.
+
+Mappings:
+  SourceCode:
+    General:
+      S3Bucket: "%%BUCKET_NAME%%"
+      KeyPrefix: "%%SOLUTION_NAME%%/%%VERSION%%"
+
+Parameters:
+  SolutionName:
+    Type: String
+    Description: >
+      The short solution name is used to namespace a few AWS resources. Try to keep this setting short to avoid hitting long strings issues. If multiple separate instances of the system are deployed within a single account, this name can be changed to ensure they are disambiguated.
+    AllowedPattern: "[a-zA-Z0-9-]{3,7}"
+    ConstraintDescription: >
+      Project name should be 3-7 characters in length, and only have alphanumeric characters and hyphens ([a-zA-Z0-9-]{3,32})
+    Default: swb
+  EnvironmentType:
+    Type: String
+    Description: The environment type (e.g. dev, demo, prod). This is for grouping multiple environments into types. For example, all developers' environments can be of type "dev". This can be used for enabling conditionals in code that might need to be different between dev and production builds (for example, enabling CORS for localhost for local development). Defaults to dev if unspecified.
+    Default: dev
+  ServicePortfolio:
+    Type: String
+    Description: Enable this to create a Service Catalog portfolio and populate workspace products. Set to false if you wish to create your portfolio manually.
+    Default: true
+    AllowedValues:
+      - true
+      - false
+  CreateMachineImages:
+    Type: String
+    Description: Enable this to create machine images for workspace products. Set to false if you wish to use existing machine images.
+    Default: true
+    AllowedValues:
+      - true
+      - false
+  StageName:
+    Type: String
+    Description: Stage name for SWB build. (Modifies config file name).
+    Default: test
+Resources:
+  Setup:
+    Type: Custom::Setup
+    DependsOn:
+      - CodeBuild
+    Version: 1.0
+    Properties:
+      ServiceToken: !Sub ${SetupLambda.Arn}
+      CodeBuildProjectName: !Sub ${CodeBuild}
+
+  SetupLambda:
+    Type: AWS::Lambda::Function
+    DependsOn:
+      - SetupLambdaRole
+    Properties:
+      Handler: lambda.handler
+      Runtime: python3.8
+      FunctionName: !Sub ${SolutionName}Setup
+      Code:
+        S3Bucket:
+          !Join ["-", [!FindInMap ["SourceCode", "General", "S3Bucket"], Ref: "AWS::Region"]]
+        S3Key:
+          !Join [
+            "",
+            [
+              !FindInMap ["SourceCode", "General", "KeyPrefix"],
+              "/SetupLambdaBundle.zip",
+            ],
+          ]
+      Role: !Sub ${SetupLambdaRole.Arn}
+      Timeout: 600
+    Metadata:
+      cfn_nag:
+        rules_to_suppress:
+          - id: W58
+            reason: "W58: Lambda functions require permission to write CloudWatch Logs.
+            
+            CloudWatch Logs permissions are defined in the SetupLambdaRole, not in SetupLambda. Error suppressed, because permissions
+            to write to CloudWatch Logs is being defined in CloudWatchLogPolicy defined on line 123 of this document."
+
+  SetupLambdaRole:
+    Type: AWS::IAM::Role
+    DependsOn:
+      - CodeBuild
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: 2012-10-17
+        Statement:
+          - Action:
+              - sts:AssumeRole
+            Effect: Allow
+            Principal:
+              Service:
+                - lambda.amazonaws.com
+      Path: /
+      Policies:
+        - PolicyName: CodeBuildAccess
+          PolicyDocument:
+            Statement:
+              - Effect: Allow
+                Action:
+                  - codebuild:BatchGetProjects
+                  - codebuild:BatchGetBuilds
+                  - codebuild:StartBuild
+                Resource:
+                  - !Sub ${CodeBuild.Arn}
+        - PolicyName: EventsAccess
+          PolicyDocument:
+            Statement:
+              - Effect: Allow
+                Action:
+                  - events:DeleteRule
+                  - events:PutRule
+                  - events:PutTargets
+                  - events:RemoveTargets
+                Resource:
+                  - !Sub arn:aws:events:${AWS::Region}:${AWS::AccountId}:rule/Setup*
+        - PolicyName: LambdaAccess
+          PolicyDocument:
+            Statement:
+              - Effect: Allow
+                Action:
+                  - lambda:AddPermission
+                  - lambda:RemovePermission
+                Resource:
+                  - !Sub arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:${SolutionName}Setup*
+        - PolicyName: CloudWatchLogAccess
+          PolicyDocument:
+            Statement:
+              - Effect: Allow
+                Action:
+                  - logs:CreateLogGroup
+                  - logs:CreateLogStream
+                  - logs:PutLogEvents
+                Resource: 
+                  - !Sub arn:aws:codebuild:${AWS::Region}:${AWS::AccountId}:project/${SolutionName}-Setup
+
+  CodeBuildRole:
+    Type: AWS::IAM::Role
+    Metadata:
+      cfn_nag:
+        rules_to_suppress:
+          - id: F38
+            reason: "F38: IAM role should not allow * resource with PassRole action on its permissions policy.
+            
+            This role will be used exclusively for spinning up resources in the account and not for interacting with the deployed application. 
+            The CodeBuild job needs permission to spin up every resource in the various CloudFormation templates it kicks off. Due to the 
+            extensive amount of services used, the nonuse of this role in interacting with the application, and planned future updates we 
+            find the use of admin in this situation to be acceptable."
+
+          - id: W11
+            reason: "W11: IAM role should not allow * resource on its permissions policy.
+    
+            This warning is in relation to F38. As mentioned in F38, the CodeBuild job needs permissions to various resources in CloudFormation to
+            successfully kick off the core CloudFormation templates. Due to the extensive amount of services used, the nonuse 
+            of this role in interacting with the application, and planned future updates we find the use of admin in this situation to be acceptable."
+
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: 2012-10-17
+        Statement:
+          - Action:
+              - sts:AssumeRole
+            Effect: Allow
+            Principal:
+              Service:
+                - codebuild.amazonaws.com
+      Path: /
+      Policies:
+        - PolicyName: CloudFormationAccess
+          PolicyDocument:
+            Statement:
+              - Action:
+                  - cloudformation:CreateStack
+                  - cloudformation:DescribeStacks
+                  - cloudformation:UpdateStack
+                  - cloudformation:DeleteStack
+                  - cloudformation:UpdateTerminationProtection
+                  - cloudformation:ListStackResources
+                  - cloudformation:ValidateTemplate
+                  - cloudformation:DescribeStackEvents
+                Effect: Allow
+                Resource: "*"
+        - PolicyName: LogsAccess
+          PolicyDocument:
+            Statement:
+              - Effect: Allow
+                Action:
+                  - logs:CreateLogGroup
+                  - logs:CreateLogStream
+                  - logs:PutLogEvents
+                Resource: "*"
+        - PolicyName: IAMAccess
+          PolicyDocument:
+            Statement:
+              - Effect: Allow
+                Action:
+                  - iam:GetRolePolicy
+                  - iam:CreateRole
+                  - iam:DeleteRole
+                  - iam:PutRolePolicy
+                  - iam:DeleteRolePolicy
+                  - iam:AttachRolePolicy
+                  - iam:DetachRolePolicy
+                  - iam:UpdateAssumeRolePolicy
+                  - iam:PassRole
+                  - iam:GetRole
+                  - iam:GetInstanceProfile
+                  - iam:CreateInstanceProfile
+                  - iam:DeleteInstanceProfile
+                  - iam:AddRoleToInstanceProfile
+                  - iam:RemoveRoleFromInstanceProfile
+                Resource: 
+                  - "*"
+        - PolicyName: CodeBuildAccess
+          PolicyDocument:
+            Statement:
+              - Effect: Allow
+                Action:
+                  - codebuild:CreateProject
+                  - codebuild:UpdateProject
+                  - codebuild:ListProjects
+                  - codebuild:BatchGetProjects
+                  - codebuild:DeleteProject
+                Resource: "*"
+        - PolicyName: CloudFrontAccess
+          PolicyDocument:
+            Statement:
+              - Effect: Allow
+                Action:
+                  - cloudfront:CreateCloudFrontOriginAccessIdentity
+                  - cloudfront:CreateDistribution
+                  - cloudfront:TagResource
+                  - cloudfront:GetDistribution
+                  - cloudfront:CreateInvalidation
+                Resource: "*"
+        - PolicyName: APIGateway
+          PolicyDocument:
+            Statement:
+              - Effect: Allow
+                Action:
+                  - apigateway:GET
+                  - apigateway:POST
+                  - apigateway:PUT
+                  - apigateway:DELETE
+                Resource: "*"
+        - PolicyName: DynamodbPermissions
+          PolicyDocument:
+            Statement:
+              - Effect: Allow
+                Action:
+                  - dynamodb:DescribeTable
+                  - dynamodb:CreateTable
+                  - dynamodb:DescribeTimeToLive
+                  - dynamodb:UpdateTimeToLive
+                Resource: "*"
+        - PolicyName: CloudwatchLogsPolicy
+          PolicyDocument:
+            Statement:
+              - Effect: Allow
+                Action:
+                  - logs:DeleteLogGroup
+                  - lambda:GetFunction
+                  - lambda:CreateFunction
+                  - lambda:GetFunctionConfiguration
+                Resource: "*"
+        - PolicyName: S3Access
+          PolicyDocument:
+            Statement:
+              - Action:
+                  - s3:GetObject
+                  - s3:PutObject
+                  - s3:DeleteObject
+                  - s3:ListBucket
+                  - s3:CreateBucket
+                  - S3:DeleteBucket
+                  - s3:GetEncryptionConfiguration
+                  - s3:PutEncryptionConfiguration
+                  - s3:PutBucketPublicAccessBlock
+                  - s3:PutBucketLogging
+                  - s3:GetBucketLocation
+                  - s3:PutBucketAcl
+                  - s3:PutObjectAcl
+                  - s3:HeadObject
+                  - s3:PutBucketWebsite
+                  - s3:PutBucketPolicy
+                  - s3:GetBucketAcl
+                  - s3:DeleteBucketPolicy
+                  - s3:PutBucketCORS
+                  - s3:PutBucketVersioning
+                  - s3:PutBucketOwnershipControls
+                Effect: Allow
+                Resource: "*"
+        - PolicyName: CloudwatchPolicy
+          PolicyDocument:
+            Statement:
+              - Effect: Allow
+                Action:
+                  - events:PutRule 
+                  - events:DescribeRule
+                  - events:PutTargets
+                  - events:RemoveTargets
+                  - events:DeleteRule
+                Resource: "*"
+        - PolicyName: LambdaPolicy
+          PolicyDocument:
+            Statement:
+              - Effect: Allow
+                Action:
+                  - lambda:AddPermission
+                  - lambda:InvokeFunction
+                  - lambda:RemovePermission
+                  - lambda:DeleteFunction
+                Resource: "*"
+        - PolicyName: SMWorkflowPolicy
+          PolicyDocument:
+            Statement:
+              - Effect: Allow
+                Action:
+                  - states:CreateStateMachine
+                  - states:TagResource
+                  - states:DeleteStateMachine
+                Resource: "*"
+        - PolicyName: KMSPolicy
+          PolicyDocument:
+            Statement:
+              - Effect: Allow
+                Action:
+                  - kms:TagResource
+                  - kms:CreateKey
+                  - kms:Create*
+                  - kms:Describe*
+                  - kms:Enable*
+                  - kms:List*
+                  - kms:Put*
+                  - kms:Update*
+                  - kms:Revoke*
+                  - kms:Disable*
+                  - kms:Get*
+                  - kms:Delete*
+                  - kms:ScheduleKeyDeletion
+                  - kms:CancelKeyDeletion
+                  - kms:Encrypt
+                  - kms:Decrypt
+                  - kms:ReEncrypt
+                  - kms:GenerateDataKey*
+                  - kms:DescribeKey
+                Resource: "*"
+        - PolicyName: EC2Policy
+          PolicyDocument:
+            Statement:
+              - Effect: Allow
+                Action:
+                  - ec2:AttachVolume
+                  - ec2:AuthorizeSecurityGroupIngress
+                  - ec2:CopyImage
+                  - ec2:CreateImage
+                  - ec2:CreateKeypair
+                  - ec2:CreateSecurityGroup
+                  - ec2:CreateSnapshot
+                  - ec2:CreateTags
+                  - ec2:CreateVolume
+                  - ec2:DeleteKeyPair 
+                  - ec2:DeleteSecurityGroup
+                  - ec2:DeleteSnapshot
+                  - ec2:DeleteVolume
+                  - ec2:DeregisterImage
+                  - ec2:DescribeImageAttribute
+                  - ec2:DescribeImages
+                  - ec2:DescribeInstances
+                  - ec2:DescribeInstanceStatus
+                  - ec2:DescribeRegions
+                  - ec2:DescribeSecurityGroups
+                  - ec2:DescribeSnapshots
+                  - ec2:DescribeSubnets
+                  - ec2:DescribeTags
+                  - ec2:DescribeVolumes
+                  - ec2:DetachVolume
+                  - ec2:GetPasswordData
+                  - ec2:ModifyImageAttribute
+                  - ec2:ModifyInstanceAttribute
+                  - ec2:ModifySnapshotAttribute
+                  - ec2:RegisterImage
+                  - ec2:RunInstances
+                  - ec2:StopInstances
+                  - ec2:TerminateInstances
+                Resource: "*"
+
+  CodeBuild:
+    Type: AWS::CodeBuild::Project
+    Properties:
+      Name: !Sub ${SolutionName}-Setup
+      EncryptionKey: "alias/aws/s3"
+      Artifacts:
+        Type: NO_ARTIFACTS
+      Source:
+        Type: NO_SOURCE
+        BuildSpec: |
+          version: 0.2
+          phases:
+            install:
+              commands:
+                - aws s3 cp s3://$GLOBAL_BUCKET_NAME-$REGION_NAME/$OBJECT_KEY_NAME/ServiceWorkbenchOnAWS.zip ServiceWorkbenchOnAWS.zip
+                - unzip ServiceWorkbenchOnAWS.zip 
+                - aws s3 cp s3://$GLOBAL_BUCKET_NAME-$REGION_NAME/$OBJECT_KEY_NAME/generate-config.sh ./scripts/generate-config.sh 
+                - chmod +x ./scripts/generate-config.sh
+                - ./scripts/generate-config.sh
+                - npm install -g pnpm
+                - echo "Installing dependencies"
+                - ./scripts/install.sh
+                - printf "\n\n"
+                - echo "Building packages"
+                - ./scripts/build-all-packages.sh
+                - printf "\n\n"
+                - echo "Building and deploying $STAGE_NAME"
+                - ./scripts/environment-deploy.sh $STAGE_NAME
+                - printf "\n\n"
+                - aws s3 cp s3://$GLOBAL_BUCKET_NAME-$REGION_NAME/$OBJECT_KEY_NAME/create-ami.sh ./scripts/create-ami.sh
+                - chmod +x ./scripts/create-ami.sh
+                - ./scripts/create-ami.sh $CREATE_AMI $STAGE_NAME
+      Environment:
+        ComputeType: BUILD_GENERAL1_SMALL
+        EnvironmentVariables:
+          - Name: GLOBAL_BUCKET_NAME
+            Value: !FindInMap ["SourceCode", "General", "S3Bucket"]
+          - Name: OBJECT_KEY_NAME
+            Value: !FindInMap ["SourceCode", "General", "KeyPrefix"]
+          - Name: SOLUTION_ACTION
+            Value: setup
+          - Name: PROJECT_NAME
+            Value: SWBSetupTest
+          - Name: SOLUTION_NAME
+            Value: !Ref SolutionName
+          - Name: REGION_NAME
+            Value: !Ref AWS::Region
+          - Name: ENVIRONMENT_TYPE
+            Value: !Ref EnvironmentType
+          - Name: SERVICE_CATALOG_PORTFOLIO
+            Value: !Ref ServicePortfolio
+          - Name: STAGE_NAME
+            Value: !Ref StageName
+          - Name: CREATE_AMI
+            Value: !Ref CreateMachineImages
+        Image: aws/codebuild/standard:3.0
+        Type: LINUX_CONTAINER
+      ServiceRole: !Sub ${CodeBuildRole}
+      TimeoutInMinutes: 90

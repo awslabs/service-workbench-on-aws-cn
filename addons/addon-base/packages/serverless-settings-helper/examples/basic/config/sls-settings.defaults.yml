@@ -1,3 +1,0 @@
-solutionName: awesome-poc
-envName: ${opt:stage}
-dbPrefix: ${self:custom.settings.envName}-db-

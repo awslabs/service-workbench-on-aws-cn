@@ -1,0 +1,635 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "Service-Workbench-on-AWS 1.0.0 swb e2etest Post-Deployment",
+  "Resources": {
+    "PostDeploymentLogGroup": {
+      "Type": "AWS::Logs::LogGroup",
+      "Properties": {
+        "LogGroupName": "/aws/lambda/va-swb-postDeployment-e2etest-postDeployment"
+      }
+    },
+    "PostDeploymentLambdaFunction": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Code": {
+          "S3Bucket": "684277579687-e2etest-va-swb-artifacts",
+          "S3Key": "serverless/va-swb-postDeployment/e2etest/1611872502610-2021-01-28T22:21:42.610Z/postDeployment.zip"
+        },
+        "FunctionName": "va-swb-postDeployment-e2etest-postDeployment",
+        "Handler": "src/lambdas/post-deployment/handler.handler",
+        "MemorySize": 1024,
+        "Role": {
+          "Fn::GetAtt": [
+            "RolePostDeploymentLambda",
+            "Arn"
+          ]
+        },
+        "Runtime": "nodejs12.x",
+        "Timeout": 900,
+        "Description": "The Post Deployment handler that executes post deployment tasks",
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "e2etest-va-swb-postDeployment"
+          }
+        ],
+        "Environment": {
+          "Variables": {
+            "APP_ENV_TYPE": "e2eTest",
+            "APP_ENV_NAME": "e2etest",
+            "APP_AWS_REGION": "us-east-1",
+            "APP_SOLUTION_NAME": "swb",
+            "APP_DB_PREFIX": "e2etest-va-swb",
+            "APP_DB_DEPLOYMENT_STORE": "e2etest-va-swb-DeploymentStore",
+            "APP_ROOT_USER_NAME": "root",
+            "APP_ROOT_USER_FIRST_NAME": "root",
+            "APP_ROOT_USER_LAST_NAME": "root",
+            "APP_ROOT_USER_EMAIL": "root@example.com",
+            "APP_ROOT_USER_PASSWORD_PARAM_NAME": "/e2etest/swb/user/root/password",
+            "APP_PARAM_STORE_JWT_SECRET": "/e2etest/swb/jwt/secret",
+            "APP_JWT_OPTIONS": "{\"algorithm\":\"HS256\",\"expiresIn\":\"2 days\"}",
+            "APP_ENABLE_NATIVE_USER_POOL_USERS": false,
+            "APP_COGNITO_USER_POOL_DOMAIN_PREFIX": "e2etest-swb",
+            "APP_FED_IDP_IDS": "[]",
+            "APP_FED_IDP_NAMES": "[]",
+            "APP_FED_IDP_DISPLAY_NAMES": "[]",
+            "APP_FED_IDP_METADATAS": "[]",
+            "APP_WEBSITE_URL": "https://d1nzolgo88wuwt.cloudfront.net",
+            "APP_DEFAULT_AUTH_N_PROVIDER_TITLE": "Default Login",
+            "APP_COGNITO_AUTH_N_PROVIDER_TITLE": "Login using Active Directory",
+            "APP_BACKEND_STACK_NAME": "e2etest-va-swb-backend",
+            "APP_WORKFLOW_LAMBDA_NAME": "va-swb-backend-e2etest-workflowLoopRunner",
+            "APP_EDGE_LAMBDA_ARN": "arn:aws:lambda:us-east-1:684277579687:function:e2etest-va-swb-edgeLambda-EdgeLambda-A9RQRHZTFZ3O",
+            "APP_CLOUD_FRONT_ID": "E2VW0DH4DLRCRL",
+            "APP_ENABLE_EXTERNAL_RESEARCHERS": false,
+            "APP_CREATE_SERVICE_CATALOG_PORTFOLIO": true,
+            "APP_NAMESPACE": "e2etest-va-swb",
+            "APP_DEPLOYMENT_BUCKET_NAME": "684277579687-e2etest-va-swb-artifacts",
+            "APP_ENV_MGMT_ROLE_NAME": "e2etest-va-swb-EnvMgmt",
+            "APP_LAUNCH_CONSTRAINT_ROLE_NAME": "e2etest-va-swb-LaunchConstraint",
+            "APP_ENV_MGMT_ROLE_ARN": "arn:aws:iam::684277579687:role/e2etest-va-swb-EnvMgmt"
+          }
+        }
+      },
+      "DependsOn": [
+        "PostDeploymentLogGroup",
+        "RolePostDeploymentLambda"
+      ]
+    },
+    "RolePostDeploymentLambda": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "lambda.amazonaws.com"
+              },
+              "Action": "sts:AssumeRole"
+            }
+          ]
+        },
+        "ManagedPolicyArns": [
+          "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
+          "arn:aws:iam::aws:policy/AmazonCognitoPowerUser"
+        ],
+        "Policies": [
+          {
+            "PolicyName": "assume-role",
+            "PolicyDocument": {
+              "Statement": {
+                "Action": "sts:AssumeRole",
+                "Effect": "Allow",
+                "Resource": {
+                  "Fn::Sub": "arn:aws:iam::684277579687:role/e2etest-va-swb-EnvMgmt"
+                }
+              }
+            }
+          },
+          {
+            "PolicyName": "iam-access",
+            "PolicyDocument": {
+              "Version": "2012-10-17",
+              "Statement": {
+                "Effect": "Allow",
+                "Action": [
+                  "iam:CreateServiceLinkedRole",
+                  "iam:GetRole"
+                ],
+                "Resource": [
+                  {
+                    "Fn::Sub": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/aws-service-role/replicator.lambda.amazonaws.com/AWSServiceRoleForLambdaReplicator"
+                  },
+                  {
+                    "Fn::Sub": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/aws-service-role/logger.cloudfront.amazonaws.com/AWSServiceRoleForCloudFrontLogger"
+                  }
+                ],
+                "Condition": {
+                  "ForAllValues:StringLike": {
+                    "iam:AWSServiceName": [
+                      "replicator.lambda.amazonaws.com",
+                      "logger.cloudfront.amazonaws.com"
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          {
+            "PolicyName": "launch-constraint-access",
+            "PolicyDocument": {
+              "Version": "2012-10-17",
+              "Statement": {
+                "Effect": "Allow",
+                "Action": [
+                  "iam:PassRole"
+                ],
+                "Resource": [
+                  {
+                    "Fn::GetAtt": [
+                      "ServiceCatalogLaunchConstraintRole",
+                      "Arn"
+                    ]
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "PolicyName": "s3-access",
+            "PolicyDocument": {
+              "Statement": {
+                "Effect": "Allow",
+                "Action": [
+                  "s3:GetObject"
+                ],
+                "Resource": [
+                  {
+                    "Fn::Sub": "arn:${AWS::Partition}:s3:::684277579687-e2etest-va-swb-artifacts/saml-metadata/*"
+                  },
+                  {
+                    "Fn::Sub": "arn:${AWS::Partition}:s3:::684277579687-e2etest-va-swb-artifacts/service-catalog-products/*"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "PolicyName": "db-access",
+            "PolicyDocument": {
+              "Statement": {
+                "Effect": "Allow",
+                "Action": [
+                  "dynamodb:GetItem",
+                  "dynamodb:DeleteItem",
+                  "dynamodb:PutItem",
+                  "dynamodb:UpdateItem",
+                  "dynamodb:Query",
+                  "dynamodb:Scan"
+                ],
+                "Resource": [
+                  {
+                    "Fn::GetAtt": [
+                      "DeploymentStoreDb",
+                      "Arn"
+                    ]
+                  },
+                  {
+                    "Fn::Sub": "arn:${AWS::Partition}:dynamodb:${AWS::Region}:${AWS::AccountId}:table/e2etest-va-swb-Passwords"
+                  },
+                  {
+                    "Fn::Sub": "arn:${AWS::Partition}:dynamodb:${AWS::Region}:${AWS::AccountId}:table/e2etest-va-swb-Users"
+                  },
+                  {
+                    "Fn::Sub": "arn:${AWS::Partition}:dynamodb:${AWS::Region}:${AWS::AccountId}:table/e2etest-va-swb-Users/index/*"
+                  },
+                  {
+                    "Fn::Sub": "arn:${AWS::Partition}:dynamodb:${AWS::Region}:${AWS::AccountId}:table/e2etest-va-swb-AuthenticationProviderTypes"
+                  },
+                  {
+                    "Fn::Sub": "arn:${AWS::Partition}:dynamodb:${AWS::Region}:${AWS::AccountId}:table/e2etest-va-swb-AuthenticationProviderConfigs"
+                  },
+                  {
+                    "Fn::Sub": "arn:${AWS::Partition}:dynamodb:${AWS::Region}:${AWS::AccountId}:table/e2etest-va-swb-StepTemplates"
+                  },
+                  {
+                    "Fn::Sub": "arn:${AWS::Partition}:dynamodb:${AWS::Region}:${AWS::AccountId}:table/e2etest-va-swb-WorkflowTemplates"
+                  },
+                  {
+                    "Fn::Sub": "arn:${AWS::Partition}:dynamodb:${AWS::Region}:${AWS::AccountId}:table/e2etest-va-swb-Workflows"
+                  },
+                  {
+                    "Fn::Sub": "arn:${AWS::Partition}:dynamodb:${AWS::Region}:${AWS::AccountId}:table/e2etest-va-swb-WfAssignments"
+                  },
+                  {
+                    "Fn::Sub": "arn:${AWS::Partition}:dynamodb:${AWS::Region}:${AWS::AccountId}:table/e2etest-va-swb-WfAssignments/index/*"
+                  },
+                  {
+                    "Fn::Sub": "arn:${AWS::Partition}:dynamodb:${AWS::Region}:${AWS::AccountId}:table/e2etest-va-swb-UserRoles"
+                  },
+                  {
+                    "Fn::Sub": "arn:${AWS::Partition}:dynamodb:${AWS::Region}:${AWS::AccountId}:table/e2etest-va-swb-WorkflowInstances"
+                  },
+                  {
+                    "Fn::Sub": "arn:${AWS::Partition}:dynamodb:${AWS::Region}:${AWS::AccountId}:table/e2etest-va-swb-WorkflowTemplateDrafts"
+                  },
+                  {
+                    "Fn::Sub": "arn:${AWS::Partition}:dynamodb:${AWS::Region}:${AWS::AccountId}:table/e2etest-va-swb-WorkflowDrafts"
+                  },
+                  {
+                    "Fn::Sub": "arn:${AWS::Partition}:dynamodb:${AWS::Region}:${AWS::AccountId}:table/e2etest-va-swb-RevokedTokens"
+                  },
+                  {
+                    "Fn::Sub": "arn:${AWS::Partition}:dynamodb:${AWS::Region}:${AWS::AccountId}:table/e2etest-va-swb-Locks"
+                  },
+                  {
+                    "Fn::Sub": "arn:${AWS::Partition}:dynamodb:${AWS::Region}:${AWS::AccountId}:table/e2etest-va-swb-UserApiKeys"
+                  },
+                  {
+                    "Fn::Sub": "arn:${AWS::Partition}:dynamodb:${AWS::Region}:${AWS::AccountId}:table/e2etest-va-swb-Accounts"
+                  },
+                  {
+                    "Fn::Sub": "arn:${AWS::Partition}:dynamodb:${AWS::Region}:${AWS::AccountId}:table/e2etest-va-swb-AwsAccounts"
+                  },
+                  {
+                    "Fn::Sub": "arn:${AWS::Partition}:dynamodb:${AWS::Region}:${AWS::AccountId}:table/e2etest-va-swb-CostApiCaches"
+                  },
+                  {
+                    "Fn::Sub": "arn:${AWS::Partition}:dynamodb:${AWS::Region}:${AWS::AccountId}:table/e2etest-va-swb-EnvironmentsSc"
+                  },
+                  {
+                    "Fn::Sub": "arn:${AWS::Partition}:dynamodb:${AWS::Region}:${AWS::AccountId}:table/e2etest-va-swb-Indexes"
+                  },
+                  {
+                    "Fn::Sub": "arn:${AWS::Partition}:dynamodb:${AWS::Region}:${AWS::AccountId}:table/e2etest-va-swb-EnvironmentTypes"
+                  },
+                  {
+                    "Fn::Sub": "arn:${AWS::Partition}:dynamodb:${AWS::Region}:${AWS::AccountId}:table/e2etest-va-swb-Environments"
+                  },
+                  {
+                    "Fn::Sub": "arn:${AWS::Partition}:dynamodb:${AWS::Region}:${AWS::AccountId}:table/e2etest-va-swb-KeyPairs"
+                  },
+                  {
+                    "Fn::Sub": "arn:${AWS::Partition}:dynamodb:${AWS::Region}:${AWS::AccountId}:table/e2etest-va-swb-Projects"
+                  },
+                  {
+                    "Fn::Sub": "arn:${AWS::Partition}:dynamodb:${AWS::Region}:${AWS::AccountId}:table/e2etest-va-swb-StudyPermissions"
+                  },
+                  {
+                    "Fn::Sub": "arn:${AWS::Partition}:dynamodb:${AWS::Region}:${AWS::AccountId}:table/e2etest-va-swb-Studies"
+                  },
+                  {
+                    "Fn::GetAtt": [
+                      "DbDeploymentStore",
+                      "Arn"
+                    ]
+                  },
+                  {
+                    "Fn::Sub": "arn:${AWS::Partition}:dynamodb:${AWS::Region}:${AWS::AccountId}:table/e2etest-va-swb-DbPasswords"
+                  },
+                  {
+                    "Fn::Sub": "arn:${AWS::Partition}:dynamodb:${AWS::Region}:${AWS::AccountId}:table/e2etest-va-swb-DbUsers"
+                  },
+                  {
+                    "Fn::Sub": "arn:${AWS::Partition}:dynamodb:${AWS::Region}:${AWS::AccountId}:table/e2etest-va-swb-DbAuthenticationProviderTypes"
+                  },
+                  {
+                    "Fn::Sub": "arn:${AWS::Partition}:dynamodb:${AWS::Region}:${AWS::AccountId}:table/e2etest-va-swb-DbAuthenticationProviderConfigs"
+                  },
+                  {
+                    "Fn::Sub": "arn:${AWS::Partition}:dynamodb:${AWS::Region}:${AWS::AccountId}:table/e2etest-va-swb-DbStepTemplates"
+                  },
+                  {
+                    "Fn::Sub": "arn:${AWS::Partition}:dynamodb:${AWS::Region}:${AWS::AccountId}:table/e2etest-va-swb-DbWorkflowTemplates"
+                  },
+                  {
+                    "Fn::Sub": "arn:${AWS::Partition}:dynamodb:${AWS::Region}:${AWS::AccountId}:table/e2etest-va-swb-DbWorkflows"
+                  },
+                  {
+                    "Fn::Sub": "arn:${AWS::Partition}:dynamodb:${AWS::Region}:${AWS::AccountId}:table/e2etest-va-swb-DbWfAssignments"
+                  },
+                  {
+                    "Fn::Sub": "arn:${AWS::Partition}:dynamodb:${AWS::Region}:${AWS::AccountId}:table/e2etest-va-swb-DbWorkflowInstances"
+                  },
+                  {
+                    "Fn::Sub": "arn:${AWS::Partition}:dynamodb:${AWS::Region}:${AWS::AccountId}:table/e2etest-va-swb-DbWorkflowTemplateDrafts"
+                  },
+                  {
+                    "Fn::Sub": "arn:${AWS::Partition}:dynamodb:${AWS::Region}:${AWS::AccountId}:table/e2etest-va-swb-DbWorkflowDrafts"
+                  },
+                  {
+                    "Fn::Sub": "arn:${AWS::Partition}:dynamodb:${AWS::Region}:${AWS::AccountId}:table/e2etest-va-swb-DbRevokedTokens"
+                  },
+                  {
+                    "Fn::Sub": "arn:${AWS::Partition}:dynamodb:${AWS::Region}:${AWS::AccountId}:table/e2etest-va-swb-DbLocks"
+                  },
+                  {
+                    "Fn::Sub": "arn:${AWS::Partition}:dynamodb:${AWS::Region}:${AWS::AccountId}:table/e2etest-va-swb-DbUserApiKeys"
+                  },
+                  {
+                    "Fn::Sub": "arn:${AWS::Partition}:dynamodb:${AWS::Region}:${AWS::AccountId}:table/e2etest-va-swb-DbAccounts"
+                  },
+                  {
+                    "Fn::Sub": "arn:${AWS::Partition}:dynamodb:${AWS::Region}:${AWS::AccountId}:table/e2etest-va-swb-DbUserRoles"
+                  },
+                  {
+                    "Fn::Sub": "arn:${AWS::Partition}:dynamodb:${AWS::Region}:${AWS::AccountId}:table/e2etest-va-swb-DbAwsAccounts"
+                  },
+                  {
+                    "Fn::Sub": "arn:${AWS::Partition}:dynamodb:${AWS::Region}:${AWS::AccountId}:table/e2etest-va-swb-DbCostApiCaches"
+                  },
+                  {
+                    "Fn::Sub": "arn:${AWS::Partition}:dynamodb:${AWS::Region}:${AWS::AccountId}:table/e2etest-va-swb-DbEnvironmentsSc"
+                  },
+                  {
+                    "Fn::Sub": "arn:${AWS::Partition}:dynamodb:${AWS::Region}:${AWS::AccountId}:table/e2etest-va-swb-DbIndexes"
+                  },
+                  {
+                    "Fn::Sub": "arn:${AWS::Partition}:dynamodb:${AWS::Region}:${AWS::AccountId}:table/e2etest-va-swb-DbEnvironmentTypes"
+                  },
+                  {
+                    "Fn::Sub": "arn:${AWS::Partition}:dynamodb:${AWS::Region}:${AWS::AccountId}:table/e2etest-va-swb-DbEnvironments"
+                  },
+                  {
+                    "Fn::Sub": "arn:${AWS::Partition}:dynamodb:${AWS::Region}:${AWS::AccountId}:table/e2etest-va-swb-DbKeyPairs"
+                  },
+                  {
+                    "Fn::Sub": "arn:${AWS::Partition}:dynamodb:${AWS::Region}:${AWS::AccountId}:table/e2etest-va-swb-DbProjects"
+                  },
+                  {
+                    "Fn::Sub": "arn:${AWS::Partition}:dynamodb:${AWS::Region}:${AWS::AccountId}:table/e2etest-va-swb-DbStudyPermissions"
+                  },
+                  {
+                    "Fn::Sub": "arn:${AWS::Partition}:dynamodb:${AWS::Region}:${AWS::AccountId}:table/e2etest-va-swb-DbStudies"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "PolicyName": "param-store-access",
+            "PolicyDocument": {
+              "Statement": {
+                "Effect": "Allow",
+                "Action": [
+                  "ssm:GetParameter",
+                  "ssm:PutParameter"
+                ],
+                "Resource": {
+                  "Fn::Sub": "arn:${AWS::Partition}:ssm:${AWS::Region}:${AWS::AccountId}:parameter/e2etest/swb/*"
+                }
+              }
+            }
+          },
+          {
+            "PolicyName": "kms-access",
+            "PolicyDocument": {
+              "Statement": [
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "kms:DescribeKey"
+                  ],
+                  "Resource": "*"
+                }
+              ]
+            }
+          },
+          {
+            "PolicyName": "cfn-access",
+            "PolicyDocument": {
+              "Statement": {
+                "Effect": "Allow",
+                "Action": [
+                  "cloudformation:DescribeStacks"
+                ],
+                "Resource": [
+                  {
+                    "Fn::Sub": "arn:${AWS::Partition}:cloudformation:${AWS::Region}:${AWS::AccountId}:stack/e2etest-va-swb-backend/*"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "PolicyName": "cloudfront-access",
+            "PolicyDocument": {
+              "Statement": {
+                "Effect": "Allow",
+                "Action": [
+                  "cloudfront:GetDistributionConfig",
+                  "cloudfront:UpdateDistribution"
+                ],
+                "Resource": [
+                  {
+                    "Fn::Sub": "arn:${AWS::Partition}:cloudfront::${AWS::AccountId}:distribution/E2VW0DH4DLRCRL"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "PolicyName": "lambda-access",
+            "PolicyDocument": {
+              "Statement": [
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "lambda:GetFunction",
+                    "lambda:UpdateFunctionConfiguration"
+                  ],
+                  "Resource": [
+                    {
+                      "Fn::Sub": "arn:${AWS::Partition}:lambda:${AWS::Region}:${AWS::AccountId}:function:va-swb-backend-e2etest-workflowLoopRunner"
+                    }
+                  ]
+                },
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "lambda:GetFunction",
+                    "lambda:publishVersion",
+                    "lambda:EnableReplication"
+                  ],
+                  "Resource": [
+                    "arn:aws:lambda:us-east-1:684277579687:function:e2etest-va-swb-edgeLambda-EdgeLambda-A9RQRHZTFZ3O",
+                    "arn:aws:lambda:us-east-1:684277579687:function:e2etest-va-swb-edgeLambda-EdgeLambda-A9RQRHZTFZ3O:*"
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "PolicyName": "service-catalog-access",
+            "PolicyDocument": {
+              "Statement": {
+                "Effect": "Allow",
+                "Action": [
+                  "servicecatalog:CreatePortfolio",
+                  "servicecatalog:UpdatePortfolio",
+                  "servicecatalog:DescribePortfolio",
+                  "servicecatalog:CreateProduct",
+                  "servicecatalog:UpdateProduct",
+                  "servicecatalog:DescribeProduct",
+                  "servicecatalog:AssociatePrincipalWithPortfolio",
+                  "servicecatalog:AssociateProductWithPortfolio",
+                  "servicecatalog:CreateConstraint",
+                  "servicecatalog:ListPortfolios",
+                  "servicecatalog:CreateProvisioningArtifact"
+                ],
+                "Resource": [
+                  {
+                    "Fn::Sub": "arn:${AWS::Partition}:servicecatalog:${AWS::Region}:${AWS::AccountId}:*"
+                  },
+                  {
+                    "Fn::Sub": "arn:${AWS::Partition}:servicecatalog:${AWS::Region}:${AWS::AccountId}:*/*"
+                  },
+                  {
+                    "Fn::Sub": "arn:${AWS::Partition}:catalog:${AWS::Region}:${AWS::AccountId}:portfolio/*"
+                  },
+                  {
+                    "Fn::Sub": "arn:${AWS::Partition}:catalog:${AWS::Region}:${AWS::AccountId}:product/*"
+                  }
+                ]
+              }
+            }
+          }
+        ]
+      }
+    },
+    "ServiceCatalogLaunchConstraintRole": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "RoleName": "e2etest-va-swb-LaunchConstraint",
+        "AssumeRolePolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Principal": {
+                "Service": [
+                  "servicecatalog.amazonaws.com"
+                ]
+              },
+              "Action": "sts:AssumeRole"
+            }
+          ]
+        },
+        "ManagedPolicyArns": [
+          "arn:aws:iam::aws:policy/PowerUserAccess"
+        ],
+        "Policies": [
+          {
+            "PolicyName": "ServiceCatalogProductLaunchPermissions",
+            "PolicyDocument": {
+              "Version": "2012-10-17",
+              "Statement": [
+                {
+                  "Action": [
+                    "iam:AttachRolePolicy",
+                    "iam:CreateRole",
+                    "iam:DeleteRole",
+                    "iam:DeleteRolePolicy",
+                    "iam:DetachRolePolicy",
+                    "iam:GetRole",
+                    "iam:GetRolePolicy",
+                    "iam:PassRole",
+                    "iam:PutRolePolicy",
+                    "iam:*TagRole*"
+                  ],
+                  "Resource": "*",
+                  "Effect": "Allow"
+                }
+              ]
+            }
+          },
+          {
+            "PolicyName": "iam-instance-profile-access",
+            "PolicyDocument": {
+              "Statement": {
+                "Effect": "Allow",
+                "Action": [
+                  "iam:AddRoleToInstanceProfile",
+                  "iam:CreateInstanceProfile",
+                  "iam:GetInstanceProfile",
+                  "iam:DeleteInstanceProfile",
+                  "iam:RemoveRoleFromInstanceProfile"
+                ],
+                "Resource": "*"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "DeploymentStoreDb": {
+      "Type": "AWS::DynamoDB::Table",
+      "Properties": {
+        "TableName": "e2etest-va-swb-DeploymentStore",
+        "AttributeDefinitions": [
+          {
+            "AttributeName": "type",
+            "AttributeType": "S"
+          },
+          {
+            "AttributeName": "id",
+            "AttributeType": "S"
+          }
+        ],
+        "KeySchema": [
+          {
+            "AttributeName": "type",
+            "KeyType": "HASH"
+          },
+          {
+            "AttributeName": "id",
+            "KeyType": "RANGE"
+          }
+        ],
+        "BillingMode": "PAY_PER_REQUEST"
+      }
+    },
+    "DbDeploymentStore": {
+      "Type": "AWS::DynamoDB::Table",
+      "Properties": {
+        "TableName": "e2etest-va-swb-DbDeploymentStore",
+        "AttributeDefinitions": [
+          {
+            "AttributeName": "type",
+            "AttributeType": "S"
+          },
+          {
+            "AttributeName": "id",
+            "AttributeType": "S"
+          }
+        ],
+        "KeySchema": [
+          {
+            "AttributeName": "type",
+            "KeyType": "HASH"
+          },
+          {
+            "AttributeName": "id",
+            "KeyType": "RANGE"
+          }
+        ],
+        "BillingMode": "PAY_PER_REQUEST"
+      }
+    }
+  },
+  "Outputs": {
+    "ServerlessDeploymentBucketName": {
+      "Value": "684277579687-e2etest-va-swb-artifacts"
+    },
+    "PostDeploymentRoleArn": {
+      "Value": {
+        "Fn::GetAtt": [
+          "RolePostDeploymentLambda",
+          "Arn"
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,288 @@
+{
+  "service": {
+    "service": "va-swb-edgeLambda",
+    "serviceObject": {
+      "name": "va-swb-edgeLambda"
+    },
+    "provider": {
+      "stage": "dev",
+      "variableSyntax": "\\$\\{((((self|opt|deep|cf):)|file)((?!\\$\\{).)+?)}",
+      "name": "aws",
+      "region": "us-east-1",
+      "profile": "galileo-common",
+      "stackName": "e2etest-va-swb-edgeLambda",
+      "deploymentBucket": "684277579687-e2etest-va-swb-artifacts",
+      "stackTags": {
+        "Name": "e2etest-va-swb-edgeLambda"
+      },
+      "versionFunctions": false,
+      "deploymentBucketObject": {
+        "name": "684277579687-e2etest-va-swb-artifacts"
+      },
+      "remoteFunctionData": null,
+      "compiledCloudFormationTemplate": {
+        "AWSTemplateFormatVersion": "2010-09-09",
+        "Description": "Service-Workbench-on-AWS 1.0.0 swb e2etest Edge-Lambda",
+        "Resources": {
+          "RoleCloudFrontInterceptor": {
+            "Type": "AWS::IAM::Role",
+            "Properties": {
+              "AssumeRolePolicyDocument": {
+                "Version": "2012-10-17",
+                "Statement": [
+                  {
+                    "Effect": "Allow",
+                    "Principal": {
+                      "Service": [
+                        "lambda.amazonaws.com",
+                        "edgelambda.amazonaws.com"
+                      ]
+                    },
+                    "Action": "sts:AssumeRole"
+                  }
+                ]
+              },
+              "ManagedPolicyArns": [
+                "arn:aws:iam::aws:policy/AWSLambdaExecute",
+                "arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess"
+              ],
+              "Policies": [
+                {
+                  "PolicyName": "logs-access",
+                  "PolicyDocument": {
+                    "Statement": {
+                      "Effect": "Allow",
+                      "Action": [
+                        "logs:CreateLogGroup",
+                        "logs:CreateLogStream",
+                        "logs:PutLogEvents"
+                      ],
+                      "Resource": "arn:aws:logs:*:*:*"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "EdgeLambda": {
+            "Type": "AWS::Lambda::Function",
+            "DeletionPolicy": "Retain",
+            "Properties": {
+              "Description": "Lambda@Edge function to set security headers in CloudFront responses",
+              "Runtime": "nodejs12.x",
+              "Handler": "index.handler",
+              "Role": {
+                "Fn::GetAtt": [
+                  "RoleCloudFrontInterceptor",
+                  "Arn"
+                ]
+              },
+              "Code": {
+                "ZipFile": "\"use strict\";\nconst url = require(\"url\");\n\nconst handler = async event => {\n  //Get contents of cloudfront response\n  const response = event.Records[0].cf.response;\n  const headers = response.headers;\n\n  //Set new headers\n  headers[\"strict-transport-security\"] = [\n    {\n      key: \"Strict-Transport-Security\",\n      value: \"max-age=63072000; includeSubdomains\"\n    }\n  ];\n\n  const q = url.parse('https://6pnv22hyv5.execute-api.us-east-1.amazonaws.com/e2etest');\n  // q.host includes port number\n  const backendApi = `${q.protocol}//${q.host}`;\n  const otherConnectSrc = '*.amazonaws.com';\n  const connectSrc = `${backendApi} ${otherConnectSrc}`;\n  headers[\"content-security-policy\"] = [\n    {\n      key: \"Content-Security-Policy\",\n      value: `default-src 'none'; connect-src ${connectSrc}; img-src 'self' data:; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self' data:`\n    }\n  ];\n\n  headers[\"x-content-type-options\"] = [\n    { key: \"X-Content-Type-Options\", value: \"nosniff\" }\n  ];\n  headers[\"x-frame-options\"] = [{ key: \"X-Frame-Options\", value: \"DENY\" }];\n  headers[\"x-xss-protection\"] = [\n    { key: \"X-XSS-Protection\", value: \"1; mode=block\" }\n  ];\n  headers[\"referrer-policy\"] = [\n    { key: \"Referrer-Policy\", value: \"same-origin\" }\n  ];\n  //Return modified response\n  return response;\n};\n\nmodule.exports.handler = handler;\n"
+              }
+            }
+          }
+        },
+        "Outputs": {
+          "ServerlessDeploymentBucketName": {
+            "Value": "684277579687-e2etest-va-swb-artifacts"
+          },
+          "EdgeLambdaArn": {
+            "Description": "The ARN of the Lambda@Edge function",
+            "Value": {
+              "Fn::GetAtt": [
+                "EdgeLambda",
+                "Arn"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "custom": {
+      "settings": {
+        "version": "1.0.0",
+        "regionShortNamesMap": {
+          "us-east-2": "oh",
+          "us-east-1": "va",
+          "us-west-1": "ca",
+          "us-west-2": "or",
+          "ap-east-1": "hk",
+          "ap-south-1": "mum",
+          "ap-northeast-3": "osa",
+          "ap-northeast-2": "sel",
+          "ap-southeast-1": "sg",
+          "ap-southeast-2": "syd",
+          "ap-northeast-1": "ty",
+          "ca-central-1": "ca",
+          "cn-north-1": "cn",
+          "cn-northwest-1": "nx",
+          "eu-central-1": "fr",
+          "eu-west-1": "irl",
+          "eu-west-2": "ldn",
+          "eu-west-3": "par",
+          "eu-north-1": "sth",
+          "me-south-1": "bhr",
+          "sa-east-1": "sao",
+          "us-gov-east-1": "gce",
+          "us-gov-west-1": "gcw"
+        },
+        "awsRegion": "us-east-1",
+        "awsRegionShortName": "va",
+        "namespace": "e2etest-va-swb",
+        "globalNamespace": "684277579687-e2etest-va-swb",
+        "deploymentBucketName": "684277579687-e2etest-va-swb-artifacts",
+        "deploymentBucketPolicy": {
+          "Version": "2008-10-17",
+          "Statement": [
+            {
+              "Sid": "Deny requests that do not use TLS",
+              "Effect": "Deny",
+              "Principal": "*",
+              "Action": "s3:*",
+              "Resource": "arn:aws:s3:::684277579687-e2etest-va-swb-artifacts/*",
+              "Condition": {
+                "Bool": {
+                  "aws:SecureTransport": "false"
+                }
+              }
+            },
+            {
+              "Sid": "Deny requests that do not use SigV4",
+              "Effect": "Deny",
+              "Principal": "*",
+              "Action": "s3:*",
+              "Resource": "arn:aws:s3:::684277579687-e2etest-va-swb-artifacts/*",
+              "Condition": {
+                "StringNotEquals": {
+                  "s3:signatureversion": "AWS4-HMAC-SHA256"
+                }
+              }
+            }
+          ]
+        },
+        "environmentsBootstrapBucketName": "684277579687-e2etest-va-swb-environments-bootstrap-scripts",
+        "environmentsBootstrapBucketPrefix": "environment-files",
+        "envName": "e2etest",
+        "envType": "e2eTest",
+        "dbPrefix": "e2etest-va-swb",
+        "paramStoreRoot": "e2etest/swb",
+        "rootUserName": "root",
+        "rootUserFirstName": "root",
+        "rootUserLastName": "root",
+        "rootUserEmail": "root@example.com",
+        "enableExternalResearchers": false,
+        "localRoleAutoAdjustTrust": true,
+        "domainName": "",
+        "certificateArn": "",
+        "hostedZoneId": "",
+        "envMgmtRoleName": "e2etest-va-swb-EnvMgmt",
+        "launchConstraintRolePrefix": "e2etest-va-swb-*",
+        "launchConstraintRoleName": "e2etest-va-swb-LaunchConstraint",
+        "launchConstraintPolicyPrefix": "*",
+        "enableBuiltInWorkspaces": false,
+        "auditQldbName": "e2etest-va-swb-audit",
+        "createServiceCatalogPortfolio": true,
+        "backendStackName": "e2etest-va-swb-backend",
+        "apiUrl": "https://6pnv22hyv5.execute-api.us-east-1.amazonaws.com/e2etest",
+        "otherConnectSrc": "*.amazonaws.com",
+        "globalDeployment": true,
+        "solutionName": "swb",
+        "awsProfile": "galileo-common",
+        "additionalAwsRegion": "us-east-1",
+        "awsAccountInfo": {
+          "awsAccountId": "684277579687"
+        }
+      },
+      "tags": {
+        "$ref": "$[\"service\"][\"provider\"][\"stackTags\"]"
+      }
+    },
+    "plugins": [
+      "serverless-deployment-bucket"
+    ],
+    "pluginsData": {},
+    "functions": {},
+    "resources": {
+      "Description": "Service-Workbench-on-AWS 1.0.0 swb e2etest Edge-Lambda",
+      "Resources": {
+        "RoleCloudFrontInterceptor": {
+          "Type": "AWS::IAM::Role",
+          "Properties": {
+            "AssumeRolePolicyDocument": {
+              "Version": "2012-10-17",
+              "Statement": [
+                {
+                  "Effect": "Allow",
+                  "Principal": {
+                    "Service": [
+                      "lambda.amazonaws.com",
+                      "edgelambda.amazonaws.com"
+                    ]
+                  },
+                  "Action": "sts:AssumeRole"
+                }
+              ]
+            },
+            "ManagedPolicyArns": [
+              "arn:aws:iam::aws:policy/AWSLambdaExecute",
+              "arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess"
+            ],
+            "Policies": [
+              {
+                "PolicyName": "logs-access",
+                "PolicyDocument": {
+                  "Statement": {
+                    "Effect": "Allow",
+                    "Action": [
+                      "logs:CreateLogGroup",
+                      "logs:CreateLogStream",
+                      "logs:PutLogEvents"
+                    ],
+                    "Resource": "arn:aws:logs:*:*:*"
+                  }
+                }
+              }
+            ]
+          }
+        },
+        "EdgeLambda": {
+          "Type": "AWS::Lambda::Function",
+          "DeletionPolicy": "Retain",
+          "Properties": {
+            "Description": "Lambda@Edge function to set security headers in CloudFront responses",
+            "Runtime": "nodejs12.x",
+            "Handler": "index.handler",
+            "Role": {
+              "Fn::GetAtt": [
+                "RoleCloudFrontInterceptor",
+                "Arn"
+              ]
+            },
+            "Code": {
+              "ZipFile": "\"use strict\";\nconst url = require(\"url\");\n\nconst handler = async event => {\n  //Get contents of cloudfront response\n  const response = event.Records[0].cf.response;\n  const headers = response.headers;\n\n  //Set new headers\n  headers[\"strict-transport-security\"] = [\n    {\n      key: \"Strict-Transport-Security\",\n      value: \"max-age=63072000; includeSubdomains\"\n    }\n  ];\n\n  const q = url.parse('https://6pnv22hyv5.execute-api.us-east-1.amazonaws.com/e2etest');\n  // q.host includes port number\n  const backendApi = `${q.protocol}//${q.host}`;\n  const otherConnectSrc = '*.amazonaws.com';\n  const connectSrc = `${backendApi} ${otherConnectSrc}`;\n  headers[\"content-security-policy\"] = [\n    {\n      key: \"Content-Security-Policy\",\n      value: `default-src 'none'; connect-src ${connectSrc}; img-src 'self' data:; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self' data:`\n    }\n  ];\n\n  headers[\"x-content-type-options\"] = [\n    { key: \"X-Content-Type-Options\", value: \"nosniff\" }\n  ];\n  headers[\"x-frame-options\"] = [{ key: \"X-Frame-Options\", value: \"DENY\" }];\n  headers[\"x-xss-protection\"] = [\n    { key: \"X-XSS-Protection\", value: \"1; mode=block\" }\n  ];\n  headers[\"referrer-policy\"] = [\n    { key: \"Referrer-Policy\", value: \"same-origin\" }\n  ];\n  //Return modified response\n  return response;\n};\n\nmodule.exports.handler = handler;\n"
+            }
+          }
+        }
+      },
+      "Outputs": {
+        "EdgeLambdaArn": {
+          "Description": "The ARN of the Lambda@Edge function",
+          "Value": {
+            "Fn::GetAtt": [
+              "EdgeLambda",
+              "Arn"
+            ]
+          }
+        }
+      }
+    },
+    "serviceFilename": "serverless.yml",
+    "layers": {},
+    "isDashboardMonitoringPreconfigured": false
+  },
+  "package": {
+    "artifactDirectoryName": "serverless/va-swb-edgeLambda/e2etest/1611872483886-2021-01-28T22:21:23.886Z",
+    "artifact": ""
+  }
+}

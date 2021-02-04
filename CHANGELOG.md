@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.4.5] - 2021-02-01
+
+### Added
+
+- fix: fix a bug on the update user API
+
 ## [1.4.4] - 2021-01-20
 
 ### Added

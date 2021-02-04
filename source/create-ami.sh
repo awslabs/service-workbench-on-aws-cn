@@ -1,9 +1,10 @@
 #!/bin/bash -x
 if [ $1 == true ]; then
   echo "Install packer"
-  curl -fsSL https://apt.releases.hashicorp.com/gpg | apt-key add -
-  apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
-  apt-get update && apt-get install packer
+  wget https://releases.hashicorp.com/packer/1.6.6/packer_1.6.6_linux_amd64.zip
+  apt install unzip
+  unzip packer_1.6.6_linux_amd64.zip
+  mv packer /usr/local/bin
   echo "Create AMIs"
   cd main/solution/machine-images
   pnpx sls build-image -s $2

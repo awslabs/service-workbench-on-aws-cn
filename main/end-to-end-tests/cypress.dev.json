@@ -1,0 +1,26 @@
+{
+  "chromeWebSecurity": true,
+  "viewportWidth": 1400,
+  "viewportHeight": 1000,
+  "video": true,
+  "env": {
+    "researcherEmail": "Admin@example.com",
+    "researcherPassword": "Admin",
+    "isCognitoEnabled": true,
+    "workspaces": {
+      "sagemaker": {
+        "workspaceTypeName": "SageMaker Notebook-V1.0.0",
+        "configuration": "sagemaker-large",
+        "projectId": "zheyanyuPlusOneProject"
+      },
+      "ec2": {
+        "workspaceTypeName": "EC2 Linux-V1.0.0",
+        "configuration": "ec2 linux instance v1 small",
+        "projectId": "zheyanyuPlusOneProject"
+      }
+    }
+  },
+  "defaultCommandTimeout": 90000,
+  "watchForFileChanges": false,
+  "baseUrl": "https://d26nq7ldhof4p0.cloudfront.net"
+}

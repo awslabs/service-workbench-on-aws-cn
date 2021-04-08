@@ -80,7 +80,8 @@ Resources:
             
             CloudWatch Logs permissions are defined in the SetupLambdaRole, not in SetupLambda. Error suppressed, because permissions
             to write to CloudWatch Logs is being defined in CloudWatchLogPolicy defined on line 123 of this document."
-
+          - id: W89
+            reason: "W89: We do not want to setup a VPC for this Setup lambda. This lambda is used to setup the rest of the infra"
   SetupLambdaRole:
     Type: AWS::IAM::Role
     DependsOn:
@@ -409,7 +410,7 @@ Resources:
                 - aws s3 cp s3://$GLOBAL_BUCKET_NAME-$REGION_NAME/$OBJECT_KEY_NAME/generate-config.sh ./scripts/generate-config.sh 
                 - chmod +x ./scripts/generate-config.sh
                 - ./scripts/generate-config.sh
-                - npm install -g pnpm
+                - npm install -g pnpm@5.18.9
                 - echo "Installing dependencies"
                 - ./scripts/install.sh
                 - printf "\n\n"

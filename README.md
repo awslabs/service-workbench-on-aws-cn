@@ -5,7 +5,7 @@ With Service Workbench on AWS, researchers can quickly and securely stand up res
 
 ## Deployment
 
-The solution is deployed using a CloudFormation template which installs all necessary resources. For details on deploying the solution please see the details on the solution home page: [Service Workbench on AWS](https://aws.amazon.com/solutions/implementations/service-workbench-on-aws/)
+The solution is deployed using a CloudFormation template which installs all necessary resources. For details on deploying the solution please see the details on the solution home page: [Service Workbench on AWS](https://aws.amazon.com/solutions/service-workbench-on-aws/)
 
 ## Customizaiton
 

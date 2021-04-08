@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.4.6] - 2021-04-08
+
+### Added
+
+- fix: set pnpm version when installing globally
+
 ## [1.4.5] - 2021-02-01
 
 ### Added

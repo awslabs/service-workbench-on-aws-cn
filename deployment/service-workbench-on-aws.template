@@ -82,6 +82,8 @@ Resources:
             to write to CloudWatch Logs is being defined in CloudWatchLogPolicy defined on line 123 of this document."
           - id: W89
             reason: "W89: We do not want to setup a VPC for this Setup lambda. This lambda is used to setup the rest of the infra"
+          - id: W92
+            reason: "W92: We do not want to set a ReservedConcurrentExecution. This lambda is used to setup the rest of the infra, and is only invoked at deploy time"
   SetupLambdaRole:
     Type: AWS::IAM::Role
     DependsOn:
@@ -446,7 +448,7 @@ Resources:
             Value: !Ref StageName
           - Name: CREATE_AMI
             Value: !Ref CreateMachineImages
-        Image: aws/codebuild/standard:3.0
+        Image: aws/codebuild/standard:4.0
         Type: LINUX_CONTAINER
       ServiceRole: !Sub ${CodeBuildRole}
       TimeoutInMinutes: 90

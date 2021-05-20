@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.4.7] - 2021-05-20
+
+### Added
+
+- chore: update AWS codebuild image version
+
 ## [1.4.6] - 2021-04-08
 
 ### Added

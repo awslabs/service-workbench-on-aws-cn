@@ -3,7 +3,7 @@ module.exports = {
   tagline: "Researching data made easy",
   url: "https://your-docusaurus-test-site.com",
   baseUrl: "/",
-  favicon: "view-source:https://a0.awsstatic.com/libra-css/images/site/fav/favicon.ico",
+  favicon: "https://a0.awsstatic.com/libra-css/images/site/fav/favicon.ico",
   organizationName: "aws", // Usually your GitHub org/user name.
   projectName: "docusaurus", // Usually your repo name.
   themeConfig: {

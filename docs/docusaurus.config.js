@@ -47,7 +47,7 @@ module.exports = {
     [
       "@docusaurus/preset-classic",
       {
-        docs: {
+        docs: {          
           routeBasePath: "/",
           sidebarPath: require.resolve("./sidebars.js"),
           editUrl: "https://github.com/awslabs/go-research-on-aws/website/",

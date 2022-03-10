@@ -14,7 +14,7 @@ Click the following links below to download and install the software as appropri
 | Pnpm and Node.js   | <ul><li>Installs and manages JavaScript packages specified in the platform’s dependencies. See [Pnpm](https://pnpm.io/installation). </li><li>Builds JavaScript files. See [Node.js](https://nodejs.org/en/).</li><li>Builds and packages the code for cloud deployment. See [Serverless framework](https://www.serverless.com/). For any issues with using `node.js`, refer to the [Troubleshooting](/installation_guide/troubleshooting) section.</li></ul>      |
 | [Go](https://golang.org/dl/)       | Used for creating a multipart S3 downloader tool that is used in AWS Service Catalog EC2 Windows-based research environments.        |
 
-::: note
+:::note
 
 Do not install Service Workbench in the `root` directory.
 

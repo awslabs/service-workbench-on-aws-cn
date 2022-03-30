@@ -5,10 +5,10 @@ module.exports = {
   baseUrl: "/",
   favicon: "img/favicon.ico",
   organizationName: "aws", // Usually your GitHub org/user name.
-  projectName: "docusaurus", // Usually your repo name.
+  projectName: "service-workbench-on-aws", // Usually your repo name.
   themeConfig: {
     navbar: {
-      title: "Home",
+      title: "Service Workbench on AWS",
     },
     footer: {
       style: "dark",

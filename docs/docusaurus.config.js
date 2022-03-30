@@ -1,6 +1,6 @@
 module.exports = {
-  title: "Service Workbench Platform",
-  tagline: "Researching data made easy",
+  title: "Service Workbench on AWS",
+  tagline: "A web portal for researchers to accelerate their time to science",
   url: "https://your-docusaurus-test-site.com",
   baseUrl: "/",
   favicon: "img/favicon.ico",
@@ -8,21 +8,34 @@ module.exports = {
   projectName: "service-workbench-on-aws", // Usually your repo name.
   themeConfig: {
     navbar: {
-      title: "Service Workbench on AWS",
+      title: "Service Workbench on AWS",      
+      logo: {
+        alt: 'Site Logo',
+        src: "img/AWS_logo_RGB.svg",
+        target: '_self',
+        width: 32,
+        height: 32,
+      }
+      items: [
+        {
+          type: "search",
+          position: "right",
+        }
+      ]
     },
     footer: {
       style: "dark",
       links: [
         {
-          title: "Community",
+          title: "AWS",
           items: [
             {
-              label: "Stack Overflow",
-              href: "https://stackoverflow.com/questions/tagged/docusaurus",
+              label: "AWS Docs",
+              href: "https://docs.aws.amazon.com/solutions/latest/service-workbench-on-aws/overview.html",
             },
             {
-              label: "Discord",
-              href: "https://discordapp.com/invite/docusaurus",
+              label: "Sales Channel",
+              href: "https://aws.amazon.com/government-education/research-and-technical-computing/service-workbench/",
             },
           ],
         },
@@ -31,16 +44,16 @@ module.exports = {
           items: [
             {
               label: "GitHub",
-              href: "https://github.com/facebook/docusaurus",
+              href: "https://github.com/awslabs/service-workbench-on-aws",
             },
             {
               label: "Twitter",
-              href: "https://twitter.com/docusaurus",
+              href: "https://twitter.com/awscloud",
             },
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+      copyright: `Copyright © ${new Date().getFullYear()} Amazon Web Services, Inc. or its affiliates. All rights reserved.`,
     },
   },
   presets: [

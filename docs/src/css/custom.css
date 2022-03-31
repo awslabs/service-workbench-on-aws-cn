@@ -10,38 +10,38 @@
 /* See https://facebookincubator.github.io/infima/docs/getting-started/introduction */
 /* To see all the css, you need to look at the appropriate component
    https://github.com/facebook/docusaurus/tree/master/packages/docusaurus-theme-classic/src/theme */
-:root {
-  --ifm-color-primary: #ff6633;
-  --ifm-color-primary-dark: #9e1f63;
-  --ifm-color-primary-darker: #005276;
-  --ifm-color-primary-darkest: #232f3e;
-  --ifm-color-primary-light: #008296;
-  --ifm-color-primary-lighter: #7cd1ea;
-  --ifm-color-primary-lightest: #f1f3f3;
-  --ifm-code-font-size: 95%;
-}
-
-html {
-  /* background: url('/img/bg.svg') top center no-repeat; 
-  background-size: auto 600px;
-  background-color: #000000;
-  */
-  /*
-  background-color: #f1f3f3;
-  color: #000000;
-  */
-}
-
-
-@media screen and (max-width: 966px) {
-  html {
-    background-size: auto 500px;
+   :root {
+    --ifm-color-primary: #6589e6;
+    --ifm-color-primary-dark: #4973e1;
+    --ifm-color-primary-darker: #3a68df;
+    --ifm-color-primary-darkest: #204fc7;
+    --ifm-color-primary-light: #819feb;
+    --ifm-color-primary-lighter: #90aaed;
+    --ifm-color-primary-lightest: #bacaf4;
+    --ifm-code-font-size: 95%;
   }
-}
-
-.docusaurus-highlight-code-line {
-  background-color: rgb(212, 218, 218);
-  display: block;
-  margin: 0 calc(-1 * var(--ifm-pre-padding));
-  padding: 0 var(--ifm-pre-padding);
-}
+  
+  html {
+    /* background: url('/img/bg.svg') top center no-repeat; 
+    background-size: auto 600px;
+    background-color: #f8f8f8;
+    */
+    /*
+    background-color: #f8f8f8;
+    color: #000000;
+    */
+  }
+  
+  
+  @media screen and (max-width: 966px) {
+    html {
+      background-size: auto 500px;
+    }
+  }
+  
+  .docusaurus-highlight-code-line {
+    background-color: rgb(72, 77, 91);
+    display: block;
+    margin: 0 calc(-1 * var(--ifm-pre-padding));
+    padding: 0 var(--ifm-pre-padding);
+  }

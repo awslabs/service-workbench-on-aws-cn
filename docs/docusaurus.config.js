@@ -1,24 +1,40 @@
 module.exports = {
-  title: "Service Workbench Platform",
-  tagline: "Researching data made easy",
+  title: "Service Workbench on AWS",
+  tagline: "A web portal for researchers to accelerate their time to science",
   url: "https://your-docusaurus-test-site.com",
   baseUrl: "/",
   favicon: "img/favicon.ico",
   organizationName: "aws", // Usually your GitHub org/user name.
-  projectName: "docusaurus", // Usually your repo name.
+  projectName: "service-workbench-on-aws", // Usually your repo name.
   themeConfig: {
     navbar: {
-      title: "Home",
+      title: "Service Workbench on AWS",
+      logo: {
+        alt: "AWS Logo",
+        src: "img/AWS_logo_RGB.svg",
+        srcDark: "img/AWS_logo_RGB_REV.svg",
+        target: '_self',
+        width: 32,
+        height: 32,
+      }
     },
     footer: {
-      style: "dark",
+      style: "dark", 
+      logo: [
+        {
+        alt: "AWS Logo",
+        src: "img/AWS_logo_RGB_REV.svg",
+        width: 160,
+        height: 51,        
+      },    
+    ],   
       links: [
         {
-          title: "Community",
+          title: "Resources",
           items: [
             {
-              label: "Stack Overflow",
-              href: "https://stackoverflow.com/questions/tagged/docusaurus",
+              label: "Service Workbench on AWS",
+              href: "https://aws.amazon.com/government-education/research-and-technical-computing/service-workbench/",
             },
             {
               label: "Discord",
@@ -40,7 +56,7 @@ module.exports = {
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+      copyright: `Copyright © ${new Date().getFullYear()} Amazon Web Services, Inc. or its affiliates. All rights reserved.`,
     },
   },
   presets: [

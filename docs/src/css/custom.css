@@ -11,8 +11,8 @@
 /* To see all the css, you need to look at the appropriate component
    https://github.com/facebook/docusaurus/tree/master/packages/docusaurus-theme-classic/src/theme */
 :root {
-  --ifm-color-primary: #6589e6;
-  --ifm-color-primary-dark: #4973e1;
+  --ifm-color-primary: #ff6633;
+  --ifm-color-primary-dark: #005276;
   --ifm-color-primary-darker: #3a68df;
   --ifm-color-primary-darkest: #204fc7;
   --ifm-color-primary-light: #819feb;
@@ -22,16 +22,11 @@
 }
 
 html {
-  /* background: url('/img/bg.svg') top center no-repeat; 
-  background-size: auto 600px;
-  background-color: #f8f8f8;
-  */
-  /*
-  background-color: #f8f8f8;
-  color: #000000;
-  */
+ 
+  background-color: #f1f3f3;
+  color: #232F3E;
+    
 }
-
 
 @media screen and (max-width: 966px) {
   html {
@@ -40,8 +35,9 @@ html {
 }
 
 .docusaurus-highlight-code-line {
-  background-color: rgb(72, 77, 91);
+  background-color: rgb(212, 218, 218);
   display: block;
   margin: 0 calc(-1 * var(--ifm-pre-padding));
   padding: 0 var(--ifm-pre-padding);
 }
+

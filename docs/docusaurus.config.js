@@ -8,52 +8,36 @@ module.exports = {
   projectName: "service-workbench-on-aws", // Usually your repo name.
   themeConfig: {
     navbar: {
+      style: "dark",
       title: "Service Workbench on AWS",
       logo: {
         alt: "AWS Logo",
-        src: "img/AWS_logo_RGB.svg",
+        src: "img/AWS_logo_RGB_REV.svg",
         srcDark: "img/AWS_logo_RGB_REV.svg",
         target: '_self',
         width: 32,
         height: 32,
-      }
+        padding: ["right"],
+      },           
     },
     footer: {
-      style: "dark", 
-      logo: [
-        {
-        alt: "AWS Logo",
-        src: "img/AWS_logo_RGB_REV.svg",
-        width: 160,
-        height: 51,        
-      },    
-    ],   
+      style: "dark",        
       links: [
-        {
-          title: "Resources",
+        {          
           items: [
             {
               label: "Service Workbench on AWS",
               href: "https://aws.amazon.com/government-education/research-and-technical-computing/service-workbench/",
-            },
-            {
-              label: "Discord",
-              href: "https://discordapp.com/invite/docusaurus",
-            },
+            },            
           ],
         },
-        {
-          title: "Social",
+        {          
           items: [
             {
               label: "GitHub",
-              href: "https://github.com/facebook/docusaurus",
+              href: "https://github.com/awslabs/service-workbench-on-aws",
             },
-            {
-              label: "Twitter",
-              href: "https://twitter.com/docusaurus",
-            },
-          ],
+          ],  
         },
       ],
       copyright: `Copyright © ${new Date().getFullYear()} Amazon Web Services, Inc. or its affiliates. All rights reserved.`,

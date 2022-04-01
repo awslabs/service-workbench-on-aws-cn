@@ -17,26 +17,31 @@ module.exports = {
         target: '_self',
         width: 32,
         height: 32,
-        padding: ["right"],
-      },           
+      },  
+      items: [
+        {
+          position: 'right',
+          href: "https://aws.amazon.com/government-education/research-and-technical-computing/service-workbench/",
+          label: 'AWS',
+        },
+         { 
+          label: "GitHub",
+          href: "https://github.com/awslabs/service-workbench-on-aws",
+          position: "right",
+         } 
+      ]         
     },
     footer: {
       style: "dark",        
       links: [
         {          
           items: [
-            {
-              label: "Service Workbench on AWS",
-              href: "https://aws.amazon.com/government-education/research-and-technical-computing/service-workbench/",
-            },            
+                     
           ],
         },
         {          
           items: [
-            {
-              label: "GitHub",
-              href: "https://github.com/awslabs/service-workbench-on-aws",
-            },
+           
           ],  
         },
       ],

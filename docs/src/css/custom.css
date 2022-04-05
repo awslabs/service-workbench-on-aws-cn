@@ -41,3 +41,35 @@ html {
   padding: 0 var(--ifm-pre-padding);
 }
 
+.admonition-caution {
+  background-color: rgba(230, 57, 57, 0.1);
+  border-left: 8px solid #da2121;
+  color: #080808;
+}
+
+.admonition-caution h5 {
+  color: #080808;
+}
+
+.admonition-caution .admonition-icon svg {
+  stroke: #080808;
+  fill: #080808;
+}
+
+.admonition-note {
+  background-color: rgba(99, 119, 207, 0.1);
+  border-left: 8px solid #0906b8;
+}
+
+.admonition-note h5 {
+  color: #080808;
+}
+
+.admonition-note .admonition-icon svg {
+  stroke: #080808;
+  fill: #080808;
+}
+
+.codeBlock_node_modules {
+  background-color: #745549;
+}

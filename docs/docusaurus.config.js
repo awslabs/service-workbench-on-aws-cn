@@ -8,7 +8,7 @@ module.exports = {
   projectName: "service-workbench-on-aws", // Usually your repo name.
   themeConfig: {
     navbar: {
-      style: "dark",
+      style: "darker",
       title: "Service Workbench on AWS",
       logo: {
         alt: "AWS Logo",
@@ -58,7 +58,7 @@ module.exports = {
           editUrl: "https://github.com/awslabs/go-research-on-aws/website/",
         },
         theme: {
-          disableDarkMode: true, // Not working yet
+          disableDarkMode: true, 
           customCss: require.resolve("./src/css/custom.css"),
         },
       },

@@ -23,8 +23,7 @@
 
 html {
  
-  background-color: #f1f3f3;
-  color:#000000
+  
     
 }
 
@@ -43,8 +42,7 @@ html {
 
 .admonition-caution {
   background-color: rgba(230, 57, 57, 0.1);
-  border-left: 8px solid #da2121;
-  color: #080808;
+  border-left: 8px solid #da2121;  
 }
 
 .admonition-caution h5 {
@@ -70,6 +68,5 @@ html {
   fill: #080808;
 }
 
-.codeBlock_node_modules {
-  background-color: #745549;
-}
+
+  

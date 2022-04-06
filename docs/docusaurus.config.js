@@ -1,4 +1,4 @@
-module.exports = {
+module.exports = {  
   title: "Service Workbench on AWS",
   tagline: "A web portal for researchers to accelerate their time to science",
   url: "https://your-docusaurus-test-site.com",
@@ -8,7 +8,7 @@ module.exports = {
   projectName: "service-workbench-on-aws", // Usually your repo name.
   themeConfig: {
     navbar: {
-      style: "darker",
+      style: "dark",
       title: "Service Workbench on AWS",
       logo: {
         alt: "AWS Logo",

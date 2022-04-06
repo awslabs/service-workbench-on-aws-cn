@@ -35,37 +35,34 @@ Your environment should load a welcome screen and command line interface.
 
 For more information about modifying the volume, see [Resize an Amazon EBS volume used by an environment.](https://docs.aws.amazon.com/cloud9/latest/user-guide/move-environment.html#move-environment-resize)
 
-
 ## Configure the AWS Cloud9 environment
 Return to the AWS Cloud9 command line environment to complete the following steps.
 
-1.	Verify the file size by entering the command:
+1.	Verify the file size by entering the command:  
 ```df -hT```
-2.	To increase the partition size, enter:
+2.	To increase the partition size, enter:  
 ```sudo growpart /dev/nvme0n1 1```
-3.	Increase the file system inside the partition:
+3.	Increase the file system inside the partition:  
 ```sudo xfs_growfs -d /```
-4.	Verify that the file size increased by entering:
+4.	Verify that the file size increased by entering:  
 ```df -hT```
-5.	Check the node version by entering:
+5.	Check the node version by entering:  
 ```node --version```
 
 :::caution Important
 Node.js v14.x is required. If you must revert to v14.x, see the steps in .
 :::
 
-6.	Install the node package manager:
+6.	Install the node package manager:  
 ```npm install -g pnpm```
 7.	A serverless packer is necessary to build AMIs. Follow the [README](https://github.com/awslabs/service-workbench-on-aws/blob/b20208099d5acf51816ee4efd5b5bb3bf6d22fc8/addons/addon-base-raas/packages/serverless-packer/README.md) instructions to install. Open a new terminal window after you complete the installation.
 
-
 ## Clone the GitHub directory
-1.	From the terminal, clone the GitHub directory:
+1.	From the terminal, clone the GitHub directory:  
 ```git clone https://github.com/awslabs/service-workbench-on-aws.git```  
 The Git directory is now available on your instance.
-2.	Ensure you are working from the service-workbench-on-aws folder for the remainder of the process:
+2.	Ensure you are working from the service-workbench-on-aws folder for the remainder of the process:  
 ```cd service-workbench-on-aws/```
-
 
 ## Prepare the environment file
 1.	From the toggletree, navigate to select **example.yml**:
@@ -80,17 +77,15 @@ The Git directory is now available on your instance.
  
 4.	Save the copied file.
 
-
 ## Run the install script
-1.	Ensure you are working from the service-workbench-on-aws folder:
+1.	Ensure you are working from the service-workbench-on-aws folder:  
 ```cd service-workbench-on-aws/```
-2.	Deploy the install script:
+2.	Deploy the install script:  
 ```scripts/environment-deploy.sh <copied file name>```  
 **Example:** ```scripts/environment-deploy.sh dev```
 
-The install may take up to an hour. Once successfully installed you will receive a success message and login details.
+The install may take up to an hour. Once successfully installed you will receive a success message and login details.  
 
-For more information about logging in to Service Workbench, see [Login and setup user account].
+![Successful install result](/img/consoleoutput.png)
 
-### hello
-    jhjhg hj
+Take note of the website URL and temporary password. To login to Service Workbench, paste the provided URL in your browser. Choose **Login**. Your user name will be root@example.com and the password will be the provided output at the end of the install. You will be prompted to change your password on login.

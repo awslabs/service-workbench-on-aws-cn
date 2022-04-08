@@ -7,9 +7,12 @@ module.exports = {
     "Installation": [
       "installation/cloud9",
       "installation/ec2",
-    ],       
+    ],    
+    "Configuration and maintenance": [
+      "configuration/accountmgmt"
+    ],     
     "Troubleshooting": [
       "troubleshooting/install_problems",
-    ]    
+    ],  
   },
 };

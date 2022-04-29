@@ -1,0 +1,19 @@
+{
+  "unversionedId": "deployment/deployment/index",
+  "id": "deployment/deployment/index",
+  "isDocsHomePage": false,
+  "title": "Deploying Service Workbench",
+  "description": "This section describes the process for deploying the Service Workbench.",
+  "source": "@site/docs/deployment/deployment/index.md",
+  "sourceDirName": "deployment/deployment",
+  "slug": "/deployment/deployment/index",
+  "permalink": "/deployment/deployment/index",
+  "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/deployment/deployment/index.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "index",
+    "title": "Deploying Service Workbench",
+    "sidebar_label": "Deploying Service Workbench"
+  }
+}

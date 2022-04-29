@@ -1,0 +1,28 @@
+{
+  "unversionedId": "configuration_guide/workflow",
+  "id": "configuration_guide/workflow",
+  "isDocsHomePage": false,
+  "title": "Service Workbench and IdP workflow",
+  "description": "Service Workbench and IdP workflow",
+  "source": "@site/docs/configuration_guide/workflow.md",
+  "sourceDirName": "configuration_guide",
+  "slug": "/configuration_guide/workflow",
+  "permalink": "/configuration_guide/workflow",
+  "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/configuration_guide/workflow.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "workflow",
+    "title": "Service Workbench and IdP workflow",
+    "sidebar_label": "Service Workbench and IdP workflow"
+  },
+  "sidebar": "serviceWorkbenchSidebar",
+  "previous": {
+    "title": "Identity Provider overview",
+    "permalink": "/configuration_guide/overview"
+  },
+  "next": {
+    "title": "Configuring Service Workbench using Microsoft Azure AD",
+    "permalink": "/configuration_guide/activedirectory"
+  }
+}

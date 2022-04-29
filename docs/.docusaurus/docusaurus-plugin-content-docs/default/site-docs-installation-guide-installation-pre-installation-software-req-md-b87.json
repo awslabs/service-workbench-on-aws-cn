@@ -1,0 +1,28 @@
+{
+  "unversionedId": "installation_guide/installation/pre-installation/software-req",
+  "id": "installation_guide/installation/pre-installation/software-req",
+  "isDocsHomePage": false,
+  "title": "Software requirements",
+  "description": "Click the following links below to download and install the software as appropriate for your installation environment:",
+  "source": "@site/docs/installation_guide/installation/pre-installation/software-req.md",
+  "sourceDirName": "installation_guide/installation/pre-installation",
+  "slug": "/installation_guide/installation/pre-installation/software-req",
+  "permalink": "/installation_guide/installation/pre-installation/software-req",
+  "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/installation_guide/installation/pre-installation/software-req.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "software-req",
+    "title": "Software requirements",
+    "sidebar_label": "Software requirements"
+  },
+  "sidebar": "serviceWorkbenchSidebar",
+  "previous": {
+    "title": "Tool requirements",
+    "permalink": "/installation_guide/installation/pre-installation/tool-req"
+  },
+  "next": {
+    "title": "Instance requirements",
+    "permalink": "/installation_guide/installation/pre-installation/instance-req"
+  }
+}

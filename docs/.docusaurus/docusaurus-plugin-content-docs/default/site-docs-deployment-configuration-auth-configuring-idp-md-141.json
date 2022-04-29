@@ -1,0 +1,19 @@
+{
+  "unversionedId": "deployment/configuration/auth/configuring_idp",
+  "id": "deployment/configuration/auth/configuring_idp",
+  "isDocsHomePage": false,
+  "title": "Configuring an Identity Provider",
+  "description": "Service Workbench on AWS uses Amazon Cognito User Pools to federate identities from Microsoft Active Directory using ADFS and SAML2.0.",
+  "source": "@site/docs/deployment/configuration/auth/configuring_idp.md",
+  "sourceDirName": "deployment/configuration/auth",
+  "slug": "/deployment/configuration/auth/configuring_idp",
+  "permalink": "/deployment/configuration/auth/configuring_idp",
+  "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/deployment/configuration/auth/configuring_idp.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "configuring_idp",
+    "title": "Configuring an Identity Provider",
+    "sidebar_label": "Configuring an Identity Provider"
+  }
+}

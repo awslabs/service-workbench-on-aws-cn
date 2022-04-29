@@ -1,0 +1,28 @@
+{
+  "unversionedId": "best_practices/aws_cloudtrail",
+  "id": "best_practices/aws_cloudtrail",
+  "isDocsHomePage": false,
+  "title": "AWS CloudTrail",
+  "description": "AWS CloudTrail is an AWS service that helps you enable governance, compliance, and operational and risk auditing of your AWS account. Actions taken by a user, role, or an AWS service are recorded as events in CloudTrail. Events include actions taken in the AWS Management Console, AWS Command Line Interface, and AWS SDKs and APIs.",
+  "source": "@site/docs/best_practices/aws_cloudtrail.md",
+  "sourceDirName": "best_practices",
+  "slug": "/best_practices/aws_cloudtrail",
+  "permalink": "/best_practices/aws_cloudtrail",
+  "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/best_practices/aws_cloudtrail.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "aws_cloudtrail",
+    "title": "AWS CloudTrail",
+    "sidebar_label": "AWS CloudTrail"
+  },
+  "sidebar": "serviceWorkbenchSidebar",
+  "previous": {
+    "title": "Amazon Inspector",
+    "permalink": "/best_practices/amazon_inspector"
+  },
+  "next": {
+    "title": "AWS Shield",
+    "permalink": "/best_practices/aws_shield"
+  }
+}

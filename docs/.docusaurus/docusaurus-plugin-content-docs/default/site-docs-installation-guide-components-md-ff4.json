@@ -1,0 +1,28 @@
+{
+  "unversionedId": "installation_guide/components",
+  "id": "installation_guide/components",
+  "isDocsHomePage": false,
+  "title": "Service Workbench installation components",
+  "description": "Serverless framework and projects",
+  "source": "@site/docs/installation_guide/components.md",
+  "sourceDirName": "installation_guide",
+  "slug": "/installation_guide/components",
+  "permalink": "/installation_guide/components",
+  "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/installation_guide/components.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "components",
+    "title": "Service Workbench installation components",
+    "sidebar_label": "Installation components"
+  },
+  "sidebar": "serviceWorkbenchSidebar",
+  "previous": {
+    "title": "Service Workbench architecture",
+    "permalink": "/installation_guide/architecture"
+  },
+  "next": {
+    "title": "Overview",
+    "permalink": "/installation_guide/installation/pre-installation/overview"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "unversionedId": "installation_guide/installation/rstudio",
+  "id": "installation_guide/installation/rstudio",
+  "isDocsHomePage": false,
+  "title": "Setting up RStudio ALB workspace",
+  "description": "Overview",
+  "source": "@site/docs/installation_guide/installation/rstudio.md",
+  "sourceDirName": "installation_guide/installation",
+  "slug": "/installation_guide/installation/rstudio",
+  "permalink": "/installation_guide/installation/rstudio",
+  "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/installation_guide/installation/rstudio.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "rstudio",
+    "title": "Setting up RStudio ALB workspace",
+    "sidebar_label": "Setting up RStudio ALB workspace"
+  },
+  "sidebar": "serviceWorkbenchSidebar",
+  "previous": {
+    "title": "Installing using Cloud9",
+    "permalink": "/installation_guide/installation/cloud9install"
+  },
+  "next": {
+    "title": "Upgrade process for command line installations",
+    "permalink": "/installation_guide/upgrading/commandline"
+  }
+}

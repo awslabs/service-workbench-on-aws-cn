@@ -1,0 +1,19 @@
+{
+  "unversionedId": "deployment/configuration/auth/configuring_auth0",
+  "id": "deployment/configuration/auth/configuring_auth0",
+  "isDocsHomePage": false,
+  "title": "Configure Auth0 and SAML2",
+  "description": "Service Workbench on AWS can be configured to authenticate users through Auth0 and SAML2.",
+  "source": "@site/docs/deployment/configuration/auth/configuring_auth0.md",
+  "sourceDirName": "deployment/configuration/auth",
+  "slug": "/deployment/configuration/auth/configuring_auth0",
+  "permalink": "/deployment/configuration/auth/configuring_auth0",
+  "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/deployment/configuration/auth/configuring_auth0.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "configuring_auth0",
+    "title": "Configure Auth0 and SAML2",
+    "sidebar_label": "Configure Auth0 and SAML2"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "unversionedId": "deployment/deployment_stages",
+  "id": "deployment/deployment_stages",
+  "isDocsHomePage": false,
+  "title": "Deployment Stages",
+  "description": "Note: The Service Workbench deployment guide is now replaced by Service Workbench Installation Guide. Refer to the new installation guide for installing Service Workbench.",
+  "source": "@site/docs/deployment/deployment_stages.md",
+  "sourceDirName": "deployment",
+  "slug": "/deployment/deployment_stages",
+  "permalink": "/deployment/deployment_stages",
+  "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/deployment/deployment_stages.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "deployment_stages",
+    "title": "Deployment Stages",
+    "sidebar_label": "Deployment Stages"
+  },
+  "sidebar": "serviceWorkbenchSidebar",
+  "previous": {
+    "title": "Configuring Service Workbench using Auth0",
+    "permalink": "/configuration_guide/auth0"
+  },
+  "next": {
+    "title": "Overview",
+    "permalink": "/installation_guide/installation/pre-installation/overview"
+  }
+}

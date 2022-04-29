@@ -1,0 +1,28 @@
+{
+  "unversionedId": "deployment/redeployment",
+  "id": "deployment/redeployment",
+  "isDocsHomePage": false,
+  "title": "Deploying Updates",
+  "description": "After a successful initial deployment, you can deploy individually to the five serverless projects that are a part of this solution.",
+  "source": "@site/docs/deployment/redeployment.md",
+  "sourceDirName": "deployment",
+  "slug": "/deployment/redeployment",
+  "permalink": "/deployment/redeployment",
+  "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/deployment/redeployment.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "redeployment",
+    "title": "Deploying Updates",
+    "sidebar_label": "Deploying Updates"
+  },
+  "sidebar": "serviceWorkbenchSidebar",
+  "previous": {
+    "title": "Viewing Service Workbench logs",
+    "permalink": "/deployment/post_deployment/logs"
+  },
+  "next": {
+    "title": "Add an AWS IAM role to an Amazon EC2 instance",
+    "permalink": "/deployment/reference/iam_role"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "unversionedId": "installation_guide/upgrading/solutions",
+  "id": "installation_guide/upgrading/solutions",
+  "isDocsHomePage": false,
+  "title": "Upgrading AWS solution installation",
+  "description": "This procedure is for upgrading Service Workbench installations automatically installed from the AWS solution. In this installation model, a CloudFormation template initiates the installation, which is performed by AWS CodeBuild project.  To upgrade a Service Workbench deployment, you need access to the Service Workbench installation.",
+  "source": "@site/docs/installation_guide/upgrading/solutions.md",
+  "sourceDirName": "installation_guide/upgrading",
+  "slug": "/installation_guide/upgrading/solutions",
+  "permalink": "/installation_guide/upgrading/solutions",
+  "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/installation_guide/upgrading/solutions.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "solutions",
+    "title": "Upgrading AWS solution installation",
+    "sidebar_label": "Upgrading AWS solution installation"
+  },
+  "sidebar": "serviceWorkbenchSidebar",
+  "previous": {
+    "title": "Upgrade process for command line installations",
+    "permalink": "/installation_guide/upgrading/commandline"
+  },
+  "next": {
+    "title": "Upgrading to deprecated internal authentication",
+    "permalink": "/installation_guide/upgrading/authentication"
+  }
+}

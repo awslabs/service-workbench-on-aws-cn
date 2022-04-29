@@ -1,0 +1,28 @@
+{
+  "unversionedId": "installation_guide/architecture",
+  "id": "installation_guide/architecture",
+  "isDocsHomePage": false,
+  "title": "Service Workbench architecture",
+  "description": "Service Workbench integrates existing AWS services, such as Amazon CloudFront, AWS Lambda, and AWS Step Functions. Service Workbench enables you to create your own custom templates and share those templates with other organizations. To provide cost transparency, Service Workbench has been integrated with AWS Cost Explorer, AWS Budgets, and AWS Organizations.",
+  "source": "@site/docs/installation_guide/architecture.md",
+  "sourceDirName": "installation_guide",
+  "slug": "/installation_guide/architecture",
+  "permalink": "/installation_guide/architecture",
+  "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/installation_guide/architecture.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "architecture",
+    "title": "Service Workbench architecture",
+    "sidebar_label": "Service Workbench architecture"
+  },
+  "sidebar": "serviceWorkbenchSidebar",
+  "previous": {
+    "title": "Service Workbench overview",
+    "permalink": "/installation_guide/overview"
+  },
+  "next": {
+    "title": "Installation components",
+    "permalink": "/installation_guide/components"
+  }
+}

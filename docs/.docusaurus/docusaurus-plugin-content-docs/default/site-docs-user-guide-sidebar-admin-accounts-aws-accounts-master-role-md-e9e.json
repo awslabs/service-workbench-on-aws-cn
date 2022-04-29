@@ -1,0 +1,28 @@
+{
+  "unversionedId": "user_guide/sidebar/admin/accounts/aws_accounts/master_role",
+  "id": "user_guide/sidebar/admin/accounts/aws_accounts/master_role",
+  "isDocsHomePage": false,
+  "title": "Master Account Role",
+  "description": "This role resides in the Master AWS Account and is assumed by the Main AWS Account.",
+  "source": "@site/docs/user_guide/sidebar/admin/accounts/aws_accounts/master_role.md",
+  "sourceDirName": "user_guide/sidebar/admin/accounts/aws_accounts",
+  "slug": "/user_guide/sidebar/admin/accounts/aws_accounts/master_role",
+  "permalink": "/user_guide/sidebar/admin/accounts/aws_accounts/master_role",
+  "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/user_guide/sidebar/admin/accounts/aws_accounts/master_role.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "master_role",
+    "title": "Master Account Role",
+    "sidebar_label": "Master Account Role"
+  },
+  "sidebar": "serviceWorkbenchSidebar",
+  "previous": {
+    "title": "Set AWS Account Budget",
+    "permalink": "/user_guide/sidebar/admin/accounts/aws_accounts/set_account_budget"
+  },
+  "next": {
+    "title": "Cross Account Execution Role",
+    "permalink": "/user_guide/sidebar/admin/accounts/aws_accounts/cross_account_execution_role"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "unversionedId": "deployment/post_deployment/import_service_catalog_products",
+  "id": "deployment/post_deployment/import_service_catalog_products",
+  "isDocsHomePage": false,
+  "title": "Import AWS Service Catalog products",
+  "description": "Service Workbench uses AWS Service Catalog",
+  "source": "@site/docs/deployment/post_deployment/import_service_catalog_products.md",
+  "sourceDirName": "deployment/post_deployment",
+  "slug": "/deployment/post_deployment/import_service_catalog_products",
+  "permalink": "/deployment/post_deployment/import_service_catalog_products",
+  "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/deployment/post_deployment/import_service_catalog_products.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "import_service_catalog_products",
+    "title": "Import AWS Service Catalog products",
+    "sidebar_label": "Import AWS Service Catalog products"
+  },
+  "sidebar": "serviceWorkbenchSidebar",
+  "previous": {
+    "title": "Create an administrator user",
+    "permalink": "/deployment/post_deployment/create_admin_user"
+  },
+  "next": {
+    "title": "Viewing Service Workbench logs",
+    "permalink": "/deployment/post_deployment/logs"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "unversionedId": "deployment/pre_deployment/accounts",
+  "id": "deployment/pre_deployment/accounts",
+  "isDocsHomePage": false,
+  "title": "Prerequisites",
+  "description": "The initial prerequisites include creating a Main account in AWS and setting up the AWS Cost Explorer.",
+  "source": "@site/docs/deployment/pre_deployment/prerequisites.md",
+  "sourceDirName": "deployment/pre_deployment",
+  "slug": "/deployment/pre_deployment/accounts",
+  "permalink": "/deployment/pre_deployment/accounts",
+  "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/deployment/pre_deployment/prerequisites.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "accounts",
+    "title": "Prerequisites",
+    "sidebar_label": "Prerequisites"
+  }
+}

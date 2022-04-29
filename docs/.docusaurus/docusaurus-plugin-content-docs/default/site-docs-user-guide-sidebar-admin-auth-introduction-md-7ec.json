@@ -1,0 +1,28 @@
+{
+  "unversionedId": "user_guide/sidebar/admin/auth/introduction",
+  "id": "user_guide/sidebar/admin/auth/introduction",
+  "isDocsHomePage": false,
+  "title": "Auth Introduction",
+  "description": "The solution provides the ability to connect to Active Directory as an Identity Provider. The web-based user interface does not provide the ability to add or update these settings. These settings are defined as part of the deployment of the solution.",
+  "source": "@site/docs/user_guide/sidebar/admin/auth/introduction.md",
+  "sourceDirName": "user_guide/sidebar/admin/auth",
+  "slug": "/user_guide/sidebar/admin/auth/introduction",
+  "permalink": "/user_guide/sidebar/admin/auth/introduction",
+  "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/user_guide/sidebar/admin/auth/introduction.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "introduction",
+    "title": "Auth Introduction",
+    "sidebar_label": "Introduction"
+  },
+  "sidebar": "serviceWorkbenchSidebar",
+  "previous": {
+    "title": "Dashboard",
+    "permalink": "/user_guide/sidebar/common/dashboard/introduction"
+  },
+  "next": {
+    "title": "Introduction",
+    "permalink": "/user_guide/sidebar/admin/users/introduction"
+  }
+}

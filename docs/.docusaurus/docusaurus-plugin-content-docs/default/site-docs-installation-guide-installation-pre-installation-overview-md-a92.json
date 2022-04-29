@@ -1,0 +1,28 @@
+{
+  "unversionedId": "installation_guide/installation/pre-installation/overview",
+  "id": "installation_guide/installation/pre-installation/overview",
+  "isDocsHomePage": false,
+  "title": "Overview",
+  "description": "This section covers the following information required to install Service Workbench:",
+  "source": "@site/docs/installation_guide/installation/pre-installation/overview.md",
+  "sourceDirName": "installation_guide/installation/pre-installation",
+  "slug": "/installation_guide/installation/pre-installation/overview",
+  "permalink": "/installation_guide/installation/pre-installation/overview",
+  "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/installation_guide/installation/pre-installation/overview.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "overview",
+    "title": "Overview",
+    "sidebar_label": "Overview"
+  },
+  "sidebar": "serviceWorkbenchSidebar",
+  "previous": {
+    "title": "Installation components",
+    "permalink": "/installation_guide/components"
+  },
+  "next": {
+    "title": "Tool requirements",
+    "permalink": "/installation_guide/installation/pre-installation/tool-req"
+  }
+}

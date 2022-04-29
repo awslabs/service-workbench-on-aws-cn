@@ -1,0 +1,28 @@
+{
+  "unversionedId": "installation_guide/installation/cloud9install",
+  "id": "installation_guide/installation/cloud9install",
+  "isDocsHomePage": false,
+  "title": "Installing Service Workbench using Cloud9",
+  "description": "You can install Service Workbench by using AWS Cloud9. This section provides information about the installation procedure for Service Workbench using AWS Cloud9 IDE.",
+  "source": "@site/docs/installation_guide/installation/cloud9install.md",
+  "sourceDirName": "installation_guide/installation",
+  "slug": "/installation_guide/installation/cloud9install",
+  "permalink": "/installation_guide/installation/cloud9install",
+  "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/installation_guide/installation/cloud9install.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "cloud9install",
+    "title": "Installing Service Workbench using Cloud9",
+    "sidebar_label": "Installing using Cloud9"
+  },
+  "sidebar": "serviceWorkbenchSidebar",
+  "previous": {
+    "title": "Installation using EC2 instance",
+    "permalink": "/installation_guide/installation/ec2install"
+  },
+  "next": {
+    "title": "Setting up RStudio ALB workspace",
+    "permalink": "/installation_guide/installation/rstudio"
+  }
+}

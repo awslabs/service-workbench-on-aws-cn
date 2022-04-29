@@ -1,0 +1,28 @@
+{
+  "unversionedId": "installation_guide/installation/ami-install",
+  "id": "installation_guide/installation/ami-install",
+  "isDocsHomePage": false,
+  "title": "Installing AMIs",
+  "description": "You can install Service Workbench either by creating and configuring an EC2 instance or by creating a Cloud9 instance. This section describes the steps to install Service Workbench by using either of the two options.",
+  "source": "@site/docs/installation_guide/installation/ami-install.md",
+  "sourceDirName": "installation_guide/installation",
+  "slug": "/installation_guide/installation/ami-install",
+  "permalink": "/installation_guide/installation/ami-install",
+  "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/installation_guide/installation/ami-install.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "ami-install",
+    "title": "Installing AMIs",
+    "sidebar_label": "Installing AMIs"
+  },
+  "sidebar": "serviceWorkbenchSidebar",
+  "previous": {
+    "title": "Accessing reference documentation",
+    "permalink": "/installation_guide/installation/pre-installation/documentation"
+  },
+  "next": {
+    "title": "Installation using EC2 instance",
+    "permalink": "/installation_guide/installation/ec2install"
+  }
+}

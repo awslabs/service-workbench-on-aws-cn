@@ -1,0 +1,28 @@
+{
+  "unversionedId": "deployment/post_deployment/appstream",
+  "id": "deployment/post_deployment/appstream",
+  "isDocsHomePage": false,
+  "title": "Prepare your account for AppStream",
+  "description": "Note: Read this section only if you want to enable AppStream.",
+  "source": "@site/docs/deployment/post_deployment/appstream.md",
+  "sourceDirName": "deployment/post_deployment",
+  "slug": "/deployment/post_deployment/appstream",
+  "permalink": "/deployment/post_deployment/appstream",
+  "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/deployment/post_deployment/appstream.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "appstream",
+    "title": "Prepare your account for AppStream",
+    "sidebar_label": "Prepare your account for AppStream"
+  },
+  "sidebar": "serviceWorkbenchSidebar",
+  "previous": {
+    "title": "Prepare the organizational Account",
+    "permalink": "/deployment/reference/prepare_master_account"
+  },
+  "next": {
+    "title": "Create or add accounts",
+    "permalink": "/deployment/post_deployment/aws_accounts"
+  }
+}

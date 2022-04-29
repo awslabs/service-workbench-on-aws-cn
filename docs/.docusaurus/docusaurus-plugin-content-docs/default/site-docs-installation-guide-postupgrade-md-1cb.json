@@ -1,0 +1,28 @@
+{
+  "unversionedId": "installation_guide/postupgrade",
+  "id": "installation_guide/postupgrade",
+  "isDocsHomePage": false,
+  "title": "Post upgrade",
+  "description": "Updating accounts",
+  "source": "@site/docs/installation_guide/postupgrade.md",
+  "sourceDirName": "installation_guide",
+  "slug": "/installation_guide/postupgrade",
+  "permalink": "/installation_guide/postupgrade",
+  "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/installation_guide/postupgrade.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "postupgrade",
+    "title": "Post upgrade",
+    "sidebar_label": "Post upgrade"
+  },
+  "sidebar": "serviceWorkbenchSidebar",
+  "previous": {
+    "title": "Upgrading to deprecated internal authentication",
+    "permalink": "/installation_guide/upgrading/authentication"
+  },
+  "next": {
+    "title": "Uninstalling Service Workbench",
+    "permalink": "/installation_guide/uninstall"
+  }
+}

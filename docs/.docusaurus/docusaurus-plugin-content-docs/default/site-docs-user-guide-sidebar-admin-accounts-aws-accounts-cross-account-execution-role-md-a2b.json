@@ -1,0 +1,28 @@
+{
+  "unversionedId": "user_guide/sidebar/admin/accounts/aws_accounts/cross_account_execution_role",
+  "id": "user_guide/sidebar/admin/accounts/aws_accounts/cross_account_execution_role",
+  "isDocsHomePage": false,
+  "title": "Cross Account Execution Role",
+  "description": "This Role resides in the Member AWS Account(s) and is assumed by the Main AWS Account.",
+  "source": "@site/docs/user_guide/sidebar/admin/accounts/aws_accounts/cross_account_execution_role.md",
+  "sourceDirName": "user_guide/sidebar/admin/accounts/aws_accounts",
+  "slug": "/user_guide/sidebar/admin/accounts/aws_accounts/cross_account_execution_role",
+  "permalink": "/user_guide/sidebar/admin/accounts/aws_accounts/cross_account_execution_role",
+  "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/user_guide/sidebar/admin/accounts/aws_accounts/cross_account_execution_role.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "cross_account_execution_role",
+    "title": "Cross Account Execution Role",
+    "sidebar_label": "Cross Account Execution Role"
+  },
+  "sidebar": "serviceWorkbenchSidebar",
+  "previous": {
+    "title": "Master Account Role",
+    "permalink": "/user_guide/sidebar/admin/accounts/aws_accounts/master_role"
+  },
+  "next": {
+    "title": "Introduction",
+    "permalink": "/user_guide/sidebar/admin/workflows/introduction"
+  }
+}

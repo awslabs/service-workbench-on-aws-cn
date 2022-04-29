@@ -1,0 +1,28 @@
+{
+  "unversionedId": "user_guide/sidebar/admin/accounts/aws_accounts/set_account_budget",
+  "id": "user_guide/sidebar/admin/accounts/aws_accounts/set_account_budget",
+  "isDocsHomePage": false,
+  "title": "Set AWS Account Budget",
+  "description": "Set AWS Account Budget",
+  "source": "@site/docs/user_guide/sidebar/admin/accounts/aws_accounts/set_account_budget.md",
+  "sourceDirName": "user_guide/sidebar/admin/accounts/aws_accounts",
+  "slug": "/user_guide/sidebar/admin/accounts/aws_accounts/set_account_budget",
+  "permalink": "/user_guide/sidebar/admin/accounts/aws_accounts/set_account_budget",
+  "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/user_guide/sidebar/admin/accounts/aws_accounts/set_account_budget.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "set_account_budget",
+    "title": "Set AWS Account Budget",
+    "sidebar_label": "Set AWS Account Budget"
+  },
+  "sidebar": "serviceWorkbenchSidebar",
+  "previous": {
+    "title": "Invite an AWS Member Account",
+    "permalink": "/user_guide/sidebar/admin/accounts/aws_accounts/invite_member_account"
+  },
+  "next": {
+    "title": "Master Account Role",
+    "permalink": "/user_guide/sidebar/admin/accounts/aws_accounts/master_role"
+  }
+}

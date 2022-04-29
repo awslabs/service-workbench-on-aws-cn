@@ -1,0 +1,28 @@
+{
+  "unversionedId": "user_guide/sidebar/admin/users/add_federated_user",
+  "id": "user_guide/sidebar/admin/users/add_federated_user",
+  "isDocsHomePage": false,
+  "title": "Adding Federated Users",
+  "description": "Add a single federated user",
+  "source": "@site/docs/user_guide/sidebar/admin/users/add_federate_user.md",
+  "sourceDirName": "user_guide/sidebar/admin/users",
+  "slug": "/user_guide/sidebar/admin/users/add_federated_user",
+  "permalink": "/user_guide/sidebar/admin/users/add_federated_user",
+  "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/user_guide/sidebar/admin/users/add_federate_user.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "add_federated_user",
+    "title": "Adding Federated Users",
+    "sidebar_label": "Adding Federated Users"
+  },
+  "sidebar": "serviceWorkbenchSidebar",
+  "previous": {
+    "title": "User Roles",
+    "permalink": "/user_guide/sidebar/admin/users/user_roles"
+  },
+  "next": {
+    "title": "Introduction",
+    "permalink": "/user_guide/sidebar/admin/accounts/projects/introduction"
+  }
+}

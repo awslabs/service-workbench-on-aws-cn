@@ -1,0 +1,28 @@
+{
+  "unversionedId": "user_guide/sidebar/admin/accounts/aws_accounts/introduction",
+  "id": "user_guide/sidebar/admin/accounts/aws_accounts/introduction",
+  "isDocsHomePage": false,
+  "title": "Introduction to AWS Accounts",
+  "description": "There are 3 types of AWS accounts roles in this solution.",
+  "source": "@site/docs/user_guide/sidebar/admin/accounts/aws_accounts/introduction.md",
+  "sourceDirName": "user_guide/sidebar/admin/accounts/aws_accounts",
+  "slug": "/user_guide/sidebar/admin/accounts/aws_accounts/introduction",
+  "permalink": "/user_guide/sidebar/admin/accounts/aws_accounts/introduction",
+  "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/user_guide/sidebar/admin/accounts/aws_accounts/introduction.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "introduction",
+    "title": "Introduction to AWS Accounts",
+    "sidebar_label": "Introduction"
+  },
+  "sidebar": "serviceWorkbenchSidebar",
+  "previous": {
+    "title": "Create a New Index",
+    "permalink": "/user_guide/sidebar/admin/accounts/indexes/create_new_index"
+  },
+  "next": {
+    "title": "Create an AWS Account",
+    "permalink": "/user_guide/sidebar/admin/accounts/aws_accounts/create_member_account"
+  }
+}

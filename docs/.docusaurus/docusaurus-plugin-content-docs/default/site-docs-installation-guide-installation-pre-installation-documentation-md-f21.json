@@ -1,0 +1,28 @@
+{
+  "unversionedId": "installation_guide/installation/pre-installation/documentation",
+  "id": "installation_guide/installation/pre-installation/documentation",
+  "isDocsHomePage": false,
+  "title": "Accessing reference documentation",
+  "description": "You can access the documentation on your local machine, via a local web server, once you’ve completed the following steps:",
+  "source": "@site/docs/installation_guide/installation/pre-installation/documentation.md",
+  "sourceDirName": "installation_guide/installation/pre-installation",
+  "slug": "/installation_guide/installation/pre-installation/documentation",
+  "permalink": "/installation_guide/installation/pre-installation/documentation",
+  "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/installation_guide/installation/pre-installation/documentation.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "documentation",
+    "title": "Accessing reference documentation",
+    "sidebar_label": "Accessing reference documentation"
+  },
+  "sidebar": "serviceWorkbenchSidebar",
+  "previous": {
+    "title": "Configuration settings",
+    "permalink": "/installation_guide/installation/pre-installation/conf-settings"
+  },
+  "next": {
+    "title": "Installing AMIs",
+    "permalink": "/installation_guide/installation/ami-install"
+  }
+}

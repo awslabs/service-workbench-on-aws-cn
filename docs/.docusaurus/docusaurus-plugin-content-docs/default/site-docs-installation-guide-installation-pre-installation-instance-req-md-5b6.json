@@ -1,0 +1,28 @@
+{
+  "unversionedId": "installation_guide/installation/pre-installation/instance-req",
+  "id": "installation_guide/installation/pre-installation/instance-req",
+  "isDocsHomePage": false,
+  "title": "Instance requirements",
+  "description": "| Section      | Description |",
+  "source": "@site/docs/installation_guide/installation/pre-installation/instance-req.md",
+  "sourceDirName": "installation_guide/installation/pre-installation",
+  "slug": "/installation_guide/installation/pre-installation/instance-req",
+  "permalink": "/installation_guide/installation/pre-installation/instance-req",
+  "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/installation_guide/installation/pre-installation/instance-req.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "instance-req",
+    "title": "Instance requirements",
+    "sidebar_label": "Instance requirements"
+  },
+  "sidebar": "serviceWorkbenchSidebar",
+  "previous": {
+    "title": "Software requirements",
+    "permalink": "/installation_guide/installation/pre-installation/software-req"
+  },
+  "next": {
+    "title": "Configuration settings",
+    "permalink": "/installation_guide/installation/pre-installation/conf-settings"
+  }
+}

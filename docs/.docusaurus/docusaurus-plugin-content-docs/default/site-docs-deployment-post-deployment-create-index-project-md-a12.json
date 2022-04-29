@@ -1,0 +1,28 @@
+{
+  "unversionedId": "deployment/post_deployment/create_index_project",
+  "id": "deployment/post_deployment/create_index_project",
+  "isDocsHomePage": false,
+  "title": "Create indexes and projects",
+  "description": "Now that you have onboarded a hosting account, you can create indexes and projects associated to this account.",
+  "source": "@site/docs/deployment/post_deployment/create_index_project.md",
+  "sourceDirName": "deployment/post_deployment",
+  "slug": "/deployment/post_deployment/create_index_project",
+  "permalink": "/deployment/post_deployment/create_index_project",
+  "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/deployment/post_deployment/create_index_project.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "create_index_project",
+    "title": "Create indexes and projects",
+    "sidebar_label": "Create indexes and projects"
+  },
+  "sidebar": "serviceWorkbenchSidebar",
+  "previous": {
+    "title": "Create or add accounts",
+    "permalink": "/deployment/post_deployment/aws_accounts"
+  },
+  "next": {
+    "title": "Create an administrator user",
+    "permalink": "/deployment/post_deployment/create_admin_user"
+  }
+}

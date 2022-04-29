@@ -1,0 +1,28 @@
+{
+  "unversionedId": "configuration_guide/activedirectory",
+  "id": "configuration_guide/activedirectory",
+  "isDocsHomePage": false,
+  "title": "Configuring Service Workbench using Microsoft Azure AD",
+  "description": "Updating accounts",
+  "source": "@site/docs/configuration_guide/activedirectory.md",
+  "sourceDirName": "configuration_guide",
+  "slug": "/configuration_guide/activedirectory",
+  "permalink": "/configuration_guide/activedirectory",
+  "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/configuration_guide/activedirectory.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "activedirectory",
+    "title": "Configuring Service Workbench using Microsoft Azure AD",
+    "sidebar_label": "Configuring Service Workbench using Microsoft Azure AD"
+  },
+  "sidebar": "serviceWorkbenchSidebar",
+  "previous": {
+    "title": "Service Workbench and IdP workflow",
+    "permalink": "/configuration_guide/workflow"
+  },
+  "next": {
+    "title": "Configuring Service Workbench using Microsoft Active Directory Federation Services",
+    "permalink": "/configuration_guide/adfs"
+  }
+}

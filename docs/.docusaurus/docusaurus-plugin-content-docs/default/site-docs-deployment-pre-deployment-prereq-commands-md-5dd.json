@@ -1,0 +1,19 @@
+{
+  "unversionedId": "deployment/pre_deployment/prereq_commands",
+  "id": "deployment/pre_deployment/prereq_commands",
+  "isDocsHomePage": false,
+  "title": "Prerequisite Software",
+  "description": "The prerequisite software installation includes installing the required tools and creating an AWS account to deploy the solution.",
+  "source": "@site/docs/deployment/pre_deployment/prereq_commands.md",
+  "sourceDirName": "deployment/pre_deployment",
+  "slug": "/deployment/pre_deployment/prereq_commands",
+  "permalink": "/deployment/pre_deployment/prereq_commands",
+  "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/deployment/pre_deployment/prereq_commands.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "prereq_commands",
+    "title": "Prerequisite Software",
+    "sidebar_label": "Prerequisite Software"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "unversionedId": "deployment/reference/iam_role",
+  "id": "deployment/reference/iam_role",
+  "isDocsHomePage": false,
+  "title": "Reference",
+  "description": "Service Workbench on AWS interacts with multiple AWS resources, including Amazon EC2, AWS IAM, AWS Organizations, and more. You can easily add an AWS IAM role to an Amazon EC2 instance, leverage our AWS Organizations with your account structure, and create multiple Amazon S3 buckets.",
+  "source": "@site/docs/deployment/reference/iam_role.md",
+  "sourceDirName": "deployment/reference",
+  "slug": "/deployment/reference/iam_role",
+  "permalink": "/deployment/reference/iam_role",
+  "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/deployment/reference/iam_role.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "iam_role",
+    "title": "Reference",
+    "sidebar_label": "Add an AWS IAM role to an Amazon EC2 instance"
+  },
+  "sidebar": "serviceWorkbenchSidebar",
+  "previous": {
+    "title": "Deploying Updates",
+    "permalink": "/deployment/redeployment"
+  },
+  "next": {
+    "title": "AWS Cloud Services",
+    "permalink": "/deployment/reference/aws_services"
+  }
+}

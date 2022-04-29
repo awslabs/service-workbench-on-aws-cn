@@ -1,0 +1,28 @@
+{
+  "unversionedId": "best_practices/multiple_deployment_environments",
+  "id": "best_practices/multiple_deployment_environments",
+  "isDocsHomePage": false,
+  "title": "Multiple Deployment Environments",
+  "description": "It is recommended that you deploy separate 'Dev', 'Test' and 'Production' environments of this solution. To do this, following the guidance in the Initial Deployment section.",
+  "source": "@site/docs/best_practices/multiple_deployment_environments.md",
+  "sourceDirName": "best_practices",
+  "slug": "/best_practices/multiple_deployment_environments",
+  "permalink": "/best_practices/multiple_deployment_environments",
+  "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/best_practices/multiple_deployment_environments.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "multiple_deployment_environments",
+    "title": "Multiple Deployment Environments",
+    "sidebar_label": "Multiple Deployment Environments"
+  },
+  "sidebar": "serviceWorkbenchSidebar",
+  "previous": {
+    "title": "Introduction",
+    "permalink": "/best_practices/introduction"
+  },
+  "next": {
+    "title": "Amazon Inspector",
+    "permalink": "/best_practices/amazon_inspector"
+  }
+}

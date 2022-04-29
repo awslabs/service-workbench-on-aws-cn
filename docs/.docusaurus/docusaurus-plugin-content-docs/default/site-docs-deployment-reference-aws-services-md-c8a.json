@@ -1,0 +1,28 @@
+{
+  "unversionedId": "deployment/reference/aws_services",
+  "id": "deployment/reference/aws_services",
+  "isDocsHomePage": false,
+  "title": "Usage of AWS Cloud Services",
+  "description": "This section describes some of the AWS Cloud services used by Service Workbench. The resource names usually include the Namespace, including the  stage name used at deployment. You can deploy multiple instances of Service Workbench from the same account if you use a different stage name for each deployment.",
+  "source": "@site/docs/deployment/reference/aws_services.md",
+  "sourceDirName": "deployment/reference",
+  "slug": "/deployment/reference/aws_services",
+  "permalink": "/deployment/reference/aws_services",
+  "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/deployment/reference/aws_services.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "aws_services",
+    "title": "Usage of AWS Cloud Services",
+    "sidebar_label": "AWS Cloud Services"
+  },
+  "sidebar": "serviceWorkbenchSidebar",
+  "previous": {
+    "title": "Add an AWS IAM role to an Amazon EC2 instance",
+    "permalink": "/deployment/reference/iam_role"
+  },
+  "next": {
+    "title": "Prepare the organizational Account",
+    "permalink": "/deployment/reference/prepare_master_account"
+  }
+}

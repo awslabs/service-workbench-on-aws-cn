@@ -1,0 +1,28 @@
+{
+  "unversionedId": "user_guide/sidebar/admin/workflows/introduction",
+  "id": "user_guide/sidebar/admin/workflows/introduction",
+  "isDocsHomePage": false,
+  "title": "Workflows Introduction",
+  "description": "Service Workbench enables an organization to provide researchers with a centralized location to search for data sets and deploy research workspaces with them. Research can access a portal, quickly find data that they are interested in and with a few clicks be analyzing it in SageMaker Notebooks, for example.",
+  "source": "@site/docs/user_guide/sidebar/admin/workflows/introduction.md",
+  "sourceDirName": "user_guide/sidebar/admin/workflows",
+  "slug": "/user_guide/sidebar/admin/workflows/introduction",
+  "permalink": "/user_guide/sidebar/admin/workflows/introduction",
+  "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/user_guide/sidebar/admin/workflows/introduction.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "introduction",
+    "title": "Workflows Introduction",
+    "sidebar_label": "Introduction"
+  },
+  "sidebar": "serviceWorkbenchSidebar",
+  "previous": {
+    "title": "Cross Account Execution Role",
+    "permalink": "/user_guide/sidebar/admin/accounts/aws_accounts/cross_account_execution_role"
+  },
+  "next": {
+    "title": "Introduction",
+    "permalink": "/user_guide/sidebar/common/studies/introduction"
+  }
+}

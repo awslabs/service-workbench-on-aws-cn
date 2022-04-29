@@ -1,0 +1,19 @@
+{
+  "unversionedId": "deployment/post_deployment/link_aws_account",
+  "id": "deployment/post_deployment/link_aws_account",
+  "isDocsHomePage": false,
+  "title": "Create or add an AWS Account",
+  "description": "There are two categories of AWS Account within Service Workbench: Internal accounts and External accounts.",
+  "source": "@site/docs/deployment/post_deployment/link_aws_account.md",
+  "sourceDirName": "deployment/post_deployment",
+  "slug": "/deployment/post_deployment/link_aws_account",
+  "permalink": "/deployment/post_deployment/link_aws_account",
+  "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/deployment/post_deployment/link_aws_account.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "link_aws_account",
+    "title": "Create or add an AWS Account",
+    "sidebar_label": "Create or add an AWS Account"
+  }
+}

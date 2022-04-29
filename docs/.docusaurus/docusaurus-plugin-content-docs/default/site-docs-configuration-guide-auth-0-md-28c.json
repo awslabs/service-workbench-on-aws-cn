@@ -1,0 +1,28 @@
+{
+  "unversionedId": "configuration_guide/auth0",
+  "id": "configuration_guide/auth0",
+  "isDocsHomePage": false,
+  "title": "Configuring Service Workbench using Auth0",
+  "description": "You can configure Service Workbench using Auth0 by first creating an application in Auth0. Next, configure SAML and download the SAML template. Finally, configure the Service Workbench environment.",
+  "source": "@site/docs/configuration_guide/auth0.md",
+  "sourceDirName": "configuration_guide",
+  "slug": "/configuration_guide/auth0",
+  "permalink": "/configuration_guide/auth0",
+  "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/configuration_guide/auth0.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "auth0",
+    "title": "Configuring Service Workbench using Auth0",
+    "sidebar_label": "Configuring Service Workbench using Auth0"
+  },
+  "sidebar": "serviceWorkbenchSidebar",
+  "previous": {
+    "title": "Configuring Service Workbench using Microsoft Active Directory Federation Services",
+    "permalink": "/configuration_guide/adfs"
+  },
+  "next": {
+    "title": "Deployment Stages",
+    "permalink": "/deployment/deployment_stages"
+  }
+}

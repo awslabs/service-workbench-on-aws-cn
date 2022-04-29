@@ -1,0 +1,19 @@
+{
+  "unversionedId": "deployment/pre_deployment/deployment_instance",
+  "id": "deployment/pre_deployment/deployment_instance",
+  "isDocsHomePage": false,
+  "title": "Deployment Instance",
+  "description": "You can create a deployment instance with the following specifications:",
+  "source": "@site/docs/deployment/pre_deployment/deployment_instance.md",
+  "sourceDirName": "deployment/pre_deployment",
+  "slug": "/deployment/pre_deployment/deployment_instance",
+  "permalink": "/deployment/pre_deployment/deployment_instance",
+  "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/deployment/pre_deployment/deployment_instance.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "deployment_instance",
+    "title": "Deployment Instance",
+    "sidebar_label": "Deployment Instance"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "unversionedId": "user_guide/sidebar/admin/accounts/projects/introduction",
+  "id": "user_guide/sidebar/admin/accounts/projects/introduction",
+  "isDocsHomePage": false,
+  "title": "Projects Introduction",
+  "description": "A Project is a logical grouping of resources that users have access to. In order for a Researcher to upload their own Study data sets and to deploy and user Workspaces a user must have access to a Project.",
+  "source": "@site/docs/user_guide/sidebar/admin/accounts/projects/introduction.md",
+  "sourceDirName": "user_guide/sidebar/admin/accounts/projects",
+  "slug": "/user_guide/sidebar/admin/accounts/projects/introduction",
+  "permalink": "/user_guide/sidebar/admin/accounts/projects/introduction",
+  "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/user_guide/sidebar/admin/accounts/projects/introduction.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "introduction",
+    "title": "Projects Introduction",
+    "sidebar_label": "Introduction"
+  },
+  "sidebar": "serviceWorkbenchSidebar",
+  "previous": {
+    "title": "Adding Federated Users",
+    "permalink": "/user_guide/sidebar/admin/users/add_federated_user"
+  },
+  "next": {
+    "title": "Create Project",
+    "permalink": "/user_guide/sidebar/admin/accounts/projects/create_project"
+  }
+}

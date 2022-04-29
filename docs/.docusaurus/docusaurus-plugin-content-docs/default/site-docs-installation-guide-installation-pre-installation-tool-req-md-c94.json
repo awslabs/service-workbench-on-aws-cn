@@ -1,0 +1,28 @@
+{
+  "unversionedId": "installation_guide/installation/pre-installation/tool-req",
+  "id": "installation_guide/installation/pre-installation/tool-req",
+  "isDocsHomePage": false,
+  "title": "Tool requirements",
+  "description": "The initial prerequisites include creating a main account in AWS, enabling the AWS Cost Explorer and activating the cost allocation tags.",
+  "source": "@site/docs/installation_guide/installation/pre-installation/tool-req.md",
+  "sourceDirName": "installation_guide/installation/pre-installation",
+  "slug": "/installation_guide/installation/pre-installation/tool-req",
+  "permalink": "/installation_guide/installation/pre-installation/tool-req",
+  "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/installation_guide/installation/pre-installation/tool-req.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "tool-req",
+    "title": "Tool requirements",
+    "sidebar_label": "Tool requirements"
+  },
+  "sidebar": "serviceWorkbenchSidebar",
+  "previous": {
+    "title": "Overview",
+    "permalink": "/installation_guide/installation/pre-installation/overview"
+  },
+  "next": {
+    "title": "Software requirements",
+    "permalink": "/installation_guide/installation/pre-installation/software-req"
+  }
+}

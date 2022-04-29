@@ -1,0 +1,28 @@
+{
+  "unversionedId": "user_guide/sidebar/common/studies/studies_page",
+  "id": "user_guide/sidebar/common/studies/studies_page",
+  "isDocsHomePage": false,
+  "title": "Studies Page",
+  "description": "The Studies page provides a central location for creating Studies, uploading files, managing Study permissions, and creating new Workspaces.",
+  "source": "@site/docs/user_guide/sidebar/common/studies/studies_page.md",
+  "sourceDirName": "user_guide/sidebar/common/studies",
+  "slug": "/user_guide/sidebar/common/studies/studies_page",
+  "permalink": "/user_guide/sidebar/common/studies/studies_page",
+  "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/user_guide/sidebar/common/studies/studies_page.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "studies_page",
+    "title": "Studies Page",
+    "sidebar_label": "Studies Page"
+  },
+  "sidebar": "serviceWorkbenchSidebar",
+  "previous": {
+    "title": "Data Sources",
+    "permalink": "/user_guide/sidebar/common/studies/data_sources"
+  },
+  "next": {
+    "title": "Sharing a Study",
+    "permalink": "/user_guide/sidebar/common/studies/sharing_a_study"
+  }
+}

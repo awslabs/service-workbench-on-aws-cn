@@ -1,0 +1,28 @@
+{
+  "unversionedId": "deployment/reference/prepare_master_account",
+  "id": "deployment/reference/prepare_master_account",
+  "isDocsHomePage": false,
+  "title": "Prepare the organizational account",
+  "description": "Note: This section is required only if Service Workbench is to be used to vend accounts in the AWS Organization by using *Create Account. If Service Workbench uses only billing accounts onboarded using Add Account*, this section can be omitted.",
+  "source": "@site/docs/deployment/reference/prepare_master_account.md",
+  "sourceDirName": "deployment/reference",
+  "slug": "/deployment/reference/prepare_master_account",
+  "permalink": "/deployment/reference/prepare_master_account",
+  "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/deployment/reference/prepare_master_account.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "prepare_master_account",
+    "title": "Prepare the organizational account",
+    "sidebar_label": "Prepare the organizational Account"
+  },
+  "sidebar": "serviceWorkbenchSidebar",
+  "previous": {
+    "title": "Account structure",
+    "permalink": "/deployment/post_deployment/account_structure"
+  },
+  "next": {
+    "title": "Prepare your account for AppStream",
+    "permalink": "/deployment/post_deployment/appstream"
+  }
+}

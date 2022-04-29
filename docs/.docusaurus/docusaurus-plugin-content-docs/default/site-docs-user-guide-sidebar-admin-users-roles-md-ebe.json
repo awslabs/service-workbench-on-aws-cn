@@ -1,0 +1,28 @@
+{
+  "unversionedId": "user_guide/sidebar/admin/users/user_roles",
+  "id": "user_guide/sidebar/admin/users/user_roles",
+  "isDocsHomePage": false,
+  "title": "User Roles",
+  "description": "There are 5 different types of Roles that you can assign to Users:",
+  "source": "@site/docs/user_guide/sidebar/admin/users/roles.md",
+  "sourceDirName": "user_guide/sidebar/admin/users",
+  "slug": "/user_guide/sidebar/admin/users/user_roles",
+  "permalink": "/user_guide/sidebar/admin/users/user_roles",
+  "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/user_guide/sidebar/admin/users/roles.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "user_roles",
+    "title": "User Roles",
+    "sidebar_label": "User Roles"
+  },
+  "sidebar": "serviceWorkbenchSidebar",
+  "previous": {
+    "title": "Introduction",
+    "permalink": "/user_guide/sidebar/admin/users/introduction"
+  },
+  "next": {
+    "title": "Adding Federated Users",
+    "permalink": "/user_guide/sidebar/admin/users/add_federated_user"
+  }
+}

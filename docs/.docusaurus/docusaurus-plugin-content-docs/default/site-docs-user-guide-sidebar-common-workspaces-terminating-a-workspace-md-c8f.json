@@ -1,0 +1,28 @@
+{
+  "unversionedId": "user_guide/sidebar/common/workspaces/terminating_a_workspace",
+  "id": "user_guide/sidebar/common/workspaces/terminating_a_workspace",
+  "isDocsHomePage": false,
+  "title": "Terminating a Workspace",
+  "description": "When you no longer need a Workspace you can terminate it. Follow these steps to terminate a Workspace:",
+  "source": "@site/docs/user_guide/sidebar/common/workspaces/terminating_a_workspace.md",
+  "sourceDirName": "user_guide/sidebar/common/workspaces",
+  "slug": "/user_guide/sidebar/common/workspaces/terminating_a_workspace",
+  "permalink": "/user_guide/sidebar/common/workspaces/terminating_a_workspace",
+  "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/user_guide/sidebar/common/workspaces/terminating_a_workspace.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "terminating_a_workspace",
+    "title": "Terminating a Workspace",
+    "sidebar_label": "Terminating a Workspace"
+  },
+  "sidebar": "serviceWorkbenchSidebar",
+  "previous": {
+    "title": "Accessing a Workspace",
+    "permalink": "/user_guide/sidebar/common/workspaces/accessing_a_workspace"
+  },
+  "next": {
+    "title": "Dashboard",
+    "permalink": "/user_guide/sidebar/common/dashboard/introduction"
+  }
+}

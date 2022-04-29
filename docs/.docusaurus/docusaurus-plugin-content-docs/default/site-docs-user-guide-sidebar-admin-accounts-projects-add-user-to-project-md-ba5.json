@@ -1,0 +1,28 @@
+{
+  "unversionedId": "user_guide/sidebar/admin/accounts/projects/add_user_to_project",
+  "id": "user_guide/sidebar/admin/accounts/projects/add_user_to_project",
+  "isDocsHomePage": false,
+  "title": "Adding a User to a Project",
+  "description": "You can add Users to a Project. This enables that user to access Studies and deploy Workspaces in the Project. To add a User to a Project, follow these steps:",
+  "source": "@site/docs/user_guide/sidebar/admin/accounts/projects/add_user_to_project.md",
+  "sourceDirName": "user_guide/sidebar/admin/accounts/projects",
+  "slug": "/user_guide/sidebar/admin/accounts/projects/add_user_to_project",
+  "permalink": "/user_guide/sidebar/admin/accounts/projects/add_user_to_project",
+  "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/user_guide/sidebar/admin/accounts/projects/add_user_to_project.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "add_user_to_project",
+    "title": "Adding a User to a Project",
+    "sidebar_label": "Adding a User to a Project"
+  },
+  "sidebar": "serviceWorkbenchSidebar",
+  "previous": {
+    "title": "Create Project",
+    "permalink": "/user_guide/sidebar/admin/accounts/projects/create_project"
+  },
+  "next": {
+    "title": "Introduction",
+    "permalink": "/user_guide/sidebar/admin/accounts/indexes/introduction"
+  }
+}

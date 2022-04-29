@@ -1,0 +1,28 @@
+{
+  "unversionedId": "user_guide/sidebar/admin/accounts/projects/create_project",
+  "id": "user_guide/sidebar/admin/accounts/projects/create_project",
+  "isDocsHomePage": false,
+  "title": "Create a New Project",
+  "description": "To create a new project, follow these steps:",
+  "source": "@site/docs/user_guide/sidebar/admin/accounts/projects/create_project.md",
+  "sourceDirName": "user_guide/sidebar/admin/accounts/projects",
+  "slug": "/user_guide/sidebar/admin/accounts/projects/create_project",
+  "permalink": "/user_guide/sidebar/admin/accounts/projects/create_project",
+  "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/user_guide/sidebar/admin/accounts/projects/create_project.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "create_project",
+    "title": "Create a New Project",
+    "sidebar_label": "Create Project"
+  },
+  "sidebar": "serviceWorkbenchSidebar",
+  "previous": {
+    "title": "Introduction",
+    "permalink": "/user_guide/sidebar/admin/accounts/projects/introduction"
+  },
+  "next": {
+    "title": "Adding a User to a Project",
+    "permalink": "/user_guide/sidebar/admin/accounts/projects/add_user_to_project"
+  }
+}

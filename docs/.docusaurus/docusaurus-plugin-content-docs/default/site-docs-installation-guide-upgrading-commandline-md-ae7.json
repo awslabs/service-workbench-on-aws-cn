@@ -1,0 +1,28 @@
+{
+  "unversionedId": "installation_guide/upgrading/commandline",
+  "id": "installation_guide/upgrading/commandline",
+  "isDocsHomePage": false,
+  "title": "Upgrade process for command-line installations",
+  "description": "You can upgrade Service Workbench deployments that were installed from the command line using downloaded source code.",
+  "source": "@site/docs/installation_guide/upgrading/commandline.md",
+  "sourceDirName": "installation_guide/upgrading",
+  "slug": "/installation_guide/upgrading/commandline",
+  "permalink": "/installation_guide/upgrading/commandline",
+  "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/installation_guide/upgrading/commandline.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "commandline",
+    "title": "Upgrade process for command-line installations",
+    "sidebar_label": "Upgrade process for command line installations"
+  },
+  "sidebar": "serviceWorkbenchSidebar",
+  "previous": {
+    "title": "Setting up RStudio ALB workspace",
+    "permalink": "/installation_guide/installation/rstudio"
+  },
+  "next": {
+    "title": "Upgrading AWS solution installation",
+    "permalink": "/installation_guide/upgrading/solutions"
+  }
+}

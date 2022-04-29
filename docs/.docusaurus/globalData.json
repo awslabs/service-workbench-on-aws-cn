@@ -1,0 +1,444 @@
+{
+  "docusaurus-plugin-content-docs": {
+    "default": {
+      "path": "/",
+      "versions": [
+        {
+          "name": "current",
+          "label": "Next",
+          "isLast": true,
+          "path": "/",
+          "mainDocId": "installation_guide/overview",
+          "docs": [
+            {
+              "id": "best_practices/amazon_inspector",
+              "path": "/best_practices/amazon_inspector",
+              "sidebar": "serviceWorkbenchSidebar"
+            },
+            {
+              "id": "best_practices/aws_cloudtrail",
+              "path": "/best_practices/aws_cloudtrail",
+              "sidebar": "serviceWorkbenchSidebar"
+            },
+            {
+              "id": "best_practices/aws_shield",
+              "path": "/best_practices/aws_shield",
+              "sidebar": "serviceWorkbenchSidebar"
+            },
+            {
+              "id": "best_practices/cicd",
+              "path": "/best_practices/cicd",
+              "sidebar": "serviceWorkbenchSidebar"
+            },
+            {
+              "id": "best_practices/introduction",
+              "path": "/best_practices/introduction",
+              "sidebar": "serviceWorkbenchSidebar"
+            },
+            {
+              "id": "best_practices/multiple_deployment_environments",
+              "path": "/best_practices/multiple_deployment_environments",
+              "sidebar": "serviceWorkbenchSidebar"
+            },
+            {
+              "id": "best_practices/rotating_jwt_token",
+              "path": "/best_practices/rotating_jwt_token",
+              "sidebar": "serviceWorkbenchSidebar"
+            },
+            {
+              "id": "configuration_guide/activedirectory",
+              "path": "/configuration_guide/activedirectory",
+              "sidebar": "serviceWorkbenchSidebar"
+            },
+            {
+              "id": "configuration_guide/adfs",
+              "path": "/configuration_guide/adfs",
+              "sidebar": "serviceWorkbenchSidebar"
+            },
+            {
+              "id": "configuration_guide/auth0",
+              "path": "/configuration_guide/auth0",
+              "sidebar": "serviceWorkbenchSidebar"
+            },
+            {
+              "id": "configuration_guide/overview",
+              "path": "/configuration_guide/overview",
+              "sidebar": "serviceWorkbenchSidebar"
+            },
+            {
+              "id": "configuration_guide/workflow",
+              "path": "/configuration_guide/workflow",
+              "sidebar": "serviceWorkbenchSidebar"
+            },
+            {
+              "id": "deployment/about_this_guide",
+              "path": "/deployment/about_this_guide"
+            },
+            {
+              "id": "deployment/configuration/auth/configuring_auth0",
+              "path": "/deployment/configuration/auth/configuring_auth0"
+            },
+            {
+              "id": "deployment/configuration/auth/configuring_idp",
+              "path": "/deployment/configuration/auth/configuring_idp"
+            },
+            {
+              "id": "deployment/configuration/auth/enabling_ad",
+              "path": "/deployment/configuration/auth/enabling_ad"
+            },
+            {
+              "id": "deployment/deployment_stages",
+              "path": "/deployment/deployment_stages",
+              "sidebar": "serviceWorkbenchSidebar"
+            },
+            {
+              "id": "deployment/deployment/index",
+              "path": "/deployment/deployment/index"
+            },
+            {
+              "id": "deployment/post_deployment/account_structure",
+              "path": "/deployment/post_deployment/account_structure",
+              "sidebar": "serviceWorkbenchSidebar"
+            },
+            {
+              "id": "deployment/post_deployment/appstream",
+              "path": "/deployment/post_deployment/appstream",
+              "sidebar": "serviceWorkbenchSidebar"
+            },
+            {
+              "id": "deployment/post_deployment/aws_accounts",
+              "path": "/deployment/post_deployment/aws_accounts",
+              "sidebar": "serviceWorkbenchSidebar"
+            },
+            {
+              "id": "deployment/post_deployment/create_admin_user",
+              "path": "/deployment/post_deployment/create_admin_user",
+              "sidebar": "serviceWorkbenchSidebar"
+            },
+            {
+              "id": "deployment/post_deployment/create_index_project",
+              "path": "/deployment/post_deployment/create_index_project",
+              "sidebar": "serviceWorkbenchSidebar"
+            },
+            {
+              "id": "deployment/post_deployment/import_service_catalog_products",
+              "path": "/deployment/post_deployment/import_service_catalog_products",
+              "sidebar": "serviceWorkbenchSidebar"
+            },
+            {
+              "id": "deployment/post_deployment/index",
+              "path": "/deployment/post_deployment/index",
+              "sidebar": "serviceWorkbenchSidebar"
+            },
+            {
+              "id": "deployment/post_deployment/link_aws_account",
+              "path": "/deployment/post_deployment/link_aws_account"
+            },
+            {
+              "id": "deployment/post_deployment/logs",
+              "path": "/deployment/post_deployment/logs",
+              "sidebar": "serviceWorkbenchSidebar"
+            },
+            {
+              "id": "deployment/pre_deployment/accounts",
+              "path": "/deployment/pre_deployment/accounts"
+            },
+            {
+              "id": "deployment/pre_deployment/configuration",
+              "path": "/deployment/pre_deployment/configuration"
+            },
+            {
+              "id": "deployment/pre_deployment/deployment_instance",
+              "path": "/deployment/pre_deployment/deployment_instance"
+            },
+            {
+              "id": "deployment/pre_deployment/pre_deployment",
+              "path": "/deployment/pre_deployment/pre_deployment"
+            },
+            {
+              "id": "deployment/pre_deployment/prereq_commands",
+              "path": "/deployment/pre_deployment/prereq_commands"
+            },
+            {
+              "id": "deployment/pre_deployment/source_code",
+              "path": "/deployment/pre_deployment/source_code"
+            },
+            {
+              "id": "deployment/redeployment",
+              "path": "/deployment/redeployment",
+              "sidebar": "serviceWorkbenchSidebar"
+            },
+            {
+              "id": "deployment/reference/aws_services",
+              "path": "/deployment/reference/aws_services",
+              "sidebar": "serviceWorkbenchSidebar"
+            },
+            {
+              "id": "deployment/reference/egress_store_approval_process",
+              "path": "/deployment/reference/egress_store_approval_process",
+              "sidebar": "serviceWorkbenchSidebar"
+            },
+            {
+              "id": "deployment/reference/iam_role",
+              "path": "/deployment/reference/iam_role",
+              "sidebar": "serviceWorkbenchSidebar"
+            },
+            {
+              "id": "deployment/reference/prepare_master_account",
+              "path": "/deployment/reference/prepare_master_account",
+              "sidebar": "serviceWorkbenchSidebar"
+            },
+            {
+              "id": "deployment/summary",
+              "path": "/deployment/summary"
+            },
+            {
+              "id": "development/introduction",
+              "path": "/development/introduction",
+              "sidebar": "serviceWorkbenchSidebar"
+            },
+            {
+              "id": "installation_guide/architecture",
+              "path": "/installation_guide/architecture",
+              "sidebar": "serviceWorkbenchSidebar"
+            },
+            {
+              "id": "installation_guide/components",
+              "path": "/installation_guide/components",
+              "sidebar": "serviceWorkbenchSidebar"
+            },
+            {
+              "id": "installation_guide/installation/ami-install",
+              "path": "/installation_guide/installation/ami-install",
+              "sidebar": "serviceWorkbenchSidebar"
+            },
+            {
+              "id": "installation_guide/installation/cloud9install",
+              "path": "/installation_guide/installation/cloud9install",
+              "sidebar": "serviceWorkbenchSidebar"
+            },
+            {
+              "id": "installation_guide/installation/ec2install",
+              "path": "/installation_guide/installation/ec2install",
+              "sidebar": "serviceWorkbenchSidebar"
+            },
+            {
+              "id": "installation_guide/installation/pre-installation/conf-settings",
+              "path": "/installation_guide/installation/pre-installation/conf-settings",
+              "sidebar": "serviceWorkbenchSidebar"
+            },
+            {
+              "id": "installation_guide/installation/pre-installation/documentation",
+              "path": "/installation_guide/installation/pre-installation/documentation",
+              "sidebar": "serviceWorkbenchSidebar"
+            },
+            {
+              "id": "installation_guide/installation/pre-installation/instance-req",
+              "path": "/installation_guide/installation/pre-installation/instance-req",
+              "sidebar": "serviceWorkbenchSidebar"
+            },
+            {
+              "id": "installation_guide/installation/pre-installation/overview",
+              "path": "/installation_guide/installation/pre-installation/overview",
+              "sidebar": "serviceWorkbenchSidebar"
+            },
+            {
+              "id": "installation_guide/installation/pre-installation/software-req",
+              "path": "/installation_guide/installation/pre-installation/software-req",
+              "sidebar": "serviceWorkbenchSidebar"
+            },
+            {
+              "id": "installation_guide/installation/pre-installation/tool-req",
+              "path": "/installation_guide/installation/pre-installation/tool-req",
+              "sidebar": "serviceWorkbenchSidebar"
+            },
+            {
+              "id": "installation_guide/installation/rstudio",
+              "path": "/installation_guide/installation/rstudio",
+              "sidebar": "serviceWorkbenchSidebar"
+            },
+            {
+              "id": "installation_guide/overview",
+              "path": "/installation_guide/overview",
+              "sidebar": "serviceWorkbenchSidebar"
+            },
+            {
+              "id": "installation_guide/postupgrade",
+              "path": "/installation_guide/postupgrade",
+              "sidebar": "serviceWorkbenchSidebar"
+            },
+            {
+              "id": "installation_guide/troubleshooting",
+              "path": "/installation_guide/troubleshooting",
+              "sidebar": "serviceWorkbenchSidebar"
+            },
+            {
+              "id": "installation_guide/uninstall",
+              "path": "/installation_guide/uninstall",
+              "sidebar": "serviceWorkbenchSidebar"
+            },
+            {
+              "id": "installation_guide/upgrading/authentication",
+              "path": "/installation_guide/upgrading/authentication",
+              "sidebar": "serviceWorkbenchSidebar"
+            },
+            {
+              "id": "installation_guide/upgrading/commandline",
+              "path": "/installation_guide/upgrading/commandline",
+              "sidebar": "serviceWorkbenchSidebar"
+            },
+            {
+              "id": "installation_guide/upgrading/solutions",
+              "path": "/installation_guide/upgrading/solutions",
+              "sidebar": "serviceWorkbenchSidebar"
+            },
+            {
+              "id": "introduction",
+              "path": "/introduction"
+            },
+            {
+              "id": "user_guide/account_structure",
+              "path": "/user_guide/account_structure",
+              "sidebar": "serviceWorkbenchSidebar"
+            },
+            {
+              "id": "user_guide/introduction",
+              "path": "/user_guide/introduction",
+              "sidebar": "serviceWorkbenchSidebar"
+            },
+            {
+              "id": "user_guide/sidebar/admin/accounts/aws_accounts/create_member_account",
+              "path": "/user_guide/sidebar/admin/accounts/aws_accounts/create_member_account",
+              "sidebar": "serviceWorkbenchSidebar"
+            },
+            {
+              "id": "user_guide/sidebar/admin/accounts/aws_accounts/cross_account_execution_role",
+              "path": "/user_guide/sidebar/admin/accounts/aws_accounts/cross_account_execution_role",
+              "sidebar": "serviceWorkbenchSidebar"
+            },
+            {
+              "id": "user_guide/sidebar/admin/accounts/aws_accounts/introduction",
+              "path": "/user_guide/sidebar/admin/accounts/aws_accounts/introduction",
+              "sidebar": "serviceWorkbenchSidebar"
+            },
+            {
+              "id": "user_guide/sidebar/admin/accounts/aws_accounts/invite_member_account",
+              "path": "/user_guide/sidebar/admin/accounts/aws_accounts/invite_member_account",
+              "sidebar": "serviceWorkbenchSidebar"
+            },
+            {
+              "id": "user_guide/sidebar/admin/accounts/aws_accounts/master_role",
+              "path": "/user_guide/sidebar/admin/accounts/aws_accounts/master_role",
+              "sidebar": "serviceWorkbenchSidebar"
+            },
+            {
+              "id": "user_guide/sidebar/admin/accounts/aws_accounts/set_account_budget",
+              "path": "/user_guide/sidebar/admin/accounts/aws_accounts/set_account_budget",
+              "sidebar": "serviceWorkbenchSidebar"
+            },
+            {
+              "id": "user_guide/sidebar/admin/accounts/indexes/create_new_index",
+              "path": "/user_guide/sidebar/admin/accounts/indexes/create_new_index",
+              "sidebar": "serviceWorkbenchSidebar"
+            },
+            {
+              "id": "user_guide/sidebar/admin/accounts/indexes/introduction",
+              "path": "/user_guide/sidebar/admin/accounts/indexes/introduction",
+              "sidebar": "serviceWorkbenchSidebar"
+            },
+            {
+              "id": "user_guide/sidebar/admin/accounts/projects/add_user_to_project",
+              "path": "/user_guide/sidebar/admin/accounts/projects/add_user_to_project",
+              "sidebar": "serviceWorkbenchSidebar"
+            },
+            {
+              "id": "user_guide/sidebar/admin/accounts/projects/create_project",
+              "path": "/user_guide/sidebar/admin/accounts/projects/create_project",
+              "sidebar": "serviceWorkbenchSidebar"
+            },
+            {
+              "id": "user_guide/sidebar/admin/accounts/projects/introduction",
+              "path": "/user_guide/sidebar/admin/accounts/projects/introduction",
+              "sidebar": "serviceWorkbenchSidebar"
+            },
+            {
+              "id": "user_guide/sidebar/admin/auth/introduction",
+              "path": "/user_guide/sidebar/admin/auth/introduction",
+              "sidebar": "serviceWorkbenchSidebar"
+            },
+            {
+              "id": "user_guide/sidebar/admin/users/add_federated_user",
+              "path": "/user_guide/sidebar/admin/users/add_federated_user",
+              "sidebar": "serviceWorkbenchSidebar"
+            },
+            {
+              "id": "user_guide/sidebar/admin/users/introduction",
+              "path": "/user_guide/sidebar/admin/users/introduction",
+              "sidebar": "serviceWorkbenchSidebar"
+            },
+            {
+              "id": "user_guide/sidebar/admin/users/user_roles",
+              "path": "/user_guide/sidebar/admin/users/user_roles",
+              "sidebar": "serviceWorkbenchSidebar"
+            },
+            {
+              "id": "user_guide/sidebar/admin/workflows/introduction",
+              "path": "/user_guide/sidebar/admin/workflows/introduction",
+              "sidebar": "serviceWorkbenchSidebar"
+            },
+            {
+              "id": "user_guide/sidebar/common/dashboard/introduction",
+              "path": "/user_guide/sidebar/common/dashboard/introduction",
+              "sidebar": "serviceWorkbenchSidebar"
+            },
+            {
+              "id": "user_guide/sidebar/common/studies/creating_a_study",
+              "path": "/user_guide/sidebar/common/studies/creating_a_study",
+              "sidebar": "serviceWorkbenchSidebar"
+            },
+            {
+              "id": "user_guide/sidebar/common/studies/data_sources",
+              "path": "/user_guide/sidebar/common/studies/data_sources",
+              "sidebar": "serviceWorkbenchSidebar"
+            },
+            {
+              "id": "user_guide/sidebar/common/studies/introduction",
+              "path": "/user_guide/sidebar/common/studies/introduction",
+              "sidebar": "serviceWorkbenchSidebar"
+            },
+            {
+              "id": "user_guide/sidebar/common/studies/sharing_a_study",
+              "path": "/user_guide/sidebar/common/studies/sharing_a_study",
+              "sidebar": "serviceWorkbenchSidebar"
+            },
+            {
+              "id": "user_guide/sidebar/common/studies/studies_page",
+              "path": "/user_guide/sidebar/common/studies/studies_page",
+              "sidebar": "serviceWorkbenchSidebar"
+            },
+            {
+              "id": "user_guide/sidebar/common/workspaces/accessing_a_workspace",
+              "path": "/user_guide/sidebar/common/workspaces/accessing_a_workspace",
+              "sidebar": "serviceWorkbenchSidebar"
+            },
+            {
+              "id": "user_guide/sidebar/common/workspaces/create_workspace_study",
+              "path": "/user_guide/sidebar/common/workspaces/create_workspace_study",
+              "sidebar": "serviceWorkbenchSidebar"
+            },
+            {
+              "id": "user_guide/sidebar/common/workspaces/introduction",
+              "path": "/user_guide/sidebar/common/workspaces/introduction",
+              "sidebar": "serviceWorkbenchSidebar"
+            },
+            {
+              "id": "user_guide/sidebar/common/workspaces/terminating_a_workspace",
+              "path": "/user_guide/sidebar/common/workspaces/terminating_a_workspace",
+              "sidebar": "serviceWorkbenchSidebar"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

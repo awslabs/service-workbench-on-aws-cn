@@ -1,0 +1,19 @@
+{
+  "unversionedId": "deployment/summary",
+  "id": "deployment/summary",
+  "isDocsHomePage": false,
+  "title": "Features",
+  "description": "Service Workbench is designed from the ground up to make it easy for you to install the application and get running quickly.",
+  "source": "@site/docs/deployment/summary.md",
+  "sourceDirName": "deployment",
+  "slug": "/deployment/summary",
+  "permalink": "/deployment/summary",
+  "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/deployment/summary.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "summary",
+    "title": "Features",
+    "sidebar_label": "Features"
+  }
+}

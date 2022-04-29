@@ -1,0 +1,28 @@
+{
+  "unversionedId": "user_guide/sidebar/admin/accounts/indexes/introduction",
+  "id": "user_guide/sidebar/admin/accounts/indexes/introduction",
+  "isDocsHomePage": false,
+  "title": "Indexes Introduction",
+  "description": "Indexes are a mechanism of grouping Projects together for cost reporting purposes. There can be many Projects associated with a single Index. There can only be a single AWS Account associated with an Index.",
+  "source": "@site/docs/user_guide/sidebar/admin/accounts/indexes/indexes.md",
+  "sourceDirName": "user_guide/sidebar/admin/accounts/indexes",
+  "slug": "/user_guide/sidebar/admin/accounts/indexes/introduction",
+  "permalink": "/user_guide/sidebar/admin/accounts/indexes/introduction",
+  "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/user_guide/sidebar/admin/accounts/indexes/indexes.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "introduction",
+    "title": "Indexes Introduction",
+    "sidebar_label": "Introduction"
+  },
+  "sidebar": "serviceWorkbenchSidebar",
+  "previous": {
+    "title": "Adding a User to a Project",
+    "permalink": "/user_guide/sidebar/admin/accounts/projects/add_user_to_project"
+  },
+  "next": {
+    "title": "Create a New Index",
+    "permalink": "/user_guide/sidebar/admin/accounts/indexes/create_new_index"
+  }
+}

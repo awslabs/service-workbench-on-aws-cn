@@ -1,0 +1,28 @@
+{
+  "unversionedId": "deployment/post_deployment/create_admin_user",
+  "id": "deployment/post_deployment/create_admin_user",
+  "isDocsHomePage": false,
+  "title": "Create an administrator user",
+  "description": "Once you create an Account and an Index and Project, you must create an administrator user in the ‘Users’ tab. See Figure 7.",
+  "source": "@site/docs/deployment/post_deployment/create_admin_user.md",
+  "sourceDirName": "deployment/post_deployment",
+  "slug": "/deployment/post_deployment/create_admin_user",
+  "permalink": "/deployment/post_deployment/create_admin_user",
+  "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/deployment/post_deployment/create_admin_user.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "create_admin_user",
+    "title": "Create an administrator user",
+    "sidebar_label": "Create an administrator user"
+  },
+  "sidebar": "serviceWorkbenchSidebar",
+  "previous": {
+    "title": "Create indexes and projects",
+    "permalink": "/deployment/post_deployment/create_index_project"
+  },
+  "next": {
+    "title": "Import AWS Service Catalog products",
+    "permalink": "/deployment/post_deployment/import_service_catalog_products"
+  }
+}

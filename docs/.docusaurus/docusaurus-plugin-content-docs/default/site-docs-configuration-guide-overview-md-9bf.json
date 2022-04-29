@@ -1,0 +1,28 @@
+{
+  "unversionedId": "configuration_guide/overview",
+  "id": "configuration_guide/overview",
+  "isDocsHomePage": false,
+  "title": "Identity Provider overview",
+  "description": "An identity provider (IdP) is a service that stores, manages digital identities and verifies the identities of users. The IdP can be used in place of internal authentication mechanism of Service Workbench. The IdP authenticates the identity of a user, allowing Service Workbench to assign permissions to that user.",
+  "source": "@site/docs/configuration_guide/overview.md",
+  "sourceDirName": "configuration_guide",
+  "slug": "/configuration_guide/overview",
+  "permalink": "/configuration_guide/overview",
+  "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/configuration_guide/overview.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "overview",
+    "title": "Identity Provider overview",
+    "sidebar_label": "Identity Provider overview"
+  },
+  "sidebar": "serviceWorkbenchSidebar",
+  "previous": {
+    "title": "Troubleshooting",
+    "permalink": "/installation_guide/troubleshooting"
+  },
+  "next": {
+    "title": "Service Workbench and IdP workflow",
+    "permalink": "/configuration_guide/workflow"
+  }
+}

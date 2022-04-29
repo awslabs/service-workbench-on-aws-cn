@@ -1,0 +1,28 @@
+{
+  "unversionedId": "deployment/post_deployment/logs",
+  "id": "deployment/post_deployment/logs",
+  "isDocsHomePage": false,
+  "title": "Viewing Service Workbench logs",
+  "description": "Viewing Service Workbench logs in Amazon CloudWatch",
+  "source": "@site/docs/deployment/post_deployment/logs.md",
+  "sourceDirName": "deployment/post_deployment",
+  "slug": "/deployment/post_deployment/logs",
+  "permalink": "/deployment/post_deployment/logs",
+  "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/deployment/post_deployment/logs.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "logs",
+    "title": "Viewing Service Workbench logs",
+    "sidebar_label": "Viewing Service Workbench logs"
+  },
+  "sidebar": "serviceWorkbenchSidebar",
+  "previous": {
+    "title": "Import AWS Service Catalog products",
+    "permalink": "/deployment/post_deployment/import_service_catalog_products"
+  },
+  "next": {
+    "title": "Deploying Updates",
+    "permalink": "/deployment/redeployment"
+  }
+}

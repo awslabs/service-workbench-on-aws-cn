@@ -1,0 +1,28 @@
+{
+  "unversionedId": "deployment/post_deployment/account_structure",
+  "id": "deployment/post_deployment/account_structure",
+  "isDocsHomePage": false,
+  "title": "Account structure",
+  "description": "Service Workbench uses three types of accounts. You will see these account names throughout the documentation.",
+  "source": "@site/docs/deployment/post_deployment/account_structure.md",
+  "sourceDirName": "deployment/post_deployment",
+  "slug": "/deployment/post_deployment/account_structure",
+  "permalink": "/deployment/post_deployment/account_structure",
+  "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/deployment/post_deployment/account_structure.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "account_structure",
+    "title": "Account structure",
+    "sidebar_label": "Account structure"
+  },
+  "sidebar": "serviceWorkbenchSidebar",
+  "previous": {
+    "title": "Post Deployment",
+    "permalink": "/deployment/post_deployment/index"
+  },
+  "next": {
+    "title": "Prepare the organizational Account",
+    "permalink": "/deployment/reference/prepare_master_account"
+  }
+}

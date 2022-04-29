@@ -1,0 +1,28 @@
+{
+  "unversionedId": "user_guide/sidebar/common/dashboard/introduction",
+  "id": "user_guide/sidebar/common/dashboard/introduction",
+  "isDocsHomePage": false,
+  "title": "Dashboard",
+  "description": "The dashboard is visible to all users that log in to the solution. It is also the first screen visible to a user after logging into the web interface. Based on the role a user holds they can see more or less data inside the dashboard's widgets.",
+  "source": "@site/docs/user_guide/sidebar/common/dashboard/introduction.md",
+  "sourceDirName": "user_guide/sidebar/common/dashboard",
+  "slug": "/user_guide/sidebar/common/dashboard/introduction",
+  "permalink": "/user_guide/sidebar/common/dashboard/introduction",
+  "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/user_guide/sidebar/common/dashboard/introduction.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "introduction",
+    "title": "Dashboard",
+    "sidebar_label": "Dashboard"
+  },
+  "sidebar": "serviceWorkbenchSidebar",
+  "previous": {
+    "title": "Sidebar Introduction",
+    "permalink": "/user_guide/introduction"
+  },
+  "next": {
+    "title": "Introduction",
+    "permalink": "/user_guide/sidebar/common/studies/introduction"
+  }
+}

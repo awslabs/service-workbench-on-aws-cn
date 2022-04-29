@@ -1,0 +1,19 @@
+{
+  "unversionedId": "deployment/about_this_guide",
+  "id": "deployment/about_this_guide",
+  "isDocsHomePage": false,
+  "title": "About this guide",
+  "description": "This deployment guide describes installation instructions and configuration steps for deploying Service Workbench in the Amazon Web Services (AWS) Cloud. It includes links to existing AWS Cloud services it orchestrates, such as AWS CloudFormation, AWS Organizations, AWS Identity and Access Management (IAM), and more.",
+  "source": "@site/docs/deployment/about_this_guide.md",
+  "sourceDirName": "deployment",
+  "slug": "/deployment/about_this_guide",
+  "permalink": "/deployment/about_this_guide",
+  "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/deployment/about_this_guide.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "about_this_guide",
+    "title": "About this guide",
+    "sidebar_label": "About this guide"
+  }
+}

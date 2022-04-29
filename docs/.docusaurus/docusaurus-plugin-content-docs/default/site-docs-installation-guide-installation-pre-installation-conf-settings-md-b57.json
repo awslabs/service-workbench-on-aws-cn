@@ -1,0 +1,28 @@
+{
+  "unversionedId": "installation_guide/installation/pre-installation/conf-settings",
+  "id": "installation_guide/installation/pre-installation/conf-settings",
+  "isDocsHomePage": false,
+  "title": "Configuration settings",
+  "description": "Stage name",
+  "source": "@site/docs/installation_guide/installation/pre-installation/conf-settings.md",
+  "sourceDirName": "installation_guide/installation/pre-installation",
+  "slug": "/installation_guide/installation/pre-installation/conf-settings",
+  "permalink": "/installation_guide/installation/pre-installation/conf-settings",
+  "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/installation_guide/installation/pre-installation/conf-settings.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "conf-settings",
+    "title": "Configuration settings",
+    "sidebar_label": "Configuration settings"
+  },
+  "sidebar": "serviceWorkbenchSidebar",
+  "previous": {
+    "title": "Instance requirements",
+    "permalink": "/installation_guide/installation/pre-installation/instance-req"
+  },
+  "next": {
+    "title": "Accessing reference documentation",
+    "permalink": "/installation_guide/installation/pre-installation/documentation"
+  }
+}

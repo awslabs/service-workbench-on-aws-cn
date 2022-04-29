@@ -1,0 +1,28 @@
+{
+  "unversionedId": "best_practices/introduction",
+  "id": "best_practices/introduction",
+  "isDocsHomePage": false,
+  "title": "Best Practices Introduction",
+  "description": "This section provides an overview of some of the best practices for deploying this solution.",
+  "source": "@site/docs/best_practices/introduction.md",
+  "sourceDirName": "best_practices",
+  "slug": "/best_practices/introduction",
+  "permalink": "/best_practices/introduction",
+  "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/best_practices/introduction.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "introduction",
+    "title": "Best Practices Introduction",
+    "sidebar_label": "Introduction"
+  },
+  "sidebar": "serviceWorkbenchSidebar",
+  "previous": {
+    "title": "Terminating a Workspace",
+    "permalink": "/user_guide/sidebar/common/workspaces/terminating_a_workspace"
+  },
+  "next": {
+    "title": "Multiple Deployment Environments",
+    "permalink": "/best_practices/multiple_deployment_environments"
+  }
+}

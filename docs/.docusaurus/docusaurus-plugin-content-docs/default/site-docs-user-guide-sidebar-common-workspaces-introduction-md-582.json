@@ -1,0 +1,28 @@
+{
+  "unversionedId": "user_guide/sidebar/common/workspaces/introduction",
+  "id": "user_guide/sidebar/common/workspaces/introduction",
+  "isDocsHomePage": false,
+  "title": "Workspaces Introduction",
+  "description": "Service Workbench enables organizations to provide researchers with a centralized location to search for data sets and deploy research workspaces. Researchers can access a portal, quickly find data they are interested in, and quickly begin analysis in SageMaker Notebooks, for example.",
+  "source": "@site/docs/user_guide/sidebar/common/workspaces/introduction.md",
+  "sourceDirName": "user_guide/sidebar/common/workspaces",
+  "slug": "/user_guide/sidebar/common/workspaces/introduction",
+  "permalink": "/user_guide/sidebar/common/workspaces/introduction",
+  "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/user_guide/sidebar/common/workspaces/introduction.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "introduction",
+    "title": "Workspaces Introduction",
+    "sidebar_label": "Introduction"
+  },
+  "sidebar": "serviceWorkbenchSidebar",
+  "previous": {
+    "title": "Sharing a Study",
+    "permalink": "/user_guide/sidebar/common/studies/sharing_a_study"
+  },
+  "next": {
+    "title": "Creating a Workspace",
+    "permalink": "/user_guide/sidebar/common/workspaces/create_workspace_study"
+  }
+}

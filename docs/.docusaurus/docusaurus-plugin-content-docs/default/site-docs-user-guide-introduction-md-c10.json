@@ -1,0 +1,28 @@
+{
+  "unversionedId": "user_guide/introduction",
+  "id": "user_guide/introduction",
+  "isDocsHomePage": false,
+  "title": "Sidebar Introduction",
+  "description": "This section of the documentation aims to provide an overview of how to operate the web-based user portal that is provided as part of this solution.",
+  "source": "@site/docs/user_guide/introduction.md",
+  "sourceDirName": "user_guide",
+  "slug": "/user_guide/introduction",
+  "permalink": "/user_guide/introduction",
+  "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/user_guide/introduction.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "introduction",
+    "title": "Sidebar Introduction",
+    "sidebar_label": "Sidebar Introduction"
+  },
+  "sidebar": "serviceWorkbenchSidebar",
+  "previous": {
+    "title": "Account Structure",
+    "permalink": "/user_guide/account_structure"
+  },
+  "next": {
+    "title": "Dashboard",
+    "permalink": "/user_guide/sidebar/common/dashboard/introduction"
+  }
+}

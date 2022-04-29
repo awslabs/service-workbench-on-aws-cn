@@ -1,0 +1,19 @@
+{
+  "unversionedId": "deployment/configuration/auth/enabling_ad",
+  "id": "deployment/configuration/auth/enabling_ad",
+  "isDocsHomePage": false,
+  "title": "Enable Active Directory Authentication",
+  "description": "To enable the Active Directory authentication, perform the following actions:",
+  "source": "@site/docs/deployment/configuration/auth/enabling_ad.md",
+  "sourceDirName": "deployment/configuration/auth",
+  "slug": "/deployment/configuration/auth/enabling_ad",
+  "permalink": "/deployment/configuration/auth/enabling_ad",
+  "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/deployment/configuration/auth/enabling_ad.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "enabling_ad",
+    "title": "Enable Active Directory Authentication",
+    "sidebar_label": "Enable Active Directory Authentication"
+  }
+}

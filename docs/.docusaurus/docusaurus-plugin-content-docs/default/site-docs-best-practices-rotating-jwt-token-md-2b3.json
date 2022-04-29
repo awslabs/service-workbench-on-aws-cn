@@ -1,0 +1,28 @@
+{
+  "unversionedId": "best_practices/rotating_jwt_token",
+  "id": "best_practices/rotating_jwt_token",
+  "isDocsHomePage": false,
+  "title": "Rotating the JWT Master Token",
+  "description": "TODO",
+  "source": "@site/docs/best_practices/rotating_jwt_token.md",
+  "sourceDirName": "best_practices",
+  "slug": "/best_practices/rotating_jwt_token",
+  "permalink": "/best_practices/rotating_jwt_token",
+  "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/best_practices/rotating_jwt_token.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "rotating_jwt_token",
+    "title": "Rotating the JWT Master Token",
+    "sidebar_label": "Rotating the JWT Master Token"
+  },
+  "sidebar": "serviceWorkbenchSidebar",
+  "previous": {
+    "title": "CI/CD",
+    "permalink": "/best_practices/cicd"
+  },
+  "next": {
+    "title": "Introduction",
+    "permalink": "/development/introduction"
+  }
+}

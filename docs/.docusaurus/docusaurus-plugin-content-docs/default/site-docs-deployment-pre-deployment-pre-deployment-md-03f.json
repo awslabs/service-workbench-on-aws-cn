@@ -1,0 +1,19 @@
+{
+  "unversionedId": "deployment/pre_deployment/pre_deployment",
+  "id": "deployment/pre_deployment/pre_deployment",
+  "isDocsHomePage": false,
+  "title": "Pre Deployment",
+  "description": "Make sure all the prerequisites described in the pre-deployment section are complete before you start a deployment.",
+  "source": "@site/docs/deployment/pre_deployment/pre_deployment.md",
+  "sourceDirName": "deployment/pre_deployment",
+  "slug": "/deployment/pre_deployment/pre_deployment",
+  "permalink": "/deployment/pre_deployment/pre_deployment",
+  "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/deployment/pre_deployment/pre_deployment.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "pre_deployment",
+    "title": "Pre Deployment",
+    "sidebar_label": "Pre Deployment"
+  }
+}

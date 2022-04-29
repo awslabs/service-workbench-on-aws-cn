@@ -1,0 +1,28 @@
+{
+  "unversionedId": "best_practices/amazon_inspector",
+  "id": "best_practices/amazon_inspector",
+  "isDocsHomePage": false,
+  "title": "Amazon Inspector",
+  "description": "Amazon Inspector tests the network accessibility of your Amazon EC2 instances and the security state of your applications that run on those instances. Amazon Inspector assesses applications for exposure, vulnerabilities, and deviations from best practices. After performing an assessment, Amazon Inspector produces a detailed list of security findings that is organized by level of severity.",
+  "source": "@site/docs/best_practices/amazon_inspector.md",
+  "sourceDirName": "best_practices",
+  "slug": "/best_practices/amazon_inspector",
+  "permalink": "/best_practices/amazon_inspector",
+  "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/best_practices/amazon_inspector.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "amazon_inspector",
+    "title": "Amazon Inspector",
+    "sidebar_label": "Amazon Inspector"
+  },
+  "sidebar": "serviceWorkbenchSidebar",
+  "previous": {
+    "title": "Multiple Deployment Environments",
+    "permalink": "/best_practices/multiple_deployment_environments"
+  },
+  "next": {
+    "title": "AWS CloudTrail",
+    "permalink": "/best_practices/aws_cloudtrail"
+  }
+}

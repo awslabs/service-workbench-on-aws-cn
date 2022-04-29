@@ -1,0 +1,28 @@
+{
+  "unversionedId": "user_guide/sidebar/admin/accounts/aws_accounts/invite_member_account",
+  "id": "user_guide/sidebar/admin/accounts/aws_accounts/invite_member_account",
+  "isDocsHomePage": false,
+  "title": "Invite an AWS Member Account",
+  "description": "As well as Creating a Member Account, you can also invite an AWS Account to the solution. The AWS Account that is being invited will need to provide a VPC, one Subnet from within it, and a Cross Account Execution Role.",
+  "source": "@site/docs/user_guide/sidebar/admin/accounts/aws_accounts/invite_member_account.md",
+  "sourceDirName": "user_guide/sidebar/admin/accounts/aws_accounts",
+  "slug": "/user_guide/sidebar/admin/accounts/aws_accounts/invite_member_account",
+  "permalink": "/user_guide/sidebar/admin/accounts/aws_accounts/invite_member_account",
+  "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/user_guide/sidebar/admin/accounts/aws_accounts/invite_member_account.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "invite_member_account",
+    "title": "Invite an AWS Member Account",
+    "sidebar_label": "Invite an AWS Member Account"
+  },
+  "sidebar": "serviceWorkbenchSidebar",
+  "previous": {
+    "title": "Create an AWS Account",
+    "permalink": "/user_guide/sidebar/admin/accounts/aws_accounts/create_member_account"
+  },
+  "next": {
+    "title": "Set AWS Account Budget",
+    "permalink": "/user_guide/sidebar/admin/accounts/aws_accounts/set_account_budget"
+  }
+}

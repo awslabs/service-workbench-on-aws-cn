@@ -1,0 +1,28 @@
+{
+  "unversionedId": "user_guide/sidebar/common/workspaces/accessing_a_workspace",
+  "id": "user_guide/sidebar/common/workspaces/accessing_a_workspace",
+  "isDocsHomePage": false,
+  "title": "Accessing a Workspace",
+  "description": "You can connect to Workspaces that you have access to. To access a Workspace, follow these steps:",
+  "source": "@site/docs/user_guide/sidebar/common/workspaces/accessing_a_workspace.md",
+  "sourceDirName": "user_guide/sidebar/common/workspaces",
+  "slug": "/user_guide/sidebar/common/workspaces/accessing_a_workspace",
+  "permalink": "/user_guide/sidebar/common/workspaces/accessing_a_workspace",
+  "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/user_guide/sidebar/common/workspaces/accessing_a_workspace.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "accessing_a_workspace",
+    "title": "Accessing a Workspace",
+    "sidebar_label": "Accessing a Workspace"
+  },
+  "sidebar": "serviceWorkbenchSidebar",
+  "previous": {
+    "title": "Creating a Workspace",
+    "permalink": "/user_guide/sidebar/common/workspaces/create_workspace_study"
+  },
+  "next": {
+    "title": "Terminating a Workspace",
+    "permalink": "/user_guide/sidebar/common/workspaces/terminating_a_workspace"
+  }
+}

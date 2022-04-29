@@ -1,0 +1,28 @@
+{
+  "unversionedId": "installation_guide/uninstall",
+  "id": "installation_guide/uninstall",
+  "isDocsHomePage": false,
+  "title": "Uninstalling Service Workbench",
+  "description": "Follow these guidelines to delete the following for uninstalling Service Workbench:",
+  "source": "@site/docs/installation_guide/uninstall.md",
+  "sourceDirName": "installation_guide",
+  "slug": "/installation_guide/uninstall",
+  "permalink": "/installation_guide/uninstall",
+  "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/installation_guide/uninstall.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "uninstall",
+    "title": "Uninstalling Service Workbench",
+    "sidebar_label": "Uninstalling Service Workbench"
+  },
+  "sidebar": "serviceWorkbenchSidebar",
+  "previous": {
+    "title": "Post upgrade",
+    "permalink": "/installation_guide/postupgrade"
+  },
+  "next": {
+    "title": "Troubleshooting",
+    "permalink": "/installation_guide/troubleshooting"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "unversionedId": "user_guide/sidebar/common/workspaces/create_workspace_study",
+  "id": "user_guide/sidebar/common/workspaces/create_workspace_study",
+  "isDocsHomePage": false,
+  "title": "Creating a new Workspace",
+  "description": "A user can select a Study or multiple Studies and launch a Workspace to access and analyze that data. To launch a Workspace, follow these steps:",
+  "source": "@site/docs/user_guide/sidebar/common/workspaces/create_workspace_study.md",
+  "sourceDirName": "user_guide/sidebar/common/workspaces",
+  "slug": "/user_guide/sidebar/common/workspaces/create_workspace_study",
+  "permalink": "/user_guide/sidebar/common/workspaces/create_workspace_study",
+  "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/user_guide/sidebar/common/workspaces/create_workspace_study.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "create_workspace_study",
+    "title": "Creating a new Workspace",
+    "sidebar_label": "Creating a Workspace"
+  },
+  "sidebar": "serviceWorkbenchSidebar",
+  "previous": {
+    "title": "Introduction",
+    "permalink": "/user_guide/sidebar/common/workspaces/introduction"
+  },
+  "next": {
+    "title": "Accessing a Workspace",
+    "permalink": "/user_guide/sidebar/common/workspaces/accessing_a_workspace"
+  }
+}

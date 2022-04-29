@@ -1,0 +1,28 @@
+{
+  "unversionedId": "deployment/post_deployment/aws_accounts",
+  "id": "deployment/post_deployment/aws_accounts",
+  "isDocsHomePage": false,
+  "title": "Create or add accounts",
+  "description": "After logging in as root user for the first time, go to the 'Accounts' page in the SideBar. Service Workbench uses AWS accounts on this page for launching research workspaces. You can add existing AWS accounts or create new ones on the 'Accounts' tab.  Accounts are responsible for the charges incurred by the resources that are deployed within the Service Workbench.",
+  "source": "@site/docs/deployment/post_deployment/aws_accounts.md",
+  "sourceDirName": "deployment/post_deployment",
+  "slug": "/deployment/post_deployment/aws_accounts",
+  "permalink": "/deployment/post_deployment/aws_accounts",
+  "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/deployment/post_deployment/aws_accounts.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "aws_accounts",
+    "title": "Create or add accounts",
+    "sidebar_label": "Create or add accounts"
+  },
+  "sidebar": "serviceWorkbenchSidebar",
+  "previous": {
+    "title": "Prepare your account for AppStream",
+    "permalink": "/deployment/post_deployment/appstream"
+  },
+  "next": {
+    "title": "Create indexes and projects",
+    "permalink": "/deployment/post_deployment/create_index_project"
+  }
+}

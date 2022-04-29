@@ -1,0 +1,3029 @@
+{
+  "docusaurus-plugin-content-docs": {
+    "default": {
+      "loadedVersions": [
+        {
+          "versionName": "current",
+          "versionLabel": "Next",
+          "versionPath": "/",
+          "tagsPath": "/tags",
+          "versionEditUrl": "https://github.com/awslabs/go-research-on-aws/website/docs",
+          "versionEditUrlLocalized": "https://github.com/awslabs/go-research-on-aws/website/i18n/en/docusaurus-plugin-content-docs/current",
+          "versionBanner": null,
+          "versionBadge": false,
+          "versionClassName": "docs-version-current",
+          "isLast": true,
+          "routePriority": -1,
+          "sidebarFilePath": "/Users/mingtong/working/AWS-Solution-Builder/github/awslabs/service-workbench-on-aws/docs/sidebars.js",
+          "contentPath": "/Users/mingtong/working/AWS-Solution-Builder/github/awslabs/service-workbench-on-aws/docs/docs",
+          "contentPathLocalized": "/Users/mingtong/working/AWS-Solution-Builder/github/awslabs/service-workbench-on-aws/docs/i18n/en/docusaurus-plugin-content-docs/current",
+          "mainDocId": "installation_guide/overview",
+          "docs": [
+            {
+              "unversionedId": "best_practices/amazon_inspector",
+              "id": "best_practices/amazon_inspector",
+              "isDocsHomePage": false,
+              "title": "Amazon Inspector",
+              "description": "Amazon Inspector tests the network accessibility of your Amazon EC2 instances and the security state of your applications that run on those instances. Amazon Inspector assesses applications for exposure, vulnerabilities, and deviations from best practices. After performing an assessment, Amazon Inspector produces a detailed list of security findings that is organized by level of severity.",
+              "source": "@site/docs/best_practices/amazon_inspector.md",
+              "sourceDirName": "best_practices",
+              "slug": "/best_practices/amazon_inspector",
+              "permalink": "/best_practices/amazon_inspector",
+              "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/best_practices/amazon_inspector.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "id": "amazon_inspector",
+                "title": "Amazon Inspector",
+                "sidebar_label": "Amazon Inspector"
+              },
+              "sidebar": "serviceWorkbenchSidebar",
+              "previous": {
+                "title": "Multiple Deployment Environments",
+                "permalink": "/best_practices/multiple_deployment_environments"
+              },
+              "next": {
+                "title": "AWS CloudTrail",
+                "permalink": "/best_practices/aws_cloudtrail"
+              }
+            },
+            {
+              "unversionedId": "best_practices/aws_cloudtrail",
+              "id": "best_practices/aws_cloudtrail",
+              "isDocsHomePage": false,
+              "title": "AWS CloudTrail",
+              "description": "AWS CloudTrail is an AWS service that helps you enable governance, compliance, and operational and risk auditing of your AWS account. Actions taken by a user, role, or an AWS service are recorded as events in CloudTrail. Events include actions taken in the AWS Management Console, AWS Command Line Interface, and AWS SDKs and APIs.",
+              "source": "@site/docs/best_practices/aws_cloudtrail.md",
+              "sourceDirName": "best_practices",
+              "slug": "/best_practices/aws_cloudtrail",
+              "permalink": "/best_practices/aws_cloudtrail",
+              "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/best_practices/aws_cloudtrail.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "id": "aws_cloudtrail",
+                "title": "AWS CloudTrail",
+                "sidebar_label": "AWS CloudTrail"
+              },
+              "sidebar": "serviceWorkbenchSidebar",
+              "previous": {
+                "title": "Amazon Inspector",
+                "permalink": "/best_practices/amazon_inspector"
+              },
+              "next": {
+                "title": "AWS Shield",
+                "permalink": "/best_practices/aws_shield"
+              }
+            },
+            {
+              "unversionedId": "best_practices/aws_shield",
+              "id": "best_practices/aws_shield",
+              "isDocsHomePage": false,
+              "title": "AWS Shield",
+              "description": "A distributed denial of service (DDoS) attack is an attack in which multiple compromised systems attempt to flood a target, such as a network or web application, with traffic. A DDoS attack can prevent legitimate users from accessing a service and can cause the system to crash due to the overwhelming traffic volume.",
+              "source": "@site/docs/best_practices/aws_shield.md",
+              "sourceDirName": "best_practices",
+              "slug": "/best_practices/aws_shield",
+              "permalink": "/best_practices/aws_shield",
+              "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/best_practices/aws_shield.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "id": "aws_shield",
+                "title": "AWS Shield",
+                "sidebar_label": "AWS Shield"
+              },
+              "sidebar": "serviceWorkbenchSidebar",
+              "previous": {
+                "title": "AWS CloudTrail",
+                "permalink": "/best_practices/aws_cloudtrail"
+              },
+              "next": {
+                "title": "CI/CD",
+                "permalink": "/best_practices/cicd"
+              }
+            },
+            {
+              "unversionedId": "best_practices/cicd",
+              "id": "best_practices/cicd",
+              "isDocsHomePage": false,
+              "title": "CI/CD",
+              "description": "We recommend that you setup a CI/CD pipeline for this solution. This section will provide you with an overview of how to do this.",
+              "source": "@site/docs/best_practices/cicd.md",
+              "sourceDirName": "best_practices",
+              "slug": "/best_practices/cicd",
+              "permalink": "/best_practices/cicd",
+              "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/best_practices/cicd.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "id": "cicd",
+                "title": "CI/CD",
+                "sidebar_label": "CI/CD"
+              },
+              "sidebar": "serviceWorkbenchSidebar",
+              "previous": {
+                "title": "AWS Shield",
+                "permalink": "/best_practices/aws_shield"
+              },
+              "next": {
+                "title": "Rotating the JWT Master Token",
+                "permalink": "/best_practices/rotating_jwt_token"
+              }
+            },
+            {
+              "unversionedId": "best_practices/introduction",
+              "id": "best_practices/introduction",
+              "isDocsHomePage": false,
+              "title": "Best Practices Introduction",
+              "description": "This section provides an overview of some of the best practices for deploying this solution.",
+              "source": "@site/docs/best_practices/introduction.md",
+              "sourceDirName": "best_practices",
+              "slug": "/best_practices/introduction",
+              "permalink": "/best_practices/introduction",
+              "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/best_practices/introduction.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "id": "introduction",
+                "title": "Best Practices Introduction",
+                "sidebar_label": "Introduction"
+              },
+              "sidebar": "serviceWorkbenchSidebar",
+              "previous": {
+                "title": "Terminating a Workspace",
+                "permalink": "/user_guide/sidebar/common/workspaces/terminating_a_workspace"
+              },
+              "next": {
+                "title": "Multiple Deployment Environments",
+                "permalink": "/best_practices/multiple_deployment_environments"
+              }
+            },
+            {
+              "unversionedId": "best_practices/multiple_deployment_environments",
+              "id": "best_practices/multiple_deployment_environments",
+              "isDocsHomePage": false,
+              "title": "Multiple Deployment Environments",
+              "description": "It is recommended that you deploy separate 'Dev', 'Test' and 'Production' environments of this solution. To do this, following the guidance in the Initial Deployment section.",
+              "source": "@site/docs/best_practices/multiple_deployment_environments.md",
+              "sourceDirName": "best_practices",
+              "slug": "/best_practices/multiple_deployment_environments",
+              "permalink": "/best_practices/multiple_deployment_environments",
+              "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/best_practices/multiple_deployment_environments.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "id": "multiple_deployment_environments",
+                "title": "Multiple Deployment Environments",
+                "sidebar_label": "Multiple Deployment Environments"
+              },
+              "sidebar": "serviceWorkbenchSidebar",
+              "previous": {
+                "title": "Introduction",
+                "permalink": "/best_practices/introduction"
+              },
+              "next": {
+                "title": "Amazon Inspector",
+                "permalink": "/best_practices/amazon_inspector"
+              }
+            },
+            {
+              "unversionedId": "best_practices/rotating_jwt_token",
+              "id": "best_practices/rotating_jwt_token",
+              "isDocsHomePage": false,
+              "title": "Rotating the JWT Master Token",
+              "description": "TODO",
+              "source": "@site/docs/best_practices/rotating_jwt_token.md",
+              "sourceDirName": "best_practices",
+              "slug": "/best_practices/rotating_jwt_token",
+              "permalink": "/best_practices/rotating_jwt_token",
+              "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/best_practices/rotating_jwt_token.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "id": "rotating_jwt_token",
+                "title": "Rotating the JWT Master Token",
+                "sidebar_label": "Rotating the JWT Master Token"
+              },
+              "sidebar": "serviceWorkbenchSidebar",
+              "previous": {
+                "title": "CI/CD",
+                "permalink": "/best_practices/cicd"
+              },
+              "next": {
+                "title": "Introduction",
+                "permalink": "/development/introduction"
+              }
+            },
+            {
+              "unversionedId": "configuration_guide/activedirectory",
+              "id": "configuration_guide/activedirectory",
+              "isDocsHomePage": false,
+              "title": "Configuring Service Workbench using Microsoft Azure AD",
+              "description": "Updating accounts",
+              "source": "@site/docs/configuration_guide/activedirectory.md",
+              "sourceDirName": "configuration_guide",
+              "slug": "/configuration_guide/activedirectory",
+              "permalink": "/configuration_guide/activedirectory",
+              "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/configuration_guide/activedirectory.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "id": "activedirectory",
+                "title": "Configuring Service Workbench using Microsoft Azure AD",
+                "sidebar_label": "Configuring Service Workbench using Microsoft Azure AD"
+              },
+              "sidebar": "serviceWorkbenchSidebar",
+              "previous": {
+                "title": "Service Workbench and IdP workflow",
+                "permalink": "/configuration_guide/workflow"
+              },
+              "next": {
+                "title": "Configuring Service Workbench using Microsoft Active Directory Federation Services",
+                "permalink": "/configuration_guide/adfs"
+              }
+            },
+            {
+              "unversionedId": "configuration_guide/adfs",
+              "id": "configuration_guide/adfs",
+              "isDocsHomePage": false,
+              "title": "Configuring Service Workbench using Microsoft Active Directory Federation Services",
+              "description": "Microsoft ADFS is another IdP and it uses SAML 2.0 standard. For SAML federation, the Amazon Cognito user pool is the Service Provider (SP). Mutual trust between the SP and the IdP must be established. Service Workbench on AWS uses Amazon Cognito user pools to federate identities from Microsoft Active Directory using ADFS and SAML 2.0.",
+              "source": "@site/docs/configuration_guide/adfs.md",
+              "sourceDirName": "configuration_guide",
+              "slug": "/configuration_guide/adfs",
+              "permalink": "/configuration_guide/adfs",
+              "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/configuration_guide/adfs.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "id": "adfs",
+                "title": "Configuring Service Workbench using Microsoft Active Directory Federation Services",
+                "sidebar_label": "Configuring Service Workbench using Microsoft Active Directory Federation Services"
+              },
+              "sidebar": "serviceWorkbenchSidebar",
+              "previous": {
+                "title": "Configuring Service Workbench using Microsoft Azure AD",
+                "permalink": "/configuration_guide/activedirectory"
+              },
+              "next": {
+                "title": "Configuring Service Workbench using Auth0",
+                "permalink": "/configuration_guide/auth0"
+              }
+            },
+            {
+              "unversionedId": "configuration_guide/auth0",
+              "id": "configuration_guide/auth0",
+              "isDocsHomePage": false,
+              "title": "Configuring Service Workbench using Auth0",
+              "description": "You can configure Service Workbench using Auth0 by first creating an application in Auth0. Next, configure SAML and download the SAML template. Finally, configure the Service Workbench environment.",
+              "source": "@site/docs/configuration_guide/auth0.md",
+              "sourceDirName": "configuration_guide",
+              "slug": "/configuration_guide/auth0",
+              "permalink": "/configuration_guide/auth0",
+              "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/configuration_guide/auth0.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "id": "auth0",
+                "title": "Configuring Service Workbench using Auth0",
+                "sidebar_label": "Configuring Service Workbench using Auth0"
+              },
+              "sidebar": "serviceWorkbenchSidebar",
+              "previous": {
+                "title": "Configuring Service Workbench using Microsoft Active Directory Federation Services",
+                "permalink": "/configuration_guide/adfs"
+              },
+              "next": {
+                "title": "Deployment Stages",
+                "permalink": "/deployment/deployment_stages"
+              }
+            },
+            {
+              "unversionedId": "configuration_guide/overview",
+              "id": "configuration_guide/overview",
+              "isDocsHomePage": false,
+              "title": "Identity Provider overview",
+              "description": "An identity provider (IdP) is a service that stores, manages digital identities and verifies the identities of users. The IdP can be used in place of internal authentication mechanism of Service Workbench. The IdP authenticates the identity of a user, allowing Service Workbench to assign permissions to that user.",
+              "source": "@site/docs/configuration_guide/overview.md",
+              "sourceDirName": "configuration_guide",
+              "slug": "/configuration_guide/overview",
+              "permalink": "/configuration_guide/overview",
+              "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/configuration_guide/overview.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "id": "overview",
+                "title": "Identity Provider overview",
+                "sidebar_label": "Identity Provider overview"
+              },
+              "sidebar": "serviceWorkbenchSidebar",
+              "previous": {
+                "title": "Troubleshooting",
+                "permalink": "/installation_guide/troubleshooting"
+              },
+              "next": {
+                "title": "Service Workbench and IdP workflow",
+                "permalink": "/configuration_guide/workflow"
+              }
+            },
+            {
+              "unversionedId": "configuration_guide/workflow",
+              "id": "configuration_guide/workflow",
+              "isDocsHomePage": false,
+              "title": "Service Workbench and IdP workflow",
+              "description": "Service Workbench and IdP workflow",
+              "source": "@site/docs/configuration_guide/workflow.md",
+              "sourceDirName": "configuration_guide",
+              "slug": "/configuration_guide/workflow",
+              "permalink": "/configuration_guide/workflow",
+              "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/configuration_guide/workflow.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "id": "workflow",
+                "title": "Service Workbench and IdP workflow",
+                "sidebar_label": "Service Workbench and IdP workflow"
+              },
+              "sidebar": "serviceWorkbenchSidebar",
+              "previous": {
+                "title": "Identity Provider overview",
+                "permalink": "/configuration_guide/overview"
+              },
+              "next": {
+                "title": "Configuring Service Workbench using Microsoft Azure AD",
+                "permalink": "/configuration_guide/activedirectory"
+              }
+            },
+            {
+              "unversionedId": "deployment/about_this_guide",
+              "id": "deployment/about_this_guide",
+              "isDocsHomePage": false,
+              "title": "About this guide",
+              "description": "This deployment guide describes installation instructions and configuration steps for deploying Service Workbench in the Amazon Web Services (AWS) Cloud. It includes links to existing AWS Cloud services it orchestrates, such as AWS CloudFormation, AWS Organizations, AWS Identity and Access Management (IAM), and more.",
+              "source": "@site/docs/deployment/about_this_guide.md",
+              "sourceDirName": "deployment",
+              "slug": "/deployment/about_this_guide",
+              "permalink": "/deployment/about_this_guide",
+              "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/deployment/about_this_guide.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "id": "about_this_guide",
+                "title": "About this guide",
+                "sidebar_label": "About this guide"
+              }
+            },
+            {
+              "unversionedId": "deployment/configuration/auth/configuring_auth0",
+              "id": "deployment/configuration/auth/configuring_auth0",
+              "isDocsHomePage": false,
+              "title": "Configure Auth0 and SAML2",
+              "description": "Service Workbench on AWS can be configured to authenticate users through Auth0 and SAML2.",
+              "source": "@site/docs/deployment/configuration/auth/configuring_auth0.md",
+              "sourceDirName": "deployment/configuration/auth",
+              "slug": "/deployment/configuration/auth/configuring_auth0",
+              "permalink": "/deployment/configuration/auth/configuring_auth0",
+              "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/deployment/configuration/auth/configuring_auth0.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "id": "configuring_auth0",
+                "title": "Configure Auth0 and SAML2",
+                "sidebar_label": "Configure Auth0 and SAML2"
+              }
+            },
+            {
+              "unversionedId": "deployment/configuration/auth/configuring_idp",
+              "id": "deployment/configuration/auth/configuring_idp",
+              "isDocsHomePage": false,
+              "title": "Configuring an Identity Provider",
+              "description": "Service Workbench on AWS uses Amazon Cognito User Pools to federate identities from Microsoft Active Directory using ADFS and SAML2.0.",
+              "source": "@site/docs/deployment/configuration/auth/configuring_idp.md",
+              "sourceDirName": "deployment/configuration/auth",
+              "slug": "/deployment/configuration/auth/configuring_idp",
+              "permalink": "/deployment/configuration/auth/configuring_idp",
+              "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/deployment/configuration/auth/configuring_idp.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "id": "configuring_idp",
+                "title": "Configuring an Identity Provider",
+                "sidebar_label": "Configuring an Identity Provider"
+              }
+            },
+            {
+              "unversionedId": "deployment/configuration/auth/enabling_ad",
+              "id": "deployment/configuration/auth/enabling_ad",
+              "isDocsHomePage": false,
+              "title": "Enable Active Directory Authentication",
+              "description": "To enable the Active Directory authentication, perform the following actions:",
+              "source": "@site/docs/deployment/configuration/auth/enabling_ad.md",
+              "sourceDirName": "deployment/configuration/auth",
+              "slug": "/deployment/configuration/auth/enabling_ad",
+              "permalink": "/deployment/configuration/auth/enabling_ad",
+              "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/deployment/configuration/auth/enabling_ad.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "id": "enabling_ad",
+                "title": "Enable Active Directory Authentication",
+                "sidebar_label": "Enable Active Directory Authentication"
+              }
+            },
+            {
+              "unversionedId": "deployment/deployment_stages",
+              "id": "deployment/deployment_stages",
+              "isDocsHomePage": false,
+              "title": "Deployment Stages",
+              "description": "Note: The Service Workbench deployment guide is now replaced by Service Workbench Installation Guide. Refer to the new installation guide for installing Service Workbench.",
+              "source": "@site/docs/deployment/deployment_stages.md",
+              "sourceDirName": "deployment",
+              "slug": "/deployment/deployment_stages",
+              "permalink": "/deployment/deployment_stages",
+              "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/deployment/deployment_stages.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "id": "deployment_stages",
+                "title": "Deployment Stages",
+                "sidebar_label": "Deployment Stages"
+              },
+              "sidebar": "serviceWorkbenchSidebar",
+              "previous": {
+                "title": "Configuring Service Workbench using Auth0",
+                "permalink": "/configuration_guide/auth0"
+              },
+              "next": {
+                "title": "Overview",
+                "permalink": "/installation_guide/installation/pre-installation/overview"
+              }
+            },
+            {
+              "unversionedId": "deployment/deployment/index",
+              "id": "deployment/deployment/index",
+              "isDocsHomePage": false,
+              "title": "Deploying Service Workbench",
+              "description": "This section describes the process for deploying the Service Workbench.",
+              "source": "@site/docs/deployment/deployment/index.md",
+              "sourceDirName": "deployment/deployment",
+              "slug": "/deployment/deployment/index",
+              "permalink": "/deployment/deployment/index",
+              "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/deployment/deployment/index.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "id": "index",
+                "title": "Deploying Service Workbench",
+                "sidebar_label": "Deploying Service Workbench"
+              }
+            },
+            {
+              "unversionedId": "deployment/post_deployment/account_structure",
+              "id": "deployment/post_deployment/account_structure",
+              "isDocsHomePage": false,
+              "title": "Account structure",
+              "description": "Service Workbench uses three types of accounts. You will see these account names throughout the documentation.",
+              "source": "@site/docs/deployment/post_deployment/account_structure.md",
+              "sourceDirName": "deployment/post_deployment",
+              "slug": "/deployment/post_deployment/account_structure",
+              "permalink": "/deployment/post_deployment/account_structure",
+              "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/deployment/post_deployment/account_structure.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "id": "account_structure",
+                "title": "Account structure",
+                "sidebar_label": "Account structure"
+              },
+              "sidebar": "serviceWorkbenchSidebar",
+              "previous": {
+                "title": "Post Deployment",
+                "permalink": "/deployment/post_deployment/index"
+              },
+              "next": {
+                "title": "Prepare the organizational Account",
+                "permalink": "/deployment/reference/prepare_master_account"
+              }
+            },
+            {
+              "unversionedId": "deployment/post_deployment/appstream",
+              "id": "deployment/post_deployment/appstream",
+              "isDocsHomePage": false,
+              "title": "Prepare your account for AppStream",
+              "description": "Note: Read this section only if you want to enable AppStream.",
+              "source": "@site/docs/deployment/post_deployment/appstream.md",
+              "sourceDirName": "deployment/post_deployment",
+              "slug": "/deployment/post_deployment/appstream",
+              "permalink": "/deployment/post_deployment/appstream",
+              "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/deployment/post_deployment/appstream.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "id": "appstream",
+                "title": "Prepare your account for AppStream",
+                "sidebar_label": "Prepare your account for AppStream"
+              },
+              "sidebar": "serviceWorkbenchSidebar",
+              "previous": {
+                "title": "Prepare the organizational Account",
+                "permalink": "/deployment/reference/prepare_master_account"
+              },
+              "next": {
+                "title": "Create or add accounts",
+                "permalink": "/deployment/post_deployment/aws_accounts"
+              }
+            },
+            {
+              "unversionedId": "deployment/post_deployment/aws_accounts",
+              "id": "deployment/post_deployment/aws_accounts",
+              "isDocsHomePage": false,
+              "title": "Create or add accounts",
+              "description": "After logging in as root user for the first time, go to the 'Accounts' page in the SideBar. Service Workbench uses AWS accounts on this page for launching research workspaces. You can add existing AWS accounts or create new ones on the 'Accounts' tab.  Accounts are responsible for the charges incurred by the resources that are deployed within the Service Workbench.",
+              "source": "@site/docs/deployment/post_deployment/aws_accounts.md",
+              "sourceDirName": "deployment/post_deployment",
+              "slug": "/deployment/post_deployment/aws_accounts",
+              "permalink": "/deployment/post_deployment/aws_accounts",
+              "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/deployment/post_deployment/aws_accounts.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "id": "aws_accounts",
+                "title": "Create or add accounts",
+                "sidebar_label": "Create or add accounts"
+              },
+              "sidebar": "serviceWorkbenchSidebar",
+              "previous": {
+                "title": "Prepare your account for AppStream",
+                "permalink": "/deployment/post_deployment/appstream"
+              },
+              "next": {
+                "title": "Create indexes and projects",
+                "permalink": "/deployment/post_deployment/create_index_project"
+              }
+            },
+            {
+              "unversionedId": "deployment/post_deployment/create_admin_user",
+              "id": "deployment/post_deployment/create_admin_user",
+              "isDocsHomePage": false,
+              "title": "Create an administrator user",
+              "description": "Once you create an Account and an Index and Project, you must create an administrator user in the ‘Users’ tab. See Figure 7.",
+              "source": "@site/docs/deployment/post_deployment/create_admin_user.md",
+              "sourceDirName": "deployment/post_deployment",
+              "slug": "/deployment/post_deployment/create_admin_user",
+              "permalink": "/deployment/post_deployment/create_admin_user",
+              "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/deployment/post_deployment/create_admin_user.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "id": "create_admin_user",
+                "title": "Create an administrator user",
+                "sidebar_label": "Create an administrator user"
+              },
+              "sidebar": "serviceWorkbenchSidebar",
+              "previous": {
+                "title": "Create indexes and projects",
+                "permalink": "/deployment/post_deployment/create_index_project"
+              },
+              "next": {
+                "title": "Import AWS Service Catalog products",
+                "permalink": "/deployment/post_deployment/import_service_catalog_products"
+              }
+            },
+            {
+              "unversionedId": "deployment/post_deployment/create_index_project",
+              "id": "deployment/post_deployment/create_index_project",
+              "isDocsHomePage": false,
+              "title": "Create indexes and projects",
+              "description": "Now that you have onboarded a hosting account, you can create indexes and projects associated to this account.",
+              "source": "@site/docs/deployment/post_deployment/create_index_project.md",
+              "sourceDirName": "deployment/post_deployment",
+              "slug": "/deployment/post_deployment/create_index_project",
+              "permalink": "/deployment/post_deployment/create_index_project",
+              "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/deployment/post_deployment/create_index_project.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "id": "create_index_project",
+                "title": "Create indexes and projects",
+                "sidebar_label": "Create indexes and projects"
+              },
+              "sidebar": "serviceWorkbenchSidebar",
+              "previous": {
+                "title": "Create or add accounts",
+                "permalink": "/deployment/post_deployment/aws_accounts"
+              },
+              "next": {
+                "title": "Create an administrator user",
+                "permalink": "/deployment/post_deployment/create_admin_user"
+              }
+            },
+            {
+              "unversionedId": "deployment/post_deployment/import_service_catalog_products",
+              "id": "deployment/post_deployment/import_service_catalog_products",
+              "isDocsHomePage": false,
+              "title": "Import AWS Service Catalog products",
+              "description": "Service Workbench uses AWS Service Catalog",
+              "source": "@site/docs/deployment/post_deployment/import_service_catalog_products.md",
+              "sourceDirName": "deployment/post_deployment",
+              "slug": "/deployment/post_deployment/import_service_catalog_products",
+              "permalink": "/deployment/post_deployment/import_service_catalog_products",
+              "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/deployment/post_deployment/import_service_catalog_products.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "id": "import_service_catalog_products",
+                "title": "Import AWS Service Catalog products",
+                "sidebar_label": "Import AWS Service Catalog products"
+              },
+              "sidebar": "serviceWorkbenchSidebar",
+              "previous": {
+                "title": "Create an administrator user",
+                "permalink": "/deployment/post_deployment/create_admin_user"
+              },
+              "next": {
+                "title": "Viewing Service Workbench logs",
+                "permalink": "/deployment/post_deployment/logs"
+              }
+            },
+            {
+              "unversionedId": "deployment/post_deployment/index",
+              "id": "deployment/post_deployment/index",
+              "isDocsHomePage": false,
+              "title": "Post Deployment",
+              "description": "This section describes the tasks to perform after deploying Service Workbench.",
+              "source": "@site/docs/deployment/post_deployment/index.md",
+              "sourceDirName": "deployment/post_deployment",
+              "slug": "/deployment/post_deployment/index",
+              "permalink": "/deployment/post_deployment/index",
+              "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/deployment/post_deployment/index.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "id": "index",
+                "title": "Post Deployment",
+                "sidebar_label": "Post Deployment"
+              },
+              "sidebar": "serviceWorkbenchSidebar",
+              "previous": {
+                "title": "Troubleshooting",
+                "permalink": "/installation_guide/troubleshooting"
+              },
+              "next": {
+                "title": "Account structure",
+                "permalink": "/deployment/post_deployment/account_structure"
+              }
+            },
+            {
+              "unversionedId": "deployment/post_deployment/link_aws_account",
+              "id": "deployment/post_deployment/link_aws_account",
+              "isDocsHomePage": false,
+              "title": "Create or add an AWS Account",
+              "description": "There are two categories of AWS Account within Service Workbench: Internal accounts and External accounts.",
+              "source": "@site/docs/deployment/post_deployment/link_aws_account.md",
+              "sourceDirName": "deployment/post_deployment",
+              "slug": "/deployment/post_deployment/link_aws_account",
+              "permalink": "/deployment/post_deployment/link_aws_account",
+              "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/deployment/post_deployment/link_aws_account.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "id": "link_aws_account",
+                "title": "Create or add an AWS Account",
+                "sidebar_label": "Create or add an AWS Account"
+              }
+            },
+            {
+              "unversionedId": "deployment/post_deployment/logs",
+              "id": "deployment/post_deployment/logs",
+              "isDocsHomePage": false,
+              "title": "Viewing Service Workbench logs",
+              "description": "Viewing Service Workbench logs in Amazon CloudWatch",
+              "source": "@site/docs/deployment/post_deployment/logs.md",
+              "sourceDirName": "deployment/post_deployment",
+              "slug": "/deployment/post_deployment/logs",
+              "permalink": "/deployment/post_deployment/logs",
+              "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/deployment/post_deployment/logs.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "id": "logs",
+                "title": "Viewing Service Workbench logs",
+                "sidebar_label": "Viewing Service Workbench logs"
+              },
+              "sidebar": "serviceWorkbenchSidebar",
+              "previous": {
+                "title": "Import AWS Service Catalog products",
+                "permalink": "/deployment/post_deployment/import_service_catalog_products"
+              },
+              "next": {
+                "title": "Deploying Updates",
+                "permalink": "/deployment/redeployment"
+              }
+            },
+            {
+              "unversionedId": "deployment/pre_deployment/accounts",
+              "id": "deployment/pre_deployment/accounts",
+              "isDocsHomePage": false,
+              "title": "Prerequisites",
+              "description": "The initial prerequisites include creating a Main account in AWS and setting up the AWS Cost Explorer.",
+              "source": "@site/docs/deployment/pre_deployment/prerequisites.md",
+              "sourceDirName": "deployment/pre_deployment",
+              "slug": "/deployment/pre_deployment/accounts",
+              "permalink": "/deployment/pre_deployment/accounts",
+              "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/deployment/pre_deployment/prerequisites.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "id": "accounts",
+                "title": "Prerequisites",
+                "sidebar_label": "Prerequisites"
+              }
+            },
+            {
+              "unversionedId": "deployment/pre_deployment/configuration",
+              "id": "deployment/pre_deployment/configuration",
+              "isDocsHomePage": false,
+              "title": "Configuration",
+              "description": "**Note**: Setting the configuration is required. If you are deploying a simple installation, you can use the default configuration.",
+              "source": "@site/docs/deployment/pre_deployment/configuration.md",
+              "sourceDirName": "deployment/pre_deployment",
+              "slug": "/deployment/pre_deployment/configuration",
+              "permalink": "/deployment/pre_deployment/configuration",
+              "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/deployment/pre_deployment/configuration.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "id": "configuration",
+                "title": "Configuration",
+                "sidebar_label": "Configuration"
+              }
+            },
+            {
+              "unversionedId": "deployment/pre_deployment/deployment_instance",
+              "id": "deployment/pre_deployment/deployment_instance",
+              "isDocsHomePage": false,
+              "title": "Deployment Instance",
+              "description": "You can create a deployment instance with the following specifications:",
+              "source": "@site/docs/deployment/pre_deployment/deployment_instance.md",
+              "sourceDirName": "deployment/pre_deployment",
+              "slug": "/deployment/pre_deployment/deployment_instance",
+              "permalink": "/deployment/pre_deployment/deployment_instance",
+              "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/deployment/pre_deployment/deployment_instance.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "id": "deployment_instance",
+                "title": "Deployment Instance",
+                "sidebar_label": "Deployment Instance"
+              }
+            },
+            {
+              "unversionedId": "deployment/pre_deployment/pre_deployment",
+              "id": "deployment/pre_deployment/pre_deployment",
+              "isDocsHomePage": false,
+              "title": "Pre Deployment",
+              "description": "Make sure all the prerequisites described in the pre-deployment section are complete before you start a deployment.",
+              "source": "@site/docs/deployment/pre_deployment/pre_deployment.md",
+              "sourceDirName": "deployment/pre_deployment",
+              "slug": "/deployment/pre_deployment/pre_deployment",
+              "permalink": "/deployment/pre_deployment/pre_deployment",
+              "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/deployment/pre_deployment/pre_deployment.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "id": "pre_deployment",
+                "title": "Pre Deployment",
+                "sidebar_label": "Pre Deployment"
+              }
+            },
+            {
+              "unversionedId": "deployment/pre_deployment/prereq_commands",
+              "id": "deployment/pre_deployment/prereq_commands",
+              "isDocsHomePage": false,
+              "title": "Prerequisite Software",
+              "description": "The prerequisite software installation includes installing the required tools and creating an AWS account to deploy the solution.",
+              "source": "@site/docs/deployment/pre_deployment/prereq_commands.md",
+              "sourceDirName": "deployment/pre_deployment",
+              "slug": "/deployment/pre_deployment/prereq_commands",
+              "permalink": "/deployment/pre_deployment/prereq_commands",
+              "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/deployment/pre_deployment/prereq_commands.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "id": "prereq_commands",
+                "title": "Prerequisite Software",
+                "sidebar_label": "Prerequisite Software"
+              }
+            },
+            {
+              "unversionedId": "deployment/pre_deployment/source_code",
+              "id": "deployment/pre_deployment/source_code",
+              "isDocsHomePage": false,
+              "title": "Source Code",
+              "description": "Download the latest source code using the URL, https",
+              "source": "@site/docs/deployment/pre_deployment/source_code.md",
+              "sourceDirName": "deployment/pre_deployment",
+              "slug": "/deployment/pre_deployment/source_code",
+              "permalink": "/deployment/pre_deployment/source_code",
+              "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/deployment/pre_deployment/source_code.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "id": "source_code",
+                "title": "Source Code",
+                "sidebar_label": "Source Code"
+              }
+            },
+            {
+              "unversionedId": "deployment/redeployment",
+              "id": "deployment/redeployment",
+              "isDocsHomePage": false,
+              "title": "Deploying Updates",
+              "description": "After a successful initial deployment, you can deploy individually to the five serverless projects that are a part of this solution.",
+              "source": "@site/docs/deployment/redeployment.md",
+              "sourceDirName": "deployment",
+              "slug": "/deployment/redeployment",
+              "permalink": "/deployment/redeployment",
+              "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/deployment/redeployment.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "id": "redeployment",
+                "title": "Deploying Updates",
+                "sidebar_label": "Deploying Updates"
+              },
+              "sidebar": "serviceWorkbenchSidebar",
+              "previous": {
+                "title": "Viewing Service Workbench logs",
+                "permalink": "/deployment/post_deployment/logs"
+              },
+              "next": {
+                "title": "Add an AWS IAM role to an Amazon EC2 instance",
+                "permalink": "/deployment/reference/iam_role"
+              }
+            },
+            {
+              "unversionedId": "deployment/reference/aws_services",
+              "id": "deployment/reference/aws_services",
+              "isDocsHomePage": false,
+              "title": "Usage of AWS Cloud Services",
+              "description": "This section describes some of the AWS Cloud services used by Service Workbench. The resource names usually include the Namespace, including the  stage name used at deployment. You can deploy multiple instances of Service Workbench from the same account if you use a different stage name for each deployment.",
+              "source": "@site/docs/deployment/reference/aws_services.md",
+              "sourceDirName": "deployment/reference",
+              "slug": "/deployment/reference/aws_services",
+              "permalink": "/deployment/reference/aws_services",
+              "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/deployment/reference/aws_services.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "id": "aws_services",
+                "title": "Usage of AWS Cloud Services",
+                "sidebar_label": "AWS Cloud Services"
+              },
+              "sidebar": "serviceWorkbenchSidebar",
+              "previous": {
+                "title": "Add an AWS IAM role to an Amazon EC2 instance",
+                "permalink": "/deployment/reference/iam_role"
+              },
+              "next": {
+                "title": "Prepare the organizational Account",
+                "permalink": "/deployment/reference/prepare_master_account"
+              }
+            },
+            {
+              "unversionedId": "deployment/reference/egress_store_approval_process",
+              "id": "deployment/reference/egress_store_approval_process",
+              "isDocsHomePage": false,
+              "title": "Exporting data from AppStream-enabled workspaces",
+              "description": "As a researcher, if you have AppStream and Egress store enabled, AppStream provides limited access to the workspace that is being used. You can view and use data within that workspace. When you work on this data, it can be saved in the Egress folder, and then a request can be made to export that data. But if you want to export data from that workspace, it requires approval.",
+              "source": "@site/docs/deployment/reference/egress_store_approval_process.md",
+              "sourceDirName": "deployment/reference",
+              "slug": "/deployment/reference/egress_store_approval_process",
+              "permalink": "/deployment/reference/egress_store_approval_process",
+              "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/deployment/reference/egress_store_approval_process.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "id": "egress_store_approval_process",
+                "title": "Exporting data from AppStream-enabled workspaces",
+                "sidebar_label": "Exporting data from AppStream-enabled workspaces"
+              },
+              "sidebar": "serviceWorkbenchSidebar",
+              "previous": {
+                "title": "Prepare the organizational Account",
+                "permalink": "/deployment/reference/prepare_master_account"
+              },
+              "next": {
+                "title": "Account Structure",
+                "permalink": "/user_guide/account_structure"
+              }
+            },
+            {
+              "unversionedId": "deployment/reference/iam_role",
+              "id": "deployment/reference/iam_role",
+              "isDocsHomePage": false,
+              "title": "Reference",
+              "description": "Service Workbench on AWS interacts with multiple AWS resources, including Amazon EC2, AWS IAM, AWS Organizations, and more. You can easily add an AWS IAM role to an Amazon EC2 instance, leverage our AWS Organizations with your account structure, and create multiple Amazon S3 buckets.",
+              "source": "@site/docs/deployment/reference/iam_role.md",
+              "sourceDirName": "deployment/reference",
+              "slug": "/deployment/reference/iam_role",
+              "permalink": "/deployment/reference/iam_role",
+              "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/deployment/reference/iam_role.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "id": "iam_role",
+                "title": "Reference",
+                "sidebar_label": "Add an AWS IAM role to an Amazon EC2 instance"
+              },
+              "sidebar": "serviceWorkbenchSidebar",
+              "previous": {
+                "title": "Deploying Updates",
+                "permalink": "/deployment/redeployment"
+              },
+              "next": {
+                "title": "AWS Cloud Services",
+                "permalink": "/deployment/reference/aws_services"
+              }
+            },
+            {
+              "unversionedId": "deployment/reference/prepare_master_account",
+              "id": "deployment/reference/prepare_master_account",
+              "isDocsHomePage": false,
+              "title": "Prepare the organizational account",
+              "description": "Note: This section is required only if Service Workbench is to be used to vend accounts in the AWS Organization by using *Create Account. If Service Workbench uses only billing accounts onboarded using Add Account*, this section can be omitted.",
+              "source": "@site/docs/deployment/reference/prepare_master_account.md",
+              "sourceDirName": "deployment/reference",
+              "slug": "/deployment/reference/prepare_master_account",
+              "permalink": "/deployment/reference/prepare_master_account",
+              "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/deployment/reference/prepare_master_account.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "id": "prepare_master_account",
+                "title": "Prepare the organizational account",
+                "sidebar_label": "Prepare the organizational Account"
+              },
+              "sidebar": "serviceWorkbenchSidebar",
+              "previous": {
+                "title": "Account structure",
+                "permalink": "/deployment/post_deployment/account_structure"
+              },
+              "next": {
+                "title": "Prepare your account for AppStream",
+                "permalink": "/deployment/post_deployment/appstream"
+              }
+            },
+            {
+              "unversionedId": "deployment/summary",
+              "id": "deployment/summary",
+              "isDocsHomePage": false,
+              "title": "Features",
+              "description": "Service Workbench is designed from the ground up to make it easy for you to install the application and get running quickly.",
+              "source": "@site/docs/deployment/summary.md",
+              "sourceDirName": "deployment",
+              "slug": "/deployment/summary",
+              "permalink": "/deployment/summary",
+              "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/deployment/summary.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "id": "summary",
+                "title": "Features",
+                "sidebar_label": "Features"
+              }
+            },
+            {
+              "unversionedId": "development/introduction",
+              "id": "development/introduction",
+              "isDocsHomePage": false,
+              "title": "Local Development Introduction",
+              "description": "Once you have deployed the app and the UI, you can start developing locally on your computer. You will be running a local server that uses the same lambda functions code. To start local development, run the following commands to run a local server:",
+              "source": "@site/docs/development/introduction.md",
+              "sourceDirName": "development",
+              "slug": "/development/introduction",
+              "permalink": "/development/introduction",
+              "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/development/introduction.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "id": "introduction",
+                "title": "Local Development Introduction",
+                "sidebar_label": "Introduction"
+              },
+              "sidebar": "serviceWorkbenchSidebar",
+              "previous": {
+                "title": "Rotating the JWT Master Token",
+                "permalink": "/best_practices/rotating_jwt_token"
+              }
+            },
+            {
+              "unversionedId": "installation_guide/architecture",
+              "id": "installation_guide/architecture",
+              "isDocsHomePage": false,
+              "title": "Service Workbench architecture",
+              "description": "Service Workbench integrates existing AWS services, such as Amazon CloudFront, AWS Lambda, and AWS Step Functions. Service Workbench enables you to create your own custom templates and share those templates with other organizations. To provide cost transparency, Service Workbench has been integrated with AWS Cost Explorer, AWS Budgets, and AWS Organizations.",
+              "source": "@site/docs/installation_guide/architecture.md",
+              "sourceDirName": "installation_guide",
+              "slug": "/installation_guide/architecture",
+              "permalink": "/installation_guide/architecture",
+              "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/installation_guide/architecture.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "id": "architecture",
+                "title": "Service Workbench architecture",
+                "sidebar_label": "Service Workbench architecture"
+              },
+              "sidebar": "serviceWorkbenchSidebar",
+              "previous": {
+                "title": "Service Workbench overview",
+                "permalink": "/installation_guide/overview"
+              },
+              "next": {
+                "title": "Installation components",
+                "permalink": "/installation_guide/components"
+              }
+            },
+            {
+              "unversionedId": "installation_guide/components",
+              "id": "installation_guide/components",
+              "isDocsHomePage": false,
+              "title": "Service Workbench installation components",
+              "description": "Serverless framework and projects",
+              "source": "@site/docs/installation_guide/components.md",
+              "sourceDirName": "installation_guide",
+              "slug": "/installation_guide/components",
+              "permalink": "/installation_guide/components",
+              "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/installation_guide/components.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "id": "components",
+                "title": "Service Workbench installation components",
+                "sidebar_label": "Installation components"
+              },
+              "sidebar": "serviceWorkbenchSidebar",
+              "previous": {
+                "title": "Service Workbench architecture",
+                "permalink": "/installation_guide/architecture"
+              },
+              "next": {
+                "title": "Overview",
+                "permalink": "/installation_guide/installation/pre-installation/overview"
+              }
+            },
+            {
+              "unversionedId": "installation_guide/installation/ami-install",
+              "id": "installation_guide/installation/ami-install",
+              "isDocsHomePage": false,
+              "title": "Installing AMIs",
+              "description": "You can install Service Workbench either by creating and configuring an EC2 instance or by creating a Cloud9 instance. This section describes the steps to install Service Workbench by using either of the two options.",
+              "source": "@site/docs/installation_guide/installation/ami-install.md",
+              "sourceDirName": "installation_guide/installation",
+              "slug": "/installation_guide/installation/ami-install",
+              "permalink": "/installation_guide/installation/ami-install",
+              "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/installation_guide/installation/ami-install.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "id": "ami-install",
+                "title": "Installing AMIs",
+                "sidebar_label": "Installing AMIs"
+              },
+              "sidebar": "serviceWorkbenchSidebar",
+              "previous": {
+                "title": "Accessing reference documentation",
+                "permalink": "/installation_guide/installation/pre-installation/documentation"
+              },
+              "next": {
+                "title": "Installation using EC2 instance",
+                "permalink": "/installation_guide/installation/ec2install"
+              }
+            },
+            {
+              "unversionedId": "installation_guide/installation/cloud9install",
+              "id": "installation_guide/installation/cloud9install",
+              "isDocsHomePage": false,
+              "title": "Installing Service Workbench using Cloud9",
+              "description": "You can install Service Workbench by using AWS Cloud9. This section provides information about the installation procedure for Service Workbench using AWS Cloud9 IDE.",
+              "source": "@site/docs/installation_guide/installation/cloud9install.md",
+              "sourceDirName": "installation_guide/installation",
+              "slug": "/installation_guide/installation/cloud9install",
+              "permalink": "/installation_guide/installation/cloud9install",
+              "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/installation_guide/installation/cloud9install.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "id": "cloud9install",
+                "title": "Installing Service Workbench using Cloud9",
+                "sidebar_label": "Installing using Cloud9"
+              },
+              "sidebar": "serviceWorkbenchSidebar",
+              "previous": {
+                "title": "Installation using EC2 instance",
+                "permalink": "/installation_guide/installation/ec2install"
+              },
+              "next": {
+                "title": "Setting up RStudio ALB workspace",
+                "permalink": "/installation_guide/installation/rstudio"
+              }
+            },
+            {
+              "unversionedId": "installation_guide/installation/ec2install",
+              "id": "installation_guide/installation/ec2install",
+              "isDocsHomePage": false,
+              "title": "Installing Service Workbench using EC2 instance",
+              "description": "1. Download the Service Workbench on AWS source code using this link and then run the following commands:",
+              "source": "@site/docs/installation_guide/installation/ec2install.md",
+              "sourceDirName": "installation_guide/installation",
+              "slug": "/installation_guide/installation/ec2install",
+              "permalink": "/installation_guide/installation/ec2install",
+              "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/installation_guide/installation/ec2install.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "id": "ec2install",
+                "title": "Installing Service Workbench using EC2 instance",
+                "sidebar_label": "Installation using EC2 instance"
+              },
+              "sidebar": "serviceWorkbenchSidebar",
+              "previous": {
+                "title": "Installing AMIs",
+                "permalink": "/installation_guide/installation/ami-install"
+              },
+              "next": {
+                "title": "Installing using Cloud9",
+                "permalink": "/installation_guide/installation/cloud9install"
+              }
+            },
+            {
+              "unversionedId": "installation_guide/installation/pre-installation/conf-settings",
+              "id": "installation_guide/installation/pre-installation/conf-settings",
+              "isDocsHomePage": false,
+              "title": "Configuration settings",
+              "description": "Stage name",
+              "source": "@site/docs/installation_guide/installation/pre-installation/conf-settings.md",
+              "sourceDirName": "installation_guide/installation/pre-installation",
+              "slug": "/installation_guide/installation/pre-installation/conf-settings",
+              "permalink": "/installation_guide/installation/pre-installation/conf-settings",
+              "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/installation_guide/installation/pre-installation/conf-settings.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "id": "conf-settings",
+                "title": "Configuration settings",
+                "sidebar_label": "Configuration settings"
+              },
+              "sidebar": "serviceWorkbenchSidebar",
+              "previous": {
+                "title": "Instance requirements",
+                "permalink": "/installation_guide/installation/pre-installation/instance-req"
+              },
+              "next": {
+                "title": "Accessing reference documentation",
+                "permalink": "/installation_guide/installation/pre-installation/documentation"
+              }
+            },
+            {
+              "unversionedId": "installation_guide/installation/pre-installation/documentation",
+              "id": "installation_guide/installation/pre-installation/documentation",
+              "isDocsHomePage": false,
+              "title": "Accessing reference documentation",
+              "description": "You can access the documentation on your local machine, via a local web server, once you’ve completed the following steps:",
+              "source": "@site/docs/installation_guide/installation/pre-installation/documentation.md",
+              "sourceDirName": "installation_guide/installation/pre-installation",
+              "slug": "/installation_guide/installation/pre-installation/documentation",
+              "permalink": "/installation_guide/installation/pre-installation/documentation",
+              "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/installation_guide/installation/pre-installation/documentation.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "id": "documentation",
+                "title": "Accessing reference documentation",
+                "sidebar_label": "Accessing reference documentation"
+              },
+              "sidebar": "serviceWorkbenchSidebar",
+              "previous": {
+                "title": "Configuration settings",
+                "permalink": "/installation_guide/installation/pre-installation/conf-settings"
+              },
+              "next": {
+                "title": "Installing AMIs",
+                "permalink": "/installation_guide/installation/ami-install"
+              }
+            },
+            {
+              "unversionedId": "installation_guide/installation/pre-installation/instance-req",
+              "id": "installation_guide/installation/pre-installation/instance-req",
+              "isDocsHomePage": false,
+              "title": "Instance requirements",
+              "description": "| Section      | Description |",
+              "source": "@site/docs/installation_guide/installation/pre-installation/instance-req.md",
+              "sourceDirName": "installation_guide/installation/pre-installation",
+              "slug": "/installation_guide/installation/pre-installation/instance-req",
+              "permalink": "/installation_guide/installation/pre-installation/instance-req",
+              "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/installation_guide/installation/pre-installation/instance-req.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "id": "instance-req",
+                "title": "Instance requirements",
+                "sidebar_label": "Instance requirements"
+              },
+              "sidebar": "serviceWorkbenchSidebar",
+              "previous": {
+                "title": "Software requirements",
+                "permalink": "/installation_guide/installation/pre-installation/software-req"
+              },
+              "next": {
+                "title": "Configuration settings",
+                "permalink": "/installation_guide/installation/pre-installation/conf-settings"
+              }
+            },
+            {
+              "unversionedId": "installation_guide/installation/pre-installation/overview",
+              "id": "installation_guide/installation/pre-installation/overview",
+              "isDocsHomePage": false,
+              "title": "Overview",
+              "description": "This section covers the following information required to install Service Workbench:",
+              "source": "@site/docs/installation_guide/installation/pre-installation/overview.md",
+              "sourceDirName": "installation_guide/installation/pre-installation",
+              "slug": "/installation_guide/installation/pre-installation/overview",
+              "permalink": "/installation_guide/installation/pre-installation/overview",
+              "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/installation_guide/installation/pre-installation/overview.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "id": "overview",
+                "title": "Overview",
+                "sidebar_label": "Overview"
+              },
+              "sidebar": "serviceWorkbenchSidebar",
+              "previous": {
+                "title": "Installation components",
+                "permalink": "/installation_guide/components"
+              },
+              "next": {
+                "title": "Tool requirements",
+                "permalink": "/installation_guide/installation/pre-installation/tool-req"
+              }
+            },
+            {
+              "unversionedId": "installation_guide/installation/pre-installation/software-req",
+              "id": "installation_guide/installation/pre-installation/software-req",
+              "isDocsHomePage": false,
+              "title": "Software requirements",
+              "description": "Click the following links below to download and install the software as appropriate for your installation environment:",
+              "source": "@site/docs/installation_guide/installation/pre-installation/software-req.md",
+              "sourceDirName": "installation_guide/installation/pre-installation",
+              "slug": "/installation_guide/installation/pre-installation/software-req",
+              "permalink": "/installation_guide/installation/pre-installation/software-req",
+              "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/installation_guide/installation/pre-installation/software-req.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "id": "software-req",
+                "title": "Software requirements",
+                "sidebar_label": "Software requirements"
+              },
+              "sidebar": "serviceWorkbenchSidebar",
+              "previous": {
+                "title": "Tool requirements",
+                "permalink": "/installation_guide/installation/pre-installation/tool-req"
+              },
+              "next": {
+                "title": "Instance requirements",
+                "permalink": "/installation_guide/installation/pre-installation/instance-req"
+              }
+            },
+            {
+              "unversionedId": "installation_guide/installation/pre-installation/tool-req",
+              "id": "installation_guide/installation/pre-installation/tool-req",
+              "isDocsHomePage": false,
+              "title": "Tool requirements",
+              "description": "The initial prerequisites include creating a main account in AWS, enabling the AWS Cost Explorer and activating the cost allocation tags.",
+              "source": "@site/docs/installation_guide/installation/pre-installation/tool-req.md",
+              "sourceDirName": "installation_guide/installation/pre-installation",
+              "slug": "/installation_guide/installation/pre-installation/tool-req",
+              "permalink": "/installation_guide/installation/pre-installation/tool-req",
+              "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/installation_guide/installation/pre-installation/tool-req.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "id": "tool-req",
+                "title": "Tool requirements",
+                "sidebar_label": "Tool requirements"
+              },
+              "sidebar": "serviceWorkbenchSidebar",
+              "previous": {
+                "title": "Overview",
+                "permalink": "/installation_guide/installation/pre-installation/overview"
+              },
+              "next": {
+                "title": "Software requirements",
+                "permalink": "/installation_guide/installation/pre-installation/software-req"
+              }
+            },
+            {
+              "unversionedId": "installation_guide/installation/rstudio",
+              "id": "installation_guide/installation/rstudio",
+              "isDocsHomePage": false,
+              "title": "Setting up RStudio ALB workspace",
+              "description": "Overview",
+              "source": "@site/docs/installation_guide/installation/rstudio.md",
+              "sourceDirName": "installation_guide/installation",
+              "slug": "/installation_guide/installation/rstudio",
+              "permalink": "/installation_guide/installation/rstudio",
+              "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/installation_guide/installation/rstudio.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "id": "rstudio",
+                "title": "Setting up RStudio ALB workspace",
+                "sidebar_label": "Setting up RStudio ALB workspace"
+              },
+              "sidebar": "serviceWorkbenchSidebar",
+              "previous": {
+                "title": "Installing using Cloud9",
+                "permalink": "/installation_guide/installation/cloud9install"
+              },
+              "next": {
+                "title": "Upgrade process for command line installations",
+                "permalink": "/installation_guide/upgrading/commandline"
+              }
+            },
+            {
+              "unversionedId": "installation_guide/overview",
+              "id": "installation_guide/overview",
+              "isDocsHomePage": false,
+              "title": "Service Workbench overview",
+              "description": "Service Workbench on AWS is a cloud solution that provides secure access to data, tooling, and compute power. Using Service Workbench, researchers can perform research in a secure and configured environment. Service Workbench enables the creation of baseline research setup. It simplifies data access and provides cost transparency.",
+              "source": "@site/docs/installation_guide/overview.md",
+              "sourceDirName": "installation_guide",
+              "slug": "/installation_guide/overview",
+              "permalink": "/installation_guide/overview",
+              "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/installation_guide/overview.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "id": "overview",
+                "title": "Service Workbench overview",
+                "sidebar_label": "Service Workbench overview"
+              },
+              "sidebar": "serviceWorkbenchSidebar",
+              "next": {
+                "title": "Service Workbench architecture",
+                "permalink": "/installation_guide/architecture"
+              }
+            },
+            {
+              "unversionedId": "installation_guide/postupgrade",
+              "id": "installation_guide/postupgrade",
+              "isDocsHomePage": false,
+              "title": "Post upgrade",
+              "description": "Updating accounts",
+              "source": "@site/docs/installation_guide/postupgrade.md",
+              "sourceDirName": "installation_guide",
+              "slug": "/installation_guide/postupgrade",
+              "permalink": "/installation_guide/postupgrade",
+              "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/installation_guide/postupgrade.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "id": "postupgrade",
+                "title": "Post upgrade",
+                "sidebar_label": "Post upgrade"
+              },
+              "sidebar": "serviceWorkbenchSidebar",
+              "previous": {
+                "title": "Upgrading to deprecated internal authentication",
+                "permalink": "/installation_guide/upgrading/authentication"
+              },
+              "next": {
+                "title": "Uninstalling Service Workbench",
+                "permalink": "/installation_guide/uninstall"
+              }
+            },
+            {
+              "unversionedId": "installation_guide/troubleshooting",
+              "id": "installation_guide/troubleshooting",
+              "isDocsHomePage": false,
+              "title": "Troubleshooting",
+              "description": "Problem: Running scripts/environment-deploy.sh $STAGE fails with the message Uploaded file must be a non-empty zip.",
+              "source": "@site/docs/installation_guide/troubleshooting.md",
+              "sourceDirName": "installation_guide",
+              "slug": "/installation_guide/troubleshooting",
+              "permalink": "/installation_guide/troubleshooting",
+              "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/installation_guide/troubleshooting.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "id": "troubleshooting",
+                "title": "Troubleshooting",
+                "sidebar_label": "Troubleshooting"
+              },
+              "sidebar": "serviceWorkbenchSidebar",
+              "previous": {
+                "title": "Uninstalling Service Workbench",
+                "permalink": "/installation_guide/uninstall"
+              },
+              "next": {
+                "title": "Identity Provider overview",
+                "permalink": "/configuration_guide/overview"
+              }
+            },
+            {
+              "unversionedId": "installation_guide/uninstall",
+              "id": "installation_guide/uninstall",
+              "isDocsHomePage": false,
+              "title": "Uninstalling Service Workbench",
+              "description": "Follow these guidelines to delete the following for uninstalling Service Workbench:",
+              "source": "@site/docs/installation_guide/uninstall.md",
+              "sourceDirName": "installation_guide",
+              "slug": "/installation_guide/uninstall",
+              "permalink": "/installation_guide/uninstall",
+              "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/installation_guide/uninstall.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "id": "uninstall",
+                "title": "Uninstalling Service Workbench",
+                "sidebar_label": "Uninstalling Service Workbench"
+              },
+              "sidebar": "serviceWorkbenchSidebar",
+              "previous": {
+                "title": "Post upgrade",
+                "permalink": "/installation_guide/postupgrade"
+              },
+              "next": {
+                "title": "Troubleshooting",
+                "permalink": "/installation_guide/troubleshooting"
+              }
+            },
+            {
+              "unversionedId": "installation_guide/upgrading/authentication",
+              "id": "installation_guide/upgrading/authentication",
+              "isDocsHomePage": false,
+              "title": "Upgrading deprecated internal authentication",
+              "description": "In the Service Workbench version 5.0.0, internal authentication has been deprecated. To upgrade to this version from your current version of Service Workbench, the administrators need to prepare the environment for an upgrade by deactivating, terminating, or disassociating internal users and the resources to which they are associated. The following tasks must be completed to prepare the Service Workbench environment for an upgrade:",
+              "source": "@site/docs/installation_guide/upgrading/authentication.md",
+              "sourceDirName": "installation_guide/upgrading",
+              "slug": "/installation_guide/upgrading/authentication",
+              "permalink": "/installation_guide/upgrading/authentication",
+              "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/installation_guide/upgrading/authentication.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "id": "authentication",
+                "title": "Upgrading deprecated internal authentication",
+                "sidebar_label": "Upgrading to deprecated internal authentication"
+              },
+              "sidebar": "serviceWorkbenchSidebar",
+              "previous": {
+                "title": "Upgrading AWS solution installation",
+                "permalink": "/installation_guide/upgrading/solutions"
+              },
+              "next": {
+                "title": "Post upgrade",
+                "permalink": "/installation_guide/postupgrade"
+              }
+            },
+            {
+              "unversionedId": "installation_guide/upgrading/commandline",
+              "id": "installation_guide/upgrading/commandline",
+              "isDocsHomePage": false,
+              "title": "Upgrade process for command-line installations",
+              "description": "You can upgrade Service Workbench deployments that were installed from the command line using downloaded source code.",
+              "source": "@site/docs/installation_guide/upgrading/commandline.md",
+              "sourceDirName": "installation_guide/upgrading",
+              "slug": "/installation_guide/upgrading/commandline",
+              "permalink": "/installation_guide/upgrading/commandline",
+              "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/installation_guide/upgrading/commandline.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "id": "commandline",
+                "title": "Upgrade process for command-line installations",
+                "sidebar_label": "Upgrade process for command line installations"
+              },
+              "sidebar": "serviceWorkbenchSidebar",
+              "previous": {
+                "title": "Setting up RStudio ALB workspace",
+                "permalink": "/installation_guide/installation/rstudio"
+              },
+              "next": {
+                "title": "Upgrading AWS solution installation",
+                "permalink": "/installation_guide/upgrading/solutions"
+              }
+            },
+            {
+              "unversionedId": "installation_guide/upgrading/solutions",
+              "id": "installation_guide/upgrading/solutions",
+              "isDocsHomePage": false,
+              "title": "Upgrading AWS solution installation",
+              "description": "This procedure is for upgrading Service Workbench installations automatically installed from the AWS solution. In this installation model, a CloudFormation template initiates the installation, which is performed by AWS CodeBuild project.  To upgrade a Service Workbench deployment, you need access to the Service Workbench installation.",
+              "source": "@site/docs/installation_guide/upgrading/solutions.md",
+              "sourceDirName": "installation_guide/upgrading",
+              "slug": "/installation_guide/upgrading/solutions",
+              "permalink": "/installation_guide/upgrading/solutions",
+              "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/installation_guide/upgrading/solutions.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "id": "solutions",
+                "title": "Upgrading AWS solution installation",
+                "sidebar_label": "Upgrading AWS solution installation"
+              },
+              "sidebar": "serviceWorkbenchSidebar",
+              "previous": {
+                "title": "Upgrade process for command line installations",
+                "permalink": "/installation_guide/upgrading/commandline"
+              },
+              "next": {
+                "title": "Upgrading to deprecated internal authentication",
+                "permalink": "/installation_guide/upgrading/authentication"
+              }
+            },
+            {
+              "unversionedId": "introduction",
+              "id": "introduction",
+              "isDocsHomePage": false,
+              "title": "Introduction",
+              "description": "Service Workbench on AWS is a self-service cloud-based open source platform using which IT teams can provide a collaborative research solution to the researchers. It integrates the existing AWS services, such as Amazon CloudFront, AWS Lambda, AWS Step Functions, and so on. Service Workbench enables you to create your own custom templates and share those templates with other organizations. To control the research cost, Service Workbench has been integrated with AWS Cost Explorer, AWS Budgets, and AWS Organizations. This provides a quick access to dashboard that shows the current use of AWS services against your budgets.  Service Workbench is also integrated with third-party service providers to enable custom integrations whenever required. Service Workbench can also mimic concepts known to users from on-premises environments to make a switch to cloud technology easier. Researchers in an organization can access a portal, quickly find data that they are interested in, with a few clicks, analyze data using machine learning service such as the Amazon SageMaker notebooks, or even manage and facilitate virtual classrooms.",
+              "source": "@site/docs/introduction.md",
+              "sourceDirName": ".",
+              "slug": "/introduction",
+              "permalink": "/introduction",
+              "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/introduction.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "id": "introduction",
+                "title": "Introduction",
+                "sidebar_label": "Introduction"
+              }
+            },
+            {
+              "unversionedId": "user_guide/account_structure",
+              "id": "user_guide/account_structure",
+              "isDocsHomePage": false,
+              "title": "Account Structure",
+              "description": "Account Structure",
+              "source": "@site/docs/user_guide/account_structure.md",
+              "sourceDirName": "user_guide",
+              "slug": "/user_guide/account_structure",
+              "permalink": "/user_guide/account_structure",
+              "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/user_guide/account_structure.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "id": "account_structure",
+                "title": "Account Structure",
+                "sidebar_label": "Account Structure"
+              },
+              "sidebar": "serviceWorkbenchSidebar",
+              "previous": {
+                "title": "Exporting data from AppStream-enabled workspaces",
+                "permalink": "/deployment/reference/egress_store_approval_process"
+              },
+              "next": {
+                "title": "Sidebar Introduction",
+                "permalink": "/user_guide/introduction"
+              }
+            },
+            {
+              "unversionedId": "user_guide/introduction",
+              "id": "user_guide/introduction",
+              "isDocsHomePage": false,
+              "title": "Sidebar Introduction",
+              "description": "This section of the documentation aims to provide an overview of how to operate the web-based user portal that is provided as part of this solution.",
+              "source": "@site/docs/user_guide/introduction.md",
+              "sourceDirName": "user_guide",
+              "slug": "/user_guide/introduction",
+              "permalink": "/user_guide/introduction",
+              "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/user_guide/introduction.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "id": "introduction",
+                "title": "Sidebar Introduction",
+                "sidebar_label": "Sidebar Introduction"
+              },
+              "sidebar": "serviceWorkbenchSidebar",
+              "previous": {
+                "title": "Account Structure",
+                "permalink": "/user_guide/account_structure"
+              },
+              "next": {
+                "title": "Dashboard",
+                "permalink": "/user_guide/sidebar/common/dashboard/introduction"
+              }
+            },
+            {
+              "unversionedId": "user_guide/sidebar/admin/accounts/aws_accounts/create_member_account",
+              "id": "user_guide/sidebar/admin/accounts/aws_accounts/create_member_account",
+              "isDocsHomePage": false,
+              "title": "Create an AWS Account",
+              "description": "When you attempt to create a Member AWS Account, the Main AWS Account will assume a role in the Master AWS Account. Once the role has been assumed, it will then create a Member AWS Account.",
+              "source": "@site/docs/user_guide/sidebar/admin/accounts/aws_accounts/create_member_account.md",
+              "sourceDirName": "user_guide/sidebar/admin/accounts/aws_accounts",
+              "slug": "/user_guide/sidebar/admin/accounts/aws_accounts/create_member_account",
+              "permalink": "/user_guide/sidebar/admin/accounts/aws_accounts/create_member_account",
+              "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/user_guide/sidebar/admin/accounts/aws_accounts/create_member_account.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "id": "create_member_account",
+                "title": "Create an AWS Account",
+                "sidebar_label": "Create an AWS Account"
+              },
+              "sidebar": "serviceWorkbenchSidebar",
+              "previous": {
+                "title": "Introduction",
+                "permalink": "/user_guide/sidebar/admin/accounts/aws_accounts/introduction"
+              },
+              "next": {
+                "title": "Invite an AWS Member Account",
+                "permalink": "/user_guide/sidebar/admin/accounts/aws_accounts/invite_member_account"
+              }
+            },
+            {
+              "unversionedId": "user_guide/sidebar/admin/accounts/aws_accounts/cross_account_execution_role",
+              "id": "user_guide/sidebar/admin/accounts/aws_accounts/cross_account_execution_role",
+              "isDocsHomePage": false,
+              "title": "Cross Account Execution Role",
+              "description": "This Role resides in the Member AWS Account(s) and is assumed by the Main AWS Account.",
+              "source": "@site/docs/user_guide/sidebar/admin/accounts/aws_accounts/cross_account_execution_role.md",
+              "sourceDirName": "user_guide/sidebar/admin/accounts/aws_accounts",
+              "slug": "/user_guide/sidebar/admin/accounts/aws_accounts/cross_account_execution_role",
+              "permalink": "/user_guide/sidebar/admin/accounts/aws_accounts/cross_account_execution_role",
+              "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/user_guide/sidebar/admin/accounts/aws_accounts/cross_account_execution_role.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "id": "cross_account_execution_role",
+                "title": "Cross Account Execution Role",
+                "sidebar_label": "Cross Account Execution Role"
+              },
+              "sidebar": "serviceWorkbenchSidebar",
+              "previous": {
+                "title": "Master Account Role",
+                "permalink": "/user_guide/sidebar/admin/accounts/aws_accounts/master_role"
+              },
+              "next": {
+                "title": "Introduction",
+                "permalink": "/user_guide/sidebar/admin/workflows/introduction"
+              }
+            },
+            {
+              "unversionedId": "user_guide/sidebar/admin/accounts/aws_accounts/introduction",
+              "id": "user_guide/sidebar/admin/accounts/aws_accounts/introduction",
+              "isDocsHomePage": false,
+              "title": "Introduction to AWS Accounts",
+              "description": "There are 3 types of AWS accounts roles in this solution.",
+              "source": "@site/docs/user_guide/sidebar/admin/accounts/aws_accounts/introduction.md",
+              "sourceDirName": "user_guide/sidebar/admin/accounts/aws_accounts",
+              "slug": "/user_guide/sidebar/admin/accounts/aws_accounts/introduction",
+              "permalink": "/user_guide/sidebar/admin/accounts/aws_accounts/introduction",
+              "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/user_guide/sidebar/admin/accounts/aws_accounts/introduction.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "id": "introduction",
+                "title": "Introduction to AWS Accounts",
+                "sidebar_label": "Introduction"
+              },
+              "sidebar": "serviceWorkbenchSidebar",
+              "previous": {
+                "title": "Create a New Index",
+                "permalink": "/user_guide/sidebar/admin/accounts/indexes/create_new_index"
+              },
+              "next": {
+                "title": "Create an AWS Account",
+                "permalink": "/user_guide/sidebar/admin/accounts/aws_accounts/create_member_account"
+              }
+            },
+            {
+              "unversionedId": "user_guide/sidebar/admin/accounts/aws_accounts/invite_member_account",
+              "id": "user_guide/sidebar/admin/accounts/aws_accounts/invite_member_account",
+              "isDocsHomePage": false,
+              "title": "Invite an AWS Member Account",
+              "description": "As well as Creating a Member Account, you can also invite an AWS Account to the solution. The AWS Account that is being invited will need to provide a VPC, one Subnet from within it, and a Cross Account Execution Role.",
+              "source": "@site/docs/user_guide/sidebar/admin/accounts/aws_accounts/invite_member_account.md",
+              "sourceDirName": "user_guide/sidebar/admin/accounts/aws_accounts",
+              "slug": "/user_guide/sidebar/admin/accounts/aws_accounts/invite_member_account",
+              "permalink": "/user_guide/sidebar/admin/accounts/aws_accounts/invite_member_account",
+              "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/user_guide/sidebar/admin/accounts/aws_accounts/invite_member_account.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "id": "invite_member_account",
+                "title": "Invite an AWS Member Account",
+                "sidebar_label": "Invite an AWS Member Account"
+              },
+              "sidebar": "serviceWorkbenchSidebar",
+              "previous": {
+                "title": "Create an AWS Account",
+                "permalink": "/user_guide/sidebar/admin/accounts/aws_accounts/create_member_account"
+              },
+              "next": {
+                "title": "Set AWS Account Budget",
+                "permalink": "/user_guide/sidebar/admin/accounts/aws_accounts/set_account_budget"
+              }
+            },
+            {
+              "unversionedId": "user_guide/sidebar/admin/accounts/aws_accounts/master_role",
+              "id": "user_guide/sidebar/admin/accounts/aws_accounts/master_role",
+              "isDocsHomePage": false,
+              "title": "Master Account Role",
+              "description": "This role resides in the Master AWS Account and is assumed by the Main AWS Account.",
+              "source": "@site/docs/user_guide/sidebar/admin/accounts/aws_accounts/master_role.md",
+              "sourceDirName": "user_guide/sidebar/admin/accounts/aws_accounts",
+              "slug": "/user_guide/sidebar/admin/accounts/aws_accounts/master_role",
+              "permalink": "/user_guide/sidebar/admin/accounts/aws_accounts/master_role",
+              "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/user_guide/sidebar/admin/accounts/aws_accounts/master_role.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "id": "master_role",
+                "title": "Master Account Role",
+                "sidebar_label": "Master Account Role"
+              },
+              "sidebar": "serviceWorkbenchSidebar",
+              "previous": {
+                "title": "Set AWS Account Budget",
+                "permalink": "/user_guide/sidebar/admin/accounts/aws_accounts/set_account_budget"
+              },
+              "next": {
+                "title": "Cross Account Execution Role",
+                "permalink": "/user_guide/sidebar/admin/accounts/aws_accounts/cross_account_execution_role"
+              }
+            },
+            {
+              "unversionedId": "user_guide/sidebar/admin/accounts/aws_accounts/set_account_budget",
+              "id": "user_guide/sidebar/admin/accounts/aws_accounts/set_account_budget",
+              "isDocsHomePage": false,
+              "title": "Set AWS Account Budget",
+              "description": "Set AWS Account Budget",
+              "source": "@site/docs/user_guide/sidebar/admin/accounts/aws_accounts/set_account_budget.md",
+              "sourceDirName": "user_guide/sidebar/admin/accounts/aws_accounts",
+              "slug": "/user_guide/sidebar/admin/accounts/aws_accounts/set_account_budget",
+              "permalink": "/user_guide/sidebar/admin/accounts/aws_accounts/set_account_budget",
+              "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/user_guide/sidebar/admin/accounts/aws_accounts/set_account_budget.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "id": "set_account_budget",
+                "title": "Set AWS Account Budget",
+                "sidebar_label": "Set AWS Account Budget"
+              },
+              "sidebar": "serviceWorkbenchSidebar",
+              "previous": {
+                "title": "Invite an AWS Member Account",
+                "permalink": "/user_guide/sidebar/admin/accounts/aws_accounts/invite_member_account"
+              },
+              "next": {
+                "title": "Master Account Role",
+                "permalink": "/user_guide/sidebar/admin/accounts/aws_accounts/master_role"
+              }
+            },
+            {
+              "unversionedId": "user_guide/sidebar/admin/accounts/indexes/create_new_index",
+              "id": "user_guide/sidebar/admin/accounts/indexes/create_new_index",
+              "isDocsHomePage": false,
+              "title": "Create a New Index",
+              "description": "You can create a new Index that can then be used for multiple Projects. To create a new Index, follow these steps:",
+              "source": "@site/docs/user_guide/sidebar/admin/accounts/indexes/create_index.md",
+              "sourceDirName": "user_guide/sidebar/admin/accounts/indexes",
+              "slug": "/user_guide/sidebar/admin/accounts/indexes/create_new_index",
+              "permalink": "/user_guide/sidebar/admin/accounts/indexes/create_new_index",
+              "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/user_guide/sidebar/admin/accounts/indexes/create_index.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "id": "create_new_index",
+                "title": "Create a New Index",
+                "sidebar_label": "Create a New Index"
+              },
+              "sidebar": "serviceWorkbenchSidebar",
+              "previous": {
+                "title": "Introduction",
+                "permalink": "/user_guide/sidebar/admin/accounts/indexes/introduction"
+              },
+              "next": {
+                "title": "Introduction",
+                "permalink": "/user_guide/sidebar/admin/accounts/aws_accounts/introduction"
+              }
+            },
+            {
+              "unversionedId": "user_guide/sidebar/admin/accounts/indexes/introduction",
+              "id": "user_guide/sidebar/admin/accounts/indexes/introduction",
+              "isDocsHomePage": false,
+              "title": "Indexes Introduction",
+              "description": "Indexes are a mechanism of grouping Projects together for cost reporting purposes. There can be many Projects associated with a single Index. There can only be a single AWS Account associated with an Index.",
+              "source": "@site/docs/user_guide/sidebar/admin/accounts/indexes/indexes.md",
+              "sourceDirName": "user_guide/sidebar/admin/accounts/indexes",
+              "slug": "/user_guide/sidebar/admin/accounts/indexes/introduction",
+              "permalink": "/user_guide/sidebar/admin/accounts/indexes/introduction",
+              "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/user_guide/sidebar/admin/accounts/indexes/indexes.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "id": "introduction",
+                "title": "Indexes Introduction",
+                "sidebar_label": "Introduction"
+              },
+              "sidebar": "serviceWorkbenchSidebar",
+              "previous": {
+                "title": "Adding a User to a Project",
+                "permalink": "/user_guide/sidebar/admin/accounts/projects/add_user_to_project"
+              },
+              "next": {
+                "title": "Create a New Index",
+                "permalink": "/user_guide/sidebar/admin/accounts/indexes/create_new_index"
+              }
+            },
+            {
+              "unversionedId": "user_guide/sidebar/admin/accounts/projects/add_user_to_project",
+              "id": "user_guide/sidebar/admin/accounts/projects/add_user_to_project",
+              "isDocsHomePage": false,
+              "title": "Adding a User to a Project",
+              "description": "You can add Users to a Project. This enables that user to access Studies and deploy Workspaces in the Project. To add a User to a Project, follow these steps:",
+              "source": "@site/docs/user_guide/sidebar/admin/accounts/projects/add_user_to_project.md",
+              "sourceDirName": "user_guide/sidebar/admin/accounts/projects",
+              "slug": "/user_guide/sidebar/admin/accounts/projects/add_user_to_project",
+              "permalink": "/user_guide/sidebar/admin/accounts/projects/add_user_to_project",
+              "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/user_guide/sidebar/admin/accounts/projects/add_user_to_project.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "id": "add_user_to_project",
+                "title": "Adding a User to a Project",
+                "sidebar_label": "Adding a User to a Project"
+              },
+              "sidebar": "serviceWorkbenchSidebar",
+              "previous": {
+                "title": "Create Project",
+                "permalink": "/user_guide/sidebar/admin/accounts/projects/create_project"
+              },
+              "next": {
+                "title": "Introduction",
+                "permalink": "/user_guide/sidebar/admin/accounts/indexes/introduction"
+              }
+            },
+            {
+              "unversionedId": "user_guide/sidebar/admin/accounts/projects/create_project",
+              "id": "user_guide/sidebar/admin/accounts/projects/create_project",
+              "isDocsHomePage": false,
+              "title": "Create a New Project",
+              "description": "To create a new project, follow these steps:",
+              "source": "@site/docs/user_guide/sidebar/admin/accounts/projects/create_project.md",
+              "sourceDirName": "user_guide/sidebar/admin/accounts/projects",
+              "slug": "/user_guide/sidebar/admin/accounts/projects/create_project",
+              "permalink": "/user_guide/sidebar/admin/accounts/projects/create_project",
+              "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/user_guide/sidebar/admin/accounts/projects/create_project.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "id": "create_project",
+                "title": "Create a New Project",
+                "sidebar_label": "Create Project"
+              },
+              "sidebar": "serviceWorkbenchSidebar",
+              "previous": {
+                "title": "Introduction",
+                "permalink": "/user_guide/sidebar/admin/accounts/projects/introduction"
+              },
+              "next": {
+                "title": "Adding a User to a Project",
+                "permalink": "/user_guide/sidebar/admin/accounts/projects/add_user_to_project"
+              }
+            },
+            {
+              "unversionedId": "user_guide/sidebar/admin/accounts/projects/introduction",
+              "id": "user_guide/sidebar/admin/accounts/projects/introduction",
+              "isDocsHomePage": false,
+              "title": "Projects Introduction",
+              "description": "A Project is a logical grouping of resources that users have access to. In order for a Researcher to upload their own Study data sets and to deploy and user Workspaces a user must have access to a Project.",
+              "source": "@site/docs/user_guide/sidebar/admin/accounts/projects/introduction.md",
+              "sourceDirName": "user_guide/sidebar/admin/accounts/projects",
+              "slug": "/user_guide/sidebar/admin/accounts/projects/introduction",
+              "permalink": "/user_guide/sidebar/admin/accounts/projects/introduction",
+              "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/user_guide/sidebar/admin/accounts/projects/introduction.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "id": "introduction",
+                "title": "Projects Introduction",
+                "sidebar_label": "Introduction"
+              },
+              "sidebar": "serviceWorkbenchSidebar",
+              "previous": {
+                "title": "Adding Federated Users",
+                "permalink": "/user_guide/sidebar/admin/users/add_federated_user"
+              },
+              "next": {
+                "title": "Create Project",
+                "permalink": "/user_guide/sidebar/admin/accounts/projects/create_project"
+              }
+            },
+            {
+              "unversionedId": "user_guide/sidebar/admin/auth/introduction",
+              "id": "user_guide/sidebar/admin/auth/introduction",
+              "isDocsHomePage": false,
+              "title": "Auth Introduction",
+              "description": "The solution provides the ability to connect to Active Directory as an Identity Provider. The web-based user interface does not provide the ability to add or update these settings. These settings are defined as part of the deployment of the solution.",
+              "source": "@site/docs/user_guide/sidebar/admin/auth/introduction.md",
+              "sourceDirName": "user_guide/sidebar/admin/auth",
+              "slug": "/user_guide/sidebar/admin/auth/introduction",
+              "permalink": "/user_guide/sidebar/admin/auth/introduction",
+              "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/user_guide/sidebar/admin/auth/introduction.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "id": "introduction",
+                "title": "Auth Introduction",
+                "sidebar_label": "Introduction"
+              },
+              "sidebar": "serviceWorkbenchSidebar",
+              "previous": {
+                "title": "Dashboard",
+                "permalink": "/user_guide/sidebar/common/dashboard/introduction"
+              },
+              "next": {
+                "title": "Introduction",
+                "permalink": "/user_guide/sidebar/admin/users/introduction"
+              }
+            },
+            {
+              "unversionedId": "user_guide/sidebar/admin/users/add_federated_user",
+              "id": "user_guide/sidebar/admin/users/add_federated_user",
+              "isDocsHomePage": false,
+              "title": "Adding Federated Users",
+              "description": "Add a single federated user",
+              "source": "@site/docs/user_guide/sidebar/admin/users/add_federate_user.md",
+              "sourceDirName": "user_guide/sidebar/admin/users",
+              "slug": "/user_guide/sidebar/admin/users/add_federated_user",
+              "permalink": "/user_guide/sidebar/admin/users/add_federated_user",
+              "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/user_guide/sidebar/admin/users/add_federate_user.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "id": "add_federated_user",
+                "title": "Adding Federated Users",
+                "sidebar_label": "Adding Federated Users"
+              },
+              "sidebar": "serviceWorkbenchSidebar",
+              "previous": {
+                "title": "User Roles",
+                "permalink": "/user_guide/sidebar/admin/users/user_roles"
+              },
+              "next": {
+                "title": "Introduction",
+                "permalink": "/user_guide/sidebar/admin/accounts/projects/introduction"
+              }
+            },
+            {
+              "unversionedId": "user_guide/sidebar/admin/users/introduction",
+              "id": "user_guide/sidebar/admin/users/introduction",
+              "isDocsHomePage": false,
+              "title": "Users Introduction",
+              "description": "You can manage Users and Roles in the solution from the Users page. Users are entities that can access the solution and Roles define the permissions for Users.",
+              "source": "@site/docs/user_guide/sidebar/admin/users/introduction.md",
+              "sourceDirName": "user_guide/sidebar/admin/users",
+              "slug": "/user_guide/sidebar/admin/users/introduction",
+              "permalink": "/user_guide/sidebar/admin/users/introduction",
+              "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/user_guide/sidebar/admin/users/introduction.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "id": "introduction",
+                "title": "Users Introduction",
+                "sidebar_label": "Introduction"
+              },
+              "sidebar": "serviceWorkbenchSidebar",
+              "previous": {
+                "title": "Introduction",
+                "permalink": "/user_guide/sidebar/admin/auth/introduction"
+              },
+              "next": {
+                "title": "User Roles",
+                "permalink": "/user_guide/sidebar/admin/users/user_roles"
+              }
+            },
+            {
+              "unversionedId": "user_guide/sidebar/admin/users/user_roles",
+              "id": "user_guide/sidebar/admin/users/user_roles",
+              "isDocsHomePage": false,
+              "title": "User Roles",
+              "description": "There are 5 different types of Roles that you can assign to Users:",
+              "source": "@site/docs/user_guide/sidebar/admin/users/roles.md",
+              "sourceDirName": "user_guide/sidebar/admin/users",
+              "slug": "/user_guide/sidebar/admin/users/user_roles",
+              "permalink": "/user_guide/sidebar/admin/users/user_roles",
+              "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/user_guide/sidebar/admin/users/roles.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "id": "user_roles",
+                "title": "User Roles",
+                "sidebar_label": "User Roles"
+              },
+              "sidebar": "serviceWorkbenchSidebar",
+              "previous": {
+                "title": "Introduction",
+                "permalink": "/user_guide/sidebar/admin/users/introduction"
+              },
+              "next": {
+                "title": "Adding Federated Users",
+                "permalink": "/user_guide/sidebar/admin/users/add_federated_user"
+              }
+            },
+            {
+              "unversionedId": "user_guide/sidebar/admin/workflows/introduction",
+              "id": "user_guide/sidebar/admin/workflows/introduction",
+              "isDocsHomePage": false,
+              "title": "Workflows Introduction",
+              "description": "Service Workbench enables an organization to provide researchers with a centralized location to search for data sets and deploy research workspaces with them. Research can access a portal, quickly find data that they are interested in and with a few clicks be analyzing it in SageMaker Notebooks, for example.",
+              "source": "@site/docs/user_guide/sidebar/admin/workflows/introduction.md",
+              "sourceDirName": "user_guide/sidebar/admin/workflows",
+              "slug": "/user_guide/sidebar/admin/workflows/introduction",
+              "permalink": "/user_guide/sidebar/admin/workflows/introduction",
+              "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/user_guide/sidebar/admin/workflows/introduction.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "id": "introduction",
+                "title": "Workflows Introduction",
+                "sidebar_label": "Introduction"
+              },
+              "sidebar": "serviceWorkbenchSidebar",
+              "previous": {
+                "title": "Cross Account Execution Role",
+                "permalink": "/user_guide/sidebar/admin/accounts/aws_accounts/cross_account_execution_role"
+              },
+              "next": {
+                "title": "Introduction",
+                "permalink": "/user_guide/sidebar/common/studies/introduction"
+              }
+            },
+            {
+              "unversionedId": "user_guide/sidebar/common/dashboard/introduction",
+              "id": "user_guide/sidebar/common/dashboard/introduction",
+              "isDocsHomePage": false,
+              "title": "Dashboard",
+              "description": "The dashboard is visible to all users that log in to the solution. It is also the first screen visible to a user after logging into the web interface. Based on the role a user holds they can see more or less data inside the dashboard's widgets.",
+              "source": "@site/docs/user_guide/sidebar/common/dashboard/introduction.md",
+              "sourceDirName": "user_guide/sidebar/common/dashboard",
+              "slug": "/user_guide/sidebar/common/dashboard/introduction",
+              "permalink": "/user_guide/sidebar/common/dashboard/introduction",
+              "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/user_guide/sidebar/common/dashboard/introduction.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "id": "introduction",
+                "title": "Dashboard",
+                "sidebar_label": "Dashboard"
+              },
+              "sidebar": "serviceWorkbenchSidebar",
+              "previous": {
+                "title": "Sidebar Introduction",
+                "permalink": "/user_guide/introduction"
+              },
+              "next": {
+                "title": "Introduction",
+                "permalink": "/user_guide/sidebar/common/studies/introduction"
+              }
+            },
+            {
+              "unversionedId": "user_guide/sidebar/common/studies/creating_a_study",
+              "id": "user_guide/sidebar/common/studies/creating_a_study",
+              "isDocsHomePage": false,
+              "title": "Creating a Study",
+              "description": "Studies are data sets. Admin, Internal Researchers and External Researchers can search for Studies to perform research on. They can also create new Studies and upload data to Studies.",
+              "source": "@site/docs/user_guide/sidebar/common/studies/creating_a_study.md",
+              "sourceDirName": "user_guide/sidebar/common/studies",
+              "slug": "/user_guide/sidebar/common/studies/creating_a_study",
+              "permalink": "/user_guide/sidebar/common/studies/creating_a_study",
+              "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/user_guide/sidebar/common/studies/creating_a_study.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "id": "creating_a_study",
+                "title": "Creating a Study",
+                "sidebar_label": "Creating a Study"
+              },
+              "sidebar": "serviceWorkbenchSidebar",
+              "previous": {
+                "title": "Introduction",
+                "permalink": "/user_guide/sidebar/common/studies/introduction"
+              },
+              "next": {
+                "title": "Data Sources",
+                "permalink": "/user_guide/sidebar/common/studies/data_sources"
+              }
+            },
+            {
+              "unversionedId": "user_guide/sidebar/common/studies/data_sources",
+              "id": "user_guide/sidebar/common/studies/data_sources",
+              "isDocsHomePage": false,
+              "title": "Data Sources",
+              "description": "Introduction ##",
+              "source": "@site/docs/user_guide/sidebar/common/studies/data_sources.md",
+              "sourceDirName": "user_guide/sidebar/common/studies",
+              "slug": "/user_guide/sidebar/common/studies/data_sources",
+              "permalink": "/user_guide/sidebar/common/studies/data_sources",
+              "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/user_guide/sidebar/common/studies/data_sources.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "id": "data_sources",
+                "title": "Data Sources",
+                "sidebar_label": "Data Sources"
+              },
+              "sidebar": "serviceWorkbenchSidebar",
+              "previous": {
+                "title": "Creating a Study",
+                "permalink": "/user_guide/sidebar/common/studies/creating_a_study"
+              },
+              "next": {
+                "title": "Studies Page",
+                "permalink": "/user_guide/sidebar/common/studies/studies_page"
+              }
+            },
+            {
+              "unversionedId": "user_guide/sidebar/common/studies/introduction",
+              "id": "user_guide/sidebar/common/studies/introduction",
+              "isDocsHomePage": false,
+              "title": "Studies Introduction",
+              "description": "Service Workbench provides multiple ways to connect compute workspaces to data (Studies) saved in Amazon S3. As a researcher, you can also use it to search data using tools specific to your requirements.",
+              "source": "@site/docs/user_guide/sidebar/common/studies/introduction.md",
+              "sourceDirName": "user_guide/sidebar/common/studies",
+              "slug": "/user_guide/sidebar/common/studies/introduction",
+              "permalink": "/user_guide/sidebar/common/studies/introduction",
+              "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/user_guide/sidebar/common/studies/introduction.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "id": "introduction",
+                "title": "Studies Introduction",
+                "sidebar_label": "Introduction"
+              },
+              "sidebar": "serviceWorkbenchSidebar",
+              "previous": {
+                "title": "Dashboard",
+                "permalink": "/user_guide/sidebar/common/dashboard/introduction"
+              },
+              "next": {
+                "title": "Creating a Study",
+                "permalink": "/user_guide/sidebar/common/studies/creating_a_study"
+              }
+            },
+            {
+              "unversionedId": "user_guide/sidebar/common/studies/sharing_a_study",
+              "id": "user_guide/sidebar/common/studies/sharing_a_study",
+              "isDocsHomePage": false,
+              "title": "Sharing a Study",
+              "description": "Organizational Studies can be shared with other members in the Organization. Owners of a Study can amend the permissions of the Study to grant other users access. There are 2 permissions available for a Study:",
+              "source": "@site/docs/user_guide/sidebar/common/studies/sharing_a_study.md",
+              "sourceDirName": "user_guide/sidebar/common/studies",
+              "slug": "/user_guide/sidebar/common/studies/sharing_a_study",
+              "permalink": "/user_guide/sidebar/common/studies/sharing_a_study",
+              "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/user_guide/sidebar/common/studies/sharing_a_study.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "id": "sharing_a_study",
+                "title": "Sharing a Study",
+                "sidebar_label": "Sharing a Study"
+              },
+              "sidebar": "serviceWorkbenchSidebar",
+              "previous": {
+                "title": "Studies Page",
+                "permalink": "/user_guide/sidebar/common/studies/studies_page"
+              },
+              "next": {
+                "title": "Introduction",
+                "permalink": "/user_guide/sidebar/common/workspaces/introduction"
+              }
+            },
+            {
+              "unversionedId": "user_guide/sidebar/common/studies/studies_page",
+              "id": "user_guide/sidebar/common/studies/studies_page",
+              "isDocsHomePage": false,
+              "title": "Studies Page",
+              "description": "The Studies page provides a central location for creating Studies, uploading files, managing Study permissions, and creating new Workspaces.",
+              "source": "@site/docs/user_guide/sidebar/common/studies/studies_page.md",
+              "sourceDirName": "user_guide/sidebar/common/studies",
+              "slug": "/user_guide/sidebar/common/studies/studies_page",
+              "permalink": "/user_guide/sidebar/common/studies/studies_page",
+              "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/user_guide/sidebar/common/studies/studies_page.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "id": "studies_page",
+                "title": "Studies Page",
+                "sidebar_label": "Studies Page"
+              },
+              "sidebar": "serviceWorkbenchSidebar",
+              "previous": {
+                "title": "Data Sources",
+                "permalink": "/user_guide/sidebar/common/studies/data_sources"
+              },
+              "next": {
+                "title": "Sharing a Study",
+                "permalink": "/user_guide/sidebar/common/studies/sharing_a_study"
+              }
+            },
+            {
+              "unversionedId": "user_guide/sidebar/common/workspaces/accessing_a_workspace",
+              "id": "user_guide/sidebar/common/workspaces/accessing_a_workspace",
+              "isDocsHomePage": false,
+              "title": "Accessing a Workspace",
+              "description": "You can connect to Workspaces that you have access to. To access a Workspace, follow these steps:",
+              "source": "@site/docs/user_guide/sidebar/common/workspaces/accessing_a_workspace.md",
+              "sourceDirName": "user_guide/sidebar/common/workspaces",
+              "slug": "/user_guide/sidebar/common/workspaces/accessing_a_workspace",
+              "permalink": "/user_guide/sidebar/common/workspaces/accessing_a_workspace",
+              "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/user_guide/sidebar/common/workspaces/accessing_a_workspace.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "id": "accessing_a_workspace",
+                "title": "Accessing a Workspace",
+                "sidebar_label": "Accessing a Workspace"
+              },
+              "sidebar": "serviceWorkbenchSidebar",
+              "previous": {
+                "title": "Creating a Workspace",
+                "permalink": "/user_guide/sidebar/common/workspaces/create_workspace_study"
+              },
+              "next": {
+                "title": "Terminating a Workspace",
+                "permalink": "/user_guide/sidebar/common/workspaces/terminating_a_workspace"
+              }
+            },
+            {
+              "unversionedId": "user_guide/sidebar/common/workspaces/create_workspace_study",
+              "id": "user_guide/sidebar/common/workspaces/create_workspace_study",
+              "isDocsHomePage": false,
+              "title": "Creating a new Workspace",
+              "description": "A user can select a Study or multiple Studies and launch a Workspace to access and analyze that data. To launch a Workspace, follow these steps:",
+              "source": "@site/docs/user_guide/sidebar/common/workspaces/create_workspace_study.md",
+              "sourceDirName": "user_guide/sidebar/common/workspaces",
+              "slug": "/user_guide/sidebar/common/workspaces/create_workspace_study",
+              "permalink": "/user_guide/sidebar/common/workspaces/create_workspace_study",
+              "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/user_guide/sidebar/common/workspaces/create_workspace_study.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "id": "create_workspace_study",
+                "title": "Creating a new Workspace",
+                "sidebar_label": "Creating a Workspace"
+              },
+              "sidebar": "serviceWorkbenchSidebar",
+              "previous": {
+                "title": "Introduction",
+                "permalink": "/user_guide/sidebar/common/workspaces/introduction"
+              },
+              "next": {
+                "title": "Accessing a Workspace",
+                "permalink": "/user_guide/sidebar/common/workspaces/accessing_a_workspace"
+              }
+            },
+            {
+              "unversionedId": "user_guide/sidebar/common/workspaces/introduction",
+              "id": "user_guide/sidebar/common/workspaces/introduction",
+              "isDocsHomePage": false,
+              "title": "Workspaces Introduction",
+              "description": "Service Workbench enables organizations to provide researchers with a centralized location to search for data sets and deploy research workspaces. Researchers can access a portal, quickly find data they are interested in, and quickly begin analysis in SageMaker Notebooks, for example.",
+              "source": "@site/docs/user_guide/sidebar/common/workspaces/introduction.md",
+              "sourceDirName": "user_guide/sidebar/common/workspaces",
+              "slug": "/user_guide/sidebar/common/workspaces/introduction",
+              "permalink": "/user_guide/sidebar/common/workspaces/introduction",
+              "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/user_guide/sidebar/common/workspaces/introduction.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "id": "introduction",
+                "title": "Workspaces Introduction",
+                "sidebar_label": "Introduction"
+              },
+              "sidebar": "serviceWorkbenchSidebar",
+              "previous": {
+                "title": "Sharing a Study",
+                "permalink": "/user_guide/sidebar/common/studies/sharing_a_study"
+              },
+              "next": {
+                "title": "Creating a Workspace",
+                "permalink": "/user_guide/sidebar/common/workspaces/create_workspace_study"
+              }
+            },
+            {
+              "unversionedId": "user_guide/sidebar/common/workspaces/terminating_a_workspace",
+              "id": "user_guide/sidebar/common/workspaces/terminating_a_workspace",
+              "isDocsHomePage": false,
+              "title": "Terminating a Workspace",
+              "description": "When you no longer need a Workspace you can terminate it. Follow these steps to terminate a Workspace:",
+              "source": "@site/docs/user_guide/sidebar/common/workspaces/terminating_a_workspace.md",
+              "sourceDirName": "user_guide/sidebar/common/workspaces",
+              "slug": "/user_guide/sidebar/common/workspaces/terminating_a_workspace",
+              "permalink": "/user_guide/sidebar/common/workspaces/terminating_a_workspace",
+              "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/user_guide/sidebar/common/workspaces/terminating_a_workspace.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "id": "terminating_a_workspace",
+                "title": "Terminating a Workspace",
+                "sidebar_label": "Terminating a Workspace"
+              },
+              "sidebar": "serviceWorkbenchSidebar",
+              "previous": {
+                "title": "Accessing a Workspace",
+                "permalink": "/user_guide/sidebar/common/workspaces/accessing_a_workspace"
+              },
+              "next": {
+                "title": "Dashboard",
+                "permalink": "/user_guide/sidebar/common/dashboard/introduction"
+              }
+            }
+          ],
+          "sidebars": {
+            "serviceWorkbenchSidebar": [
+              {
+                "type": "category",
+                "collapsed": true,
+                "collapsible": true,
+                "label": "Service Workbench Installation Guide",
+                "items": [
+                  {
+                    "type": "doc",
+                    "id": "installation_guide/overview"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "installation_guide/architecture"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "installation_guide/components"
+                  },
+                  {
+                    "type": "category",
+                    "collapsed": true,
+                    "collapsible": true,
+                    "label": "Pre-installation requirements",
+                    "items": [
+                      {
+                        "type": "doc",
+                        "id": "installation_guide/installation/pre-installation/overview"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "installation_guide/installation/pre-installation/tool-req"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "installation_guide/installation/pre-installation/software-req"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "installation_guide/installation/pre-installation/instance-req"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "installation_guide/installation/pre-installation/conf-settings"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "installation_guide/installation/pre-installation/documentation"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "category",
+                    "collapsed": true,
+                    "collapsible": true,
+                    "label": "Installing Service Workbench",
+                    "items": [
+                      {
+                        "type": "doc",
+                        "id": "installation_guide/installation/ami-install"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "installation_guide/installation/ec2install"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "installation_guide/installation/cloud9install"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "installation_guide/installation/rstudio"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "category",
+                    "collapsed": true,
+                    "collapsible": true,
+                    "label": "Upgrading Service Workbench",
+                    "items": [
+                      {
+                        "type": "doc",
+                        "id": "installation_guide/upgrading/commandline"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "installation_guide/upgrading/solutions"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "installation_guide/upgrading/authentication"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "doc",
+                    "id": "installation_guide/postupgrade"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "installation_guide/uninstall"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "installation_guide/troubleshooting"
+                  }
+                ]
+              },
+              {
+                "type": "category",
+                "collapsed": true,
+                "collapsible": true,
+                "label": "Service Workbench Configuration Guide",
+                "items": [
+                  {
+                    "type": "doc",
+                    "id": "configuration_guide/overview"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "configuration_guide/workflow"
+                  },
+                  {
+                    "type": "category",
+                    "collapsed": true,
+                    "collapsible": true,
+                    "label": "Configuring Service Workbench using IdP",
+                    "items": [
+                      {
+                        "type": "doc",
+                        "id": "configuration_guide/activedirectory"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "configuration_guide/adfs"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "configuration_guide/auth0"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "category",
+                "collapsed": true,
+                "collapsible": true,
+                "label": "Deployment Guide",
+                "items": [
+                  {
+                    "type": "doc",
+                    "id": "deployment/deployment_stages"
+                  },
+                  {
+                    "type": "category",
+                    "collapsed": true,
+                    "collapsible": true,
+                    "label": "Pre-installation requirements",
+                    "items": [
+                      {
+                        "type": "doc",
+                        "id": "installation_guide/installation/pre-installation/overview"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "installation_guide/installation/pre-installation/tool-req"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "installation_guide/installation/pre-installation/software-req"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "installation_guide/installation/pre-installation/instance-req"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "installation_guide/installation/pre-installation/conf-settings"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "installation_guide/installation/pre-installation/documentation"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "category",
+                    "collapsed": true,
+                    "collapsible": true,
+                    "label": "Installing Service Workbench",
+                    "items": [
+                      {
+                        "type": "doc",
+                        "id": "installation_guide/installation/ami-install"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "installation_guide/installation/ec2install"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "installation_guide/installation/cloud9install"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "installation_guide/installation/rstudio"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "category",
+                    "collapsed": true,
+                    "collapsible": true,
+                    "label": "Upgrading Service Workbench",
+                    "items": [
+                      {
+                        "type": "doc",
+                        "id": "installation_guide/upgrading/commandline"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "installation_guide/upgrading/solutions"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "doc",
+                    "id": "installation_guide/postupgrade"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "installation_guide/uninstall"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "installation_guide/troubleshooting"
+                  }
+                ]
+              },
+              {
+                "type": "category",
+                "collapsed": true,
+                "collapsible": true,
+                "label": "Service Workbench Post Deployment Guide",
+                "items": [
+                  {
+                    "type": "category",
+                    "collapsed": true,
+                    "collapsible": true,
+                    "label": "Post Deployment",
+                    "items": [
+                      {
+                        "type": "doc",
+                        "id": "deployment/post_deployment/index"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "deployment/post_deployment/account_structure"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "deployment/reference/prepare_master_account"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "deployment/post_deployment/appstream"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "deployment/post_deployment/aws_accounts"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "deployment/post_deployment/create_index_project"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "deployment/post_deployment/create_admin_user"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "deployment/post_deployment/import_service_catalog_products"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "deployment/post_deployment/logs"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "doc",
+                    "id": "deployment/redeployment"
+                  },
+                  {
+                    "type": "category",
+                    "collapsed": true,
+                    "collapsible": true,
+                    "label": "Reference",
+                    "items": [
+                      {
+                        "type": "doc",
+                        "id": "deployment/reference/iam_role"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "deployment/reference/aws_services"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "deployment/reference/prepare_master_account"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "deployment/reference/egress_store_approval_process"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "category",
+                "collapsed": true,
+                "collapsible": true,
+                "label": "Service Workbench User Guide",
+                "items": [
+                  {
+                    "type": "doc",
+                    "id": "user_guide/account_structure"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "user_guide/introduction"
+                  },
+                  {
+                    "type": "category",
+                    "collapsed": true,
+                    "collapsible": true,
+                    "label": "Sidebar",
+                    "items": [
+                      {
+                        "type": "category",
+                        "collapsed": true,
+                        "collapsible": true,
+                        "label": "Researcher View",
+                        "items": [
+                          {
+                            "type": "doc",
+                            "id": "user_guide/sidebar/common/dashboard/introduction"
+                          },
+                          {
+                            "type": "category",
+                            "collapsed": true,
+                            "collapsible": true,
+                            "label": "Studies",
+                            "items": [
+                              {
+                                "type": "doc",
+                                "id": "user_guide/sidebar/common/studies/introduction"
+                              },
+                              {
+                                "type": "doc",
+                                "id": "user_guide/sidebar/common/studies/creating_a_study"
+                              },
+                              {
+                                "type": "doc",
+                                "id": "user_guide/sidebar/common/studies/data_sources"
+                              },
+                              {
+                                "type": "doc",
+                                "id": "user_guide/sidebar/common/studies/studies_page"
+                              },
+                              {
+                                "type": "doc",
+                                "id": "user_guide/sidebar/common/studies/sharing_a_study"
+                              }
+                            ]
+                          },
+                          {
+                            "type": "category",
+                            "collapsed": true,
+                            "collapsible": true,
+                            "label": "Workspaces",
+                            "items": [
+                              {
+                                "type": "doc",
+                                "id": "user_guide/sidebar/common/workspaces/introduction"
+                              },
+                              {
+                                "type": "doc",
+                                "id": "user_guide/sidebar/common/workspaces/create_workspace_study"
+                              },
+                              {
+                                "type": "doc",
+                                "id": "user_guide/sidebar/common/workspaces/accessing_a_workspace"
+                              },
+                              {
+                                "type": "doc",
+                                "id": "user_guide/sidebar/common/workspaces/terminating_a_workspace"
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "type": "category",
+                        "collapsed": true,
+                        "collapsible": true,
+                        "label": "Administrator View",
+                        "items": [
+                          {
+                            "type": "doc",
+                            "id": "user_guide/sidebar/common/dashboard/introduction"
+                          },
+                          {
+                            "type": "category",
+                            "collapsed": true,
+                            "collapsible": true,
+                            "label": "Auth",
+                            "items": [
+                              {
+                                "type": "doc",
+                                "id": "user_guide/sidebar/admin/auth/introduction"
+                              }
+                            ]
+                          },
+                          {
+                            "type": "category",
+                            "collapsed": true,
+                            "collapsible": true,
+                            "label": "Users & Roles",
+                            "items": [
+                              {
+                                "type": "doc",
+                                "id": "user_guide/sidebar/admin/users/introduction"
+                              },
+                              {
+                                "type": "doc",
+                                "id": "user_guide/sidebar/admin/users/user_roles"
+                              },
+                              {
+                                "type": "doc",
+                                "id": "user_guide/sidebar/admin/users/add_federated_user"
+                              }
+                            ]
+                          },
+                          {
+                            "type": "category",
+                            "collapsed": true,
+                            "collapsible": true,
+                            "label": "Accounts",
+                            "items": [
+                              {
+                                "type": "category",
+                                "collapsed": true,
+                                "collapsible": true,
+                                "label": "Projects",
+                                "items": [
+                                  {
+                                    "type": "doc",
+                                    "id": "user_guide/sidebar/admin/accounts/projects/introduction"
+                                  },
+                                  {
+                                    "type": "doc",
+                                    "id": "user_guide/sidebar/admin/accounts/projects/create_project"
+                                  },
+                                  {
+                                    "type": "doc",
+                                    "id": "user_guide/sidebar/admin/accounts/projects/add_user_to_project"
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "category",
+                                "collapsed": true,
+                                "collapsible": true,
+                                "label": "Indexes",
+                                "items": [
+                                  {
+                                    "type": "doc",
+                                    "id": "user_guide/sidebar/admin/accounts/indexes/introduction"
+                                  },
+                                  {
+                                    "type": "doc",
+                                    "id": "user_guide/sidebar/admin/accounts/indexes/create_new_index"
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "category",
+                                "collapsed": true,
+                                "collapsible": true,
+                                "label": "AWS Accounts",
+                                "items": [
+                                  {
+                                    "type": "doc",
+                                    "id": "user_guide/sidebar/admin/accounts/aws_accounts/introduction"
+                                  },
+                                  {
+                                    "type": "doc",
+                                    "id": "user_guide/sidebar/admin/accounts/aws_accounts/create_member_account"
+                                  },
+                                  {
+                                    "type": "doc",
+                                    "id": "user_guide/sidebar/admin/accounts/aws_accounts/invite_member_account"
+                                  },
+                                  {
+                                    "type": "doc",
+                                    "id": "user_guide/sidebar/admin/accounts/aws_accounts/set_account_budget"
+                                  },
+                                  {
+                                    "type": "category",
+                                    "collapsed": true,
+                                    "collapsible": true,
+                                    "label": "Roles and Permissions",
+                                    "items": [
+                                      {
+                                        "type": "doc",
+                                        "id": "user_guide/sidebar/admin/accounts/aws_accounts/master_role"
+                                      },
+                                      {
+                                        "type": "doc",
+                                        "id": "user_guide/sidebar/admin/accounts/aws_accounts/cross_account_execution_role"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "type": "category",
+                            "collapsed": true,
+                            "collapsible": true,
+                            "label": "Workflows",
+                            "items": [
+                              {
+                                "type": "doc",
+                                "id": "user_guide/sidebar/admin/workflows/introduction"
+                              }
+                            ]
+                          },
+                          {
+                            "type": "category",
+                            "collapsed": true,
+                            "collapsible": true,
+                            "label": "Studies",
+                            "items": [
+                              {
+                                "type": "doc",
+                                "id": "user_guide/sidebar/common/studies/introduction"
+                              },
+                              {
+                                "type": "doc",
+                                "id": "user_guide/sidebar/common/studies/creating_a_study"
+                              },
+                              {
+                                "type": "doc",
+                                "id": "user_guide/sidebar/common/studies/studies_page"
+                              },
+                              {
+                                "type": "doc",
+                                "id": "user_guide/sidebar/common/studies/sharing_a_study"
+                              },
+                              {
+                                "type": "doc",
+                                "id": "user_guide/sidebar/common/studies/data_sources"
+                              }
+                            ]
+                          },
+                          {
+                            "type": "category",
+                            "collapsed": true,
+                            "collapsible": true,
+                            "label": "Workspaces",
+                            "items": [
+                              {
+                                "type": "doc",
+                                "id": "user_guide/sidebar/common/workspaces/introduction"
+                              },
+                              {
+                                "type": "doc",
+                                "id": "user_guide/sidebar/common/workspaces/create_workspace_study"
+                              },
+                              {
+                                "type": "doc",
+                                "id": "user_guide/sidebar/common/workspaces/terminating_a_workspace"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "category",
+                "collapsed": true,
+                "collapsible": true,
+                "label": "Best Practices",
+                "items": [
+                  {
+                    "type": "doc",
+                    "id": "best_practices/introduction"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "best_practices/multiple_deployment_environments"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "best_practices/amazon_inspector"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "best_practices/aws_cloudtrail"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "best_practices/aws_shield"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "best_practices/cicd"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "best_practices/rotating_jwt_token"
+                  }
+                ]
+              },
+              {
+                "type": "category",
+                "collapsed": true,
+                "collapsible": true,
+                "label": "Development Guide",
+                "items": [
+                  {
+                    "type": "doc",
+                    "id": "development/introduction"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "docusaurus-plugin-content-blog": {
+    "default": {
+      "blogSidebarTitle": "Recent posts",
+      "blogPosts": [],
+      "blogListPaginated": [],
+      "blogTags": {},
+      "blogTagsListPath": null
+    }
+  },
+  "docusaurus-plugin-content-pages": {
+    "default": [
+      {
+        "type": "jsx",
+        "permalink": "/",
+        "source": "@site/src/pages/index.js"
+      }
+    ]
+  },
+  "docusaurus-plugin-debug": {
+    "default": null
+  },
+  "docusaurus-theme-classic": {
+    "default": null
+  }
+}

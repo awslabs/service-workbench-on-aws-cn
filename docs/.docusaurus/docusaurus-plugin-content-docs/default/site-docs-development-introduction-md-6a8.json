@@ -1,0 +1,24 @@
+{
+  "unversionedId": "development/introduction",
+  "id": "development/introduction",
+  "isDocsHomePage": false,
+  "title": "Local Development Introduction",
+  "description": "Once you have deployed the app and the UI, you can start developing locally on your computer. You will be running a local server that uses the same lambda functions code. To start local development, run the following commands to run a local server:",
+  "source": "@site/docs/development/introduction.md",
+  "sourceDirName": "development",
+  "slug": "/development/introduction",
+  "permalink": "/development/introduction",
+  "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/development/introduction.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "introduction",
+    "title": "Local Development Introduction",
+    "sidebar_label": "Introduction"
+  },
+  "sidebar": "serviceWorkbenchSidebar",
+  "previous": {
+    "title": "Rotating the JWT Master Token",
+    "permalink": "/best_practices/rotating_jwt_token"
+  }
+}

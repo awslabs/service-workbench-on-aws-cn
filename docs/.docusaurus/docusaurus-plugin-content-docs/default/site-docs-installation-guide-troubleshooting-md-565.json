@@ -1,0 +1,28 @@
+{
+  "unversionedId": "installation_guide/troubleshooting",
+  "id": "installation_guide/troubleshooting",
+  "isDocsHomePage": false,
+  "title": "Troubleshooting",
+  "description": "Problem: Running scripts/environment-deploy.sh $STAGE fails with the message Uploaded file must be a non-empty zip.",
+  "source": "@site/docs/installation_guide/troubleshooting.md",
+  "sourceDirName": "installation_guide",
+  "slug": "/installation_guide/troubleshooting",
+  "permalink": "/installation_guide/troubleshooting",
+  "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/installation_guide/troubleshooting.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "troubleshooting",
+    "title": "Troubleshooting",
+    "sidebar_label": "Troubleshooting"
+  },
+  "sidebar": "serviceWorkbenchSidebar",
+  "previous": {
+    "title": "Uninstalling Service Workbench",
+    "permalink": "/installation_guide/uninstall"
+  },
+  "next": {
+    "title": "Identity Provider overview",
+    "permalink": "/configuration_guide/overview"
+  }
+}

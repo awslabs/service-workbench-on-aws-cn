@@ -1,0 +1,19 @@
+{
+  "unversionedId": "deployment/pre_deployment/source_code",
+  "id": "deployment/pre_deployment/source_code",
+  "isDocsHomePage": false,
+  "title": "Source Code",
+  "description": "Download the latest source code using the URL, https",
+  "source": "@site/docs/deployment/pre_deployment/source_code.md",
+  "sourceDirName": "deployment/pre_deployment",
+  "slug": "/deployment/pre_deployment/source_code",
+  "permalink": "/deployment/pre_deployment/source_code",
+  "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/deployment/pre_deployment/source_code.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "source_code",
+    "title": "Source Code",
+    "sidebar_label": "Source Code"
+  }
+}

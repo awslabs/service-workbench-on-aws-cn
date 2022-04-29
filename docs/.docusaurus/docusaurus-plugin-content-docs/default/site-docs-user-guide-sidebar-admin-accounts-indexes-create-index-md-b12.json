@@ -1,0 +1,28 @@
+{
+  "unversionedId": "user_guide/sidebar/admin/accounts/indexes/create_new_index",
+  "id": "user_guide/sidebar/admin/accounts/indexes/create_new_index",
+  "isDocsHomePage": false,
+  "title": "Create a New Index",
+  "description": "You can create a new Index that can then be used for multiple Projects. To create a new Index, follow these steps:",
+  "source": "@site/docs/user_guide/sidebar/admin/accounts/indexes/create_index.md",
+  "sourceDirName": "user_guide/sidebar/admin/accounts/indexes",
+  "slug": "/user_guide/sidebar/admin/accounts/indexes/create_new_index",
+  "permalink": "/user_guide/sidebar/admin/accounts/indexes/create_new_index",
+  "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/user_guide/sidebar/admin/accounts/indexes/create_index.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "create_new_index",
+    "title": "Create a New Index",
+    "sidebar_label": "Create a New Index"
+  },
+  "sidebar": "serviceWorkbenchSidebar",
+  "previous": {
+    "title": "Introduction",
+    "permalink": "/user_guide/sidebar/admin/accounts/indexes/introduction"
+  },
+  "next": {
+    "title": "Introduction",
+    "permalink": "/user_guide/sidebar/admin/accounts/aws_accounts/introduction"
+  }
+}

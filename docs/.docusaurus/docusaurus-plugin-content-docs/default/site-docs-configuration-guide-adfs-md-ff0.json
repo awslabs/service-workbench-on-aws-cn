@@ -1,0 +1,28 @@
+{
+  "unversionedId": "configuration_guide/adfs",
+  "id": "configuration_guide/adfs",
+  "isDocsHomePage": false,
+  "title": "Configuring Service Workbench using Microsoft Active Directory Federation Services",
+  "description": "Microsoft ADFS is another IdP and it uses SAML 2.0 standard. For SAML federation, the Amazon Cognito user pool is the Service Provider (SP). Mutual trust between the SP and the IdP must be established. Service Workbench on AWS uses Amazon Cognito user pools to federate identities from Microsoft Active Directory using ADFS and SAML 2.0.",
+  "source": "@site/docs/configuration_guide/adfs.md",
+  "sourceDirName": "configuration_guide",
+  "slug": "/configuration_guide/adfs",
+  "permalink": "/configuration_guide/adfs",
+  "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/configuration_guide/adfs.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "adfs",
+    "title": "Configuring Service Workbench using Microsoft Active Directory Federation Services",
+    "sidebar_label": "Configuring Service Workbench using Microsoft Active Directory Federation Services"
+  },
+  "sidebar": "serviceWorkbenchSidebar",
+  "previous": {
+    "title": "Configuring Service Workbench using Microsoft Azure AD",
+    "permalink": "/configuration_guide/activedirectory"
+  },
+  "next": {
+    "title": "Configuring Service Workbench using Auth0",
+    "permalink": "/configuration_guide/auth0"
+  }
+}

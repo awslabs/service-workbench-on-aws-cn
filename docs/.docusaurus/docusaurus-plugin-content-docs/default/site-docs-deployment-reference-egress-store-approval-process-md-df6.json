@@ -1,0 +1,28 @@
+{
+  "unversionedId": "deployment/reference/egress_store_approval_process",
+  "id": "deployment/reference/egress_store_approval_process",
+  "isDocsHomePage": false,
+  "title": "Exporting data from AppStream-enabled workspaces",
+  "description": "As a researcher, if you have AppStream and Egress store enabled, AppStream provides limited access to the workspace that is being used. You can view and use data within that workspace. When you work on this data, it can be saved in the Egress folder, and then a request can be made to export that data. But if you want to export data from that workspace, it requires approval.",
+  "source": "@site/docs/deployment/reference/egress_store_approval_process.md",
+  "sourceDirName": "deployment/reference",
+  "slug": "/deployment/reference/egress_store_approval_process",
+  "permalink": "/deployment/reference/egress_store_approval_process",
+  "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/deployment/reference/egress_store_approval_process.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "egress_store_approval_process",
+    "title": "Exporting data from AppStream-enabled workspaces",
+    "sidebar_label": "Exporting data from AppStream-enabled workspaces"
+  },
+  "sidebar": "serviceWorkbenchSidebar",
+  "previous": {
+    "title": "Prepare the organizational Account",
+    "permalink": "/deployment/reference/prepare_master_account"
+  },
+  "next": {
+    "title": "Account Structure",
+    "permalink": "/user_guide/account_structure"
+  }
+}

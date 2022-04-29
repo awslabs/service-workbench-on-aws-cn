@@ -1,0 +1,28 @@
+{
+  "unversionedId": "user_guide/sidebar/common/studies/creating_a_study",
+  "id": "user_guide/sidebar/common/studies/creating_a_study",
+  "isDocsHomePage": false,
+  "title": "Creating a Study",
+  "description": "Studies are data sets. Admin, Internal Researchers and External Researchers can search for Studies to perform research on. They can also create new Studies and upload data to Studies.",
+  "source": "@site/docs/user_guide/sidebar/common/studies/creating_a_study.md",
+  "sourceDirName": "user_guide/sidebar/common/studies",
+  "slug": "/user_guide/sidebar/common/studies/creating_a_study",
+  "permalink": "/user_guide/sidebar/common/studies/creating_a_study",
+  "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/user_guide/sidebar/common/studies/creating_a_study.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "creating_a_study",
+    "title": "Creating a Study",
+    "sidebar_label": "Creating a Study"
+  },
+  "sidebar": "serviceWorkbenchSidebar",
+  "previous": {
+    "title": "Introduction",
+    "permalink": "/user_guide/sidebar/common/studies/introduction"
+  },
+  "next": {
+    "title": "Data Sources",
+    "permalink": "/user_guide/sidebar/common/studies/data_sources"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "unversionedId": "user_guide/sidebar/common/studies/introduction",
+  "id": "user_guide/sidebar/common/studies/introduction",
+  "isDocsHomePage": false,
+  "title": "Studies Introduction",
+  "description": "Service Workbench provides multiple ways to connect compute workspaces to data (Studies) saved in Amazon S3. As a researcher, you can also use it to search data using tools specific to your requirements.",
+  "source": "@site/docs/user_guide/sidebar/common/studies/introduction.md",
+  "sourceDirName": "user_guide/sidebar/common/studies",
+  "slug": "/user_guide/sidebar/common/studies/introduction",
+  "permalink": "/user_guide/sidebar/common/studies/introduction",
+  "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/user_guide/sidebar/common/studies/introduction.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "introduction",
+    "title": "Studies Introduction",
+    "sidebar_label": "Introduction"
+  },
+  "sidebar": "serviceWorkbenchSidebar",
+  "previous": {
+    "title": "Dashboard",
+    "permalink": "/user_guide/sidebar/common/dashboard/introduction"
+  },
+  "next": {
+    "title": "Creating a Study",
+    "permalink": "/user_guide/sidebar/common/studies/creating_a_study"
+  }
+}

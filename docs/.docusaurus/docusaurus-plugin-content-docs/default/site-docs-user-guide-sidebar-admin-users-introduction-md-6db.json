@@ -1,0 +1,28 @@
+{
+  "unversionedId": "user_guide/sidebar/admin/users/introduction",
+  "id": "user_guide/sidebar/admin/users/introduction",
+  "isDocsHomePage": false,
+  "title": "Users Introduction",
+  "description": "You can manage Users and Roles in the solution from the Users page. Users are entities that can access the solution and Roles define the permissions for Users.",
+  "source": "@site/docs/user_guide/sidebar/admin/users/introduction.md",
+  "sourceDirName": "user_guide/sidebar/admin/users",
+  "slug": "/user_guide/sidebar/admin/users/introduction",
+  "permalink": "/user_guide/sidebar/admin/users/introduction",
+  "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/user_guide/sidebar/admin/users/introduction.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "introduction",
+    "title": "Users Introduction",
+    "sidebar_label": "Introduction"
+  },
+  "sidebar": "serviceWorkbenchSidebar",
+  "previous": {
+    "title": "Introduction",
+    "permalink": "/user_guide/sidebar/admin/auth/introduction"
+  },
+  "next": {
+    "title": "User Roles",
+    "permalink": "/user_guide/sidebar/admin/users/user_roles"
+  }
+}

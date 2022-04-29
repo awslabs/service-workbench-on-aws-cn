@@ -1,0 +1,28 @@
+{
+  "unversionedId": "user_guide/sidebar/admin/accounts/aws_accounts/create_member_account",
+  "id": "user_guide/sidebar/admin/accounts/aws_accounts/create_member_account",
+  "isDocsHomePage": false,
+  "title": "Create an AWS Account",
+  "description": "When you attempt to create a Member AWS Account, the Main AWS Account will assume a role in the Master AWS Account. Once the role has been assumed, it will then create a Member AWS Account.",
+  "source": "@site/docs/user_guide/sidebar/admin/accounts/aws_accounts/create_member_account.md",
+  "sourceDirName": "user_guide/sidebar/admin/accounts/aws_accounts",
+  "slug": "/user_guide/sidebar/admin/accounts/aws_accounts/create_member_account",
+  "permalink": "/user_guide/sidebar/admin/accounts/aws_accounts/create_member_account",
+  "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/user_guide/sidebar/admin/accounts/aws_accounts/create_member_account.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "create_member_account",
+    "title": "Create an AWS Account",
+    "sidebar_label": "Create an AWS Account"
+  },
+  "sidebar": "serviceWorkbenchSidebar",
+  "previous": {
+    "title": "Introduction",
+    "permalink": "/user_guide/sidebar/admin/accounts/aws_accounts/introduction"
+  },
+  "next": {
+    "title": "Invite an AWS Member Account",
+    "permalink": "/user_guide/sidebar/admin/accounts/aws_accounts/invite_member_account"
+  }
+}

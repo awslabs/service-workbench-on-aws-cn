@@ -1,0 +1,24 @@
+{
+  "unversionedId": "installation_guide/overview",
+  "id": "installation_guide/overview",
+  "isDocsHomePage": false,
+  "title": "Service Workbench overview",
+  "description": "Service Workbench on AWS is a cloud solution that provides secure access to data, tooling, and compute power. Using Service Workbench, researchers can perform research in a secure and configured environment. Service Workbench enables the creation of baseline research setup. It simplifies data access and provides cost transparency.",
+  "source": "@site/docs/installation_guide/overview.md",
+  "sourceDirName": "installation_guide",
+  "slug": "/installation_guide/overview",
+  "permalink": "/installation_guide/overview",
+  "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/installation_guide/overview.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "overview",
+    "title": "Service Workbench overview",
+    "sidebar_label": "Service Workbench overview"
+  },
+  "sidebar": "serviceWorkbenchSidebar",
+  "next": {
+    "title": "Service Workbench architecture",
+    "permalink": "/installation_guide/architecture"
+  }
+}

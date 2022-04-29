@@ -1,0 +1,28 @@
+{
+  "unversionedId": "user_guide/account_structure",
+  "id": "user_guide/account_structure",
+  "isDocsHomePage": false,
+  "title": "Account Structure",
+  "description": "Account Structure",
+  "source": "@site/docs/user_guide/account_structure.md",
+  "sourceDirName": "user_guide",
+  "slug": "/user_guide/account_structure",
+  "permalink": "/user_guide/account_structure",
+  "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/user_guide/account_structure.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "account_structure",
+    "title": "Account Structure",
+    "sidebar_label": "Account Structure"
+  },
+  "sidebar": "serviceWorkbenchSidebar",
+  "previous": {
+    "title": "Exporting data from AppStream-enabled workspaces",
+    "permalink": "/deployment/reference/egress_store_approval_process"
+  },
+  "next": {
+    "title": "Sidebar Introduction",
+    "permalink": "/user_guide/introduction"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "unversionedId": "best_practices/cicd",
+  "id": "best_practices/cicd",
+  "isDocsHomePage": false,
+  "title": "CI/CD",
+  "description": "We recommend that you setup a CI/CD pipeline for this solution. This section will provide you with an overview of how to do this.",
+  "source": "@site/docs/best_practices/cicd.md",
+  "sourceDirName": "best_practices",
+  "slug": "/best_practices/cicd",
+  "permalink": "/best_practices/cicd",
+  "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/best_practices/cicd.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "cicd",
+    "title": "CI/CD",
+    "sidebar_label": "CI/CD"
+  },
+  "sidebar": "serviceWorkbenchSidebar",
+  "previous": {
+    "title": "AWS Shield",
+    "permalink": "/best_practices/aws_shield"
+  },
+  "next": {
+    "title": "Rotating the JWT Master Token",
+    "permalink": "/best_practices/rotating_jwt_token"
+  }
+}

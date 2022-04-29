@@ -1,0 +1,28 @@
+{
+  "unversionedId": "user_guide/sidebar/common/studies/sharing_a_study",
+  "id": "user_guide/sidebar/common/studies/sharing_a_study",
+  "isDocsHomePage": false,
+  "title": "Sharing a Study",
+  "description": "Organizational Studies can be shared with other members in the Organization. Owners of a Study can amend the permissions of the Study to grant other users access. There are 2 permissions available for a Study:",
+  "source": "@site/docs/user_guide/sidebar/common/studies/sharing_a_study.md",
+  "sourceDirName": "user_guide/sidebar/common/studies",
+  "slug": "/user_guide/sidebar/common/studies/sharing_a_study",
+  "permalink": "/user_guide/sidebar/common/studies/sharing_a_study",
+  "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/user_guide/sidebar/common/studies/sharing_a_study.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "sharing_a_study",
+    "title": "Sharing a Study",
+    "sidebar_label": "Sharing a Study"
+  },
+  "sidebar": "serviceWorkbenchSidebar",
+  "previous": {
+    "title": "Studies Page",
+    "permalink": "/user_guide/sidebar/common/studies/studies_page"
+  },
+  "next": {
+    "title": "Introduction",
+    "permalink": "/user_guide/sidebar/common/workspaces/introduction"
+  }
+}

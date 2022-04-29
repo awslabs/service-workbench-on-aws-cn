@@ -1,0 +1,28 @@
+{
+  "unversionedId": "user_guide/sidebar/common/studies/data_sources",
+  "id": "user_guide/sidebar/common/studies/data_sources",
+  "isDocsHomePage": false,
+  "title": "Data Sources",
+  "description": "Introduction ##",
+  "source": "@site/docs/user_guide/sidebar/common/studies/data_sources.md",
+  "sourceDirName": "user_guide/sidebar/common/studies",
+  "slug": "/user_guide/sidebar/common/studies/data_sources",
+  "permalink": "/user_guide/sidebar/common/studies/data_sources",
+  "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/user_guide/sidebar/common/studies/data_sources.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "data_sources",
+    "title": "Data Sources",
+    "sidebar_label": "Data Sources"
+  },
+  "sidebar": "serviceWorkbenchSidebar",
+  "previous": {
+    "title": "Creating a Study",
+    "permalink": "/user_guide/sidebar/common/studies/creating_a_study"
+  },
+  "next": {
+    "title": "Studies Page",
+    "permalink": "/user_guide/sidebar/common/studies/studies_page"
+  }
+}

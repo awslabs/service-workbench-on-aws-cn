@@ -1,0 +1,28 @@
+{
+  "unversionedId": "installation_guide/installation/ec2install",
+  "id": "installation_guide/installation/ec2install",
+  "isDocsHomePage": false,
+  "title": "Installing Service Workbench using EC2 instance",
+  "description": "1. Download the Service Workbench on AWS source code using this link and then run the following commands:",
+  "source": "@site/docs/installation_guide/installation/ec2install.md",
+  "sourceDirName": "installation_guide/installation",
+  "slug": "/installation_guide/installation/ec2install",
+  "permalink": "/installation_guide/installation/ec2install",
+  "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/installation_guide/installation/ec2install.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "ec2install",
+    "title": "Installing Service Workbench using EC2 instance",
+    "sidebar_label": "Installation using EC2 instance"
+  },
+  "sidebar": "serviceWorkbenchSidebar",
+  "previous": {
+    "title": "Installing AMIs",
+    "permalink": "/installation_guide/installation/ami-install"
+  },
+  "next": {
+    "title": "Installing using Cloud9",
+    "permalink": "/installation_guide/installation/cloud9install"
+  }
+}

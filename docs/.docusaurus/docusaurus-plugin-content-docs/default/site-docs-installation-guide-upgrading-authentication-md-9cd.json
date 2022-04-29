@@ -1,0 +1,28 @@
+{
+  "unversionedId": "installation_guide/upgrading/authentication",
+  "id": "installation_guide/upgrading/authentication",
+  "isDocsHomePage": false,
+  "title": "Upgrading deprecated internal authentication",
+  "description": "In the Service Workbench version 5.0.0, internal authentication has been deprecated. To upgrade to this version from your current version of Service Workbench, the administrators need to prepare the environment for an upgrade by deactivating, terminating, or disassociating internal users and the resources to which they are associated. The following tasks must be completed to prepare the Service Workbench environment for an upgrade:",
+  "source": "@site/docs/installation_guide/upgrading/authentication.md",
+  "sourceDirName": "installation_guide/upgrading",
+  "slug": "/installation_guide/upgrading/authentication",
+  "permalink": "/installation_guide/upgrading/authentication",
+  "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/installation_guide/upgrading/authentication.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "authentication",
+    "title": "Upgrading deprecated internal authentication",
+    "sidebar_label": "Upgrading to deprecated internal authentication"
+  },
+  "sidebar": "serviceWorkbenchSidebar",
+  "previous": {
+    "title": "Upgrading AWS solution installation",
+    "permalink": "/installation_guide/upgrading/solutions"
+  },
+  "next": {
+    "title": "Post upgrade",
+    "permalink": "/installation_guide/postupgrade"
+  }
+}

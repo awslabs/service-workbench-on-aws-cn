@@ -1,0 +1,19 @@
+{
+  "unversionedId": "deployment/pre_deployment/configuration",
+  "id": "deployment/pre_deployment/configuration",
+  "isDocsHomePage": false,
+  "title": "Configuration",
+  "description": "**Note**: Setting the configuration is required. If you are deploying a simple installation, you can use the default configuration.",
+  "source": "@site/docs/deployment/pre_deployment/configuration.md",
+  "sourceDirName": "deployment/pre_deployment",
+  "slug": "/deployment/pre_deployment/configuration",
+  "permalink": "/deployment/pre_deployment/configuration",
+  "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/deployment/pre_deployment/configuration.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "configuration",
+    "title": "Configuration",
+    "sidebar_label": "Configuration"
+  }
+}

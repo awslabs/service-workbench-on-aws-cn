@@ -1,0 +1,19 @@
+{
+  "unversionedId": "introduction",
+  "id": "introduction",
+  "isDocsHomePage": false,
+  "title": "Introduction",
+  "description": "Service Workbench on AWS is a self-service cloud-based open source platform using which IT teams can provide a collaborative research solution to the researchers. It integrates the existing AWS services, such as Amazon CloudFront, AWS Lambda, AWS Step Functions, and so on. Service Workbench enables you to create your own custom templates and share those templates with other organizations. To control the research cost, Service Workbench has been integrated with AWS Cost Explorer, AWS Budgets, and AWS Organizations. This provides a quick access to dashboard that shows the current use of AWS services against your budgets.  Service Workbench is also integrated with third-party service providers to enable custom integrations whenever required. Service Workbench can also mimic concepts known to users from on-premises environments to make a switch to cloud technology easier. Researchers in an organization can access a portal, quickly find data that they are interested in, with a few clicks, analyze data using machine learning service such as the Amazon SageMaker notebooks, or even manage and facilitate virtual classrooms.",
+  "source": "@site/docs/introduction.md",
+  "sourceDirName": ".",
+  "slug": "/introduction",
+  "permalink": "/introduction",
+  "editUrl": "https://github.com/awslabs/go-research-on-aws/website/docs/introduction.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "introduction",
+    "title": "Introduction",
+    "sidebar_label": "Introduction"
+  }
+}

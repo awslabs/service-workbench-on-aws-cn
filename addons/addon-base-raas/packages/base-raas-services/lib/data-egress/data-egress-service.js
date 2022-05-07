@@ -27,6 +27,7 @@ const settingKeys = {
   egressNotificationBucketName: 'egressNotificationBucketName',
   egressStoreKmsKeyAliasArn: 'egressStoreKmsKeyAliasArn',
   egressNotificationSnsTopicArn: 'egressNotificationSnsTopicArn',
+  regionPartition: 'regionPartition',
 };
 
 const PROCESSING_STATUS_CODE = 'PROCESSING';
@@ -92,6 +93,7 @@ class DataEgressService extends Service {
     await validationService.ensureValid(environment, createSchema);
 
     const bucketName = this.settings.get(settingKeys.egressStoreBucketName);
+    const partition = this.settings.get(settingKeys.regionPartition);
     const folderName = `${environment.id}/`;
 
     try {
@@ -159,7 +161,7 @@ class DataEgressService extends Service {
       projectId: environment.projectId,
       resources: [
         {
-          arn: `arn:aws:s3:::${bucketName}/${environment.id}/`,
+          arn: `arn:${partition}:s3:::${bucketName}/${environment.id}/`,
         },
       ],
       roleArn,
@@ -306,6 +308,7 @@ class DataEgressService extends Service {
 
   async notifySNS(requestContext, environmentId) {
     const enableEgressStore = this.settings.getBoolean(settingKeys.enableEgressStore);
+    const partition = this.settings.get(settingKeys.regionPartition);
     const curUser = _.get(requestContext, 'principalIdentifier.uid');
     if (!enableEgressStore) {
       throw this.boom.forbidden('Unable to create Egress store since this feature is disabled', true);
@@ -339,7 +342,7 @@ class DataEgressService extends Service {
     egressStoreInfo.updatedBy = curUser;
     egressStoreInfo.updatedAt = new Date().toISOString();
     egressStoreInfo.isAbleToSubmitEgressRequest = false;
-    egressStoreInfo.egressStoreObjectListLocation = `arn:aws:s3:::${egressStoreObjectList.bucket}/${egressStoreObjectList.key}`;
+    egressStoreInfo.egressStoreObjectListLocation = `arn:${partition}:s3:::${egressStoreObjectList.bucket}/${egressStoreObjectList.key}`;
     egressStoreInfo.ver = parseInt(egressStoreInfo.ver, 10) + 1; // parseInt(string, radix) string: The value to parse. radix: An integer between 2 and 36 that represents the radix of the string.
 
     const userService = await this.service('userService');
@@ -349,7 +352,7 @@ class DataEgressService extends Service {
     await this.lockAndUpdate(egressStoreDdbLockId, egressStoreInfo.id, egressStoreInfo);
 
     const message = {
-      egress_store_object_list_location: `arn:aws:s3:::${egressStoreObjectList.bucket}/${egressStoreObjectList.key}`,
+      egress_store_object_list_location: `arn:${partition}:s3:::${egressStoreObjectList.bucket}/${egressStoreObjectList.key}`,
       id: uuid.v4(),
       egress_store_id: egressStoreInfo.id,
       egress_store_name: egressStoreInfo.egressStoreName,
@@ -456,6 +459,7 @@ class DataEgressService extends Service {
    */
   async createMainAccountEgressStoreRole(requestContext, egressStoreId) {
     const egressStoreBucketName = this.settings.get('egressStoreBucketName');
+    const partition = this.settings.get(settingKeys.regionPartition);
     const kmsArn = await this.getKmsKeyIdArn();
     const memberAccountId = await this.getMemberAccountId(requestContext, egressStoreId);
     const mainAccountRoleName = this.getMainAccountEgressStoreRole(egressStoreId);
@@ -491,7 +495,7 @@ class DataEgressService extends Service {
             {
               Effect: 'Allow',
               Principal: {
-                AWS: `arn:aws:iam::${memberAccountId}:root`,
+                AWS: `arn:${partition}:iam::${memberAccountId}:root`,
               },
               Action: 'sts:AssumeRole',
             },

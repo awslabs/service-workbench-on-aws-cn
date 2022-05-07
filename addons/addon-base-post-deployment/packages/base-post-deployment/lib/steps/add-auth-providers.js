@@ -156,7 +156,7 @@ class AddAuthProviders extends Service {
   async execute() {
     // Setup both the default (internal) auth provider as well as a Cognito
     // auth provider (if configured)
-    await this.addCognitoAuthenticationProviderWithSamlFederation();
+    // await this.addCognitoAuthenticationProviderWithSamlFederation();
   }
 }
 

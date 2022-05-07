@@ -160,6 +160,14 @@ describe('AwsAccountService', () => {
       // Mock locking so that the putBucketPolicy actually gets called
       lockService.tryWriteLockAndRun = jest.fn((params, callback) => callback());
 
+      service._settings = {
+        get: settingName => {
+          if (settingName === 'regionPartition') {
+            return 'aws';
+          }
+          return undefined;
+        },
+      };
       // OPERATE
       await service.updateEnvironmentInstanceFilesBucketPolicy();
 

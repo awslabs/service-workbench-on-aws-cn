@@ -102,3 +102,11 @@
 # Error validating existing stack policy: Unknown logical id 'LogicalResourceId/AppStream*' in statement {} - stack policies can only be applied to logical ids referenced in the template
 # Stack policies are applied here: addons/addon-stack-policy/packages/stack-policy/lib/steps/update-cfn-stack-policy.js
 #isAppStreamEnabled: false
+
+# Arn partition, 'aws' for global regions, 'aws-cn' for China Mainland regions
+# regionPartition: aws
+
+# AWS domain 
+# China Mainland regions: 'amazonaws.com.cn'
+# Global regions: 'amazonaws.com'
+# awsDomain: amazonaws.com

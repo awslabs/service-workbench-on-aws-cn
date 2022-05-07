@@ -51,8 +51,8 @@ workflowLambdaName: ${self:custom.settings.awsRegionShortName}-${self:custom.set
 dataBucketName: ${self:custom.settings.namespace}-data
 
 # The stack name of the 'edge-lambda' serverless service
-edgeLambdaStackName: ${self:custom.settings.namespace}-edgeLambda
-edgeLambdaArn: ${cf:${self:custom.settings.edgeLambdaStackName}.EdgeLambdaArn}
+# edgeLambdaStackName: ${self:custom.settings.namespace}-edgeLambda
+# edgeLambdaArn: ${cf:${self:custom.settings.edgeLambdaStackName}.EdgeLambdaArn}
 cloudFrontId: ${cf:${self:custom.settings.infrastructureStackName}.CloudFrontId}
 
 # ================================ settings for Cognito with SAML2.0 Federation  ===========================================

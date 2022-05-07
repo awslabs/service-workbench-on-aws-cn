@@ -28,6 +28,7 @@ const { accountIdCompositeKey, bucketIdCompositeKey } = require('./helpers/compo
 
 const settingKeys = {
   tableName: 'dbDsAccounts',
+  regionPartition: 'regionPartition',
 };
 
 /**
@@ -293,9 +294,10 @@ class DataSourceAccountService extends Service {
       { accountEntity },
     );
 
+    const partition = this.settings.get(settingKeys.regionPartition);
     const { id, qualifier, stack: stackName, mainRegion } = accountEntity;
     const roleName = `${qualifier}-app-role-stack`;
-    const roleArn = `arn:aws:iam::${id}:role/${roleName}`;
+    const roleArn = `arn:${partition}:iam::${id}:role/${roleName}`;
     const cfnApi = await this.getCfnSdk(roleArn, mainRegion);
     const params = { StackName: stackName };
     const stacks = await cfnApi.describeStacks(params).promise();

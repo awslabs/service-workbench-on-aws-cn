@@ -66,7 +66,7 @@ class GoBuildTools {
   s3() {
     const provider = this.serverless.getProvider('aws');
     let awsCredentials;
-    let region;
+    let region = provider.getRegion();
     if (
       provider.cachedCredentials &&
       provider.cachedCredentials.accessKeyId &&
@@ -80,13 +80,18 @@ class GoBuildTools {
         sessionToken: provider.cachedCredentials.sessionToken,
       };
     } else {
-      region = provider.getCredentials().region;
+      // region = provider.getCredentials().region;
       awsCredentials = provider.getCredentials().credentials;
+    }
+    let s3Endpoint = `https://s3.${region}.amazonaws.com`;
+    if (region == 'cn-north-1' || region == 'cn-northwest-1') {
+      s3Endpoint = `https://s3.${region}.amazonaws.com.cn`;
     }
     return new provider.sdk.S3({
       region,
       credentials: awsCredentials,
-    });
+      endpoint: s3Endpoint,
+    }); 
   }
 
   /**

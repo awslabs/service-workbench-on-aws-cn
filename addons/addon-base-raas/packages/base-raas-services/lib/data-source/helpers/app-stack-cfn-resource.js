@@ -14,7 +14,9 @@
  */
 
 const _ = require('lodash');
-
+const settingKeys = {
+  regionPartition: 'regionPartition',
+};
 /**
  * Returns a json object that represents the cfn role resource as described in
  * https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-role.html
@@ -41,7 +43,7 @@ const _ = require('lodash');
  */
 function toAppStackCfnResource(dsAccountEntity, swbMainAccountId) {
   const { id, qualifier, stack, mainRegion } = dsAccountEntity;
-
+  const partition = this.settings.get(settingKeys.regionPartition);
   const name = `${qualifier}-app-role-stack`;
   // cfn logical id can not have '-'
   const logicalId = `AppRoleStack${_.replace(qualifier, /-/g, '')}`;
@@ -63,7 +65,7 @@ function toAppStackCfnResource(dsAccountEntity, swbMainAccountId) {
                   Sid: 'CfnRelated',
                   Effect: 'Allow',
                   Action: ['cloudformation:DescribeStacks', 'cloudformation:ListStackResources'],
-                  Resource: [`arn:aws:cloudformation:${mainRegion}:${id}:stack/${stack}/*`],
+                  Resource: [`arn:${partition}:cloudformation:${mainRegion}:${id}:stack/${stack}/*`],
                 },
               ],
             },

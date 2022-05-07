@@ -20,15 +20,15 @@ module.exports.merged = require('@amzn/base-serverless-settings-helper').mergeSe
     './.defaults.yml',
     '../../../../config/settings/${stage}.yml',
     './${stage}.yml',
-  ],
-  {
-    crossRegionCloudFormation: {
-      edgeLambdaStackName: [
-        {
-          settingName: 'edgeLambdaArn',
-          outputKey: 'EdgeLambdaArn',
-        },
-      ],
-    },
-  },
+  ]
+  // {
+  //   crossRegionCloudFormation: {
+  //     edgeLambdaStackName: [
+  //       {
+  //         settingName: 'edgeLambdaArn',
+  //         outputKey: 'EdgeLambdaArn',
+  //       },
+  //     ],
+  //   },
+  // },
 );

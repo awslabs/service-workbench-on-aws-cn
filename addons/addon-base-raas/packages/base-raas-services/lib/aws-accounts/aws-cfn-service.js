@@ -36,6 +36,7 @@ const settingKeys = {
   isAppStreamEnabled: 'isAppStreamEnabled',
   enableFlowLogs: 'enableFlowLogs',
   domainName: 'domainName',
+  regionPartition: 'regionPartition',
 };
 
 // see https://github.com/rvedotrc/aws-cloudformation-stack-states for all states

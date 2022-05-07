@@ -92,8 +92,8 @@ function createAllowStatement(statementId, actions, resource, condition) {
   return baseAllowStatement;
 }
 
-function getRootArnForAccount(memberAccountId) {
-  return `arn:aws:iam::${memberAccountId}:root`;
+function getRootArnForAccount(memberAccountId, partition) {
+  return `arn:${partition}:iam::${memberAccountId}:root`;
 }
 
 function addEmptyPrincipalIfNotPresent(statement) {
@@ -146,8 +146,8 @@ const putStatementParamsFn = (bucket, prefix) => {
   };
 };
 
-function addAccountToStatement(oldStatement, memberAccountId) {
-  const principal = getRootArnForAccount(memberAccountId);
+function addAccountToStatement(oldStatement, memberAccountId, partition) {
+  const principal = getRootArnForAccount(memberAccountId, partition);
   const statement = addEmptyPrincipalIfNotPresent(oldStatement);
   if (Array.isArray(statement.Principal.AWS)) {
     // add the principal if it doesn't exist already
@@ -178,8 +178,8 @@ async function getRevisedS3Statements(s3Policy, studyEntity, bucket, statementPa
   return revisedStatementsPerStudy;
 }
 
-function removeAccountFromStatement(oldStatement, memberAccountId) {
-  const principal = getRootArnForAccount(memberAccountId);
+function removeAccountFromStatement(oldStatement, memberAccountId, partition) {
+  const principal = getRootArnForAccount(memberAccountId, partition);
   const statement = addEmptyPrincipalIfNotPresent(oldStatement);
   if (Array.isArray(statement.Principal.AWS)) {
     statement.Principal.AWS = statement.Principal.AWS.filter(oldPrincipal => oldPrincipal !== principal);

@@ -27,6 +27,10 @@ const { isReadonly, isWriteonly, isReadwrite } = require('../../../../../study/h
 
 const { appRoleIdCompositeKey } = require('../composite-keys');
 
+const settingKeys = {
+  regionPartition: 'regionPartition',
+};
+
 function addStudy(appRoleEntity = {}, studyEntity = {}) {
   const { id, folder, kmsArn, kmsScope, accessType } = studyEntity;
   appRoleEntity.studies[id] = {
@@ -157,7 +161,7 @@ function newAppRoleEntity(accountEntity = {}, bucketEntity = {}, studyEntity = {
  */
 function toRoleCfnResource(appRoleEntity, swbMainAccountId) {
   const { name, accountId, qualifier, boundaryPolicyArn } = appRoleEntity;
-
+  const partition = this.settings.get(settingKeys.regionPartition);
   // cfn logical id can not have '-'
   const logicalId = `AppRole${_.replace(name, /-/g, '')}`;
   return {
@@ -201,15 +205,15 @@ function toRoleCfnResource(appRoleEntity, swbMainAccountId) {
                     'iam:GetRolePolicy',
                   ],
                   Resource: [
-                    `arn:aws:iam::${accountId}:role/${qualifier}-fs-*`,
-                    `arn:aws:iam::${accountId}:policy/${qualifier}-fs-*`,
+                    `arn:${partition}:iam::${accountId}:role/${qualifier}-fs-*`,
+                    `arn:${partition}:iam::${accountId}:policy/${qualifier}-fs-*`,
                   ],
                 },
                 {
                   Sid: 'RoleCreation',
                   Effect: 'Allow',
                   Action: 'iam:CreateRole',
-                  Resource: `arn:aws:iam::${accountId}:role/${qualifier}-fs-*`,
+                  Resource: `arn:${partition}:iam::${accountId}:role/${qualifier}-fs-*`,
                   Condition: {
                     StringEquals: {
                       'iam:PermissionsBoundary': boundaryPolicyArn,

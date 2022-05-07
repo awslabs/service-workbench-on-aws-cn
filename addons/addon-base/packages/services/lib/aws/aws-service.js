@@ -27,6 +27,7 @@ const settingKeys = {
   localRoleArn: 'localRoleArn',
   localRoleAutoAdjustTrust: 'localRoleAutoAdjustTrust',
   envName: 'envName',
+  awsDomain: 'awsDomain',
 };
 
 class AwsService extends Service {
@@ -87,7 +88,11 @@ class AwsService extends Service {
    * @returns {Promise<{accessKeyId, secretAccessKey, sessionToken}>}
    */
   async getCredentialsForRole({ roleArn, roleSessionName, externalId }) {
-    const sts = new this.sdk.STS({ apiVersion: '2011-06-15' });
+    const awsRegion = this.settings.get(settingKeys.awsRegion);
+    const awsDomain = this.settings.get(settingKeys.awsDomain);
+    const stsEndpoint = 'https://sts.' + awsRegion + '.' + awsDomain
+    const sts = new this.sdk.STS({ apiVersion: '2011-06-15', endpoint: stsEndpoint });
+
     const envName = this.settings.get(settingKeys.envName);
     const params = {
       RoleArn: roleArn,

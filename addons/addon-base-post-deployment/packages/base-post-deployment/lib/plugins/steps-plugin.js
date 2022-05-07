@@ -31,7 +31,7 @@ async function getSteps(existingStepsMap, pluginRegistry) {
     ...existingStepsMap,
     ['createJwtKeyService', new CreateJwtKeyService()],
     ['addAuthProviders', new AddAuthProviders()],
-    ['createRootUser', new CreateRootUserService()],
+    // ['createRootUser', new CreateRootUserService()],
   ]);
 
   return stepsMap;

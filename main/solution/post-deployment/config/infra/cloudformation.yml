@@ -235,19 +235,19 @@ Resources:
                   - lambda:UpdateFunctionConfiguration
                 Resource:
                   - !Sub 'arn:${AWS::Partition}:lambda:${AWS::Region}:${AWS::AccountId}:function:${self:custom.settings.workflowLambdaName}'
-              - Effect: Allow
-                Action:
-                  - lambda:AddPermission
-                Resource:
-                  - !Sub 'arn:${AWS::Partition}:lambda:${AWS::Region}:${AWS::AccountId}:function:${self:custom.settings.namespace}-Cognito-PreSignUp'
-              - Effect: Allow
-                Action:
-                  - lambda:GetFunction
-                  - lambda:publishVersion
-                  - lambda:EnableReplication
-                Resource:
-                  - ${self:custom.settings.edgeLambdaArn}
-                  - ${self:custom.settings.edgeLambdaArn}:* # appending ':*' to allow actions on specific versions of the lambda
+        #       - Effect: Allow
+        #         Action:
+        #           - lambda:AddPermission
+        #         Resource:
+        #           - !Sub 'arn:${AWS::Partition}:lambda:${AWS::Region}:${AWS::AccountId}:function:${self:custom.settings.namespace}-Cognito-PreSignUp'
+        #       - Effect: Allow
+        #         Action:
+        #           - lambda:GetFunction
+        #           - lambda:publishVersion
+        #           - lambda:EnableReplication
+        #         Resource:
+        #           - ${self:custom.settings.edgeLambdaArn}
+        #           - ${self:custom.settings.edgeLambdaArn}:* # appending ':*' to allow actions on specific versions of the lambda
         - PolicyName: service-catalog-access
           PolicyDocument:
             Statement:

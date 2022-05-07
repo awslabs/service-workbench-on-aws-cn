@@ -41,7 +41,6 @@ const _ = require('lodash');
  */
 function toAppStackCfnResource(dsAccountEntity, swbMainAccountId) {
   const { id, qualifier, stack, mainRegion } = dsAccountEntity;
-
   const name = `${qualifier}-app-role-stack`;
   // cfn logical id can not have '-'
   const logicalId = `AppRoleStack${_.replace(qualifier, /-/g, '')}`;

@@ -24,7 +24,7 @@ postDeployment:
     APP_COGNITO_AUTH_N_PROVIDER_TITLE: ${self:custom.settings.cognitoAuthNProviderTitle}
     APP_BACKEND_STACK_NAME: ${self:custom.settings.backendStackName}
     APP_WORKFLOW_LAMBDA_NAME: ${self:custom.settings.workflowLambdaName}
-    APP_EDGE_LAMBDA_ARN: ${self:custom.settings.edgeLambdaArn}
+    # APP_EDGE_LAMBDA_ARN: ${self:custom.settings.edgeLambdaArn}
     APP_CLOUD_FRONT_ID: ${self:custom.settings.cloudFrontId}
     APP_ENABLE_EXTERNAL_RESEARCHERS: ${self:custom.settings.enableExternalResearchers}
     APP_CREATE_SERVICE_CATALOG_PORTFOLIO: ${self:custom.settings.createServiceCatalogPortfolio}
@@ -43,6 +43,9 @@ postDeployment:
     APP_AUTO_CONFIRM_NATIVE_USERS: ${self:custom.settings.autoConfirmNativeUsers}
     APP_NATIVE_ADMIN_PASSWORD_PARAM_NAME: ${self:custom.settings.nativeAdminPasswordParamName}
     APP_ENV_NAME: ${self:custom.settings.envName}
+    APP_AWS_SUFFIX: ${self:custom.settings.awsSuffix}
+    APP_AWS_PARTITION: ${self:custom.settings.awsPartition}
+    
 
 egressStoreObjectsHandler:
   role: RoleEgressStoreObjectsHandler

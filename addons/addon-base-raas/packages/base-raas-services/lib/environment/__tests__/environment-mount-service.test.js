@@ -106,6 +106,14 @@ describe('EnvironmentMountService', () => {
           Resource: [`arn:aws:s3:::${s3BucketName}/${s3Prefix}*`],
         },
       ];
+      service._settings = {
+        get: settingName => {
+          if (settingName === 'awsPartition') {
+            return 'aws';
+          }
+          return undefined;
+        },
+      };
 
       // OPERATE
       // eslint-disable-next-line prefer-const

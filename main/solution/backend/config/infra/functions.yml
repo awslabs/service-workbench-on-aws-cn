@@ -201,7 +201,7 @@ workflowLoopRunner:
     APP_ARTIFACTS_BUCKET_NAME: ${self:custom.settings.deploymentBucketName}
     APP_ENVIRONMENT_INSTANCE_FILES: ${self:custom.settings.environmentInstanceFiles}
     APP_STUDY_DATA_KMS_KEY_ALIAS: ${self:custom.settings.studyDataKmsKeyAlias}
-    APP_STUDY_DATA_KMS_KEY_ARN: !Sub arn:aws:kms:${AWS::Region}:${AWS::AccountId}:alias/${self:custom.settings.studyDataKmsKeyAlias}
+    APP_STUDY_DATA_KMS_KEY_ARN: !Sub arn:${AWS::Partition}:kms:${AWS::Region}:${AWS::AccountId}:alias/${self:custom.settings.studyDataKmsKeyAlias}
     APP_STUDY_DATA_KMS_POLICY_WORKSPACE_SID: ${self:custom.settings.studyDataKmsPolicyWorkspaceSid}
     APP_ENV_MGMT_ROLE_ARN: !Sub arn:${AWS::Partition}:iam::${AWS::AccountId}:role/${self:custom.settings.envMgmtRoleName}
     APP_LAUNCH_CONSTRAINT_ROLE_PREFIX: ${self:custom.settings.launchConstraintRolePrefix}
@@ -214,9 +214,9 @@ workflowLoopRunner:
     APP_ENABLE_EGRESS_STORE: ${self:custom.settings.enableEgressStore}
     APP_EGRESS_STORE_BUCKET_NAME: ${self:custom.settings.egressStoreBucketName}
     APP_EGRESS_STORE_KMS_KEY_ALIAS_ARN: ${self:custom.settings.egressStoreKmsKeyAliasArn}
-    APP_EGRESS_STORE_KMS_KEY_ARN: !Sub arn:aws:kms:${AWS::Region}:${AWS::AccountId}:alias/${self:custom.settings.egressStoreKmsKeyAlias}
+    APP_EGRESS_STORE_KMS_KEY_ARN: !Sub arn:${AWS::Partition}:kms:${AWS::Region}:${AWS::AccountId}:alias/${self:custom.settings.egressStoreKmsKeyAlias}
     APP_EGRESS_STORE_KMS_POLICY_WORKSPACE_SID: ${self:custom.settings.egressStoreKmsPolicyWorkspaceSid}
     APP_IS_APP_STREAM_ENABLED: ${self:custom.settings.isAppStreamEnabled}
     APP_ENABLE_FLOW_LOGS: ${self:custom.settings.enableFlowLogs}
-    APP_PERMISSION_BOUNDARY_POLICY_STUDY_BUCKET_ARN: !Sub arn:aws:iam::${AWS::AccountId}:policy/${self:custom.settings.permissionBoundaryPolicyStudyBucket}
+    APP_PERMISSION_BOUNDARY_POLICY_STUDY_BUCKET_ARN: !Sub arn:${AWS::Partition}:iam::${AWS::AccountId}:policy/${self:custom.settings.permissionBoundaryPolicyStudyBucket}
     APP_LOGGING_BUCKET_NAME: ${self:custom.settings.loggingBucketName}

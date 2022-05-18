@@ -54,7 +54,13 @@ $EXEC sls invoke -f preDeployment -s "$STAGE"
 popd > /dev/null
 
 componentDeploy "backend" "Backend"
-componentDeploy "edge-lambda" "Edge-Lambda"
+
+# get current region
+REGION=$(aws configure get region)
+if [[ $REGION != cn-* ]]; then
+  echo "deploy lambdaedge"
+  componentDeploy "edge-lambda" "Edge-Lambda"
+fi
 componentDeploy "post-deployment" "Post-Deployment"
 goComponentDeploy "environment-tools" "Environment-Tools"
 

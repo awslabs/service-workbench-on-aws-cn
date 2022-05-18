@@ -43,6 +43,8 @@ postDeployment:
     APP_AUTO_CONFIRM_NATIVE_USERS: ${self:custom.settings.autoConfirmNativeUsers}
     APP_NATIVE_ADMIN_PASSWORD_PARAM_NAME: ${self:custom.settings.nativeAdminPasswordParamName}
     APP_ENV_NAME: ${self:custom.settings.envName}
+    APP_AWS_SUFFIX: ${self:custom.settings.awsSuffix}
+    APP_AWS_PARTITION: ${self:custom.settings.awsPartition}
 
 egressStoreObjectsHandler:
   role: RoleEgressStoreObjectsHandler

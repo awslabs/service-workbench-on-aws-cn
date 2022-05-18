@@ -70,11 +70,12 @@ class CreateRootUserService extends Service {
     const nativeAdminPassword = this.generatePassword();
 
     const userPoolId = userPool.Id;
+    const awsSuffix = this.awsSuffix;
 
     try {
       await this.createUser({
         username: nativeAdminUserEmail,
-        authenticationProviderId: `https://cognito-idp.${awsRegion}.amazonaws.com/${userPoolId}`,
+        authenticationProviderId: `https://cognito-idp.${awsRegion}.${awsSuffix}/${userPoolId}`,
         identityProviderName: 'Cognito Native Pool',
         firstName: nativeAdminUserFirstName,
         lastName: nativeAdminUserLastName,

@@ -126,7 +126,8 @@ class AddAuthProviders extends Service {
 
       // Verify that the stored auth provider config also exists
       const awsRegion = this.settings.get(settingKeys.awsRegion);
-      const authProviderId = `https://cognito-idp.${awsRegion}.amazonaws.com/${userPool.Id}`;
+      const awsSuffix = this.awsSuffix;
+      const authProviderId = `https://cognito-idp.${awsRegion}.${awsSuffix}/${userPool.Id}`;
 
       const authenticationProviderConfigService = await this.service('authenticationProviderConfigService');
       authProviderExists = !!(await authenticationProviderConfigService.getAuthenticationProviderConfig(

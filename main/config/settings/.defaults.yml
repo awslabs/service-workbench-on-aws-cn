@@ -59,8 +59,8 @@ deploymentBucketPolicy:
           'Action': 's3:*',
           'Resource':
             [
-              'arn:aws:s3:::${self:custom.settings.deploymentBucketName}/*',
-              'arn:aws:s3:::${self:custom.settings.deploymentBucketName}',
+              'arn:${self:custom.settings.awsPartition}:s3:::${self:custom.settings.deploymentBucketName}/*',
+              'arn:${self:custom.settings.awsPartition}:s3:::${self:custom.settings.deploymentBucketName}',
             ],
           'Condition': { 'Bool': { 'aws:SecureTransport': 'false' } },
         },
@@ -69,7 +69,7 @@ deploymentBucketPolicy:
           'Effect': 'Deny',
           'Principal': '*',
           'Action': 's3:*',
-          'Resource': 'arn:aws:s3:::${self:custom.settings.deploymentBucketName}/*',
+          'Resource': 'arn:${self:custom.settings.awsPartition}:s3:::${self:custom.settings.deploymentBucketName}/*',
           'Condition': { 'StringNotEquals': { 's3:signatureversion': 'AWS4-HMAC-SHA256' } },
         },
       ],
@@ -202,7 +202,7 @@ dbEgressStore: ${self:custom.settings.dbPrefix}-EgressStore
 egressNotificationBucketName: ${self:custom.settings.globalNamespace}-egress-notification-bucket
 
 # The ARN of egress notification topic
-egressNotificationSnsTopicArn: arn:aws:sns:${self:custom.settings.awsRegion}:${self:custom.settings.awsAccountInfo.awsAccountId}:${self:custom.settings.egressNotificationTopicName}
+egressNotificationSnsTopicArn: arn:${self:custom.settings.awsPartition}:sns:${self:custom.settings.awsRegion}:${self:custom.settings.awsAccountInfo.awsAccountId}:${self:custom.settings.egressNotificationTopicName}
 
 # The name of the IAM role created for the Lambda egressStoreObjectsHandler
 egressNotificationTopicName: ${self:custom.settings.namespace}-EgressTopic
@@ -229,3 +229,11 @@ dbStudyPermissions: ${self:custom.settings.dbPrefix}-StudyPermissions
 
 # DynamoDB table name for Environments created using AWS Service Catalog
 dbEnvironmentsSc: ${self:custom.settings.dbPrefix}-EnvironmentsSc
+
+# AWS partition, 'aws' for global regions, 'aws-cn' for China Mainland regions
+awsPartition: aws
+ 
+# AWS domain suffix
+# China Mainland regions: 'amazonaws.com.cn'
+# Global regions: 'amazonaws.com'
+awsSuffix: amazonaws.com

@@ -154,6 +154,15 @@ describe('AwsAccountService', () => {
         s3Prefix: 'dummyKey',
       });
 
+      service._settings = {
+        get: settingName => {
+          if (settingName === 'awsPartition') {
+            return 'aws';
+          }
+          return undefined;
+        },
+      };
+
       const accountList = [{ accountId: '0123456789' }];
       service.list = jest.fn().mockReturnValueOnce(accountList);
 

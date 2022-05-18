@@ -2369,7 +2369,7 @@ importers:
       serverless: 1.67.3
       serverless-deployment-bucket: 1.1.1
       serverless-offline: 5.12.1_serverless@1.67.3
-      serverless-s3-sync: 1.12.0
+      serverless-s3-sync: 1.17.3
       serverless-webpack: 5.3.4_webpack@4.42.1
       source-map-support: 0.5.16
       webpack: 4.42.1
@@ -2433,7 +2433,7 @@ importers:
       serverless: ^1.63.0
       serverless-deployment-bucket: ^1.1.0
       serverless-offline: ^5.12.1
-      serverless-s3-sync: ^1.12.0
+      serverless-s3-sync: ^1.17.3
       serverless-webpack: ^5.3.1
       services: workspace:*
       source-map-support: ^0.5.16
@@ -2529,7 +2529,7 @@ importers:
       serverless: 1.67.3
       serverless-deployment-bucket: 1.1.1
       serverless-plugin-ifelse: 1.0.7
-      serverless-s3-sync: 1.12.0
+      serverless-s3-sync: 1.17.3
       serverless-webpack: 5.3.4_webpack@4.42.1
       source-map-support: 0.5.16
       webpack: 4.42.1
@@ -2581,7 +2581,7 @@ importers:
       serverless: ^1.63.0
       serverless-deployment-bucket: ^1.1.0
       serverless-plugin-ifelse: ^1.0.7
-      serverless-s3-sync: ^1.10.2
+      serverless-s3-sync: ^1.17.3
       serverless-webpack: ^5.3.3
       services: workspace:*
       source-map-support: ^0.5.16
@@ -2793,11 +2793,11 @@ packages:
       integrity: sha512-pS5jF5DAHXeDssN9cJwOqAbgLYhJaXD2EBgeXkjfB3rrNcd7bYC9rOGckRTqyS2k2A05/N2aaRFnju81AgSDgQ==
   /@auth0/s3/1.0.0:
     dependencies:
-      aws-sdk: 2.656.0
+      aws-sdk: 2.1015.0
       fd-slicer: 1.0.1
       findit2: 2.2.3
       graceful-fs: 4.1.15
-      mime: 2.4.4
+      mime: 2.4.6
       mkdirp: 0.5.5
       pend: 1.2.0
       rimraf: 2.2.8
@@ -7255,7 +7255,7 @@ packages:
   /@types/object-assign/4.0.30:
     dev: true
     resolution:
-      integrity: sha1-iUk3HVqZ9Dge4PHfCpt6GH4H5lI=
+      integrity: sha512-HhE8gFfLj321pa6OE59QmOdL5NgIOhkdYn7MWnZTOcHOms8XFzNgr9+A0/GbN0XEX9wTM58yg4YXKhGr69QIUw==
   /@types/parse-json/4.0.0:
     resolution:
       integrity: sha512-//oorEZjL6sbPcKUaCdIGlIUeH26mgzimjBB77G6XRgnDl/L5wOnpyBGRe/Mmf5CVW3PwEBE1NjiMZ/ssFh4wA==
@@ -8563,22 +8563,6 @@ packages:
     requiresBuild: true
     resolution:
       integrity: sha512-jSM955n08r+kzCMMhOu1Dbua8SRZQKgGO1nAoUwBSlXjnLtN+F81P93h4yNBtWsxUg1mAMTP3DKJjXFFrRToPw==
-  /aws-sdk/2.656.0:
-    dependencies:
-      buffer: 4.9.1
-      events: 1.1.1
-      ieee754: 1.1.13
-      jmespath: 0.15.0
-      querystring: 0.2.0
-      sax: 1.2.1
-      url: 0.10.3
-      uuid: 3.3.2
-      xml2js: 0.4.19
-    dev: true
-    engines:
-      node: '>= 0.8.0'
-    resolution:
-      integrity: sha512-UzqDvvt6i7gpuzEdK0GT/JOfBJcsCPranzZWdQ9HR4+5E0m5kf5gybZ6OX+UseIAE2/WND6Dv0aHgiI21AKenw==
   /aws-sdk/2.721.0:
     dependencies:
       buffer: 4.9.2
@@ -9096,10 +9080,6 @@ packages:
       node: '>= 0.6.0'
     resolution:
       integrity: sha1-mBjHngWbE1X5fgQooBfIOOkLqBI=
-  /base64-js/1.3.1:
-    dev: true
-    resolution:
-      integrity: sha512-mLQ4i2QO1ytvGWFWmcngKO//JXAQueZvwEKtjgQFM4jIK0kU+ytMfplL8j+n5mspOfjHwoAg+9yhb7BwAHm36g==
   /base64-js/1.5.1:
     resolution:
       integrity: sha512-AKpaYlHn8t4SVbOHCy+b5+KKgvR4vrsD8vbvrbiQJps7fKDTkjkDry6ji0rUJjC0kzbNePLwzxq8iypo41qeWA==
@@ -9403,14 +9383,6 @@ packages:
   /buffer-xor/1.0.3:
     resolution:
       integrity: sha1-JuYe0UIvtw3ULm42cp7VHYVf6Nk=
-  /buffer/4.9.1:
-    dependencies:
-      base64-js: 1.3.1
-      ieee754: 1.1.13
-      isarray: 1.0.0
-    dev: true
-    resolution:
-      integrity: sha1-bRu2AbB6TvztlwlBMgkwJ8lbwpg=
   /buffer/4.9.2:
     dependencies:
       base64-js: 1.5.1
@@ -22822,6 +22794,16 @@ packages:
     dev: true
     resolution:
       integrity: sha512-bJYdS/J3FleL/GJXM0SnoTTNUAAyhYAh4JD4jbLEdZ83zJ4aEhPelWHOCnpVWDRf350cIS1ctyhL6P1L2c7qKA==
+  /serverless-s3-sync/1.17.3:
+    dependencies:
+      '@auth0/s3': 1.0.0
+      bluebird: 3.7.2
+      chalk: 2.4.2
+      mime: 2.4.6
+      minimatch: 3.0.4
+    dev: true
+    resolution:
+      integrity: sha512-lnet9qqu8Uh3N8lyywxWt+0eljsfiX4xVDDMLkE2ggWBGEupM4B4xBonsI1GfWgPVpd4EJOTeyFOEWUAWpINeA==
   /serverless-tencent-tools/1.0.14:
     dependencies:
       '@tencent-sdk/capi': 0.2.17

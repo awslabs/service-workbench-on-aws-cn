@@ -8,6 +8,7 @@ Conditions:
     - !Not
       - !Equals ['${self:custom.settings.domainName}', '']
     - !Equals ['${self:custom.settings.hostedZoneId}', '']
+  IsHongkongRegion: !Equals ['${self:custom.settings.awsRegion}', 'ap-east-1']
 
 Description: (SO0144) Service Workbench on AWS Solution
 
@@ -164,7 +165,7 @@ Resources:
               - 's3:GetObject'
             Effect: Allow
             Principal:
-              AWS: !Join ['', ['arn:', !Ref 'AWS::Partition', ':iam::cloudfront:user/CloudFront Origin Access Identity ', !Ref 'CloudFrontOAI']]            
+              AWS: !Join ['', ['arn:', !Ref 'AWS::Partition', ':iam::cloudfront:user/CloudFront Origin Access Identity ', !Ref 'CloudFrontOAI']]
             Resource:
               - !Join ['', ['arn:', !Ref 'AWS::Partition', ':s3:::', !Ref 'WebsiteBucket', '/*']]
           - Sid: Deny requests that do not use TLS/HTTPS
@@ -239,10 +240,13 @@ Resources:
             Cookies:
               Forward: none
           ViewerProtocolPolicy: redirect-to-https
-        PriceClass: PriceClass_100
-        Logging:
-          Bucket: ${self:custom.settings.loggingBucketName}.s3.amazonaws.com
-          Prefix: cloudfront/
+        PriceClass: PriceClass_All
+        Logging: !If
+          - IsHongkongRegion
+          - !Ref AWS::NoValue
+          - Bucket: ${self:custom.settings.loggingBucketName}.s3.${self:custom.settings.awsSuffix}
+            Prefix: cloudfront/
+
 
   CloudFrontOAI:
     Type: AWS::CloudFront::CloudFrontOriginAccessIdentity

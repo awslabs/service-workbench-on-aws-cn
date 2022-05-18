@@ -71,7 +71,7 @@ workflowStateMachineArn: 'arn:aws:states:${self:custom.settings.awsRegion}:${sel
 workflowLoopRunnerRoleName: ${self:custom.settings.namespace}-WorkflowLoopRunner
 
 # The IAM role arn for the Lambda API handler, we need to define it in the settings because it is being passed to lambdas as an env var
-workflowLoopRunnerRoleArn: 'arn:aws:iam::${self:custom.settings.awsAccountInfo.awsAccountId}:role/${self:custom.settings.workflowLoopRunnerRoleName}'
+workflowLoopRunnerRoleArn: 'arn:${self:custom.settings.awsPartition}:iam::${self:custom.settings.awsAccountInfo.awsAccountId}:role/${self:custom.settings.workflowLoopRunnerRoleName}'
 
 # The prefix of the ami used to create environments
 # This component expects these AMIs to exists in the account where the platform is deployed

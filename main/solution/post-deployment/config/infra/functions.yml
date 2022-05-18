@@ -45,6 +45,7 @@ postDeployment:
     APP_ENV_NAME: ${self:custom.settings.envName}
     APP_AWS_SUFFIX: ${self:custom.settings.awsSuffix}
     APP_AWS_PARTITION: ${self:custom.settings.awsPartition}
+    APP_DISABLE_LAMBDA_EDGE_REGIONS: ${self:custom.settings.disableLambdaEdgeRegions}
 
 egressStoreObjectsHandler:
   role: RoleEgressStoreObjectsHandler

@@ -54,7 +54,6 @@ $EXEC sls invoke -f preDeployment -s "$STAGE"
 popd > /dev/null
 
 componentDeploy "backend" "Backend"
-
 # get current region
 REGION=$(aws configure get region)
 if [[ $REGION != cn-* ]]; then

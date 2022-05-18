@@ -37,7 +37,6 @@ class CreateCloudFrontInterceptor extends Service {
   async execute() {
     // skip this execution if the regions are not support lambdaedge
     const region = this.settings.get(settingKeys.awsRegion);
-
     if (region.startsWith('cn-')) {
       return;
     }

@@ -2,6 +2,9 @@ Conditions:
   PreSignUpNativePoolUsers: !And
     - !Equals ['${self:custom.settings.enableNativeUserPoolUsers}', 'true']
     - !Equals ['${self:custom.settings.autoConfirmNativeUsers}', 'true']
+  WithLambdaEdge: !And
+    - !Not [!Equals ['${self:custom.settings.awsRegion}', 'cn-north-1']]
+    - !Not [!Equals ['${self:custom.settings.awsRegion}', 'cn-northwest-1']]
 
 Resources:
   # =============================================================================================
@@ -240,14 +243,17 @@ Resources:
                   - lambda:AddPermission
                 Resource:
                   - !Sub 'arn:${AWS::Partition}:lambda:${AWS::Region}:${AWS::AccountId}:function:${self:custom.settings.namespace}-Cognito-PreSignUp'
-              - Effect: Allow
-                Action:
-                  - lambda:GetFunction
-                  - lambda:publishVersion
-                  - lambda:EnableReplication
-                Resource:
-                  - ${self:custom.settings.edgeLambdaArn}
-                  - ${self:custom.settings.edgeLambdaArn}:* # appending ':*' to allow actions on specific versions of the lambda
+              - !If
+                  - WithLambdaEdge                 
+                  - Effect: Allow
+                    Action:
+                      - lambda:GetFunction
+                      - lambda:publishVersion
+                      - lambda:EnableReplication
+                    Resource:
+                      - ${self:custom.settings.edgeLambdaArn}
+                      - ${self:custom.settings.edgeLambdaArn}:* # appending ':*' to allow actions on specific versions of the lambda
+                  - !Ref AWS::NoValue                 
         - PolicyName: service-catalog-access
           PolicyDocument:
             Statement:

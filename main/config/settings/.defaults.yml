@@ -237,3 +237,4 @@ awsPartition: aws
 # China Mainland regions: 'amazonaws.com.cn'
 # Global regions: 'amazonaws.com'
 awsSuffix: amazonaws.com
+

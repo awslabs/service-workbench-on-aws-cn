@@ -237,3 +237,6 @@ awsPartition: aws
 # China Mainland regions: 'amazonaws.com.cn'
 # Global regions: 'amazonaws.com'
 awsSuffix: amazonaws.com
+
+# Regions that do not support lambda edge
+disableLambdaEdgeRegions: '["cn-north-1", "cn-northwest-1"]'

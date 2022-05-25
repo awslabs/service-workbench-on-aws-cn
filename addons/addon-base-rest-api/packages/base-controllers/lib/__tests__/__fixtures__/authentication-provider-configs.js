@@ -252,9 +252,9 @@ const cognitoType = {
     inputManifestForCreate: inputManifestForCreateCognito,
     inputManifestForUpdate: inputManifestForUpdateCognito,
     impl: {
-      tokenValidatorLocator: 'locator:service:cognitoUserPoolAuthenticationProviderService/validateToken',
-      tokenRevokerLocator: 'locator:service:cognitoUserPoolAuthenticationProviderService/revokeToken',
-      provisionerLocator: 'locator:service:cognitoUserPoolAuthenticationProvisionerService/provision',
+      tokenValidatorLocator: 'locator:service:authenticationProviderService/validateToken',
+      tokenRevokerLocator: 'locator:service:authenticationProviderService/revokeToken',
+      provisionerLocator: 'locator:service:authenticationProvisionerService/provision',
     },
   },
 };
@@ -369,6 +369,43 @@ const publicConfigurations = [
   },
 ];
 
+const oidcConfiguration = [
+  {
+    createdAt: '2020-02-14T22:34:22.185Z',
+    id: 'https://oidc-domain.com/auth/realms/realm',
+    config: {
+      id: 'https://oidc-domain.com/auth/realms/realm',
+      title: 'oidc',
+      signInUri:
+        'https://oidc-domain.com/auth/realms/realm/protocol/openid-connect/auth?client_id=oidc-client&redirect_uri=https://service-workbench.example.com/&scope=openid profile email&code_challenge_method=S256&code_challenge=TEMP_PKCE_VERIFIER&state=TEMP_STATE_VERIFIER&response_type=code',
+      signOutUri:
+        'https://oidc-domain.com/auth/realms/realm/protocol/openid-connect/logout?client_id=oidc-client&response_type=code&redirect_uri=https://service-workbench.example.com',
+      type: {
+        type: 'oidc',
+        title: 'oidc',
+        description: 'Authentication provider for oidc',
+        config: {
+          credentialHandlingType: 'redirect',
+        },
+      },
+    },
+  },
+];
+
+const oidcPublicConfigurations = [
+  {
+    id: 'https://oidc-domain.com/auth/realms/realm',
+    providerConfigId: 'https://oidc-domain.com/auth/realms/realm',
+    title: 'oidc',
+    type: 'oidc',
+    credentialHandlingType: 'redirect',
+    signInUri:
+      'https://oidc-domain.com/auth/realms/realm/protocol/openid-connect/auth?client_id=oidc-client&redirect_uri=https://service-workbench.example.com/&scope=openid profile email&code_challenge_method=S256&code_challenge=TEMP_PKCE_VERIFIER&state=TEMP_STATE_VERIFIER&response_type=code',
+    signOutUri:
+      'https://oidc-domain.com/auth/realms/realm/protocol/openid-connect/logout?client_id=oidc-client&response_type=code&redirect_uri=https://service-workbench.example.com',
+  },
+];
+
 module.exports = {
   getConfigurations: () => _.cloneDeep(configurations),
   getPublicConfigurations: () => _.cloneDeep(publicConfigurations),
@@ -378,4 +415,8 @@ module.exports = {
 
     return `${entry.config.signInUri}&identity_provider=COGNITO`;
   },
+
+  // For oidc test
+  getOidcConfiguration: () => _.cloneDeep(oidcConfiguration),
+  getOidcPublicConfiguration: () => _.cloneDeep(oidcPublicConfigurations),
 };

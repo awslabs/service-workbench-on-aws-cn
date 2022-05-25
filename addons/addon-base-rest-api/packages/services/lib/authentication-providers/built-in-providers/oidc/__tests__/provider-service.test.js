@@ -44,7 +44,7 @@ describe('ProviderService', () => {
     container.register('aws', new Aws());
     container.register('log', new Logger());
     container.register('settings', new SettingsServiceMock());
-    container.register('oidcUserAttributesMapperService', new UserAttributesMapperServiceMock());
+    container.register('userAttributesMapperService', new UserAttributesMapperServiceMock());
     container.register('tokenRevocationService', new TokenRevocationServiceMock());
     container.register('userService', new UserServiceMock());
     container.register('providerService', new ProviderService());
@@ -58,7 +58,7 @@ describe('ProviderService', () => {
     const settings = await container.find('settings');
     settings.get = jest.fn(input => input);
 
-    userAttributesMapperService = await container.find('oidcUserAttributesMapperService');
+    userAttributesMapperService = await container.find('userAttributesMapperService');
     userService = await container.find('userService');
   });
 

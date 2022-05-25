@@ -27,13 +27,13 @@ module.exports = {
 
     impl: {
       // The token validation locator is used to validate token upon each request.
-      tokenValidatorLocator: 'locator:service:oidcAuthenticationProviderService/validateToken',
+      tokenValidatorLocator: 'locator:service:authenticationProviderService/validateToken',
 
       // The token revocation locator is used to revoke a token upon logout.
-      tokenRevokerLocator: 'locator:service:oidcAuthenticationProviderService/revokeToken',
+      tokenRevokerLocator: 'locator:service:authenticationProviderService/revokeToken',
 
       // Similar to above locators. The provisionerLocator identifies an implementation that takes care of provisioning the authentication provider.
-      provisionerLocator: 'locator:service:oidcAuthenticationProvisionerService/provision',
+      provisionerLocator: 'locator:service:authenticationProvisionerService/provision',
     },
   },
 };

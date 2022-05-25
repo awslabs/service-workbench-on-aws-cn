@@ -27,6 +27,22 @@ To create a custom (stage-named) settings file, in the directory, `main/config/s
 | `envType`      | `prod`       |
 | `enableExternalResearchers`   | `false`        |
 
+### Custom Identity Provider
+The Service Workbench built-in IdP is Cognito User Pool, if you don't want to use Cognito User Pool as IdP, currently, Service Workbench supports OIDC IdPs, such as Keycloak, Authing, Okta and so on.
+To use OIDC IdP, you need install or apply OIDC IdP at first, and then add below configurations in `<stage>.yml` file:
+```
+oidcIssuer: xxx
+oidcClientId: xxx
+```
+
+You also need to create Service Workbench root user in OIDC IdP at first, and then configure root user into `<stage>.yml` file:
+
+```
+rootUserEmail: xxx
+rootUserFirstName: xxx
+rootUserLastName: xxx
+```
+
 ### Custom domain names
 
 To use a custom domain name, enter the domain name and the ARN for the manually created TLS certificate.

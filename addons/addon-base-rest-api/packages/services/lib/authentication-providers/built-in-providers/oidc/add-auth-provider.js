@@ -29,7 +29,7 @@ class AddAuthProvider extends Service {
     this.dependency([
       'authenticationProviderConfigService',
       'authenticationProviderTypeService',
-      'oidcAuthenticationProvisionerService',
+      'authenticationProvisionerService',
     ]);
     this.boom.extend(['oidcConfigurationFailed', 400]);
   }
@@ -60,8 +60,8 @@ class AddAuthProvider extends Service {
     const authenticationProviderConfigService = await this.service('authenticationProviderConfigService');
     await authenticationProviderConfigService.clearAllAuthenticationProviderConfigs();
 
-    const oidcAuthenticationProvisionerService = await this.service('oidcAuthenticationProvisionerService');
-    await oidcAuthenticationProvisionerService.provision({
+    const authenticationProvisionerService = await this.service('authenticationProvisionerService');
+    await authenticationProvisionerService.provision({
       providerTypeConfig: oidcAuthProviderTypeConfig,
       providerConfig: oidcAuthProviderConfig,
     });

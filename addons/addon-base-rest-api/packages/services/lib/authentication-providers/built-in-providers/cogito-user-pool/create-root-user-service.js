@@ -15,8 +15,7 @@
 
 const _ = require('lodash');
 const passwordGenerator = require('generate-password');
-const Service = require('@amzn/base-services-container/lib/service');
-const { getSystemRequestContext } = require('@amzn/base-services/lib/helpers/system-context');
+const CreateRootUserAbstractService = require('../create-root-user-abstract-service');
 
 const settingKeys = {
   paramStoreJwtSecret: 'paramStoreJwtSecret',
@@ -32,7 +31,7 @@ const settingKeys = {
   awsRegion: 'awsRegion',
 };
 
-class CreateRootUserService extends Service {
+class CreateRootUserService extends CreateRootUserAbstractService {
   constructor() {
     super();
     this.dependency(['userService', 'dbPasswordService', 'aws']);
@@ -173,11 +172,6 @@ class CreateRootUserService extends Service {
         );
       }
     }
-  }
-
-  async createUser(rawData) {
-    const userService = await this.service('userService');
-    return userService.createUser(getSystemRequestContext(), rawData);
   }
 
   async putSsmParam(rawData) {

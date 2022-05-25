@@ -31,7 +31,6 @@ async function configure(context) {
     '/',
     wrap(async (req, res) => {
       const providers = await authenticationProviderConfigService.getAuthenticationProviderConfigs();
-
       // Construct/filter results based on info that's needed client-side
       const result = [];
       providers.forEach(provider => {
@@ -44,7 +43,6 @@ async function configure(context) {
           signInUri: provider.config.signInUri,
           signOutUri: provider.config.signOutUri,
         };
-
         if (provider.config.type.type !== cognitoAuthType) {
           // For non-Cognito providers, just return their info as-is
           result.push(basePublicInfo);
@@ -83,7 +81,6 @@ async function configure(context) {
           });
         }
       });
-
       res.status(200).json(result);
     }),
   );

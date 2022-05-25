@@ -127,14 +127,15 @@ class UserAttributesMapperService extends Service {
 
     if (username.includes('\\')) {
       usernameInIdp = _.split(username, '\\')[1];
-      username = username.replace('\\', '_');
+      // username = username.replace('\\', '_');
     }
 
     if (username.includes('|')) {
       usernameInIdp = _.split(username, '|')[1];
-      username = username.replace('|', '_');
+      // username = username.replace('|', '_');
     }
 
+    username = decodedToken.email;
     return { username, usernameInIdp };
   }
 }

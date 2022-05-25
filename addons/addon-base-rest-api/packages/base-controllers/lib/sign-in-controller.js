@@ -50,7 +50,6 @@ async function configure(context) {
 
       // Make a POST request to exchange code for token
       const headers = { 'Content-Type': 'application/x-www-form-urlencoded' };
-
       try {
         const axiosClient = axios.create({
           baseURL: authCodeTokenExchangeUri,

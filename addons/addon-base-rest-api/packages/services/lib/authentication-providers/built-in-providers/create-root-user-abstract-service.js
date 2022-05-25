@@ -14,18 +14,18 @@
  */
 
 const Service = require('@amzn/base-services-container/lib/service');
+const { getSystemRequestContext } = require('@amzn/base-services/lib/helpers/system-context');
 
-class AddAuthProviders extends Service {
+class CreateRootUserAbstractService extends Service {
   constructor() {
     super();
-    this.dependency(['addAuthProvider']);
+    this.dependency(['userService']);
   }
 
-  async execute() {
-    // Setup auth provider
-    const addAuthProvider = await this.service('addAuthProvider');
-    await addAuthProvider.addAuthenticationProvider();
+  async createUser(rawData) {
+    const userService = await this.service('userService');
+    return userService.createUser(getSystemRequestContext(), rawData);
   }
 }
 
-module.exports = AddAuthProviders;
+module.exports = CreateRootUserAbstractService;

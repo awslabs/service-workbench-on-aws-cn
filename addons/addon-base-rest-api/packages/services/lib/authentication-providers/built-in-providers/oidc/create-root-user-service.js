@@ -13,9 +13,8 @@
  *  permissions and limitations under the License.
  */
 
-const Service = require('@amzn/base-services-container/lib/service');
-const { getSystemRequestContext } = require('@amzn/base-services/lib/helpers/system-context');
 const authenticationProviders = require('../../constants').authenticationProviders;
+const CreateRootUserAbstractService = require('../create-root-user-abstract-service');
 
 const settingKeys = {
   rootUserEmail: 'rootUserEmail',
@@ -24,7 +23,7 @@ const settingKeys = {
   oidcIssuer: 'oidcIssuer',
 };
 
-class CreateRootUserService extends Service {
+class CreateRootUserService extends CreateRootUserAbstractService {
   constructor() {
     super();
     this.dependency(['userService', 'aws']);
@@ -65,11 +64,6 @@ class CreateRootUserService extends Service {
         );
       }
     }
-  }
-
-  async createUser(rawData) {
-    const userService = await this.service('userService');
-    return userService.createUser(getSystemRequestContext(), rawData);
   }
 }
 

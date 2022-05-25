@@ -22,7 +22,7 @@ const authProviderConstants = require('../../constants').authenticationProviders
 class ProviderService extends Service {
   constructor() {
     super();
-    this.dependency(['aws', 'userService', 'oidcUserAttributesMapperService', 'tokenRevocationService']);
+    this.dependency(['aws', 'userService', 'userAttributesMapperService', 'tokenRevocationService']);
     this.oidcTokenVerifiersCache = {}; // Cache object containing token verifier objects.
   }
 
@@ -48,12 +48,11 @@ class ProviderService extends Service {
   }
 
   async saveUser(decodedToken, authenticationProviderId) {
-    const userAttributesMapperService = await this.service('oidcUserAttributesMapperService');
+    const userAttributesMapperService = await this.service('userAttributesMapperService');
     // Ask user attributes mapper service to read information from the decoded token and map them to user attributes
     const userAttributes = await userAttributesMapperService.mapAttributes(decodedToken);
     // If this user is authenticated via SAML or native user pool then we need to add it to our user table if it doesn't exist already
     const userService = await this.service('userService');
-
     const user = await userService.findUserByPrincipal({
       username: userAttributes.username,
       authenticationProviderId,

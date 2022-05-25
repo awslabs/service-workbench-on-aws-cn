@@ -39,7 +39,7 @@ class AddAuthProviders extends Service {
       'aws',
       'authenticationProviderConfigService',
       'authenticationProviderTypeService',
-      'cognitoUserPoolAuthenticationProvisionerService',
+      'authenticationProvisionerService',
     ]);
   }
 
@@ -143,10 +143,8 @@ class AddAuthProviders extends Service {
       ? authProviderConstants.provisioningAction.update
       : authProviderConstants.provisioningAction.create;
 
-    const cognitoAuthenticationProvisionerService = await this.service(
-      'cognitoUserPoolAuthenticationProvisionerService',
-    );
-    await cognitoAuthenticationProvisionerService.provision({
+    const authenticationProvisionerService = await this.service('authenticationProvisionerService');
+    await authenticationProvisionerService.provision({
       providerTypeConfig: cognitoAuthProviderTypeConfig,
       providerConfig: cognitoAuthProviderConfig,
       action,

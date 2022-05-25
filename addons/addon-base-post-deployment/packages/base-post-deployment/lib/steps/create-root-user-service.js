@@ -14,35 +14,16 @@
  */
 
 const Service = require('@amzn/base-services-container/lib/service');
-const authProviderConstants = require('@amzn/base-api-services/lib/authentication-providers/constants')
-  .authenticationProviders;
-
-const settingKeys = {
-  defaultIdpType: 'defaultIdpType',
-};
 
 class CreateRootUserService extends Service {
   constructor() {
     super();
-    this.dependency(['oidcCreateRootUserService', 'cognitoCreateRootUserService']);
+    this.dependency(['createRootUserService']);
   }
 
   async execute() {
-    const defaultIdpType = this.settings.get(settingKeys.defaultIdpType);
-    switch (defaultIdpType) {
-      case authProviderConstants.oidcAuthProviderTypeId: {
-        const oidcCreateRootUserService = await this.service('oidcCreateRootUserService');
-        await oidcCreateRootUserService.createRootUser();
-        break;
-      }
-      case authProviderConstants.cognitoAuthProviderTypeId: {
-        const cognitoCreateRootUserService = await this.service('cognitoCreateRootUserService');
-        await cognitoCreateRootUserService.createRootUser();
-        break;
-      }
-      default:
-        console.log(`Sorry, we are out of ${defaultIdpType}.`);
-    }
+    const createRootUserService = await this.service('createRootUserService');
+    await createRootUserService.createRootUser();
   }
 }
 

@@ -56,6 +56,7 @@ async function configure(context) {
           baseURL: authCodeTokenExchangeUri,
           headers,
         });
+
         const response = await axiosClient.post(authCodeTokenExchangeUri, querystring.stringify(params));
         const idToken = _.get(response, 'data.id_token');
         res.status(200).json({ token: idToken });

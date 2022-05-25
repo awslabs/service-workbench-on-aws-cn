@@ -16,7 +16,7 @@ Conditions:
     - !Not [!Equals ['${self:custom.settings.awsRegion}', 'cn-northwest-1']]
   IsHongkongRegion: !Equals ['${self:custom.settings.awsRegion}', 'ap-east-1']
 
-Description: (SO0144) Service Workbench on AWS Solution
+Description: (SO0144-ext) Service Workbench on AWS Solution
 
 Mappings:
   ELBAccountIDMapping:

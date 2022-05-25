@@ -22,7 +22,7 @@ const { getCognitoTokenVerifier } = require('./cognito-token-verifier');
 class ProviderService extends Service {
   constructor() {
     super();
-    this.dependency(['aws', 'userService', 'userAttributesMapperService', 'tokenRevocationService']);
+    this.dependency(['aws', 'userService', 'cognitoUserPoolUserAttributesMapperService', 'tokenRevocationService']);
     this.cognitoTokenVerifiersCache = {}; // Cache object containing token verifier objects. Each token verifier is keyed by the userPoolUri
   }
 
@@ -90,7 +90,7 @@ class ProviderService extends Service {
   }
 
   async saveUser(decodedToken, authenticationProviderId) {
-    const userAttributesMapperService = await this.service('userAttributesMapperService');
+    const userAttributesMapperService = await this.service('cognitoUserPoolUserAttributesMapperService');
     // Ask user attributes mapper service to read information from the decoded token and map them to user attributes
     const userAttributes = await userAttributesMapperService.mapAttributes(decodedToken);
 

@@ -16,6 +16,7 @@ infrastructureStackName: ${self:custom.settings.namespace}-infrastructure
 
 # The URL of the website as defined by the infrastructure stack
 # Used when provisioning a Cognito user pool so that Cognito can direct a user back to the site after auth
+# websiteUrl: ${cf:${self:custom.settings.infrastructureStackName}.WebsiteUrl}
 websiteUrl: ${cf:${self:custom.settings.infrastructureStackName}.WebsiteUrl}
 
 # If a Cognito user pool is setup for the solution, this setting indicates whether native

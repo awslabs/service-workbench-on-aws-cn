@@ -110,3 +110,25 @@
 # China Mainland regions: 'amazonaws.com.cn'
 # Global regions: 'amazonaws.com'
 #awsSuffix: amazonaws.com
+
+# # For China Mainland regions, we cannot use cloudfront url directly, we should have domain before deploying service workbench
+# websiteUrl: https://example.com
+
+# Set default IDP type
+# value: oidc/cognito
+# defaultIdpType: cognito
+
+# oidc client id, it should be configured before deploying service workbench
+# oidcClientId: ExampleClientId
+
+# oidc issuer, oidc should be deployed before deploying service workbench
+# oidcIssuer: https://example.keycloak.com
+
+# root user email, the root user should be created in installed oidc before deploying service workbench
+# rootUserEmail: root@example.com
+
+# Root user's first name
+# rootUserFirstName: root
+
+# Root user's last name
+# rootUserLastName: root

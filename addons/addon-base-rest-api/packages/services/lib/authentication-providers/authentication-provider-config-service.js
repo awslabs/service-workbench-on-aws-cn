@@ -46,7 +46,25 @@ class AuthenticationProviderConfigService extends Service {
     return _.map(dbResults, toProviderConfig);
   }
 
+  async clearAllAuthenticationProviderConfigs() {
+    const dbService = await this.service('dbService');
+    const table = this.settings.get(settingKeys.tableName);
+
+    const providerConfigs = await this.getAuthenticationProviderConfigs();
+    console.log('clearAllAuthenticationProviderConfigs mingtong step providerConfigs', providerConfigs);
+
+    _.forEach(providerConfigs, (providerConfig) => {
+      console.log('clearAllAuthenticationProviderConfigs mingtong step providerConfig', providerConfig);
+      dbService.helper
+        .deleter()
+        .table(table)
+        .key({ id: providerConfig.id})
+        .delete(); 
+    });  
+  }
+
   async getAuthenticationProviderConfig(providerId, fields = []) {
+    console.log('getAuthenticationProviderConfig mingtong step providerId', providerId);
     if (providerId === 'internal') {
       throw this.boom.badRequest(
         'Internal users cannot log in. Please use an external IdP or native Cognito user pool user.',
@@ -55,12 +73,14 @@ class AuthenticationProviderConfigService extends Service {
     }
     const dbService = await this.service('dbService');
     const table = this.settings.get(settingKeys.tableName);
+    console.log('getAuthenticationProviderConfig mingtong step table', table);
     const dbResult = await dbService.helper
       .getter()
       .table(table)
       .key({ id: providerId })
       .projection(fields)
       .get();
+    console.log('getAuthenticationProviderConfig mingtong step dbResult', dbResult);      
     return dbResult && toProviderConfig(dbResult);
   }
 
@@ -82,11 +102,12 @@ class AuthenticationProviderConfigService extends Service {
     providerConfig,
     status = authProviderConstants.status.initializing,
   }) {
-    const jsonSchemaValidationService = await this.service('jsonSchemaValidationService');
-    const providerConfigJsonSchema = _.get(providerTypeConfig, 'config.inputSchema');
+    // TODO mingtong
+    // const jsonSchemaValidationService = await this.service('jsonSchemaValidationService');
+    // const providerConfigJsonSchema = _.get(providerTypeConfig, 'config.inputSchema');
 
-    // Validate input
-    await jsonSchemaValidationService.ensureValid(providerConfig, providerConfigJsonSchema);
+    // // Validate input
+    // await jsonSchemaValidationService.ensureValid(providerConfig, providerConfigJsonSchema);
 
     const dbService = await this.service('dbService');
     const table = this.settings.get(settingKeys.tableName);

@@ -90,11 +90,12 @@ const Authentication = types
       // Then store auth token as appIdToken on client
       let newIdToken;
       if (authCode) {
-        const mainUrl = document.location.href.split('?code')[0];
+        const mainUrl = document.location.href.split('?')[0];
         newIdToken = await getIdToken({
           code: authCode,
           pkce: pkceCodeVerifier,
           mainUrl,
+          authProviderId: self.selectedAuthenticationProvider.providerConfigId,
         });
 
         // we remove the code from the url for a good security measure
@@ -102,6 +103,7 @@ const Authentication = types
       }
 
       const idTokenFromLocal = storage.getItem(localStorageKeys.appIdToken);
+      console.log('getIdToken mingtong step idTokenFromLocal', idTokenFromLocal);
 
       const idToken = _.isUndefined(newIdToken) ? idTokenFromLocal : newIdToken.token;
       return idToken;

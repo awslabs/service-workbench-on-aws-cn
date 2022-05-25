@@ -14,7 +14,9 @@
  */
 
 const CognitoUserPoolAuthenticationProviderService = require('./built-in-providers/cogito-user-pool/provider-service');
-const UserAttributesMapperService = require('./built-in-providers/cogito-user-pool/user-attributes-mapper-service');
+const CognitoUserPoolUserAttributesMapperService = require('./built-in-providers/cogito-user-pool/user-attributes-mapper-service');
+const OidcAuthenticationProviderService = require('./built-in-providers/oidc/provider-service');
+const OidcUserAttributesMapperService = require('./built-in-providers/oidc/user-attributes-mapper-service');
 
 function registerBuiltInAuthProviders(container) {
   // --- COGNITO USER POOL AUTHENTICATION PROVIDER RELATED --- //
@@ -23,7 +25,9 @@ function registerBuiltInAuthProviders(container) {
     'cognitoUserPoolAuthenticationProviderService',
     new CognitoUserPoolAuthenticationProviderService(),
   );
-  container.register('userAttributesMapperService', new UserAttributesMapperService());
+  container.register('cognitoUserPoolUserAttributesMapperService', new CognitoUserPoolUserAttributesMapperService());
+  container.register('oidcAuthenticationProviderService', new OidcAuthenticationProviderService());
+  container.register('oidcUserAttributesMapperService', new OidcUserAttributesMapperService());
 }
 
 module.exports = registerBuiltInAuthProviders;

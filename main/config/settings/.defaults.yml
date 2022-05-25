@@ -238,3 +238,6 @@ awsPartition: aws
 # Global regions: 'amazonaws.com'
 awsSuffix: amazonaws.com
 
+# Set default IDP type
+# value: oidc/cognito
+defaultIdpType: cognito

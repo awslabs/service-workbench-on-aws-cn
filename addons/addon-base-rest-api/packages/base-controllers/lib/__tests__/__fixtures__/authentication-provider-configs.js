@@ -323,6 +323,7 @@ const configurations = [
 const publicConfigurations = [
   {
     id: 'https://cognito-idp.us-east-1.amazonaws.com/us-east-1_poolId1',
+    providerConfigId: 'https://cognito-idp.us-east-1.amazonaws.com/us-east-1_poolId1',
     title: 'Login using Active Directory',
     type: 'cognito_user_pool',
     credentialHandlingType: 'redirect',
@@ -334,6 +335,7 @@ const publicConfigurations = [
   },
   {
     id: 'datalake.example.com',
+    providerConfigId: 'https://cognito-idp.us-east-1.amazonaws.com/us-east-1_poolId1',
     title: 'Login using Active Directory',
     type: 'cognito_user_pool_federated_idp',
     credentialHandlingType: 'redirect',
@@ -345,6 +347,7 @@ const publicConfigurations = [
   {
     id: 'https://cognito-idp.us-east-1.amazonaws.com/us-east-1_poolId2',
     title: 'Login using Active Directory 2',
+    providerConfigId: 'https://cognito-idp.us-east-1.amazonaws.com/us-east-1_poolId2',
     type: 'cognito_user_pool',
     credentialHandlingType: 'redirect',
     signOutUri:
@@ -355,6 +358,7 @@ const publicConfigurations = [
   },
   {
     id: 'datalake2.example.com',
+    providerConfigId: 'https://cognito-idp.us-east-1.amazonaws.com/us-east-1_poolId2',
     title: 'Login using Active Directory 2',
     type: 'cognito_user_pool_federated_idp',
     credentialHandlingType: 'redirect',

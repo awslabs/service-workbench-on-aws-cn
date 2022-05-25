@@ -240,3 +240,7 @@ awsSuffix: amazonaws.com
 
 # Regions that do not support lambda edge
 disableLambdaEdgeRegions: '["cn-north-1", "cn-northwest-1"]'
+
+# Set default IDP type
+# value: keycloak/cognito
+defaultIdpType: cognito

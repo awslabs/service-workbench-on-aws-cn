@@ -39,6 +39,7 @@ async function configure(context) {
           id: provider.config.id,
           title: provider.config.title,
           type: provider.config.type.type,
+          providerConfigId: provider.config.id,
           credentialHandlingType: provider.config.type.config.credentialHandlingType,
           signInUri: provider.config.signInUri,
           signOutUri: provider.config.signOutUri,

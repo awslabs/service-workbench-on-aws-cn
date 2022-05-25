@@ -237,3 +237,7 @@ awsPartition: aws
 # China Mainland regions: 'amazonaws.com.cn'
 # Global regions: 'amazonaws.com'
 awsSuffix: amazonaws.com
+
+# Set default IDP type
+# value: keycloak/cognito
+defaultIdpType: cognito

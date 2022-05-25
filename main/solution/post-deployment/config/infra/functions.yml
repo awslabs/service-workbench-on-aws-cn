@@ -45,7 +45,10 @@ postDeployment:
     APP_ENV_NAME: ${self:custom.settings.envName}
     APP_AWS_SUFFIX: ${self:custom.settings.awsSuffix}
     APP_AWS_PARTITION: ${self:custom.settings.awsPartition}
-    APP_DISABLE_LAMBDA_EDGE_REGIONS: ${self:custom.settings.disableLambdaEdgeRegions}
+    APP_KEY_CLOAK_CLIENT_ID: ${self:custom.settings.keyCloakClientId}
+    APP_KEY_CLOAK_URL: ${self:custom.settings.keyCloakUrl}
+    APP_KEY_CLOAK_REALM: ${self:custom.settings.keyCloakRealm}
+    APP_DEFAULT_IDP_TYPE: ${self:custom.settings.defaultIdpType}
 
 egressStoreObjectsHandler:
   role: RoleEgressStoreObjectsHandler

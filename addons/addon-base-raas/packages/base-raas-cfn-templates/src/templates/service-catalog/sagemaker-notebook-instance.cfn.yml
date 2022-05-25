@@ -6,6 +6,9 @@ Parameters:
   SolutionNamespace:
     Type: String
     Description: The namespace value provided when onboarding the Member account
+  TestParameter:
+    Type: String
+    Description: An environment name that will be prefixed to resource names    
   Namespace:
     Type: String
     Description: An environment name that will be prefixed to resource names

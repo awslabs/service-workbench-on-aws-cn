@@ -13,8 +13,11 @@
  *  permissions and limitations under the License.
  */
 
+const querystring = require('querystring');
 const _ = require('lodash');
 const axios = require('axios').default;
+const authProviderConstants = require('@amzn/base-api-services/lib/authentication-providers/constants')
+  .authenticationProviders;
 
 async function configure(context) {
   const router = context.router();
@@ -28,22 +31,22 @@ async function configure(context) {
   router.post(
     '/',
     wrap(async (req, res) => {
-      const { code, pkce, mainUrl } = req.body;
-
-      const providers = await authenticationProviderConfigService.getAuthenticationProviderConfigs();
-      const cognitoAuthConfig = _.find(providers, provider => {
-        return provider.config.type.type === 'cognito_user_pool';
-      });
-
+      const { code, pkce, mainUrl, authProviderId } = req.body;
+      const authProviderConfig = await authenticationProviderConfigService.getAuthenticationProviderConfig(
+        authProviderId,
+      );
+      if (!authProviderConfig) {
+        throw boom.badRequest('Internal error while get id token', true);
+      }
       const params = {
         code,
         grant_type: 'authorization_code',
-        client_id: cognitoAuthConfig.config.clientId,
+        client_id: authProviderConfig.config.clientId,
         redirect_uri: mainUrl,
         code_verifier: pkce,
       };
 
-      const authCodeTokenExchangeUri = cognitoAuthConfig.config.authCodeTokenExchangeUri;
+      const authCodeTokenExchangeUri = authProviderConfig.config.authCodeTokenExchangeUri;
 
       // Make a POST request to exchange code for token
       const headers = { 'Content-Type': 'application/x-www-form-urlencoded' };
@@ -53,9 +56,16 @@ async function configure(context) {
           baseURL: authCodeTokenExchangeUri,
           headers,
         });
-
-        const response = await axiosClient.post(authCodeTokenExchangeUri, params, { params });
-        res.status(200).json({ token: _.get(response, 'data.id_token') });
+        let response;
+        let idToken;
+        if (authProviderConfig.config.type.type === authProviderConstants.keycloakAuthProviderTypeId) {
+          response = await axiosClient.post(authCodeTokenExchangeUri, querystring.stringify(params));
+          idToken = _.get(response, 'data.access_token');
+        } else {
+          response = await axiosClient.post(authCodeTokenExchangeUri, params, { params });
+          idToken = _.get(response, 'data.id_token');
+        }
+        res.status(200).json({ token: idToken });
       } catch (e) {
         throw boom.badRequest(`Error received while  call: ${e}`, true);
       }

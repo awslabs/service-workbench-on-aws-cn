@@ -17,115 +17,72 @@ const _ = require('lodash');
 const Service = require('@amzn/base-services-container/lib/service');
 const { getSystemRequestContext } = require('@amzn/base-services/lib/helpers/system-context');
 
-const { getCognitoTokenVerifier } = require('./cognito-token-verifier');
+const { getKeycloakTokenVerifier } = require('./keycloak-token-verifier');
+
+const settingKeys = {
+  keyCloakUrl: 'keyCloakUrl',
+  keyCloakRealm: 'keyCloakRealm',
+};
 
 class ProviderService extends Service {
   constructor() {
     super();
-    this.dependency(['aws', 'userService', 'cognitoUserPoolUserAttributesMapperService', 'tokenRevocationService']);
-    this.cognitoTokenVerifiersCache = {}; // Cache object containing token verifier objects. Each token verifier is keyed by the userPoolUri
+    this.dependency(['aws', 'userService', 'keycloakUserAttributesMapperService', 'tokenRevocationService']);
+    this.keycloakTokenVerifiersCache = {}; // Cache object containing token verifier objects. Each token verifier is keyed by the userPoolUri
   }
 
-  // eslint-disable-next-line no-unused-vars
   async validateToken({ token, issuer }, providerConfig) {
+    const keyCloakRealm = this.settings.get(settingKeys.keyCloakRealm);
+    const keyCloakUrl = this.settings.get(settingKeys.keyCloakUrl);
     if (_.isEmpty(token)) {
       throw this.boom.forbidden('no jwt token was provided', true);
     }
-    // -- Check if this token is revoked (may be due to an earlier logout)
+    // -- Check if this token is revoked
     const tokenRevocationService = await this.service('tokenRevocationService');
     const isRevoked = await tokenRevocationService.isRevoked({ token });
     if (isRevoked) {
       throw this.boom.invalidToken('The token is revoked', true);
     }
-
     // In case of cognito, the issuer is the cognito userPoolUri
-    const userPoolUri = issuer;
-    let cognitoTokenVerifier = this.cognitoTokenVerifiersCache[userPoolUri];
-    if (!cognitoTokenVerifier) {
+    let keycloakTokenVerifier = this.keycloakTokenVerifiersCache[issuer];
+    if (!keycloakTokenVerifier) {
       // No cognitoTokenVerifier in the cache so create a new one
-      cognitoTokenVerifier = await getCognitoTokenVerifier(userPoolUri, this.log);
+      keycloakTokenVerifier = await getKeycloakTokenVerifier(keyCloakUrl, keyCloakRealm);
       // Add newly created cognitoTokenVerifier to the cache
-      this.cognitoTokenVerifiersCache[userPoolUri] = cognitoTokenVerifier;
+      this.keycloakTokenVerifiersCache[issuer] = keycloakTokenVerifier;
     }
     // User the cognitoTokenVerifier to validate cognito token
-    const verifiedToken = await cognitoTokenVerifier.verify(token);
+    const verifiedToken = await keycloakTokenVerifier.verify(token);
     const { uid, username, identityProviderName } = await this.saveUser(verifiedToken, providerConfig.config.id);
     return { verifiedToken, username, uid, identityProviderName };
   }
 
-  // Username in Cognito user pool should be the same as Email. So save it in user pool accordingly
-  // Once email is updated correctly for the native pool user,
-  // users can leverage Cognito native user pool's Forgot Password feature to get temporary credentials
-  async syncNativeEmailWithUsername(username, authenticationProviderId) {
-    const aws = await this.service('aws');
-    const userPoolId = authenticationProviderId.split('/')[3];
-    const cognitoIdentityServiceProvider = new aws.sdk.CognitoIdentityServiceProvider();
-    const userData = await cognitoIdentityServiceProvider
-      .adminGetUser({ Username: username, UserPoolId: userPoolId })
-      .promise();
-    const attributes = _.get(userData, 'UserAttributes', []);
-    const attributesResult = {};
-    _.forEach(attributes, item => {
-      attributesResult[item.Name] = item.Value;
-    });
-
-    if (_.isUndefined(attributesResult.email)) {
-      await cognitoIdentityServiceProvider
-        .adminUpdateUserAttributes({
-          UserAttributes: [
-            {
-              Name: 'email',
-              Value: username,
-            },
-            {
-              Name: 'email_verified',
-              Value: 'true',
-            },
-          ],
-          UserPoolId: userPoolId,
-          Username: username,
-        })
-        .promise();
-    }
-  }
-
   async saveUser(decodedToken, authenticationProviderId) {
-    const userAttributesMapperService = await this.service('cognitoUserPoolUserAttributesMapperService');
+    const userAttributesMapperService = await this.service('keycloakUserAttributesMapperService');
     // Ask user attributes mapper service to read information from the decoded token and map them to user attributes
     const userAttributes = await userAttributesMapperService.mapAttributes(decodedToken);
+    // If this user is authenticated via SAML or native user pool then we need to add it to our user table if it doesn't exist already
+    const userService = await this.service('userService');
 
-    if (userAttributes.isNativePoolUser) {
-      userAttributes.username = userAttributes.usernameInIdp;
-      userAttributes.email = userAttributes.usernameInIdp;
-
-      // For native pool users, authenticationProviderId is in the format https://cognito-idp.<region>.amazonaws.com/<userPoolId>
-      await this.syncNativeEmailWithUsername(userAttributes.usernameInIdp, authenticationProviderId);
-    }
-
-    if (userAttributes.isSamlAuthenticatedUser || userAttributes.isNativePoolUser) {
-      // If this user is authenticated via SAML or native user pool then we need to add it to our user table if it doesn't exist already
-      const userService = await this.service('userService');
-
-      const user = await userService.findUserByPrincipal({
-        username: userAttributes.username,
-        authenticationProviderId,
-        identityProviderName: userAttributes.identityProviderName,
-      });
-      if (user) {
-        await this.updateUser(userAttributes, user);
-        userAttributes.uid = user.uid;
-      } else {
-        const createdUser = await this.createUser(authenticationProviderId, userAttributes);
-        userAttributes.uid = createdUser.uid;
-      }
+    const user = await userService.findUserByPrincipal({
+      username: userAttributes.username,
+      authenticationProviderId,
+      identityProviderName: 'Keycloak',
+    });
+    if (user) {
+      await this.updateUser(userAttributes, user);
+      userAttributes.uid = user.uid;
+    } else {
+      const createdUser = await this.createUser(authenticationProviderId, userAttributes);
+      userAttributes.uid = createdUser.uid;
     }
     return userAttributes;
   }
 
   /**
-   * Creates a user in the system based on the user attributes provided by the SAML Identity Provider (IdP)
+   * Creates a user in the system based on the user attributes provided by the Identity Provider (IdP)
    * @param authenticationProviderId ID of the authentication provider
-   * @param userAttributes An object containing attributes mapped from SAML IdP
+   * @param userAttributes An object containing attributes mapped from IdP
    * @returns {Promise<void>}
    */
   async createUser(authenticationProviderId, userAttributes) {
@@ -142,11 +99,10 @@ class ProviderService extends Service {
   }
 
   /**
-   * Updates user in the system based on the user attributes provided by the SAML Identity Provider (IdP).
-   * This base implementation updates only those user attributes in the system which are missing or outdated but are available in
-   * the SAML user attributes.
+   * Updates user in the system based on the user attributes provided by Identity Provider.
+   * This base implementation updates only those user attributes in the system which are missing.
    *
-   * @param userAttributes An object containing attributes mapped from SAML IdP
+   * @param userAttributes An object containing attributes mapped from IdP
    * @param existingUser The existing user in the system
    *
    * @returns {Promise<void>}

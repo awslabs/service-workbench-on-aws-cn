@@ -14,7 +14,9 @@
  */
 
 const CognitoUserPoolAuthenticationProviderService = require('./built-in-providers/cogito-user-pool/provider-service');
-const UserAttributesMapperService = require('./built-in-providers/cogito-user-pool/user-attributes-mapper-service');
+const CognitoUserPoolUserAttributesMapperService = require('./built-in-providers/cogito-user-pool/user-attributes-mapper-service');
+const KeycloakAuthenticationProviderService = require('./built-in-providers/keycloak/provider-service');
+const KeycloakUserAttributesMapperService = require('./built-in-providers/keycloak/user-attributes-mapper-service');
 
 function registerBuiltInAuthProviders(container) {
   // --- COGNITO USER POOL AUTHENTICATION PROVIDER RELATED --- //
@@ -23,7 +25,9 @@ function registerBuiltInAuthProviders(container) {
     'cognitoUserPoolAuthenticationProviderService',
     new CognitoUserPoolAuthenticationProviderService(),
   );
-  container.register('userAttributesMapperService', new UserAttributesMapperService());
+  container.register('cognitoUserPoolUserAttributesMapperService', new CognitoUserPoolUserAttributesMapperService());
+  container.register('keycloakAuthenticationProviderService', new KeycloakAuthenticationProviderService());
+  container.register('keycloakUserAttributesMapperService', new KeycloakUserAttributesMapperService());
 }
 
 module.exports = registerBuiltInAuthProviders;

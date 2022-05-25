@@ -29,6 +29,8 @@ const DbPasswordService = require('@amzn/base-services/lib/db-password/db-passwo
 const AuthenticationProviderTypeService = require('@amzn/base-api-services/lib/authentication-providers/authentication-provider-type-service');
 const AuthenticationProviderConfigService = require('@amzn/base-api-services/lib/authentication-providers/authentication-provider-config-service');
 const registerBuiltInAuthProvisioners = require('@amzn/base-api-services/lib/authentication-providers/register-built-in-provisioner-services');
+const registerBuiltInAddAuthProviders = require('@amzn/base-api-services/lib/authentication-providers/register-built-in-add-auth-providers');
+const registerBuiltInCreateRootUserServices = require('@amzn/base-api-services/lib/authentication-providers/register-built-in-create-root-user-services');
 
 const DeploymentStoreService = require('../deployment-store-service');
 
@@ -65,6 +67,8 @@ async function registerServices(container, pluginRegistry) {
   container.register('userAuthzService', new UserAuthzService());
 
   registerBuiltInAuthProvisioners(container);
+  registerBuiltInAddAuthProviders(container);
+  registerBuiltInCreateRootUserServices(container);
 }
 
 /**

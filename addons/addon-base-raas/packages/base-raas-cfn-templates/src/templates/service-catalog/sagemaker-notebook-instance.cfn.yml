@@ -5,7 +5,7 @@ Description: Service-Workbench-on-AWS SageMaker-Jupyter
 Parameters:
   SolutionNamespace:
     Type: String
-    Description: The namespace value provided when onboarding the Member account
+    Description: The namespace value provided when onboarding the Member account   
   Namespace:
     Type: String
     Description: An environment name that will be prefixed to resource names

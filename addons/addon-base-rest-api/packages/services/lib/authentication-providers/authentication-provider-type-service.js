@@ -17,6 +17,7 @@ const Service = require('@amzn/base-services-container/lib/service');
 const _ = require('lodash');
 
 const cognitoUserPoolAuthenticationProviderType = require('./built-in-providers/cogito-user-pool/type');
+const oidcAuthenticationProviderType = require('./built-in-providers/oidc/type');
 
 class AuthenticationProviderTypeService extends Service {
   constructor() {
@@ -25,7 +26,7 @@ class AuthenticationProviderTypeService extends Service {
   }
 
   async getAuthenticationProviderTypes(requestContext) {
-    const types = [cognitoUserPoolAuthenticationProviderType];
+    const types = [oidcAuthenticationProviderType, cognitoUserPoolAuthenticationProviderType];
 
     // Give all plugins a chance in registering their authentication provider types
     // Each plugin will receive the following payload object with the shape {requestContext, container, types}

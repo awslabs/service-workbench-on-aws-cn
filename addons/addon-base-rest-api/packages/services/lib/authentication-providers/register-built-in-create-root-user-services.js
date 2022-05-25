@@ -13,23 +13,13 @@
  *  permissions and limitations under the License.
  */
 
-// TODO - move this to base-services in base addon
-const constants = {
-  authenticationProviders: {
-    cognitoAuthProviderTypeId: 'cognito_user_pool',
-    oidcAuthProviderTypeId: 'oidc',
-    status: {
-      initializing: 'initializing',
-      active: 'active',
-      inactive: 'inactive',
-    },
-    provisioningAction: {
-      create: 'create',
-      update: 'update',
-      activate: 'activate',
-      deactivate: 'deactivate',
-    },
-  },
-};
+const OidcCreateRootUserService = require('./built-in-providers/oidc/create-root-user-service');
+const CognitoCreateRootUserService = require('./built-in-providers/cogito-user-pool/create-root-user-service');
 
-module.exports = constants;
+function registerBuiltInAddAuthProviders(container) {
+  container.register('oidcCreateRootUserService', new OidcCreateRootUserService());
+
+  container.register('cognitoCreateRootUserService', new CognitoCreateRootUserService());
+}
+
+module.exports = registerBuiltInAddAuthProviders;

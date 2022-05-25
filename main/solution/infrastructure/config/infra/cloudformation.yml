@@ -8,6 +8,12 @@ Conditions:
     - !Not
       - !Equals ['${self:custom.settings.domainName}', '']
     - !Equals ['${self:custom.settings.hostedZoneId}', '']
+    - !Not [!Equals ['${self:custom.settings.awsRegion}', 'cn-north-1']]
+    - !Not [!Equals ['${self:custom.settings.awsRegion}', 'cn-northwest-1']]    
+  UseCustomDomainOutSideChina: !And
+    - !Equals ['${self:custom.settings.domainName}', ''] 
+    - !Not [!Equals ['${self:custom.settings.awsRegion}', 'cn-north-1']]
+    - !Not [!Equals ['${self:custom.settings.awsRegion}', 'cn-northwest-1']]
   IsHongkongRegion: !Equals ['${self:custom.settings.awsRegion}', 'ap-east-1']
 
 Description: (SO0144) Service Workbench on AWS Solution
@@ -210,7 +216,7 @@ Resources:
           - ['${self:custom.settings.domainName}']
           - !Ref AWS::NoValue
         ViewerCertificate: !If
-          - UseCustomDomain
+          - UseCustomDomainOutSideChina
           - AcmCertificateArn: ${self:custom.settings.certificateArn}
             MinimumProtocolVersion: TLSv1.2_2018
             SslSupportMethod: sni-only
@@ -267,7 +273,7 @@ Resources:
 
   DomainRecord:
     Type: AWS::Route53::RecordSetGroup
-    Condition: UseCustomDomain
+    Condition: UseCustomDomainOutSideChina
     Properties:
       # Blank hosted zone ID in stage file creates a new one
       # This is to ensure backwards compatibility
@@ -305,7 +311,7 @@ Outputs:
   HostedZoneId:
     Description: Id of the hosted zone created when a custom domain is used
     Value: !If
-      - UseCustomDomain
+      - UseCustomDomainOutSideChina
       - !If
         - UseHostedZoneId
         - ${self:custom.settings.hostedZoneId}

@@ -56,16 +56,8 @@ async function configure(context) {
           baseURL: authCodeTokenExchangeUri,
           headers,
         });
-        let response;
-        let idToken;
-
-        // if (authProviderConfig.config.type.type === authProviderConstants.oidcAuthProviderTypeId) {
-          response = await axiosClient.post(authCodeTokenExchangeUri, querystring.stringify(params));
-          idToken = _.get(response, 'data.id_token');
-        // } else {
-        //   response = await axiosClient.post(authCodeTokenExchangeUri, params, { params });
-        //   idToken = _.get(response, 'data.id_token');
-        // }
+        const response = await axiosClient.post(authCodeTokenExchangeUri, querystring.stringify(params));
+        const idToken = _.get(response, 'data.id_token');
         res.status(200).json({ token: idToken });
       } catch (e) {
         throw boom.badRequest(`Error received while  call: ${e}`, true);

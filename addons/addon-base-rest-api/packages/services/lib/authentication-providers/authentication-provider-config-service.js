@@ -52,13 +52,13 @@ class AuthenticationProviderConfigService extends Service {
 
     const providerConfigs = await this.getAuthenticationProviderConfigs();
 
-    _.forEach(providerConfigs, (providerConfig) => {
+    _.forEach(providerConfigs, providerConfig => {
       dbService.helper
         .deleter()
         .table(table)
-        .key({ id: providerConfig.id})
-        .delete(); 
-    });  
+        .key({ id: providerConfig.id })
+        .delete();
+    });
   }
 
   async getAuthenticationProviderConfig(providerId, fields = []) {

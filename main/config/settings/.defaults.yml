@@ -239,5 +239,5 @@ awsPartition: aws
 awsSuffix: amazonaws.com
 
 # Set default IDP type
-# value: oidc/cognito
-defaultIdpType: cognito
+# value: oidc/cognito_user_pool
+defaultIdpType: cognito_user_pool

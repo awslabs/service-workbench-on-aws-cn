@@ -79,7 +79,14 @@ describe('ProvisionerService', () => {
         clientId: 'oidcClientId',
         enableNativeUserPoolUsers: true,
       };
-
+      service.getIdPConfigurations = jest.fn(() => {
+        return {
+          jwksUri: 'https://example.com/auth/realms/Realm/protocol/openid-connect/certs',
+          authorizationEndpoint: 'https://example.com/auth/realms/Realm/protocol/openid-connect/auth',
+          endSessionEndpoint: 'https://example.com/auth/realms/Realm/protocol/openid-connect/logout',
+          tokenEndpoint: 'https://example.com/auth/realms/Realm/protocol/openid-connect/token',
+        };
+      });
       const action = authProviderConstants.authenticationProviders.provisioningAction.create;
       // OPERATE
       await service.provision({
@@ -95,6 +102,14 @@ describe('ProvisionerService', () => {
           title: 'oidc',
           clientId: 'oidcClientId',
           enableNativeUserPoolUsers: true,
+        };
+      });
+      service.getIdPConfigurations = jest.fn(() => {
+        return {
+          jwksUri: 'https://example.com/auth/realms/Realm/protocol/openid-connect/certs',
+          authorizationEndpoint: 'https://example.com/auth/realms/Realm/protocol/openid-connect/auth',
+          endSessionEndpoint: 'https://example.com/auth/realms/Realm/protocol/openid-connect/logout',
+          tokenEndpoint: 'https://example.com/auth/realms/Realm/protocol/openid-connect/token',
         };
       });
       const oidcAuthProviderConfig = {

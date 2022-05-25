@@ -136,7 +136,7 @@ describe('ProviderService', () => {
         rev: 2,
       };
       const expected = {
-        firstName: 'Jen',
+        firstName: 'Jen@example.com',
         lastName: 'Doe',
         rev: 2,
         uid: 'sample-user-uid',
@@ -202,7 +202,7 @@ describe('ProviderService', () => {
         identityProviderName: 'oidc',
         uid: 'sample-user-uid',
         username,
-        firstName: 'Jen',
+        firstName: 'Jen@example.com',
         lastName: 'Doe',
         isNativePoolUser: true,
         usernameInIdp: username,

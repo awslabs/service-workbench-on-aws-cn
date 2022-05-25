@@ -15,6 +15,7 @@
 
 const Service = require('@amzn/base-services-container/lib/service');
 const { getSystemRequestContext } = require('@amzn/base-services/lib/helpers/system-context');
+const authenticationProviders = require('../../constants').authenticationProviders;
 
 const settingKeys = {
   rootUserEmail: 'rootUserEmail',
@@ -42,7 +43,7 @@ class CreateRootUserService extends Service {
       await this.createUser({
         username: adminUserEmail,
         authenticationProviderId: oidcIssuer,
-        identityProviderName: 'oidc',
+        identityProviderName: authenticationProviders.oidcAuthProviderTypeId,
         firstName: adminUserFirstName,
         lastName: adminUserLastName,
         email: adminUserEmail,

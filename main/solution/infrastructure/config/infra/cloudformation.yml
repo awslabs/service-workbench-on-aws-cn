@@ -8,6 +8,12 @@ Conditions:
     - !Not
       - !Equals ['${self:custom.settings.domainName}', '']
     - !Equals ['${self:custom.settings.hostedZoneId}', '']
+    - !Not [!Equals ['${self:custom.settings.awsRegion}', 'cn-north-1']]
+    - !Not [!Equals ['${self:custom.settings.awsRegion}', 'cn-northwest-1']]    
+  UseCustomDomainOutSideChina: !And
+    - !Equals ['${self:custom.settings.domainName}', ''] 
+    - !Not [!Equals ['${self:custom.settings.awsRegion}', 'cn-north-1']]
+    - !Not [!Equals ['${self:custom.settings.awsRegion}', 'cn-northwest-1']]
   IsHongkongRegion: !Equals ['${self:custom.settings.awsRegion}', 'ap-east-1']
 
 Description: (SO0144) Service Workbench on AWS Solution
@@ -209,12 +215,12 @@ Resources:
           - UseCustomDomain
           - ['${self:custom.settings.domainName}']
           - !Ref AWS::NoValue
-        # ViewerCertificate: !If
-        #   - UseCustomDomain
-        #   - AcmCertificateArn: ${self:custom.settings.certificateArn}
-        #     MinimumProtocolVersion: TLSv1.2_2018
-        #     SslSupportMethod: sni-only
-        #   - !Ref AWS::NoValue
+        ViewerCertificate: !If
+          - UseCustomDomainOutSideChina
+          - AcmCertificateArn: ${self:custom.settings.certificateArn}
+            MinimumProtocolVersion: TLSv1.2_2018
+            SslSupportMethod: sni-only
+          - !Ref AWS::NoValue
         DefaultRootObject: index.html
         CustomErrorResponses:
           - ErrorCachingMinTTL: 300
@@ -258,29 +264,29 @@ Resources:
   # Route 53
   # =============================================================================================
 
-  # HostedZone:
-  #   Type: AWS::Route53::HostedZone
-  #   Condition: CustomDomainWithoutHostedZoneId
-  #   DeletionPolicy: Retain
-  #   Properties:
-  #     Name: ${self:custom.settings.domainName}
+  HostedZone:
+    Type: AWS::Route53::HostedZone
+    Condition: CustomDomainWithoutHostedZoneId
+    DeletionPolicy: Retain
+    Properties:
+      Name: ${self:custom.settings.domainName}
 
-  # DomainRecord:
-  #   Type: AWS::Route53::RecordSetGroup
-  #   Condition: UseCustomDomain
-  #   Properties:
-  #     # Blank hosted zone ID in stage file creates a new one
-  #     # This is to ensure backwards compatibility
-  #     HostedZoneId: !If
-  #       - UseHostedZoneId
-  #       - ${self:custom.settings.hostedZoneId}
-  #       - !Ref HostedZone
-  #     RecordSets:
-  #       - Name: ${self:custom.settings.domainName}
-  #         Type: A
-  #         AliasTarget:
-  #           HostedZoneId: Z2FDTNDATAQYW2 # This is a required hard-coded string that is to be used for AWS
-  #           DNSName: !GetAtt WebsiteCloudFront.DomainName
+  DomainRecord:
+    Type: AWS::Route53::RecordSetGroup
+    Condition: UseCustomDomainOutSideChina
+    Properties:
+      # Blank hosted zone ID in stage file creates a new one
+      # This is to ensure backwards compatibility
+      HostedZoneId: !If
+        - UseHostedZoneId
+        - ${self:custom.settings.hostedZoneId}
+        - !Ref HostedZone
+      RecordSets:
+        - Name: ${self:custom.settings.domainName}
+          Type: A
+          AliasTarget:
+            HostedZoneId: Z2FDTNDATAQYW2 # This is a required hard-coded string that is to be used for AWS
+            DNSName: !GetAtt WebsiteCloudFront.DomainName
 
 Outputs:
   WebsiteUrl:
@@ -305,9 +311,9 @@ Outputs:
   HostedZoneId:
     Description: Id of the hosted zone created when a custom domain is used
     Value: !If
-      - UseCustomDomain
+      - UseCustomDomainOutSideChina
       - !If
         - UseHostedZoneId
         - ${self:custom.settings.hostedZoneId}
-        - !Ref AWS::NoValue
+        - !Ref HostedZone
       - 'CustomDomainNotSet'

@@ -14,6 +14,8 @@
  */
 
 const Service = require('@amzn/base-services-container/lib/service');
+const authProviderConstants = require('@amzn/base-api-services/lib/authentication-providers/constants')
+  .authenticationProviders;
 
 const settingKeys = {
   defaultIdpType: 'defaultIdpType',
@@ -30,12 +32,12 @@ class AddAuthProviders extends Service {
     // federated IdP auth provider (if configured)
     const defaultIdpType = this.settings.get(settingKeys.defaultIdpType);
     switch (defaultIdpType) {
-      case 'oidc': {
+      case authProviderConstants.oidcAuthProviderTypeId: {
         const oidcAddAuthProvider = await this.service('oidcAddAuthProvider');
         await oidcAddAuthProvider.addAuthenticationProvider();
         break;
       }
-      case 'cognito': {
+      case authProviderConstants.cognitoAuthProviderTypeId: {
         const cognitoAddAuthProvider = await this.service('cognitoAddAuthProvider');
         await cognitoAddAuthProvider.addAuthenticationProvider();
         break;

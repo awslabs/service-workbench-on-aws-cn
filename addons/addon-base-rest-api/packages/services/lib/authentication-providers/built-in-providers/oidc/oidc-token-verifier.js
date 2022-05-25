@@ -16,14 +16,14 @@
 const jwt = require('jsonwebtoken');
 const jwksClient = require('jwks-rsa');
 
-async function getOidcTokenVerifier(jwks_uri) {
+async function getOidcTokenVerifier(jwksUri) {
   const keyClient = jwksClient({
     cache: true,
     cacheMaxAge: 86400000,
     rateLimit: true,
     jwksRequestsPerMinute: 10,
     strictSsl: true,
-    jwksUri: jwks_uri,
+    jwksUri,
   });
 
   const verificationOptions = {
@@ -40,7 +40,6 @@ async function getOidcTokenVerifier(jwks_uri) {
 
   const verify = async token => {
     // First attempt to decode token before attempting to verify the signature
-    let decodedOutput;
     const promise = new Promise(function(resolve) {
       jwt.verify(token, getSigningKey, verificationOptions, function(error, decoded) {
         if (error) {
@@ -50,11 +49,13 @@ async function getOidcTokenVerifier(jwks_uri) {
         }
       });
     });
+    let decodedOutput;
     await promise.then(function(data) {
       decodedOutput = data;
     });
     return decodedOutput;
   };
+
   return { verify };
 }
 

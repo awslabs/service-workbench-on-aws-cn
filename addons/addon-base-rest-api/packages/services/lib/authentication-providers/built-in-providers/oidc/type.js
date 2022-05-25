@@ -12,6 +12,8 @@
  *  express or implied. See the License for the specific language governing
  *  permissions and limitations under the License.
  */
+const inputSchema = require('./create-oidc-schema');
+
 module.exports = {
   type: 'oidc',
   title: 'oidc',
@@ -19,6 +21,9 @@ module.exports = {
   config: {
     // 'redirect' -- The credentials should be NOT be collected and the user should be redirected directly to the identity provider
     credentialHandlingType: 'redirect',
+
+    // "inputSchema": JSON schema representing inputs required from user when configuring an authentication provider of this type.
+    inputSchema,
 
     impl: {
       // The token validation locator is used to validate token upon each request.

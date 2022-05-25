@@ -31,7 +31,7 @@ class AddAuthProvider extends Service {
       'authenticationProviderTypeService',
       'oidcAuthenticationProvisionerService',
     ]);
-    this.boom.extend(['oidcConfigurationFailed', 400]);    
+    this.boom.extend(['oidcConfigurationFailed', 400]);
   }
 
   /**
@@ -63,7 +63,7 @@ class AddAuthProvider extends Service {
     const oidcAuthenticationProvisionerService = await this.service('oidcAuthenticationProvisionerService');
     await oidcAuthenticationProvisionerService.provision({
       providerTypeConfig: oidcAuthProviderTypeConfig,
-      providerConfig: oidcAuthProviderConfig
+      providerConfig: oidcAuthProviderConfig,
     });
   }
 }

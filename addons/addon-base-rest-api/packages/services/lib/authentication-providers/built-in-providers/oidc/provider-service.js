@@ -16,14 +16,14 @@
 const _ = require('lodash');
 const Service = require('@amzn/base-services-container/lib/service');
 const { getSystemRequestContext } = require('@amzn/base-services/lib/helpers/system-context');
-
 const { getOidcTokenVerifier } = require('./oidc-token-verifier');
+const authProviderConstants = require('../../constants').authenticationProviders;
 
 class ProviderService extends Service {
   constructor() {
     super();
     this.dependency(['aws', 'userService', 'oidcUserAttributesMapperService', 'tokenRevocationService']);
-    this.oidcTokenVerifiersCache = {}; // Cache object containing token verifier objects. Each token verifier is keyed by the userPoolUri
+    this.oidcTokenVerifiersCache = {}; // Cache object containing token verifier objects.
   }
 
   async validateToken({ token, issuer }, providerConfig) {
@@ -36,15 +36,12 @@ class ProviderService extends Service {
     if (isRevoked) {
       throw this.boom.invalidToken('The token is revoked', true);
     }
-    // In case of cognito, the issuer is the cognito userPoolUri
+
     let oidcTokenVerifier = this.oidcTokenVerifiersCache[issuer];
     if (!oidcTokenVerifier) {
-      // No cognitoTokenVerifier in the cache so create a new one
-      oidcTokenVerifier = await getOidcTokenVerifier(providerConfig.config.jwks_uri);
-      // Add newly created cognitoTokenVerifier to the cache
+      oidcTokenVerifier = await getOidcTokenVerifier(providerConfig.config.jwksUri);
       this.oidcTokenVerifiersCache[issuer] = oidcTokenVerifier;
     }
-    // User the cognitoTokenVerifier to validate cognito token
     const verifiedToken = await oidcTokenVerifier.verify(token);
     const { uid, username, identityProviderName } = await this.saveUser(verifiedToken, providerConfig.config.id);
     return { verifiedToken, username, uid, identityProviderName };
@@ -60,7 +57,7 @@ class ProviderService extends Service {
     const user = await userService.findUserByPrincipal({
       username: userAttributes.username,
       authenticationProviderId,
-      identityProviderName: 'oidc',
+      identityProviderName: authProviderConstants.oidcAuthProviderTypeId,
     });
     if (user) {
       await this.updateUser(userAttributes, user);
@@ -119,7 +116,7 @@ class ProviderService extends Service {
       // To update these default names, we extract the mapped attribute values coming from the OIDC IDP
       // Some IdPs send email value in their firstName and lastName attribute fields, so splitting string to ignore domain
       const updateIfDifferent = attribName => {
-        if (!_.isNil(userAttributes[attribName])) {
+        if (!_.isNil(userAttributes[attribName]) && existingUser[attribName] !== userAttributes[attribName]) {
           updatedAttribs[attribName] = userAttributes[attribName];
         }
       };

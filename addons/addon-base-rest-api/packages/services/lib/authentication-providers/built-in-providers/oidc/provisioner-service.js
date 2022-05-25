@@ -13,10 +13,9 @@
  *  permissions and limitations under the License.
  */
 
-const _ = require('lodash');
 const Service = require('@amzn/base-services-container/lib/service');
-const authProviderConstants = require('../../constants').authenticationProviders;
 const axios = require('axios').default;
+const authProviderConstants = require('../../constants').authenticationProviders;
 
 const settingKeys = {
   websiteUrl: 'websiteUrl',
@@ -35,7 +34,6 @@ class ProvisionerService extends Service {
 
   // eslint-disable-next-line no-unused-vars
   async provision({ providerTypeConfig, providerConfig }) {
-
     this.log.info('Provisioning oidc Authentication Provider');
 
     const authenticationProviderConfigService = await this.service('authenticationProviderConfigService');
@@ -43,15 +41,14 @@ class ProvisionerService extends Service {
     const websiteUrl = this.settings.get(settingKeys.websiteUrl);
     const oidcClientId = this.settings.get(settingKeys.oidcClientId);
 
-    const {jwks_uri, authorization_endpoint, end_session_endpoint, token_endpoint} = await this.getIdPConfigurations();
+    const { jwksUri, authorizationEndpoint, endSessionEndpoint, tokenEndpoint } = await this.getIdPConfigurations();
 
-    providerConfig.jwks_uri = jwks_uri;
-    providerConfig.signInUri = `${authorization_endpoint}?client_id=${oidcClientId}&redirect_uri=${websiteUrl}/&scope=openid profile email&code_challenge_method=S256&code_challenge=TEMP_PKCE_VERIFIER&state=TEMP_STATE_VERIFIER&response_type=code`;
-    providerConfig.signOutUri = `${end_session_endpoint}?client_id=${oidcClientId}&response_type=code&redirect_uri=${websiteUrl}`;
-    providerConfig.authCodeTokenExchangeUri = token_endpoint;
+    providerConfig.jwksUri = jwksUri;
+    providerConfig.signInUri = `${authorizationEndpoint}?client_id=${oidcClientId}&redirect_uri=${websiteUrl}/&scope=openid profile email&code_challenge_method=S256&code_challenge=TEMP_PKCE_VERIFIER&state=TEMP_STATE_VERIFIER&response_type=code`;
+    providerConfig.signOutUri = `${endSessionEndpoint}?client_id=${oidcClientId}&response_type=code&redirect_uri=${websiteUrl}`;
+    providerConfig.authCodeTokenExchangeUri = tokenEndpoint;
 
     this.log.info('Saving oidc Authentication Provider Configuration.');
-
 
     // Save auth provider configuration and make it active
     const result = await authenticationProviderConfigService.saveAuthenticationProviderConfig({
@@ -64,21 +61,18 @@ class ProvisionerService extends Service {
 
   async getIdPConfigurations() {
     const oidcIssuer = this.settings.get(settingKeys.oidcIssuer);
-    let configUrl = `${oidcIssuer}/.well-known/openid-configuration`;
+    const configUrl = `${oidcIssuer}/.well-known/openid-configuration`;
     try {
       const response = await axios.get(configUrl);
-      const jwks_uri = response.data.jwks_uri;
-      const authorization_endpoint = response.data.authorization_endpoint;
-      const end_session_endpoint = response.data.end_session_endpoint;
-      const token_endpoint = response.data.token_endpoint;
-      return {jwks_uri, authorization_endpoint, end_session_endpoint, token_endpoint}
+      const jwksUri = response.data.jwks_uri;
+      const authorizationEndpoint = response.data.authorization_endpoint;
+      const endSessionEndpoint = response.data.end_session_endpoint;
+      const tokenEndpoint = response.data.token_endpoint;
+      return { jwksUri, authorizationEndpoint, endSessionEndpoint, tokenEndpoint };
     } catch (error) {
-      throw this.boom.oidcConfigurationFailed(
-        'Get oidc configuration failed, please try it again',
-        true,
-      );      
+      throw this.boom.oidcConfigurationFailed('Get oidc configuration failed, please try it again', true);
     }
-  }  
+  }
 }
 
 module.exports = ProvisionerService;

@@ -111,12 +111,9 @@
 # Global regions: 'amazonaws.com'
 #awsSuffix: amazonaws.com
 
-# # For China Mainland regions, we cannot use cloudfront url directly, we should have domain before deploying service workbench
-# websiteUrl: https://example.com
-
 # Set default IDP type
-# value: oidc/cognito
-# defaultIdpType: cognito
+# value: oidc/cognito_user_pool
+# defaultIdpType: cognito_user_pool
 
 # oidc client id, it should be configured before deploying service workbench
 # oidcClientId: ExampleClientId

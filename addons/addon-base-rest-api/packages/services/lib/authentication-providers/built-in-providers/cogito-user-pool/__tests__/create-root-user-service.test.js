@@ -98,7 +98,7 @@ describe('CreateRootUserService', () => {
       service.putSsmParam = jest.fn();
 
       // OPERATE
-      await service.createNativeAdminUser();
+      await service.createRootUser();
 
       // CHECK
       expect(service.putSsmParam).toHaveBeenCalled();
@@ -167,7 +167,7 @@ describe('CreateRootUserService', () => {
       service.putSsmParam = jest.fn();
 
       // OPERATE
-      await service.createNativeAdminUser();
+      await service.createRootUser();
 
       // CHECK
       expect(service.putSsmParam).toHaveBeenCalled();

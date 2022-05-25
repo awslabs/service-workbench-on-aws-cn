@@ -17,6 +17,7 @@
 const constants = {
   authenticationProviders: {
     cognitoAuthProviderTypeId: 'cognito_user_pool',
+    oidcAuthProviderTypeId: 'oidc',
     status: {
       initializing: 'initializing',
       active: 'active',

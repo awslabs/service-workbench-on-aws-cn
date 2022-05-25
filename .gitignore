@@ -4,6 +4,7 @@
 **/node_modules
 **/npm-debug.log
 **/pnpm-debug.log
+**/.pnpm-debug.log
 **/.docusaurus
 
 .build

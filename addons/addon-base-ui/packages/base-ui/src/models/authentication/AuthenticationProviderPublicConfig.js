@@ -59,6 +59,7 @@ const AuthenticationProviderPublicConfig = types
   .model('AuthenticationProviderPublicConfig', {
     id: '',
     title: types.identifier,
+    providerConfigId: '',
     type: '',
     credentialHandlingType: '',
     signInUri: '',

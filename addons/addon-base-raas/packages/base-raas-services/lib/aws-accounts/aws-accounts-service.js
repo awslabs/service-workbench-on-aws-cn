@@ -328,6 +328,7 @@ class AwsAccountsService extends Service {
       await this.shareAppStreamImageWithMemberAccount(requestContext, accountId, appStreamImageName);
     }
 
+    console.log('aws-accounts-service update mingtong step 4');
     // Prepare the db object
     const dbObject = _.omit(this._fromRawToDbObject(rawData, { updatedBy: by }), ['rev']);
 
@@ -356,6 +357,7 @@ class AwsAccountsService extends Service {
         throw this.boom.notFound(`awsAccounts with id "${id}" does not exist`, true);
       },
     );
+    console.log('aws-accounts-service update mingtong step 5');
 
     // Write audit event
     await this.audit(requestContext, { action: 'update-aws-account', body: result });

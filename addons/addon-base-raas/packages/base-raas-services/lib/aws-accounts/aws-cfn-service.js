@@ -69,8 +69,14 @@ const getCreateStackUrl = (cfnTemplateInfo, createParams) => {
     enableFlowLogs,
     domainName,
   } = createParams;
+  let cloudformationDomainSuffix;
+  if (region === 'cn-north-1' || region === 'cn-northwest-1') {
+    cloudformationDomainSuffix = 'amazonaws.cn';
+  } else {
+    cloudformationDomainSuffix = 'aws.amazon.com';
+  }
   const url = [
-    `https://console.aws.amazon.com/cloudformation/home?region=${region}#/stacks/create/review/`,
+    `https://console.${cloudformationDomainSuffix}/cloudformation/home?region=${region}#/stacks/create/review/`,
     `?templateURL=${encodeURIComponent(signedUrl)}`,
     `&stackName=${name}`,
     `&param_Namespace=${namespace}`,
@@ -108,9 +114,14 @@ const getUpdateStackUrl = cfnTemplateInfo => {
   const { stackId, region, signedUrl } = cfnTemplateInfo;
 
   if (_.isEmpty(stackId)) return undefined;
-
+  let cloudformationDomainSuffix;
+  if (region === 'cn-north-1' || region === 'cn-northwest-1') {
+    cloudformationDomainSuffix = 'amazonaws.cn';
+  } else {
+    cloudformationDomainSuffix = 'aws.amazon.com';
+  }
   const url = [
-    `https://console.aws.amazon.com/cloudformation/home?region=${region}#/stacks/update/template`,
+    `https://console.${cloudformationDomainSuffix}/cloudformation/home?region=${region}#/stacks/update/template`,
     `?stackId=${encodeURIComponent(stackId)}`,
     `&templateURL=${encodeURIComponent(signedUrl)}`,
   ].join('');
@@ -120,8 +131,13 @@ const getUpdateStackUrl = cfnTemplateInfo => {
 
 const getCfnHomeUrl = cfnTemplateInfo => {
   const { region } = cfnTemplateInfo;
-
-  return `https://console.aws.amazon.com/cloudformation/home?region=${region}`;
+  let cloudformationDomainSuffix;
+  if (region === 'cn-north-1' || region === 'cn-northwest-1') {
+    cloudformationDomainSuffix = 'amazonaws.cn';
+  } else {
+    cloudformationDomainSuffix = 'aws.amazon.com';
+  }
+  return `https://console.${cloudformationDomainSuffix}/cloudformation/home?region=${region}`;
 };
 
 class AwsCfnService extends Service {
@@ -245,6 +261,8 @@ class AwsCfnService extends Service {
     cfnTemplateInfo.updateStackUrl = getUpdateStackUrl(cfnTemplateInfo);
     cfnTemplateInfo.cfnConsoleUrl = getCfnHomeUrl(cfnTemplateInfo);
 
+    const partition = this.awsPartition;
+
     // If we are onboarding the account for the first time, we have to populate some parameters for checking permissions later
     const updatedAcct = {
       id: account.id,
@@ -253,7 +271,7 @@ class AwsCfnService extends Service {
       externalId: account.externalId,
       permissionStatus: 'PENDING',
       onboardStatusRoleArn: [
-        'arn:aws:iam::',
+        `arn:${partition}:iam::`,
         account.accountId,
         ':role/',
         createParams.namespace,
@@ -391,6 +409,7 @@ class AwsCfnService extends Service {
   // @private
   async getCfnSdk(onboardStatusRoleArn, externalId, region) {
     const aws = await this.service('aws');
+    console.log('getCfnSdk mingtong step 1');
     try {
       const cfnClient = await aws.getClientSdkForRole({
         roleArn: onboardStatusRoleArn,
@@ -398,6 +417,7 @@ class AwsCfnService extends Service {
         clientName: 'CloudFormation',
         options: { region },
       });
+      console.log('getCfnSdk mingtong step 2, cfnClient', cfnClient);
       return cfnClient;
     } catch (error) {
       throw this.boom.forbidden(`Could not assume a role to check the stack status`, true).cause(error);
@@ -441,9 +461,12 @@ class AwsCfnService extends Service {
     const region = this.settings.get(settingKeys.awsRegion);
     const { onboardStatusRoleArn, cfnStackName, externalId } = accountEntity;
     const cfnApi = await this.getCfnSdk(onboardStatusRoleArn, externalId, region);
+    console.log('finishOnboardingAccount mingtong step 1, ');
     const params = { StackName: cfnStackName };
+    console.log('finishOnboardingAccount mingtong step 2, params', params);
     const stacks = await cfnApi.describeStacks(params).promise();
     const stack = _.find(_.get(stacks, 'Stacks', []), item => item.StackName === cfnStackName);
+    console.log('finishOnboardingAccount mingtong step 3, stack', stack);
 
     if (_.isEmpty(stack)) {
       throw this.boom.notFound(`Stack '${cfnStackName}' not found`, true);
@@ -456,6 +479,7 @@ class AwsCfnService extends Service {
     const fieldsToUpdate = {};
     const findOutputValue = prop => {
       const output = _.find(_.get(stack, 'Outputs', []), item => item.OutputKey === prop);
+      console.log('finishOnboardingAccount mingtong step 4, output', output);
       return output.OutputValue;
     };
 
@@ -470,6 +494,7 @@ class AwsCfnService extends Service {
     fieldsToUpdate.id = accountEntity.id;
     fieldsToUpdate.rev = accountEntity.rev;
 
+    console.log('finishOnboardingAccount mingtong step 5, fieldsToUpdate', fieldsToUpdate);
     if (this.settings.getBoolean(settingKeys.isAppStreamEnabled)) {
       fieldsToUpdate.subnetId = findOutputValue('PrivateWorkspaceSubnet');
       fieldsToUpdate.appStreamStackName = findOutputValue('AppStreamStackName');
@@ -482,6 +507,7 @@ class AwsCfnService extends Service {
       fieldsToUpdate.subnetId = findOutputValue('VpcPublicSubnet1');
       fieldsToUpdate.publicRouteTableId = findOutputValue('PublicRouteTableId');
     }
+    console.log('finishOnboardingAccount mingtong step 6, fieldsToUpdate', fieldsToUpdate);
     await awsAccountsService.update(requestContext, fieldsToUpdate);
 
     // TODO Start AppStream fleet

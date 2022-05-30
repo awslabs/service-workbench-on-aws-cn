@@ -189,6 +189,13 @@ function removeAccountFromStatement(oldStatement, memberAccountId, partition) {
   return statement;
 }
 
+function getAwsConsoleSuffixByRegion(region) {
+  if (region.startsWith('cn-')) {
+    return 'amazonaws.cn';
+  }
+  return 'aws.amazon.com';
+}
+
 module.exports = {
   generateId,
   chopRight,
@@ -204,4 +211,5 @@ module.exports = {
   addAccountToStatement,
   getRevisedS3Statements,
   removeAccountFromStatement,
+  getAwsConsoleSuffixByRegion,
 };

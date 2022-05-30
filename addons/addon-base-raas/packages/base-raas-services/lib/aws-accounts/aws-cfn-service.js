@@ -20,6 +20,8 @@ const crypto = require('crypto');
 const { allowIfActive, allowIfAdmin } = require('@amzn/base-services/lib/authorization/authorization-utils');
 const { processInBatches } = require('@amzn/base-services/lib/helpers/utils');
 
+const { getAwsConsoleSuffixByRegion } = require('../helpers/utils');
+
 // const { generateId } = require('../helpers/utils');
 
 /**
@@ -73,14 +75,9 @@ const getCreateStackUrl = (cfnTemplateInfo, createParams) => {
     enableAmiSharing,
     devopsAccountId,
   } = createParams;
-  let cloudformationDomainSuffix;
-  if (region === 'cn-north-1' || region === 'cn-northwest-1') {
-    cloudformationDomainSuffix = 'amazonaws.cn';
-  } else {
-    cloudformationDomainSuffix = 'aws.amazon.com';
-  }
+  const awsConsoleSuffix = getAwsConsoleSuffixByRegion(region);
   const url = [
-    `https://console.${cloudformationDomainSuffix}/cloudformation/home?region=${region}#/stacks/create/review/`,
+    `https://console.${awsConsoleSuffix}/cloudformation/home?region=${region}#/stacks/create/review/`,
     `?templateURL=${encodeURIComponent(signedUrl)}`,
     `&stackName=${name}`,
     `&param_Namespace=${namespace}`,
@@ -120,14 +117,9 @@ const getUpdateStackUrl = cfnTemplateInfo => {
   const { stackId, region, signedUrl } = cfnTemplateInfo;
 
   if (_.isEmpty(stackId)) return undefined;
-  let cloudformationDomainSuffix;
-  if (region === 'cn-north-1' || region === 'cn-northwest-1') {
-    cloudformationDomainSuffix = 'amazonaws.cn';
-  } else {
-    cloudformationDomainSuffix = 'aws.amazon.com';
-  }
+  const awsConsoleSuffix = getAwsConsoleSuffixByRegion(region);
   const url = [
-    `https://console.${cloudformationDomainSuffix}/cloudformation/home?region=${region}#/stacks/update/template`,
+    `https://console.${awsConsoleSuffix}/cloudformation/home?region=${region}#/stacks/update/template`,
     `?stackId=${encodeURIComponent(stackId)}`,
     `&templateURL=${encodeURIComponent(signedUrl)}`,
   ].join('');
@@ -137,13 +129,8 @@ const getUpdateStackUrl = cfnTemplateInfo => {
 
 const getCfnHomeUrl = cfnTemplateInfo => {
   const { region } = cfnTemplateInfo;
-  let cloudformationDomainSuffix;
-  if (region === 'cn-north-1' || region === 'cn-northwest-1') {
-    cloudformationDomainSuffix = 'amazonaws.cn';
-  } else {
-    cloudformationDomainSuffix = 'aws.amazon.com';
-  }
-  return `https://console.${cloudformationDomainSuffix}/cloudformation/home?region=${region}`;
+  const awsConsoleSuffix = getAwsConsoleSuffixByRegion(region);
+  return `https://console.${awsConsoleSuffix}/cloudformation/home?region=${region}`;
 };
 
 class AwsCfnService extends Service {

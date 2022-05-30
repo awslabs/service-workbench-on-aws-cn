@@ -52,7 +52,7 @@ studyDataKmsPolicyWorkspaceSid: Allow workspace environments to retrieve S3 obje
 apiHandlerRoleName: ${self:custom.settings.namespace}-ApiHandler
 
 # The IAM role arn for the Lambda API handler, we need to define it in the settings because it is being passed to lambdas as an env var
-apiHandlerRoleArn: 'arn:aws:iam::${self:custom.settings.awsAccountInfo.awsAccountId}:role/${self:custom.settings.apiHandlerRoleName}'
+apiHandlerRoleArn: 'arn:${self:custom.settings.awsPartition}:iam::${self:custom.settings.awsAccountInfo.awsAccountId}:role/${self:custom.settings.apiHandlerRoleName}'
 
 # S3 bucket used to store environment type configurations (the config objects that define small, medium, large etc.
 # env launch options)

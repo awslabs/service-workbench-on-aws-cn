@@ -741,8 +741,7 @@ Resources:
           - Sid: Allow root access
             Effect: 'Allow'
             Principal:
-              AWS:
-                - !Ref CentralAccountId
+              AWS: !Ref 'AWS::AccountId'
             Action:
               - 'kms:*'
             Resource: '*'

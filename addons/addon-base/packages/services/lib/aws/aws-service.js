@@ -105,7 +105,6 @@ class AwsService extends Service {
       params.ExternalId = externalId;
     }
     const { Credentials: creds } = await sts.assumeRole(params).promise();
-
     const { AccessKeyId: accessKeyId, SecretAccessKey: secretAccessKey, SessionToken: sessionToken } = creds;
     return { accessKeyId, secretAccessKey, sessionToken };
   }

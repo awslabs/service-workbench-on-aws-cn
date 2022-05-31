@@ -143,7 +143,7 @@ class CostsService extends Service {
     const region = this.settings.get(settingKeys.awsRegion);
     const costExplorer = new aws.sdk.CostExplorer({
       apiVersion: '2017-10-25',
-      region: region,
+      region,
       accessKeyId,
       secretAccessKey,
       sessionToken,
@@ -214,7 +214,7 @@ class CostsService extends Service {
 
     const by = _.get(requestContext, 'principalIdentifier.uid');
     const region = this.settings.get(settingKeys.awsRegion);
-    const sts = new aws.sdk.STS({ region: region });
+    const sts = new aws.sdk.STS({ region });
     const {
       Credentials: { AccessKeyId: accessKeyId, SecretAccessKey: secretAccessKey, SessionToken: sessionToken },
     } = await sts

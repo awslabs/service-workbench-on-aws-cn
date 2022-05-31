@@ -19,6 +19,9 @@ const { runAndCatch } = require('@amzn/base-services/lib/helpers/utils');
 const { allowIfActive } = require('@amzn/base-services/lib/authorization/authorization-utils');
 const { allowIfHasRole } = require('../user/helpers/user-authz-utils');
 
+const settingKeys = {
+  awsRegion: 'awsRegion',
+};
 class CostsService extends Service {
   constructor() {
     super();
@@ -137,9 +140,10 @@ class CostsService extends Service {
     const [aws] = await this.service(['aws']);
     const { accessKeyId, secretAccessKey, sessionToken } = await this.getCredentials(requestContext, indexId);
 
+    const region = this.settings.get(settingKeys.awsRegion);
     const costExplorer = new aws.sdk.CostExplorer({
       apiVersion: '2017-10-25',
-      region: 'us-east-1',
+      region: region,
       accessKeyId,
       secretAccessKey,
       sessionToken,
@@ -209,7 +213,8 @@ class CostsService extends Service {
     );
 
     const by = _.get(requestContext, 'principalIdentifier.uid');
-    const sts = new aws.sdk.STS({ region: 'us-east-1' });
+    const region = this.settings.get(settingKeys.awsRegion);
+    const sts = new aws.sdk.STS({ region: region });
     const {
       Credentials: { AccessKeyId: accessKeyId, SecretAccessKey: secretAccessKey, SessionToken: sessionToken },
     } = await sts

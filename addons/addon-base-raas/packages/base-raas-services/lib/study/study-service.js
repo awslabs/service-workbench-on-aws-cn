@@ -331,12 +331,13 @@ class StudyService extends Service {
 
     // Create file upload location if necessary
     let studyFileLocation;
+    const partition = this.awsPartition;
     if (rawStudyEntity.uploadLocationEnabled) {
       if (!dbObject.resources) {
         dbObject.resources = [];
       }
       studyFileLocation = this.getFilesPrefix(requestContext, id, rawStudyEntity.category);
-      dbObject.resources.push({ arn: `arn:aws:s3:::${this.studyDataBucket}/${studyFileLocation}` });
+      dbObject.resources.push({ arn: `arn:${partition}:s3:::${this.studyDataBucket}/${studyFileLocation}` });
     }
 
     // Time to save the db object

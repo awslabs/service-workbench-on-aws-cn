@@ -225,3 +225,4 @@ workflowLoopRunner:
     APP_PERMISSION_BOUNDARY_POLICY_STUDY_BUCKET_ARN: !Sub arn:${AWS::Partition}:iam::${AWS::AccountId}:policy/${self:custom.settings.permissionBoundaryPolicyStudyBucket}
     APP_LOGGING_BUCKET_NAME: ${self:custom.settings.loggingBucketName}
     APP_AWS_PARTITION: ${self:custom.settings.awsPartition}
+    APP_AWS_SUFFIX: ${self:custom.settings.awsSuffix}

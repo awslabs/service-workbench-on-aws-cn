@@ -92,8 +92,8 @@ function createAllowStatement(statementId, actions, resource, condition) {
   return baseAllowStatement;
 }
 
-function getRootArnForAccount(memberAccountId) {
-  return `arn:aws:iam::${memberAccountId}:root`;
+function getRootArnForAccount(memberAccountId, partition) {
+  return `arn:${partition}:iam::${memberAccountId}:root`;
 }
 
 function addEmptyPrincipalIfNotPresent(statement) {
@@ -106,18 +106,18 @@ function addEmptyPrincipalIfNotPresent(statement) {
   return statement;
 }
 
-const getStatementParamsFn = (bucket, prefix) => {
+const getStatementParamsFn = (bucket, prefix, partition) => {
   return {
     statementId: `Get:${prefix}`,
-    resource: [`arn:aws:s3:::${bucket}/${prefix}*`],
+    resource: [`arn:${partition}:s3:::${bucket}/${prefix}*`],
     actions: ['s3:GetObject'],
   };
 };
 
-const listStatementParamsFn = (bucket, prefix) => {
+const listStatementParamsFn = (bucket, prefix, partition) => {
   return {
     statementId: `List:${prefix}`,
-    resource: `arn:aws:s3:::${bucket}`,
+    resource: `arn:${partition}:s3:::${bucket}`,
     actions: ['s3:ListBucket'],
     condition: {
       StringLike: {
@@ -127,10 +127,10 @@ const listStatementParamsFn = (bucket, prefix) => {
   };
 };
 
-const putStatementParamsFn = (bucket, prefix) => {
+const putStatementParamsFn = (bucket, prefix, partition) => {
   return {
     statementId: `Put:${prefix}`,
-    resource: [`arn:aws:s3:::${bucket}/${prefix}*`],
+    resource: [`arn:${partition}:s3:::${bucket}/${prefix}*`],
     actions: [
       's3:GetObject',
       's3:GetObjectVersion',
@@ -146,8 +146,8 @@ const putStatementParamsFn = (bucket, prefix) => {
   };
 };
 
-function addAccountToStatement(oldStatement, memberAccountId) {
-  const principal = getRootArnForAccount(memberAccountId);
+function addAccountToStatement(oldStatement, memberAccountId, partition) {
+  const principal = getRootArnForAccount(memberAccountId, partition);
   const statement = addEmptyPrincipalIfNotPresent(oldStatement);
   if (Array.isArray(statement.Principal.AWS)) {
     // add the principal if it doesn't exist already
@@ -160,9 +160,9 @@ function addAccountToStatement(oldStatement, memberAccountId) {
   return statement;
 }
 
-async function getRevisedS3Statements(s3Policy, studyEntity, bucket, statementParamFunctions, updateStatementFn) {
+async function getRevisedS3Statements(s3Policy, studyEntity, bucket, partition, statementParamFunctions, updateStatementFn) {
   const revisedStatementsPerStudy = _.map(statementParamFunctions, statementParameterFn => {
-    const statementParams = statementParameterFn(bucket, studyEntity.prefix);
+    const statementParams = statementParameterFn(bucket, studyEntity.prefix, partition);
     let oldStatement = s3Policy.Statement.find(statement => statement.Sid === statementParams.statementId);
     if (!oldStatement) {
       oldStatement = createAllowStatement(
@@ -178,8 +178,8 @@ async function getRevisedS3Statements(s3Policy, studyEntity, bucket, statementPa
   return revisedStatementsPerStudy;
 }
 
-function removeAccountFromStatement(oldStatement, memberAccountId) {
-  const principal = getRootArnForAccount(memberAccountId);
+function removeAccountFromStatement(oldStatement, memberAccountId, partition) {
+  const principal = getRootArnForAccount(memberAccountId, partition);
   const statement = addEmptyPrincipalIfNotPresent(oldStatement);
   if (Array.isArray(statement.Principal.AWS)) {
     statement.Principal.AWS = statement.Principal.AWS.filter(oldPrincipal => oldPrincipal !== principal);

@@ -214,11 +214,14 @@ async function updateEnvOnProvisioningSuccess({
     fields: ['rev', 'indexId'],
   });
 
+  console.log('updateEnvOnProvisioningSuccess mingtong step existingEnvRecord: ', existingEnvRecord);
   // Create DNS record for RStudio workspaces
   const connectionType = _.find(outputs, o => o.OutputKey === 'MetaConnection1Type');
+  console.log('updateEnvOnProvisioningSuccess mingtong step connectionType: ', connectionType);
   let connectionTypeValue;
   if (connectionType) {
     connectionTypeValue = connectionType.OutputValue;
+    console.log('updateEnvOnProvisioningSuccess mingtong step connectionTypeValue: ', connectionTypeValue);
     if (connectionTypeValue.toLowerCase() === 'rstudio') {
       const environmentDnsService = await container.find('environmentDnsService');
       const settings = await container.find('settings');
@@ -231,18 +234,24 @@ async function updateEnvOnProvisioningSuccess({
         await environmentDnsService.createRecord('rstudio', envId, dnsName);
       }
     } else if (connectionTypeValue.toLowerCase() === 'rstudiov2') {
+      console.log('updateEnvOnProvisioningSuccess mingtong step!');
       const albService = await container.find('albService');
+      console.log('updateEnvOnProvisioningSuccess mingtong step, requestContext:', requestContext);
+      console.log('updateEnvOnProvisioningSuccess mingtong step, resolvedVars.projectId:', resolvedVars.projectId);
       const deploymentItem = await albService.getAlbDetails(requestContext, resolvedVars.projectId);
+      console.log('updateEnvOnProvisioningSuccess mingtong deploymentItem:', deploymentItem);
       if (!deploymentItem) {
         throw new Error(`Error provisioning environment. Reason: No ALB found for this AWS account`);
       }
       const deploymentValue = JSON.parse(deploymentItem.value);
       const dnsName = deploymentValue.albDnsName;
       const targetGroupArn = _.find(outputs, o => o.OutputKey === 'TargetGroupARN').OutputValue;
+      console.log('updateEnvOnProvisioningSuccess mingtong step, targetGroupArn:', targetGroupArn);
       // Create DNS record for RStudio workspaces
       const environmentDnsService = await container.find('environmentDnsService');
       const settings = await container.find('settings');
       if (settings.getBoolean(settingKeys.isAppStreamEnabled)) {
+        console.log('updateEnvOnProvisioningSuccess mingtong step enable app Stream');
         const hostedZoneId = await getHostedZone(requestContext, environmentScService, existingEnvRecord);
         const albHostedZoneId = await albService.getAlbHostedZoneID(
           requestContext,
@@ -258,6 +267,8 @@ async function updateEnvOnProvisioningSuccess({
           hostedZoneId,
         );
       } else {
+        console.log('updateEnvOnProvisioningSuccess mingtong step environmentDnsService start! envId: ', envId);
+        console.log('updateEnvOnProvisioningSuccess mingtong step environmentDnsService start! dnsName: ', dnsName);
         await environmentDnsService.createRecord('rstudio', envId, dnsName);
       }
       // Create a listener rule
@@ -274,6 +285,7 @@ async function updateEnvOnProvisioningSuccess({
         OutputValue: ruleARN,
       };
       outputs.push(ruleRecord);
+      console.log('updateEnvOnProvisioningSuccess mingtong step outputs: ', outputs);
       // Create Instance security group ingress rule with ALB security group ID to allow only traffic from ALB
       const environmentScCidrService = await container.find('environmentScCidrService');
       const albSecurityGroup = JSON.parse(deploymentItem.value).albSecurityGroup;
@@ -284,12 +296,14 @@ async function updateEnvOnProvisioningSuccess({
         protocol: 'tcp',
         groupId: albSecurityGroup,
       };
+      console.log('updateEnvOnProvisioningSuccess mingtong step updateRule: ', updateRule);
       await environmentScCidrService.authorizeIngressRuleWithSecurityGroup(
         requestContext,
         envId,
         updateRule,
         instanceSecurityGroup,
       );
+      console.log('updateEnvOnProvisioningSuccess mingtong step@@!');
     }
   }
 
@@ -301,8 +315,9 @@ async function updateEnvOnProvisioningSuccess({
     provisionedProductId,
     inWorkflow: 'false',
   };
+  console.log('updateEnvOnProvisioningSuccess mingtong step: ', environment);
   await environmentScService.update(requestContext, environment);
-
+  console.log('updateEnvOnProvisioningSuccess mingtong step end!');
   return { requestContext, container, resolvedVars, status, outputs, provisionedProductId };
 }
 

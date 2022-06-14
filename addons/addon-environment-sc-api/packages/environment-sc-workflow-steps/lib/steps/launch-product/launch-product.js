@@ -186,13 +186,17 @@ class LaunchProduct extends StepBase {
    */
   async getScClientAndRoleForTargetAcc(resolvedVars) {
     const [aws] = await this.mustFindServices(['aws']);
+    console.log('getScClientAndRoleForTargetAcc mingtong step resolvedVars: ', resolvedVars);
     const targetAccRoleArn = this.getTargetAccountRoleArn(resolvedVars);
+    console.log('getScClientAndRoleForTargetAcc mingtong step targetAccRoleArn: ', targetAccRoleArn);
     this.print({
       msg: `Creating AWS Service Catalog Client by assuming role = ${targetAccRoleArn}`,
       targetAccRoleArn,
     });
     const externalId = resolvedVars.externalId;
+    console.log('getScClientAndRoleForTargetAcc mingtong step externalId: ', externalId);
     const targetScClient = await getServiceCatalogClient(aws, targetAccRoleArn, externalId);
+    console.log('getScClientAndRoleForTargetAcc mingtong step targetScClient: ', targetScClient);
     return { targetScClient, targetAccRoleArn };
   }
 
@@ -217,12 +221,17 @@ class LaunchProduct extends StepBase {
       this.state.string('PROVISIONED_PRODUCT_ID'),
     ]);
 
+    console.log('onSuccessfulCompletion mingtong step 1 resolvedVars: ', resolvedVars);
     const { targetScClient } = await this.getScClientAndRoleForTargetAcc(resolvedVars);
 
+    console.log('onSuccessfulCompletion mingtong step targetScClient: ', targetScClient);
+
     const { RecordOutputs: recordOutputs } = await targetScClient.describeRecord({ Id: recordId }).promise();
+    console.log('onSuccessfulCompletion mingtong step recordOutputs: ', recordOutputs);
 
     const [pluginRegistryService] = await this.mustFindServices(['pluginRegistryService']);
 
+    console.log('onSuccessfulCompletion mingtong step recordOutputs: ', recordOutputs);
     // Give all plugins a chance to react (such as updating database etc) to environment creation being completed successfully
     await pluginRegistryService.visitPlugins(pluginConstants.extensionPoint, 'onEnvProvisioningSuccess', {
       payload: {

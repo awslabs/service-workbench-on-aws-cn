@@ -62,9 +62,12 @@ class EnvironmentDnsService extends Service {
 
   async changeRecordSet(action, prefix, id, publicDnsName) {
     const aws = await this.service('aws');
+    console.log('changeRecordSet mingtong step,  publicDnsName:', publicDnsName);
     const route53Client = new aws.sdk.Route53();
+    
     const hostedZoneId = this.settings.get(settingKeys.hostedZoneId);
     const subdomain = this.getHostname(prefix, id);
+    console.log('changeRecordSet mingtong step,  subdomain:', subdomain);
     await this.changeResourceRecordSets(route53Client, hostedZoneId, action, subdomain, 'CNAME', publicDnsName);
   }
 
@@ -85,7 +88,9 @@ class EnvironmentDnsService extends Service {
         ],
       },
     };
-    await route53Client.changeResourceRecordSets(params).promise();
+    console.log('changeResourceRecordSets mingtong step,  params:', params);
+    // mingtong test for hostedZone is not in the master account
+    // await route53Client.changeResourceRecordSets(params).promise();
   }
 
   async changeResourceRecordSetsPrivateALB(

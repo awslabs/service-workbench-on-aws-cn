@@ -333,7 +333,8 @@ Resources:
           # Download s3-synchronizer Windows executable
           $uri = [System.Uri]"${EnvironmentInstanceFiles}"
           $key = "$($uri.AbsolutePath.Substring(1))/bin/s3-synchronizer-windows-amd64.exe"
-          Read-S3Object -BucketName $uri.Host -Key $key -File s3-synchronizer.exe
+          $region = "${AWS::Region}"
+          Read-S3Object -Region $region -BucketName $uri.Host -Key $key -File s3-synchronizer.exe
           '@
           Set-Content -Path C:\workdir\download-s3-synchronizer.ps1 -Value $downloadS3Synchronizer
 

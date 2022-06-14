@@ -210,10 +210,14 @@ class ALBService extends Service {
    * @returns {Promise<string>}
    */
   async createListenerRule(prefix, requestContext, resolvedVars, targetGroupArn) {
+    console.log('createListenerRule mingtong step!');
     const isAppStreamEnabled = this.checkIfAppStreamEnabled();
     const deploymentItem = await this.getAlbDetails(requestContext, resolvedVars.projectId);
+    console.log('createListenerRule mingtong step, deploymentItem: ', deploymentItem);
     const albRecord = JSON.parse(deploymentItem.value);
+    console.log('createListenerRule mingtong step, albRecord: ', albRecord);
     const listenerArn = albRecord.listenerArn;
+    console.log('createListenerRule mingtong step, listenerArn: ', listenerArn);
     const priority = await this.calculateRulePriority(requestContext, resolvedVars, albRecord.listenerArn);
     const subdomain = this.getHostname(prefix, resolvedVars.envId);
     let params;
@@ -339,15 +343,19 @@ class ALBService extends Service {
     const params = {
       ListenerArn: listenerArn,
     };
+    console.log('calculateRulePriority mingtong step, params: ', params);
     const albClient = await this.getAlbSdk(requestContext, resolvedVars);
     let response = null;
     try {
+      console.log('calculateRulePriority mingtong step, describeRules start');
       response = await albClient.describeRules(params).promise();
       const rules = response.Rules;
       // Returns list of priorities, returns 0 for default rule
+      console.log('calculateRulePriority mingtong step, rules:', rules);
       const priorities = _.map(rules, rule => {
         return rule.IsDefault ? 0 : _.toInteger(rule.Priority);
       });
+      console.log('calculateRulePriority mingtong step, priorities:', priorities);
       return _.max(priorities) + 1;
     } catch (err) {
       throw new Error(`Error calculating rule priority. Rule describe failed with message - ${err.message}`);

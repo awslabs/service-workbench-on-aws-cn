@@ -2,7 +2,7 @@ module.exports = {
   title: "Service Workbench Platform",
   tagline: "Researching data made easy",
   url: "https://your-docusaurus-test-site.com",
-  baseUrl: "/",
+  baseUrl: "/service-workbench-on-aws-cn/",
   favicon: "img/favicon.ico",
   organizationName: "aws", // Usually your GitHub org/user name.
   projectName: "docusaurus", // Usually your repo name.

@@ -428,6 +428,7 @@ importers:
       '@amzn/base-services': link:../../../addon-base/packages/services
       '@amzn/base-services-container': link:../../../addon-base/packages/services-container
       '@amzn/key-pair-mgmt-services': link:../../../addon-key-pair-mgmt-api/packages/key-pair-mgmt-services
+      axios: 0.21.4
       is-cidr: 3.1.0
       js-yaml: 4.0.0
       lodash: 4.17.21
@@ -469,6 +470,7 @@ importers:
       '@amzn/environment-type-mgmt-services': workspace:*
       '@amzn/key-pair-mgmt-services': workspace:*
       aws-sdk-mock: ^5.1.0
+      axios: ^0.21.2
       eslint: ^6.8.0
       eslint-config-airbnb-base: ^14.1.0
       eslint-config-prettier: ^6.10.0

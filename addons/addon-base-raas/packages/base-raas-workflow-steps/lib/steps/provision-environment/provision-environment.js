@@ -47,13 +47,14 @@ class ProvisionEnvironment extends StepBase {
     ]);
 
     // Get common payload params and pull environment info
-    const [type, environmentId, requestContext, vpcId, vpcSubnet, encryptionKeyArn] = await Promise.all([
+    const [type, environmentId, requestContext, vpcId, vpcSubnet, encryptionKeyArn, apiHandlerArn] = await Promise.all([
       this.payload.string('type'),
       this.payload.string('environmentId'),
       this.payload.object('requestContext'),
       this.payload.string('vpcId'),
       this.payload.string('subnetId'),
       this.payload.string('encryptionKeyArn'),
+      this.payload.string('apiHandlerArn'),
     ]);
     const environment = await environmentService.mustFind(requestContext, { id: environmentId });
     const by = _.get(requestContext, 'principalIdentifier.uid');
@@ -77,6 +78,7 @@ class ProvisionEnvironment extends StepBase {
         break;
       case 'ec2-linux':
         template = await cfnTemplateService.getTemplate('ec2-linux-instance');
+        addParam('ApiHandlerArn', apiHandlerArn);
         break;
       case 'ec2-windows':
         template = await cfnTemplateService.getTemplate('ec2-windows-instance');

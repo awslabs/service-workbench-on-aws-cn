@@ -47,6 +47,13 @@ Parameters:
   EgressStoreIamPolicyDocument:
     Type: String
     Description: The IAM policy for launched workstation to access egress store
+  ApiHandlerArn:
+    Type: String
+    Description: The arn of apiHandler role
+  SessionDuration:
+    Type: Number
+    MaxValue: 3599
+    Description: Duration of ec2 ssm connection session, cannot exceed 3599
 
 Conditions:
   IamPolicyEmpty: !Equals [!Ref IamPolicyDocument, '{}']
@@ -73,6 +80,18 @@ Resources:
             Resource: '*'
           - Effect: Allow
             Action:
+              - 'ssm:*'
+            Resource: '*'
+          - Effect: Allow
+            Action:
+              - 'ssmmessages:*'
+            Resource: '*'
+          - Effect: Allow
+            Action:
+              - 'ec2messages:*'
+            Resource: '*'
+          - Effect: Allow
+            Action:
               - 'sts:AssumeRole'
             Resource: !Sub 'arn:${AWS::Partition}:iam::*:role/swb-*'
   IAMRole:
@@ -89,6 +108,8 @@ Resources:
                 - 'ec2.amazonaws.com'
             Action:
               - 'sts:AssumeRole'
+      ManagedPolicyArns:
+        - !Sub 'arn:${AWS::Partition}:iam::aws:policy/AmazonSSMManagedInstanceCore'
       Policies:
         - !If
           - IamPolicyEmpty
@@ -121,6 +142,38 @@ Resources:
                       - '${S3Prefix}/*'
                       - S3Prefix: !Select [3, !Split ['/', !Ref EnvironmentInstanceFiles]]
       PermissionsBoundary: !Ref InstanceRolePermissionBoundary
+
+  EC2SSMRole:
+    Type: 'AWS::IAM::Role'
+    Properties:
+      RoleName: !Join ['-', [Ref: Namespace, 'ec2-ssm-role']]
+      Path: '/'
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: 'Allow'
+            Principal:
+              AWS:
+                - !Ref ApiHandlerArn
+            Action:
+              - 'sts:AssumeRole'
+      Policies:
+        - PolicyName: !Join ['-', [Ref: Namespace, 'ssm-session-policy']]
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Effect: 'Allow'
+                Action: 'ssm:StartSession'
+                Resource: !Join 
+                  - ''
+                  - - 'arn:'
+                    - !Ref AWS::Partition
+                    - ':ec2:'
+                    - !Ref AWS::Region
+                    - ':'
+                    - !Ref AWS::AccountId
+                    - ':instance/'
+                    - !Ref EC2Instance
 
   InstanceProfile:
     Type: 'AWS::IAM::InstanceProfile'
@@ -233,6 +286,22 @@ Outputs:
   WorkspaceInstanceRoleArn:
     Description: IAM role assumed by the EC2 workspace instance
     Value: !GetAtt IAMRole.Arn
+
+  SessionDuration:
+    Description: Duration of ec2 connection session
+    Value: !Ref SessionDuration      
+
+  WorkspaceSSMRoleArn:
+    Description: IAM role assumed by API Handler to start session
+    Value: !GetAtt EC2SSMRole.Arn
+
+  MetaConnection2Scheme:
+    Description: Protocol for connection 2
+    Value: ssm
+
+  MetaConnection2Name:
+    Description: Name for connection
+    Value: SSM to EC2 instance
 
   #  Connection related outputs. These outputs need to have prefix "MetaConnection"
   #  The "connections" are derived based on the CFN outputs as follows.

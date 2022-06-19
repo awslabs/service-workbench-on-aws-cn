@@ -83,6 +83,7 @@ class DropDown extends React.Component {
       IamPolicyDocument: '${iamPolicyDocument}',
       EnvironmentInstanceFiles: '${environmentInstanceFiles}',
       Subnet: '${subnetId}',
+      ApiHandlerArn: '${apiHandlerArn}',
     };
     // if current value is empty and the field is a key in the above dict
     if (currentValue === '' && field.key in fieldToVariableMap) {

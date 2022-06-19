@@ -257,3 +257,8 @@ defaultIdpType: cognito_user_pool
 enableAmiSharing: false
 devopsProfile: devops
 # ======================================================================
+
+# ==================== Region List which do not supporting EC2 Instance Connect feature ====================
+# ==================== Refer: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-connect-methods.html ===============
+noEc2ConnectRegions: '["cn-northwest-1", "cn-north-1", "ap-east-1", "ap-northeast-3", "af-south-1", "eu-south-1", "me-south-1"]'
+# ======================================================================

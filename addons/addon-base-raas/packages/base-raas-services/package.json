@@ -24,6 +24,7 @@
     "uuid": "^3.4.0",
     "xml": "^1.0.1",
     "yaml": "^1.10.2",
+    "axios": "^0.21.2",
     "yaml-cfn": "^0.3.1"
   },
   "devDependencies": {

@@ -91,16 +91,11 @@ class AwsService extends Service {
    * @returns {Promise<{accessKeyId, secretAccessKey, sessionToken}>}
    */
   async getCredentialsForRole({ roleArn, roleSessionName, externalId }) {
-    console.log('getCredentialsForRole mingtong step 1');
     const awsRegion = this.settings.get(settingKeys.awsRegion);
-    console.log('getCredentialsForRole mingtong step 1-1, awsRegion', awsRegion);
     const awsSuffix = this.awsSuffix;
-    console.log('getCredentialsForRole mingtong step 1-2, awsSuffix', awsSuffix);
     const stsEndpoint = `https://sts.${awsRegion}.${awsSuffix}`;
-    console.log('getCredentialsForRole mingtong step 1-3, stsEndpoint', stsEndpoint);
     const sts = new this.sdk.STS({ apiVersion: '2011-06-15', endpoint: stsEndpoint });
 
-    console.log('getCredentialsForRole mingtong step 2, sts', sts);
     const envName = this.settings.get(settingKeys.envName);
     const params = {
       RoleArn: roleArn,
@@ -109,9 +104,7 @@ class AwsService extends Service {
     if (externalId) {
       params.ExternalId = externalId;
     }
-    console.log('getCredentialsForRole mingtong step 3, params', params);
     const { Credentials: creds } = await sts.assumeRole(params).promise();
-    console.log('getCredentialsForRole mingtong step 4, creds', creds);
     const { AccessKeyId: accessKeyId, SecretAccessKey: secretAccessKey, SessionToken: sessionToken } = creds;
     return { accessKeyId, secretAccessKey, sessionToken };
   }

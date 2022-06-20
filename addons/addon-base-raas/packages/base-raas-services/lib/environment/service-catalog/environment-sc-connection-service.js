@@ -94,15 +94,11 @@ class EnvironmentScConnectionService extends Service {
     // The following will succeed only if the user has permissions to access the specified environment
     const { outputs, projectId } = await environmentScService.mustFind(requestContext, { id: envId });
 
-    console.log('listConnections mingtong step 1, outputs', outputs);
-    console.log('listConnections mingtong step 1, projectId', projectId);
     // Verify environment is linked to an AppStream project when application has AppStream enabled
     await environmentScService.verifyAppStreamConfig(requestContext, projectId);
-    console.log('listConnections mingtong step 2');
 
     // TODO: Handle case when connection is about an auto scaling group instead of specific instance
     const result = await cfnOutputsToConnections(outputs);
-    console.log('listConnections mingtong step 3, result', result);
 
     // Give plugins chance to adjust the connection (such as connection url etc)
     const adjustedConnections = await Promise.all(
@@ -125,17 +121,13 @@ class EnvironmentScConnectionService extends Service {
         return _.get(pluginsResult, 'connection', connection);
       }),
     );
-    console.log('listConnections mingtong step 4, adjustedConnections', adjustedConnections);
     return adjustedConnections;
   }
 
   async findConnection(requestContext, envId, connectionId) {
     // The following will succeed only if the user has permissions to access the specified environment
-    console.log('findConnection mingtong step 1');
     const connections = await this.listConnections(requestContext, envId);
-    console.log('findConnection mingtong step 2, connections', connections);
     const connection = _.find(connections, { id: connectionId });
-    console.log('findConnection mingtong step 3, connection', connection);
     return connection;
   }
 
@@ -267,24 +259,15 @@ class EnvironmentScConnectionService extends Service {
       'jsonSchemaValidationService',
     ]);
 
-    console.log('sendSshPublicKey mingtong step 1, requestContext', requestContext);
-    console.log('sendSshPublicKey mingtong step 1, envId', envId);
-    console.log('sendSshPublicKey mingtong step 1, connectionId', connectionId);
-    console.log('sendSshPublicKey mingtong step 1, sshConnectionInfo', sshConnectionInfo);
-
     // Validate input
     await validationService.ensureValid(sshConnectionInfo, sshConnectionInfoSchema);
-    console.log('sendSshPublicKey mingtong step 2');
     // Verify environment is linked to an AppStream project when application has AppStream enabled
     const { projectId } = await environmentScService.mustFind(requestContext, { id: envId });
-    console.log('sendSshPublicKey mingtong step 3, projectId', projectId);
-    await environmentScService.verifyAppStreamConfig(requestContext, projectId);
 
-    console.log('sendSshPublicKey mingtong step 4');
+    await environmentScService.verifyAppStreamConfig(requestContext, projectId);
 
     // The following will succeed only if the user has permissions to access the specified environment
     const connection = await this.mustFindConnection(requestContext, envId, connectionId);
-    console.log('sendSshPublicKey mingtong step 5, connection', connection);
     if (connection.scheme !== connectionScheme.ssh) {
       throw this.boom.badRequest(
         `The connection "${connectionId}" does not support SSH. Please contact your administrator.`,
@@ -301,8 +284,6 @@ class EnvironmentScConnectionService extends Service {
     const { keyPairId } = sshConnectionInfo;
     // keyPairService.mustFind will only succeed if the caller has permissions to read the key with keyPairId
     const { publicKey, status } = await keyPairService.mustFind(requestContext, { id: keyPairId });
-    console.log('sendSshPublicKey mingtong step 6, publicKey', publicKey);
-    console.log('sendSshPublicKey mingtong step 6, status', status);
     if (_.toLower(status) !== 'active') {
       throw this.boom.badRequest(`Cannot use key pair ${keyPairId}. The key is not active.`, true);
     }
@@ -323,11 +304,8 @@ class EnvironmentScConnectionService extends Service {
     ]);
 
     const data = await ec2Sdk.describeInstances({ InstanceIds: [instanceId] }).promise();
-    console.log('sendSshPublicKey mingtong step 7, data', data);
     const instanceInfo = _.get(data, 'Reservations[0].Instances[0]');
     const instanceAz = _.get(instanceInfo || {}, 'Placement.AvailabilityZone');
-    console.log('sendSshPublicKey mingtong step 8, instanceInfo', instanceInfo);
-    console.log('sendSshPublicKey mingtong step 8, instanceAz', instanceAz);
     await ec2InstanceConnectSdk
       .sendSSHPublicKey({
         AvailabilityZone: instanceAz,
@@ -336,13 +314,11 @@ class EnvironmentScConnectionService extends Service {
         SSHPublicKey: publicKey,
       })
       .promise();
-    console.log('sendSshPublicKey mingtong step 9');
     // Write audit event
     await this.audit(requestContext, {
       action: 'env-send-ssh-public-key',
       body: { id: envId, connection },
     });
-    console.log('sendSshPublicKey mingtong step 10, this.toNetworkInterfaces(instanceInfo)', this.toNetworkInterfaces(instanceInfo));
     // Return information about network interfaces of the instance so user can SSH to it
     return {
       networkInterfaces: this.toNetworkInterfaces(instanceInfo),

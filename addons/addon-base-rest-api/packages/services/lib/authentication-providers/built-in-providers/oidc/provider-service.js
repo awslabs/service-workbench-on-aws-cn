@@ -30,7 +30,6 @@ class ProviderService extends Service {
     if (_.isEmpty(token)) {
       throw this.boom.forbidden('no jwt token was provided', true);
     }
-    console.log('validateToken mingtong step providerConfig, ', providerConfig);
     // -- Check if this token is revoked
     const tokenRevocationService = await this.service('tokenRevocationService');
     const isRevoked = await tokenRevocationService.isRevoked({ token });
@@ -41,7 +40,6 @@ class ProviderService extends Service {
     let oidcTokenVerifier = this.oidcTokenVerifiersCache[issuer];
     if (!oidcTokenVerifier) {
       // No cognitoTokenVerifier in the cache so create a new one
-      console.log('validateToken mingtong step jwks_uri, ', providerConfig.config.jwks_uri);
       oidcTokenVerifier = await getOidcTokenVerifier(providerConfig.config.jwks_uri);
       // Add newly created cognitoTokenVerifier to the cache
       this.oidcTokenVerifiersCache[issuer] = oidcTokenVerifier;
@@ -54,10 +52,8 @@ class ProviderService extends Service {
 
   async saveUser(decodedToken, authenticationProviderId) {
     const userAttributesMapperService = await this.service('oidcUserAttributesMapperService');
-    console.log('validateToken mingtong step decodedToken, ', decodedToken);
     // Ask user attributes mapper service to read information from the decoded token and map them to user attributes
     const userAttributes = await userAttributesMapperService.mapAttributes(decodedToken);
-    console.log('validateToken mingtong step userAttributes, ', userAttributes);
     // If this user is authenticated via SAML or native user pool then we need to add it to our user table if it doesn't exist already
     const userService = await this.service('userService');
 
@@ -66,7 +62,6 @@ class ProviderService extends Service {
       authenticationProviderId,
       identityProviderName: 'oidc',
     });
-    console.log('validateToken mingtong step user, ', user);
     if (user) {
       await this.updateUser(userAttributes, user);
       userAttributes.uid = user.uid;
@@ -110,7 +105,6 @@ class ProviderService extends Service {
     const missingAttribs = {};
     const updatedAttribs = {};
     const keys = _.keys(userAttributes);
-    console.log('updateUser mingtong step keys, ', keys);
     if (!_.isEmpty(keys)) {
       _.forEach(keys, key => {
         const value = userAttributes[key];
@@ -120,8 +114,6 @@ class ProviderService extends Service {
           missingAttribs[key] = value;
         }
       });
-
-      console.log('updateUser mingtong step missingAttribs, ', missingAttribs);
 
       // When IdP users are created via SWB UI, by default we use the username part of provided email address as first and last names
       // To update these default names, we extract the mapped attribute values coming from the OIDC IDP

@@ -103,7 +103,6 @@ const Authentication = types
       }
 
       const idTokenFromLocal = storage.getItem(localStorageKeys.appIdToken);
-      console.log('getIdToken mingtong step idTokenFromLocal', idTokenFromLocal);
 
       const idToken = _.isUndefined(newIdToken) ? idTokenFromLocal : newIdToken.token;
       return idToken;

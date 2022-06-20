@@ -52,7 +52,6 @@ class ProvisionerService extends Service {
 
     this.log.info('Saving oidc Authentication Provider Configuration.');
 
-    this.log.info('provision mingtong step providerConfig ', providerConfig);
 
     // Save auth provider configuration and make it active
     const result = await authenticationProviderConfigService.saveAuthenticationProviderConfig({
@@ -66,7 +65,6 @@ class ProvisionerService extends Service {
   async getIdPConfigurations() {
     const oidcIssuer = this.settings.get(settingKeys.oidcIssuer);
     let configUrl = `${oidcIssuer}/.well-known/openid-configuration`;
-    console.log('getIdPConfigurations mingtong step url:',configUrl);
     try {
       const response = await axios.get(configUrl);
       const jwks_uri = response.data.jwks_uri;
@@ -75,7 +73,6 @@ class ProvisionerService extends Service {
       const token_endpoint = response.data.token_endpoint;
       return {jwks_uri, authorization_endpoint, end_session_endpoint, token_endpoint}
     } catch (error) {
-      console.log('getIdPConfigurations mingtong step 2, error, ', error);
       throw this.boom.oidcConfigurationFailed(
         'Get oidc configuration failed, please try it again',
         true,

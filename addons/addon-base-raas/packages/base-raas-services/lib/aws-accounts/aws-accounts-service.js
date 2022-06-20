@@ -312,18 +312,15 @@ class AwsAccountsService extends Service {
       { action: 'update', conditions: [allowIfActive, allowIfAdmin] },
       rawData,
     );
-    console.log('aws-accounts-service update mingtong step 1, rawData', rawData);
     // Validate input
     const [validationService] = await this.service(['jsonSchemaValidationService']);
     await validationService.ensureValid(rawData, updateSchema);
-    console.log('aws-accounts-service update mingtong step 2');
     // For now, we assume that 'updatedBy' is always a user and not a group
     const by = _.get(requestContext, 'principalIdentifier.uid');
     const { id, rev } = rawData;
 
     // Verify active Non-AppStream environments do not exist
     await this.checkForActiveNonAppStreamEnvs(requestContext, id);
-    console.log('aws-accounts-service update mingtong step 3');
     const awsAccount = await this.mustFind(requestContext, { id });
     const accountId = awsAccount.accountId;
     const appStreamImageName = rawData.appStreamImageName;
@@ -331,7 +328,6 @@ class AwsAccountsService extends Service {
       await this.shareAppStreamImageWithMemberAccount(requestContext, accountId, appStreamImageName);
     }
 
-    console.log('aws-accounts-service update mingtong step 4');
     // Prepare the db object
     const dbObject = _.omit(this._fromRawToDbObject(rawData, { updatedBy: by }), ['rev']);
 
@@ -360,7 +356,6 @@ class AwsAccountsService extends Service {
         throw this.boom.notFound(`awsAccounts with id "${id}" does not exist`, true);
       },
     );
-    console.log('aws-accounts-service update mingtong step 5');
 
     // Write audit event
     await this.audit(requestContext, { action: 'update-aws-account', body: result });

@@ -51,10 +51,8 @@ class AuthenticationProviderConfigService extends Service {
     const table = this.settings.get(settingKeys.tableName);
 
     const providerConfigs = await this.getAuthenticationProviderConfigs();
-    console.log('clearAllAuthenticationProviderConfigs mingtong step providerConfigs', providerConfigs);
 
     _.forEach(providerConfigs, (providerConfig) => {
-      console.log('clearAllAuthenticationProviderConfigs mingtong step providerConfig', providerConfig);
       dbService.helper
         .deleter()
         .table(table)
@@ -64,7 +62,6 @@ class AuthenticationProviderConfigService extends Service {
   }
 
   async getAuthenticationProviderConfig(providerId, fields = []) {
-    console.log('getAuthenticationProviderConfig mingtong step providerId', providerId);
     if (providerId === 'internal') {
       throw this.boom.badRequest(
         'Internal users cannot log in. Please use an external IdP or native Cognito user pool user.',
@@ -73,14 +70,12 @@ class AuthenticationProviderConfigService extends Service {
     }
     const dbService = await this.service('dbService');
     const table = this.settings.get(settingKeys.tableName);
-    console.log('getAuthenticationProviderConfig mingtong step table', table);
     const dbResult = await dbService.helper
       .getter()
       .table(table)
       .key({ id: providerId })
       .projection(fields)
       .get();
-    console.log('getAuthenticationProviderConfig mingtong step dbResult', dbResult);      
     return dbResult && toProviderConfig(dbResult);
   }
 

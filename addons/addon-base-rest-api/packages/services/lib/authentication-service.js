@@ -70,7 +70,6 @@ class AuthenticationService extends Service {
     }
     const providerId = claims.iss;
     const providerConfig = await authenticationProviderConfigService.getAuthenticationProviderConfig(providerId);
-    console.log('authenticateMain mingtong step providerConfig, ', providerConfig);
     if (!providerConfig) {
       return notAuthenticated({
         uid: claims.sub,

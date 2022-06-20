@@ -58,14 +58,9 @@ async function configure(context) {
         });
         let response;
         let idToken;
-        console.log('api/authentication/id-tokens mingtong step authProviderConfig.config.type.type', authProviderConfig.config.type.type);
-        console.log('api/authentication/id-tokens mingtong step authProviderConfig', authProviderConfig);
-        console.log('api/authentication/id-tokens mingtong step authProviderConstants.oidcAuthProviderTypeId', authProviderConstants.oidcAuthProviderTypeId);
 
         // if (authProviderConfig.config.type.type === authProviderConstants.oidcAuthProviderTypeId) {
-          console.log('api/authentication/id-tokens mingtong params', params);
           response = await axiosClient.post(authCodeTokenExchangeUri, querystring.stringify(params));
-          console.log('api/authentication/id-tokens mingtong step response', response);
           idToken = _.get(response, 'data.id_token');
         // } else {
         //   response = await axiosClient.post(authCodeTokenExchangeUri, params, { params });

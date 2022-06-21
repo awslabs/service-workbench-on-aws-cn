@@ -16,8 +16,6 @@ jobs:
 
       - name: Setup Node.js
         uses: actions/setup-node@v3
-        with:
-          node-version: '16.15.1'
 
       - name: Install dependencies
         working-directory: ./docs
@@ -31,7 +29,6 @@ jobs:
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
-        if: ${{ github.ref == 'refs/heads/mainline' }}
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./docs/build

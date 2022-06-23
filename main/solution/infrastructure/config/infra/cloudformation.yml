@@ -9,9 +9,10 @@ Conditions:
       - !Equals ['${self:custom.settings.domainName}', '']
     - !Equals ['${self:custom.settings.hostedZoneId}', '']
     - !Not [!Equals ['${self:custom.settings.awsRegion}', 'cn-north-1']]
-    - !Not [!Equals ['${self:custom.settings.awsRegion}', 'cn-northwest-1']]    
+    - !Not [!Equals ['${self:custom.settings.awsRegion}', 'cn-northwest-1']]
   UseCustomDomainOutSideChina: !And
-    - !Equals ['${self:custom.settings.domainName}', ''] 
+    - !Not
+      - !Equals ['${self:custom.settings.domainName}', '']
     - !Not [!Equals ['${self:custom.settings.awsRegion}', 'cn-north-1']]
     - !Not [!Equals ['${self:custom.settings.awsRegion}', 'cn-northwest-1']]
   IsHongkongRegion: !Equals ['${self:custom.settings.awsRegion}', 'ap-east-1']

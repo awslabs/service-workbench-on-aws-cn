@@ -238,3 +238,5 @@ awsPartition: aws
 # Global regions: 'amazonaws.com'
 awsSuffix: amazonaws.com
 
+# Enable custom domain manage in Amazon Route 53
+customDomainInR53: true

@@ -1,5 +1,0 @@
-# Config value for GitHub actions deployment
-awsRegion: us-east-1
-solutionName: swb
-envType: e2eTest
-createServiceCatalogPortfolio: true

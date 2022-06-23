@@ -1,9 +1,0 @@
-{
-  "plugins": [
-    ["babel-plugin-inline-import", {
-      "extensions": [
-        ".cfn.yml"
-      ]
-    }]
-  ]
-}

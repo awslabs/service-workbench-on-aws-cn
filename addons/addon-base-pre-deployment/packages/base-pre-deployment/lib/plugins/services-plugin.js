@@ -28,7 +28,8 @@ const UserService = require('@amzn/base-services/lib/user/user-service');
 const DbPasswordService = require('@amzn/base-services/lib/db-password/db-password-service');
 const AuthenticationProviderTypeService = require('@amzn/base-api-services/lib/authentication-providers/authentication-provider-type-service');
 const AuthenticationProviderConfigService = require('@amzn/base-api-services/lib/authentication-providers/authentication-provider-config-service');
-const registerBuiltInAuthProvisioners = require('@amzn/base-api-services/lib/authentication-providers/register-built-in-provisioner-services');
+const registerBuiltInAuthProviders = require('@amzn/base-api-services/lib/authentication-providers/register-built-in-auth-providers');
+const TokenRevocationService = require('@amzn/base-api-services/lib/token-revocation-service');
 
 const DeploymentStoreService = require('../deployment-store-service');
 
@@ -44,7 +45,7 @@ const settingKeys = {
  * @returns {Promise<void>}
  */
 // eslint-disable-next-line no-unused-vars
-async function registerServices(container, pluginRegistry) {
+async function registerServices(container, pluginRegistry, settings) {
   container.register('aws', new AwsService(), { lazy: false });
   container.register('jsonSchemaValidationService', new JsonSchemaValidationService());
   container.register('authenticationProviderTypeService', new AuthenticationProviderTypeService());
@@ -59,12 +60,14 @@ async function registerServices(container, pluginRegistry) {
   container.register('inputManifestValidationService', new InputManifestValidationService());
   container.register('auditWriterService', new AuditWriterService());
   container.register('pluginRegistryService', new PluginRegistryService(pluginRegistry), { lazy: false });
+  container.register('tokenRevocationService', new TokenRevocationService());
 
   // Authorization Services from base addon
   container.register('authorizationService', new AuthorizationService());
   container.register('userAuthzService', new UserAuthzService());
 
-  registerBuiltInAuthProvisioners(container);
+  // Register all the built in authentication provider
+  registerBuiltInAuthProviders(container, settings);
 }
 
 /**

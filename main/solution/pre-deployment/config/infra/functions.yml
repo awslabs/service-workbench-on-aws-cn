@@ -17,3 +17,4 @@ preDeployment:
     APP_STUDIES_TABLE_NAME: ${self:custom.settings.dbStudies}
     APP_STUDY_PERMISSIONS_TABLE_NAME: ${self:custom.settings.dbStudyPermissions}
     APP_ENVIRONMENTS_TABLE_NAME: ${self:custom.settings.dbEnvironmentsSc}
+    APP_DEFAULT_IDP_TYPE: ${self:custom.settings.defaultIdpType}

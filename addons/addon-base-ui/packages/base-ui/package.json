@@ -32,6 +32,7 @@
     "toastr": "^2.1.4",
     "typeface-lato": "0.0.75",
     "uuid": "^3.4.0",
+    "parse-url": "^5.0.8",
     "validatorjs": "^3.18.1"
   },
   "devDependencies": {

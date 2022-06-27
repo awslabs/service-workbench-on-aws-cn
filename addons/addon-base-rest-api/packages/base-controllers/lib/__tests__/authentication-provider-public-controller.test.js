@@ -112,4 +112,33 @@ describe('AuthenticationProviderPublicController', () => {
       expect(response.json).toHaveBeenCalledWith(expectedOutput);
     });
   });
+  describe('get oidc public provider configs', () => {
+    it('should return oidc public provider config,', async () => {
+      const configService = { getAuthenticationProviderConfigs: () => configurationsHelper.getOidcConfiguration() };
+      const context = createContext({ authenticationProviderConfigService: configService });
+      const router = await controller(context);
+
+      // Did the controller register the '/' route?
+      const route = router.routes['/'];
+      expect(route).toBeDefined();
+
+      const response = {
+        status: jest.fn().mockReturnThis(),
+        json: jest.fn(),
+      };
+      const next = jest.fn();
+      await route({}, response, next);
+
+      // The 'next' function should not have been called, otherwise it means that
+      // the route had an error
+      expect(next).not.toHaveBeenCalled();
+
+      // Expecting a status of 200
+      expect(response.status).toHaveBeenCalledWith(200);
+
+      // Expecting a specific list of configurations
+      const expectedOutput = configurationsHelper.getOidcPublicConfiguration();
+      expect(response.json).toHaveBeenCalledWith(expectedOutput);
+    });
+  });
 });

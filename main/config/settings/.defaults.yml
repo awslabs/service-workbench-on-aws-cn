@@ -240,3 +240,6 @@ awsSuffix: amazonaws.com
 
 # Enable custom domain manage in Amazon Route 53
 customDomainInR53: true
+# Set default IDP type
+# value: oidc/cognito_user_pool
+defaultIdpType: cognito_user_pool

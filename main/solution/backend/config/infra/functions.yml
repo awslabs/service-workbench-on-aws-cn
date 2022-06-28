@@ -21,6 +21,7 @@ openDataScrapeHandler:
     APP_STUDY_DATA_BUCKET_NAME: ${self:custom.settings.studyDataBucketName}
     APP_CUSTOM_USER_AGENT: ${self:custom.settings.customUserAgent}
     APP_IS_APP_STREAM_ENABLED: ${self:custom.settings.isAppStreamEnabled}
+    APP_DEFAULT_IDP_TYPE: ${self:custom.settings.defaultIdpType}
 
   events:
     - schedule:
@@ -40,6 +41,7 @@ envStatusPollHandler:
   environment:
     APP_CUSTOM_USER_AGENT: ${self:custom.settings.customUserAgent}
     APP_IS_APP_STREAM_ENABLED: ${self:custom.settings.isAppStreamEnabled}
+    APP_DEFAULT_IDP_TYPE: ${self:custom.settings.defaultIdpType}
 
 dataSourceReachabilityHandler:
   handler: src/lambdas/data-source-reachability/handler.handler
@@ -57,6 +59,7 @@ dataSourceReachabilityHandler:
     APP_DB_STUDIES_ACCOUNTID_INDEX: ${self:custom.settings.dbStudiesAccountIdIndex}
     APP_STUDY_DATA_BUCKET_NAME: ${self:custom.settings.studyDataBucketName}
     APP_CUSTOM_USER_AGENT: ${self:custom.settings.customUserAgent}
+    APP_DEFAULT_IDP_TYPE: ${self:custom.settings.defaultIdpType}
 
 dataSourceReachabilityDailyHandler:
   handler: src/lambdas/data-source-reachability-daily/handler.handler
@@ -71,6 +74,7 @@ dataSourceReachabilityDailyHandler:
   environment:
     APP_SM_WORKFLOW: ${self:custom.settings.workflowStateMachineArn}
     APP_CUSTOM_USER_AGENT: ${self:custom.settings.customUserAgent}
+    APP_DEFAULT_IDP_TYPE: ${self:custom.settings.defaultIdpType}
 
 awsAccountOnboardingHandler:
   handler: src/lambdas/aws-account-onboarding/handler.handler
@@ -88,6 +92,7 @@ awsAccountOnboardingHandler:
     APP_IS_APP_STREAM_ENABLED: ${self:custom.settings.isAppStreamEnabled}
     APP_ENABLE_FLOW_LOGS: ${self:custom.settings.enableFlowLogs}
     APP_DOMAIN_NAME: ${self:custom.settings.domainName}
+    APP_DEFAULT_IDP_TYPE: ${self:custom.settings.defaultIdpType}
 
 apiHandler:
   timeout: 30 # in seconds, default is 6
@@ -183,7 +188,7 @@ apiHandler:
     APP_EGRESS_STORE_BUCKET_NAME: ${self:custom.settings.egressStoreBucketName}
     APP_EGRESS_NOTIFICATION_BUCKET_NAME: ${self:custom.settings.egressNotificationBucketName}
     APP_EGRESS_NOTIFICATION_SNS_TOPIC_ARN: ${self:custom.settings.egressNotificationSnsTopicArn}
-    APP_DEFAULT_IDP_TYPE: ${self:custom.settings.defaultIdpType}    
+    APP_DEFAULT_IDP_TYPE: ${self:custom.settings.defaultIdpType}
 
 workflowLoopRunner:
   handler: src/lambdas/workflow-loop-runner/handler.handler
@@ -222,3 +227,4 @@ workflowLoopRunner:
     APP_ENABLE_FLOW_LOGS: ${self:custom.settings.enableFlowLogs}
     APP_PERMISSION_BOUNDARY_POLICY_STUDY_BUCKET_ARN: !Sub arn:${AWS::Partition}:iam::${AWS::AccountId}:policy/${self:custom.settings.permissionBoundaryPolicyStudyBucket}
     APP_LOGGING_BUCKET_NAME: ${self:custom.settings.loggingBucketName}
+    APP_DEFAULT_IDP_TYPE: ${self:custom.settings.defaultIdpType}

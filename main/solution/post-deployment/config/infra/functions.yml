@@ -69,3 +69,4 @@ egressStoreObjectsHandler:
     APP_EGRESS_STORE_BUCKET_NAME: ${self:custom.settings.egressStoreBucketName}
     APP_EGRESS_NOTIFICATION_BUCKET_NAME: ${self:custom.settings.egressNotificationBucketName}
     APP_EGRESS_NOTIFICATION_SNS_TOPIC_ARN: ${self:custom.settings.egressNotificationSnsTopicArn}
+    APP_DEFAULT_IDP_TYPE: ${self:custom.settings.defaultIdpType}

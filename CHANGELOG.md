@@ -3,7 +3,31 @@
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
 ## Beta
-[This release is in beta. Click here to see changes since 5.1.1.](https://github.com/awslabs/service-workbench-on-aws/compare/v5.1.1...mainline)
+[This release is in beta. Click here to see changes since 5.2.0.](https://github.com/awslabs/service-workbench-on-aws/compare/v5.2.0...mainline)
+
+
+### [5.2.0](https://github.com/awslabs/service-workbench-on-aws/compare/v5.1.1...v5.2.0) (2022-05-17)
+
+
+### Features
+
+* TRE Enhancements  ([#993](https://github.com/awslabs/service-workbench-on-aws/issues/993)) ([a843926](https://github.com/awslabs/service-workbench-on-aws/commit/a8439261949f00c18f2a761518036a9756676235)):
+  - **Support for Centralized AMI**:  Allows customers to use a centralized DevOps account for building and hosting AMIs so that these AMIs can be made available to multiple SWB installations.
+    - `enableAmiSharing` and `devopsProfile` configuration settings have been added, disabled by default. These can be overriden in your `main/config/settings/<stage>.yml` file.
+  - **Restrict access to data for Admin Role**: The admin will be allowed to view another researchers' workspaces in the Service Workbench portal, but will not be able connect to them. This ensures the admins do not get indirect access to data sources of other users. Admins can also be restricted to being BYOB data source owners without being a BYOB study admins.
+    - `restrictAdminWorkspaceConnection` and `disableAdminBYOBSelfAssignment` configuration settings have been added, disabled by default. These can be overriden in your `main/config/settings/<stage>.yml` file.
+  - **Restricted data upload capabilities for Researcher Profile**: Users with a researcher role will not have the ability to create a study or upload files to any study, allowing organization to have more control over the study creation and data ingestion.
+    - `disableStudyUploadByResearcher` configuration setting has been added, disabled by default. This can be overriden in your `main/config/settings/<stage>.yml` file.
+
+  For more information about these flags, please take a look at our [User Guide](./docs/Service_Workbench_User_Guide.pdf) document.
+
+### Bug Fixes
+
+* create log group for flow logs ([#984](https://github.com/awslabs/service-workbench-on-aws/issues/984)) ([5c51e97](https://github.com/awslabs/service-workbench-on-aws/commit/5c51e97c783246136b7d0792367a2050b64d7380))
+* first install ([#970](https://github.com/awslabs/service-workbench-on-aws/issues/970)) ([24010d3](https://github.com/awslabs/service-workbench-on-aws/commit/24010d3a8aa771e3eedf18d3b26a261ff53e869d))
+* replace aws-ee package name prefix with amzn ([#960](https://github.com/awslabs/service-workbench-on-aws/issues/960)) ([9e224ff](https://github.com/awslabs/service-workbench-on-aws/commit/9e224ff1aee34ccbdea14f330c7c840a9a39b125))
+* Use correct colour for pending workspace display ([#968](https://github.com/awslabs/service-workbench-on-aws/issues/968)) ([#969](https://github.com/awslabs/service-workbench-on-aws/issues/969)) ([9f694dc](https://github.com/awslabs/service-workbench-on-aws/commit/9f694dc0072a950231ea47f76bc561838ddf72ff))
+* Docs: Relevance labs changes ([#996]https://github.com/awslabs/service-workbench-on-aws/issues/996) ([8dcef6b](https://github.com/awslabs/service-workbench-on-aws/commit/8dcef6b9638ff46c07bec1793fe497caef768fa4))
 
 ### [5.1.1](https://github.com/awslabs/service-workbench-on-aws/compare/v5.1.0...v5.1.1) (2022-04-08)
 

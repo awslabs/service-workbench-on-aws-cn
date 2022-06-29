@@ -324,13 +324,6 @@ Beside the changes mentioned above, there are some hardcode places in the existi
 # Summary
 With this refactoring, user can choose to use third party OIDC IdP or Cognito User Pool by configuration, and if user need to support other IdPs, we only need to set issuer and client id, swb can integrate with these OIDC IdPs.
 
-# Remaining Work
-
-- [ ] Review this RFC 
-- [ ] Coding.
-- [ ] Pull request of implementation.
-
-
 # Future Possibilities
 
 - After this is released we should consider if we need to integrate with other IDPs.

@@ -32,5 +32,5 @@ git clone https://github.com/awslabs/service-workbench-on-aws.git
 `./scripts/environment-deploy.sh ${STAGE_NAME}`
 4. Once the preceding step has completed, capture the root password and website URL. You can display the URL and root password again by running the following command:
 `scripts/get-info.sh ${STAGE_NAME}`
-5. Verify that Service Workbench is running by using the URL and root password, using the user `root`.
+5. Verify that Service Workbench is running by using the URL and root password, using the user `root@example.com`.
 

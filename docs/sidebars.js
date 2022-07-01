@@ -8,6 +8,8 @@ module.exports = {
         "Pre-installation requirements": [
           "installation_guide/installation/pre-installation/overview",
           "installation_guide/installation/pre-installation/tool-req",
+          "installation_guide/installation/pre-installation/oidc-providers",
+          "installation_guide/installation/pre-installation/china-prerequisites",
           "installation_guide/installation/pre-installation/software-req",
           "installation_guide/installation/pre-installation/instance-req",
           "installation_guide/installation/pre-installation/conf-settings",

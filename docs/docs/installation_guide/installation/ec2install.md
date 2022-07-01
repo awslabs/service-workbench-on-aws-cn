@@ -7,7 +7,7 @@ sidebar_label: Installation using EC2 instance
 1. Download the Service Workbench on AWS source code using this link and then run the following commands:
 ```
 sudo yum install -y git
-git clone https://github.com/awslabs/service-workbench-on-aws.git
+git clone https://github.com/awslabs/service-workbench-on-aws-cn.git
 ```
 
 2. Create a main Service Workbench on AWS conﬁguration ﬁle for your installation. To do this:

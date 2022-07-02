@@ -19,6 +19,7 @@ const Service = require('@amzn/base-services-container/lib/service');
 
 const { CfnTemplate } = require('../helpers/cfn-template');
 const { toAppStackCfnResource } = require('./helpers/app-stack-cfn-resource');
+const { getAwsConsoleSuffixByRegion } = require('../helpers/utils');
 
 const extensionPoint = 'study-access-strategy';
 
@@ -30,8 +31,9 @@ const settingKeys = {
 const getCreateStackUrl = accountTemplateInfo => {
   // see https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cfn-console-create-stacks-quick-create-links.html
   const { name, region, signedUrl } = accountTemplateInfo;
+  const awsConsoleSuffix = getAwsConsoleSuffixByRegion(region);
   const url = [
-    `https://console.aws.amazon.com/cloudformation/home?region=${region}#/stacks/new`,
+    `https://console.${awsConsoleSuffix}/cloudformation/home?region=${region}#/stacks/new`,
     `?templateURL=${encodeURIComponent(signedUrl)}`,
     `&stackName=${name}`,
   ].join('');
@@ -50,9 +52,9 @@ const getUpdateStackUrl = accountTemplateInfo => {
   const { stackId, region, signedUrl } = accountTemplateInfo;
 
   if (_.isEmpty(stackId)) return undefined;
-
+  const awsConsoleSuffix = getAwsConsoleSuffixByRegion(region);
   const url = [
-    `https://console.aws.amazon.com/cloudformation/home?region=${region}#/stacks/update/template`,
+    `https://console.${awsConsoleSuffix}/cloudformation/home?region=${region}#/stacks/update/template`,
     `?stackId=${encodeURIComponent(stackId)}`,
     `&templateURL=${encodeURIComponent(signedUrl)}`,
   ].join('');
@@ -62,8 +64,8 @@ const getUpdateStackUrl = accountTemplateInfo => {
 
 const getCfnHomeUrl = accountTemplateInfo => {
   const { region } = accountTemplateInfo;
-
-  return `https://console.aws.amazon.com/cloudformation/home?region=${region}`;
+  const awsConsoleSuffix = getAwsConsoleSuffixByRegion(region);
+  return `https://console.${awsConsoleSuffix}/cloudformation/home?region=${region}`;
 };
 
 class DataSourceRegistrationService extends Service {

@@ -29,7 +29,7 @@
     "cfnStackId": {
       "type": "string",
       "maxLength": 255,
-      "pattern": "^arn:aws:cloudformation:.*$"
+      "pattern": "^arn:(aws|aws-cn):cloudformation:.*$"
     },
     "cfnStackName": {
       "type": "string",
@@ -42,7 +42,7 @@
     "onboardStatusRoleArn": {
       "type": "string",
       "minLength": 10,
-      "pattern": "^arn:aws:iam::.*$"
+      "pattern": "^arn:(aws|aws-cn):iam::.*$"
     },
     "xAccEnvMgmtRoleArn": {
       "type": "string",
@@ -62,7 +62,7 @@
     },
     "encryptionKeyArn": {
       "type": "string",
-      "pattern": "^arn:aws:kms:.*$"
+      "pattern": "^arn:(aws|aws-cn):kms:.*$"
     },
     "permissionStatus": {
       "type": "string"

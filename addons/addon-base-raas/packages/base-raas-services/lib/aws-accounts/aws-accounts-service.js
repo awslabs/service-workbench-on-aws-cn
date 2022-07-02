@@ -315,18 +315,15 @@ class AwsAccountsService extends Service {
       { action: 'update', conditions: [allowIfActive, allowIfAdmin] },
       rawData,
     );
-
     // Validate input
     const [validationService] = await this.service(['jsonSchemaValidationService']);
     await validationService.ensureValid(rawData, updateSchema);
-
     // For now, we assume that 'updatedBy' is always a user and not a group
     const by = _.get(requestContext, 'principalIdentifier.uid');
     const { id, rev } = rawData;
 
     // Verify active Non-AppStream environments do not exist
     await this.checkForActiveNonAppStreamEnvs(requestContext, id);
-
     const awsAccount = await this.mustFind(requestContext, { id });
     const accountId = awsAccount.accountId;
     const appStreamImageName = rawData.appStreamImageName;

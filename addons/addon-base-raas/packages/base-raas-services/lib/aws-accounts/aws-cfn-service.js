@@ -20,6 +20,8 @@ const crypto = require('crypto');
 const { allowIfActive, allowIfAdmin } = require('@amzn/base-services/lib/authorization/authorization-utils');
 const { processInBatches } = require('@amzn/base-services/lib/helpers/utils');
 
+const { getAwsConsoleSuffixByRegion } = require('../helpers/utils');
+
 // const { generateId } = require('../helpers/utils');
 
 /**
@@ -73,8 +75,9 @@ const getCreateStackUrl = (cfnTemplateInfo, createParams) => {
     enableAmiSharing,
     devopsAccountId,
   } = createParams;
+  const awsConsoleSuffix = getAwsConsoleSuffixByRegion(region);
   const url = [
-    `https://console.aws.amazon.com/cloudformation/home?region=${region}#/stacks/create/review/`,
+    `https://console.${awsConsoleSuffix}/cloudformation/home?region=${region}#/stacks/create/review/`,
     `?templateURL=${encodeURIComponent(signedUrl)}`,
     `&stackName=${name}`,
     `&param_Namespace=${namespace}`,
@@ -114,9 +117,9 @@ const getUpdateStackUrl = cfnTemplateInfo => {
   const { stackId, region, signedUrl } = cfnTemplateInfo;
 
   if (_.isEmpty(stackId)) return undefined;
-
+  const awsConsoleSuffix = getAwsConsoleSuffixByRegion(region);
   const url = [
-    `https://console.aws.amazon.com/cloudformation/home?region=${region}#/stacks/update/template`,
+    `https://console.${awsConsoleSuffix}/cloudformation/home?region=${region}#/stacks/update/template`,
     `?stackId=${encodeURIComponent(stackId)}`,
     `&templateURL=${encodeURIComponent(signedUrl)}`,
   ].join('');
@@ -126,8 +129,8 @@ const getUpdateStackUrl = cfnTemplateInfo => {
 
 const getCfnHomeUrl = cfnTemplateInfo => {
   const { region } = cfnTemplateInfo;
-
-  return `https://console.aws.amazon.com/cloudformation/home?region=${region}`;
+  const awsConsoleSuffix = getAwsConsoleSuffixByRegion(region);
+  return `https://console.${awsConsoleSuffix}/cloudformation/home?region=${region}`;
 };
 
 class AwsCfnService extends Service {
@@ -253,6 +256,8 @@ class AwsCfnService extends Service {
     cfnTemplateInfo.updateStackUrl = getUpdateStackUrl(cfnTemplateInfo);
     cfnTemplateInfo.cfnConsoleUrl = getCfnHomeUrl(cfnTemplateInfo);
 
+    const partition = this.awsPartition;
+
     // If we are onboarding the account for the first time, we have to populate some parameters for checking permissions later
     const updatedAcct = {
       id: account.id,
@@ -261,7 +266,7 @@ class AwsCfnService extends Service {
       externalId: account.externalId,
       permissionStatus: 'PENDING',
       onboardStatusRoleArn: [
-        'arn:aws:iam::',
+        `arn:${partition}:iam::`,
         account.accountId,
         ':role/',
         createParams.namespace,

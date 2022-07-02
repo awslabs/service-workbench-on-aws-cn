@@ -252,11 +252,8 @@ customDomainInR53: true
 # Set default IDP type
 # value: oidc/cognito_user_pool
 defaultIdpType: cognito_user_pool
-<<<<<<< HEAD
-=======
 
 # ==================== AMI Sharing Feature Settings ====================
 enableAmiSharing: false
 devopsProfile: devops
 # ======================================================================
->>>>>>> official_cn_develop

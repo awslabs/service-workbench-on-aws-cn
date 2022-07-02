@@ -196,6 +196,10 @@ describe('EnvironmentResourceService', () => {
         return undefined;
       },
     };
+    jest.resetModules();
+    process.env = {
+      APP_AWS_PARTITION: 'aws',
+    };
   });
 
   afterEach(() => {

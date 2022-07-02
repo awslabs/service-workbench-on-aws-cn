@@ -245,3 +245,5 @@ workflowLoopRunner:
     APP_DEVOPS_ROLE_ARN: ${self:custom.settings.devopsRoleArn, 'null'}
     APP_DEVOPS_ROLE_EXTERNAL_ID: ${self:custom.settings.devopsRoleExternalId}
     APP_AWS_PARTITION: ${self:custom.settings.awsPartition}
+    APP_AWS_SUFFIX: ${self:custom.settings.awsSuffix}
+    

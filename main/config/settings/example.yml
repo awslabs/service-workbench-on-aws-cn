@@ -111,29 +111,9 @@
 # Global regions: 'amazonaws.com'
 #awsSuffix: amazonaws.com
 
-# Set default IDP type
-# value: oidc/cognito_user_pool
-# defaultIdpType: cognito_user_pool
-
-# oidc client id, it should be configured before deploying service workbench
-# oidcClientId: ExampleClientId
-
-# oidc issuer, oidc should be deployed before deploying service workbench
-# oidcIssuer: https://example.keycloak.com
-
-# root user email, the root user should be created in installed oidc before deploying service workbench
-# rootUserEmail: root@example.com
-
-# Root user's first name
-# rootUserFirstName: root
-
-# Root user's last name
-# rootUserLastName: root
-
 # Enable custom domain manage in Amazon Route 53
 # value true or false
 # customDomainInR53: true
-
 # Set default IDP type
 # value: oidc/cognito_user_pool
 # defaultIdpType: cognito_user_pool
@@ -152,3 +132,20 @@
 
 # Root user's last name
 # rootUserLastName: root
+
+ 
+# Enable the AMI sharing feature so the AMIs and Appstream images can be maintained in a central devops account
+#enableAmiSharing: false
+
+# The images will be shared using the AWS CLI profile mentioned below.
+# Please make sure that the profile has necessary permissions to create images and create IAM role
+#devopsProfile: devops 
+
+# If you want to restrict the administrator to accessing the user's workspace then to enable the flag by setting it to true. Also, It will also allow the admin to connect with his own workspace. 
+# restrictAdminWorkspaceConnection: false
+
+# Disable the create study button and upload files button in the studies to the researchers, the data will flow through BYOB workflow only. To enable this feature by setting it to true
+# disableStudyUploadByResearcher: false
+
+# Application admin should not be a study admin in the creation of BYOB study. To enable this feature by setting it to true
+# disableAdminBYOBSelfAssignment: false

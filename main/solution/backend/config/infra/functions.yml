@@ -21,7 +21,8 @@ openDataScrapeHandler:
     APP_STUDY_DATA_BUCKET_NAME: ${self:custom.settings.studyDataBucketName}
     APP_CUSTOM_USER_AGENT: ${self:custom.settings.customUserAgent}
     APP_IS_APP_STREAM_ENABLED: ${self:custom.settings.isAppStreamEnabled}
-
+    APP_DEFAULT_IDP_TYPE: ${self:custom.settings.defaultIdpType}
+    APP_DISABLE_STUDY_UPLOAD_BY_RESEARCHER: ${self:custom.settings.disableStudyUploadByResearcher}
   events:
     - schedule:
         rate: rate(1 day)
@@ -40,6 +41,7 @@ envStatusPollHandler:
   environment:
     APP_CUSTOM_USER_AGENT: ${self:custom.settings.customUserAgent}
     APP_IS_APP_STREAM_ENABLED: ${self:custom.settings.isAppStreamEnabled}
+    APP_DEFAULT_IDP_TYPE: ${self:custom.settings.defaultIdpType}
 
 dataSourceReachabilityHandler:
   handler: src/lambdas/data-source-reachability/handler.handler
@@ -57,6 +59,7 @@ dataSourceReachabilityHandler:
     APP_DB_STUDIES_ACCOUNTID_INDEX: ${self:custom.settings.dbStudiesAccountIdIndex}
     APP_STUDY_DATA_BUCKET_NAME: ${self:custom.settings.studyDataBucketName}
     APP_CUSTOM_USER_AGENT: ${self:custom.settings.customUserAgent}
+    APP_DEFAULT_IDP_TYPE: ${self:custom.settings.defaultIdpType}
 
 dataSourceReachabilityDailyHandler:
   handler: src/lambdas/data-source-reachability-daily/handler.handler
@@ -71,6 +74,7 @@ dataSourceReachabilityDailyHandler:
   environment:
     APP_SM_WORKFLOW: ${self:custom.settings.workflowStateMachineArn}
     APP_CUSTOM_USER_AGENT: ${self:custom.settings.customUserAgent}
+    APP_DEFAULT_IDP_TYPE: ${self:custom.settings.defaultIdpType}
 
 awsAccountOnboardingHandler:
   handler: src/lambdas/aws-account-onboarding/handler.handler
@@ -91,6 +95,9 @@ awsAccountOnboardingHandler:
     APP_AWS_SUFFIX: ${self:custom.settings.awsSuffix}
     APP_AWS_PARTITION: ${self:custom.settings.awsPartition}
     APP_DEFAULT_IDP_TYPE: ${self:custom.settings.defaultIdpType}
+    APP_ENABLE_AMI_SHARING: ${self:custom.settings.enableAmiSharing}
+    APP_DEVOPS_ROLE_ARN: ${self:custom.settings.devopsRoleArn, 'null'}
+    APP_DEVOPS_ROLE_EXTERNAL_ID: ${self:custom.settings.devopsRoleExternalId}
 
 apiHandler:
   timeout: 30 # in seconds, default is 6
@@ -189,6 +196,12 @@ apiHandler:
     APP_AWS_SUFFIX: ${self:custom.settings.awsSuffix}
     APP_AWS_PARTITION: ${self:custom.settings.awsPartition}
     APP_DEFAULT_IDP_TYPE: ${self:custom.settings.defaultIdpType}
+    APP_ENABLE_AMI_SHARING: ${self:custom.settings.enableAmiSharing}
+    APP_DEVOPS_ROLE_ARN: ${self:custom.settings.devopsRoleArn, 'null'}
+    APP_DEVOPS_ROLE_EXTERNAL_ID: ${self:custom.settings.devopsRoleExternalId} 
+    APP_DISABLE_STUDY_UPLOAD_BY_RESEARCHER: ${self:custom.settings.disableStudyUploadByResearcher}
+    APP_RESTRICT_ADMIN_WORKSPACE_CONNECTION: ${self:custom.settings.restrictAdminWorkspaceConnection}
+    APP_DISABLE_ADMIN_BYOB_SELF_ASSIGNMENT: ${self:custom.settings.disableAdminBYOBSelfAssignment}
 
 workflowLoopRunner:
   handler: src/lambdas/workflow-loop-runner/handler.handler
@@ -229,3 +242,7 @@ workflowLoopRunner:
     APP_LOGGING_BUCKET_NAME: ${self:custom.settings.loggingBucketName}
     APP_AWS_PARTITION: ${self:custom.settings.awsPartition}
     APP_AWS_SUFFIX: ${self:custom.settings.awsSuffix}
+    APP_DEFAULT_IDP_TYPE: ${self:custom.settings.defaultIdpType}
+    APP_ENABLE_AMI_SHARING: ${self:custom.settings.enableAmiSharing}
+    APP_DEVOPS_ROLE_ARN: ${self:custom.settings.devopsRoleArn, 'null'}
+    APP_DEVOPS_ROLE_EXTERNAL_ID: ${self:custom.settings.devopsRoleExternalId}

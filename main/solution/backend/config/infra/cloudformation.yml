@@ -620,6 +620,7 @@ Resources:
               - !Sub 'arn:${AWS::Partition}:iam::*:role/*-cross-account-role' # This is required since when users onboard the main account as a member account, the onboard CFN stack would also reside there
               - !Sub 'arn:${AWS::Partition}:iam::*:role/*-xacc-env-mgmt'
               - !Sub 'arn:${AWS::Partition}:iam::*:role/*-cfn-status-role'
+              - !Sub 'arn:${AWS::Partition}:iam::*:role/${self:custom.settings.globalNamespace}-DevopsRole'
           - Effect: Allow
             Action:
               - logs:CreateLogGroup
@@ -770,6 +771,7 @@ Resources:
               - !Sub 'arn:${AWS::Partition}:iam::*:role/*-cross-account-role' # This is required since when users onboard the main account as a member account, the onboard CFN stack would also reside there
               - !Sub 'arn:${AWS::Partition}:iam::*:role/*-xacc-env-mgmt'
               - !Sub 'arn:${AWS::Partition}:iam::${AWS::AccountId}:role/${self:custom.settings.namespace}-prep-raas-master-MasterRole-*'
+              - !Sub 'arn:${AWS::Partition}:iam::*:role/${self:custom.settings.globalNamespace}-DevopsRole'
           - Effect: Allow
             Action:
               - logs:CreateLogGroup

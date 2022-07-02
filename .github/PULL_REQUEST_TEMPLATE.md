@@ -7,6 +7,7 @@ Checklist:
 <!-- You can erase any parts of this template not applicable to your Pull Request. -->
 
 - [ ] Have you successfully deployed to an AWS account with your changes?
+- [ ] Have you successfully deployed to an AWS China account with your changes?
 - [ ] Have you written new tests for your core changes, as applicable?
 - [ ] Have you successfully tested with your changes locally?
 - [ ] If new dependencies have been added, have they been pinned to specific versions?

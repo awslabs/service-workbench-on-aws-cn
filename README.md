@@ -8,6 +8,18 @@ achieving research missions and completing essential work in minutes, not months
 With Service Workbench on AWS, researchers can quickly and securely stand up research environments and conduct experiments with peers from other institutions. By automating the creation of baseline research setups, simplifying data access, and providing price transparency, researchers and IT departments save time, which they can reinvest in following cloud best practices and achieving research
 reproducibility.
 
+## Region Expansion
+
+It's a repo for region expansion of [Service Workbench on AWS][swb] solution.
+It mainly provides below additional features,
+
+- Support additional regions
+    - AWS China(Ningxia) Region operated by NWCD
+    - AWS China(Beijing) Region operated by Sinnet
+    - Asia Pacific (Hong Kong)
+- Configurable IdPs, support both Amazon Cognito and external OIDC providers(for example, KeyCloak, Okta), see [RFC](./rfcs/configurable_idp/index.md)
+- Use [AWS Systems Manager Session Manager][ssm-session-manager] to access Linux instances
+
 ## Service Workbench architecture
 
 Service Workbench integrates existing AWS services, such as Amazon CloudFront, AWS Lambda, and AWS Step Functions. Service Workbench enables you to create your own custom templates and share those templates with other organizations. To provide cost transparency, Service Workbench has been integrated with AWS Cost Explorer, AWS Budgets and AWS Organizations.
@@ -68,7 +80,7 @@ Service Workbench documentation can be accessed in the PDF format or by using th
 
 You can download the PDF versions if you do not have Service Workbench locally installed on your machine. Click the following links to download:
 
-+ [Service Workbench Installation Guide](/docs/Service_Workbench_Installation_Guide.pdf)
++ [Service Workbench Installation Guide](/docs/Service_Workbench_Install_Guide.pdf)
 + [Service Workbench Configuration Guide](/docs/Service_Workbench_Configuration_Guide.pdf)
 + [Service Workbench Post Deployment Guide](/docs/Service_Workbench_Post_Deployment_Guide.pdf)
 + [Service Workbench User's Guide](/docs/Service_Workbench_User_Guide.pdf)
@@ -299,4 +311,5 @@ Please follow prevailing best practices for auditing your NPM dependencies and f
 This project is licensed under the terms of the Apache 2.0 license. See [LICENSE](LICENSE).
 Included AWS Lambda functions are licensed under the MIT-0 license. See [LICENSE-LAMBDA](LICENSE-LAMBDA).
 
-
+[swb]: https://github.com/awslabs/service-workbench-on-aws
+[ssm-session-manager]: https://docs.aws.amazon.com/systems-manager/latest/userguide/session-manager.html

@@ -45,7 +45,6 @@ async function configure(context) {
         redirect_uri: mainUrl,
         code_verifier: pkce,
       };
-
       const authCodeTokenExchangeUri = authProviderConfig.config.authCodeTokenExchangeUri;
 
       // Make a POST request to exchange code for token

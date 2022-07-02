@@ -244,7 +244,6 @@ class EnvironmentResourceService extends Service {
       internalStudies,
       study => study.envPermission && (study.envPermission.read || study.envPermission.write),
     );
-    const partition = this.awsPartition;
     // construct the revised statements depending on the type of permissions
     const revisedStatements = await Promise.all(
       _.map(filteredStudies, async study => {
@@ -262,9 +261,8 @@ class EnvironmentResourceService extends Service {
           s3Policy,
           study,
           s3BucketName,
-          partition,
           statementParamFunctions,
-          oldStatement => addAccountToStatement(oldStatement, memberAccountId, partition),
+          oldStatement => addAccountToStatement(oldStatement, memberAccountId),
         );
         return revisedStatementsPerStudy;
       }),
@@ -284,7 +282,6 @@ class EnvironmentResourceService extends Service {
     // 'envPermission', it is an object with the following shape: { read: true/false, write: true/false }
     const { s3BucketName, s3Policy } = await this.getS3BucketAndPolicy();
     const filteredStudies = await this.getInternalStudies(studies, s3BucketName);
-    const partition = this.awsPartition;
     // construct the revised statements for all types of statements and remove the memberAccountId
     const revisedStatements = await Promise.all(
       _.map(filteredStudies, async study => {
@@ -293,9 +290,8 @@ class EnvironmentResourceService extends Service {
           s3Policy,
           study,
           s3BucketName,
-          partition,
           statementParamFunctions,
-          oldStatement => removeAccountFromStatement(oldStatement, memberAccountId, partition),
+          oldStatement => removeAccountFromStatement(oldStatement, memberAccountId),
         );
         return revisedStatementsPerStudy;
       }),
@@ -310,8 +306,7 @@ class EnvironmentResourceService extends Service {
 
   // @private
   async addToKmsKeyPolicy(requestContext, memberAccountId) {
-    const partition = this.awsPartition;
-    await this.updateKMSPolicy(environmentStatement => addAccountToStatement(environmentStatement, memberAccountId, partition));
+    await this.updateKMSPolicy(environmentStatement => addAccountToStatement(environmentStatement, memberAccountId));
     await this.addToEgressKmsKeyPolicy(memberAccountId);
     // Write audit event
     await this.audit(requestContext, { action: 'add-to-KmsKey-policy', body: memberAccountId });
@@ -319,25 +314,23 @@ class EnvironmentResourceService extends Service {
 
   async addToEgressKmsKeyPolicy(memberAccountId) {
     const enableEgressStore = this.settings.getBoolean(settingKeys.enableEgressStore);
-    const partition = this.awsPartition;
     if (enableEgressStore) {
       await this.updateEgressKMSPolicy(environmentStatement =>
-        addAccountToStatement(environmentStatement, memberAccountId, partition),
+        addAccountToStatement(environmentStatement, memberAccountId),
       );
     }
   }
 
   // @private
   async removeFromKmsKeyPolicy(requestContext, memberAccountId) {
-    const partition = this.awsPartition;
     await this.updateKMSPolicy(environmentStatement =>
-      removeAccountFromStatement(environmentStatement, memberAccountId, partition),
+      removeAccountFromStatement(environmentStatement, memberAccountId),
     );
 
     const enableEgressStore = this.settings.getBoolean(settingKeys.enableEgressStore);
     if (enableEgressStore) {
       await this.updateEgressKMSPolicy(environmentStatement =>
-        removeAccountFromStatement(environmentStatement, memberAccountId, partition),
+        removeAccountFromStatement(environmentStatement, memberAccountId),
       );
     }
 

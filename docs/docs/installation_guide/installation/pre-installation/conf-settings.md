@@ -10,7 +10,7 @@ You can select your own stage name. If you are planning to deploy the solution o
 
 ### Separately deployable components
 
-The Service Workbench code is divided into multiple (currently seven) separately deployable components (SDCs): backend, UI, post-deployment, edge-lambda, infrastructure, machine-images, and prepare-aster-acc. Each SDC has a directory in the location, main/solution. You can run the script either from the root directory or also deploy each SDC separately using individual scripts.  For more information, see  [serverless framework and projects](/installation_guide/components).
+The Service Workbench code is divided into multiple (currently seven) separately deployable components (SDCs): backend, UI, post-deployment, pre-deployment, edge-lambda, infrastructure, machine-images, and prepare-aster-acc. Each SDC has a directory in the location, main/solution. You can run the script either from the root directory or also deploy each SDC separately using individual scripts.  For more information, see  [serverless framework and projects](/installation_guide/components).
 
 ### Prepare the main configuration file
 
@@ -69,8 +69,7 @@ Each SDC has a `config/settings` directory, where you can place customized setti
 
 ### Accessing the Service Workbench source code
 
-Download the latest source code by using [this link](https://github.com/awslabs/service-workbench-on-aws/tags) and run the following command:
-`curl -o serviceworkbench.zip <URL>`
+Download the latest source code by using [this link](https://github.com/awslabs/service-workbench-on-aws/tags), copy `Source code (zip)` link address, and run the following command: `wget <URL>`, then run `unzip` to decompress code package
 
 **Note**: Setting the configuration is required. If you are deploying an installation, you can use the default configuration.
 

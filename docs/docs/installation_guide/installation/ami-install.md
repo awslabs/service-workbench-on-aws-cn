@@ -20,7 +20,7 @@ In order to use EC2-based Workspaces, you must ﬁrst install EC2 AMIs for these
      + Change to the directory containing the machine image source and build the AMIs. Ensure that the environment variable `STAGE_NAME` has been set before running this command. 
 2. Verify that the AMIs have been created. In the Service Workbench `/main/solutions/machine-images` directory:
 
-      `pnpx sls build-image -s $ {STAGE_NAME}`
+      `pnpx sls build-image -s ${STAGE_NAME}`
 
 In the Amazon EC2 service console, select AMI in the left-hand navigation. You should see AMIs for EC2-LINUX, EC2-RSTUDIO, EC2-WINDOWS, and Amazon EMR.
 

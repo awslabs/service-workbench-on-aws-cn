@@ -237,7 +237,7 @@ class BudgetsService extends Service {
     let budgetsClientRegion = 'us-east-1';
     let budgetsClientEndpoint = 'budgets.amazonaws.com';
     if (region.startsWith('cn-')) {
-      budgetsClientRegion = region;
+      budgetsClientRegion = 'cn-northwest-1';
       budgetsClientEndpoint = 'budgets.amazonaws.com.cn';
     }
 

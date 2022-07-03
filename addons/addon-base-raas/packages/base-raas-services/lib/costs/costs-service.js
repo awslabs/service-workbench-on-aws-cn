@@ -140,7 +140,13 @@ class CostsService extends Service {
     const [aws] = await this.service(['aws']);
     const { accessKeyId, secretAccessKey, sessionToken } = await this.getCredentials(requestContext, indexId);
 
-    const region = this.settings.get(settingKeys.awsRegion);
+    const awsRegion = this.settings.get(settingKeys.awsRegion);
+
+    let region = 'us-east-1';
+    if (awsRegion.startsWith('cn-')) {
+      region = 'cn-northwest-1';
+    }
+
     const costExplorer = new aws.sdk.CostExplorer({
       apiVersion: '2017-10-25',
       region,

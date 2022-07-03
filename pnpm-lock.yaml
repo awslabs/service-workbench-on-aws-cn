@@ -7932,7 +7932,6 @@ packages:
   /agent-base/6.0.2:
     dependencies:
       debug: 4.3.3
-    dev: true
     engines:
       node: '>= 6.0.0'
     resolution:
@@ -11077,6 +11076,7 @@ packages:
   /debug/4.3.1:
     dependencies:
       ms: 2.1.2
+    dev: true
     engines:
       node: '>=6.0'
     peerDependencies:
@@ -15012,7 +15012,6 @@ packages:
     dependencies:
       agent-base: 6.0.2
       debug: 4.3.3
-    dev: true
     engines:
       node: '>= 6'
     resolution:
@@ -23217,7 +23216,7 @@ packages:
       is-arrayish: 0.3.2
     dev: true
     resolution:
-      integrity: sha1-pNprY1/8zMoz9w0Xy5JZLeleVXo=
+      integrity: sha512-JA//kQgZtbuY83m+xT+tXJkmJncGMTFT+C+g2h2R9uxkYIrE2yy9sgmcLhCnw57/WSD+Eh3J97FPEDFnbXnDUg==
   /sinon/9.0.3:
     dependencies:
       '@sinonjs/commons': 1.7.2

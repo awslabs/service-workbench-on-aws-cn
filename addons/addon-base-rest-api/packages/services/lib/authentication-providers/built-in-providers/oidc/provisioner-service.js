@@ -45,7 +45,7 @@ class ProvisionerService extends Service {
 
     providerConfig.jwksUri = jwksUri;
     providerConfig.signInUri = `${authorizationEndpoint}?client_id=${oidcClientId}&redirect_uri=${websiteUrl}/&scope=openid profile email&code_challenge_method=S256&code_challenge=TEMP_PKCE_VERIFIER&state=TEMP_STATE_VERIFIER&response_type=code`;
-    providerConfig.signOutUri = `${endSessionEndpoint}?client_id=${oidcClientId}&response_type=code&redirect_uri=${websiteUrl}`;
+    providerConfig.signOutUri = `${endSessionEndpoint}?id_token_hint=ID_TOKEN_PLACE_HOLDER&post_logout_redirect_uri=${websiteUrl}/`;
     providerConfig.authCodeTokenExchangeUri = tokenEndpoint;
 
     this.log.info('Saving oidc Authentication Provider Configuration.');

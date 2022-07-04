@@ -175,8 +175,9 @@ const Authentication = types
       }
     },
     async logout({ autoLogout = false } = {}) {
+      const idToken = storage.getItem(localStorageKeys.appIdToken);
       self.cleanup();
-      return self.selectedAuthenticationProvider.logout({ autoLogout });
+      return self.selectedAuthenticationProvider.logout(idToken, { autoLogout });
     },
   }))
   .views(self => ({

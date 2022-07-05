@@ -18,6 +18,13 @@ describe('utils functions', () => {
   const awsArn = 'arn:aws:s3:::bucket-data/users/example@example.com/my-egress-store-1';
   const rootArn = 'arn:aws:iam::01234567891234:root';
   const accountId = '01234567891234';
+
+  beforeEach(() => {
+    jest.resetModules();
+    process.env = {
+      APP_AWS_PARTITION: 'aws',
+    };
+  });
   describe('addEmptyPrincipalIfNotPresent', () => {
     it('it should return empty s3 policy with empty input', () => {
       expect(addEmptyPrincipalIfNotPresent({})).toStrictEqual({ Principal: { AWS: [] } });

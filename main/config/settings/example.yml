@@ -115,6 +115,9 @@
 # value true or false
 # customDomainInR53: true
 
+# Rstudio Nginx port
+# rstudioNginxPort: 443
+
 # Set default IDP type
 # value: oidc/cognito_user_pool
 # defaultIdpType: cognito_user_pool

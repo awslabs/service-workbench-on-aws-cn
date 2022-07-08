@@ -204,6 +204,8 @@ apiHandler:
     APP_AWS_SUFFIX: ${self:custom.settings.awsSuffix}
     APP_AWS_PARTITION: ${self:custom.settings.awsPartition}
     APP_NO_EC2_CONNECT_REGIONS: ${self:custom.settings.noEc2ConnectRegions}
+    APP_CUSTOM_DOMAIN_IN_R53: ${self:custom.settings.customDomainInR53}
+    APP_RSTUDIO_NGINX_PORT: ${self:custom.settings.rstudioNginxPort}
 
 workflowLoopRunner:
   handler: src/lambdas/workflow-loop-runner/handler.handler
@@ -249,3 +251,5 @@ workflowLoopRunner:
     APP_AWS_PARTITION: ${self:custom.settings.awsPartition}
     APP_AWS_SUFFIX: ${self:custom.settings.awsSuffix}
     APP_API_HANDLER_ARN: ${self:custom.settings.apiHandlerRoleArn}
+    APP_CUSTOM_DOMAIN_IN_R53: ${self:custom.settings.customDomainInR53}
+

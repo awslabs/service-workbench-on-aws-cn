@@ -17,6 +17,7 @@ const Service = require('@amzn/base-services-container/lib/service');
 
 const settingKeys = {
   domainName: 'domainName',
+  customDomainInR53: 'customDomainInR53',
   hostedZoneId: 'hostedZoneId',
 };
 
@@ -65,7 +66,10 @@ class EnvironmentDnsService extends Service {
     const route53Client = new aws.sdk.Route53();
     const hostedZoneId = this.settings.get(settingKeys.hostedZoneId);
     const subdomain = this.getHostname(prefix, id);
-    await this.changeResourceRecordSets(route53Client, hostedZoneId, action, subdomain, 'CNAME', publicDnsName);
+    const customDomainInR53 = this.settings.getBoolean(settingKeys.customDomainInR53);
+    if (customDomainInR53) {
+      await this.changeResourceRecordSets(route53Client, hostedZoneId, action, subdomain, 'CNAME', publicDnsName);
+    }
   }
 
   async changeResourceRecordSets(route53Client, hostedZoneId, action, subdomain, recordType, recordValue) {

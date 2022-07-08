@@ -587,6 +587,14 @@ describe('EnvironmentScConnectionService', () => {
     });
 
     it('should get RStudio auth URL correctly', async () => {
+      service._settings = {
+        getBoolean: settingName => {
+          if (settingName === 'customDomainInR53') {
+            return true;
+          }
+          return undefined;
+        },
+      };
       // BUILD
       const requestContext = 'sampleContext';
       const id = 'exampleId';
@@ -600,6 +608,39 @@ describe('EnvironmentScConnectionService', () => {
 
       // CHECK
       expect(authUrl).toContain(`https://rstudio-${id}.example.com/auth-do-sign-in?v=`);
+    });
+    it('should get RStudio auth URL correctly if we set customDomainInR53 as false', async () => {
+      service._settings = {
+        getBoolean: settingName => {
+          if (settingName === 'customDomainInR53') {
+            return false;
+          }
+          return undefined;
+        },
+        get: settingName => {
+          if (settingName === 'rstudioNginxPort') {
+            return '8443';
+          }
+          return undefined;
+        },
+      };
+      // BUILD
+      const requestContext = 'sampleContext';
+      const id = 'exampleId';
+      const connection = { instanceId: 'RStudioInstanceId' };
+      service.mustFindConnection = jest.fn(() => connection);
+      service.getRstudioPublicKey = jest.fn(() => `0001:SAMPLEPUBLICKEY`);
+      envScService.mustFind = jest.fn(() => {
+        return {
+          outputs: [{ OutputKey: 'Ec2WorkspaceDnsName', OutputValue: 'abc.cn-northwest-1.compute.amazonaws.com.cn' }],
+        };
+      });
+
+      // OPERATE
+      const authUrl = await service.getRStudioUrl(requestContext, id, connection);
+
+      // CHECK
+      expect(authUrl).toContain(`https://abc.cn-northwest-1.compute.amazonaws.com.cn:8443/auth-do-sign-in?v=`);
     });
   });
   describe('sendSshPublicKey ', () => {

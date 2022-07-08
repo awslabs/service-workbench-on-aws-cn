@@ -34,6 +34,8 @@ const settingKeys = {
   awsRegion: 'awsRegion',
   restrictAdminWorkspaceConnection: 'restrictAdminWorkspaceConnection',
   noEc2ConnectRegions: 'noEc2ConnectRegions',
+  customDomainInR53: 'customDomainInR53',
+  rstudioNginxPort: 'rstudioNginxPort',
 };
 
 class EnvironmentScConnectionService extends Service {
@@ -319,9 +321,18 @@ class EnvironmentScConnectionService extends Service {
         'Support for this version of RStudio has been deprecated. Please use RStudioV2 environment type',
         true,
       );
-
-    const environmentDnsService = await this.service('environmentDnsService');
-    const rstudioDomainName = environmentDnsService.getHostname('rstudio', id);
+    const customDomainInR53 = this.settings.getBoolean(settingKeys.customDomainInR53);
+    let rstudioDomainName;
+    if (customDomainInR53) {
+      const environmentDnsService = await this.service('environmentDnsService');
+      rstudioDomainName = environmentDnsService.getHostname('rstudio', id);
+    } else {
+      const port = this.settings.get(settingKeys.rstudioNginxPort);
+      const environmentScService = await this.service('environmentScService');
+      const { outputs } = await environmentScService.mustFind(requestContext, { id });
+      const { Ec2WorkspaceDnsName } = cfnOutputsArrayToObject(outputs);
+      rstudioDomainName = `${Ec2WorkspaceDnsName}:${port}`;
+    }
     const rstudioSignInUrl = `https://${rstudioDomainName}/auth-do-sign-in`;
     const instanceId = connection.instanceId;
     const jwtService = await this.service('jwtService');

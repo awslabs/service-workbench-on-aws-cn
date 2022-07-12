@@ -42,6 +42,7 @@ envStatusPollHandler:
     APP_CUSTOM_USER_AGENT: ${self:custom.settings.customUserAgent}
     APP_IS_APP_STREAM_ENABLED: ${self:custom.settings.isAppStreamEnabled}
     APP_DEFAULT_IDP_TYPE: ${self:custom.settings.defaultIdpType}
+    APP_AWS_SUFFIX: ${self:custom.settings.awsSuffix}
 
 dataSourceReachabilityHandler:
   handler: src/lambdas/data-source-reachability/handler.handler

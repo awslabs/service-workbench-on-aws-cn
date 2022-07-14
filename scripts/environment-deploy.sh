@@ -64,9 +64,11 @@ fi
 
 componentDeploy "backend" "Backend"
 
-# get current region
-REGION=$(aws configure get region)
-if [[ $REGION != cn-* ]]; then
+SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" &> /dev/null && pwd)
+
+REGION=$(cat "$SCRIPT_DIR"/../main/config/settings/"$STAGE".yml | grep ^awsRegion)
+echo $REGION
+if [[ "$REGION" != *"cn-"* ]]; then
   echo "deploy lambdaedge"
   componentDeploy "edge-lambda" "Edge-Lambda"
 fi

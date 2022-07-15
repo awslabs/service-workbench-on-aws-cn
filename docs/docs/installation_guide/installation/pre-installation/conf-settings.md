@@ -3,6 +3,7 @@ id: conf-settings
 title: Configuration settings
 sidebar_label: Configuration settings
 ---
+
 ### Stage name
 
 A stage name is used to allow multiple Service Workbench deployments from the same account. It represents the name of the configuration files. For limitations in Amazon Simple Storage Service ([Amazon S3](https://aws.amazon.com/s3/)) deployment buckets, the stage name must not be longer than five characters. Buckets are the fundamental containers in Amazon S3 for data storage.
@@ -75,7 +76,7 @@ Each SDC has a `config/settings` directory, where you can place customized setti
 
 ### Accessing the Service Workbench source code
 
-Download the latest source code by using [this link](https://github.com/awslabs/service-workbench-on-aws-cn/tags), copy `Source code (zip)` link address, and run the following command: `wget <URL>`, then run `unzip` to decompress code package
+You will need Service Workbench source code for installation. Download the latest source code by using [this link](https://github.com/awslabs/service-workbench-on-aws-cn/tags), copy `Source code (zip)` link address, and run the following command: `wget <URL>`, then run `unzip` to decompress code package
 
 **Note**: Setting the configuration is required. If you are deploying an installation, you can use the default configuration.
 

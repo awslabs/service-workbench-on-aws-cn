@@ -22,7 +22,7 @@ This is the account where compute resources are deployed.
 
 ### Authentication
 
-Service Workbench on AWS can use [Amazon Cognito](https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools.html) as a source of authentication. Amazon Cognito can federate with different authentication providers, which make it easier to federate with Active Directory, Auth0, or other identity providers.
+Service Workbench on AWS can use [Amazon Cognito](https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools.html) and [KeyCloak](https://www.keycloak.org/) as a source of authentication. Both can federate with different authentication providers, which make it easier to federate with Active Directory, Auth0, or other identity providers.
 
 ### Storage
 

@@ -6,7 +6,7 @@ sidebar_label: OIDC Providers Settings
 
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
-This section is for creating OIDC IdP client and creating Service Workbench root user in OIDC IdP.
+This section is for creating OIDC IdP client and creating Service Workbench root user in OIDC IdP. To deploy Service Workbench in the AWS regions without Cognito, please follow the following instructions to setup an OIDC provider before deploying Service Workbench.
 
 ## Creating OIDC IdP Client
 
@@ -14,7 +14,7 @@ OpenID Connect (OIDC) IdP is an alternative of [Cognito User Pool][cognito] for 
 
 Below are example procedures for creating OIDC providers in Authing, Keycloak and Okta for reference. You can use other OIDC providers as well.
 
-- (Authing Option) [Authing][authing] is an example of a third-party authentication provider. 
+- (Authing Option) [Authing][authing] is an example of a third-party SaaS authentication provider. 
 - (Keycloak on AWS Option) [Keycloak on AWS][keycloak-solution] is a solution maintained by AWS and can serve as an authentication identity provider.
 - (Okta Option) [Okta][okta] is one trusted platform to secure every identity, from customers to your workforce.
 

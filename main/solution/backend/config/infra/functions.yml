@@ -203,6 +203,7 @@ apiHandler:
     APP_DISABLE_ADMIN_BYOB_SELF_ASSIGNMENT: ${self:custom.settings.disableAdminBYOBSelfAssignment}
     APP_AWS_SUFFIX: ${self:custom.settings.awsSuffix}
     APP_AWS_PARTITION: ${self:custom.settings.awsPartition}
+    APP_NO_EC2_CONNECT_REGIONS: ${self:custom.settings.noEc2ConnectRegions}
 
 workflowLoopRunner:
   handler: src/lambdas/workflow-loop-runner/handler.handler
@@ -247,4 +248,4 @@ workflowLoopRunner:
     APP_DEVOPS_ROLE_EXTERNAL_ID: ${self:custom.settings.devopsRoleExternalId}
     APP_AWS_PARTITION: ${self:custom.settings.awsPartition}
     APP_AWS_SUFFIX: ${self:custom.settings.awsSuffix}
-    
+    APP_API_HANDLER_ARN: ${self:custom.settings.apiHandlerRoleArn}

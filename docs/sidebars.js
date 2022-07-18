@@ -199,5 +199,9 @@ module.exports = {
       "best_practices/rotating_jwt_token",
     ],
     "Development Guide": ["development/introduction"],
+
+    "添加中文文档": [
+      "最佳实践/介绍",
+    ]
   },
 };

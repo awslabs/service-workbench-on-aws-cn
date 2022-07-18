@@ -13,6 +13,7 @@
  *  permissions and limitations under the License.
  */
 
+const axios = require('axios').default;
 const ServicesContainer = require('@amzn/base-services-container/lib/services-container');
 const JsonSchemaValidationService = require('@amzn/base-services/lib/json-schema-validation-service');
 const Logger = require('@amzn/base-services/lib/logger/logger-service');
@@ -23,6 +24,8 @@ const Boom = require('@amzn/base-services-container/lib/boom');
 const AwsService = require('@amzn/base-services/lib/aws/aws-service');
 
 const AWSMock = require('aws-sdk-mock');
+
+jest.mock('axios');
 
 jest.mock('@amzn/base-services/lib/lock/lock-service');
 const LockServiceMock = require('@amzn/base-services/lib/lock/lock-service');
@@ -501,6 +504,60 @@ describe('EnvironmentScConnectionService', () => {
 
       // CHECK
       expect(retConn).toBe(connection);
+    });
+
+    it('should return ssm connection', async () => {
+      // BUILD
+      service._settings = {
+        get: settingName => {
+          if (settingName === 'awsRegion') {
+            return 'cn-northwest-1';
+          }
+          return undefined;
+        },
+      };
+
+      const connection = { info: 'This is ssm connection' };
+      service.mustFindConnection = jest.fn(() => connection);
+
+      envScService.mustFind = jest.fn(() => {
+        return {
+          outputs: [
+            { OutputKey: 'WorkspaceSSMRoleArn', OutputValue: 'WorkspaceSSMRoleArn' },
+            { OutputKey: 'Ec2WorkspaceInstanceId', OutputValue: 'Ec2WorkspaceInstanceId' },
+            { OutputKey: 'SessionDuration', OutputValue: '3599' },
+          ],
+        };
+      });
+      const aws = await service.service('aws');
+      aws.getCredentialsForRole = jest.fn(() => {
+        return {
+          accessKeyId: 'accessKeyId',
+          secretAccessKey: 'secretAccessKey',
+          sessionToken: 'sessionToken',
+        };
+      });
+
+      const axiosMockResponse = {
+        data: {
+          SigninToken: 'signinToken',
+        },
+      };
+
+      axios.get.mockResolvedValueOnce(axiosMockResponse);
+
+      const expectConnection = {
+        url:
+          'https://cn-northwest-1.signin.amazonaws.cn/federation?Action=login&Destination=https://cn-northwest-1.console.amazonaws.cn/systems-manager/session-manager/Ec2WorkspaceInstanceId?region=cn-northwest-1&SigninToken=signinToken',
+        info: 'This is ssm connection',
+        operation: 'create',
+      };
+
+      // OPERATE
+      const retConn = await service.createConnectionSSMUrl();
+
+      // CHECK
+      expect(retConn).toMatchObject(expectConnection);
     });
 
     it('should get RStudio connection URL for RStudio connection types', async () => {

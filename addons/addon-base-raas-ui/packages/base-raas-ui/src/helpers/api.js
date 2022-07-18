@@ -275,6 +275,10 @@ function createScEnvironmentConnectionUrl(envId, connectionId) {
   return httpApiPost(`api/workspaces/service-catalog/${envId}/connections/${connectionId}/url`);
 }
 
+function createScEnvironmentSSMConnectionUrl(envId, connectionId) {
+  return httpApiPost(`api/workspaces/service-catalog/${envId}/connections/${connectionId}/ssm-url`);
+}
+
 function deleteScEnvironment(id) {
   return httpApiDelete(`api/workspaces/service-catalog/${id}`);
 }
@@ -426,6 +430,7 @@ export {
   getScEnvironments,
   createScEnvironment,
   createScEnvironmentConnectionUrl,
+  createScEnvironmentSSMConnectionUrl,
   deleteScEnvironment,
   stopScEnvironment,
   startScEnvironment,

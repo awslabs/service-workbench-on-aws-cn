@@ -18,11 +18,15 @@ import React from 'react';
 import { decorate, action } from 'mobx';
 import { inject, observer } from 'mobx-react';
 import { withRouter } from 'react-router-dom';
-import { Menu, Icon, Image } from 'semantic-ui-react';
+import { Menu, Icon, Image, Dropdown } from 'semantic-ui-react';
 
+import i18next from 'i18next';
+import { initReactI18next, withTranslation } from 'react-i18next';
 import { createLink } from '../helpers/routing';
 import { displayError } from '../helpers/notification';
 import { branding, versionAndDate } from '../helpers/settings';
+
+i18next.use(initReactI18next);
 
 // expected props
 // - userStore (via injection)
@@ -90,6 +94,12 @@ class MainLayout extends React.Component {
           <span style={{ paddingLeft: '20px' }}>{versionAndDate}</span>
         </Menu.Item>
         <Menu.Menu position="right">
+          <Dropdown item text={i18next.t('lang')}>
+            <Dropdown.Menu>
+              <Dropdown.Item onClick={() => i18next.changeLanguage('zh-CN')}>中文（简体）</Dropdown.Item>
+              <Dropdown.Item onClick={() => i18next.changeLanguage('en-US')}>English</Dropdown.Item>
+            </Dropdown.Menu>
+          </Dropdown>
           <Menu.Item>
             <Icon name="user" /> {displayName}
           </Menu.Item>
@@ -116,4 +126,4 @@ decorate(MainLayout, {
   handleLogout: action,
 });
 
-export default inject('authentication', 'userStore', 'assets')(withRouter(observer(MainLayout)));
+export default withTranslation()(inject('authentication', 'userStore', 'assets')(withRouter(observer(MainLayout))));

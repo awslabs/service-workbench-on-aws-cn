@@ -17,8 +17,9 @@ It mainly provides below additional features,
     - AWS China(Ningxia) Region operated by NWCD
     - AWS China(Beijing) Region operated by Sinnet
     - Asia Pacific (Hong Kong)
-- Configurable IdPs, support both Amazon Cognito and external OIDC providers(for example, KeyCloak, Okta), see [RFC](./rfcs/configurable_idp/index.md)
-- Use [AWS Systems Manager Session Manager][ssm-session-manager] to access Linux instances
+- Configurable IdPs, support both Amazon Cognito and external OIDC providers(for example, Keycloak, Okta), see [RFC](./rfcs/configurable_idp/index.md)
+- Use [AWS Systems Manager Session Manager][ssm-session-manager] to access Linux instances, see [RFC](./rfcs/ssm_to_access_linux_template/index.md)
+- Multiple languages(English/Chinese) support in Service Workbench console
 
 ## Service Workbench architecture
 

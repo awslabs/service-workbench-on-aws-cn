@@ -24,6 +24,7 @@ import 'animate.css/animate.css';
 import 'toastr/build/toastr.css';
 import 'react-table/react-table.css';
 import './css/index.css';
+import './i18next'
 
 bootstrapApp({
   renderAppContainer,

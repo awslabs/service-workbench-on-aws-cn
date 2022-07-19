@@ -14,7 +14,7 @@ i18next
     ns: ['common'],
     defaultNS: 'common',
     fallbackLng: 'en-US',
-    debug: true,
+    debug: false,
 
     interpolation: {
       escapeValue: false, // not needed for react as it escapes by default

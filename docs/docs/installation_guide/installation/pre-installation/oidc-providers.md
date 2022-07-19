@@ -8,7 +8,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 This section is for creating OIDC IdP client and creating Service Workbench root user in OIDC IdP.
 
-## Creating OIDC IdP Client
+## Creating OIDC IdP Client and User
 
 OpenID Connect (OIDC) IdP is an alternative of [Cognito User Pool][cognito] for authentication of Service Workbench. Before deploying Service Workbench with OIDC IdP, you have to create your OIDC provider in external OIDC services.
 
@@ -18,9 +18,11 @@ Below are example procedures for creating OIDC providers in Authing, Keycloak an
 - (Keycloak on AWS Option) [Keycloak on AWS][keycloak-solution] is a solution maintained by AWS and can serve as an authentication identity provider.
 - (Okta Option) [Okta][okta] is one trusted platform to secure every identity, from customers to your workforce.
 
-Follow the steps below to create an OIDC client, and obtain the `client_id` and `issuer`. 
+Follow the steps below to create an OIDC client and , and obtain the `client_id`, `issuer`, `user_name`, `first_name` and `last_name`
 
-### (Authing Option) Authing.cn OIDC client
+### Authing
+
+#### Creating Authing.cn OIDC client
 
 1. Go to the [Authing console](https://console.authing.cn/console).
 2. Create a user pool if you don't have one.
@@ -49,7 +51,21 @@ Follow the steps below to create an OIDC client, and obtain the `client_id` and 
 You have successfully created an authing self-built application. 
 For more information, please visit [authing doc](https://docs.authing.cn/v2/en/)
 
-### (Keycloak on AWS Option) Keycloak OIDC client
+#### Creating user in Authing.cn
+
+1. Login the [Authing console](https://console.authing.cn/console).
+2. Choose **Users & Roles**, **Users**, **Create User** and **Email**, input `Email` and `Password`, click **Confirm** to create user.
+
+    [![](../../../images/OIDC/authing-create-user.png)](../../../images/OIDC/authing-create-user.png)
+3. Edit **Personal Info**, confirm `Email`, `Given Name` and `Family Name` have been fulled.
+
+    [![](../../../images/OIDC/authing-user-config.png)](../../../images/OIDC/authing-user-config.png)
+
+You have successfully created an user in authing. 
+
+### Keycloak on AWS
+
+#### Creating Keycloak OIDC client
 
 1. Deploy the Keycloak solution in AWS China Regions following [this guide](https://aws-samples.github.io/keycloak-on-aws/en/).
 
@@ -79,7 +95,21 @@ For more information, please visit [authing doc](https://docs.authing.cn/v2/en/)
 
 The issuer value is `https://<KEYCLOAK_DOMAIN_NAME>/auth/realms/<REALM_NAME>`. 
 
-### (Okta Option) Okta OIDC client
+#### Creating user in Keycloak
+
+1. Login your deployed Keycloak Administration Console and choose the **realm** that you created before.
+
+2. Choose **User** and **Add user**, input `Username`, `Email`, `First Name` and `Last Name`, then click **Save** to create user.
+    [![](../../../images/OIDC/keycloak-user-create.png)](../../../images/OIDC/keycloak-user-create.png)
+
+3. After user created, choose **Credentials** to set password.
+   [![](../../../images/OIDC/keycloak-user-password.png)](../../../images/OIDC/keycloak-user-password.png)
+
+You have successfully created an user in keycloak. 
+
+### Okta
+
+#### Creating Okta OIDC client
 
 1. Go to the [Okta console](https://www.okta.com/).
 2. Create an account if you don't have one.
@@ -98,39 +128,10 @@ For example: suppose our Service Workbench domain is `www.swb-example.com`, plea
    **CloudFormation**, **Stacks**, **xxx-infrastructure**, **Outputs**, **WebsiteUrl**, like below:
    [![](../../../images/OIDC/get-cloudfront-domain.png)](../../../images/OIDC/get-cloudfront-domain.png)
 
-8. After creating application, you can get the `Client ID` (that is, `client_id`) text and the `Issuer` which is your Okta URL. Please save them which will be used later.
+8. After creating application, you can get the `Client ID` (that is `client_id` text) and the `Issuer`(that is your Okta URL, for example: `https://xxx.okta.com`). Please save them which will be used later.
     [![](../../../images/OIDC/okta-client-id.png)](../../../images/OIDC/okta-client-id.png)
 
-## Creating Service Workbench root user in OIDC IdP
-
-Before deploying Service Workbench, you need to create a user in your OIDC IdP if you don't have one, this user will be used as Service Workbench root user.
-Follow the steps below to create a user and obtain the `user_name`, `first_name` and `last_name`. 
-
-### Creating user in Authing.cn
-
-1. Login the [Authing console](https://console.authing.cn/console).
-2. Choose **Users & Roles**, **Users**, **Create User** and **Email**, input `Email` and `Password`, click **Confirm** to create user.
-
-    [![](../../../images/OIDC/authing-create-user.png)](../../../images/OIDC/authing-create-user.png)
-3. Edit **Personal Info**, confirm `Email`, `Given Name` and `Family Name` have been fulled.
-
-    [![](../../../images/OIDC/authing-user-config.png)](../../../images/OIDC/authing-user-config.png)
-
-You have successfully created an user in authing. 
-
-### Creating user in Keycloak
-
-1. Login your deployed Keycloak Administration Console and choose the **realm** that you created before.
-
-2. Choose **User** and **Add user**, input `Username`, `Email`, `First Name` and `Last Name`, then click **Save** to create user.
-    [![](../../../images/OIDC/keycloak-user-create.png)](../../../images/OIDC/keycloak-user-create.png)
-
-3. After user created, choose **Credentials** to set password.
-   [![](../../../images/OIDC/keycloak-user-password.png)](../../../images/OIDC/keycloak-user-password.png)
-
-You have successfully created an user in keycloak. 
-
-### Creating user in Okta
+#### Creating user in Okta
 
 1. Login the [Okta console](https://www.okta.com/) Admin console.
 2. Choose **Directory**, **People** and **Add person**, then input `First name`, `Last name`, `Username` and `Primary email`, choose `I will set password` to set password, then click **Save**.
@@ -143,8 +144,4 @@ You have successfully created an user in Okta.
 [authing]: https://www.authing.cn/
 [okta]: https://www.okta.com/sg/
 [keycloak]: https://www.keycloak.org/
-[auth0]: https://auth0.com/
-[dg]: https://docs.aws.amazon.com/opensearch-service/latest/developerguide/createupdatedomains.html
-[vpc]:https://docs.aws.amazon.com/opensearch-service/latest/developerguide/vpc.html
-[icp]: https://www.amazonaws.cn/en/support/icp/?nc2=h_l2_su
 [keycloak-solution]: https://www.amazonaws.cn/en/solutions/keycloak-on-aws/

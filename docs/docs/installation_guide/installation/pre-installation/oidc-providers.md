@@ -143,8 +143,4 @@ You have successfully created an user in Okta.
 [authing]: https://www.authing.cn/
 [okta]: https://www.okta.com/sg/
 [keycloak]: https://www.keycloak.org/
-[auth0]: https://auth0.com/
-[dg]: https://docs.aws.amazon.com/opensearch-service/latest/developerguide/createupdatedomains.html
-[vpc]:https://docs.aws.amazon.com/opensearch-service/latest/developerguide/vpc.html
-[icp]: https://www.amazonaws.cn/en/support/icp/?nc2=h_l2_su
 [keycloak-solution]: https://www.amazonaws.cn/en/solutions/keycloak-on-aws/

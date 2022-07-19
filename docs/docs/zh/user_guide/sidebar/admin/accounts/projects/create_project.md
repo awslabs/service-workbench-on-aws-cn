@@ -1,0 +1,15 @@
+---
+id: create_project
+title: Create a New Project
+sidebar_label: Create Project
+---
+
+要创建新项目，请执行以下步骤:
+
+1. 在门户中，使用左侧菜单导航到 **Accounts** 页面。
+2. 单击顶部的**Projects** 选项卡。
+3. 点击**添加项目**按钮。
+4. 在 **Project ID** 字段中输入项目的 ID，这是一个自由文本字段。
+5. 选择要与此项目关联的**索引 ID**。
+6. 可选择提供**描述**。
+7. 单击**添加项目**按钮。

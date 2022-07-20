@@ -94,6 +94,8 @@ class DataSourceRegistrationService extends Service {
     const [accountService, bucketService] = await this.service(['dataSourceAccountService', 'dataSourceBucketService']);
     const accountEntity = await accountService.mustFind(requestContext, { id: accountId });
 
+    rawBucketEntity.awsPartition = this.awsPartition;
+
     return bucketService.register(requestContext, accountEntity, rawBucketEntity);
   }
 
@@ -146,7 +148,7 @@ class DataSourceRegistrationService extends Service {
     let cfnTemplate = new CfnTemplate({ accountId: id, region: mainRegion });
 
     // Include the app role stack that allows us to query the stack information
-    cfnTemplate.addResource(toAppStackCfnResource(accountEntity, swbMainAccountId));
+    cfnTemplate.addResource(toAppStackCfnResource(accountEntity, swbMainAccountId, this.awsPartition));
 
     // We give a chance to the plugins to participate in the logic of creating the account cfn. This helps us
     // have different study access strategies

@@ -174,6 +174,9 @@ importers:
       classnames: 2.2.6
       crypto-browserify: 3.12.0
       csvtojson: 2.0.10
+      i18next: 21.8.14
+      i18next-browser-languagedetector: 6.1.4
+      i18next-http-backend: 1.4.1
       is-cidr: 3.1.0
       jwt-decode: 2.2.0
       lodash: 4.17.21
@@ -191,6 +194,7 @@ importers:
       react-dom: 16.13.1_react@16.13.1
       react-dotdotdot: 1.3.1_eb0d650be231ffd0ace4a30b38162117
       react-dropzone: 10.2.2_react@16.13.1
+      react-i18next: 11.18.1_c90bbfe21aeb09822975bd206c3ff3b7
       react-router-dom: 5.1.2_react@16.13.1
       react-select: 3.1.0_react-dom@16.13.1+react@16.13.1
       react-sparklines: 1.7.0_react-dom@16.13.1+react@16.13.1
@@ -268,6 +272,9 @@ importers:
       eslint-plugin-react: ^7.18.3
       eslint-plugin-react-hooks: ^1.7.0
       husky: ^3.1.0
+      i18next: ^21.8.10
+      i18next-browser-languagedetector: ^6.1.4
+      i18next-http-backend: ^1.4.1
       is-cidr: ^3.1.0
       jest: ^24.9.0
       jest-junit: ^10.0.0
@@ -289,6 +296,7 @@ importers:
       react-dom: ^16.12.0
       react-dotdotdot: ^1.3.1
       react-dropzone: ^10.1.9
+      react-i18next: ^11.17.2
       react-router-dom: ^5.1.2
       react-select: ^3.0.8
       react-sparklines: ^1.7.0
@@ -843,6 +851,9 @@ importers:
       aws-sdk: 2.1015.0
       chart.js: 2.9.4
       classnames: 2.2.6
+      i18next: 21.8.14
+      i18next-browser-languagedetector: 6.1.4
+      i18next-http-backend: 1.4.1
       jwt-decode: 2.2.0
       lodash: 4.17.21
       mobx: 5.15.4
@@ -858,6 +869,7 @@ importers:
       react-chartjs-2: 2.9.0_2e13d21025a4ffbd21356d7d9105cb5f
       react-dom: 16.13.1_react@16.13.1
       react-dotdotdot: 1.3.1_eb0d650be231ffd0ace4a30b38162117
+      react-i18next: 11.18.1_c90bbfe21aeb09822975bd206c3ff3b7
       react-idle-timer: 4.2.12_eb0d650be231ffd0ace4a30b38162117
       react-responsive-carousel: 3.1.57
       react-router-dom: 5.1.2_react@16.13.1
@@ -929,6 +941,9 @@ importers:
       eslint-plugin-react: ^7.18.3
       eslint-plugin-react-hooks: ^1.7.0
       husky: ^3.1.0
+      i18next: ^21.8.10
+      i18next-browser-languagedetector: ^6.1.4
+      i18next-http-backend: ^1.4.1
       jest: ^24.9.0
       jest-junit: ^10.0.0
       jwt-decode: ^2.2.0
@@ -949,6 +964,7 @@ importers:
       react-chartjs-2: ^2.9.0
       react-dom: ^16.12.0
       react-dotdotdot: ^1.3.1
+      react-i18next: ^11.17.2
       react-idle-timer: ^4.2.12
       react-responsive-carousel: ^3.1.51
       react-router-dom: ^5.1.2
@@ -1046,6 +1062,9 @@ importers:
       aws-sdk: 2.1015.0
       chart.js: 2.9.4
       classnames: 2.2.6
+      i18next: 21.8.14
+      i18next-browser-languagedetector: 6.1.4
+      i18next-http-backend: 1.4.1
       jwt-decode: 2.2.0
       lodash: 4.17.21
       mobx: 5.15.4
@@ -1059,6 +1078,7 @@ importers:
       react-chartjs-2: 2.9.0_2e13d21025a4ffbd21356d7d9105cb5f
       react-dom: 16.13.1_react@16.13.1
       react-dotdotdot: 1.3.1_eb0d650be231ffd0ace4a30b38162117
+      react-i18next: 11.18.1_c90bbfe21aeb09822975bd206c3ff3b7
       react-responsive-carousel: 3.1.57
       react-router-dom: 5.1.2_react@16.13.1
       react-select: 3.1.0_react-dom@16.13.1+react@16.13.1
@@ -1120,6 +1140,9 @@ importers:
       eslint-plugin-react: ^7.18.3
       eslint-plugin-react-hooks: ^1.7.0
       husky: ^3.1.0
+      i18next: ^21.8.10
+      i18next-browser-languagedetector: ^6.1.4
+      i18next-http-backend: ^1.4.1
       jest: ^24.9.0
       jest-junit: ^10.0.0
       jwt-decode: ^2.2.0
@@ -1138,6 +1161,7 @@ importers:
       react-chartjs-2: ^2.9.0
       react-dom: ^16.12.0
       react-dotdotdot: ^1.3.1
+      react-i18next: ^11.17.2
       react-responsive-carousel: ^3.1.51
       react-router-dom: ^5.1.2
       react-select: ^3.0.8
@@ -1723,6 +1747,9 @@ importers:
   addons/addon-environment-sc-ui/packages/environment-type-mgmt-ui:
     dependencies:
       '@amzn/base-ui': link:../../../addon-base-ui/packages/base-ui
+      i18next: 21.8.14
+      i18next-browser-languagedetector: 6.1.4
+      i18next-http-backend: 1.4.1
       lodash: 4.17.21
       mobx: 5.15.4
       mobx-react: 6.2.2_mobx@5.15.4+react@16.13.1
@@ -1730,6 +1757,7 @@ importers:
       react: 16.13.1
       react-dom: 16.13.1_react@16.13.1
       react-dotdotdot: 1.3.1_react-dom@16.13.1+react@16.13.1
+      react-i18next: 11.18.1_c90bbfe21aeb09822975bd206c3ff3b7
       react-router-dom: 5.1.2_react@16.13.1
       react-table: 6.11.5_react-dom@16.13.1+react@16.13.1
       react-timeago: 4.4.0_react@16.13.1
@@ -1786,6 +1814,9 @@ importers:
       eslint-plugin-react: ^7.18.3
       eslint-plugin-react-hooks: ^1.7.0
       husky: ^3.1.0
+      i18next: ^21.8.10
+      i18next-browser-languagedetector: ^6.1.4
+      i18next-http-backend: ^1.4.1
       jest: ^24.9.0
       jest-junit: ^10.0.0
       lodash: ^4.17.21
@@ -1797,6 +1828,7 @@ importers:
       react: ^16.12.0
       react-dom: ^16.12.0
       react-dotdotdot: ^1.3.1
+      react-i18next: ^11.17.2
       react-router-dom: ^5.1.2
       react-table: ^6.11.5
       react-timeago: ^4.4.0
@@ -1923,6 +1955,9 @@ importers:
   addons/addon-key-pair-mgmt-ui/packages/key-pair-mgmt-ui:
     dependencies:
       '@amzn/base-ui': link:../../../addon-base-ui/packages/base-ui
+      i18next: 21.8.14
+      i18next-browser-languagedetector: 6.1.4
+      i18next-http-backend: 1.4.1
       lodash: 4.17.21
       mobx: 5.15.4
       mobx-react: 6.2.2_mobx@5.15.4+react@16.13.1
@@ -1931,6 +1966,7 @@ importers:
       react-copy-to-clipboard: 5.0.2_react@16.13.1
       react-dom: 16.13.1_react@16.13.1
       react-dotdotdot: 1.3.1_react-dom@16.13.1+react@16.13.1
+      react-i18next: 11.18.1_c90bbfe21aeb09822975bd206c3ff3b7
       react-router-dom: 5.1.2_react@16.13.1
       react-table: 6.11.5_react-dom@16.13.1+react@16.13.1
       react-timeago: 4.4.0_react@16.13.1
@@ -1978,6 +2014,9 @@ importers:
       eslint-plugin-react: ^7.18.3
       eslint-plugin-react-hooks: ^1.7.0
       husky: ^3.1.0
+      i18next: ^21.8.10
+      i18next-browser-languagedetector: ^6.1.4
+      i18next-http-backend: ^1.4.1
       jest: ^24.9.0
       jest-junit: ^10.0.0
       lodash: ^4.17.21
@@ -1990,6 +2029,7 @@ importers:
       react-copy-to-clipboard: ^5.0.2
       react-dom: ^16.12.0
       react-dotdotdot: ^1.3.1
+      react-i18next: ^11.17.2
       react-router-dom: ^5.1.2
       react-table: ^6.11.5
       react-timeago: ^4.4.0
@@ -2712,6 +2752,9 @@ importers:
       animate.css: 3.7.0
       aws-sdk: 2.1015.0
       classnames: 2.2.6
+      i18next: 21.8.14
+      i18next-browser-languagedetector: 6.1.4
+      i18next-http-backend: 1.4.1
       lodash: 4.17.21
       mobx: 5.15.7
       mobx-react: 6.3.1_d3e02fbea8253211d8e1c39eb0f5bb19
@@ -2721,6 +2764,7 @@ importers:
       react: 16.14.0
       react-avatar: 3.9.7_prop-types@15.7.2+react@16.14.0
       react-dom: 16.14.0_react@16.14.0
+      react-i18next: 11.18.1_cbb20021382654c9f3938e2e3c5fad37
       react-router-dom: 5.2.0_react@16.14.0
       react-table: 6.11.5_0106054ed56650b7cf08997e12b36ef5
       semantic-ui-react: 0.88.2_react-dom@16.14.0+react@16.14.0
@@ -2772,6 +2816,9 @@ importers:
       eslint-plugin-react: ^7.21.5
       eslint-plugin-react-hooks: ^2.5.1
       husky: ^3.1.0
+      i18next: ^21.8.10
+      i18next-browser-languagedetector: ^6.1.4
+      i18next-http-backend: ^1.4.1
       jest: ^24.9.0
       jest-junit: ^10.0.0
       lodash: ^4.17.21
@@ -2785,6 +2832,7 @@ importers:
       react: ^16.14.0
       react-avatar: ^3.9.7
       react-dom: ^16.14.0
+      react-i18next: ^11.17.2
       react-router-dom: ^5.2.0
       react-scripts: ^3.4.4
       react-table: ^6.11.5
@@ -5524,6 +5572,14 @@ packages:
       regenerator-runtime: 0.13.7
     resolution:
       integrity: sha512-plcc+hbExy3McchJCEQG3knOsuh3HH+Prx1P6cLIkET/0dLuQDEnrT+s27Axgc9bqfsmNUNHfscgMUdBpC9xfg==
+  /@babel/runtime/7.18.6:
+    dependencies:
+      regenerator-runtime: 0.13.7
+    dev: false
+    engines:
+      node: '>=6.9.0'
+    resolution:
+      integrity: sha512-t9wi7/AW6XtKahAe20Yw0/mMljKq0B1r2fPdvaAdV/KPDZewFXdaaa6K7lxmZBZ8FBNpCiAT6iHPmd6QO9bKfQ==
   /@babel/runtime/7.9.0:
     dependencies:
       regenerator-runtime: 0.13.7
@@ -7934,7 +7990,6 @@ packages:
   /agent-base/6.0.2:
     dependencies:
       debug: 4.3.3
-    dev: true
     engines:
       node: '>= 6.0.0'
     resolution:
@@ -10598,6 +10653,12 @@ packages:
       react: ^0.14.0 || ^15.0.0 || ^16.0.0
     resolution:
       integrity: sha512-dNldIoSuNSvlTJ7slIKC/ZFGKexBMBrrcc+TTe1NdmROnaASuLPvqpwj9v4XS4uXZ8+YPu0sNmShX2rXI5LNsw==
+  /cross-fetch/3.1.5:
+    dependencies:
+      node-fetch: 2.6.7
+    dev: false
+    resolution:
+      integrity: sha512-lvb1SBsI0Z7GDwmuid+mU3kWVBwTVUbe7S0H52yaaAdQOXq2YktTCZdlAcNKFzE6QtRz0snpw9bNiPeOIkkQvw==
   /cross-spawn/5.1.0:
     dependencies:
       lru-cache: 4.1.5
@@ -11079,6 +11140,7 @@ packages:
   /debug/4.3.1:
     dependencies:
       ms: 2.1.2
+    dev: true
     engines:
       node: '>=6.0'
     peerDependencies:
@@ -14866,6 +14928,12 @@ packages:
     hasBin: true
     resolution:
       integrity: sha512-ZPr5MNObqnV/T9akshPKbVgyOqLmy+Bxo7juKCfTfnjNniTAMdy4hz21YQqoofMBJD2kdREaqPPdThoR78Tgxg==
+  /html-parse-stringify/3.0.1:
+    dependencies:
+      void-elements: 3.1.0
+    dev: false
+    resolution:
+      integrity: sha512-KknJ50kTInJ7qIScF3jeaFRpMpE8/lfiTdzf/twXyPBLAGrLRTmkz3AdTnKeh40X8k9L2fdYwEp/42WGXIRGcg==
   /html-webpack-plugin/4.0.0-beta.11_webpack@4.42.0:
     dependencies:
       html-minifier-terser: 5.1.1
@@ -15014,7 +15082,6 @@ packages:
     dependencies:
       agent-base: 6.0.2
       debug: 4.3.3
-    dev: true
     engines:
       node: '>= 6'
     resolution:
@@ -15045,6 +15112,24 @@ packages:
     requiresBuild: true
     resolution:
       integrity: sha512-FJkPoHHB+6s4a+jwPqBudBDvYZsoQW5/HBuMSehC8qDiCe50kpcxeqFoDSlow+9I6wg47YxBoT3WxaURlrDIIQ==
+  /i18next-browser-languagedetector/6.1.4:
+    dependencies:
+      '@babel/runtime': 7.18.6
+    dev: false
+    resolution:
+      integrity: sha512-wukWnFeU7rKIWT66VU5i8I+3Zc4wReGcuDK2+kuFhtoxBRGWGdvYI9UQmqNL/yQH1KogWwh+xGEaIPH8V/i2Zg==
+  /i18next-http-backend/1.4.1:
+    dependencies:
+      cross-fetch: 3.1.5
+    dev: false
+    resolution:
+      integrity: sha512-s4Q9hK2jS29iyhniMP82z+yYY8riGTrWbnyvsSzi5TaF7Le4E7b5deTmtuaRuab9fdDcYXtcwdBgawZG+JCEjA==
+  /i18next/21.8.14:
+    dependencies:
+      '@babel/runtime': 7.18.6
+    dev: false
+    resolution:
+      integrity: sha512-4Yi+DtexvMm/Yw3Q9fllzY12SgLk+Mcmar+rCAccsOPul/2UmnBzoHbTGn/L48IPkFcmrNaH7xTLboBWIbH6pw==
   /iconv-lite/0.4.24:
     dependencies:
       safer-buffer: 2.1.2
@@ -21429,6 +21514,46 @@ packages:
     dev: true
     resolution:
       integrity: sha512-HvPuUQnLp5H7TouGq3kzBeioJmXms1wHy9EGjz2OURWBp4qZO6AfGEcnxts1D/CbwPLRAgTMPCEgYhA3sEM4vw==
+  /react-i18next/11.18.1_c90bbfe21aeb09822975bd206c3ff3b7:
+    dependencies:
+      '@babel/runtime': 7.18.6
+      html-parse-stringify: 3.0.1
+      i18next: 21.8.14
+      react: 16.13.1
+      react-dom: 16.13.1_react@16.13.1
+    dev: false
+    peerDependencies:
+      i18next: '>= 19.0.0'
+      react: '>= 16.8.0'
+      react-dom: '*'
+      react-native: '*'
+    peerDependenciesMeta:
+      react-dom:
+        optional: true
+      react-native:
+        optional: true
+    resolution:
+      integrity: sha512-S8cl4mvIOSA7OQCE5jNy2yhv705Vwi+7PinpqKIYcBmX/trJtHKqrf6CL67WJSA8crr2JU+oxE9jn9DQIrQezg==
+  /react-i18next/11.18.1_cbb20021382654c9f3938e2e3c5fad37:
+    dependencies:
+      '@babel/runtime': 7.18.6
+      html-parse-stringify: 3.0.1
+      i18next: 21.8.14
+      react: 16.14.0
+      react-dom: 16.14.0_react@16.14.0
+    dev: false
+    peerDependencies:
+      i18next: '>= 19.0.0'
+      react: '>= 16.8.0'
+      react-dom: '*'
+      react-native: '*'
+    peerDependenciesMeta:
+      react-dom:
+        optional: true
+      react-native:
+        optional: true
+    resolution:
+      integrity: sha512-S8cl4mvIOSA7OQCE5jNy2yhv705Vwi+7PinpqKIYcBmX/trJtHKqrf6CL67WJSA8crr2JU+oxE9jn9DQIrQezg==
   /react-idle-timer/4.2.12_eb0d650be231ffd0ace4a30b38162117:
     dependencies:
       prop-types: 15.7.2
@@ -24452,7 +24577,7 @@ packages:
       integrity: sha512-yQyJ0u4pZsv9D4clxO69OEjLWYw+jbgspjTue4lTQZLfV0c5l1VmK2y1JK8E9ahdpltPOaAThPcp5nKPUgSnsg==
   /tr46/0.0.3:
     resolution:
-      integrity: sha1-gYT9NH2snNwYWZLzpmIuFLnZq2o=
+      integrity: sha512-N3WMsuqV66lT30CrXNbEjx4GEwlow3v6rr4mCcv6prnfwhS01rkgyFdjPNBYd9br7LpXV1+Emh01fHnq2Gdgrw==
   /tr46/1.0.1:
     dependencies:
       punycode: 2.1.1
@@ -25115,6 +25240,12 @@ packages:
     dev: true
     resolution:
       integrity: sha512-2ham8XPWTONajOR0ohOKOHXkm3+gaBmGut3SRuu75xLd/RRaY6vqgh8NBYYk7+RW3u5AtzPQZG8F10LHkl0lAQ==
+  /void-elements/3.1.0:
+    dev: false
+    engines:
+      node: '>=0.10.0'
+    resolution:
+      integrity: sha512-Dhxzh5HZuiHQhbvTW9AMetFfBHDMYpo23Uo9btPXgdYP+3T5S+p+jgNy7spra+veYhBP2dCSgxR/i2Y02h5/6w==
   /w3c-hr-time/1.0.2:
     dependencies:
       browser-process-hrtime: 1.0.0
@@ -25189,7 +25320,7 @@ packages:
       integrity: sha512-O84QOnr0icsbFGLS0O3bI5FswxzRr8/gHwWkDlQFskhSPryQXvrTMxjxGP4+iWYoauLoBvfDpkrOauZ+0iZpDA==
   /webidl-conversions/3.0.1:
     resolution:
-      integrity: sha1-JFNCdeKnvGvnvIZhHMFq4KVlSHE=
+      integrity: sha512-2JAn3z8AR6rjK8Sm8orRC0h/bcl/DqL7tRPdGZ4I1CjdF+EaMLmYxBHyXuKL849eucPFhvBoxMsflfOb8kxaeQ==
   /webidl-conversions/4.0.2:
     dev: true
     resolution:
@@ -25474,7 +25605,7 @@ packages:
       tr46: 0.0.3
       webidl-conversions: 3.0.1
     resolution:
-      integrity: sha1-lmRU6HZUYuN2RNNib2dCzotwll0=
+      integrity: sha512-saE57nupxk6v3HY35+jzBwYa0rKSy0XR8JSxZPwgLr7ys0IBzhGviA1/TUGJLmSVqs8pb9AnvICXEuOHLprYTw==
   /whatwg-url/6.5.0:
     dependencies:
       lodash.sortby: 4.7.0

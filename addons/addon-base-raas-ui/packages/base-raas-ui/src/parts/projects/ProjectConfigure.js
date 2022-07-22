@@ -23,7 +23,11 @@ import Stores from '@amzn/base-ui/dist/models/Stores';
 import { swallowError } from '@amzn/base-ui/dist/helpers/utils';
 import ErrorBox from '@amzn/base-ui/dist/parts/helpers/ErrorBox';
 import BasicProgressPlaceholder from '@amzn/base-ui/dist/parts/helpers/BasicProgressPlaceholder';
+import i18next from 'i18next';
+import { initReactI18next, withTranslation } from 'react-i18next';
 import { getAddProjectFormFields, getAddProjectForm } from '../../models/forms/AddProjectForm';
+
+i18next.use(initReactI18next);
 
 class ProjectConfigure extends React.Component {
   constructor(props) {
@@ -123,7 +127,7 @@ class ProjectConfigure extends React.Component {
   renderTrigger() {
     return (
       <Button size="mini" compact color="blue" onClick={this.handleModalOpen}>
-        Detail
+        {i18next.t('detail')}
       </Button>
     );
   }
@@ -155,7 +159,7 @@ class ProjectConfigure extends React.Component {
       <Modal closeIcon trigger={this.renderTrigger()} open={this.modalOpen} onClose={this.handleModalClose}>
         <div className="mt2 animated fadeIn">
           <Header as="h3" icon textAlign="center" className="mt3" color="grey">
-            Project Detail
+            {i18next.t('project.projectDetail', { ns: 'accounts' })}
           </Header>
           <div className="mt3 ml3 mr3 animated fadeIn">{content}</div>
         </div>
@@ -363,4 +367,4 @@ decorate(ProjectConfigure, {
 
   handleClickSubmitButton: action,
 });
-export default observer(ProjectConfigure);
+export default withTranslation()(observer(ProjectConfigure));

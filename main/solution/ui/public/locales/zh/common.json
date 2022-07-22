@@ -1,3 +1,8 @@
 {
-    "lang": "语言"
+    "lang": "语言",
+    "detail": "详细信息",
+    "details": "详细信息",
+    "budgetDetail": "预算明细",
+    "checking": "检查中",
+    "cancel": "取消"
 }

@@ -20,8 +20,8 @@ i18next
       escapeValue: false, // not needed for react as it escapes by default
     },
     react: {
-      useSuspense: false
-    }
+      useSuspense: false,
+    },
   });
 
 export default i18next;

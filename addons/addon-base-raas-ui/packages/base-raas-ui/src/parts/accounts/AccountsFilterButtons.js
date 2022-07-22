@@ -5,7 +5,12 @@ import { observer } from 'mobx-react';
 import { Button } from 'semantic-ui-react';
 import c from 'classnames';
 
+import i18next from 'i18next';
+import { initReactI18next, withTranslation } from 'react-i18next';
+
 import { filterNames } from '../../models/aws-accounts/AwsAccountsStore';
+
+i18next.use(initReactI18next);
 
 const filterColorMap = {
   [filterNames.ALL]: 'blue',
@@ -50,7 +55,7 @@ class AccountsFilterButtons extends React.Component {
         <Button.Group floated="right">
           {_.map(_.keys(filterColorMap), name => (
             <Button key={name} {...getAttrs(name)}>
-              {name}
+              {i18next.t(`status.${name}`, { ns: 'accounts' })}
             </Button>
           ))}
         </Button.Group>
@@ -65,4 +70,4 @@ decorate(AccountsFilterButtons, {
   onSelectedFilter: computed,
 });
 
-export default observer(AccountsFilterButtons);
+export default withTranslation()(observer(AccountsFilterButtons));

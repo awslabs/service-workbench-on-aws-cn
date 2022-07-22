@@ -20,6 +20,8 @@ import { decorate, observable, action, runInAction } from 'mobx';
 import { Button, Dimmer, Header, List, Loader, Segment } from 'semantic-ui-react';
 import _ from 'lodash';
 
+import i18next from 'i18next';
+import { initReactI18next, withTranslation } from 'react-i18next';
 import { displayError } from '@amzn/base-ui/dist/helpers/notification';
 import { createLink } from '@amzn/base-ui/dist/helpers/routing';
 import validate from '@amzn/base-ui/dist/models/forms/Validate';
@@ -29,6 +31,8 @@ import {
   getAddUpdateAwsAccountAppStreamFormFields,
   getAddUpdateAwsAccountForm,
 } from '../../models/forms/AddUpdateAwsAccountForm';
+
+i18next.use(initReactI18next);
 
 class AddUpdateAwsAccount extends React.Component {
   PAGE_TYPE_UPDATE = 'UPDATE';
@@ -68,7 +72,7 @@ class AddUpdateAwsAccount extends React.Component {
     return (
       <div className="mt2 animated fadeIn">
         <Header as="h2" icon textAlign="center" className="mt3" color="grey">
-          {this.pageType === this.PAGE_TYPE_ADD ? 'Add' : 'Update'} AWS Account
+          {i18next.t(this.pageType === this.PAGE_TYPE_ADD ? 'addAccount' : 'updateAccount', { ns: 'accounts' })}
         </Header>
         <div className="mt3 ml3 mr3 animated fadeIn">{this.renderAddAwsAccountForm()}</div>
       </div>
@@ -104,7 +108,7 @@ class AddUpdateAwsAccount extends React.Component {
     return (
       <Segment basic className="ui fluid form">
         <Dimmer active={processing} inverted>
-          <Loader inverted>Checking</Loader>
+          <Loader inverted>{i18next.t('checking')}</Loader>
         </Dimmer>
         {Object.keys(fields).map(field => (
           <React.Fragment key={field}>
@@ -122,10 +126,10 @@ class AddUpdateAwsAccount extends React.Component {
     return (
       <div className="mt3">
         <Button floated="right" color="blue" icon disabled={processing} className="ml2" onClick={this.handleSubmit}>
-          Onboard AWS Account
+          {i18next.t('addAccountPage.onboardAccount', { ns: 'accounts' })}
         </Button>
         <Button floated="right" disabled={processing} onClick={this.handleCancel}>
-          Cancel
+          {i18next.t('cancel')}
         </Button>
       </div>
     );
@@ -221,4 +225,4 @@ decorate(AddUpdateAwsAccount, {
   user: observable,
   validationErrors: observable,
 });
-export default inject('usersStore', 'awsAccountsStore')(withRouter(observer(AddUpdateAwsAccount)));
+export default withTranslation()(inject('usersStore', 'awsAccountsStore')(withRouter(observer(AddUpdateAwsAccount))));

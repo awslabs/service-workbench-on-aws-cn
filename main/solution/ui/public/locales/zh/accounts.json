@@ -1,0 +1,81 @@
+{
+    "account#": "AWS 账号 #",
+    "accounts": "AWS 账号",
+    "addAccount": "添加 AWS 账号",
+    "createAccount": "创建 AWS 账号",
+    "updateAccount": "更新 AWS 账号",
+    "refreshAccount": "刷新账号状态",
+    "noAccount": {
+        "title": "没有与所选过滤器匹配的帐户。",
+        "description": "选择“全部”以查看所有帐户"
+    },
+    "addAccountPage": {
+        "onboardAccount": "添加 AWS 账号",
+        "loading": {
+            "title": "加载中...",
+            "description": "请稍等片刻。"
+        }
+    },
+    "onboard": {
+        "title": "添加 AWS 账号",
+        "cloudFormationStackName": "CloudFormation 堆栈名称",
+        "steps": "步骤",
+        "step1": "在一个独立的浏览器标签页中，使用正确的帐户登录到 aws 控制台。",
+        "attention": {
+            "title": "注意",
+            "description": "请确保登录到 AWS 账号 #{{accountId}} 并切换到区域 {{region}}."
+        },
+        "step2": "点击“创建堆栈”按钮，这一步会打开另一个独立的浏览器标签页并且访问CloudFormation控制台，在那里你可以检查堆栈信息并创建它。",
+        "caution": {
+            "title": "警告！",
+            "description": "请注意，部署新的 CFN 堆栈可能会导致 SWB 中与此帐户关联的任何工作区变得不可用。若要继续，请确认位于下方的警告。"
+        },
+        "acknowledgement": "我知道重新添加此帐户可能会导致与此帐户关联的工作区变得不可用。",
+        "createStack": "创建堆栈",
+        "expires": "失效于",
+        "step3": "在开始创建 CFN 堆栈后，SWB 将等待堆栈完成部署，然后完成添加您的帐户。在等待期间，您可以单击下面的“完成”按钮返回帐户页面。",
+        "done": "完成"
+    },
+    "updatePermsButton": {
+        "updatePermissions": "更新权限",
+        "reOnboardAccount": "重新添加账号",
+        "onboardAccount": "添加账号"
+    },
+    "status": {
+        "all": "全部",
+        "upToDate": "正常",
+        "needsUpdate": "需要更新",
+        "needsOnboarding": "未添加",
+        "error": "错误",
+        "errored": "出错",
+        "pending": "等待中",
+        "unknown": "未知状态"
+    },
+    "index": {
+        "indexes": "索引",
+        "addIndex": "添加索引"
+    },
+    "project": {
+        "projects": "项目",
+        "addProject": "添加项目",
+        "projectDetail": "详细信息"
+    },
+    "form": {
+        "name": {
+            "label": "账号名",
+            "placeholder": "请输入该账号的名称"
+        },
+        "accountId": {
+            "label": "AWS 账号 ID",
+            "placeholder": "请输入12位数字的 AWS 账号 ID"
+        },
+        "description": {
+            "label": "描述",
+            "placeholder": "请输入该 AWS 账号的描述"
+        },
+        "externalId": {
+            "label": "外部 ID",
+            "placeholder": "请输入该 AWS 账号的外部 ID"
+        }
+    }
+}

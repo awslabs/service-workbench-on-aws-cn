@@ -20,11 +20,15 @@ import { withRouter } from 'react-router-dom';
 import { Header, Divider, List, Checkbox, Form, Icon, TextArea, Message, Button, Container } from 'semantic-ui-react';
 import TimeAgo from 'react-timeago';
 
+import i18next from 'i18next';
+import { initReactI18next, withTranslation } from 'react-i18next';
 import YesNo from '@amzn/base-ui/dist/parts/helpers/fields/YesNo';
 import { createLink } from '@amzn/base-ui/dist/helpers/routing';
 import { isAppStreamEnabled } from '../../helpers/settings';
 import CopyToClipboard from '../helpers/CopyToClipboard';
 import { createForm } from '../../helpers/form';
+
+i18next.use(initReactI18next);
 
 // Example: http://localhost:3000/aws-accounts/onboard/39ef39d0-ba3e-11eb-8d52-c973518136fb
 
@@ -127,7 +131,7 @@ class AwsAccountUpdateContent extends React.Component {
       <Container className="mt3 animated fadeIn">
         <div className="mt2 animated fadeIn">
           <Header as="h2" icon textAlign="center" className="mt3" color="grey">
-            Onboard AWS Account
+            {i18next.t('onboard.title', { ns: 'accounts' })}
           </Header>
           <div className="mt3 ml3 mr3 animated fadeIn">{this.renderMain()}</div>
           <div className="mt3">
@@ -136,7 +140,7 @@ class AwsAccountUpdateContent extends React.Component {
               floated="right"
               onClick={this.handleGoBack}
               color="blue"
-              content="Done"
+              content={i18next.t('onboard.done', { ns: 'accounts' })}
             />
           </div>
         </div>
@@ -154,7 +158,7 @@ class AwsAccountUpdateContent extends React.Component {
           <Divider />
           <div className="flex justify-between">
             <Header as="h4" className="mb0 mt1 flex-auto">
-              AWS Account # {accountId}
+              {i18next.t('account#', { ns: 'accounts' })} {accountId}
             </Header>
           </div>
           <Divider />
@@ -171,7 +175,7 @@ class AwsAccountUpdateContent extends React.Component {
     return (
       <Form className="mb3">
         <Header as="h4" className="mb2 mt3">
-          CloudFormation Stack Name
+          {i18next.t('onboard.cloudFormationStackName', { ns: 'accounts' })}
         </Header>
         <div className="mb2 flex">
           <div className="flex-auto">
@@ -211,7 +215,7 @@ class AwsAccountUpdateContent extends React.Component {
       <>
         <div className="flex justify-between pt3 pb0 pr3 pl1">
           <Header size="medium" className="mb2">
-            Steps
+            {i18next.t('onboard.steps', { ns: 'accounts' })}
           </Header>
           {hasUpdateStackUrl && <YesNo field={field} className="mb0 mt0" />}
         </div>
@@ -239,32 +243,26 @@ class AwsAccountUpdateContent extends React.Component {
       <div className="animated fadeIn">
         <List ordered size={textSize}>
           <List.Item>
-            In a separate browser tab, login to the aws console using the correct account.
+            {i18next.t('onboard.step1', { ns: 'accounts' })}
             <Message className="mr3 mt2 mb2">
-              <Message.Header>Attention</Message.Header>
-              <p>
-                Ensure that you are logged in to AWS account #<b>{accountId}</b> in region <b>{region}</b>.
-              </p>
+              <Message.Header>{i18next.t('onboard.attention.title', { ns: 'accounts' })}</Message.Header>
+              <p>{i18next.t('onboard.attention.description', { ns: 'accounts', accountId, region })}</p>
             </Message>
           </List.Item>
           {isAppStreamEnabled && this.renderEnableFirstUseAppStreamInstructions()}
           <List.Item>
-            Click on the <b>Create Stack</b> button, this opens a separate browser tab and takes you to the
-            CloudFormation console where you can review the stack information and provision it.
+            {i18next.t('onboard.step2', { ns: 'accounts' })}
             <div className="mb0 flex mt2">
               <div className="flex-auto">
                 {shouldShowWarning && (
                   <Message warning>
-                    <Message.Header>Caution!</Message.Header>
-                    <p>
-                      Be advised that deploying a new CFN stack may cause any workspaces associated with this account in
-                      SWB to become unusable. To proceed, please acknowledge the warning below.
-                    </p>
+                    <Message.Header>{i18next.t('onboard.caution.title', { ns: 'accounts' })}</Message.Header>
+                    <p>{i18next.t('onboard.caution.description', { ns: 'accounts' })}</p>
                   </Message>
                 )}
                 {shouldShowWarning && (
                   <Checkbox
-                    label="I am aware that re-onboarding this account may render workspaces associated with this account to become unusable."
+                    label={i18next.t('onboard.acknowledgement', { ns: 'accounts' })}
                     onClick={this.handleClickAcknowledgement}
                   />
                 )}
@@ -281,7 +279,7 @@ class AwsAccountUpdateContent extends React.Component {
                   rel="noopener noreferrer"
                   color="blue"
                 >
-                  Create Stack
+                  {i18next.t('onboard.createStack', { ns: 'accounts' })}
                 </Button>
                 {this.renderExpires(stackInfo)}
               </div>
@@ -298,11 +296,7 @@ class AwsAccountUpdateContent extends React.Component {
           {isAppStreamEnabled ? (
             this.renderStartAppStreamInstructions()
           ) : (
-            <List.Item>
-              After creating the CFN stack, SWB will wait for the stack to finish deploying and then onboard your
-              account. You can click the &quot;Done&quot; button below to be taken back to the Accounts page while you
-              wait.
-            </List.Item>
+            <List.Item>{i18next.t('onboard.step3', { ns: 'accounts' })}</List.Item>
           )}
         </List>
       </div>
@@ -331,7 +325,7 @@ class AwsAccountUpdateContent extends React.Component {
     return (
       <List.Item>
         After the Cloudformation Stack has been created, go to AppStream on the AWS console. Go to Fleet and then click
-        on the newly created fleet. Choose Action&gt;Start to start the fleet.
+        on the newly created fleet. Choose Action{'>'}Start to start the fleet.
         <div className="mt2 mb2">
           <b>
             <Checkbox
@@ -412,7 +406,7 @@ class AwsAccountUpdateContent extends React.Component {
 
     return (
       <div className="fs-9 center mt1">
-        Expires <TimeAgo date={urlExpiry} />
+        {i18next.t('onboard.expires', { ns: 'accounts' })} <TimeAgo date={urlExpiry} />
       </div>
     );
   }
@@ -433,4 +427,4 @@ decorate(AwsAccountUpdateContent, {
   startedAppStreamFleetAcknowledged: observable,
 });
 
-export default inject('awsAccountsStore')(withRouter(observer(AwsAccountUpdateContent)));
+export default withTranslation()(inject('awsAccountsStore')(withRouter(observer(AwsAccountUpdateContent))));

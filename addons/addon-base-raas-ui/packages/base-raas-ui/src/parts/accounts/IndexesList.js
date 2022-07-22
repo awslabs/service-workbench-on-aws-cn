@@ -19,10 +19,14 @@ import { withRouter } from 'react-router-dom';
 import { inject, observer } from 'mobx-react';
 import ReactTable from 'react-table';
 
+import i18next from 'i18next';
+import { initReactI18next, withTranslation } from 'react-i18next';
 import { isStoreError, isStoreLoading } from '@amzn/base-ui/dist/models/BaseStore';
 import ErrorBox from '@amzn/base-ui/dist/parts/helpers/ErrorBox';
 import { createLink } from '@amzn/base-ui/dist/helpers/routing';
 import BasicProgressPlaceholder from '@amzn/base-ui/dist/parts/helpers/BasicProgressPlaceholder';
+
+i18next.use(initReactI18next);
 
 class IndexesList extends React.Component {
   constructor(props) {
@@ -95,12 +99,12 @@ class IndexesList extends React.Component {
         <Header as="h3" className="color-grey mt1 mb0 flex-auto">
           <Icon name="briefcase" className="align-top" />
           <Header.Content className="left-align">
-            Indexes
+            {i18next.t('index.indexes', { ns: 'accounts' })}
             {this.renderTotal()}
           </Header.Content>
         </Header>
         <Button color="blue" size="medium" basic onClick={this.handleAddIndex}>
-          Add Index
+          {i18next.t('index.addIndex', { ns: 'accounts' })}
         </Button>
       </div>
     );
@@ -129,4 +133,4 @@ class IndexesList extends React.Component {
   }
 }
 
-export default inject('awsAccountsStore', 'indexesStore')(withRouter(observer(IndexesList)));
+export default withTranslation()(inject('awsAccountsStore', 'indexesStore')(withRouter(observer(IndexesList))));

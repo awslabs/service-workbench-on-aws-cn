@@ -11,13 +11,16 @@ i18next
   .use(Backend)
   .use(LanguageDetector)
   .init({
-    ns: ['common'],
+    ns: ['common', 'accounts'],
     defaultNS: 'common',
-    fallbackLng: 'en-US',
+    fallbackLng: 'en',
     debug: false,
 
     interpolation: {
       escapeValue: false, // not needed for react as it escapes by default
+    },
+    react: {
+      useSuspense: false,
     },
   });
 

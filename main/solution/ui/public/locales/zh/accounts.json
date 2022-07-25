@@ -2,6 +2,7 @@
     "account#": "AWS 账号 #",
     "accounts": "AWS 账号",
     "addAccount": "添加 AWS 账号",
+    "budgetDetail": "预算明细",
     "createAccount": "创建 AWS 账号",
     "updateAccount": "更新 AWS 账号",
     "refreshAccount": "刷新账号状态",
@@ -60,22 +61,56 @@
         "addProject": "添加项目",
         "projectDetail": "详细信息"
     },
-    "form": {
-        "name": {
-            "label": "账号名",
-            "placeholder": "请输入该账号的名称"
+    "formFields": {
+        "addUpdateBaseAwsAccount": {
+            "name": {
+                "label": "账号名",
+                "placeholder": "请输入该账号的名称"
+            },
+            "accountId": {
+                "label": "AWS 账号 ID",
+                "placeholder": "请输入12位数字的 AWS 账号 ID"
+            },
+            "description": {
+                "label": "描述",
+                "placeholder": "请为该 AWS 账号输入描述"
+            },
+            "externalId": {
+                "label": "外部 ID",
+                "placeholder": "请输入该 AWS 账号的外部 ID"
+            }
         },
-        "accountId": {
-            "label": "AWS 账号 ID",
-            "placeholder": "请输入12位数字的 AWS 账号 ID"
+        "addIndex": {
+            "id": {
+                "label": "索引 ID",
+                "placeholder": "请输入该索引的 ID"
+            },
+            "awsAccountId": {
+                "label": "AWS 账号 ID",
+                "placeholder": "请选择一个 AWS 账号"
+            },
+            "description": {
+                "label": "描述",
+                "placeholder": "请为该索引输入描述"
+            }
         },
-        "description": {
-            "label": "描述",
-            "placeholder": "请输入该 AWS 账号的描述"
-        },
-        "externalId": {
-            "label": "外部 ID",
-            "placeholder": "请输入该 AWS 账号的外部 ID"
+        "addProject": {
+            "id": {
+                "label": "项目名称",
+                "placeholder": "请输入项目名称"
+            },
+            "indexId": {
+                "label": "索引 ID",
+                "placeholder": "请为该项目分配索引"
+            },
+            "description": {
+                "label": "描述",
+                "placeholder": "请为该项目输入描述"
+            },
+            "projectAdmins": {
+                "label": "项目管理员",
+                "placeholder": "管理员自动对该项目下属的所有工作区拥有所有权限"
+            }
         }
     }
 }

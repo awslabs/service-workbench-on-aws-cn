@@ -72,19 +72,19 @@ class ProjectsList extends React.Component {
           }}
           columns={[
             {
-              Header: 'Project Name',
+              Header: i18next.t('formFields.addProject.id.label', { ns: 'accounts' }),
               accessor: 'id',
             },
             {
-              Header: 'Index Id',
+              Header: i18next.t('formFields.addProject.indexId.label', { ns: 'accounts' }),
               accessor: 'indexId',
             },
             {
-              Header: 'Description',
+              Header: i18next.t('formFields.addProject.description.label', { ns: 'accounts' }),
               accessor: 'description',
             },
             {
-              Header: 'Project Admins',
+              Header: i18next.t('formFields.addProject.projectAdmins.label', { ns: 'accounts' }),
               accessor: 'projectAdmins',
               style: { whiteSpace: 'unset' },
               Cell: observer(row => {

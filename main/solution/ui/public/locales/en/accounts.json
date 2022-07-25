@@ -2,6 +2,7 @@
     "account#": "AWS Account #",
     "accounts": "AWS Accounts",
     "addAccount": "Add AWS Account",
+    "budgetDetail": "Budget Detail",
     "createAccount": "Create AWS Account",
     "updateAccount": "Update AWS Account",
     "refreshAccount": "Refresh Account Status",
@@ -60,22 +61,56 @@
         "addProject": "Add Project",
         "projectDetail": "Project Detail"
     },
-    "form": {
-        "name": {
-            "label": "Account Name",
-            "placeholder": "Type the name of this account"
+    "formFields": {
+        "addUpdateBaseAwsAccount": {
+            "name": {
+                "label": "Account Name",
+                "placeholder": "Type the name of this account"
+            },
+            "accountId": {
+                "label": "AWS Account ID",
+                "placeholder": "Type the 12-digit AWS account ID"
+            },
+            "description": {
+                "label": "Description",
+                "placeholder": "Type description for this AWS account"
+            },
+            "externalId": {
+                "label": "External ID",
+                "placeholder": "Type external ID for this AWS account"
+            }
         },
-        "accountId": {
-            "label": "AWS Account ID",
-            "placeholder": "Type the 12-digit AWS account ID"
+        "addIndex": {
+            "id": {
+                "label": "Index ID",
+                "placeholder": "Type id for this index"
+            },
+            "awsAccountId": {
+                "label": "AWS Account ID",
+                "placeholder": "Please select an AWS Account"
+            },
+            "description": {
+                "label": "Description",
+                "placeholder": "Type description for this index"
+            }
         },
-        "description": {
-            "label": "Description",
-            "placeholder": "Type description for this AWS account"
-        },
-        "externalId": {
-            "label": "External ID",
-            "placeholder": "Type external ID for this AWS account"
+        "addProject": {
+            "id": {
+                "label": "Project Name",
+                "placeholder": "Type name for this project"
+            },
+            "indexId": {
+                "label": "Index ID",
+                "placeholder": "Please assign indexes to this project"
+            },
+            "description": {
+                "label": "Description",
+                "placeholder": "Type description for this project"
+            },
+            "projectAdmins": {
+                "label": "Project Admins",
+                "placeholder": "Users who automatically have full control of workspaces associated with this project"
+            }
         }
     }
 }

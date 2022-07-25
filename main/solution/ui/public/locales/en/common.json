@@ -1,8 +1,9 @@
 {
     "lang": "Language",
+    "edit": "Edit",
+    "save": "Save",
     "detail": "Detail",
     "details": "Details",
-    "budgetDetail": "Budget Detail",
     "checking": "Checking",
     "cancel": "Cancel"
 }

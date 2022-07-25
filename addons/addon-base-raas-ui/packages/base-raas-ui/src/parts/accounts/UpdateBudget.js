@@ -55,7 +55,7 @@ class UpdateBudget extends React.Component {
     return (
       <div className="mt2 animated fadeIn">
         <Header as="h2" icon textAlign="center" className="mt3" color="grey">
-          {i18next.t('budgetDetail')}
+          {i18next.t('budgetDetail', { ns: 'accounts' })}
         </Header>
         <div className="mt3 ml3 mr3 animated fadeIn">{content}</div>
       </div>

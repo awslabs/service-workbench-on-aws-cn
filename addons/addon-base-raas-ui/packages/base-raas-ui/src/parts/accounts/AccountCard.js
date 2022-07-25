@@ -240,7 +240,7 @@ class AccountCard extends React.Component {
   renderBudgetButton() {
     return (
       <Button floated="right" color="blue" onClick={this.handleBudgetButton}>
-        {i18next.t('budgetDetail')}
+        {i18next.t('budgetDetail', { ns: 'accounts' })}
       </Button>
     );
   }

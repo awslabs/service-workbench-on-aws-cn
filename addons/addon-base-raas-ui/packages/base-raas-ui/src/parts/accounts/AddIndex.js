@@ -86,7 +86,7 @@ class AddIndex extends React.Component {
           <input
             type={type}
             defaultValue={this.index[attributeName]}
-            placeholder={fields[attributeName].placeholder || ''}
+            placeholder={i18next.t(fields[attributeName].placeholder || '', { ns: 'accounts' })}
             onChange={handleChange}
           />
         </div>
@@ -128,7 +128,7 @@ class AddIndex extends React.Component {
     return (
       <Dropdown
         options={awsAccountIdOption}
-        placeholder="Please select an AWS Account"
+        placeholder={i18next.t('formFields.addIndex.awsAccountId.placeholder', { ns: 'accounts' })}
         fluid
         selection
         onChange={this.handleAwsAccountSelection}
@@ -149,7 +149,7 @@ class AddIndex extends React.Component {
     return (
       <div>
         <Header className="mr3 mt0" as="h2" color="grey">
-          {label}
+          {i18next.t(label, { ns: 'accounts' })}
         </Header>
         {hasExplain && <div className="mb2">{explain}</div>}
         <div className={`ui big field input block m0 ${hasError ? 'error' : ''}`}>{component}</div>

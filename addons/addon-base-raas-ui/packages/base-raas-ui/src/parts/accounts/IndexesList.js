@@ -64,16 +64,16 @@ class IndexesList extends React.Component {
           }}
           columns={[
             {
-              Header: 'Index Name',
+              Header: i18next.t('formFields.addIndex.id.label', { ns: 'accounts' }),
               accessor: 'id',
             },
             {
-              Header: 'AWS Account',
+              Header: i18next.t('formFields.addIndex.awsAccountId.label', { ns: 'accounts' }),
               id: 'awsAccountId',
               accessor: row => this.props.awsAccountsStore.getNameForAccountId(row.awsAccountId),
             },
             {
-              Header: 'Description',
+              Header: i18next.t('formFields.addIndex.description.label', { ns: 'accounts' }),
               accessor: 'description',
             },
           ]}

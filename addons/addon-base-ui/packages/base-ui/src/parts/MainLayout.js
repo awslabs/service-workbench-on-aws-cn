@@ -96,8 +96,8 @@ class MainLayout extends React.Component {
         <Menu.Menu position="right">
           <Dropdown item text={i18next.t('lang')}>
             <Dropdown.Menu>
-              <Dropdown.Item onClick={() => i18next.changeLanguage('zh-CN')}>中文（简体）</Dropdown.Item>
-              <Dropdown.Item onClick={() => i18next.changeLanguage('en-US')}>English</Dropdown.Item>
+              <Dropdown.Item onClick={() => i18next.changeLanguage('zh')}>中文（简体）</Dropdown.Item>
+              <Dropdown.Item onClick={() => i18next.changeLanguage('en')}>English</Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
           <Menu.Item>

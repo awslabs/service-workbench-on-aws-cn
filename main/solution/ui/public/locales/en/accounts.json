@@ -1,0 +1,116 @@
+{
+    "account#": "AWS Account #",
+    "accounts": "AWS Accounts",
+    "addAccount": "Add AWS Account",
+    "budgetDetail": "Budget Detail",
+    "createAccount": "Create AWS Account",
+    "updateAccount": "Update AWS Account",
+    "refreshAccount": "Refresh Account Status",
+    "noAccount": {
+        "title": "No accounts matching the selected filter.",
+        "description": "Select \"All\" to view all accounts"
+    },
+    "addAccountPage": {
+        "onboardAccount": "Onboard AWS Account",
+        "loading": {
+            "title": "Loading...",
+            "description": "Please wait a moment."
+        }
+    },
+    "onboard": {
+        "title": "Onboard AWS Account",
+        "cloudFormationStackName": "CloudFormation Stack Name",
+        "steps": "Steps",
+        "step1": "In a separate browser tab, login to the aws console using the correct account.",
+        "attention": {
+            "title": "Attention",
+            "description": "Ensure that you are logged in to AWS account #{{accountId}} in region {{region}}."
+        },
+        "step2": "Click on the \"Create Stack\" button, this opens a separate browser tab and takes you to the CloudFormation console where you can review the stack information and provision it.",
+        "caution": {
+            "title": "Caution!",
+            "description": "Be advised that deploying a new CFN stack may cause any workspaces associated with this account in SWB to become unusable. To proceed, please acknowledge the warning below."
+        },
+        "acknowledgement": "I am aware that re-onboarding this account may render workspaces associated with this account to become unusable.",
+        "createStack": "Create Stack",
+        "expires": "Expires",
+        "step3": "After creating the CFN stack, SWB will wait for the stack to finish deploying and then onboard your account. You can click the \"Done\" button below to be taken back to the Accounts page while you wait.",
+        "done": "Done"
+    },
+    "updatePermsButton": {
+        "updatePermissions": "Update Permissions",
+        "reOnboardAccount": "Re-Onboard Account",
+        "onboardAccount": "Onboard Account"
+    },
+    "status": {
+        "all": "All",
+        "upToDate": "Up-to-Date",
+        "needsUpdate": "Needs Update",
+        "needsOnboarding": "Needs Onboarding",
+        "error": "Error",
+        "errored": "Errored",
+        "pending": "Pending",
+        "unknown": "Unknown"
+    },
+    "index": {
+        "indexes": "Indexes",
+        "addIndex": "Add Index"
+    },
+    "project": {
+        "projects": "Projects",
+        "addProject": "Add Project",
+        "projectDetail": "Project Detail"
+    },
+    "formFields": {
+        "addUpdateBaseAwsAccount": {
+            "name": {
+                "label": "Account Name",
+                "placeholder": "Type the name of this account"
+            },
+            "accountId": {
+                "label": "AWS Account ID",
+                "placeholder": "Type the 12-digit AWS account ID"
+            },
+            "description": {
+                "label": "Description",
+                "placeholder": "Type description for this AWS account"
+            },
+            "externalId": {
+                "label": "External ID",
+                "placeholder": "Type external ID for this AWS account"
+            }
+        },
+        "addIndex": {
+            "id": {
+                "label": "Index ID",
+                "placeholder": "Type id for this index"
+            },
+            "awsAccountId": {
+                "label": "AWS Account ID",
+                "placeholder": "Please select an AWS Account"
+            },
+            "description": {
+                "label": "Description",
+                "placeholder": "Type description for this index"
+            }
+        },
+        "addProject": {
+            "id": {
+                "label": "Project Name",
+                "placeholder": "Type name for this project"
+            },
+            "indexId": {
+                "label": "Index ID",
+                "placeholder": "Please assign indexes to this project"
+            },
+            "description": {
+                "label": "Description",
+                "placeholder": "Type description for this project"
+            },
+            "projectAdmins": {
+                "label": "Project Admins",
+                "placeholder": "Users who automatically have full control of workspaces associated with this project"
+            }
+        }
+    }
+}

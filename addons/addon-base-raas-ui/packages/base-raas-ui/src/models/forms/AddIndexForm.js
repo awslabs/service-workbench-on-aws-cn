@@ -17,17 +17,17 @@ import { createForm } from '../../helpers/form';
 
 const addIndexFormFields = {
   id: {
-    label: 'Index ID',
-    placeholder: 'Type id for this index',
+    label: 'formFields.addIndex.id.label',
+    placeholder: 'formFields.addIndex.id.placeholder',
     rules: 'required|string|between:1,300',
   },
   awsAccountId: {
-    label: 'AWS Account ID',
+    label: 'formFields.addIndex.awsAccountId.label',
     rules: 'required|string',
   },
   description: {
-    label: 'Description',
-    placeholder: 'Type description for this index',
+    label: 'formFields.addIndex.description.label',
+    placeholder: 'formFields.addIndex.description.placeholder',
     rules: 'string|between:1,3000',
   },
 };

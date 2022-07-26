@@ -18,11 +18,15 @@ import { observer, inject } from 'mobx-react';
 import { withRouter } from 'react-router-dom';
 import { Container, Icon, Message } from 'semantic-ui-react';
 
+import i18next from 'i18next';
+import { initReactI18next, withTranslation } from 'react-i18next';
 import { swallowError } from '@amzn/base-ui/dist/helpers/utils';
 import { isStoreReady, isStoreLoading, isStoreError } from '@amzn/base-ui/dist/models/BaseStore';
 import ErrorBox from '@amzn/base-ui/dist/parts/helpers/ErrorBox';
 
 import AwsAccountUpdateContent from './AwsAccountUpdateContent';
+
+i18next.use(initReactI18next);
 
 // expected props
 // - accountId (via prop)
@@ -68,8 +72,8 @@ class AwsAccountUpdatePage extends React.Component {
           <Message icon>
             <Icon name="circle notched" loading />
             <Message.Content>
-              <Message.Header>Loading...</Message.Header>
-              Please wait a moment.
+              <Message.Header>{i18next.t('addAccountPage.loading.title', { ns: 'accounts' })}</Message.Header>
+              {i18next.t('addAccountPage.loading.description', { ns: 'accounts' })}
             </Message.Content>
           </Message>
         </Container>
@@ -101,4 +105,4 @@ decorate(AwsAccountUpdatePage, {
   getAccountStore: action,
 });
 
-export default inject('awsAccountsStore')(withRouter(observer(AwsAccountUpdatePage)));
+export default withTranslation()(inject('awsAccountsStore')(withRouter(observer(AwsAccountUpdatePage))));

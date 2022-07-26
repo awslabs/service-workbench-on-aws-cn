@@ -20,6 +20,8 @@ import { Button, Header } from 'semantic-ui-react';
 
 import { displaySuccess, displayError } from '@amzn/base-ui/dist//helpers/notification';
 
+import i18next from 'i18next';
+import { initReactI18next, withTranslation } from 'react-i18next';
 import Form from '@amzn/base-ui/dist/parts/helpers/fields/Form';
 import Input from '@amzn/base-ui/dist/parts/helpers/fields/Input';
 import BasicProgressPlaceholder from '@amzn/base-ui/dist/parts/helpers/BasicProgressPlaceholder';
@@ -28,6 +30,8 @@ import { isStoreError, isStoreLoading } from '@amzn/base-ui/dist/models/BaseStor
 import DropDown from '@amzn/base-ui/dist/parts/helpers/fields/DropDown';
 import { createLink } from '@amzn/base-ui/dist/helpers/routing';
 import getBudgetForm from '../../models/forms/AddBudgetForm';
+
+i18next.use(initReactI18next);
 
 // expected props
 // - awsAccount (pass in from AwsAccountList cell click)
@@ -51,7 +55,7 @@ class UpdateBudget extends React.Component {
     return (
       <div className="mt2 animated fadeIn">
         <Header as="h2" icon textAlign="center" className="mt3" color="grey">
-          Budget Detail
+          {i18next.t('budgetDetail', { ns: 'accounts' })}
         </Header>
         <div className="mt3 ml3 mr3 animated fadeIn">{content}</div>
       </div>
@@ -139,4 +143,4 @@ decorate(UpdateBudget, {
   handleFormSubmission: action,
 });
 
-export default inject('awsAccountsStore')(observer(UpdateBudget));
+export default withTranslation()(inject('awsAccountsStore')(observer(UpdateBudget)));

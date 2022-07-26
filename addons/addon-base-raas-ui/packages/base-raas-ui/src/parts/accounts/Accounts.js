@@ -17,19 +17,22 @@ import React from 'react';
 import { Tab, Segment, Container } from 'semantic-ui-react';
 import { inject, observer } from 'mobx-react';
 import { withRouter } from 'react-router-dom';
+import i18next from 'i18next';
+import { initReactI18next, withTranslation } from 'react-i18next';
 import AwsAccountsList from './AwsAccountsList';
 import IndexesList from './IndexesList';
 import ProjectsList from '../projects/ProjectsList';
 
-const panes = [
-  { menuItem: 'Projects', render: () => <ProjectsList /> },
-  { menuItem: 'Indexes', render: () => <IndexesList /> },
-  { menuItem: 'AWS Accounts', render: () => <AwsAccountsList /> },
-];
+i18next.use(initReactI18next);
 
 // eslint-disable-next-line react/prefer-stateless-function
 class Accounts extends React.Component {
   render() {
+    const panes = [
+      { menuItem: i18next.t('project.projects', { ns: 'accounts' }), render: () => <ProjectsList /> },
+      { menuItem: i18next.t('index.indexes', { ns: 'accounts' }), render: () => <IndexesList /> },
+      { menuItem: i18next.t('accounts', { ns: 'accounts' }), render: () => <AwsAccountsList /> },
+    ];
     return (
       <Container className="mt3 animated fadeIn">
         <Segment basic className="p0">
@@ -40,4 +43,6 @@ class Accounts extends React.Component {
   }
 }
 
-export default inject('userRolesStore', 'indexesStore', 'awsAccountsStore')(withRouter(observer(Accounts)));
+export default withTranslation()(
+  inject('userRolesStore', 'indexesStore', 'awsAccountsStore')(withRouter(observer(Accounts))),
+);

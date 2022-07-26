@@ -20,11 +20,15 @@ import { decorate, observable, action, runInAction } from 'mobx';
 import { Button, Dimmer, Header, List, Loader, Dropdown, Segment } from 'semantic-ui-react';
 import _ from 'lodash';
 
+import i18next from 'i18next';
+import { initReactI18next, withTranslation } from 'react-i18next';
 import { displayError } from '@amzn/base-ui/dist/helpers/notification';
 import { createLink } from '@amzn/base-ui/dist/helpers/routing';
 import validate from '@amzn/base-ui/dist/models/forms/Validate';
 
 import { getAddIndexForm, getAddIndexFormFields } from '../../models/forms/AddIndexForm';
+
+i18next.use(initReactI18next);
 
 class AddIndex extends React.Component {
   constructor(props) {
@@ -56,7 +60,7 @@ class AddIndex extends React.Component {
     return (
       <div className="mt2 animated fadeIn">
         <Header as="h2" icon textAlign="center" className="mt3" color="grey">
-          Add Index
+          {i18next.t('index.addIndex', { ns: 'accounts' })}
         </Header>
         <div className="mt3 ml3 mr3 animated fadeIn">{this.renderAddIndexForm()}</div>
       </div>
@@ -82,7 +86,7 @@ class AddIndex extends React.Component {
           <input
             type={type}
             defaultValue={this.index[attributeName]}
-            placeholder={fields[attributeName].placeholder || ''}
+            placeholder={i18next.t(fields[attributeName].placeholder || '', { ns: 'accounts' })}
             onChange={handleChange}
           />
         </div>
@@ -92,7 +96,7 @@ class AddIndex extends React.Component {
     return (
       <Segment basic className="ui fluid form">
         <Dimmer active={processing} inverted>
-          <Loader inverted>Checking</Loader>
+          <Loader inverted>{i18next.t('checking')}</Loader>
         </Dimmer>
         {this.renderField('id', toEditableInput('id', 'id'))}
         <div className="mb4" />
@@ -110,10 +114,10 @@ class AddIndex extends React.Component {
     return (
       <div className="mt3">
         <Button floated="right" color="blue" icon disabled={processing} className="ml2" onClick={this.handleSubmit}>
-          Add Index
+          {i18next.t('index.addIndex', { ns: 'accounts' })}
         </Button>
         <Button floated="right" disabled={processing} onClick={this.handleCancel}>
-          Cancel
+          {i18next.t('cancel')}
         </Button>
       </div>
     );
@@ -124,7 +128,7 @@ class AddIndex extends React.Component {
     return (
       <Dropdown
         options={awsAccountIdOption}
-        placeholder="Please select an AWS Account"
+        placeholder={i18next.t('formFields.addIndex.awsAccountId.placeholder', { ns: 'accounts' })}
         fluid
         selection
         onChange={this.handleAwsAccountSelection}
@@ -145,7 +149,7 @@ class AddIndex extends React.Component {
     return (
       <div>
         <Header className="mr3 mt0" as="h2" color="grey">
-          {label}
+          {i18next.t(label, { ns: 'accounts' })}
         </Header>
         {hasExplain && <div className="mb2">{explain}</div>}
         <div className={`ui big field input block m0 ${hasError ? 'error' : ''}`}>{component}</div>
@@ -210,4 +214,6 @@ decorate(AddIndex, {
   user: observable,
   validationErrors: observable,
 });
-export default inject('usersStore', 'indexesStore', 'awsAccountsStore')(withRouter(observer(AddIndex)));
+export default withTranslation()(
+  inject('usersStore', 'indexesStore', 'awsAccountsStore')(withRouter(observer(AddIndex))),
+);

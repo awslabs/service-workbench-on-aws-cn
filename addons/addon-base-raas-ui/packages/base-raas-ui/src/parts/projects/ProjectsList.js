@@ -21,6 +21,8 @@ import { inject, observer } from 'mobx-react';
 import ReactTable from 'react-table';
 import _ from 'lodash';
 
+import i18next from 'i18next';
+import { initReactI18next, withTranslation } from 'react-i18next';
 import { isStoreError, isStoreLoading } from '@amzn/base-ui/dist/models/BaseStore';
 import ErrorBox from '@amzn/base-ui/dist/parts/helpers/ErrorBox';
 import { createLink } from '@amzn/base-ui/dist/helpers/routing';
@@ -28,6 +30,8 @@ import BasicProgressPlaceholder from '@amzn/base-ui/dist/parts/helpers/BasicProg
 import Stores from '@amzn/base-ui/dist/models/Stores';
 
 import ProjectConfigure from './ProjectConfigure';
+
+i18next.use(initReactI18next);
 
 class ProjectsList extends React.Component {
   constructor(props) {
@@ -68,19 +72,19 @@ class ProjectsList extends React.Component {
           }}
           columns={[
             {
-              Header: 'Project Name',
+              Header: i18next.t('formFields.addProject.id.label', { ns: 'accounts' }),
               accessor: 'id',
             },
             {
-              Header: 'Index Id',
+              Header: i18next.t('formFields.addProject.indexId.label', { ns: 'accounts' }),
               accessor: 'indexId',
             },
             {
-              Header: 'Description',
+              Header: i18next.t('formFields.addProject.description.label', { ns: 'accounts' }),
               accessor: 'description',
             },
             {
-              Header: 'Project Admins',
+              Header: i18next.t('formFields.addProject.projectAdmins.label', { ns: 'accounts' }),
               accessor: 'projectAdmins',
               style: { whiteSpace: 'unset' },
               Cell: observer(row => {
@@ -138,12 +142,12 @@ class ProjectsList extends React.Component {
         <Header as="h3" className="color-grey mt1 mb0 flex-auto">
           <Icon name="briefcase" className="align-top" />
           <Header.Content className="left-align">
-            Projects
+            {i18next.t('project.projects', { ns: 'accounts' })}
             {this.renderTotal()}
           </Header.Content>
         </Header>
         <Button color="blue" size="medium" basic onClick={this.handleAddProject}>
-          Add Project
+          {i18next.t('project.addProject', { ns: 'accounts' })}
         </Button>
       </div>
     );
@@ -172,9 +176,6 @@ class ProjectsList extends React.Component {
   }
 }
 
-export default inject(
-  'awsAccountsStore',
-  'projectsStore',
-  'userStore',
-  'usersStore',
-)(withRouter(observer(ProjectsList)));
+export default withTranslation()(
+  inject('awsAccountsStore', 'projectsStore', 'userStore', 'usersStore')(withRouter(observer(ProjectsList))),
+);

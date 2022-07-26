@@ -17,23 +17,23 @@ import { createForm } from '../../helpers/form';
 
 const addUpdateBaseAwsAccountFormFields = {
   name: {
-    label: 'Account Name',
-    placeholder: 'Type the name of this account',
+    label: 'formFields.addUpdateBaseAwsAccount.name.label',
+    placeholder: 'formFields.addUpdateBaseAwsAccount.name.placeholder',
     rules: 'required|string|between:1,100',
   },
   accountId: {
-    label: 'AWS Account ID',
-    placeholder: 'Type the 12-digit AWS account ID',
+    label: 'formFields.addUpdateBaseAwsAccount.accountId.label',
+    placeholder: 'formFields.addUpdateBaseAwsAccount.accountId.placeholder',
     rules: 'required|string|size:12',
   },
   description: {
-    label: 'Description',
-    placeholder: 'Type description for this AWS account',
+    label: 'formFields.addUpdateBaseAwsAccount.description.label',
+    placeholder: 'formFields.addUpdateBaseAwsAccount.description.placeholder',
     rules: 'required|string',
   },
   externalId: {
-    label: 'External ID',
-    placeholder: 'Type external ID for this AWS account',
+    label: 'formFields.addUpdateBaseAwsAccount.externalId.label',
+    placeholder: 'formFields.addUpdateBaseAwsAccount.externalId.placeholder',
     rules: 'required|string|between:1,300',
   },
 };

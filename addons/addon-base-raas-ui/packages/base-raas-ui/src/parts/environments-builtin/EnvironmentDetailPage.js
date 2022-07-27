@@ -38,6 +38,8 @@ import { CopyToClipboard } from 'react-copy-to-clipboard';
 
 import crypto from 'crypto';
 
+import i18next from 'i18next';
+import { initReactI18next, withTranslation } from 'react-i18next';
 import { gotoFn } from '@amzn/base-ui/dist/helpers/routing';
 import { swallowError } from '@amzn/base-ui/dist/helpers/utils';
 import { displayError } from '@amzn/base-ui/dist/helpers/notification';
@@ -48,6 +50,8 @@ import ProgressPlaceHolder from '@amzn/base-ui/dist/parts/helpers/BasicProgressP
 import EnvironmentStatusIcon from './EnvironmentStatusIcon';
 import By from '../helpers/By';
 import EnvironmentConnectButton from './EnvironmentConnectButton';
+
+i18next.use(initReactI18next);
 
 const ErrorInfo = ({ environment }) => {
   const [visible, setVisible] = React.useState(() => false);
@@ -151,7 +155,7 @@ class EnvironmentDetailPage extends React.Component {
     return (
       <Breadcrumb className="block mb3">
         <Breadcrumb.Section link onClick={() => goto('/workspaces')}>
-          Research Workspaces
+          {i18next.t('researchWorkspace.name_s', { ns: 'workspaces' })}
         </Breadcrumb.Section>
         <Breadcrumb.Divider icon="right angle" />
         <Breadcrumb.Section active>{instanceId}</Breadcrumb.Section>
@@ -621,4 +625,6 @@ decorate(EnvironmentDetailPage, {
   handleSharedWithUsersSelection: action,
 });
 
-export default inject('environmentsStore', 'userStore', 'usersStore')(withRouter(observer(EnvironmentDetailPage)));
+export default withTranslation()(
+  inject('environmentsStore', 'userStore', 'usersStore')(withRouter(observer(EnvironmentDetailPage))),
+);

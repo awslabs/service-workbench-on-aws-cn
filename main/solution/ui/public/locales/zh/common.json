@@ -4,6 +4,11 @@
     "save": "保存",
     "detail": "详细信息",
     "details": "详细信息",
+    "cancel": "取消",
     "checking": "检查中",
-    "cancel": "取消"
+    "connect": "连接",
+    "terminate": "终止",
+    "start": "启动",
+    "stop": "停止",
+    "unavailable": "不可用"
 }

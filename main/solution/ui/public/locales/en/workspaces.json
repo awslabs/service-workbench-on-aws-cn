@@ -1,0 +1,125 @@
+{
+    "researchWorkspace": {
+        "name": "Research Workspace",
+        "name_s": "Research Workspaces",
+        "create": "Create Research Workspace",
+        "empty": {
+            "title": "No research workspaces",
+            "description": "To create a research workspace, click Create Research Workspace."
+        },
+        "no_match": {
+            "title": "No research workspaces matching the selected filter.",
+            "description": "Select \"All\" to view all the workspaces"
+        },
+        "beingProvisioned": "The research workspace is being provisioned"
+    },
+    "selectCompute": {
+        "title": "Select Compute",
+        "description": "Select a compute platform"
+    },
+    "createWorkspace": {
+        "title": "Create Workspace",
+        "description": "Create the workspace"
+    },
+    "noWorkspaceTypes": {
+        "title": "No workspace types",
+        "description": "There are no workspace types to choose from. Your role might be restricted. Please contact your administrator."
+    },
+    "missingAssociation": {
+        "title": "Missing association with projects",
+        "description": "You currently do not have permissions to use any projects for the workspace. Please contact your administrator."
+    },
+    "noWorkspaceConfs": {
+        "title": "No workspace configurations",
+        "description": "There are no workspace configurations to choose from. Your role might be restricted. Please contact your administrator."
+    },
+    "areYouSure": {
+        "title": "Are you sure?",
+        "description": "This action can not be reverted."
+    },
+    "connections": "Connections",
+    "viewDetail": "View Detail",
+    "detailPage": {
+        "status": "Status",
+        "owner": "Owner",
+        "studies": "Studies",
+        "noStudies": "No studies linked to this workspace",
+        "project": "Project",
+        "workspaceType": "Workspace Type",
+        "configurationName": "Configuration Name",
+        "instanceType": "Instance Type",
+        "cost": "Cost",
+        "cloudFormationOutput": "CloudFormation Output",
+        "noneIsAvailable": "None is available"
+    },
+    "cost": {
+        "yesterday": "Yesterdays's Cost",
+        "showError": "Show Error",
+        "error1": "An error occurred while retrieving the cost information.",
+        "error2": "If this workspace is provisioned in a new account, verify with your administer that the cost explorer feature is enabled for the account.",
+        "error3": "The system returned this error message:"
+    },
+    "created": "Created",
+    "ScEnvironment": {
+        "state": {
+            "COMPLETED": {
+                "display": "AVAILABLE",
+                "tip": "The workspace is ready to be used."
+            },
+            "PENDING": {
+                "display": "PENDING",
+                "tip": "The workspace is being prepared, this could take sometime."
+            },
+            "STOPPED": {
+                "display": "STOPPED",
+                "tip": "The workspace is stopped."
+            },
+            "STOPPING": {
+                "display": "STOPPING",
+                "tip": "The workspace is stopping."
+            },
+            "STARTING": {
+                "display": "STARTING",
+                "tip": "The workspace is starting."
+            },
+            "TAINTED": {
+                "display": "TAINTED",
+                "tip": "The workspace is ready but the latest configuration updates might not have been successful."
+            },
+            "FAILED": {
+                "display": "FAILED",
+                "tip": "Something went wrong."
+            },
+            "TERMINATING": {
+                "display": "TERMINATING",
+                "tip": "The workspace is being terminated. This could take sometime."
+            },
+            "TERMINATED": {
+                "display": "TERMINATED",
+                "tip": "The workspace is terminated successfully and no longer available."
+            },
+            "TERMINATING_FAILED": {
+                "display": "TERMINATION FAILED",
+                "tip": "The workspace was not terminated correctly, it is possible that some compute and storage resources are still in place."
+            },
+            "UNKNOWN": {
+                "display": "UNKNOWN",
+                "tip": "Something not right. This requires further investigation by the administrator."
+            }
+        }
+    },
+    "filterNames": {
+        "all": "All",
+        "available": "Available",
+        "stopped": "Stopped",
+        "pending": "Pending",
+        "errored": "Errored",
+        "terminated": "Terminated"
+    },
+    "connection": {
+        "addMyIp": "Add My IP",
+        "editCIDRs": "Edit CIDRs",
+        "http": "HTTP Connections",
+        "ssm": "SSM Connections"
+    }
+}

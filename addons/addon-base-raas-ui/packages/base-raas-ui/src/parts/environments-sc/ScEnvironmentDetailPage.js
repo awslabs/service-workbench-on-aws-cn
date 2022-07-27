@@ -40,11 +40,15 @@ import { isStoreLoading, isStoreError, isStoreReady } from '@amzn/base-ui/dist/m
 import ErrorBox from '@amzn/base-ui/dist/parts/helpers/ErrorBox';
 import ProgressPlaceHolder from '@amzn/base-ui/dist/parts/helpers/BasicProgressPlaceholder';
 
+import i18next from 'i18next';
+import { initReactI18next, withTranslation } from 'react-i18next';
 import By from '../helpers/By';
 import ScEnvironmentButtons from './parts/ScEnvironmentButtons';
 import ScEnvironmentCost from './parts/ScEnvironmentCost';
 import ScEnvironmentTypeName from './parts/ScEnvironmentTypeName';
 import ScEnvironmentCostTable from './parts/ScEnvironmentCostTable';
+
+i18next.use(initReactI18next);
 
 // This component is used with the TabPane to replace the default Segment wrapper since
 // we don't want to display the border.
@@ -124,10 +128,10 @@ class ScEnvironmentDetailPage extends React.Component {
     return (
       <Breadcrumb className="block mb3">
         <Breadcrumb.Section link onClick={() => goto('/workspaces')}>
-          Research Workspaces
+          {i18next.t('researchWorkspace.name_s', { ns: 'workspaces' })}
         </Breadcrumb.Section>
         <Breadcrumb.Divider icon="right angle" />
-        <Breadcrumb.Section active>Workspace # {envId}</Breadcrumb.Section>
+        <Breadcrumb.Section active>{envId}</Breadcrumb.Section>
       </Breadcrumb>
     );
   }
@@ -175,11 +179,20 @@ class ScEnvironmentDetailPage extends React.Component {
     return (
       <Table definition>
         <Table.Body>
-          {renderRow('Status', this.renderStatus(env))}
-          {renderRow('Owner', <By uid={env.createdBy} skipPrefix />)}
-          {renderRow('Studies', studyCount === 0 ? 'No studies linked to this workspace' : studyIds.join(', '))}
-          {renderRow('Project', _.isEmpty(env.projectId) ? 'N/A' : env.projectId)}
-          {renderRow('Workspace Type', <ScEnvironmentTypeName envTypeId={env.envTypeId} />)}
+          {renderRow(i18next.t('detailPage.status', { ns: 'workspaces' }), this.renderStatus(env))}
+          {renderRow(i18next.t('detailPage.owner', { ns: 'workspaces' }), <By uid={env.createdBy} skipPrefix />)}
+          {renderRow(
+            i18next.t('detailPage.studies', { ns: 'workspaces' }),
+            studyCount === 0 ? i18next.t('detailPage.noStudies', { ns: 'workspaces' }) : studyIds.join(', '),
+          )}
+          {renderRow(
+            i18next.t('detailPage.project', { ns: 'workspaces' }),
+            _.isEmpty(env.projectId) ? 'N/A' : env.projectId,
+          )}
+          {renderRow(
+            i18next.t('detailPage.workspaceType', { ns: 'workspaces' }),
+            <ScEnvironmentTypeName envTypeId={env.envTypeId} />,
+          )}
         </Table.Body>
       </Table>
     );
@@ -196,7 +209,8 @@ class ScEnvironmentDetailPage extends React.Component {
         <Header.Content className="left-align">{env.name}</Header.Content>
         <Header.Subheader>
           <span className="fs-8 color-grey">
-            Created <TimeAgo date={env.createdAt} className="mr2" /> <By uid={env.createdBy} className="mr2" />
+            {i18next.t('created', { ns: 'workspaces' })} <TimeAgo date={env.createdAt} className="mr2" />{' '}
+            <By uid={env.createdBy} className="mr2" />
           </span>
           <span className="fs-8 color-grey mr2"> {env.id}</span>
         </Header.Subheader>
@@ -212,11 +226,11 @@ class ScEnvironmentDetailPage extends React.Component {
           trigger={
             <Label size="mini" color={state.color}>
               {state.spinner && <Icon name="spinner" loading />}
-              {state.display}
+              {i18next.t(`ScEnvironment.state.${state.key}.display`, { ns: 'workspaces' })}
             </Label>
           }
         >
-          {state.tip}
+          {i18next.t(`ScEnvironment.state.${state.key}.tip`, { ns: 'workspaces' })}
         </Popup>
       </div>
     );
@@ -235,7 +249,7 @@ class ScEnvironmentDetailPage extends React.Component {
   renderTabs(env) {
     const panes = [
       {
-        menuItem: 'Cost',
+        menuItem: i18next.t('detailPage.cost', { ns: 'workspaces' }),
         render: () => (
           <Tab.Pane attached={false} key="cost" as={TabPaneWrapper}>
             <Observer>{() => <ScEnvironmentCostTable envId={env.id} />}</Observer>
@@ -243,7 +257,7 @@ class ScEnvironmentDetailPage extends React.Component {
         ),
       },
       {
-        menuItem: 'CloudFormation Output',
+        menuItem: i18next.t('detailPage.cloudFormationOutput', { ns: 'workspaces' }),
         render: () => (
           <Tab.Pane attached={false} key="cfn-outputs" as={TabPaneWrapper}>
             <Observer>{() => this.renderCfnOutput(env)}</Observer>
@@ -277,7 +291,7 @@ class ScEnvironmentDetailPage extends React.Component {
             </Table.Body>
           </Table>
         )}
-        {isEmpty && <Message className="mt3" content="None is available" />}
+        {isEmpty && <Message className="mt3" content={i18next.t('detailPage.noneIsAvailable', { ns: 'workspaces' })} />}
       </>
     );
   }
@@ -289,4 +303,4 @@ decorate(ScEnvironmentDetailPage, {
   envsStore: computed,
 });
 
-export default inject('scEnvironmentsStore')(withRouter(observer(ScEnvironmentDetailPage)));
+export default withTranslation()(inject('scEnvironmentsStore')(withRouter(observer(ScEnvironmentDetailPage))));

@@ -29,7 +29,11 @@ import ProgressPlaceHolder from '@amzn/base-ui/dist/parts/helpers/BasicProgressP
 import Dropdown from '@amzn/base-ui/dist/parts/helpers/fields/DropDown';
 import Form from '@amzn/base-ui/dist/parts/helpers/fields/Form';
 import Input from '@amzn/base-ui/dist/parts/helpers/fields/Input';
+import i18next from 'i18next';
+import { initReactI18next, withTranslation } from 'react-i18next';
 import { createCidrFormModel } from '../../../models/forms/CreateCidrFormModel';
+
+i18next.use(initReactI18next);
 
 // expected props
 // - environment (via prop)
@@ -335,7 +339,7 @@ class ScEnvironmentUpdateCidrs extends React.Component {
         <Table.Cell>
           <div className="mb3">
             <Button basic color="green" size="mini" onClick={this.handleAddMyIp(index)}>
-              Add My IP
+              {i18next.t('connection.addMyIp', { ns: 'workspaces' })}
             </Button>
           </div>
         </Table.Cell>
@@ -354,4 +358,6 @@ decorate(ScEnvironmentUpdateCidrs, {
   handleCancel: action,
 });
 
-export default inject('scEnvironmentsStore', 'clientInformationStore')(withRouter(observer(ScEnvironmentUpdateCidrs)));
+export default withTranslation()(
+  inject('scEnvironmentsStore', 'clientInformationStore')(withRouter(observer(ScEnvironmentUpdateCidrs))),
+);

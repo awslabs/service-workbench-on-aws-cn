@@ -18,8 +18,12 @@ import { decorate, computed, action } from 'mobx';
 import { observer } from 'mobx-react';
 import { Button } from 'semantic-ui-react';
 import c from 'classnames';
+import i18next from 'i18next';
+import { initReactI18next, withTranslation } from 'react-i18next';
 
 import { filterNames } from '../../../models/environments-sc/ScEnvironmentsStore';
+
+i18next.use(initReactI18next);
 
 const filterColorMap = {
   [filterNames.ALL]: 'blue',
@@ -64,7 +68,7 @@ class ScEnvironmentsFilterButtons extends React.Component {
         <Button.Group floated="right">
           {_.map(_.keys(filterColorMap), name => (
             <Button key={name} {...getAttrs(name)}>
-              {_.startCase(name)}
+              {i18next.t(`filterNames.${name}`, { ns: 'workspaces' })}
             </Button>
           ))}
         </Button.Group>
@@ -79,4 +83,4 @@ decorate(ScEnvironmentsFilterButtons, {
   onSelectedFilter: computed,
 });
 
-export default observer(ScEnvironmentsFilterButtons);
+export default withTranslation()(observer(ScEnvironmentsFilterButtons));

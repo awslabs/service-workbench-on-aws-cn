@@ -4,6 +4,11 @@
     "save": "Save",
     "detail": "Detail",
     "details": "Details",
+    "cancel": "Cancel",
     "checking": "Checking",
-    "cancel": "Cancel"
+    "connect": "Connect",
+    "terminate": "Terminate",
+    "start": "Start",
+    "stop": "Stop",
+    "unavailable": "Unavailable"
 }

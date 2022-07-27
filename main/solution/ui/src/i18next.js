@@ -11,7 +11,7 @@ i18next
   .use(Backend)
   .use(LanguageDetector)
   .init({
-    ns: ['common', 'accounts'],
+    ns: ['common', 'accounts', 'workspaces'],
     defaultNS: 'common',
     fallbackLng: 'en',
     debug: true,

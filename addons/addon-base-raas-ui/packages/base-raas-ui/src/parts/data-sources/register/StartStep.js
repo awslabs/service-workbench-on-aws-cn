@@ -20,6 +20,10 @@ import { withRouter } from 'react-router-dom';
 import { Header, Segment, List, Button } from 'semantic-ui-react';
 
 import { gotoFn } from '@amzn/base-ui/dist/helpers/routing';
+import i18next from 'i18next';
+import { initReactI18next, withTranslation } from 'react-i18next';
+
+i18next.use(initReactI18next);
 
 // expected props
 // wizard (via props)
@@ -64,7 +68,7 @@ class StartStep extends React.Component {
               content="Next"
               onClick={this.handleNext}
             />
-            <Button floated="right" className="ml2" content="Cancel" onClick={this.handleCancel} />
+            <Button floated="right" className="ml2" content={i18next.t('cancel')} onClick={this.handleCancel} />
           </div>
         </Segment>
       </>
@@ -148,4 +152,4 @@ decorate(StartStep, {
   handleNext: action,
 });
 
-export default inject()(withRouter(observer(StartStep)));
+export default withTranslation()(inject()(withRouter(observer(StartStep))));

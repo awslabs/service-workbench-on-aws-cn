@@ -24,8 +24,12 @@ import TextArea from '@amzn/base-ui/dist/parts/helpers/fields/TextArea';
 import { displayError } from '@amzn/base-ui/dist/helpers/notification';
 import { awsRegion } from '@amzn/base-ui/dist/helpers/settings';
 
+import i18next from 'i18next';
+import { initReactI18next, withTranslation } from 'react-i18next';
 import { getCreateExternalPlatformForm } from '../../../models/forms/CreateExternalPlatformForm';
 import SelectConfigurationCards from './SelectConfigurationCards';
+
+i18next.use(initReactI18next);
 
 // expected props
 // - onPrevious (via props)
@@ -167,7 +171,7 @@ class CreateExternalPlatformForm extends React.Component {
                 floated="right"
                 className="ml2"
                 primary
-                content="Create Research Workspace"
+                content={i18next.t('researchWorkspace.create', { ns: 'workspaces' })}
                 disabled={processing}
                 type="submit"
               />
@@ -201,4 +205,6 @@ decorate(CreateExternalPlatformForm, {
   handleForgotPin: action,
 });
 
-export default inject('userStore', 'usersStore', 'clientInformationStore')(observer(CreateExternalPlatformForm));
+export default withTranslation()(
+  inject('userStore', 'usersStore', 'clientInformationStore')(observer(CreateExternalPlatformForm)),
+);

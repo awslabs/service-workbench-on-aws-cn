@@ -16,6 +16,10 @@
 import React from 'react';
 import { observer } from 'mobx-react';
 import { Step, Icon } from 'semantic-ui-react';
+import i18next from 'i18next';
+import { initReactI18next, withTranslation } from 'react-i18next';
+
+i18next.use(initReactI18next);
 
 // expected props
 // currentStep an instance of the CurrentStep model
@@ -42,20 +46,20 @@ const Component = observer(({ currentStep = {}, envTypeImmutable = false }) => {
         <Step active={activeIndex === 0} disabled={activeIndex < 0}>
           <Icon name="server" />
           <Step.Content>
-            <Step.Title>Select Compute</Step.Title>
-            <Step.Description>Select a compute platform</Step.Description>
+            <Step.Title>{i18next.t('selectCompute.title', { ns: 'workspaces' })}</Step.Title>
+            <Step.Description>{i18next.t('selectCompute.description', { ns: 'workspaces' })}</Step.Description>
           </Step.Content>
         </Step>
       )}
       <Step active={activeIndex === 1} disabled={activeIndex < 1}>
         <Icon name="hdd outline" />
         <Step.Content>
-          <Step.Title>Create Workspace</Step.Title>
-          <Step.Description>Create the workspace</Step.Description>
+          <Step.Title>{i18next.t('createWorkspace.title', { ns: 'workspaces' })}</Step.Title>
+          <Step.Description>{i18next.t('createWorkspace.description', { ns: 'workspaces' })}</Step.Description>
         </Step.Content>
       </Step>
     </Step.Group>
   );
 });
 
-export default Component;
+export default withTranslation()(Component);

@@ -1,14 +1,16 @@
 {
-    "lang": "语言",
     "edit": "编辑",
-    "save": "保存",
-    "detail": "详细信息",
-    "details": "详细信息",
     "cancel": "取消",
     "checking": "检查中",
     "connect": "连接",
-    "terminate": "终止",
+    "detail": "详细信息",
+    "details": "详细信息",
+    "lang": "语言",
+    "next": "下一步",
+    "previous": "上一步",
+    "save": "保存",
     "start": "启动",
     "stop": "停止",
+    "terminate": "终止",
     "unavailable": "不可用"
 }

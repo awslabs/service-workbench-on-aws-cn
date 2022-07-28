@@ -24,11 +24,14 @@ import { niceNumber } from '@amzn/base-ui/dist/helpers/utils';
 import { gotoFn } from '@amzn/base-ui/dist/helpers/routing';
 
 import { isStoreError, isStoreNew, isStoreLoading } from '@amzn/base-ui/dist/models/BaseStore';
+import i18next from 'i18next';
+import { initReactI18next, withTranslation } from 'react-i18next';
 import { categories } from '../../models/studies/categories';
 import StudiesTab from './StudiesTab';
 import CreateStudy from './CreateStudy';
 import StudyStepsProgress from './StudyStepsProgress';
 
+i18next.use(initReactI18next);
 // This component is used with the TabPane to replace the default Segment wrapper since
 // we don't want to display the border.
 // eslint-disable-next-line react/prefer-stateless-function
@@ -199,7 +202,7 @@ class StudiesPage extends React.Component {
     return (
       <Message visible className="clearfix" info>
         <Button icon labelPosition="right" className="ml2" floated="right" onClick={this.handleNext} color="blue">
-          Next
+          {i18next.t('next')}
           <Icon name="right arrow" />
         </Button>
         {// If envTypeId is present then it means we landed on this page after
@@ -211,7 +214,7 @@ class StudiesPage extends React.Component {
             icon="left arrow"
             labelPosition="left"
             className="ml2"
-            content="Previous"
+            content={i18next.t('previous')}
             onClick={this.handlePrevious}
           />
         )}
@@ -243,7 +246,7 @@ class StudiesPage extends React.Component {
     return (
       <Message visible className="clearfix" warning>
         <Button icon labelPosition="right" className="ml2" floated="right" disabled>
-          Next
+          {i18next.t('next')}
           <Icon name="right arrow" />
         </Button>
         {// If envTypeId is present then it means we landed on this page after
@@ -255,7 +258,7 @@ class StudiesPage extends React.Component {
             icon="left arrow"
             labelPosition="left"
             className="ml2"
-            content="Previous"
+            content={i18next.t('previous')}
             onClick={this.handlePrevious}
           />
         )}
@@ -282,4 +285,6 @@ decorate(StudiesPage, {
   handleNext: action,
 });
 
-export default inject('filesSelection', 'studiesStoresMap', 'userStore')(withRouter(observer(StudiesPage)));
+export default withTranslation()(
+  inject('filesSelection', 'studiesStoresMap', 'userStore')(withRouter(observer(StudiesPage))),
+);

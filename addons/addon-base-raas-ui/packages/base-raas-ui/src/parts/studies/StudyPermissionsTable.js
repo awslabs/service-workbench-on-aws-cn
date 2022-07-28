@@ -25,7 +25,10 @@ import { isStoreError, isStoreLoading, isStoreNew, stopHeartbeat } from '@amzn/b
 import BasicProgressPlaceholder from '@amzn/base-ui/dist/parts/helpers/BasicProgressPlaceholder';
 import ErrorBox from '@amzn/base-ui/dist/parts/helpers/ErrorBox';
 import UserLabels from '@amzn/base-ui/dist/parts/helpers/UserLabels';
+import i18next from 'i18next';
+import { initReactI18next, withTranslation } from 'react-i18next';
 
+i18next.use(initReactI18next);
 // expected props
 // - study
 // - userStore (via injection)
@@ -169,7 +172,7 @@ class StudyPermissionsTable extends React.Component {
               </Button>
 
               <Button floated="right" disabled={this.isProcessing} onClick={this.resetForm} size="mini">
-                Cancel
+                {i18next.t('cancel')}
               </Button>
             </>
           )}
@@ -221,5 +224,5 @@ decorate(StudyPermissionsTable, {
   resetForm: action,
   submitUpdate: action,
 });
-export default inject('userStore', 'usersStore')(observer(StudyPermissionsTable));
+export default withTranslation()(inject('userStore', 'usersStore')(observer(StudyPermissionsTable)));
 export { getStaleUsers };

@@ -19,9 +19,12 @@ import { observer } from 'mobx-react';
 import { decorate, action, runInAction, observable } from 'mobx';
 import { Button, Icon, Segment, Dimmer, Loader } from 'semantic-ui-react';
 
+import i18next from 'i18next';
+import { initReactI18next, withTranslation } from 'react-i18next';
 import { displayError } from '../../helpers/notification';
 import ConfigTable from './ConfigTable';
 
+i18next.use(initReactI18next);
 // expected props
 // - model - an instance of the ConfigurationEditor model instance (via props)
 // - onCancel (via props) is called after all the necessary clean up
@@ -113,16 +116,16 @@ class ConfigurationReview extends React.Component {
             labelPosition="left"
             disabled={processing || !review || empty}
             className="ml2"
-            content="Save"
+            content={i18next.t('save')}
             onClick={this.handleSave}
           />
         )}
         <Button floated="right" icon disabled={processing} labelPosition="left" onClick={this.handlePrevious}>
-          Previous
+          {i18next.t('previous')}
           <Icon name="left arrow" />
         </Button>
         <Button floated="left" disabled={processing} onClick={this.handleCancel}>
-          Cancel
+          {i18next.t('cancel')}
         </Button>
       </div>
     );
@@ -156,4 +159,4 @@ decorate(ConfigurationReview, {
   handleCancel: action,
 });
 
-export default observer(ConfigurationReview);
+export default withTranslation()(observer(ConfigurationReview));

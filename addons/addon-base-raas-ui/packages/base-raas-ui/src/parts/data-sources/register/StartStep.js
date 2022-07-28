@@ -65,7 +65,7 @@ class StartStep extends React.Component {
               primary
               icon="right arrow"
               labelPosition="right"
-              content="Next"
+              content={i18next.t('next')}
               onClick={this.handleNext}
             />
             <Button floated="right" className="ml2" content={i18next.t('cancel')} onClick={this.handleCancel} />

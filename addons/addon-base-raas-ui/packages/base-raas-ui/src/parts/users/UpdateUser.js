@@ -29,9 +29,12 @@ import Input from '@amzn/base-ui/dist/parts/helpers/fields/Input';
 import DropDown from '@amzn/base-ui/dist/parts/helpers/fields/DropDown';
 import YesNo from '@amzn/base-ui/dist/parts/helpers/fields/YesNo';
 import { displayError, displaySuccess } from '@amzn/base-ui/dist/helpers/notification';
+import i18next from 'i18next';
+import { initReactI18next, withTranslation } from 'react-i18next';
 import { getUpdateUserConfigForm } from '../../models/forms/UpdateUserConfig';
 import { toIdpFromValue, toIdpOptions } from '../../models/forms/UserFormUtils';
 
+i18next.use(initReactI18next);
 class UpdateUser extends React.Component {
   constructor(props) {
     super(props);
@@ -256,10 +259,10 @@ class UpdateUser extends React.Component {
 
               <div className="mt3">
                 <Button floated="right" color="blue" icon disabled={processing} className="ml2" type="submit">
-                  Save
+                  {i18next.t('save')}
                 </Button>
                 <Button floated="right" disabled={processing} onClick={onCancel}>
-                  Cancel
+                  {i18next.t('cancel')}
                 </Button>
               </div>
             </>
@@ -467,4 +470,4 @@ decorate(UpdateUser, {
 
   handleFormSubmission: action,
 });
-export default inject('authenticationProviderConfigsStore')(observer(UpdateUser));
+export default withTranslation()(inject('authenticationProviderConfigsStore')(observer(UpdateUser)));

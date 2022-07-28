@@ -210,7 +210,7 @@ class ConfigureEnvTypeStep extends React.Component {
           icon="left arrow"
           labelPosition="left"
           className="ml2"
-          content="Previous"
+          content={i18next.t('previous')}
           onClick={this.handlePrevious}
         />
       </div>

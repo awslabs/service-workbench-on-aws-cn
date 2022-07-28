@@ -181,7 +181,7 @@ class CreateExternalPlatformForm extends React.Component {
                 icon="left arrow"
                 labelPosition="left"
                 className="ml2"
-                content="Previous"
+                content={i18next.t('previous')}
                 disabled={processing}
                 onClick={onCancel}
               />

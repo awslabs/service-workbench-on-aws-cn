@@ -27,8 +27,11 @@ import { swallowError } from '@amzn/base-ui/dist/helpers/utils';
 import ErrorBox from '@amzn/base-ui/dist/parts/helpers/ErrorBox';
 import BasicProgressPlaceholder from '@amzn/base-ui/dist/parts/helpers/BasicProgressPlaceholder';
 import Stores from '@amzn/base-ui/dist/models/Stores';
+import i18next from 'i18next';
+import { initReactI18next, withTranslation } from 'react-i18next';
 import UserTable from './UserTable';
 
+i18next.use(initReactI18next);
 class DragDrop extends Component {
   constructor(props) {
     super(props);
@@ -116,7 +119,7 @@ class DragDrop extends Component {
           Submit
         </Button>
         <Button floated="right" disabled={processing} onClick={this.handleCancel}>
-          Cancel
+          {i18next.t('cancel')}
         </Button>
       </div>
     );
@@ -241,9 +244,11 @@ decorate(DragDrop, {
   formProcessing: observable,
 });
 
-export default inject(
-  'userStore',
-  'usersStore',
-  'userRolesStore',
-  'authenticationProviderConfigsStore',
-)(withRouter(observer(DragDrop)));
+export default withTranslation()(
+  inject(
+    'userStore',
+    'usersStore',
+    'userRolesStore',
+    'authenticationProviderConfigsStore',
+  )(withRouter(observer(DragDrop))),
+);

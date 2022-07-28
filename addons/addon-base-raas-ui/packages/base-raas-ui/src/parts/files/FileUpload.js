@@ -23,8 +23,12 @@ import { Button, Grid, Header, Segment } from 'semantic-ui-react';
 import { displayError, displaySuccess, displayWarning } from '@amzn/base-ui/dist/helpers/notification';
 
 import toastr from 'toastr';
+import i18next from 'i18next';
+import { initReactI18next, withTranslation } from 'react-i18next';
 import StudyFileDropZone from './FileDropZone';
 import FileUploadTable from './FileUploadTable';
+
+i18next.use(initReactI18next);
 
 const maximumUploadFilesLimit = 1000;
 const FileUpload = observer(
@@ -90,11 +94,11 @@ const FileUpload = observer(
                   ) : null}
                   {state === 'PENDING' ? (
                     <Button floated="right" basic onClick={onCancelSelectFiles}>
-                      Cancel
+                      {i18next.t('cancel')}
                     </Button>
                   ) : state === 'UPLOADING' ? (
                     <Button floated="right" basic onClick={onCancelUpload}>
-                      Cancel
+                      {i18next.t('cancel')}
                     </Button>
                   ) : null}
                 </Grid.Column>
@@ -227,4 +231,4 @@ ConnectedFileUpload.propTypes = {
 decorate(ConnectedFileUpload, {
   fileUploadGroup: observable,
 });
-export default inject('fileUploadsStore')(observer(ConnectedFileUpload));
+export default withTranslation()(inject('fileUploadsStore')(observer(ConnectedFileUpload)));

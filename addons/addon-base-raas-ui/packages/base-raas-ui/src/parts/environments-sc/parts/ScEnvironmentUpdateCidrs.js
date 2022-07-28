@@ -256,7 +256,7 @@ class ScEnvironmentUpdateCidrs extends React.Component {
                 Submit
               </Button>
               <Button floated="right" size="mini" disabled={processing} onClick={onCancel}>
-                Cancel
+                {i18next.t('cancel')}
               </Button>
             </>
           )}

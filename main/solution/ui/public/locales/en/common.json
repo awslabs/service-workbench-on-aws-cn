@@ -1,14 +1,16 @@
 {
-    "lang": "Language",
-    "edit": "Edit",
     "save": "Save",
-    "detail": "Detail",
-    "details": "Details",
     "cancel": "Cancel",
     "checking": "Checking",
     "connect": "Connect",
-    "terminate": "Terminate",
+    "detail": "Detail",
+    "details": "Details",
+    "edit": "Edit",
+    "lang": "Language",
+    "next": "Next",
+    "previous": "Previous",
     "start": "Start",
     "stop": "Stop",
+    "terminate": "Terminate",
     "unavailable": "Unavailable"
 }

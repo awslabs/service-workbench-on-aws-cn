@@ -260,7 +260,7 @@ class ComputePlatformSetup extends React.Component {
           labelPosition="right"
           className="ml2"
           primary
-          content="Next"
+          content={i18next.t('next')}
           disabled
         />
         <Button
@@ -268,7 +268,7 @@ class ComputePlatformSetup extends React.Component {
           icon="left arrow"
           labelPosition="left"
           className="ml2"
-          content="Previous"
+          content={i18next.t('previous')}
           onClick={this.handlePrevious}
         />
       </div>

@@ -23,9 +23,12 @@ import TextArea from '@amzn/base-ui/dist/parts/helpers/fields/TextArea';
 import Form from '@amzn/base-ui/dist/parts/helpers/fields/Form';
 
 import { displayError, displaySuccess } from '@amzn/base-ui/dist/helpers/notification';
+import i18next from 'i18next';
+import { initReactI18next, withTranslation } from 'react-i18next';
 import { getAddEnvTypeBasicInfoForm } from '../../../models/forms/EnvTypeBasicInfoForm';
 import EnvTypeStatusEnum from '../../../models/environment-types/EnvTypeStatusEnum';
 
+i18next.use(initReactI18next);
 class BasicInfoStep extends React.Component {
   constructor(props) {
     super(props);
@@ -55,7 +58,7 @@ class BasicInfoStep extends React.Component {
     return (
       <div className="right-align">
         <Button basic color="grey" disabled={processing} onClick={onCancel}>
-          Cancel
+          {i18next.t('cancel')}
         </Button>
         <Button
           className="ml2"
@@ -136,4 +139,4 @@ class BasicInfoStep extends React.Component {
     }
   };
 }
-export default observer(BasicInfoStep);
+export default withTranslation()(observer(BasicInfoStep));

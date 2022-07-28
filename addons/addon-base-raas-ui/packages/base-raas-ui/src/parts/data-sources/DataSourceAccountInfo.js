@@ -25,8 +25,11 @@ import Form from '@amzn/base-ui/dist/parts/helpers/fields/Form';
 import Input from '@amzn/base-ui/dist/parts/helpers/fields/Input';
 import TextArea from '@amzn/base-ui/dist/parts/helpers/fields/TextArea';
 
+import i18next from 'i18next';
+import { initReactI18next, withTranslation } from 'react-i18next';
 import { getAccountForm } from '../../models/forms/UpdateRegisteredAccountForm';
 
+i18next.use(initReactI18next);
 // expected props
 // - account (via prop)
 // - dataSourceAccountsStore (via injection)
@@ -89,7 +92,7 @@ class DataSourceAccountInfo extends React.Component {
                 floated="right"
                 className="ml2"
                 primary
-                content="Save"
+                content={i18next.t('save')}
                 disabled={processing || !isDirty}
                 type="submit"
               />
@@ -116,4 +119,4 @@ decorate(DataSourceAccountInfo, {
   handleCancel: action,
 });
 
-export default inject('dataSourceAccountsStore')(withRouter(observer(DataSourceAccountInfo)));
+export default withTranslation()(inject('dataSourceAccountsStore')(withRouter(observer(DataSourceAccountInfo))));

@@ -24,9 +24,12 @@ import Input from '@amzn/base-ui/dist/parts/helpers/fields/Input';
 import TextArea from '@amzn/base-ui/dist/parts/helpers/fields/TextArea';
 import YesNo from '@amzn/base-ui/dist/parts/helpers/fields/YesNo';
 
+import i18next from 'i18next';
+import { initReactI18next, withTranslation } from 'react-i18next';
 import { getCreateStudyForm } from '../../models/forms/CreateStudy';
 import { getCategoryById } from '../../models/studies/categories';
 
+i18next.use(initReactI18next);
 // expected props
 // - userStore (via injection)
 // - studiesStoresMap (via injection)
@@ -120,7 +123,7 @@ class CreateStudy extends React.Component {
                 Create Study
               </Button>
               <Button floated="right" disabled={processing} onClick={onCancel}>
-                Cancel
+                {i18next.t('cancel')}
               </Button>
             </>
           )}
@@ -138,4 +141,4 @@ decorate(CreateStudy, {
   handleFormSubmission: action,
 });
 
-export default inject('userStore', 'studiesStoresMap')(observer(CreateStudy));
+export default withTranslation()(inject('userStore', 'studiesStoresMap')(observer(CreateStudy)));

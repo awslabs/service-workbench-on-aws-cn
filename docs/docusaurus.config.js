@@ -6,6 +6,8 @@ module.exports = {
   favicon: "img/favicon.ico",
   organizationName: "aws", // Usually your GitHub org/user name.
   projectName: "docusaurus", // Usually your repo name.
+  onBrokenLinks: "throw",
+  onBrokenMarkdownLinks: 'throw',
   themeConfig: {
     navbar: {
       title: "Home",
@@ -53,7 +55,6 @@ module.exports = {
           editUrl: "https://github.com/awslabs/go-research-on-aws/website/",
         },
         theme: {
-          disableDarkMode: true, // Not working yet
           customCss: require.resolve("./src/css/custom.css"),
         },
       },

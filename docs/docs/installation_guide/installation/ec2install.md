@@ -28,7 +28,7 @@ git clone https://github.com/awslabs/service-workbench-on-aws-cn.git
        - solutionName (for example: `sw`): The solutionName is used in S3 bucket names so must be S3-compatible.<br />
        **Note**: Ensure that there is no leading space before the value name.
 
-3. Run the main installation script. This takes up to 15 minutes and can be run in parallel with the next step (installing AMIs).
+3. Run the main installation script. This takes around 20 minutes.
 `./scripts/environment-deploy.sh ${STAGE_NAME}`
 4. Once the preceding step has completed, capture the root password and website URL. You can display the URL and root password again by running the following command:
 `scripts/get-info.sh ${STAGE_NAME}`

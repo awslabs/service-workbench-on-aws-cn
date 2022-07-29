@@ -32,9 +32,13 @@ import {
 import ErrorBox from '@amzn/base-ui/dist/parts/helpers/ErrorBox';
 import ProgressPlaceHolder from '@amzn/base-ui/dist/parts/helpers/BasicProgressPlaceholder';
 
+import i18next from 'i18next';
+import { initReactI18next, withTranslation } from 'react-i18next';
 import { filterNames } from '../../models/environments-sc/ScEnvironmentsStore';
 import ScEnvironmentCard from './ScEnvironmentCard';
 import ScEnvironmentsFilterButtons from './parts/ScEnvironmentsFilterButtons';
+
+i18next.use(initReactI18next);
 
 // expected props
 // - scEnvironmentsStore (via injection)
@@ -180,8 +184,10 @@ class ScEnvironmentsList extends React.Component {
           <Segment placeholder>
             <Header icon className="color-grey">
               <Icon name="server" />
-              No research workspaces matching the selected filter.
-              <Header.Subheader>Select &apos;All&apos; to view all the workspaces</Header.Subheader>
+              {i18next.t('researchWorkspace.no_match.title', { ns: 'workspaces' })}
+              <Header.Subheader>
+                {i18next.t('researchWorkspace.no_match.description', { ns: 'workspaces' })}
+              </Header.Subheader>
             </Header>
           </Segment>
         )}
@@ -194,8 +200,8 @@ class ScEnvironmentsList extends React.Component {
       <Segment data-testid="workspaces" placeholder>
         <Header icon className="color-grey">
           <Icon name="server" />
-          No research workspaces
-          <Header.Subheader>To create a research workspace, click Create Research Workspace.</Header.Subheader>
+          {i18next.t('researchWorkspace.empty.title', { ns: 'workspaces' })}
+          <Header.Subheader>{i18next.t('researchWorkspace.empty.description', { ns: 'workspaces' })}</Header.Subheader>
         </Header>
       </Segment>
     );
@@ -206,7 +212,9 @@ class ScEnvironmentsList extends React.Component {
       <div className="mb3 flex">
         <Header as="h3" className="color-grey mt1 mb0 flex-auto">
           <Icon name="server" className="align-top" />
-          <Header.Content className="left-align">Research Workspaces {this.renderTotal()}</Header.Content>
+          <Header.Content className="left-align">
+            {i18next.t('researchWorkspace.name_s', { ns: 'workspaces' })} {this.renderTotal()}
+          </Header.Content>
         </Header>
         <div>
           <Button
@@ -217,7 +225,7 @@ class ScEnvironmentsList extends React.Component {
             basic
             onClick={this.handleCreateEnvironment}
           >
-            Create Research Workspace
+            {i18next.t('researchWorkspace.create', { ns: 'workspaces' })}
           </Button>
         </div>
       </div>
@@ -242,8 +250,6 @@ decorate(ScEnvironmentsList, {
   handleSelectedFilter: action,
 });
 
-export default inject(
-  'scEnvironmentsStore',
-  'projectsStore',
-  'envTypesStore',
-)(withRouter(observer(ScEnvironmentsList)));
+export default withTranslation()(
+  inject('scEnvironmentsStore', 'projectsStore', 'envTypesStore')(withRouter(observer(ScEnvironmentsList))),
+);

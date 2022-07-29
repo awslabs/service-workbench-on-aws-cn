@@ -23,9 +23,12 @@ import Form from '@amzn/base-ui/dist/parts/helpers/fields/Form';
 import Input from '@amzn/base-ui/dist/parts/helpers/fields/Input';
 import TextArea from '@amzn/base-ui/dist/parts/helpers/fields/TextArea';
 
+import i18next from 'i18next';
+import { initReactI18next, withTranslation } from 'react-i18next';
 import { getCreateInternalEnvForm } from '../../../models/forms/CreateInternalEnvForm';
 import SelectConfigurationCards from './SelectConfigurationCards';
 
+i18next.use(initReactI18next);
 // expected props
 // - onPrevious (via props)
 // - onNext (via props) a function is called with the form data
@@ -197,7 +200,7 @@ class CreateInternalEnvForm extends React.Component {
                 floated="right"
                 className="ml2"
                 primary
-                content="Create Research Workspace"
+                content={i18next.t('researchWorkspace.create', { ns: 'workspaces' })}
                 disabled={processing}
                 type="submit"
               />
@@ -229,4 +232,6 @@ decorate(CreateInternalEnvForm, {
   handlePrevious: action,
 });
 
-export default inject('userStore', 'projectsStore', 'clientInformationStore')(observer(CreateInternalEnvForm));
+export default withTranslation()(
+  inject('userStore', 'projectsStore', 'clientInformationStore')(observer(CreateInternalEnvForm)),
+);

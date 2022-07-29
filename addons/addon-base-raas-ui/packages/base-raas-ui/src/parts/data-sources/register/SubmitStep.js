@@ -22,7 +22,10 @@ import { Segment, Button, Icon, Header, Progress, Message } from 'semantic-ui-re
 
 import { swallowError } from '@amzn/base-ui/dist/helpers/utils';
 import { gotoFn } from '@amzn/base-ui/dist/helpers/routing';
+import i18next from 'i18next';
+import { initReactI18next, withTranslation } from 'react-i18next';
 
+i18next.use(initReactI18next);
 // expected props
 // - wizard (via prop)
 class SubmitStep extends React.Component {
@@ -216,7 +219,13 @@ class SubmitStep extends React.Component {
         )}
 
         {showCancel && (
-          <Button floated="right" className="ml2" content="Cancel" disabled={disabled} onClick={this.handleCancel} />
+          <Button
+            floated="right"
+            className="ml2"
+            content={i18next.t('cancel')}
+            disabled={disabled}
+            onClick={this.handleCancel}
+          />
         )}
         {showPrevious && (
           <Button
@@ -245,4 +254,4 @@ decorate(SubmitStep, {
   handleNext: action,
 });
 
-export default inject()(withRouter(observer(SubmitStep)));
+export default withTranslation()(inject()(withRouter(observer(SubmitStep))));

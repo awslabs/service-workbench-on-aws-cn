@@ -85,7 +85,7 @@ class UpdateBudget extends React.Component {
                 content="Update Budget"
                 disabled={processing}
               />
-              <Button floated="right" onClick={onCancel} content="Cancel" disabled={processing} />
+              <Button floated="right" onClick={onCancel} content={i18next.t('cancel')} disabled={processing} />
             </div>
           </>
         )}

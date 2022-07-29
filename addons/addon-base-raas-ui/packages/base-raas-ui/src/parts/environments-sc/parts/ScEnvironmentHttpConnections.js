@@ -21,7 +21,11 @@ import { Segment, Icon, Button, Header, Table, List } from 'semantic-ui-react';
 
 import { displayError } from '@amzn/base-ui/dist/helpers/notification';
 
+import i18next from 'i18next';
+import { initReactI18next, withTranslation } from 'react-i18next';
 import CopyToClipboard from '../../helpers/CopyToClipboard';
+
+i18next.use(initReactI18next);
 
 const openWindow = (url, windowFeatures) => {
   return window.open(url, '_blank', windowFeatures);
@@ -175,7 +179,7 @@ class ScEnvironmentHttpConnections extends React.Component {
         <Table celled>
           <Table.Header>
             <Table.Row key={env.id}>
-              <Table.HeaderCell colSpan="1">HTTP Connections</Table.HeaderCell>
+              <Table.HeaderCell colSpan="1">{i18next.t('connection.http', { ns: 'workspaces' })}</Table.HeaderCell>
             </Table.Row>
           </Table.Header>
           <Table.Body>{this.renderBody(connections)}</Table.Body>
@@ -269,7 +273,7 @@ class ScEnvironmentHttpConnections extends React.Component {
                   onClick={this.handleConnect(item.id)}
                   data-testid="connect-to-workspace-button"
                 >
-                  Connect
+                  {i18next.t('connect')}
                 </Button>
 
                 <div className="mt1">{item.name || 'Connect'}</div>
@@ -325,4 +329,4 @@ decorate(ScEnvironmentHttpConnections, {
   streamingUrl: observable,
 });
 
-export default inject('scEnvironmentsStore')(withRouter(observer(ScEnvironmentHttpConnections)));
+export default withTranslation()(inject('scEnvironmentsStore')(withRouter(observer(ScEnvironmentHttpConnections))));

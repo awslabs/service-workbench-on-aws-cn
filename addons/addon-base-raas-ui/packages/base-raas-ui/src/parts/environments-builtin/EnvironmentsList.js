@@ -25,11 +25,14 @@ import { isStoreLoading, isStoreEmpty, isStoreNotEmpty, isStoreError } from '@am
 import ErrorBox from '@amzn/base-ui/dist/parts/helpers/ErrorBox';
 import ProgressPlaceHolder from '@amzn/base-ui/dist/parts/helpers/BasicProgressPlaceholder';
 
+import i18next from 'i18next';
+import { initReactI18next, withTranslation } from 'react-i18next';
 import EnvironmentCard from './EnvironmentCard';
 import UserOnboarding from '../users/UserOnboarding';
 import UserPinModal from '../users/UserPinModal';
 import localStorageKeys from '../../models/constants/local-storage-keys';
 
+i18next.use(initReactI18next);
 // expected props
 // - environmentsStore (via injection)
 // - location (from react router)
@@ -128,8 +131,8 @@ class EnvironmentsList extends React.Component {
       <Segment placeholder>
         <Header icon className="color-grey">
           <Icon name="clipboard outline" />
-          No research workspaces
-          <Header.Subheader>To create a research workspace, click Create Research Workspace.</Header.Subheader>
+          {i18next.t('researchWorkspace.empty.title', { ns: 'workspaces' })}
+          <Header.Subheader>{i18next.t('researchWorkspace.empty.description', { ns: 'workspaces' })}</Header.Subheader>
         </Header>
       </Segment>
     );
@@ -152,7 +155,9 @@ class EnvironmentsList extends React.Component {
       <div className="mb3 flex">
         <Header as="h3" className="color-grey mt1 mb0 flex-auto">
           <Icon name="server" className="align-top" />
-          <Header.Content className="left-align">Research Workspaces {this.renderTotal()}</Header.Content>
+          <Header.Content className="left-align">
+            {i18next.t('researchWorkspace.name_s', { ns: 'workspaces' })} {this.renderTotal()}
+          </Header.Content>
         </Header>
         {this.needsAWSCredentials() ? (
           <Button color="orange" size="medium" basic onClick={this.handleConfigureCredentials}>
@@ -160,7 +165,7 @@ class EnvironmentsList extends React.Component {
           </Button>
         ) : (
           <Button color="blue" size="medium" basic onClick={this.handleCreateEnvironment}>
-            Create Research Workspace
+            {i18next.t('researchWorkspace.create', { ns: 'workspaces' })}
           </Button>
         )}
       </div>
@@ -212,4 +217,4 @@ decorate(EnvironmentsList, {
   pinModalOpen: observable,
 });
 
-export default inject('environmentsStore', 'userStore')(withRouter(observer(EnvironmentsList)));
+export default withTranslation()(inject('environmentsStore', 'userStore')(withRouter(observer(EnvironmentsList))));

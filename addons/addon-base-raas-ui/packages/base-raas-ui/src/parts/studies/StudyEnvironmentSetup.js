@@ -22,11 +22,15 @@ import { Icon, Container, Header, Segment, Button } from 'semantic-ui-react';
 import { gotoFn } from '@amzn/base-ui/dist/helpers/routing';
 import { displaySuccess } from '@amzn/base-ui/dist/helpers/notification';
 
+import i18next from 'i18next';
+import { initReactI18next, withTranslation } from 'react-i18next';
 import { enableBuiltInWorkspaces } from '../../helpers/settings';
 import { CurrentStep } from '../compute/helpers/CurrentStep';
 import ComputePlatformSetup from '../compute/ComputePlatformSetup';
 import StudyStepsProgress from './StudyStepsProgress';
 import ScEnvironmentSetup from '../environments-sc/setup/ScEnvironmentSetup';
+
+i18next.use(initReactI18next);
 
 // expected props
 // - filesSelection (via injection)
@@ -63,7 +67,7 @@ class StudyEnvironmentSetup extends React.Component {
   // eslint-disable-next-line no-unused-vars
   handleCompleted = async environment => {
     this.props.filesSelection.cleanup();
-    displaySuccess('The research workspace is being provisioned');
+    displaySuccess(i18next.t('researchWorkspace.beingProvisioned', { ns: 'workspaces' }));
     this.goto('/workspaces');
   };
 
@@ -183,4 +187,4 @@ decorate(StudyEnvironmentSetup, {
   currentStep: observable,
 });
 
-export default inject('filesSelection')(withRouter(observer(StudyEnvironmentSetup)));
+export default withTranslation()(inject('filesSelection')(withRouter(observer(StudyEnvironmentSetup))));

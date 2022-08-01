@@ -5,12 +5,19 @@
     "connect": "连接",
     "detail": "详细信息",
     "details": "详细信息",
+    "files": "文件",
     "lang": "语言",
     "next": "下一步",
+    "permissions": "权限",
+    "pending": "等待中",
     "previous": "上一步",
     "save": "保存",
     "start": "启动",
     "stop": "停止",
+    "submit": "提交",
     "terminate": "终止",
-    "unavailable": "不可用"
+    "unavailable": "不可用",
+    "upload": {
+        "uploadFiles": "上传文件"
+    }
 }

@@ -45,8 +45,8 @@ const Component = observer(({ currentStep = {}, envTypeImmutable = false }) => {
       <Step active={activeIndex === 0} disabled={activeIndex < 0}>
         <Icon name="search" color="blue" />
         <Step.Content>
-          <Step.Title>Find &amp; Select Studies</Step.Title>
-          <Step.Description>Select the desired studies</Step.Description>
+          <Step.Title>{i18next.t('findAndSelectStudies.header', { ns: 'studies' })}</Step.Title>
+          <Step.Description>{i18next.t('findAndSelectStudies.subheader', { ns: 'studies' })}</Step.Description>
         </Step.Content>
       </Step>
       {!envTypeImmutable && (

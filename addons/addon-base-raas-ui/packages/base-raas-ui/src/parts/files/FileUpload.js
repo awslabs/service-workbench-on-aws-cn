@@ -45,7 +45,7 @@ const FileUpload = observer(
   }) => {
     return (
       <Segment vertical>
-        <Header as="h3">Upload Files</Header>
+        <Header as="h3">{i18next.t('uploadFiles', { ns: 'files' })}</Header>
         <StudyFileDropZone
           state={state}
           onSelectFiles={onSelectFiles}
@@ -81,15 +81,15 @@ const FileUpload = observer(
                         }
                       }}
                     >
-                      Upload Files
+                      {i18next.t('uploadFiles', { ns: 'files' })}
                     </Button>
                   ) : state === 'UPLOADING' ? (
                     <Button floated="right" basic color="blue" loading disabled>
-                      Uploading
+                      {i18next.t('uploading', { ns: 'files' })}
                     </Button>
                   ) : state === 'COMPLETE' ? (
                     <Button floated="right" basic color="blue" onClick={onClickUploadMore}>
-                      Upload More Files
+                      {i18next.t('uploadMoreFiles', { ns: 'files' })}
                     </Button>
                   ) : null}
                   {state === 'PENDING' ? (
@@ -177,14 +177,14 @@ class ConnectedFileUpload extends React.Component {
         }
       });
       if (errors > 0 && success > 0) {
-        displayWarning(`File uploads completed with ${errors} errors`);
+        displayWarning(i18next.t('start.es', { ns: 'files', errors }));
       } else if (errors > 0) {
-        displayError(`File uploads failed`);
+        displayError(i18next.t('start.e', { ns: 'files' }));
       } else if (success > 0) {
-        displaySuccess(`File uploads completed successfully!`);
+        displaySuccess(i18next.t('start.s', { ns: 'files' }));
       }
     } catch (err) {
-      displayError(`File uploads failed: ${err}`);
+      displayError(i18next.t('start.err', { ns: 'files', err }));
     }
   };
 

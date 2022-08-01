@@ -1,0 +1,21 @@
+{
+    "or": "Or",
+    "dragAndDrop": "Drag and drop files",
+    "uploadFiles": "Upload Files",
+    "uploadFolder": "Upload Folder",
+    "uploading": "Uploading",
+    "uploadComplete": "Upload Complete",
+    "uploadMoreFiles": "Upload More Files",
+    "start": {
+        "es": "File uploads completed with {{n}} errors",
+        "e": "File uploads failed",
+        "s": "File uploads completed successfully!",
+        "err": "File uploads failed: {{error}}"
+    },
+    "uploadTable": {
+        "folder": "Folder",
+        "filename": "Filename",
+        "size": "Size",
+        "status": "Status"
+    }
+}

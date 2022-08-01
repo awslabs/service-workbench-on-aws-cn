@@ -6,11 +6,18 @@
     "detail": "Detail",
     "details": "Details",
     "edit": "Edit",
+    "files": "Files",
     "lang": "Language",
     "next": "Next",
+    "permissions": "Permissions",
+    "pending": "Pending",
     "previous": "Previous",
     "start": "Start",
     "stop": "Stop",
+    "submit": "Submit",
     "terminate": "Terminate",
-    "unavailable": "Unavailable"
+    "unavailable": "Unavailable",
+    "upload": {
+        "uploadFiles": "Upload Files"
+    }
 }

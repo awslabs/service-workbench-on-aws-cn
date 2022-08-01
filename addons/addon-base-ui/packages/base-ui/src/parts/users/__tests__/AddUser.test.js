@@ -17,13 +17,13 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import AddUser from '../AddUser';
 
-jest.mock("react-i18next", () => ({
+jest.mock('react-i18next', () => ({
   withTranslation: () => Component => {
-    Component.defaultProps = { ...Component.defaultProps, t: () => "" };
+    Component.defaultProps = { ...Component.defaultProps, t: () => '' };
     return Component;
   },
   initReactI18next: {
-    type: "3rdParty",
+    type: '3rdParty',
     init: jest.fn(),
   },
 }));

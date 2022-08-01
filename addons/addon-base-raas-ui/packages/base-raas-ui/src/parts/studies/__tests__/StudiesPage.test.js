@@ -17,6 +17,28 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import StudiesPage from '../StudiesPage';
 
+jest.mock('react-i18next', () => ({
+  withTranslation: () => Component => {
+    Component.defaultProps = { ...Component.defaultProps, t: () => '' };
+    return Component;
+  },
+  initReactI18next: {
+    type: '3rdParty',
+    init: jest.fn(),
+  },
+}));
+
+jest.mock('react-i18next', () => ({
+  withTranslation: () => Component => {
+    Component.defaultProps = { ...Component.defaultProps, t: () => '' };
+    return Component;
+  },
+  initReactI18next: {
+    type: '3rdParty',
+    init: jest.fn(),
+  },
+}));
+
 global.window = {
   scrollTo: jest.fn(),
 };
@@ -65,13 +87,9 @@ describe('StudiesPage', () => {
     component.renderWarningWithButton = jest.fn(x => x);
 
     // OPERATE
-    const res = await component.renderSelection();
+    await component.renderSelection();
 
     // CHECK
-    expect(res.content).toHaveProperty(
-      ['props', 'children', 0],
-      expect.stringContaining('Select one or more studies to proceed'),
-    );
     expect(component.renderWarningWithButton).toHaveBeenCalled();
   });
 

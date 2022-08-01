@@ -17,10 +17,14 @@ import React from 'react';
 import prettyBytes from 'pretty-bytes';
 import { observer } from 'mobx-react';
 import { Button, Icon, Progress, Table } from 'semantic-ui-react';
+import i18next from 'i18next';
+import { initReactI18next, withTranslation } from 'react-i18next';
+
+i18next.use(initReactI18next);
 
 const FileUploadStatus = observer(({ file }) =>
   file.status === 'PENDING' ? (
-    'Pending'
+    i18next.t('pending')
   ) : file.status === 'UPLOADING' ? (
     <Progress
       size="small"
@@ -77,10 +81,10 @@ const FileUploadTable = observer(({ files = [], state, onClickRemoveFile, onClic
   <Table basic="very">
     <Table.Header>
       <Table.Row>
-        <Table.HeaderCell>Folder</Table.HeaderCell>
-        <Table.HeaderCell>Filename</Table.HeaderCell>
-        <Table.HeaderCell>Size</Table.HeaderCell>
-        <Table.HeaderCell>Status</Table.HeaderCell>
+        <Table.HeaderCell>{i18next.t('uploadTable.folder', { ns: 'files' })}</Table.HeaderCell>
+        <Table.HeaderCell>{i18next.t('uploadTable.filename', { ns: 'files' })}</Table.HeaderCell>
+        <Table.HeaderCell>{i18next.t('uploadTable.size', { ns: 'files' })}</Table.HeaderCell>
+        <Table.HeaderCell>{i18next.t('uploadTable.status', { ns: 'files' })}</Table.HeaderCell>
         <Table.HeaderCell />
       </Table.Row>
     </Table.Header>
@@ -98,4 +102,4 @@ const FileUploadTable = observer(({ files = [], state, onClickRemoveFile, onClic
   </Table>
 ));
 
-export default FileUploadTable;
+export default withTranslation()(FileUploadTable);

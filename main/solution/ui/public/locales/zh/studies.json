@@ -1,0 +1,50 @@
+{
+    "category": {
+        "my-studies": "我的数据区",
+        "organization": "组织数据区",
+        "open-data": "开放数据"
+    },
+    "fileTable": {
+        "filename": "文件名",
+        "size": "大小",
+        "lastModified": "最新修改",
+        "empty": {
+            "header": "没有文件",
+            "subheader": "该数据区是空的"
+        }
+    },
+    "permissionTable": {
+        "level": "权限等级",
+        "users": "用户",
+        "admin": "管理员",
+        "readwrite": "可读可写",
+        "readonly": "只读"
+    },
+    "findAndSelectStudies": {
+        "header": "查找与选择数据区",
+        "subheader": "选取你需要的数据区"
+    },
+    "selectedStudies": "已选中的数据区",
+    "selectToProceed": "选择一项或多项数据区以进行下一步。",
+    "selectToProceedOrCreate": "选择一项或多项数据区以进行下一步，或通过单击顶部的“创建数据区”按钮来创建数据区。",
+    "study": {
+        "create": "创建数据区",
+        "empty": {
+            "my": {
+                "header": "没有可用的数据区",
+                "subheader": "要创建数据区，请单击顶部的“创建数据区”按钮。"
+            },
+            "open": {
+                "header": "没有来自开放数据项目的数据区",
+                "subheader": "该页面的内容每天更新一次，您可以稍后再来。"
+            },
+            "org": {
+                "header": "没有与您共享的数据区",
+                "subheader": "在组织级别创建的数据区可以共享，但目前没有任何与您共享的数据区。",
+                "canCreate": "您可以通过单击顶部的“创建数据区”按钮来创建数据区。",
+                "cantCreate": "您可以通过单击上面的“开放数据”选项卡来查看来自“开放数据”的数据区。"
+            }
+        },
+        "name_s": "数据区"
+    }
+}

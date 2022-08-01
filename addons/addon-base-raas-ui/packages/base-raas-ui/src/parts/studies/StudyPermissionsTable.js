@@ -131,9 +131,9 @@ class StudyPermissionsTable extends React.Component {
           <Table data-testid="edit-permission-table" striped className="mt0">
             <Table.Header>
               <Table.Row>
-                <Table.HeaderCell width={2}>Permission Level</Table.HeaderCell>
+                <Table.HeaderCell width={2}>{i18next.t('permissionTable.level', { ns: 'studies' })}</Table.HeaderCell>
                 <Table.HeaderCell>
-                  Users
+                  {i18next.t('permissionTable.users', { ns: 'studies' })}
                   {isEditable && !this.editModeOn && (
                     <Icon name="pencil" className="ml1 cursor-pointer" color="grey" onClick={this.enableEditMode} />
                   )}
@@ -148,7 +148,7 @@ class StudyPermissionsTable extends React.Component {
                 const users = this.usersStore.asUserObjects(userIdentifiers);
                 return (
                   <Table.Row key={userType}>
-                    <Table.Cell style={{ textTransform: 'capitalize' }}>{userType}</Table.Cell>
+                    <Table.Cell>{i18next.t(`permissionTable.${userType}`, { ns: 'studies' })}</Table.Cell>
                     <Table.Cell>
                       {this.editModeOn ? this.renderUsersDropdown(userType) : <UserLabels users={users} />}
                     </Table.Cell>
@@ -168,7 +168,7 @@ class StudyPermissionsTable extends React.Component {
                 color="blue"
                 icon
               >
-                Submit
+                {i18next.t('submit')}
               </Button>
 
               <Button floated="right" disabled={this.isProcessing} onClick={this.resetForm} size="mini">

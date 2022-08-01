@@ -105,7 +105,7 @@ class StudiesPage extends React.Component {
       <div className="flex">
         <Header as="h3" className="color-grey mt1 mb0 flex-auto">
           <Icon name="book" className="align-top" />
-          <Header.Content className="left-align">Studies</Header.Content>
+          <Header.Content className="left-align">{i18next.t('study.name_s', { ns: 'studies' })}</Header.Content>
         </Header>
         {canCreateStudy && hasProjects && <CreateStudy />}
       </div>
@@ -137,7 +137,7 @@ class StudiesPage extends React.Component {
     const studyPanes = _.map(applicableCategories, category => ({
       menuItem: (
         <Menu.Item data-testid="table-tab" key={category.id}>
-          {category.name} {getMenuItemLabel(category)}
+          {i18next.t(`category.${category.id}`, { ns: 'studies' })} {getMenuItemLabel(category)}
         </Menu.Item>
       ),
       render: () => (
@@ -168,12 +168,7 @@ class StudiesPage extends React.Component {
 
     if (empty && canCreateStudy && canSelectStudy && hasProjects) {
       return this.renderWarningWithButton({
-        content: (
-          <>
-            Select one or more studies to proceed to the next step or create a study by clicking on <b>Create Study</b>{' '}
-            button at the top.
-          </>
-        ),
+        content: i18next.t('selectToProceedOrCreate', { ns: 'studies' }),
       });
     }
 
@@ -187,7 +182,7 @@ class StudiesPage extends React.Component {
 
     if (empty && canSelectStudy && !canCreateStudy) {
       return this.renderWarningWithButton({
-        content: 'Select one or more studies to proceed to the next step.',
+        content: i18next.t('selectToProceed', { ns: 'studies' }),
       });
     }
 
@@ -220,7 +215,7 @@ class StudiesPage extends React.Component {
         )}
         <div className="mt1">
           <span>
-            Selected studies
+            {i18next.t('selectedStudies', { ns: 'studies' })}
             <Label circular color="blue" className="ml1">
               {niceNumber(count)}
             </Label>{' '}

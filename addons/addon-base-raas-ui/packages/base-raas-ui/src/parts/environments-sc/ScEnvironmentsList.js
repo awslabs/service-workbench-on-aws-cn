@@ -184,9 +184,9 @@ class ScEnvironmentsList extends React.Component {
           <Segment placeholder>
             <Header icon className="color-grey">
               <Icon name="server" />
-              {i18next.t('researchWorkspace.no_match.title', { ns: 'workspaces' })}
+              {i18next.t('researchWorkspace.no_match.header', { ns: 'workspaces' })}
               <Header.Subheader>
-                {i18next.t('researchWorkspace.no_match.description', { ns: 'workspaces' })}
+                {i18next.t('researchWorkspace.no_match.subheader', { ns: 'workspaces' })}
               </Header.Subheader>
             </Header>
           </Segment>
@@ -200,8 +200,8 @@ class ScEnvironmentsList extends React.Component {
       <Segment data-testid="workspaces" placeholder>
         <Header icon className="color-grey">
           <Icon name="server" />
-          {i18next.t('researchWorkspace.empty.title', { ns: 'workspaces' })}
-          <Header.Subheader>{i18next.t('researchWorkspace.empty.description', { ns: 'workspaces' })}</Header.Subheader>
+          {i18next.t('researchWorkspace.empty.header', { ns: 'workspaces' })}
+          <Header.Subheader>{i18next.t('researchWorkspace.empty.subheader', { ns: 'workspaces' })}</Header.Subheader>
         </Header>
       </Segment>
     );

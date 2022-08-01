@@ -99,8 +99,8 @@ class AwsAccountsList extends React.Component {
           <Segment placeholder>
             <Header icon className="color-grey">
               <Icon name="user x" />
-              {i18next.t('noAccount.title', { ns: 'accounts' })}
-              <Header.Subheader>{i18next.t('noAccount.description', { ns: 'accounts' })}</Header.Subheader>
+              {i18next.t('noAccount.header', { ns: 'accounts' })}
+              <Header.Subheader>{i18next.t('noAccount.subheader', { ns: 'accounts' })}</Header.Subheader>
             </Header>
           </Segment>
         )}

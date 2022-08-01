@@ -7,14 +7,14 @@
     "updateAccount": "Update AWS Account",
     "refreshAccount": "Refresh Account Status",
     "noAccount": {
-        "title": "No accounts matching the selected filter.",
-        "description": "Select \"All\" to view all accounts"
+        "header": "No accounts matching the selected filter.",
+        "subheader": "Select \"All\" to view all accounts"
     },
     "addAccountPage": {
         "onboardAccount": "Onboard AWS Account",
         "loading": {
-            "title": "Loading...",
-            "description": "Please wait a moment."
+            "header": "Loading...",
+            "subheader": "Please wait a moment."
         }
     },
     "onboard": {
@@ -23,13 +23,13 @@
         "steps": "Steps",
         "step1": "In a separate browser tab, login to the aws console using the correct account.",
         "attention": {
-            "title": "Attention",
-            "description": "Ensure that you are logged in to AWS account #{{accountId}} in region {{region}}."
+            "header": "Attention",
+            "subheader": "Ensure that you are logged in to AWS account #{{accountId}} in region {{region}}."
         },
         "step2": "Click on the \"Create Stack\" button, this opens a separate browser tab and takes you to the CloudFormation console where you can review the stack information and provision it.",
         "caution": {
-            "title": "Caution!",
-            "description": "Be advised that deploying a new CFN stack may cause any workspaces associated with this account in SWB to become unusable. To proceed, please acknowledge the warning below."
+            "header": "Caution!",
+            "subheader": "Be advised that deploying a new CFN stack may cause any workspaces associated with this account in SWB to become unusable. To proceed, please acknowledge the warning below."
         },
         "acknowledgement": "I am aware that re-onboarding this account may render workspaces associated with this account to become unusable.",
         "createStack": "Create Stack",

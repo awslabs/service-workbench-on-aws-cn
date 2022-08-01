@@ -4,38 +4,38 @@
         "name_s": "Research Workspaces",
         "create": "Create Research Workspace",
         "empty": {
-            "title": "No research workspaces",
-            "description": "To create a research workspace, click Create Research Workspace."
+            "header": "No research workspaces",
+            "subheader": "To create a research workspace, click Create Research Workspace."
         },
         "no_match": {
-            "title": "No research workspaces matching the selected filter.",
-            "description": "Select \"All\" to view all the workspaces"
+            "header": "No research workspaces matching the selected filter.",
+            "subheader": "Select \"All\" to view all the workspaces"
         },
         "beingProvisioned": "The research workspace is being provisioned"
     },
     "selectCompute": {
-        "title": "Select Compute",
-        "description": "Select a compute platform"
+        "header": "Select Compute",
+        "subheader": "Select a compute platform"
     },
     "createWorkspace": {
-        "title": "Create Workspace",
-        "description": "Create the workspace"
+        "header": "Create Workspace",
+        "subheader": "Create the workspace"
     },
     "noWorkspaceTypes": {
-        "title": "No workspace types",
-        "description": "There are no workspace types to choose from. Your role might be restricted. Please contact your administrator."
+        "header": "No workspace types",
+        "subheader": "There are no workspace types to choose from. Your role might be restricted. Please contact your administrator."
     },
     "missingAssociation": {
-        "title": "Missing association with projects",
-        "description": "You currently do not have permissions to use any projects for the workspace. Please contact your administrator."
+        "header": "Missing association with projects",
+        "subheader": "You currently do not have permissions to use any projects for the workspace. Please contact your administrator."
     },
     "noWorkspaceConfs": {
-        "title": "No workspace configurations",
-        "description": "There are no workspace configurations to choose from. Your role might be restricted. Please contact your administrator."
+        "header": "No workspace configurations",
+        "subheader": "There are no workspace configurations to choose from. Your role might be restricted. Please contact your administrator."
     },
     "areYouSure": {
-        "title": "Are you sure?",
-        "description": "This action can not be reverted."
+        "header": "Are you sure?",
+        "subheader": "This action can not be reverted."
     },
     "connections": "Connections",
     "viewDetail": "View Detail",

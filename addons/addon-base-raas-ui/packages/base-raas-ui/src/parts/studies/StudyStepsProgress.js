@@ -53,16 +53,16 @@ const Component = observer(({ currentStep = {}, envTypeImmutable = false }) => {
         <Step active={activeIndex === 1} disabled={activeIndex < 1}>
           <Icon name="server" />
           <Step.Content>
-            <Step.Title>{i18next.t('selectCompute.title', { ns: 'workspaces' })}</Step.Title>
-            <Step.Description>{i18next.t('selectCompute.description', { ns: 'workspaces' })}</Step.Description>
+            <Step.Title>{i18next.t('selectCompute.header', { ns: 'workspaces' })}</Step.Title>
+            <Step.Description>{i18next.t('selectCompute.subheader', { ns: 'workspaces' })}</Step.Description>
           </Step.Content>
         </Step>
       )}
       <Step active={activeIndex === 2} disabled={activeIndex < 2}>
         <Icon name="hdd outline" />
         <Step.Content>
-          <Step.Title>{i18next.t('createWorkspace.title', { ns: 'workspaces' })}</Step.Title>
-          <Step.Description>{i18next.t('createWorkspace.description', { ns: 'workspaces' })}</Step.Description>
+          <Step.Title>{i18next.t('createWorkspace.header', { ns: 'workspaces' })}</Step.Title>
+          <Step.Description>{i18next.t('createWorkspace.subheader', { ns: 'workspaces' })}</Step.Description>
         </Step.Content>
       </Step>
     </Step.Group>

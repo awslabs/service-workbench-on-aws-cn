@@ -196,8 +196,8 @@ class ScEnvironmentSetup extends React.Component {
         <Segment placeholder className="mt2">
           <Header icon className="color-grey">
             <Icon name="server" />
-            {i18next.t('noWorkspaceTypes.title', { ns: 'workspaces' })}
-            <Header.Subheader>{i18next.t('noWorkspaceTypes.description', { ns: 'workspaces' })}</Header.Subheader>
+            {i18next.t('noWorkspaceTypes.header', { ns: 'workspaces' })}
+            <Header.Subheader>{i18next.t('noWorkspaceTypes.subheader', { ns: 'workspaces' })}</Header.Subheader>
           </Header>
         </Segment>
         {this.renderButtons()}
@@ -211,8 +211,8 @@ class ScEnvironmentSetup extends React.Component {
         <Segment placeholder className="mt2">
           <Header icon className="color-grey">
             <Icon name="lock" />
-            {i18next.t('missingAssociation.title', { ns: 'workspaces' })}
-            <Header.Subheader>{i18next.t('missingAssociation.description', { ns: 'workspaces' })}</Header.Subheader>
+            {i18next.t('missingAssociation.header', { ns: 'workspaces' })}
+            <Header.Subheader>{i18next.t('missingAssociation.subheader', { ns: 'workspaces' })}</Header.Subheader>
           </Header>
         </Segment>
         {this.renderButtons()}

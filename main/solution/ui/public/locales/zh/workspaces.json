@@ -4,33 +4,33 @@
         "name_s": "科研工作区",
         "create": "创建科研工作区",
         "empty": {
-            "title": "尚未创建任何科研工作区",
-            "description": "如果希望创建一个科研工作区，点击右上角的“创建科研工作区”按钮"
+            "header": "尚未创建任何科研工作区",
+            "subheader": "如果希望创建一个科研工作区，点击右上角的“创建科研工作区”按钮"
         },
         "no_match": {
-            "title": "没有与所选过滤器匹配的科研工作区",
-            "description": "选择“全部”来查看所有的科研工作区"
+            "header": "没有与所选过滤器匹配的科研工作区",
+            "subheader": "选择“全部”来查看所有的科研工作区"
         }
     },
     "selectCompute": {
-        "title": "选择计算类型",
-        "description": "选择一个计算平台"
+        "header": "选择计算类型",
+        "subheader": "选择一个计算平台"
     },
     "createWorkspace": {
-        "title": "创建工作区",
-        "description": "创建工作区"
+        "header": "创建工作区",
+        "subheader": "创建工作区"
     },
     "noWorkspaceTypes": {
-        "title": "暂无任何工作区模板",
-        "description": "暂无任何可供选择的工作区模板。你可能被分配了一个受限的用户角色。请联系你的管理员。"
+        "header": "暂无任何工作区模板",
+        "subheader": "暂无任何可供选择的工作区模板。你可能被分配了一个受限的用户角色。请联系你的管理员。"
     },
     "missingAssociation": {
-        "title": "缺少与项目的关联",
-        "description": "您当前无权在任何项目下创建工作区。请联系您的管理员。"
+        "header": "缺少与项目的关联",
+        "subheader": "您当前无权在任何项目下创建工作区。请联系您的管理员。"
     },
     "areYouSure": {
-        "title": "你确定吗？",
-        "description": "这个动作无法被撤回。"
+        "header": "你确定吗？",
+        "subheader": "这个动作无法被撤回。"
     },
     "connections": "连接",
     "viewDetail": "详细信息",

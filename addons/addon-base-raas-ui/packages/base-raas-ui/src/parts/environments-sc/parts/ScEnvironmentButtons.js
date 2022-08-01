@@ -178,8 +178,8 @@ class ScEnvironmentButtons extends React.Component {
                   {i18next.t('terminate')}
                 </Button>
               }
-              header={i18next.t('areYouSure.title', { ns: 'workspaces' })}
-              content={i18next.t('areYouSure.description', { ns: 'workspaces' })}
+              header={i18next.t('areYouSure.header', { ns: 'workspaces' })}
+              content={i18next.t('areYouSure.subheader', { ns: 'workspaces' })}
               actions={[
                 i18next.t('cancel'),
                 { key: 'terminate', content: i18next.t('terminate'), negative: true, onClick: this.handleTerminate },

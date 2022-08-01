@@ -10,7 +10,8 @@
         "no_match": {
             "header": "没有与所选过滤器匹配的科研工作区",
             "subheader": "选择“全部”来查看所有的科研工作区"
-        }
+        },
+        "beingProvisioned": "该科研工作区已就绪"
     },
     "selectCompute": {
         "header": "选择计算类型",
@@ -21,12 +22,16 @@
         "subheader": "创建工作区"
     },
     "noWorkspaceTypes": {
-        "header": "暂无任何工作区模板",
-        "subheader": "暂无任何可供选择的工作区模板。你可能被分配了一个受限的用户角色。请联系你的管理员。"
+        "header": "没有可用的工作区模板",
+        "subheader": "暂无任何可用的工作区模板。你可能被分配了一个受限的用户角色。请联系你的管理员。"
     },
     "missingAssociation": {
         "header": "缺少与项目的关联",
         "subheader": "您当前无权在任何项目下创建工作区。请联系您的管理员。"
+    },
+    "noWorkspaceConfs": {
+        "header": "没有可用的工作区配置",
+        "subheader": "暂无任何可用的工作区配置。你可能被分配了一个受限的用户角色。请联系你的管理员。"
     },
     "areYouSure": {
         "header": "你确定吗？",
@@ -37,8 +42,8 @@
     "detailPage": {
         "status": "状态",
         "owner": "所有者",
-        "studies": "数据源",
-        "noStudies": "该工作区未连接至任何数据源",
+        "studies": "数据区",
+        "noStudies": "该工作区未连接至任何数据区",
         "project": "项目",
         "workspaceType": "工作区类型",
         "configurationName": "工作区配置",

@@ -433,6 +433,7 @@ Resources:
                   - sagemaker:StopNotebookInstance
                   - sagemaker:StopNotebookInstance
                   - sagemaker:DeleteNotebookInstance
+                  - sagemaker:AddTags
                 Resource: !Sub 'arn:${AWS::Partition}:sagemaker:*:*:notebook-instance/basicnotebookinstance-*'
               - Effect: Allow
                 Action:

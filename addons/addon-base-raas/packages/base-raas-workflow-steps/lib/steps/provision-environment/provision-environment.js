@@ -202,7 +202,8 @@ class ProvisionEnvironment extends StepBase {
       this.payload.string('roleExternalId'),
     ]);
 
-    const sts = new aws.sdk.STS();
+    const region = process.env.AWS_REGION;
+    const sts = new aws.sdk.STS({ apiVersion: '2011-06-15', stsRegionalEndpoints: 'regional', region });
     const {
       Credentials: { AccessKeyId: accessKeyId, SecretAccessKey: secretAccessKey, SessionToken: sessionToken },
     } = await sts
@@ -224,7 +225,8 @@ class ProvisionEnvironment extends StepBase {
       this.payload.string('roleExternalId'),
     ]);
 
-    const sts = new aws.sdk.STS();
+    const region = process.env.AWS_REGION;
+    const sts = new aws.sdk.STS({ apiVersion: '2011-06-15', stsRegionalEndpoints: 'regional', region });
     const {
       Credentials: { AccessKeyId: accessKeyId, SecretAccessKey: secretAccessKey, SessionToken: sessionToken },
     } = await sts

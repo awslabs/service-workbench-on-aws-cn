@@ -491,7 +491,8 @@ class ProvisionAccount extends StepBase {
       this.payload.string('externalId'),
       this.payload.string('masterRoleArn'),
     ]);
-    const sts = new aws.sdk.STS();
+    const region = process.env.AWS_REGION;
+    const sts = new aws.sdk.STS({ apiVersion: '2011-06-15', stsRegionalEndpoints: 'regional', region });
     const {
       Credentials: { AccessKeyId: accessKeyId, SecretAccessKey: secretAccessKey, SessionToken: sessionToken },
     } = await sts
@@ -514,7 +515,8 @@ class ProvisionAccount extends StepBase {
       this.payload.string('externalId'),
     ]);
 
-    const sts = new aws.sdk.STS();
+    const region = process.env.AWS_REGION;
+    const sts = new aws.sdk.STS({ apiVersion: '2011-06-15', stsRegionalEndpoints: 'regional', region });
     const {
       Credentials: { AccessKeyId: accessKeyId, SecretAccessKey: secretAccessKey, SessionToken: sessionToken },
     } = await sts

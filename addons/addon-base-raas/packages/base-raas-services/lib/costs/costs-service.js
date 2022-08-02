@@ -217,8 +217,8 @@ class CostsService extends Service {
     );
 
     const by = _.get(requestContext, 'principalIdentifier.uid');
-    const region = this.settings.get(settingKeys.awsRegion);
-    const sts = new aws.sdk.STS({ region });
+    const region = process.env.AWS_REGION;
+    const sts = new aws.sdk.STS({ apiVersion: '2011-06-15', stsRegionalEndpoints: 'regional', region });
     const {
       Credentials: { AccessKeyId: accessKeyId, SecretAccessKey: secretAccessKey, SessionToken: sessionToken },
     } = await sts

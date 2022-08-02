@@ -59,7 +59,6 @@ class StopEc2EnvironmentSc extends StepBase {
       }
     }
     await this.updateEnvironment({ status: 'STOPPING', inWorkflow: 'true' });
-
     this.state.setKey('STATE_INSTANCE_ID', instanceId);
 
     return this.wait(5)
@@ -103,8 +102,9 @@ class StopEc2EnvironmentSc extends StepBase {
       this.payload.string('cfnExecutionRole'),
       this.payload.string('roleExternalId'),
     ]);
+    const region = process.env.AWS_REGION;
+    const sts = new aws.sdk.STS({ apiVersion: '2011-06-15', stsRegionalEndpoints: 'regional', region });
 
-    const sts = new aws.sdk.STS();
     const {
       Credentials: { AccessKeyId: accessKeyId, SecretAccessKey: secretAccessKey, SessionToken: sessionToken },
     } = await sts
@@ -114,7 +114,6 @@ class StopEc2EnvironmentSc extends StepBase {
         ExternalId,
       })
       .promise();
-
     return new aws.sdk.EC2({ accessKeyId, secretAccessKey, sessionToken });
   }
 

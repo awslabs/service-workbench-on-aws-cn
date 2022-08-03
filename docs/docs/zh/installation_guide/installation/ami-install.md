@@ -15,9 +15,10 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
      + 安装packer程序, 参考[Installing Packer](https://learn.hashicorp.com/tutorials/packer/get-started-install-cli)
      + 切换到包含机器映像源的目录并构建 AMI。确保在运行此命令之前已设置环境变量“STAGE_NAME”。
-2. 验证 AMI 是否已创建。在 Service Workbench `main/solution/machine-images` 目录中:
+2. 在 Service Workbench `main/solution/machine-images` 目录中:
       `pnpx sls build-image -s ${STAGE_NAME}`
 
+### 验证 AMI 是否已创建
 在 Amazon EC2 服务控制台中，在左侧导航中选择 AMI。您应该会看到 EC2-LINUX、EC2-WINDOWS 和 Amazon EMR 的 AMI。
 
 <img src={useBaseUrl('img/deployment/installation/AMI.png')} />

@@ -350,6 +350,9 @@ module.exports = {
       {
         "开发手册": ["zh/development/introduction"],
       },
+    ],
+    动手实践: [
+      "workshop/workshop_guide"
     ]
   },
 };

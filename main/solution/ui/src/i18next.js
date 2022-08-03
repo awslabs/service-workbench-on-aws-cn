@@ -11,10 +11,10 @@ i18next
   .use(Backend)
   .use(LanguageDetector)
   .init({
-    ns: ['common', 'accounts', 'workspaces'],
+    ns: ['common', 'accounts', 'workspaces', 'studies', 'files'],
     defaultNS: 'common',
     fallbackLng: 'en',
-    debug: true,
+    debug: false,
 
     interpolation: {
       escapeValue: false, // not needed for react as it escapes by default

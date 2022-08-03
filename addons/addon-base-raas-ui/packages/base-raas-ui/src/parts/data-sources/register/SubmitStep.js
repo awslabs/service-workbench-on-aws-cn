@@ -199,7 +199,7 @@ class SubmitStep extends React.Component {
             primary
             icon="right arrow"
             labelPosition="right"
-            content="Next"
+            content={i18next.t('next')}
             loading={running}
             disabled={disabled}
             onClick={this.handleNext}
@@ -231,7 +231,7 @@ class SubmitStep extends React.Component {
           <Button
             floated="right"
             className="ml2"
-            content="Previous"
+            content={i18next.t('previous')}
             disabled={disabled}
             onClick={this.handlePrevious}
           />

@@ -381,7 +381,7 @@ class UserOnboarding extends React.Component {
         )}
         {this.onboardingStep < this.onboardingSteps - 1 && (
           <Button
-            content="Next"
+            content={i18next.t('next')}
             icon="right arrow"
             labelPosition="right"
             color="blue"
@@ -390,7 +390,7 @@ class UserOnboarding extends React.Component {
           />
         )}
         {this.onboardingStep === this.onboardingSteps - 1 && (
-          <Button content="Save" color="blue" onClick={this.onboardingSave} />
+          <Button content={i18next.t('save')} color="blue" onClick={this.onboardingSave} />
         )}
       </>
     );

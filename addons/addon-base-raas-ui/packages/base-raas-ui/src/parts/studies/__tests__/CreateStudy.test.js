@@ -17,6 +17,28 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import CreateStudy from '../CreateStudy';
 
+jest.mock('react-i18next', () => ({
+  withTranslation: () => Component => {
+    Component.defaultProps = { ...Component.defaultProps, t: () => '' };
+    return Component;
+  },
+  initReactI18next: {
+    type: '3rdParty',
+    init: jest.fn(),
+  },
+}));
+
+jest.mock('react-i18next', () => ({
+  withTranslation: () => Component => {
+    Component.defaultProps = { ...Component.defaultProps, t: () => '' };
+    return Component;
+  },
+  initReactI18next: {
+    type: '3rdParty',
+    init: jest.fn(),
+  },
+}));
+
 jest.mock('@amzn/base-ui/dist/helpers/notification');
 const displayErrorMock = require('@amzn/base-ui/dist/helpers/notification');
 

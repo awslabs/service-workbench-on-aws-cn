@@ -20,11 +20,14 @@ import { decorate, observable, action, runInAction } from 'mobx';
 import { Button, Dimmer, Header, List, Loader, Radio, Segment } from 'semantic-ui-react';
 import _ from 'lodash';
 
+import i18next from 'i18next';
+import { initReactI18next, withTranslation } from 'react-i18next';
 import { getAddUserForm, getAddUserFormFields } from '../../models/forms/AddUserForm';
 import { displayError } from '../../helpers/notification';
 import { createLink } from '../../helpers/routing';
 import validate from '../../models/forms/Validate';
 
+i18next.use(initReactI18next);
 class AddUser extends React.Component {
   constructor(props) {
     super(props);
@@ -166,7 +169,7 @@ class AddUser extends React.Component {
           Add User
         </Button>
         <Button floated="right" disabled={processing} onClick={this.handleCancel}>
-          Cancel
+          {i18next.t('cancel')}
         </Button>
       </div>
     );
@@ -253,4 +256,4 @@ decorate(AddUser, {
   user: observable,
   validationErrors: observable,
 });
-export default inject('userStore', 'usersStore')(withRouter(observer(AddUser)));
+export default withTranslation()(inject('userStore', 'usersStore')(withRouter(observer(AddUser))));

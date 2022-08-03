@@ -72,8 +72,8 @@ class AwsAccountUpdatePage extends React.Component {
           <Message icon>
             <Icon name="circle notched" loading />
             <Message.Content>
-              <Message.Header>{i18next.t('addAccountPage.loading.title', { ns: 'accounts' })}</Message.Header>
-              {i18next.t('addAccountPage.loading.description', { ns: 'accounts' })}
+              <Message.Header>{i18next.t('addAccountPage.loading.header', { ns: 'accounts' })}</Message.Header>
+              {i18next.t('addAccountPage.loading.subheader', { ns: 'accounts' })}
             </Message.Content>
           </Message>
         </Container>

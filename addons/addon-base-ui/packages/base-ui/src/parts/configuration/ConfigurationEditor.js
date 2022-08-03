@@ -19,9 +19,12 @@ import { observer } from 'mobx-react';
 import { decorate, action } from 'mobx';
 import { Button, Icon, Segment, Step } from 'semantic-ui-react';
 
+import i18next from 'i18next';
+import { initReactI18next, withTranslation } from 'react-i18next';
 import Form from '../helpers/fields/Form';
 import InputEntriesRenderer from './InputEntriesRenderer';
 
+i18next.use(initReactI18next);
 // expected props
 // - model - an instance of the ConfigurationEditor model instance (via props)
 // - onCancel (via props) is called after all the necessary clean up
@@ -100,7 +103,7 @@ class ConfigurationEditor extends React.Component {
                 className="ml2"
                 labelPosition="right"
               >
-                Next
+                {i18next.t('next')}
                 <Icon name="right arrow" />
               </Button>
               {hasPrevious && (
@@ -112,7 +115,7 @@ class ConfigurationEditor extends React.Component {
                   labelPosition="left"
                   onClick={this.handlePrevious}
                 >
-                  Previous
+                  {i18next.t('previous')}
                   <Icon name="left arrow" />
                 </Button>
               )}
@@ -120,7 +123,7 @@ class ConfigurationEditor extends React.Component {
                 Clear
               </Button>
               <Button floated="left" disabled={processing} onClick={onCancel}>
-                Cancel
+                {i18next.t('cancel')}
               </Button>
             </div>
           </>
@@ -162,4 +165,4 @@ decorate(ConfigurationEditor, {
   handleClear: action,
 });
 
-export default observer(ConfigurationEditor);
+export default withTranslation()(observer(ConfigurationEditor));

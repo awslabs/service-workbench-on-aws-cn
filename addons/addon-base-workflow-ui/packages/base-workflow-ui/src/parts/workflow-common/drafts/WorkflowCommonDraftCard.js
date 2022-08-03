@@ -22,8 +22,11 @@ import { Header, Label, Button, Icon, Modal } from 'semantic-ui-react';
 import c from 'classnames';
 import { displayError, displaySuccess } from '@amzn/base-ui/dist/helpers/notification';
 
+import i18next from 'i18next';
+import { initReactI18next, withTranslation } from 'react-i18next';
 import getUIState from '../component-states/WorkflowCommonCardState';
 
+i18next.use(initReactI18next);
 // expected props
 // - draft - a WorkflowTemplateDraft or WorkflowDraft model instance (via props)
 // - draftsStore (via props) (either workflowTemplateDraftsStore or workflowDraftsStore)
@@ -157,7 +160,7 @@ class WorkflowCommonDraftCard extends React.Component {
         </Modal.Content>
         <Modal.Actions>
           <Button disabled={progress} onClick={this.hideDeleteDialog}>
-            Cancel
+            {i18next.t('cancel')}
           </Button>
           <Button loading={progress} disabled={progress} color="red" onClick={this.handleDeleteDraft}>
             <Icon name="remove" /> Delete
@@ -196,4 +199,4 @@ decorate(WorkflowCommonDraftCard, {
   deletingInProgress: observable,
 });
 
-export default inject('userDisplayName')(observer(WorkflowCommonDraftCard));
+export default withTranslation()(inject('userDisplayName')(observer(WorkflowCommonDraftCard)));

@@ -20,7 +20,11 @@ import { Button, Dimmer, Header, Icon, Segment, Table } from 'semantic-ui-react'
 
 import Form from '@amzn/base-ui/dist/parts/helpers/fields/Form';
 import NameValuesEditor from '@amzn/base-ui/dist/parts/helpers/fields/NameValuesEditor';
+import i18next from 'i18next';
+import { initReactI18next, withTranslation } from 'react-i18next';
 import BaseEnvTypeConfigStep from './BaseEnvTypeConfigStep';
+
+i18next.use(initReactI18next);
 
 class TagsStep extends BaseEnvTypeConfigStep {
   constructor(props) {
@@ -93,7 +97,7 @@ class TagsStep extends BaseEnvTypeConfigStep {
           <Button
             className="ml2 mb3"
             primary
-            content="Previous"
+            content={i18next.t('previous')}
             disabled={processing || !this.shouldEnableActionButtons}
             floated="right"
             onClick={this.props.onPrevious}
@@ -106,7 +110,7 @@ class TagsStep extends BaseEnvTypeConfigStep {
           onClick={onCancel}
           floated="left"
         >
-          Cancel
+          {i18next.t('cancel')}
         </Button>
       </div>
     );
@@ -128,4 +132,4 @@ decorate(TagsStep, {
   processing: observable,
   shouldEnableActionButtons: observable,
 });
-export default observer(TagsStep);
+export default withTranslation()(observer(TagsStep));

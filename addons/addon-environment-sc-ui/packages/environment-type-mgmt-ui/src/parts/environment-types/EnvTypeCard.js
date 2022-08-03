@@ -22,8 +22,11 @@ import { action, computed, decorate, observable, runInAction } from 'mobx';
 import { displayError } from '@amzn/base-ui/dist/helpers/notification';
 import { gotoFn } from '@amzn/base-ui/dist/helpers/routing';
 
+import i18next from 'i18next';
+import { initReactI18next, withTranslation } from 'react-i18next';
 import * as EnvTypeStatusEnum from '../../models/environment-types/EnvTypeStatusEnum';
 
+i18next.use(initReactI18next);
 class EnvTypeCard extends Component {
   constructor(props) {
     super(props);
@@ -149,7 +152,7 @@ class EnvTypeCard extends Component {
             onClick={this.hideDeleteDialog}
           >
             <Icon name="close" />
-            Cancel
+            {i18next.t('cancel')}
           </Button>
           <Button
             basic
@@ -229,4 +232,4 @@ decorate(EnvTypeCard, {
   showDeleteDialog: action,
   hideDeleteDialog: action,
 });
-export default inject('pluginRegistry')(withRouter(observer(EnvTypeCard)));
+export default withTranslation()(inject('pluginRegistry')(withRouter(observer(EnvTypeCard))));

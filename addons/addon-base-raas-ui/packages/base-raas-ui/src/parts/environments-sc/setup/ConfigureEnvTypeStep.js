@@ -186,8 +186,8 @@ class ConfigureEnvTypeStep extends React.Component {
         <Segment placeholder className="mt2">
           <Header icon className="color-grey">
             <Icon name="server" />
-            {i18next.t('noWorkspaceConfs.title', { ns: 'workspaces' })}
-            <Header.Subheader>{i18next.t('noWorkspaceConfs.decription', { ns: 'workspaces' })}</Header.Subheader>
+            {i18next.t('noWorkspaceConfs.header', { ns: 'workspaces' })}
+            <Header.Subheader>{i18next.t('noWorkspaceConfs.subheader', { ns: 'workspaces' })}</Header.Subheader>
           </Header>
         </Segment>
         {this.renderButtons()}
@@ -210,7 +210,7 @@ class ConfigureEnvTypeStep extends React.Component {
           icon="left arrow"
           labelPosition="left"
           className="ml2"
-          content="Previous"
+          content={i18next.t('previous')}
           onClick={this.handlePrevious}
         />
       </div>

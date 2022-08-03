@@ -18,6 +18,10 @@ import { runInAction } from 'mobx';
 import { Button, Segment } from 'semantic-ui-react';
 
 import Form from '@amzn/base-ui/dist/parts/helpers/fields/Form';
+import i18next from 'i18next';
+import { initReactI18next } from 'react-i18next';
+
+i18next.use(initReactI18next);
 
 class BaseEnvTypeConfigStep extends React.Component {
   constructor(props) {
@@ -61,14 +65,14 @@ class BaseEnvTypeConfigStep extends React.Component {
           <Button
             className="ml2 mb2"
             primary
-            content="Previous"
+            content={i18next.t('previous')}
             disabled={processing}
             floated="right"
             onClick={this.props.onPrevious}
           />
         )}
         <Button data-testid="cancel-button" basic color="grey" disabled={processing} onClick={onCancel} floated="left">
-          Cancel
+          {i18next.t('cancel')}
         </Button>
       </div>
     );

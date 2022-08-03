@@ -23,8 +23,12 @@ import { Button, Grid, Header, Segment } from 'semantic-ui-react';
 import { displayError, displaySuccess, displayWarning } from '@amzn/base-ui/dist/helpers/notification';
 
 import toastr from 'toastr';
+import i18next from 'i18next';
+import { initReactI18next, withTranslation } from 'react-i18next';
 import StudyFileDropZone from './FileDropZone';
 import FileUploadTable from './FileUploadTable';
+
+i18next.use(initReactI18next);
 
 const maximumUploadFilesLimit = 1000;
 const FileUpload = observer(
@@ -41,7 +45,7 @@ const FileUpload = observer(
   }) => {
     return (
       <Segment vertical>
-        <Header as="h3">Upload Files</Header>
+        <Header as="h3">{i18next.t('uploadFiles', { ns: 'files' })}</Header>
         <StudyFileDropZone
           state={state}
           onSelectFiles={onSelectFiles}
@@ -77,24 +81,24 @@ const FileUpload = observer(
                         }
                       }}
                     >
-                      Upload Files
+                      {i18next.t('uploadFiles', { ns: 'files' })}
                     </Button>
                   ) : state === 'UPLOADING' ? (
                     <Button floated="right" basic color="blue" loading disabled>
-                      Uploading
+                      {i18next.t('uploading', { ns: 'files' })}
                     </Button>
                   ) : state === 'COMPLETE' ? (
                     <Button floated="right" basic color="blue" onClick={onClickUploadMore}>
-                      Upload More Files
+                      {i18next.t('uploadMoreFiles', { ns: 'files' })}
                     </Button>
                   ) : null}
                   {state === 'PENDING' ? (
                     <Button floated="right" basic onClick={onCancelSelectFiles}>
-                      Cancel
+                      {i18next.t('cancel')}
                     </Button>
                   ) : state === 'UPLOADING' ? (
                     <Button floated="right" basic onClick={onCancelUpload}>
-                      Cancel
+                      {i18next.t('cancel')}
                     </Button>
                   ) : null}
                 </Grid.Column>
@@ -173,14 +177,14 @@ class ConnectedFileUpload extends React.Component {
         }
       });
       if (errors > 0 && success > 0) {
-        displayWarning(`File uploads completed with ${errors} errors`);
+        displayWarning(i18next.t('start.es', { ns: 'files', errors }));
       } else if (errors > 0) {
-        displayError(`File uploads failed`);
+        displayError(i18next.t('start.e', { ns: 'files' }));
       } else if (success > 0) {
-        displaySuccess(`File uploads completed successfully!`);
+        displaySuccess(i18next.t('start.s', { ns: 'files' }));
       }
     } catch (err) {
-      displayError(`File uploads failed: ${err}`);
+      displayError(i18next.t('start.err', { ns: 'files', err }));
     }
   };
 
@@ -227,4 +231,4 @@ ConnectedFileUpload.propTypes = {
 decorate(ConnectedFileUpload, {
   fileUploadGroup: observable,
 });
-export default inject('fileUploadsStore')(observer(ConnectedFileUpload));
+export default withTranslation()(inject('fileUploadsStore')(observer(ConnectedFileUpload)));

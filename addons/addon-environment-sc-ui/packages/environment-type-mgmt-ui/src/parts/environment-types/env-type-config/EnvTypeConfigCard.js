@@ -21,8 +21,11 @@ import { Button, Card, Divider, Header, Icon, Modal } from 'semantic-ui-react';
 import { action, computed, decorate, observable, runInAction } from 'mobx';
 
 import { displayError } from '@amzn/base-ui/dist/helpers/notification';
+import i18next from 'i18next';
+import { initReactI18next, withTranslation } from 'react-i18next';
 import EnvTypeConfigEditor from './EnvTypeConfigEditor';
 
+i18next.use(initReactI18next);
 class EnvTypeConfigCard extends Component {
   constructor(props) {
     super(props);
@@ -146,7 +149,7 @@ class EnvTypeConfigCard extends Component {
             onClick={this.hideDeleteDialog}
           >
             <Icon name="close" />
-            Cancel
+            {i18next.t('cancel')}
           </Button>
           <Button
             basic
@@ -227,4 +230,4 @@ decorate(EnvTypeConfigCard, {
   showEditorDialog: action,
   hideEditorDialog: action,
 });
-export default withRouter(observer(EnvTypeConfigCard));
+export default withTranslation()(withRouter(observer(EnvTypeConfigCard)));

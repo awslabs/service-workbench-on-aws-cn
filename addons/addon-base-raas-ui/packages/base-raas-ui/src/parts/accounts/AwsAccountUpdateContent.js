@@ -245,8 +245,8 @@ class AwsAccountUpdateContent extends React.Component {
           <List.Item>
             {i18next.t('onboard.step1', { ns: 'accounts' })}
             <Message className="mr3 mt2 mb2">
-              <Message.Header>{i18next.t('onboard.attention.title', { ns: 'accounts' })}</Message.Header>
-              <p>{i18next.t('onboard.attention.description', { ns: 'accounts', accountId, region })}</p>
+              <Message.Header>{i18next.t('onboard.attention.header', { ns: 'accounts' })}</Message.Header>
+              <p>{i18next.t('onboard.attention.subheader', { ns: 'accounts', accountId, region })}</p>
             </Message>
           </List.Item>
           {isAppStreamEnabled && this.renderEnableFirstUseAppStreamInstructions()}
@@ -256,8 +256,8 @@ class AwsAccountUpdateContent extends React.Component {
               <div className="flex-auto">
                 {shouldShowWarning && (
                   <Message warning>
-                    <Message.Header>{i18next.t('onboard.caution.title', { ns: 'accounts' })}</Message.Header>
-                    <p>{i18next.t('onboard.caution.description', { ns: 'accounts' })}</p>
+                    <Message.Header>{i18next.t('onboard.caution.header', { ns: 'accounts' })}</Message.Header>
+                    <p>{i18next.t('onboard.caution.subheader', { ns: 'accounts' })}</p>
                   </Message>
                 )}
                 {shouldShowWarning && (

@@ -131,8 +131,8 @@ class EnvironmentsList extends React.Component {
       <Segment placeholder>
         <Header icon className="color-grey">
           <Icon name="clipboard outline" />
-          {i18next.t('researchWorkspace.empty.title', { ns: 'workspaces' })}
-          <Header.Subheader>{i18next.t('researchWorkspace.empty.description', { ns: 'workspaces' })}</Header.Subheader>
+          {i18next.t('researchWorkspace.empty.header', { ns: 'workspaces' })}
+          <Header.Subheader>{i18next.t('researchWorkspace.empty.subheader', { ns: 'workspaces' })}</Header.Subheader>
         </Header>
       </Segment>
     );

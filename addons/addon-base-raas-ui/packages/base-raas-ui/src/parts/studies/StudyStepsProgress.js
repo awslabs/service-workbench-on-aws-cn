@@ -45,24 +45,24 @@ const Component = observer(({ currentStep = {}, envTypeImmutable = false }) => {
       <Step active={activeIndex === 0} disabled={activeIndex < 0}>
         <Icon name="search" color="blue" />
         <Step.Content>
-          <Step.Title>Find &amp; Select Studies</Step.Title>
-          <Step.Description>Select the desired studies</Step.Description>
+          <Step.Title>{i18next.t('findAndSelectStudies.header', { ns: 'studies' })}</Step.Title>
+          <Step.Description>{i18next.t('findAndSelectStudies.subheader', { ns: 'studies' })}</Step.Description>
         </Step.Content>
       </Step>
       {!envTypeImmutable && (
         <Step active={activeIndex === 1} disabled={activeIndex < 1}>
           <Icon name="server" />
           <Step.Content>
-            <Step.Title>{i18next.t('selectCompute.title', { ns: 'workspaces' })}</Step.Title>
-            <Step.Description>{i18next.t('selectCompute.description', { ns: 'workspaces' })}</Step.Description>
+            <Step.Title>{i18next.t('selectCompute.header', { ns: 'workspaces' })}</Step.Title>
+            <Step.Description>{i18next.t('selectCompute.subheader', { ns: 'workspaces' })}</Step.Description>
           </Step.Content>
         </Step>
       )}
       <Step active={activeIndex === 2} disabled={activeIndex < 2}>
         <Icon name="hdd outline" />
         <Step.Content>
-          <Step.Title>{i18next.t('createWorkspace.title', { ns: 'workspaces' })}</Step.Title>
-          <Step.Description>{i18next.t('createWorkspace.description', { ns: 'workspaces' })}</Step.Description>
+          <Step.Title>{i18next.t('createWorkspace.header', { ns: 'workspaces' })}</Step.Title>
+          <Step.Description>{i18next.t('createWorkspace.subheader', { ns: 'workspaces' })}</Step.Description>
         </Step.Content>
       </Step>
     </Step.Group>

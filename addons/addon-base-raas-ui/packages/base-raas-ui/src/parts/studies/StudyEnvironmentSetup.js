@@ -90,7 +90,7 @@ class StudyEnvironmentSetup extends React.Component {
       <div className="flex">
         <Header as="h3" className="color-grey mt1 mb0 flex-auto">
           <Icon name="book" className="align-top" />
-          <Header.Content className="left-align">Studies</Header.Content>
+          <Header.Content className="left-align">{i18next.t('study.name_s', { ns: 'studies' })}</Header.Content>
         </Header>
       </div>
     );
@@ -159,7 +159,7 @@ class StudyEnvironmentSetup extends React.Component {
           labelPosition="right"
           className="ml2"
           primary
-          content="Next"
+          content={i18next.t('next')}
           disabled
         />
         <Button
@@ -167,7 +167,7 @@ class StudyEnvironmentSetup extends React.Component {
           icon="left arrow"
           labelPosition="left"
           className="ml2"
-          content="Previous"
+          content={i18next.t('previous')}
           onClick={this.handlePrevious}
         />
       </div>

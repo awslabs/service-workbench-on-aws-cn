@@ -25,7 +25,10 @@ import { isStoreError, isStoreLoading, isStoreNew, stopHeartbeat } from '@amzn/b
 import BasicProgressPlaceholder from '@amzn/base-ui/dist/parts/helpers/BasicProgressPlaceholder';
 import ErrorBox from '@amzn/base-ui/dist/parts/helpers/ErrorBox';
 import UserLabels from '@amzn/base-ui/dist/parts/helpers/UserLabels';
+import i18next from 'i18next';
+import { initReactI18next, withTranslation } from 'react-i18next';
 
+i18next.use(initReactI18next);
 // expected props
 // - study
 // - userStore (via injection)
@@ -128,9 +131,9 @@ class StudyPermissionsTable extends React.Component {
           <Table data-testid="edit-permission-table" striped className="mt0">
             <Table.Header>
               <Table.Row>
-                <Table.HeaderCell width={2}>Permission Level</Table.HeaderCell>
+                <Table.HeaderCell width={2}>{i18next.t('permissionTable.level', { ns: 'studies' })}</Table.HeaderCell>
                 <Table.HeaderCell>
-                  Users
+                  {i18next.t('permissionTable.users', { ns: 'studies' })}
                   {isEditable && !this.editModeOn && (
                     <Icon name="pencil" className="ml1 cursor-pointer" color="grey" onClick={this.enableEditMode} />
                   )}
@@ -145,7 +148,7 @@ class StudyPermissionsTable extends React.Component {
                 const users = this.usersStore.asUserObjects(userIdentifiers);
                 return (
                   <Table.Row key={userType}>
-                    <Table.Cell style={{ textTransform: 'capitalize' }}>{userType}</Table.Cell>
+                    <Table.Cell>{i18next.t(`permissionTable.${userType}`, { ns: 'studies' })}</Table.Cell>
                     <Table.Cell>
                       {this.editModeOn ? this.renderUsersDropdown(userType) : <UserLabels users={users} />}
                     </Table.Cell>
@@ -165,11 +168,11 @@ class StudyPermissionsTable extends React.Component {
                 color="blue"
                 icon
               >
-                Submit
+                {i18next.t('submit')}
               </Button>
 
               <Button floated="right" disabled={this.isProcessing} onClick={this.resetForm} size="mini">
-                Cancel
+                {i18next.t('cancel')}
               </Button>
             </>
           )}
@@ -221,5 +224,5 @@ decorate(StudyPermissionsTable, {
   resetForm: action,
   submitUpdate: action,
 });
-export default inject('userStore', 'usersStore')(observer(StudyPermissionsTable));
+export default withTranslation()(inject('userStore', 'usersStore')(observer(StudyPermissionsTable)));
 export { getStaleUsers };

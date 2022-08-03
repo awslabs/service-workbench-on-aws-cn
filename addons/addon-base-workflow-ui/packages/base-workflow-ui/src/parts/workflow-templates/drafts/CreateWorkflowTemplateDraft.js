@@ -27,9 +27,12 @@ import Form from '@amzn/base-ui/dist/parts/helpers/fields/Form';
 import DropDown from '@amzn/base-ui/dist/parts/helpers/fields/DropDown';
 import Input from '@amzn/base-ui/dist/parts/helpers/fields/Input';
 
+import i18next from 'i18next';
+import { initReactI18next, withTranslation } from 'react-i18next';
 import getCreateDraftForm from '../../../models/forms/CreateWorkflowTemplateDraftForm';
 import ProgressPlaceHolder from '../../workflow-common/ProgressPlaceholder';
 
+i18next.use(initReactI18next);
 // expected props
 // - onCancel (via prop) called on cancel
 // - workflowTemplateDraftsStore (via injection)
@@ -203,7 +206,7 @@ class CreateWorkflowTemplateDraft extends React.Component {
                   Create Draft
                 </Button>
                 <Button floated="right" disabled={processing} onClick={onCancel}>
-                  Cancel
+                  {i18next.t('cancel')}
                 </Button>
               </div>
             </>
@@ -221,7 +224,6 @@ decorate(CreateWorkflowTemplateDraft, {
   handleFormError: action,
 });
 
-export default inject(
-  'workflowTemplateDraftsStore',
-  'workflowTemplatesStore',
-)(withRouter(observer(CreateWorkflowTemplateDraft)));
+export default withTranslation()(
+  inject('workflowTemplateDraftsStore', 'workflowTemplatesStore')(withRouter(observer(CreateWorkflowTemplateDraft))),
+);

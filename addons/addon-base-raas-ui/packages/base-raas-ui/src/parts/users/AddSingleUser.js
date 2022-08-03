@@ -31,9 +31,12 @@ import { gotoFn } from '@amzn/base-ui/dist/helpers/routing';
 import ErrorBox from '@amzn/base-ui/dist/parts/helpers/ErrorBox';
 import DropDown from '@amzn/base-ui/dist/parts/helpers/fields/DropDown';
 import Input from '@amzn/base-ui/dist/parts/helpers/fields/Input';
+import i18next from 'i18next';
+import { initReactI18next, withTranslation } from 'react-i18next';
 import { getAddUserForm, getAddUserFormFields } from '../../models/forms/AddUserForm';
 import { toIdpFromValue, toIdpOptions } from '../../models/forms/UserFormUtils';
 
+i18next.use(initReactI18next);
 // expected props
 // - userStore (via injection)
 // - usersStore (via injection)
@@ -133,7 +136,7 @@ class AddSingleUser extends React.Component {
                   Add User
                 </Button>
                 <Button floated="right" disabled={processing} onClick={onCancel}>
-                  Cancel
+                  {i18next.t('cancel')}
                 </Button>
               </div>
             </>
@@ -235,11 +238,13 @@ decorate(AddSingleUser, {
   authenticationProviderConfigsStore: computed,
 });
 
-export default inject(
-  'userStore',
-  'usersStore',
-  'userRolesStore',
-  'awsAccountsStore',
-  'projectsStore',
-  'authenticationProviderConfigsStore',
-)(withRouter(observer(AddSingleUser)));
+export default withTranslation()(
+  inject(
+    'userStore',
+    'usersStore',
+    'userRolesStore',
+    'awsAccountsStore',
+    'projectsStore',
+    'authenticationProviderConfigsStore',
+  )(withRouter(observer(AddSingleUser))),
+);

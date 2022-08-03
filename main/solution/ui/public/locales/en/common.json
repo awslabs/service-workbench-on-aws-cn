@@ -1,14 +1,23 @@
 {
-    "lang": "Language",
-    "edit": "Edit",
     "save": "Save",
-    "detail": "Detail",
-    "details": "Details",
     "cancel": "Cancel",
     "checking": "Checking",
     "connect": "Connect",
-    "terminate": "Terminate",
+    "detail": "Detail",
+    "details": "Details",
+    "edit": "Edit",
+    "files": "Files",
+    "lang": "Language",
+    "next": "Next",
+    "permissions": "Permissions",
+    "pending": "Pending",
+    "previous": "Previous",
     "start": "Start",
     "stop": "Stop",
-    "unavailable": "Unavailable"
+    "submit": "Submit",
+    "terminate": "Terminate",
+    "unavailable": "Unavailable",
+    "upload": {
+        "uploadFiles": "Upload Files"
+    }
 }

@@ -7,14 +7,14 @@
     "updateAccount": "更新 AWS 账号",
     "refreshAccount": "刷新账号状态",
     "noAccount": {
-        "title": "没有与所选过滤器匹配的帐户。",
-        "description": "选择“全部”以查看所有帐户"
+        "header": "没有与所选过滤器匹配的帐户。",
+        "subheader": "选择“全部”以查看所有帐户"
     },
     "addAccountPage": {
         "onboardAccount": "添加 AWS 账号",
         "loading": {
-            "title": "加载中...",
-            "description": "请稍等片刻。"
+            "header": "加载中...",
+            "subheader": "请稍等片刻。"
         }
     },
     "onboard": {
@@ -23,13 +23,13 @@
         "steps": "步骤",
         "step1": "在一个独立的浏览器标签页中，使用正确的帐户登录到 aws 控制台。",
         "attention": {
-            "title": "注意",
-            "description": "请确保登录到 AWS 账号 #{{accountId}} 并切换到区域 {{region}}."
+            "header": "注意",
+            "subheader": "请确保登录到 AWS 账号 #{{accountId}} 并切换到区域 {{region}}."
         },
         "step2": "点击“创建堆栈”按钮，这一步会打开另一个独立的浏览器标签页并且访问CloudFormation控制台，在那里你可以检查堆栈信息并创建它。",
         "caution": {
-            "title": "警告！",
-            "description": "请注意，部署新的 CFN 堆栈可能会导致 SWB 中与此帐户关联的任何工作区变得不可用。若要继续，请确认位于下方的警告。"
+            "header": "警告！",
+            "subheader": "请注意，部署新的 CFN 堆栈可能会导致 SWB 中与此帐户关联的任何工作区变得不可用。若要继续，请确认位于下方的警告。"
         },
         "acknowledgement": "我知道重新添加此帐户可能会导致与此帐户关联的工作区变得不可用。",
         "createStack": "创建堆栈",

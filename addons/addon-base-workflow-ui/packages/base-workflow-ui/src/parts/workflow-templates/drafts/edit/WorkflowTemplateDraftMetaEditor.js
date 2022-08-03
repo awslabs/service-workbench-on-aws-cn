@@ -24,8 +24,11 @@ import Form from '@amzn/base-ui/dist/parts/helpers/fields/Form';
 import DropDown from '@amzn/base-ui/dist/parts/helpers/fields/DropDown';
 import Input from '@amzn/base-ui/dist/parts/helpers/fields/Input';
 import TextArea from '@amzn/base-ui/dist/parts/helpers/fields/TextArea';
+import i18next from 'i18next';
+import { initReactI18next, withTranslation } from 'react-i18next';
 import PropsOverrideTable from '../../PropertyOverrideTable';
 
+i18next.use(initReactI18next);
 // expected props
 // - editor (via props) an instance of the WorkflowTemplateDraftEditor model
 // - onCancel (via props)
@@ -174,7 +177,7 @@ class WorkflowTemplateDraftMetaEditor extends React.Component {
                 labelPosition="right"
                 disabled={processing}
                 className="ml2"
-                content="Next"
+                content={i18next.t('next')}
                 onClick={e => this.handleOnSubmitNext(e, onSubmit)}
               />
               {hasPrevious && (
@@ -195,10 +198,10 @@ class WorkflowTemplateDraftMetaEditor extends React.Component {
                 labelPosition="left"
                 disabled={processing}
                 className="ml2"
-                content="Save"
+                content={i18next.t('save')}
               />
               <Button floated="left" disabled={processing} onClick={onCancel}>
-                Cancel
+                {i18next.t('cancel')}
               </Button>
             </div>
           </>
@@ -219,4 +222,4 @@ decorate(WorkflowTemplateDraftMetaEditor, {
   clickedOnNext: observable,
 });
 
-export default inject()(observer(WorkflowTemplateDraftMetaEditor));
+export default withTranslation()(inject()(observer(WorkflowTemplateDraftMetaEditor)));

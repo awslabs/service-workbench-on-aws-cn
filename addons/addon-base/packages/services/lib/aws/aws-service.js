@@ -92,10 +92,7 @@ class AwsService extends Service {
    */
   async getCredentialsForRole({ roleArn, roleSessionName, externalId }) {
     const awsRegion = this.settings.get(settingKeys.awsRegion);
-    const awsSuffix = this.awsSuffix;
-    const stsEndpoint = `https://sts.${awsRegion}.${awsSuffix}`;
-    const sts = new this.sdk.STS({ apiVersion: '2011-06-15', endpoint: stsEndpoint });
-
+    const sts = new this.sdk.STS({ apiVersion: '2011-06-15', stsRegionalEndpoints: 'regional', region: awsRegion });
     const envName = this.settings.get(settingKeys.envName);
     const params = {
       RoleArn: roleArn,

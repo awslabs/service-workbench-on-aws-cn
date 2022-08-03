@@ -34,7 +34,13 @@ OpenID Connect (OIDC) IdP 是 [Cognito User Pool][cognito] 的替代方案，用
     [![](../../../images/OIDC/endpoint-info.png)](../../../images/OIDC/endpoint-info.png)
 
 8. 将`Login Callback URL`和`Logout Callback URL`更新为你的IPC记录的域名。
-   例如:假设我们的 Service Workbench 域是 `www.swb-example.com`，请在 `Login Callback URL` 和 `Logout Callback URL` 中输入 `https://www.swb-example.com/`。
+   例如:假设我们的 Service Workbench 域名是 `www.swb-example.com`，请在 `Login Callback URL` 和 `Logout Callback URL` 中输入 `https://www.swb-example.com/`。
+   :::tip
+
+   请确保填入的URL以 "/" 结尾
+
+   :::
+
     [![](../../../images/OIDC/authentication-configuration.png)](../../../images/OIDC/authentication-configuration.png)
 
    如果我们不为 Service Workbench 使用自定义域，Service Workbench 会提供CloudFront域名来访问。所以我们需要将部署的Service Workbench CloudFront域名配置为`Login Callback URL`和`Logout Callback URL`，在部署Service Workbench之前，我们可以保留`Login Callback URL`和`Logout Callback URL`为`*`。 Service Workbench部署完成后，我们需要获取cloudfront domain并再次将其输入到`Login Callback URL`和`Logout Callback URL`中。
@@ -79,7 +85,13 @@ OpenID Connect (OIDC) IdP 是 [Cognito User Pool][cognito] 的替代方案，用
 
 6. 回到Keycloak控制台，在左侧导航栏选择**Clients**，然后选择**Create**。
 7. 输入客户 ID，必须包含 24 个字母（不区分大小写）或数字。记录后面会用到的**Client ID**。
-8. 更改客户端设置。在 `Valid Redirect URIs` 和 `Web Origins` 中输入 `https://<Service Workbench Console Domain>/`，如下图所示。
+8. 更改客户端设置。在 `Valid Redirect URIs` 和 `Web Origins` 中输入你的IPC记录的域名。
+   例如:假设我们的 Service Workbench 域名是 `www.swb-example.com`，请在 `Valid Redirect URIs` 和 `Web Origins` 中输入 `https://www.swb-example.com/`。
+   :::tip
+
+   请确保填入的URL以 "/" 结尾
+
+   :::
 
     [![](../../../images/OIDC/keycloak-client-setting.png)](../../../images/OIDC/keycloak-client-setting.png)
 
@@ -115,7 +127,12 @@ OpenID Connect (OIDC) IdP 是 [Cognito User Pool][cognito] 的替代方案，用
 6. 输入**App集成名称**，设置**Grant type**为**Authorization Code**。
     [![](../../../images/OIDC/okta-application-create.png)](../../../images/OIDC/okta-application-create.png)
 7. 将“登录重定向 URI”和“退出重定向 URI”更新为您的 IPC 记录的域名。
-例如:假设我们的 Service Workbench 域是 `www.swb-example.com`，请为 `Sign-in redirect URIs` 和 `Sign-out redirect` 输入 `https://www.swb-example.com/` URI。
+   例如:假设我们的 Service Workbench 域名是 `www.swb-example.com`，请为 `Sign-in redirect URIs` 和 `Sign-out redirect` 输入 `https://www.swb-example.com/` URI。
+   :::tip
+
+   请确保填入的URL以 "/" 结尾
+
+   :::
     [![](../../../images/OIDC/okta-application-url.png)](../../../images/OIDC/okta-application-url.png)
 
    如果我们不为 Service Workbench 使用自定义域，Service Workbench 会提供CloudFront域名来访问。所以我们需要将部署的Service Workbench CloudFront域名配置为`Sign-in redirect URIs`和`Sign-out redirect URIs`，在部署Service Workbench之前，我们可以保留`Sign-in redirect URIs`和`Sign-out redirect URIs`作为`*`。部署 Service Workbench 后，我们需要获取 cloudfront 域并再次将其输入到 `Sign-in redirect URIs` 和 `Sign-out redirect URIs` 中。

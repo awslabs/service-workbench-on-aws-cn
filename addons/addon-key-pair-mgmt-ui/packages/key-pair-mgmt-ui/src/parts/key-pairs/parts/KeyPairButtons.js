@@ -19,6 +19,10 @@ import { withRouter } from 'react-router-dom';
 import { Button, Modal } from 'semantic-ui-react';
 
 import { displayError, displaySuccess } from '@amzn/base-ui/dist/helpers/notification';
+import i18next from 'i18next';
+import { initReactI18next, withTranslation } from 'react-i18next';
+
+i18next.use(initReactI18next);
 
 // expected props
 // - keyPair (via prop)
@@ -47,7 +51,7 @@ class KeyPairButtons extends React.Component {
       const name = this.keyPair.name;
       const store = this.keyPairsStore;
       await store.deleteKeyPair(this.keyPair.id);
-      displaySuccess(`The key "${name}" was successfully deleted`);
+      displaySuccess(i18next.t('deleted', { ns: 'ssh', name }), i18next.t('success'));
     } catch (error) {
       displayError(error);
     } finally {
@@ -65,12 +69,15 @@ class KeyPairButtons extends React.Component {
         <Modal
           trigger={
             <Button floated="right" basic color="red" size="mini" className="mt1 mb1" loading={processing}>
-              Delete
+              {i18next.t('delete')}
             </Button>
           }
-          header="Are you sure?"
-          content="This action can not be reverted."
-          actions={['Cancel', { key: 'delete', content: 'Delete', negative: true, onClick: this.handleDelete }]}
+          header={i18next.t('delete.header', { ns: 'ssh' })}
+          content={i18next.t('delete.subheader', { ns: 'ssh' })}
+          actions={[
+            i18next.t('cancel'),
+            { key: 'delete', content: i18next.t('delete'), negative: true, onClick: this.handleDelete },
+          ]}
           size="mini"
         />
       </div>
@@ -86,4 +93,4 @@ decorate(KeyPairButtons, {
   handleDelete: action,
 });
 
-export default inject('keyPairsStore')(withRouter(observer(KeyPairButtons)));
+export default withTranslation()(inject('keyPairsStore')(withRouter(observer(KeyPairButtons))));

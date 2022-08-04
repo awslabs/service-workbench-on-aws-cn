@@ -59,7 +59,6 @@
         "error2": "If this workspace is provisioned in a new account, verify with your administer that the cost explorer feature is enabled for the account.",
         "error3": "The system returned this error message:"
     },
-    "created": "Created",
     "ScEnvironment": {
         "state": {
             "COMPLETED": {

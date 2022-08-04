@@ -26,6 +26,11 @@ const statuses = {
     display: 'Inactive',
     tip: 'You can not use this key when connecting to your workspaces.',
   },
+  error: {
+    color: 'red',
+    display: 'Error',
+    tip: 'Something not right',
+  },
 };
 
 // ==================================================================
@@ -57,11 +62,7 @@ const KeyPair = types
   // eslint-disable-next-line no-unused-vars
   .views(self => ({
     get statusInfo() {
-      const entry = statuses[self.status] || {
-        color: 'grey',
-        display: 'Unknown',
-        tip: 'Something not right',
-      };
+      const entry = statuses[self.status] || statuses.error;
       return entry;
     },
   }));

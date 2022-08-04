@@ -59,7 +59,6 @@
         "error2": "如果此工作区是在新帐户中部署的，请与您的管理员确认已为该帐户启用了Cost Explorer 功能。",
         "error3": "系统返回的错误信息如下所示："
     },
-    "created": "创建于",
     "ScEnvironment": {
         "state": {
             "COMPLETED": {

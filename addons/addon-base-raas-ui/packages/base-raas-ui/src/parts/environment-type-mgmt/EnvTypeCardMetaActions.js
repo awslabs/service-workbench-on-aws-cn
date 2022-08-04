@@ -19,6 +19,10 @@ import { Divider, Popup, Button } from 'semantic-ui-react';
 import { observer } from 'mobx-react';
 
 import { gotoFn } from '@amzn/base-ui/src/helpers/routing';
+import i18next from 'i18next';
+import { initReactI18next, withTranslation } from 'react-i18next';
+
+i18next.use(initReactI18next);
 
 /**
  * A plugin component that adds "Test Launch" and "Test launch with data" buttons on the environment type card for
@@ -36,18 +40,18 @@ class EnvTypeCardMetaActions extends Component {
           <Popup
             trigger={
               <Button basic onClick={this.handleTestClick}>
-                Test launch
+                {i18next.t('envTypeCardMetaActions.noData.trigger', { ns: 'types' })}
               </Button>
             }
-            content="Create a test Workspace"
+            content={i18next.t('envTypeCardMetaActions.noData.content', { ns: 'types' })}
           />
           <Popup
             trigger={
               <Button basic onClick={this.handleTestWithDataClick}>
-                Test launch with data
+                {i18next.t('envTypeCardMetaActions.withData.trigger', { ns: 'types' })}
               </Button>
             }
-            content="Create a test Workspace with data"
+            content={i18next.t('envTypeCardMetaActions.withData.content', { ns: 'types' })}
           />
         </>
       )
@@ -67,4 +71,4 @@ class EnvTypeCardMetaActions extends Component {
   };
 }
 
-export default withRouter(observer(EnvTypeCardMetaActions));
+export default withTranslation()(withRouter(observer(EnvTypeCardMetaActions)));

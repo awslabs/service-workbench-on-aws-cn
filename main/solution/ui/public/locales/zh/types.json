@@ -1,0 +1,145 @@
+{
+    "portfolioId": "产品组合编号",
+    "serviceCatalogProducts": {
+        "header": "AWS Service Catalog 产品列表",
+        "subheader": "目前可用的尚未导入的 AWS Service Catalog 产品"
+    },
+    "versions": {
+        "all": "所有版本",
+        "latest": "最新版本"
+    },
+    "workspaceTypes": {
+        "header": "工作区类型列表",
+        "subheader": "目前可用的已导入为环境类型的 AWS Service Catalog 产品"
+    },
+    "approved": "已批准",
+    "notApproved": "未批准",
+    "all": "全部",
+    "empty": {
+        "approved": "目前暂无任何已批准的环境类型",
+        "notApproved": "目前暂无任何需要批准的环境类型",
+        "all": {
+            "header": "目前暂无任何已导入为环境类型的 AWS Service Catalog 产品",
+            "subheader": "您可以导入那些属于 AWS Service Catalog 产品组合一部分的且与 AWS IAM 角色 “{{roleName}}” 共享了的 AWS Service Catalog 产品。"
+        }
+    },
+    "workspaceType": {
+        "delete": {
+            "header": "删除环境类型",
+            "p1": "确定要删除环境类型 {{name}}吗？",
+            "p2": "环境类型一旦被删除后将无法被用户使用。若想使用则需要您重新从 AWS Service Catalog 产品中导入它。",
+            "p3": "确定要删除吗？"
+        },
+        "edit": "编辑工作区类型",
+        "import": "导入工作区类型",
+        "save": "保存工作区类型",
+        "imported": "工作区类型 {{name}} 已导入",
+        "updated": "工作区类型 {{name}} 已更新",
+        "basicInformation": {
+            "title": "基本信息",
+            "desc": "输入该环境类型的基本信息"
+        },
+        "configurations": {
+            "title": "配置",
+            "desc": "使用预定义的 AWS CloudFormation 输入参数值来定义配置"
+        }
+    },
+    "workspaceConf": {
+        "delete": {
+            "header": "删除配置",
+            "p1": "确定要删除配置 {{name}} 吗？",
+            "p2": "配置一旦被删除后将无法被用户使用。若想使用则需要您重新创建它。",
+            "p3": "确定要删除吗？"
+        },
+        "empty": {
+            "header": "该工作区类型目前暂无任何配置",
+            "subheader": "配置是 AWS Service Catalog 产品预定义的输入参数的集合。启动此类工作区时，相关参数将显示为预设的内容。"
+        },
+        "edit": "编辑配置",
+        "add": "添加配置",
+        "updated": "配置 {{name}} 已更新",
+        "basicInformation": {
+            "title": "基本信息",
+            "desc": "输入该配置的基本信息"
+        },
+        "accessControl": {
+            "title": "访问控制",
+            "desc": "选择有权使用该配置的用户"
+        },
+        "inputParams": {
+            "title": "输入参数",
+            "desc": "设置 AWS CloudFormation 需要的参数值"
+        },
+        "tags": {
+            "title": "标签",
+            "desc": "为资源打标签"
+        }
+    },
+    "approve": "批准",
+    "revoke": "撤回",
+    "addEnvTypeBasicInfoForm": {
+        "name": {
+            "label": "名称",
+            "placeholder": "该工作区类型的名称",
+            "explain": "一个易于识别的名称。它必须是一个以字母开头的字母数字字符串，可以包含下划线 (_) 和/或破折号 (-)。"
+        },
+        "desc": {
+            "label": "描述",
+            "placeholder": "该工作区类型的描述",
+            "explain": "支持Markdown语法。"
+        }
+    },
+    "EnvTypeConfigForm": {
+        "id": {
+            "label": "ID",
+            "placeholder": "此配置的唯一标识符",
+            "explain": "此配置的唯一标识符。它必须是长度介于 2 到 128 个字符之间的字母数字字符串，可以包含下划线 (_) 和/或短划线 (-)。"
+        },
+        "name": {
+            "label": "名称",
+            "placeholder": "此配置的名称",
+            "explain": "此配置的易于识别的名称。 它必须是长度介于 2 到 128 个字符之间的字母数字字符串，可以包含空格、下划线 (_) 和/或破折号 (-)。"
+        },
+        "desc": {
+            "label": "描述",
+            "placeholder": "此配置的描述",
+            "explain": "支持 Markdown 语法"
+        },
+        "estimatedCostInfo": {
+            "label": "预计开销",
+            "placeholder": "有关使用此配置时预计的成本信息",
+            "explain": "支持 Markdown 语法"
+        },
+        "allowRoleIds": {
+            "label": "允许的用户角色",
+            "explain": "被许可使用此配置来启动工作区的用户角色"
+        },
+        "denyRoleIds": {
+            "label": "不允许的用户角色",
+            "explain": "不被许可使用此配置来启动工作区的用户角色"
+        },
+        "params": {
+            "label": "AWS CloudFormation 所需的输入参数"
+        },
+        "tags": {
+            "label": "资源标签"
+        }
+    },
+    "tag": {
+        "empty": "暂未添加任何资源标签",
+        "description": "单击下面的加号 (+) 按钮以添加资源标签。这些标签将应用于使用此配置启动的环境资源。此外，即使您未在此处配置任何其他资源标签，也会自动应用一些用于成本分配的标准标签。",
+        "name": "标签名",
+        "value": "标签值",
+        "action": "动作"
+    },
+    "envTypeCardMetaActions": {
+        "noData": {
+            "trigger": "测试",
+            "content": "创建一个测试工作区"
+        },
+        "withData": {
+            "trigger": "测试（带数据）",
+            "content": "创建一个测试工作区（带数据）"
+        }
+    }
+}

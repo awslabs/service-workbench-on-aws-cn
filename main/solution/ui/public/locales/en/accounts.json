@@ -35,7 +35,6 @@
         "createStack": "Create Stack",
         "expires": "Expires",
         "step3": "After creating the CFN stack, SWB will wait for the stack to finish deploying and then onboard your account. You can click the \"Done\" button below to be taken back to the Accounts page while you wait.",
-        "done": "Done"
     },
     "updatePermsButton": {
         "updatePermissions": "Update Permissions",

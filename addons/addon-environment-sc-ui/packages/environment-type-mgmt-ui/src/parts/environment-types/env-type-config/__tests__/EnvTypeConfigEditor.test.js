@@ -17,6 +17,17 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import EnvTypeConfigEditor from '../EnvTypeConfigEditor';
 
+jest.mock('react-i18next', () => ({
+  withTranslation: () => Component => {
+    Component.defaultProps = { ...Component.defaultProps, t: () => '' };
+    return Component;
+  },
+  initReactI18next: {
+    type: '3rdParty',
+    init: jest.fn(),
+  },
+}));
+
 jest.mock('@amzn/base-ui/dist/helpers/notification');
 const displayErrorMock = require('@amzn/base-ui/dist/helpers/notification');
 
@@ -74,7 +85,6 @@ describe('EnvTypeConfigEditor', () => {
     // CHECK
     expect(envTypeConfigsStore.updateEnvTypeConfig).toHaveBeenCalledWith(expect.objectContaining(ret));
     expect(onEnvTypeConfigSaveComplete).toHaveBeenCalled();
-    expect(displayErrorMock.displaySuccess).toHaveBeenCalledWith(`Successfully updated ${ret.name} configuration`);
   });
 
   it('should catch the error successfully', async () => {

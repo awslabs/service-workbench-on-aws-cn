@@ -53,7 +53,7 @@ class EnvTypeConfigCard extends Component {
               size="mini"
               disabled={this.processing}
             >
-              Clone
+              {i18next.t('clone')}
             </Button>
           </Card.Meta>
           <Divider />
@@ -74,7 +74,7 @@ class EnvTypeConfigCard extends Component {
             size="mini"
             disabled={this.processing}
           >
-            Edit
+            {i18next.t('edit')}
           </Button>
           <Button
             basic
@@ -84,7 +84,7 @@ class EnvTypeConfigCard extends Component {
             size="mini"
             disabled={this.processing}
           >
-            Delete
+            {i18next.t('delete')}
           </Button>
           {this.renderDeleteConfirmation(envTypeConfig)}
           {this.renderEditorPopup(envTypeConfig)}
@@ -126,17 +126,12 @@ class EnvTypeConfigCard extends Component {
     return (
       <Modal open={shouldShowDeleteDialog} onClose={this.hideDeleteDialog} closeOnDimmerClick={!processing}>
         <Modal.Header>
-          Delete Configuration: <strong>{envTypeConfig.name}</strong>
+          {i18next.t('workspaceConf.delete.header', { ns: 'types' })}: <strong>{envTypeConfig.name}</strong>
         </Modal.Header>
         <Modal.Content>
-          <p>
-            Are you sure you want to delete <strong>{envTypeConfig.name}</strong> configuration?
-          </p>
-          <p>
-            Once you delete environment type configuration, users will not be able launch workspaces using that
-            configuration. You will need to re-create the configuration.
-          </p>
-          <p>Is it okay to delete?</p>
+          <p>{i18next.t('workspaceConf.delete.p1', { ns: 'types', name: envTypeConfig.name })}</p>
+          <p>{i18next.t('workspaceConf.delete.p2', { ns: 'types' })}</p>
+          <p>{i18next.t('workspaceConf.delete.p3', { ns: 'types' })}</p>
         </Modal.Content>
         <Modal.Actions>
           <Button
@@ -160,7 +155,7 @@ class EnvTypeConfigCard extends Component {
             disabled={this.processing}
             onClick={() => this.handleDeleteClick(envTypeConfig.id)}
           >
-            <Icon name="trash" /> Delete
+            <Icon name="trash" /> {i18next.t('delete')}
           </Button>
         </Modal.Actions>
       </Modal>

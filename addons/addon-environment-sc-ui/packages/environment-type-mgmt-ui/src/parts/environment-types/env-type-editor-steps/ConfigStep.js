@@ -74,14 +74,11 @@ class ConfigStep extends React.Component {
           <Segment placeholder>
             <Header icon className="color-grey">
               <Icon name="settings" />
-              No Configurations for this Workspace Type yet
+              {i18next.t('workspaceConf.empty.header', { ns: 'types' })}
               <Header.Subheader className="mt2">
-                <p>
-                  Configurations are predefined set of Input Parameter values for the AWS Service Catalog Product. The
-                  configurations are presented as preset options when launching workspaces of this type.
-                </p>
+                <p>{i18next.t('workspaceConf.empty.subheader', { ns: 'types' })}</p>
                 <Button data-testid="add-config-button" basic color="blue" onClick={this.showEnvTypeConfigDialog}>
-                  Add Configuration
+                  {i18next.t('workspaceConf.add', { ns: 'types' })}
                 </Button>
               </Header.Subheader>
             </Header>
@@ -110,7 +107,7 @@ class ConfigStep extends React.Component {
               floated="right"
               onClick={this.showEnvTypeConfigDialog}
             >
-              Add Configuration
+              {i18next.t('workspaceConf.add', { ns: 'types' })}
             </Button>
           )}
           {this.renderEnvTypeConfigs()}
@@ -181,7 +178,7 @@ class ConfigStep extends React.Component {
           <Button data-testid="cancel-button" basic color="grey" onClick={onCancel}>
             {i18next.t('cancel')}
           </Button>
-          <Button className="ml2" primary content="Done" disabled={processing} onClick={this.onNext} />
+          <Button className="ml2" primary content={i18next.t('done')} disabled={processing} onClick={this.onNext} />
         </div>
       </div>
     );

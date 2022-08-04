@@ -140,7 +140,7 @@ class AwsAccountUpdateContent extends React.Component {
               floated="right"
               onClick={this.handleGoBack}
               color="blue"
-              content={i18next.t('onboard.done', { ns: 'accounts' })}
+              content={i18next.t('done', { ns: 'accounts' })}
             />
           </div>
         </div>

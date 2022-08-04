@@ -18,7 +18,10 @@ import c from 'classnames';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { Popup, Icon } from 'semantic-ui-react';
 import { displaySuccess } from '@amzn/base-ui/dist/helpers/notification';
+import i18next from 'i18next';
+import { initReactI18next, withTranslation } from 'react-i18next';
 
+i18next.use(initReactI18next);
 // expected props
 // - text (via props)
 // - message (via props) (a message to display when done copying to clip board "optional")
@@ -32,14 +35,14 @@ const Component = observer(
 
     return (
       <Popup
-        content="Copy"
+        content={i18next.t('copy')}
         trigger={
           <CopyToClipboard
             data-testid="copy-to-clipboard-button"
             className={c(className)}
             text={text}
             style={{ cursor: 'pointer' }}
-            onCopy={() => displaySuccess(message, 'Done')}
+            onCopy={() => displaySuccess(message, i18next.t('done'))}
           >
             <Icon {...iconAttrs} />
           </CopyToClipboard>
@@ -49,4 +52,4 @@ const Component = observer(
   },
 );
 
-export default Component;
+export default withTranslation()(Component);

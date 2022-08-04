@@ -1,7 +1,9 @@
 {
+    "add": "Add",
     "by": "by ",
     "cancel": "Cancel",
     "checking": "Checking",
+    "clone": "Clone",
     "connect": "Connect",
     "copied": "Copied to clipboard",
     "copy": "Copy",
@@ -13,6 +15,7 @@
     "download": "Download",
     "edit": "Edit",
     "files": "Files",
+    "import": "Import",
     "lang": "Language",
     "next": "Next",
     "permissions": "Permissions",

@@ -25,41 +25,46 @@ import ErrorBox from '@amzn/base-ui/dist/parts/helpers/ErrorBox';
 import BasicProgressPlaceholder from '@amzn/base-ui/dist/parts/helpers/BasicProgressPlaceholder';
 import { isStoreLoading, isStoreReady } from '@amzn/base-ui/dist/models/BaseStore';
 
+import { createForm } from '@amzn/base-ui/dist/helpers/form';
 import { createWizard } from '@amzn/base-ui/dist/models/Wizard';
 import { displayError, displaySuccess } from '@amzn/base-ui/dist/helpers/notification';
 import { sessionStore } from '@amzn/base-ui/dist/models/SessionStore';
-import { getEnvTypeConfigForm } from '../../../models/forms/EnvTypeConfigForm';
+import i18next from 'i18next';
+import { initReactI18next, withTranslation } from 'react-i18next';
+import { getEnvTypeConfigFormFields } from '../../../models/forms/EnvTypeConfigForm';
 import BasicInfoStep from './env-type-config-steps/BasicInfoStep';
 import AccessControlStep from './env-type-config-steps/AccessControlStep';
 import InputParamsStep from './env-type-config-steps/InputParamsStep';
 import TagsStep from './env-type-config-steps/TagsStep';
 
+i18next.use(initReactI18next);
+
 const steps = [
   {
     key: 'basic_information',
-    title: 'Basic Information',
-    desc: 'Enter basic information',
+    title: 'workspaceConf.basicInformation.title',
+    desc: 'workspaceConf.basicInformation.desc',
     isComplete: false,
     stepComponent: BasicInfoStep,
   },
   {
     key: 'access_control',
-    title: 'Access Control',
-    desc: 'Define who can access',
+    title: 'workspaceConf.accessControl.title',
+    desc: 'workspaceConf.accessControl.desc',
     isComplete: false,
     stepComponent: AccessControlStep,
   },
   {
     key: 'input_params',
-    title: 'Input Parameters',
-    desc: 'Provide AWS CloudFormation Inputs',
+    title: 'workspaceConf.inputParams.title',
+    desc: 'workspaceConf.inputParams.desc',
     isComplete: false,
     stepComponent: InputParamsStep,
   },
   {
     key: 'tags',
-    title: 'Tags',
-    desc: 'Specify Resource Tags',
+    title: 'workspaceConf.tags.title',
+    desc: 'workspaceConf.tags.desc',
     isComplete: false,
     stepComponent: TagsStep,
   },
@@ -75,7 +80,7 @@ class EnvTypeConfigEditor extends React.Component {
     super(props);
     runInAction(() => {
       this.stores = new Stores([this.envTypeConfigsStore, this.userRolesStore]);
-      this.form = getEnvTypeConfigForm(props.envTypeConfig);
+      this.form = createForm(getEnvTypeConfigFormFields(props.envTypeConfig));
       this.wizardModel = createWizard(_.map(steps, s => _.omit(s, 'stepComponent')));
     });
   }
@@ -112,7 +117,11 @@ class EnvTypeConfigEditor extends React.Component {
       <div className="mb3">
         <Header as="h3" className="color-grey mt1 mb0">
           <Icon name="settings" className="align-top" />
-          <Header.Content className="left-align">{isUpdating ? 'Edit' : 'Add'} Configuration</Header.Content>
+          <Header.Content className="left-align">
+            {isUpdating
+              ? i18next.t('workspaceConf.edit', { ns: 'types' })
+              : i18next.t('workspaceConf.add', { ns: 'types' })}
+          </Header.Content>
           {isUpdating && <Header.Subheader className="mt2">{envTypConfig.name}</Header.Subheader>}
         </Header>
       </div>
@@ -139,7 +148,7 @@ class EnvTypeConfigEditor extends React.Component {
 
   renderStepTabs = () => {
     const stepPanes = _.map(this.wizardModel.steps, step => ({
-      menuItem: step.title,
+      menuItem: i18next.t(step.title, { ns: 'types' }),
       render: () => <Observer>{() => this.renderEnvTypeConfigStep(step.key)}</Observer>,
     }));
     return <Tab className="mt3" menu={{ secondary: true, pointing: true }} renderActiveOnly panes={stepPanes} />;
@@ -157,8 +166,8 @@ class EnvTypeConfigEditor extends React.Component {
           return (
             <Step {...stepAttribs}>
               <Step.Content>
-                <Step.Title>{step.title}</Step.Title>
-                <Step.Description>{step.desc}</Step.Description>
+                <Step.Title>{i18next.t(step.title, { ns: 'types' })}</Step.Title>
+                <Step.Description>{i18next.t(step.desc, { ns: 'types' })}</Step.Description>
               </Step.Content>
             </Step>
           );
@@ -257,7 +266,10 @@ class EnvTypeConfigEditor extends React.Component {
       let savedEnvTypeConfig;
       if (isUpdating) {
         savedEnvTypeConfig = await this.envTypeConfigsStore.updateEnvTypeConfig(envTypeConfig);
-        displaySuccess(`Successfully updated ${envTypeConfig.name} configuration`);
+        displaySuccess(
+          i18next.t('workspaceConf.updated', { ns: 'types', name: envTypeConfig.name }),
+          i18next.t('success'),
+        );
       } else {
         savedEnvTypeConfig = await this.envTypeConfigsStore.createEnvTypeConfig(envTypeConfig);
       }
@@ -306,4 +318,4 @@ decorate(EnvTypeConfigEditor, {
 
   stores: observable,
 });
-export default inject('userRolesStore')(observer(EnvTypeConfigEditor));
+export default withTranslation()(inject('userRolesStore')(observer(EnvTypeConfigEditor)));

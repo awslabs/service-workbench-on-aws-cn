@@ -1,0 +1,38 @@
+{
+    "create": "创建密钥",
+    "delete": {
+        "header": "你确定吗？",
+        "subheader": "这个动作一旦执行便无法撤回。"
+    },
+    "deleted": "密钥 {{name}} 已被成功删除",
+    "empty": {
+        "header": "没有已创建的密钥",
+        "subheader": "点击“创建密钥”来创建一个新的密钥"
+    },
+    "name_s": "SSH 密钥",
+    "noDescription": "没有关于该密钥的描述。",
+    "notAvailable": {
+        "header": "无法查看",
+        "subheader": "私钥仅在创建密钥时可供下载。该平台不会替您存储私钥。"
+    },
+    "private": "私钥",
+    "public": "公钥",
+    "status": {
+        "active": {
+            "display": "有效",
+            "tip": "你可以使用该密钥连接到你的工作区"
+        },
+        "inactive": {
+            "display": "无效",
+            "tip": "你不能使用该密钥连接到你的工作区"
+        },
+        "error": {
+            "display": "错误",
+            "tip": "出错了"
+        }
+    },
+    "warning": {
+        "header": "警告！",
+        "subheader": "这是您下载私钥的唯一机会。私钥是不应该与他人共享的秘密信息，应当妥善储存。"
+    }
+}

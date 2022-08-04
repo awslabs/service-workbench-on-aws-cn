@@ -19,6 +19,10 @@ import { observer } from 'mobx-react';
 import { decorate, action, observable, runInAction } from 'mobx';
 import { Dimmer, Loader, Message } from 'semantic-ui-react';
 import c from 'classnames';
+import i18next from 'i18next';
+import { initReactI18next, withTranslation } from 'react-i18next';
+
+i18next.use(initReactI18next);
 
 // expected props
 // - form (via props) the mobx form instance
@@ -166,7 +170,7 @@ class Form extends React.Component {
       <>
         {dimmer && (
           <Dimmer active={processing} inverted>
-            <Loader inverted>Processing</Loader>
+            <Loader inverted>{i18next.t('processing')}</Loader>
           </Dimmer>
         )}
         {showErrorPanel && this.renderErrorPanel()}
@@ -199,4 +203,4 @@ decorate(Form, {
   handleCancel: action,
 });
 
-export default observer(Form);
+export default withTranslation()(observer(Form));

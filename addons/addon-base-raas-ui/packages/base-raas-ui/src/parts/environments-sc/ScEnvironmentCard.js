@@ -185,7 +185,7 @@ class ScEnvironmentCard extends React.Component {
         {env.name}
         <Header.Subheader>
           <span className="fs-8 color-grey">
-            {i18next.t('created', { ns: 'workspaces' })} <TimeAgo date={env.createdAt} className="mr2" />{' '}
+            {i18next.t('created')} <TimeAgo date={env.createdAt} className="mr2" />{' '}
             <By uid={env.createdBy} className="mr2" />
           </span>
           <span className="fs-8 color-grey mr2"> {env.id}</span>

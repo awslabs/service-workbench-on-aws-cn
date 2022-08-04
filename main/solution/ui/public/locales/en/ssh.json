@@ -1,0 +1,38 @@
+{
+    "create": "Create Key",
+    "delete": {
+        "header": "Are you sure?",
+        "subheader": "This action can not be reverted."
+    },
+    "deleted": "The key {{name}} was successfully deleted",
+    "empty": {
+        "header": "No SSH Keys",
+        "subheader": "To create an SSH key, click Create Key."
+    },
+    "name_s": "SSH Keys",
+    "noDescription": "No description was provided.",
+    "notAvailable": {
+        "header": "Not Available",
+        "subheader": "The private key is only available for download at the time of creating a key. This application does not store the private key."
+    },
+    "private": "Private Key",
+    "public": "Public Key",
+    "status": {
+        "active": {
+            "display": "Active",
+            "tip": "You can use this key when connecting to your workspaces."
+        },
+        "inactive": {
+            "display": "Inactive",
+            "tip": "You can not use this key when connecting to your workspaces."
+        },
+        "error": {
+            "display": "Error",
+            "tip": "Something not right"
+        }
+    },
+    "warning": {
+        "header": "Warning!",
+        "subheader": "This is your only chance to download the private key. The private key is secret information that should not be shared with others. It should be stored and handled carefully."
+    }
+}

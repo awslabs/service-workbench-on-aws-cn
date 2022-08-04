@@ -25,7 +25,11 @@ import { isStoreLoading, isStoreEmpty, isStoreNotEmpty, isStoreError } from '@am
 import ErrorBox from '@amzn/base-ui/dist/parts/helpers/ErrorBox';
 import ProgressPlaceHolder from '@amzn/base-ui/dist/parts/helpers/BasicProgressPlaceholder';
 
+import i18next from 'i18next';
+import { initReactI18next, withTranslation } from 'react-i18next';
 import KeyPairCard from './KeyPairCard';
+
+i18next.use(initReactI18next);
 
 // expected props
 // keyPairsStore (via injection)
@@ -92,8 +96,8 @@ class KeyPairsList extends React.Component {
       <Segment placeholder>
         <Header icon className="color-grey">
           <Icon name="terminal" />
-          No SSH Keys
-          <Header.Subheader>To create an SSH key, click Create Key.</Header.Subheader>
+          {i18next.t('empty.header', { ns: 'ssh' })}
+          <Header.Subheader>{i18next.t('empty.subheader', { ns: 'ssh' })}</Header.Subheader>
         </Header>
       </Segment>
     );
@@ -104,11 +108,13 @@ class KeyPairsList extends React.Component {
       <div className="mb3 flex">
         <Header as="h3" className="color-grey mt1 mb0 flex-auto">
           <Icon name="key" className="align-top" />
-          <Header.Content className="left-align">SSH Keys {this.renderTotal()}</Header.Content>
+          <Header.Content className="left-align">
+            {i18next.t('name_s', { ns: 'ssh' })} {this.renderTotal()}
+          </Header.Content>
         </Header>
         <div>
           <Button color="blue" size="medium" basic onClick={this.handleCreateKeyPair}>
-            Create Key
+            {i18next.t('create', { ns: 'ssh' })}
           </Button>
         </div>
       </div>
@@ -129,4 +135,4 @@ decorate(KeyPairsList, {
   handleCreateKeyPair: action,
 });
 
-export default inject('keyPairsStore')(withRouter(observer(KeyPairsList)));
+export default withTranslation()(inject('keyPairsStore')(withRouter(observer(KeyPairsList))));

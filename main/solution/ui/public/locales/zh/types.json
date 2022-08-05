@@ -2,7 +2,7 @@
     "portfolioId": "产品组合编号",
     "serviceCatalogProducts": {
         "header": "AWS Service Catalog 产品列表",
-        "subheader": "目前可用的尚未导入的 AWS Service Catalog 产品"
+        "subheader": "目前可用的工作区类型"
     },
     "versions": {
         "all": "所有版本",
@@ -10,24 +10,24 @@
     },
     "workspaceTypes": {
         "header": "工作区类型列表",
-        "subheader": "目前可用的已导入为环境类型的 AWS Service Catalog 产品"
+        "subheader": "目前可用的工作区类型"
     },
     "approved": "已批准",
     "notApproved": "未批准",
     "all": "全部",
     "empty": {
-        "approved": "目前暂无任何已批准的环境类型",
-        "notApproved": "目前暂无任何需要批准的环境类型",
+        "approved": "目前暂无任何已批准的工作区类型",
+        "notApproved": "目前暂无任何需要批准的工作区类型",
         "all": {
-            "header": "目前暂无任何已导入为环境类型的 AWS Service Catalog 产品",
+            "header": "目前暂无任何已导入的工作区类型",
             "subheader": "您可以导入那些属于 AWS Service Catalog 产品组合一部分的且与 AWS IAM 角色 “{{roleName}}” 共享了的 AWS Service Catalog 产品。"
         }
     },
     "workspaceType": {
         "delete": {
-            "header": "删除环境类型",
-            "p1": "确定要删除环境类型 {{name}}吗？",
-            "p2": "环境类型一旦被删除后将无法被用户使用。若想使用则需要您重新从 AWS Service Catalog 产品中导入它。",
+            "header": "删除工作区类型",
+            "p1": "确定要删除工作区类型 {{name}}吗？",
+            "p2": "工作区类型一旦被删除后将无法被用户使用。若想使用则需要您重新从 AWS Service Catalog 产品中导入它。",
             "p3": "确定要删除吗？"
         },
         "edit": "编辑工作区类型",
@@ -37,7 +37,7 @@
         "updated": "工作区类型 {{name}} 已更新",
         "basicInformation": {
             "title": "基本信息",
-            "desc": "输入该环境类型的基本信息"
+            "desc": "输入该工作区类型的基本信息"
         },
         "configurations": {
             "title": "配置",

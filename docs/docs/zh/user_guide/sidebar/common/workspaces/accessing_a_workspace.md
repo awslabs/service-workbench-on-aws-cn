@@ -19,14 +19,21 @@ sidebar_label: 访问 Workspace
 > 注意:EMR 实例的密码是“go-research-on-aws”
 
 ### 连接到 EC2 Linux
-
+目前本方案支持两种连接方式，SSH 和 Session Manager
+#### SSH
 1. 单击 EC2 Linux 实例中显示的连接按钮
-2.点击创建密钥按钮，下载密钥文件（这是下载密钥文件的唯一机会）
+2. 点击创建密钥按钮，下载密钥文件（这是下载密钥文件的唯一机会）
 3. 将密钥文件保存在本地并运行`chmod 600` 来限制对密钥文件的访问
 4. 单击“使用此 SSH 密钥”按钮并按照说明链接到 EC2 实例
 5. 如果页面上的 60 秒倒计时超时，只需再次单击“使用此 SSH 密钥”按钮并继续
 6. 使用屏幕上显示的命令通过 SSH 连接到 EC2 Linux 机器。请注意，您可能需要在本地计算机上调整私钥的路径。
 7. SSH 后，所选研究将显示为 EC2 Linux 实例上的挂载目录。这些研究目录将包含上传到相应研究的文件。任何从 Service Workbench 上传到研究的文件都会在短暂延迟后自动出现在挂载的研究目录中。
+
+#### Session Manager
+1. 单击 EC2 Linux 实例中显示的连接按钮。
+2. 选择`SSM Connections`, 单击`Connect`, 直接跳转到一个Session Manager 页面并且以`ssm-user`身份登陆进EC2 Linux 实例。
+3. 执行 `sudo su ec2-user` 切换到 `ec2-user` 用户。
+4. 所选研究将显示为 EC2 Linux 实例上`/home/ec2-user`目录下的挂载目录。这些研究目录将包含上传到下相应研究的文件。任何从 Service Workbench 上传到研究的文件都会在短暂延迟后自动出现在挂载的研究目录中。
 
 ### 连接到 EC2 windows
 

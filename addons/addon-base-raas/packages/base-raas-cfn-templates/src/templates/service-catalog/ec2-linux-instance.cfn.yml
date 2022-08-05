@@ -269,6 +269,8 @@ Resources:
           # Signal result to CloudFormation
           /opt/aws/bin/cfn-signal -e $? --stack "${AWS::StackName}" --resource "EC2Instance" --region "${AWS::Region}"
 
+          sudo su - ec2-user
+
 Outputs:
   Ec2WorkspaceDnsName:
     Description: Public DNS name of the EC2 workspace instance

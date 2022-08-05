@@ -40,6 +40,12 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 在 **AWS Billing & Cost Management Dashboard** 中激活必要的成本分配标签:
 
+:::tip
+
+标签会在方案部署过程中自动创建，但仍需要手动激活。
+
+:::
+
 1. 登录 AWS 管理控制台并打开 **Billing & Cost Management Dashboard** [此处](https://console.aws.amazon.com/billing/)。
 
 2. 在导航窗格中，选择**成本分配标签**。

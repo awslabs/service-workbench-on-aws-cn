@@ -5,17 +5,17 @@ sidebar_label: 动手实践
 ---
 
 Service Workbench on AWS 是一种云解决方案，可提供对数据、工具和计算能力的安全访问。 使用 Service Workbench，研究人员可以在安全且经过配置的环境中进行研究。 Service Workbench 支持创建基本的研究设置。 它简化了数据访问并提供了成本透明度。
-Service Workbench on AWS 的详细介绍请参考[Service Workbench](../zh/introduction)
+Service Workbench on AWS 的详细介绍请参考[Service Workbench](/zh/introduction)
 
 该手动实践默认在 **cn-northwest-1** region 进行。
 
 ## 前提条件
 
-- 准备AWS账户，启用AWS成本管理器，请参考[AWS 账户准备](../zh/installation_guide/installation/pre-installation/tool-req)
+- 准备AWS账户，启用AWS成本管理器，请参考[AWS 账户准备](/zh/installation_guide/installation/pre-installation/tool-req)
 
 - 准备一个 ICP 许可的域名
 
-- 准备 OIDC 供应商, 目前我们支持Authing， KeyCloak on AWS 和 Okta， workshop以Authing 为例进行实验，参考[Authing申请](../zh/installation_guide/installation/pre-installation/oidc-providers#authing-option-authingcn-oidc-客户端) 创建一个Authing application和root user
+- 准备 OIDC 供应商, 目前我们支持Authing， KeyCloak on AWS 和 Okta， workshop以Authing 为例进行实验，参考[Authing申请](/zh/installation_guide/installation/pre-installation/oidc-providers#authing-option-authingcn-oidc-客户端) 创建一个Authing application和root user
 
 - 在 **cn-northwest-1** 准备一个 Linux EC2 Instance，并在 EC2 instance 上安装所需要的软件，后续将通过该 EC2 instance 部署 Service Workbench   
     - 启动一个Linux EC2 Instance， 
@@ -91,25 +91,25 @@ Service Workbench on AWS 的详细介绍请参考[Service Workbench](../zh/intro
     部署成功后访问`Website URL` 域名，如果出现登陆页面这代表部署成功
 
 ## 使用 Service Workbench
-- 添加一个Researcher 用户，参考[添加一个用户](../zh/user_guide/sidebar/admin/users/add_federate_user.md)
+- 添加一个Researcher 用户，参考[添加一个用户](/zh/user_guide/sidebar/admin/users/add_federate_user.md)
 
-- 添加一个AWS Account，参考[添加一个AWS Account](../zh/user_guide/sidebar/admin/accounts/aws_accounts/invite_member_account)
+- 添加一个AWS Account，参考[添加一个AWS Account](/zh/user_guide/sidebar/admin/accounts/aws_accounts/invite_member_account)
 
-- 创建一个索引，参考[创建一个索引](../zh/user_guide/sidebar/admin/accounts/indexes/create_new_index)
+- 创建一个索引，参考[创建一个索引](/zh/user_guide/sidebar/admin/accounts/indexes/create_new_index)
 
-- 创建一个Project，参考[创建一个Project](../zh/user_guide/sidebar/admin/accounts/projects/create_project)
+- 创建一个Project，参考[创建一个Project](/zh/user_guide/sidebar/admin/accounts/projects/create_project)
 
-- 将Project授权给用户，参考[授权Project给用户](../zh/user_guide/sidebar/admin/accounts/projects/add_user_to_project)
+- 将Project授权给用户，参考[授权Project给用户](/zh/user_guide/sidebar/admin/accounts/projects/add_user_to_project)
 
 <a name="import_type"></a>
 
 - 导入内置的workspace type
 
-    - 导入 Sagemaker workspace type, 参考[导入Sagemaker](../zh/post_deployment/import_service_catalog_products#amazon-sagemaker-的配置)
+    - 导入 Sagemaker workspace type, 参考[导入Sagemaker](/zh/post_deployment/import_service_catalog_products#amazon-sagemaker-的配置)
     
-    - 导入 Amazon EC2 Linux workspace type, 参考[导入Workspace](../zh/post_deployment/import_service_catalog_products#导入工作区)
+    - 导入 Amazon EC2 Linux workspace type, 参考[导入Workspace](/zh/post_deployment/import_service_catalog_products#导入工作区)
 
-- 创建一个Study，参考[Studies](../zh/user_guide/sidebar/common/studies/introduction)
+- 创建一个Study，参考[Studies](/zh/user_guide/sidebar/common/studies/introduction)
 
 - 创建一个workspace，将study data自动mount到workspace中
 
@@ -117,10 +117,10 @@ Service Workbench on AWS 的详细介绍请参考[Service Workbench](../zh/intro
     - 访问 Amazon EC2 Linux workspace
     - 访问 Sagemaker workspace
 
-- 结束workspace， 参考[结束Workspace](../zh/user_guide/sidebar/common/workspaces/terminating_a_workspace) 
+- 结束workspace， 参考[结束Workspace](/zh/user_guide/sidebar/common/workspaces/terminating_a_workspace) 
 
 ## 生成 Workspace 需要使用的 AMIs
-本章节介绍如何通过 packer生成AMIs，包括 EC2 Linux和 EC2 Windows，详细说明参考[安装AMIs](../zh/installation_guide/installation/ami-install)
+本章节介绍如何通过 packer生成AMIs，包括 EC2 Linux和 EC2 Windows，详细说明参考[安装AMIs](/zh/installation_guide/installation/ami-install)
 - 安装 Packer
 ```
 sudo yum install -y yum-utils
@@ -134,7 +134,7 @@ pnpx sls build-image -s ${STAGE_NAME}
 ```
 
 ## 创建 Rstudio Workspace
-RStudio workspace type 使用了AWS合作伙伴提供的模版和AMI，详细内容请[Rstudio Workspace](../zh/installation_guide/installation/rstudio.md)
+RStudio workspace type 使用了AWS合作伙伴提供的模版和AMI，详细内容请[Rstudio Workspace](/zh/installation_guide/installation/rstudio.md)
 - 获取 Rstudio 代码
 ```
 cd ~
@@ -246,12 +246,9 @@ Service Workbench 除了内置的workspace template以外，还支持客户自�
 
         - 在`OnStart:` section 中添加定制内容, 包括下载上面创建的customize.sh脚本以及执行该脚本：
         ```
-                    Fn::Base64: !Sub |
-                    ...
-    
-                    aws s3 cp --region "${AWS::Region}" "${EnvironmentInstanceFiles}/customize.sh" "/tmp"
-                    chmod 500 "/tmp/customize.sh"
-                    /tmp/customize.sh
+                      aws s3 cp --region "${AWS::Region}" "${EnvironmentInstanceFiles}/customize.sh" "/tmp"
+                      chmod 500 "/tmp/customize.sh"
+                      /tmp/customize.sh
         ```
 
         - 在sagemaker-notebook-instance-customize.cfn.yml模版授权role必要的权限
@@ -270,13 +267,13 @@ Service Workbench 除了内置的workspace template以外，还支持客户自�
                       PolicyDocument:
                         Version: '2012-10-17'
                         Statement:
-                        - Effect: 'Allow'
+                          - Effect: 'Allow'
                             Action: 's3:*'
                             Resource: !Sub 'arn:${AWS::Partition}:s3:::aws-gcr-solutions-assets/*'
-                        - Effect: 'Allow'
+                          - Effect: 'Allow'
                             Action: 'ecr:GetAuthorizationToken'
                             Resource: '*'
-                        - Effect: 'Allow'
+                          - Effect: 'Allow'
                             Action: 'ecr:BatchGetImage'
                             Resource: '*'                      
             ```
@@ -307,4 +304,4 @@ Service Workbench 除了内置的workspace template以外，还支持客户自�
 
 
 ## 删除 Service Workbench
-参考[卸载 Service Workbench](../zh/installation_guide/uninstall) 卸载Service Workbench
+参考[卸载 Service Workbench](/zh/installation_guide/uninstall) 卸载Service Workbench

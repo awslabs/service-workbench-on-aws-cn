@@ -23,4 +23,8 @@ In the Amazon EC2 service console, select AMI in the left-hand navigation. You s
 
 <img src={useBaseUrl('img/deployment/installation/AMI.png')} />
 
+:::note
+Because Hongkong region do not support t2 instance type, please follow this [guide](https://github.com/awslabs/service-workbench-on-aws-cn/discussions/76) to generate Windows AMI in Hongkong region.
+:::
+
 **Warning**: Each AMI build results in a new set of AMIs.

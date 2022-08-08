@@ -23,4 +23,8 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 <img src={useBaseUrl('img/deployment/installation/AMI.png')} />
 
+:::note
+因为香港区域不支持 t2 的实例类型，请按照[guide](https://github.com/awslabs/service-workbench-on-aws-cn/discussions/76) 在香港区域创建AMI.
+:::
+
 **警告**:每个 AMI 构建都会产生一组新的 AMI。

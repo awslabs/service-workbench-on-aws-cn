@@ -17,5 +17,6 @@
         "filename": "Filename",
         "size": "Size",
         "status": "Status"
-    }
+    },
+    "files": "Files"
 }

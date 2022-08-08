@@ -1,6 +1,8 @@
 {
+    " ": "",
     "add": "添加",
     "by": "创建者：",
+    "bytes": "字节",
     "cancel": "取消",
     "checking": "检查中",
     "clone": "克隆",
@@ -29,6 +31,7 @@
     "submit": "提交",
     "terminate": "终止",
     "unavailable": "不可用",
+    "updating": "更新中",
     "upload": {
         "uploadFiles": "上传文件"
     }

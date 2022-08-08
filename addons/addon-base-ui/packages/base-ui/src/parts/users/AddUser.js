@@ -45,7 +45,9 @@ class AddUser extends React.Component {
     return (
       <div className="mt2 animated fadeIn">
         <Header as="h2" icon textAlign="center" className="mt3" color="grey">
-          Add User
+          {i18next.t('add')}
+          {i18next.t(' ')}
+          {i18next.t('user', { ns: 'users' })}
         </Header>
         <div className="mt3 ml3 mr3 animated fadeIn">{this.renderAddUserForm()}</div>
       </div>
@@ -166,7 +168,9 @@ class AddUser extends React.Component {
     return (
       <div className="mt3">
         <Button floated="right" color="blue" icon disabled={processing} className="ml2" onClick={this.handleSubmit}>
-          Add User
+          {i18next.t('add')}
+          {i18next.t(' ')}
+          {i18next.t('user', { ns: 'users' })}
         </Button>
         <Button floated="right" disabled={processing} onClick={this.handleCancel}>
           {i18next.t('cancel')}

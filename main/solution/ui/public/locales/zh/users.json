@@ -1,0 +1,29 @@
+{
+    "user": "用户",
+    "users": "用户",
+    "role": "角色",
+    "roles": "角色",
+    "single": "单个",
+    "multiple": "多个",
+    "props": {
+        "username": "用户名",
+        "firstName": "名",
+        "lastName": "姓",
+        "email": "邮箱",
+        "identityProviderName": "身份提供者",
+        "type": "类型",
+        "external": "外部用户",
+        "internal": "内部用户",
+        "userRole": "角色",
+        "projectId": "项目",
+        "status": "状态",
+        "active": "已激活",
+        "inactive": "未激活",
+        "description": "描述"
+    },
+    "updateUser": {
+        "activate": "激活",
+        "deactivate": "停用"
+    },
+    "csvExample": "CSV 文件示例"
+}

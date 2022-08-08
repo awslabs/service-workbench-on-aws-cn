@@ -116,7 +116,7 @@ class DragDrop extends Component {
     return (
       <div className="mt3">
         <Button floated="right" color="blue" icon disabled={processing} className="ml2" onClick={this.handleSubmit}>
-          Submit
+          {i18next.t('submit')}
         </Button>
         <Button floated="right" disabled={processing} onClick={this.handleCancel}>
           {i18next.t('cancel')}
@@ -192,7 +192,7 @@ class DragDrop extends Component {
   renderMain() {
     const files = this.state.files.map(file => (
       <li key={file.name}>
-        {file.name} - {file.size} bytes
+        {file.name} - {file.size} {i18next.t('bytes')}
       </li>
     ));
     const maxSize = 512000;
@@ -201,7 +201,7 @@ class DragDrop extends Component {
         <Container text>
           <Message info>
             <Message.Content>
-              <Message.Header>CSV Example</Message.Header>
+              <Message.Header>{i18next.t('csvExample', { ns: 'users' })}</Message.Header>
               <p>email,userRole,identityProviderName</p>
               <p>user1@datalake.amazonaws.com,researcher,DataLake</p>
               <p>user2@organization.onmicrosoft.com,researcher,AzureAD</p>
@@ -211,7 +211,7 @@ class DragDrop extends Component {
 
         <Segment className="mt4 center">
           <Header as="h4" color="grey">
-            Drag and drop files here
+            {i18next.t('dragAndDrop', { ns: 'files' })}
           </Header>
           <Dropzone onDrop={this.onDrop} minSize={0} maxSize={maxSize} multiple>
             {({ getRootProps, getInputProps, rejectedFiles }) => {
@@ -227,7 +227,7 @@ class DragDrop extends Component {
           </Dropzone>
         </Segment>
         <aside>
-          <h4>Files</h4>
+          <h4>{i18next.t('files', { ns: 'files' })}</h4>
           <ul>{files}</ul>
         </aside>
         {this.renderTable()}

@@ -31,9 +31,12 @@ import {
   isStoreReady,
 } from '@amzn/base-ui/dist/models/BaseStore';
 import { gotoFn } from '@amzn/base-ui/dist/helpers/routing';
+import i18next from 'i18next';
+import { initReactI18next, withTranslation } from 'react-i18next';
 import { envMgmtRoleName } from '../../helpers/settings';
 import awsServiceCatalogIcon from '../../../images/AWS-Service-Catalog.svg';
 
+i18next.use(initReactI18next);
 // expected props
 // - envTypeCandidatesStore (via injection)
 class EnvTypeCandidatesList extends Component {
@@ -106,11 +109,11 @@ class EnvTypeCandidatesList extends Component {
           {/* <Icon name="computer" className="align-top" /> */}
           <Image src={awsServiceCatalogIcon} />
           <Header.Content className="left-align">
-            AWS Service Catalog Products
+            {i18next.t('serviceCatalogProducts.header', { ns: 'types' })}
             {renderCount()}
           </Header.Content>
           <Header.Subheader className="mt2">
-            Available AWS Service Catalog Product Versions not imported yet
+            {i18next.t('serviceCatalogProducts.subheader', { ns: 'types' })}
           </Header.Subheader>
         </Header>
         <div>
@@ -119,11 +122,15 @@ class EnvTypeCandidatesList extends Component {
             toggle
             checked={this.showAllVersions}
             onClick={() => this.handleShowAllVersionsToggle()}
-            label={this.showAllVersions ? 'All Versions' : 'Latest Versions'}
+            label={
+              this.showAllVersions
+                ? i18next.t('versions.all', { ns: 'types' })
+                : i18next.t('versions.latest', { ns: 'types' })
+            }
           />
           {this.portfolioId && (
             <div data-testid="portfolio-id" className="portfolio-id">
-              Portfolio Id: {this.portfolioId}
+              {i18next.t('portfolioId', { ns: 'types' })}: {this.portfolioId}
             </div>
           )}
         </div>
@@ -214,7 +221,7 @@ class EnvTypeCandidatesList extends Component {
                 floated="right"
                 size="mini"
               >
-                Import
+                {i18next.t('import')}
                 <Icon name="arrow down" />
               </Button>
             </Card.Content>
@@ -241,4 +248,4 @@ decorate(EnvTypeCandidatesList, {
   handleImportButtonClick: action,
 });
 
-export default inject('envTypeCandidatesStore')(withRouter(observer(EnvTypeCandidatesList)));
+export default withTranslation()(inject('envTypeCandidatesStore')(withRouter(observer(EnvTypeCandidatesList))));

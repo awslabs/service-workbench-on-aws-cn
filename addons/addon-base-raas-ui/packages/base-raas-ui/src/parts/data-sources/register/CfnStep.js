@@ -21,7 +21,11 @@ import { Segment, Button, Header, List } from 'semantic-ui-react';
 
 import { gotoFn } from '@amzn/base-ui/dist/helpers/routing';
 
+import i18next from 'i18next';
+import { initReactI18next, withTranslation } from 'react-i18next';
 import AccountCfnPanel from '../parts/AccountCfnPanel';
+
+i18next.use(initReactI18next);
 
 // expected props
 // - wizard (via prop)
@@ -92,7 +96,7 @@ class CfnStep extends React.Component {
   renderButtons() {
     return (
       <div className="mt4">
-        <Button floated="right" className="ml2" primary content="Done" onClick={this.handleNext} />
+        <Button floated="right" className="ml2" primary content={i18next.t('done')} onClick={this.handleNext} />
       </div>
     );
   }
@@ -105,4 +109,4 @@ decorate(CfnStep, {
   handleNext: action,
 });
 
-export default inject()(withRouter(observer(CfnStep)));
+export default withTranslation()(inject()(withRouter(observer(CfnStep))));

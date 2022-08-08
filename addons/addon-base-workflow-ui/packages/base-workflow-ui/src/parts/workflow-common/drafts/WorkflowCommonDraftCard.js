@@ -163,7 +163,7 @@ class WorkflowCommonDraftCard extends React.Component {
             {i18next.t('cancel')}
           </Button>
           <Button loading={progress} disabled={progress} color="red" onClick={this.handleDeleteDraft}>
-            <Icon name="remove" /> Delete
+            <Icon name="remove" /> {i18next.t('delete')}
           </Button>
         </Modal.Actions>
       </Modal>

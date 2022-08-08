@@ -173,7 +173,12 @@ class UpdateUser extends React.Component {
 
     const editButton =
       currentUser.status === 'active' || currentUser.status === 'inactive' // do not show "edit" button for other status(es) such as "pending"
-        ? makeButton({ label: 'Edit', onClick: this.handleEditClick, floated: 'right', disabled: this.processing })
+        ? makeButton({
+            label: i18next.t('edit'),
+            onClick: this.handleEditClick,
+            floated: 'right',
+            disabled: this.processing,
+          })
         : '';
 
     return this.props.adminMode ? (

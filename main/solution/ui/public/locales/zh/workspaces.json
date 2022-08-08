@@ -1,17 +1,17 @@
 {
     "researchWorkspace": {
-        "name": "科研工作区",
-        "name_s": "科研工作区",
-        "create": "创建科研工作区",
+        "name": "工作区",
+        "name_s": "工作区",
+        "create": "创建工作区",
         "empty": {
-            "header": "尚未创建任何科研工作区",
-            "subheader": "如果希望创建一个科研工作区，点击右上角的“创建科研工作区”按钮"
+            "header": "尚未创建任何工作区",
+            "subheader": "如果希望创建一个工作区，点击右上角的“创建工作区”按钮"
         },
         "no_match": {
-            "header": "没有与所选过滤器匹配的科研工作区",
-            "subheader": "选择“全部”来查看所有的科研工作区"
+            "header": "没有与所选过滤器匹配的工作区",
+            "subheader": "选择“全部”来查看所有的工作区"
         },
-        "beingProvisioned": "该科研工作区已就绪"
+        "beingProvisioned": "该工作区已就绪"
     },
     "selectCompute": {
         "header": "选择计算类型",
@@ -42,8 +42,8 @@
     "detailPage": {
         "status": "状态",
         "owner": "所有者",
-        "studies": "数据区",
-        "noStudies": "该工作区未连接至任何数据区",
+        "studies": "数据集",
+        "noStudies": "该工作区未连接至任何数据集",
         "project": "项目",
         "workspaceType": "工作区类型",
         "configurationName": "工作区配置",

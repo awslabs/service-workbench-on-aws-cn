@@ -50,7 +50,11 @@ class BaseEnvTypeConfigStep extends React.Component {
 
   renderActionButtons({ processing, onCancel }) {
     const isUpdating = this.isEditAction();
-    const submitButtonTitle = isUpdating ? 'Save' : this.props.wizardModel.hasNext ? 'Next' : 'Add';
+    const submitButtonTitle = isUpdating
+      ? i18next.t('save')
+      : this.props.wizardModel.hasNext
+      ? i18next.t('next')
+      : i18next.t('add');
     return (
       <div>
         <Button

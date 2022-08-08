@@ -1,7 +1,9 @@
 {
+    "add": "添加",
     "by": "创建者：",
     "cancel": "取消",
     "checking": "检查中",
+    "clone": "克隆",
     "connect": "连接",
     "copied": "已复制到粘贴板",
     "copy": "复制",
@@ -13,6 +15,7 @@
     "download": "下载",
     "edit": "编辑",
     "files": "文件",
+    "import": "导入",
     "lang": "语言",
     "next": "下一步",
     "permissions": "权限",

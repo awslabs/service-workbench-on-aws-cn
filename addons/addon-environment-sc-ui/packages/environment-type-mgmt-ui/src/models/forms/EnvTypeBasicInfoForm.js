@@ -14,9 +14,8 @@
  */
 
 import _ from 'lodash';
-import { createForm } from '@amzn/base-ui/dist/helpers/form';
 
-function getAddEnvTypeBasicInfoForm(envType) {
+function getAddEnvTypeBasicInfoFormFields(envType) {
   const addEnvTypeBasicInfoFormFields = {
     name: {
       label: 'Name',
@@ -39,8 +38,8 @@ function getAddEnvTypeBasicInfoForm(envType) {
     },
   };
 
-  return createForm(addEnvTypeBasicInfoFormFields);
+  return addEnvTypeBasicInfoFormFields;
 }
 
 // eslint-disable-next-line import/prefer-default-export
-export { getAddEnvTypeBasicInfoForm };
+export { getAddEnvTypeBasicInfoFormFields };

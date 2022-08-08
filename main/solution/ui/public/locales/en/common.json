@@ -1,6 +1,8 @@
 {
+    " ": " ",
     "add": "Add",
     "by": "by ",
+    "bytes": "Bytes",
     "cancel": "Cancel",
     "checking": "Checking",
     "clone": "Clone",
@@ -29,6 +31,7 @@
     "submit": "Submit",
     "terminate": "Terminate",
     "unavailable": "Unavailable",
+    "updating": "Updating",
     "upload": {
         "uploadFiles": "Upload Files"
     }

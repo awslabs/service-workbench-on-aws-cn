@@ -74,7 +74,9 @@ class UpdateUser extends React.Component {
       <Modal closeIcon trigger={this.renderTrigger()} open={this.modalOpen} onClose={this.handleClose}>
         <div className="mt2 animated fadeIn">
           <Header as="h3" icon textAlign="center" className="mt3" color="grey">
-            User Detail
+            {i18next.t('user', { ns: 'users' })}
+            {i18next.t(' ')}
+            {i18next.t('detail')}
           </Header>
           <div className="mt3 ml3 mr3 animated fadeIn">{content}</div>
         </div>
@@ -93,10 +95,14 @@ class UpdateUser extends React.Component {
   }
 
   renderDetailView() {
-    const getFieldLabel = fieldName => this.form.$(fieldName).label;
+    const getFieldLabel = fieldName => i18next.t(`props.${fieldName}`, { ns: 'users' });
     const toRow = fieldName => {
       const value = _.get(this.getCurrentUser(), fieldName);
-      const displayValue = _.isArray(value) ? _.map(value, (v, k) => <Label key={k} content={v} />) : value;
+      const displayValue = _.isArray(value)
+        ? _.map(value, (v, k) => <Label key={k} content={v} />)
+        : fieldName === 'status'
+        ? i18next.t(`props.${value}`, { ns: 'users' })
+        : value;
       return (
         <>
           <Table.Cell collapsing active>
@@ -143,7 +149,7 @@ class UpdateUser extends React.Component {
     const currentUser = this.getCurrentUser();
 
     const cancelButton = makeButton({
-      label: 'Cancel',
+      label: i18next.t('cancel'),
       floated: 'left',
       color: '',
       onClick: this.handleCancel,
@@ -153,7 +159,9 @@ class UpdateUser extends React.Component {
     const activeButton =
       this.props.user.status === 'pending' || this.props.user.status === 'inactive'
         ? makeButton({
-            label: 'Activate User',
+            label: `${i18next.t('updateUser.activate', { ns: 'users' })}${i18next.t(' ')}${i18next.t('user', {
+              ns: 'users',
+            })}`,
             floated: 'right',
             color: 'blue',
             onClick: () => this.handleApproveDisapproveClick('active'),
@@ -164,7 +172,9 @@ class UpdateUser extends React.Component {
     const deactiveButton =
       this.props.user.status === 'active' || this.props.user.status === 'pending'
         ? makeButton({
-            label: 'Deactivate User',
+            label: `${i18next.t('updateUser.deactivate', { ns: 'users' })}${i18next.t(' ')}${i18next.t('user', {
+              ns: 'users',
+            })}`,
             floated: 'right',
             disabled: this.processing,
             onClick: () => this.handleApproveDisapproveClick('inactive'),
@@ -282,7 +292,7 @@ class UpdateUser extends React.Component {
     if (this.props.adminMode) {
       content = (
         <Button size="mini" compact color="blue" onClick={this.handleOpen}>
-          Detail
+          {i18next.t('detail')}
         </Button>
       );
     } else {

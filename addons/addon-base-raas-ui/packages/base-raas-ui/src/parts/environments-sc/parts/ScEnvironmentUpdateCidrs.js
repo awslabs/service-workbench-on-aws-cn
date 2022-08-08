@@ -253,7 +253,7 @@ class ScEnvironmentUpdateCidrs extends React.Component {
                 disabled={processing || anyInvalidCidr() || validateMaxRStudioCidr()}
                 type="submit"
               >
-                Submit
+                {i18next.t('submit')}
               </Button>
               <Button floated="right" size="mini" disabled={processing} onClick={onCancel}>
                 {i18next.t('cancel')}

@@ -25,7 +25,11 @@ import { createLink } from '@amzn/base-ui/dist/helpers/routing';
 import ErrorBox from '@amzn/base-ui/dist/parts/helpers/ErrorBox';
 import BasicProgressPlaceholder from '@amzn/base-ui/dist/parts/helpers/BasicProgressPlaceholder';
 
+import i18next from 'i18next';
+import { initReactI18next, withTranslation } from 'react-i18next';
 import UpdateUser from './UpdateUser';
+
+i18next.use(initReactI18next);
 
 class UsersList extends React.Component {
   constructor(props) {
@@ -91,13 +95,15 @@ class UsersList extends React.Component {
         <Header as="h3" className="color-grey mt1 mb0 flex-auto">
           <Icon name="users" className="align-top" />
           <Header.Content className="left-align">
-            Users
+            {i18next.t('users', { ns: 'users' })}
             {this.renderTotal()}
           </Header.Content>
         </Header>
         <Button color="blue" size="medium" basic onClick={this.handleAddUser}>
           {' '}
-          Add Federated User{' '}
+          {i18next.t('add')}
+          {i18next.t(' ')}
+          {i18next.t('user', { ns: 'users' })}{' '}
         </Button>
       </div>
     );
@@ -134,7 +140,7 @@ class UsersList extends React.Component {
       // TODO: add api token stats and active flag here in the table
       <Segment basic className="p0">
         <Dimmer active={processing} inverted>
-          <Loader inverted>Updating</Loader>
+          <Loader inverted>{i18next.t('updating')}</Loader>
         </Dimmer>
         <ReactTable
           data={usersList}
@@ -150,30 +156,32 @@ class UsersList extends React.Component {
           }}
           columns={[
             {
-              Header: 'Name',
+              Header: i18next.t('props.username', { ns: 'users' }),
               accessor: 'username',
               width: 200,
             },
             {
-              Header: 'Email',
+              Header: i18next.t('props.email', { ns: 'users' }),
               accessor: 'email',
               width: 200,
             },
             {
-              Header: 'Identity Provider',
+              Header: i18next.t('props.identityProviderName', { ns: 'users' }),
               accessor: 'identityProviderName',
               Cell: row => {
                 const user = row.original;
-                return user.identityProviderName || 'internal';
+                return user.identityProviderName || i18next.t('props.internal', { ns: 'users' });
               },
             },
             {
-              Header: 'Type',
+              Header: i18next.t('props.type', { ns: 'users' }),
               accessor: 'isExternalUser',
               width: 100,
               Cell: row => {
                 const user = row.original;
-                return user.isExternalUser ? 'External' : 'Internal';
+                return user.isExternalUser
+                  ? i18next.t('props.external', { ns: 'users' })
+                  : i18next.t('props.internal', { ns: 'users' });
               },
               filterMethod: filter => {
                 if (filter.value.toLowerCase().includes('ex')) {
@@ -183,7 +191,7 @@ class UsersList extends React.Component {
               },
             },
             {
-              Header: 'Role',
+              Header: i18next.t('props.userRole', { ns: 'users' }),
               accessor: 'userRole',
               width: 100,
               style: { whiteSpace: 'unset' },
@@ -193,7 +201,7 @@ class UsersList extends React.Component {
               },
             },
             {
-              Header: 'Project',
+              Header: i18next.t('props.projectId', { ns: 'users' }),
               style: { whiteSpace: 'unset' },
               Cell: row => {
                 const user = row.original;
@@ -201,7 +209,7 @@ class UsersList extends React.Component {
               },
             },
             {
-              Header: 'Status',
+              Header: i18next.t('props.status', { ns: 'users' }),
               accessor: 'isActive',
               width: 100,
               Cell: row => {
@@ -212,7 +220,7 @@ class UsersList extends React.Component {
                     <span>
                       <Label color="green">
                         <i className="check circle outline icon" />
-                        Active
+                        {i18next.t('props.active', { ns: 'users' })}
                       </Label>
                     </span>
                   );
@@ -221,7 +229,7 @@ class UsersList extends React.Component {
                     <span>
                       <Label color="red">
                         <i className="circle icon" />
-                        Inactive
+                        {i18next.t('props.inactive', { ns: 'users' })}
                       </Label>
                     </span>
                   );
@@ -230,7 +238,7 @@ class UsersList extends React.Component {
                     <span>
                       <Label color="orange">
                         <i className="exclamation icon" />
-                        Pending
+                        {i18next.t('pending')}
                       </Label>
                     </span>
                   );
@@ -306,10 +314,12 @@ decorate(UsersList, {
   handleAddLocalUser: action,
 });
 
-export default inject(
-  'userStore',
-  'usersStore',
-  'userRolesStore',
-  'awsAccountsStore',
-  'projectsStore',
-)(withRouter(observer(UsersList)));
+export default withTranslation()(
+  inject(
+    'userStore',
+    'usersStore',
+    'userRolesStore',
+    'awsAccountsStore',
+    'projectsStore',
+  )(withRouter(observer(UsersList))),
+);

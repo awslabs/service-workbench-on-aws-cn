@@ -17,5 +17,6 @@
         "filename": "文件名",
         "size": "大小",
         "status": "状态"
-    }
+    },
+    "files": "文件"
 }

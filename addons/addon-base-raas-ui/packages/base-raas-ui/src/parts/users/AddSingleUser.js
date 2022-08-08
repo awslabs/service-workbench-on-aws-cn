@@ -133,7 +133,9 @@ class AddSingleUser extends React.Component {
 
               <div className="mt3">
                 <Button floated="right" color="blue" icon disabled={processing} className="ml2" type="submit">
-                  Add User
+                  {i18next.t('add')}
+                  {i18next.t(' ')}
+                  {i18next.t('user', { ns: 'users' })}
                 </Button>
                 <Button floated="right" disabled={processing} onClick={onCancel}>
                   {i18next.t('cancel')}

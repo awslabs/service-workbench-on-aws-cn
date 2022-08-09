@@ -34,7 +34,7 @@
         "acknowledgement": "I am aware that re-onboarding this account may render workspaces associated with this account to become unusable.",
         "createStack": "Create Stack",
         "expires": "Expires",
-        "step3": "After creating the CFN stack, SWB will wait for the stack to finish deploying and then onboard your account. You can click the \"Done\" button below to be taken back to the Accounts page while you wait.",
+        "step3": "After creating the CFN stack, SWB will wait for the stack to finish deploying and then onboard your account. You can click the \"Done\" button below to be taken back to the Accounts page while you wait."
     },
     "updatePermsButton": {
         "updatePermissions": "Update Permissions",

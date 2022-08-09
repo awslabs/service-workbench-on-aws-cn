@@ -103,12 +103,18 @@ In the regions where the [ec2-instance-connect][ec2-instance-connect] is support
 For the region where the [ec2-instance-connect][ec2-instance-connect] is not supported, User can only connection to ec2 instance through SSM, like below web UI:
 ![ssm-ui-experience2](./ssm-ui-experience2.png)
 
-For SSH connection, we keep current user experience.
+### For SSH connection, we keep current user experience.
 
-For SSM Connection, the user experience is as below:
+### For SSM Connection, the user experience is as below:
 1. User click "Connections" button, Web UI will show "Connect" button to user.
 2. User click "Connect" button, user will be redirect to AWS Session Manager page, and user can use ec2 instance directly in this page.
 3. There is not "Edit CIDRs" button, because we use swb permission to control which user can access to ec2.
+
+#### Steps of connecting to EC2 Linux via Session Manager
+1. Click the connections button shown in EC2 Linux instance
+2. Choose `SSM Connections`, click `Connect` to access EC2 Linux as `ssm-user` user.
+3. Run `sudo su ec2-user` to change to `ec2-user` user.
+4. The selected studies will show up as mounted directories on the EC2 Linux instance `/home/ec2-user` folder. These study directories will contain files uploaded to the corresponding study. Any files uploaded to the study from the Service Workbench will automatically appear in the mounted study directories after a short delay.
 
 
 ## Detail Design.

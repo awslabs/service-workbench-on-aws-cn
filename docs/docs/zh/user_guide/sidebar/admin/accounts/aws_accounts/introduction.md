@@ -4,8 +4,12 @@ title: AWS账户介绍
 sidebar_label: 介绍
 ---
 
-此解决方案中有 3 种类型的 AWS 账户角色。
+Service Workbench 使用两种类型的账户。
 
-* __Main__ AWS 账户。 这是运行此解决方案的帐户。
-* __Master__ AWS 账户。 此（可选）账户可以与主 AWS 账户相同或不同。 它托管 AWS Organizations，如果需要 AWS 账户创建功能，则需要。
-* __Member__（或研究人员）帐户。 这些帐户是运行研究人员分析的地方。 这些帐户是组织中的成员帐户（“创建”帐户）或独立帐户（“邀请”帐户）。
+- **Main**：部署 Service Workbench 的账户。将为此部署中的所有 AWS 使用费用付费。
+- **Hosting**：通过账号加入流程建立的与 Service Workbench 主账户关联的账户，用于托管与 Service Workbench 工作区关联的计算资源（Amazon SageMaker 笔记本实例、Amazon EC2 Windows 和 Linux 实例、Amazon EMR 集群）。
+
+您可以参阅源代码文档中的以下文件，了解有关 Service Workbench 中不同类型的 AWS 账户的更多信息：
+
+- `README.md`
+- `main/solution/prepare-master-acc/README.md`

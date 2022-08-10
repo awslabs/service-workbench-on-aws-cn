@@ -10,15 +10,15 @@ sidebar_label: 搭建 RStudio ALB workspace
 
 |任务 |说明 |
 | ------------ | ------------ |
-| [创建主账号和托管账户](#createacct) |提供有关如何设置用于 RStudio 工作区类型的环境的信息。在这些帐户中，您将设置托管区域，配置部署 RStudio ALB 工作区所需的证书。 |
+| [创建主账户和托管账户](#createacct) |提供有关如何设置用于 RStudio 工作区类型的环境的信息。在这些账户中，您将设置托管区域，配置部署 RStudio ALB 工作区所需的证书。 |
 | [在主账户中创建公共托管区域](#hostedzone) |提供有关如何路由域/子域的流量的路由信息​​。 |
 | [在共享域中创建新的名称服务器记录](#nserver) |为托管区域提供名称。在这里，您将复制您在主账户中创建的值（包含路由信息）。 |
-| [在托管区域的主帐户中请求公共证书](#pubcert) |在托管区域的主账户中请求公共证书。使用此选项，您向 Amazon 请求公共证书。默认情况下，这些公共证书受浏览器和操作系统的信任。 |
+| [在托管区域的主账户中请求公共证书](#pubcert) |在托管区域的主账户中请求公共证书。使用此选项，您向 Amazon 请求公共证书。默认情况下，这些公共证书受浏览器和操作系统的信任。 |
 | [使用最新的 Service Workbench 代码创建staging文件](#staging) |下载最新的 Service Workbench 代码并设置staging文件以部署 RStudio ALB 工作区。有关staging 文件的更多信息，请参阅 [配置设置](/installation_guide/installation/pre-installation/conf-settings)。 |
 | [创建 AMI](#ami) |提供研究人员用于研究的 RStudio 环境的基础。有关更多信息，请参阅 AWS 合作伙伴的 [README](https://github.com/RLOpenCatalyst/Service_Workbench_Templates/blob/main/RStudio/machine-images/config/infra/README.md)。 |
 | [安装 EC2 RStudio 服务器](#rstudio) |将 RStudio 部署到 Service Workbench 的产品组合中。有关更多信息，请参阅 AWS 合作伙伴的 [README](https://github.com/RLOpenCatalyst/Service_Workbench_Templates/blob/main/RStudio/machine-images/config/infra/README.md)。 |
-| [在托管区域域的成员帐户中请求新的公共证书](#newpubcert) |提供有关如何使用 ACM 为成员（托管）帐户请求公共证书的步骤。证书包含用于导入产品的 ARN 值。 |
-| [在主账户托管区创建新记录](#newrec) |验证成员帐户公共证书。如果没有验证，则无法创建工作区。 |
+| [在托管区域域的成员账户中请求新的公共证书](#newpubcert) |提供有关如何使用 ACM 为成员（托管）账户请求公共证书的步骤。证书包含用于导入产品的 ARN 值。 |
+| [在主账户托管区创建新记录](#newrec) |验证成员账户公共证书。如果没有验证，则无法创建工作区。 |
 | [在 Service Workbench 中访问 RStudio 工作区](#swb) |使用 Service Workbench 配置 RStudio ALB。 |
 
 
@@ -26,18 +26,18 @@ sidebar_label: 搭建 RStudio ALB workspace
 
 <a name="createacct"></a>
 
-**任务**：您将学习创建一个主帐户和一个主机帐户，并为这些帐户分配管理员角色。
+**任务**：您将学习创建一个主账户和一个托管账户，并为这些账户分配管理员角色。
 
-1. 选择**创建/注册帐户**。
+1. 选择**创建/注册账户**。
 2. 在 **Account Creation** 页面上，选择 **Create**。
 3. 在 **Create AWS Accounts** 页面上，指定账户电子邮件地址、账户名称、二级所有者、财务所有者、所有权组、描述和账户类型。
 4. 选择**提交**。
-5. 选择**管理帐户**。
+5. 选择**管理账户**。
 6. 创建控制台角色:    
        a. 选择 **Add**.    
        b. 对于 **One Click Roles**, 选择 **Admin**。
 
-**注意**：按照上述相同步骤创建主机帐户并选择管理员角色。在描述中，指定它是一个主机帐户。
+**注意**：按照上述相同步骤创建托管账户并选择管理员角色。在描述中，指定它是一个托管账户。
 
 ### 在主账户中创建公共托管区域
 
@@ -75,7 +75,7 @@ sidebar_label: 搭建 RStudio ALB workspace
 11. 对于 **Routing policy**，选择 **Simple routing**。
 12. 选择**创建记录**。
 
-### 在托管区域的主帐户中请求公共证书
+### 在托管区域的主账户中请求公共证书
 
 <a name="pubcert"></a>
 
@@ -99,7 +99,7 @@ sidebar_label: 搭建 RStudio ALB workspace
 
 #### 在主账户中创建新记录
 
-1.进入主账户。
+1. 进入主账户。
 2. 选择之前创建的托管区域。请参阅[在主账户中创建公共托管区域](#hostedzone)。
 3. 创建新记录。
 4. 对于**记录名称**，粘贴在上一节中创建的**CNAME** 记录的第一部分。
@@ -113,9 +113,9 @@ sidebar_label: 搭建 RStudio ALB workspace
 **任务**：您将学习如何创建和配置staging 文件以设置 RStudio ALB 工作区。
 
 1. 进入`/main/config/settings`目录。
-2. 创建一个新的staging 文件。例子：
+2. 创建一个新的staging 文件。例如：
       `cp example.yml albr.yml`
-3. 在新创建的阶段文件中，删除注释并将 awsRegion 保留为 us-east-1。您可以更改 awsProfile 的值，例如 rstudio。更新 `.aws` 文件夹中的配置（配置文件）和凭据（凭据文件），以便包含新帐户详细信息。更新后的配置文件应具有以下值：`region`（默认为`us-east-1`）、输出（`yaml`）、`account_id`和`role_name`。要更新凭据，您需要创建 CLI 用户。有关创建用户的更多信息，请参阅 [IAM 用户](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users.html)。
+3. 在新创建的阶段文件中，删除注释并将 awsRegion 保留为 us-east-1。您可以更改 awsProfile 的值，例如 rstudio。更新 `.aws` 文件夹中的配置（配置文件）和凭据（凭据文件），以便包含新账户详细信息。更新后的配置文件应具有以下值：`region`（默认为`us-east-1`）、输出（`yaml`）、`account_id`和`role_name`。要更新凭据，您需要创建 CLI 用户。有关创建用户的更多信息，请参阅 [IAM 用户](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users.html)。
 4. 对于`solutionName`，输入`sw`。
 5. 对于 `envName`，输入阶段名称，例如，`albr`。
 6. 对于 `envType`，输入一个名称，例如，`dev`。
@@ -142,11 +142,11 @@ sidebar_label: 搭建 RStudio ALB workspace
 
 按照自述文件中的说明安装 EC2 RStudio 服务器。
 
-### 在托管区域的成员帐户中请求新的公共证书
+### 在托管区域的成员账户中请求新的公共证书
 
 <a name="newpubcert"></a>
 
-**任务**：您将学习使用 ACM 为成员（托管）帐户申请公共证书并复制 ARN 值。
+**任务**：您将学习使用 ACM 为成员（托管）账户申请公共证书并复制 ARN 值。
 
 1. 登录 AWS 管理控制台。
 2. 选择证书管理器。
@@ -164,9 +164,9 @@ sidebar_label: 搭建 RStudio ALB workspace
 
 <a name="newrec"></a>
 
-**任务**：此任务验证成员帐户公共证书。
+**任务**：此任务验证成员账户公共证书。
 
-1. 转到托管帐户证书管理器。
+1. 转到托管账户证书管理器。
 2. 在证书页面上，复制“CNAME 名称”和“CNAME 值”的值。
 3. 切换到主账号。
 4. 在 AWS 管理控制台上，选择 **Route 53**。
@@ -182,15 +182,15 @@ sidebar_label: 搭建 RStudio ALB workspace
 
 <a name="swb"></a>
 
-**任务**：您将登录到 Service Workbench，创建用户并配置帐户以使用 RStudio ALN 工作区。
+**任务**：您将登录到 Service Workbench，创建用户并配置账户以使用 RStudio ALN 工作区。
 
-1. 首次以 root 用户登录 Service Workbench。
+1. 以 root 用户首次登录 Service Workbench。
 2. 添加本地用户。
-3. 对于**Accounts**、**AWS Accounts**、**Add AWS Account**，添加成员账户。
-4. 对于与会员账户关联的**Accounts**、**Indexes**、**Add Index**，创建一个索引。
-5. 对于与该索引关联的**Accounts**、**Projects**、**Add Project**，创建一个新项目。
+3. 对于**账户**、**AWS Accounts**、**Add AWS Account**，添加成员账户。
+4. 对于与会员账户关联的**账户**、**索引**、**Add Index**，创建一个索引。
+5. 对于与该索引关联的**账户**、**项目**、**Add Project**，创建一个新项目。
 6. 对于**Users**、**Users**、**Detail**、**Edit**，将用户与新项目相关联。
-7. 导入 EC2 RStudio Server 并为工作区类型添加新配置。 `ACMSSLCertArn` 要求提供成员帐户证书 ARN。
+7. 导入 EC2 RStudio Server 并为工作区类型添加新配置。 `ACMSSLCertArn` 要求提供成员账户证书 ARN。
 8. 输入 EC2 实例的实例类型。 `AmiId` 是主账户中新创建的 AMI 的 AMI ID。
 9. 批准配置。
 10. 通过选择 RStudio Server 工作区类型和配置来创建一个新工作区。

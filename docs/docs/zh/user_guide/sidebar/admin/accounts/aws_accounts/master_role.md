@@ -6,7 +6,7 @@ sidebar_label: Master账户角色
 
 此角色位于[**Master AWS Account**](introduction)中，由[**Main AWS Account**](introduction)担任。
 
-## Master Role Trust Policy
+## Master 账户角色信任策略
 
 ```json
 {
@@ -28,11 +28,11 @@ sidebar_label: Master账户角色
 }
 ```
 
-## Master Role Permissions
+## Master 账户角色权限
 
 以下详细说明了所需的托管和内联策略权限。
 
-### Managed Policy: AWSOrganizationsFullAccess
+### 托管策略: AWSOrganizationsFullAccess
 
 ```json
 {
@@ -47,13 +47,13 @@ sidebar_label: Master账户角色
 }
 ```
 
-:::warning
-You should restricted the actions to `createAccount`, `describeCreateAccountStatus` and `describeAccount` only.
+:::注意
+您应将操作限制为 `createAccount`, `describeCreateAccountStatus` 和 `describeAccount`。
 :::
 
-### Inline Policy: sts:AssumeRole
+### 内联策略: sts:AssumeRole
 
-[**Master AWS Account**](introduction) and [**Master AWS Account**](introduction):
+该策略用于控制 [**Master AWS Account**](introduction) 和 [**Master AWS Account**](introduction)之间的角色：
 
 ```json
 {

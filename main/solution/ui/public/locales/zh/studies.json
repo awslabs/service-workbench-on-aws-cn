@@ -18,7 +18,8 @@
         "users": "用户",
         "admin": "管理员",
         "readwrite": "可读可写",
-        "readonly": "只读"
+        "readonly": "只读",
+        "notAdmin": "由于您不是数据集管理员，因此您没有访问权限。"
     },
     "findAndSelectStudies": {
         "header": "查找与选择数据集",

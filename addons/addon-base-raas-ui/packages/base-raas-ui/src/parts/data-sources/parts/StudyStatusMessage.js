@@ -19,6 +19,10 @@ import { decorate, computed, runInAction, observable, action } from 'mobx';
 import { observer, inject } from 'mobx-react';
 import { withRouter } from 'react-router-dom';
 import { Message } from 'semantic-ui-react';
+import i18next from 'i18next';
+import { initReactI18next, withTranslation } from 'react-i18next';
+
+i18next.use(initReactI18next);
 
 // expected props
 // - study (via props)
@@ -61,8 +65,8 @@ class StudyStatusMessage extends React.Component {
 
     return (
       <Message positive onDismiss={this.handleCancel}>
-        <Message.Header>Available</Message.Header>
-        <p>The study is reachable and available for use.</p>
+        <Message.Header>{i18next.t('accountCard.studyStatusMsg.available.header', { ns: 'data' })}</Message.Header>
+        <p>{i18next.t('accountCard.studyStatusMsg.available.subheader1', { ns: 'data' })}</p>
       </Message>
     );
   }
@@ -70,34 +74,35 @@ class StudyStatusMessage extends React.Component {
   renderPending() {
     const study = this.study;
     const expanded = this.expanded;
-    const expandText = expanded ? 'less' : 'more';
+    const expandText = expanded
+      ? i18next.t('accountCard.studyStatusMsg.less', { ns: 'data' })
+      : i18next.t('accountCard.studyStatusMsg.more', { ns: 'data' });
     const msg = study.statusMessageInfo.message;
 
     if (!study.pendingState) return null;
 
     return (
       <Message warning>
-        <Message.Header>Not available yet</Message.Header>
+        <Message.Header>{i18next.t('accountCard.studyStatusMsg.pending.header', { ns: 'data' })}</Message.Header>
         <p>
-          The study is in the process of being connected with the application. It is unreachable until the
-          CloudFormation stack is successfully deploy.
+          {i18next.t('accountCard.studyStatusMsg.pending.subheader1', { ns: 'data' })}
           <span className="underline ml1 cursor-pointer" onClick={this.handleExpand}>
             {expandText}
           </span>
         </p>
         {expanded && (
           <div className="mt2 animated fadeIn">
-            <Message.Header>CloudFormation stack already deployed?</Message.Header>
-            <Message.List>
-              <Message.Item>Check if the CloudFormation stack is deployed in the correct AWS account</Message.Item>
-              <Message.Item>Check if the CloudFormation stack is deployed in the correct AWS region</Message.Item>
-              <Message.Item>Try the connection check test again</Message.Item>
-            </Message.List>
+            <Message.Header>
+              {i18next.t('accountCard.studyStatusMsg.pending.subheader2', { ns: 'data' })}
+            </Message.Header>
+            {this.renderTips()}
           </div>
         )}
         {expanded && !_.isEmpty(msg) && (
           <div className="mt2">
-            <Message.Header>Message received from the server</Message.Header>
+            <Message.Header>
+              {i18next.t('accountCard.studyStatusMsg.pending.subheader3', { ns: 'data' })}
+            </Message.Header>
             <p>{msg}</p>
           </div>
         )}
@@ -108,35 +113,40 @@ class StudyStatusMessage extends React.Component {
   renderError() {
     const study = this.study;
     const expanded = this.expanded;
-    const expandText = expanded ? 'less' : 'more';
+    const expandText = expanded
+      ? i18next.t('accountCard.studyStatusMsg.less', { ns: 'data' })
+      : i18next.t('accountCard.studyStatusMsg.more', { ns: 'data' });
     const msg = study.statusMessageInfo.message;
 
     if (!study.errorState) return null;
 
     return (
       <Message negative>
-        <Message.Header>Not available</Message.Header>
+        <Message.Header>{i18next.t('accountCard.studyStatusMsg.error.header', { ns: 'data' })}</Message.Header>
         <p>
-          The study is unreachable. This is usually an indication of a problem during the CloudFormation stack
-          deployment.
+          {i18next.t('accountCard.studyStatusMsg.error.subheader1', { ns: 'data' })}
           <span className="underline ml1 cursor-pointer" onClick={this.handleExpand}>
             {expandText}
           </span>
         </p>
-        {expanded && (
-          <Message.List>
-            <Message.Item>Check if the CloudFormation stack is deployed in the correct AWS account</Message.Item>
-            <Message.Item>Check if the CloudFormation stack is deployed in the correct AWS region</Message.Item>
-            <Message.Item>Try the connection check test again</Message.Item>
-          </Message.List>
-        )}
+        {expanded && this.renderTips()}
         {expanded && !_.isEmpty(msg) && (
           <div className="mt2">
-            <Message.Header>Message received from the server</Message.Header>
+            <Message.Header>{i18next.t('accountCard.studyStatusMsg.error.subheader2', { ns: 'data' })}</Message.Header>
             <p>{msg}</p>
           </div>
         )}
       </Message>
+    );
+  }
+
+  renderTips() {
+    return (
+      <Message.List>
+        {i18next.t('accountCard.studyStatusMsg.tips', { ns: 'data' }).map(text => (
+          <Message.Item>{text}</Message.Item>
+        ))}
+      </Message.List>
     );
   }
 }
@@ -149,4 +159,4 @@ decorate(StudyStatusMessage, {
   handleCancel: action,
 });
 
-export default inject()(withRouter(observer(StudyStatusMessage)));
+export default withTranslation()(inject()(withRouter(observer(StudyStatusMessage))));

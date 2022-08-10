@@ -236,7 +236,7 @@ class InputStep extends React.Component {
     return (
       <>
         <Header as="h3" icon textAlign="center" className="mt2" color="grey">
-          Register Studies
+          {i18next.t('registerStudies', { ns: 'data' })}
         </Header>
         <Segment clearing className="p3">
           {this.renderForm()}
@@ -255,7 +255,8 @@ class InputStep extends React.Component {
     const bucketOptions = wizard.getDropdownBucketOptions(accountId);
     const showKmsArn = bucketField.$('sse').value === 'kms';
     const studiesSize = studies.size;
-    const addButtonLabel = studiesSize > 0 ? 'Add Another Study' : 'Add Study';
+    const addButtonLabel =
+      studiesSize > 0 ? i18next.t('addAnotherStudy', { ns: 'data' }) : i18next.t('addStudy', { ns: 'data' });
 
     return (
       <Form form={form} onCancel={this.handleCancel} onSuccess={this.handleSave}>
@@ -287,7 +288,7 @@ class InputStep extends React.Component {
             <TextArea field={accountField.$('contactInfo')} className="mb3" />
 
             <Divider horizontal className="mt4 mb4">
-              Bucket Information
+              {i18next.t('bucketInformation', { ns: 'data' })}
             </Divider>
 
             <div className="clearfix">
@@ -323,7 +324,7 @@ class InputStep extends React.Component {
             {showKmsArn && <Input field={bucketField.$('kmsArn')} className="mb3" />}
 
             <Divider horizontal className="mt4 mb4">
-              Studies
+              {i18next.t('studies', { ns: 'data' })}
             </Divider>
 
             {studies.map(field => this.renderStudyField({ field }))}
@@ -337,7 +338,7 @@ class InputStep extends React.Component {
               primary
               icon="right arrow"
               labelPosition="right"
-              content="Save &amp; Continue"
+              content={i18next.t('saveAndContinue')}
               disabled={processing || !accountIdValid}
               type="submit"
             />

@@ -507,7 +507,7 @@ class UserOnboarding extends React.Component {
                 size="mini"
                 icon="trash alternate outline"
                 color="red"
-                content="Reset"
+                content={i18next.t('reset')}
                 title="Reset attached credentials"
                 onClick={this.handleCredentialsReset}
               />

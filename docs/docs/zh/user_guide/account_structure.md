@@ -6,13 +6,12 @@ sidebar_label: 账户结构
 
 ## 账户结构
 
-Service Workbench 使用了三种帐户，本指南中使用了它们的名称。 _Master_ 和 _Member_ 账户是指 [AWS Organizations](https://docs.aws.amazon.com/organizations/latest/userguide/orgs_introduction.html) 的术语，而 _Main_ 账户是AWS Service Catalog术语。
+Service Workbench 使用两种类型的账户。您将在整个文档中看到这些账户名称。
 
-- **Main**:部署服务目录的帐户。主账户将支付服务目录部署本身的所有 AWS 使用费用:保存网站的 S3 存储桶以及其他非用户创建的资源。服务目录可以部署在主账户（持有组织的账户）或成员账户（组织内）中。在任何一种情况下，此帐户都称为服务目录_Main_ 帐户。
-- **Master**:托管 AWS 组织的账户。主账户负责组织内成员账户的计费。
-- **成员**:AWS 组织内的账户。当您使用 [创建 AWS 账户](/deployment/post_deployment/aws_accounts#Create_AWS_Account) 创建账户时，该账户被创建为组织的成员。
+- **Main**：部署 Service Workbench 的账户。将为此部署中的所有 AWS 使用费用付费。
+- **Hosting**：通过账号加入流程建立的与 Service Workbench 主账户关联的账户，用于托管与 Service Workbench 工作区关联的计算资源（Amazon SageMaker 笔记本实例、Amazon EC2 Windows 和 Linux 实例、Amazon EMR 集群）。
 
-另见源代码:
+您可以参阅源代码文档中的以下文件，了解有关 Service Workbench 中不同类型的 AWS 账户的更多信息：
 
 - `README.md`
 - `main/solution/prepare-master-acc/README.md`

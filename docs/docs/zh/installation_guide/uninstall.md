@@ -10,7 +10,7 @@ sidebar_label: 卸载 Service Workbench
 
 + 对于正在运行的工作区，在成功删除堆栈之前手动删除 PVRE 角色添加。
 + 在删除堆栈之前清空每个存储桶。
-+ 必须手动删除 s3 存储桶。
++ 必须手动删除 S3 存储桶。
 
 **来自 AWS Service Catalog 的产品**
 
@@ -25,7 +25,7 @@ sidebar_label: 卸载 Service Workbench
 
 **CloudWatch 日志组**
 
-转到 CloudWatch 控制台，然后选择并删除日志组。或者，设置保留时间，日志组将自动删除。
+转到 CloudWatch 控制台，然后选择并删除日志组。或者，设置保留时间，自动删除日志组。
 
 **AWS Cloud9 IDE**
 

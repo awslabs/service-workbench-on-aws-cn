@@ -6,9 +6,9 @@ sidebar_label: 预安装要求
 
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
-最初的先决条件包括在 AWS 中创建一个主账户、启用 AWS Cost Explorer 和激活成本分配标签。
+首先，您需要在 AWS 中创建一个主账户、启用 AWS Cost Explorer 和激活成本分配标签。
 
-**重要提示**:在安装 Service Workbench 之前，请确保您具备核心 AWS 服务的使用知识。
+**重要提示**：在安装 Service Workbench 之前，请确保您具备核心 AWS 服务的使用知识。
 
 ### 设置主账户
 
@@ -46,13 +46,13 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 :::
 
-1. 登录 AWS 管理控制台并打开 **Billing & Cost Management Dashboard** [此处](https://console.aws.amazon.com/billing/)。
+1. 登录 AWS 管理控制台并打开 [**Billing & Cost Management Dashboard**](https://console.aws.amazon.com/billing/)。
 
 2. 在导航窗格中，选择**成本分配标签**。
 
 <img src={useBaseUrl('img/deployment/installation/cost_atags1.png')} />
 
-3. 在 User-defined cost allocation tags 下，选择 **createdBy**、**Env** 和 **Proj** 标签。
+3. 在**用户定义的成本分配标签**下，选择 **createdBy**、**Env** 和 **Proj** 标签。
  
 <img src={useBaseUrl('img/deployment/installation/cost_atags2.png')} />
 

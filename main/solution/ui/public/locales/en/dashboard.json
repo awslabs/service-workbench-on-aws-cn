@@ -1,0 +1,9 @@
+{
+    "dashboard": "Dashboard",
+    "noData": "No cost data to show",
+    "indexCost30days": "Index Costs for Past 30 Days",
+    "envCost30days": "Env Cost for Past 30 Days",
+    "envCostYesterday": "Yesterday's Env Cost",
+    "indexCostBreakdown30days": "Index Cost Breakdowns for Past 30 Days",
+    "totalCost30days": "Total cost of all research workspaces for the past 30 days: $"
+}

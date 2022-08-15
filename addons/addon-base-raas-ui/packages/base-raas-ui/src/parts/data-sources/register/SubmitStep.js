@@ -80,7 +80,7 @@ class SubmitStep extends React.Component {
     return (
       <>
         <Header as="h3" icon textAlign="center" className="mt2" color="grey">
-          Register Studies
+          {i18next.t('registerStudies', { ns: 'data' })}
         </Header>
         <Segment clearing className="p3">
           {this.renderContent()}
@@ -100,17 +100,17 @@ class SubmitStep extends React.Component {
         <div>
           {running && (
             <Header className="mb3" as="h3" color="grey">
-              Registering Studies
+              {i18next.t('submitStep.running', { ns: 'data' })}
             </Header>
           )}
           {success && (
             <Header className="mb3" as="h3" color="grey">
-              Successfully Registered Studies
+              {i18next.t('submitStep.success', { ns: 'data' })}
             </Header>
           )}
           {error && (
             <Header className="mb3" as="h3" color="grey">
-              Error Registering Studies
+              {i18next.t('submitStep.error', { ns: 'data' })}
             </Header>
           )}
         </div>
@@ -211,7 +211,7 @@ class SubmitStep extends React.Component {
             floated="right"
             color="red"
             className="ml2"
-            content="Retry"
+            content={i18next.t('retry')}
             loading={running}
             disabled={disabled}
             onClick={this.handleRetry}

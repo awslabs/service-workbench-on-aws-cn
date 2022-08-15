@@ -69,9 +69,9 @@ class DataSourceAccountInfo extends React.Component {
       runInAction(() => {
         this.form = getAccountForm(data);
       });
-      displaySuccess('Account information updated successfully');
+      displaySuccess(i18next.t('accountCard.accountInfo.save.success', { ns: 'data' }), i18next.t('success'));
     } catch (error) {
-      displayError(error);
+      displayError(error, i18next.t('error'));
     }
   };
 
@@ -99,7 +99,7 @@ class DataSourceAccountInfo extends React.Component {
               <Button
                 floated="right"
                 className="ml2"
-                content="Reset"
+                content={i18next.t('reset')}
                 disabled={processing || !isDirty}
                 onClick={onCancel}
               />

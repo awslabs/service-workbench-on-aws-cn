@@ -85,12 +85,12 @@ class StudyPermissionsTable extends React.Component {
     // Perform update
     try {
       await this.permissionsStore.update(this.selectedUserIds, this.staleUserIds);
-      displaySuccess('Update Succeeded');
+      displaySuccess(i18next.t('permission.update.succeeded', { ns: 'data' }), i18next.t('success'));
       runInAction(() => {
         this.resetForm();
       });
     } catch (error) {
-      displayError('Update Failed', error);
+      displayError(i18next.t('permission.update.failed', { ns: 'data' }), error);
       runInAction(() => {
         this.isProcessing = false;
       });
@@ -117,9 +117,7 @@ class StudyPermissionsTable extends React.Component {
 
     if (!isEditable) {
       return (
-        <div data-testid="unable-to-access-permission">
-          You cannot access permissions as you are not a Study administrator.
-        </div>
+        <div data-testid="unable-to-access-permission">{i18next.t('permissionTable.notAdmin', { ns: 'studies' })}</div>
       );
     }
     return (

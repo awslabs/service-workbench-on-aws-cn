@@ -11,7 +11,7 @@ i18next
   .use(Backend)
   .use(LanguageDetector)
   .init({
-    ns: ['common', 'accounts', 'workspaces', 'studies', 'files'],
+    ns: ['accounts', 'common', 'data', 'files', 'ssh', 'studies', 'types', 'users', 'workspaces'],
     defaultNS: 'common',
     fallbackLng: 'en',
     debug: false,

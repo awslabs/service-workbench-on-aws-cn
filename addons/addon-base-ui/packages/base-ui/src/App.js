@@ -19,9 +19,13 @@ import { inject, observer } from 'mobx-react';
 import { getEnv } from 'mobx-state-tree';
 import { Switch, Redirect, withRouter } from 'react-router-dom';
 
+import { initReactI18next, withTranslation } from 'react-i18next';
+import i18next from './i18next';
 import withAuth from './withAuth';
 import { getRoutes, getMenuItems, getDefaultRouteLocation } from './helpers/plugins-util';
 import MainLayout from './parts/MainLayout';
+
+i18next.use(initReactI18next);
 
 // expected props
 // - app model (via injection)
@@ -53,8 +57,17 @@ class App extends React.Component {
 
   renderApp() {
     const defaultLocation = this.getDefaultRouteLocation();
+    const menuItems = this.getMenuItems();
+    Object.keys(menuItems).forEach(i => {
+      const title = i18next.t(menuItems[i].title, { ns: 'sidebar' });
+      const parts = title.split(' ');
+      for (let j = parts.length - 1; j >= 1; j -= 1) {
+        parts.splice(j, 0, <br />);
+      }
+      menuItems[i].title = <>{parts}</>;
+    });
     return (
-      <MainLayout menuItems={this.getMenuItems()}>
+      <MainLayout menuItems={menuItems}>
         <Switch>
           <Redirect exact from="/" to={defaultLocation} />
           {this.getRoutes()}
@@ -73,4 +86,4 @@ decorate(App, {
   appContext: computed,
 });
 
-export default withAuth(inject('app', 'userStore')(withRouter(observer(App))));
+export default withTranslation()(withAuth(inject('app', 'userStore')(withRouter(observer(App)))));

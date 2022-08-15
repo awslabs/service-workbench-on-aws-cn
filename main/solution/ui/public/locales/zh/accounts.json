@@ -82,7 +82,8 @@
         "addIndex": {
             "id": {
                 "label": "索引 ID",
-                "placeholder": "请输入该索引的 ID"
+                "placeholder": "请输入该索引的 ID",
+                "explain": "索引 ID 必须少于300个字符，只能包含字母数字, “-” 或 “_”"
             },
             "awsAccountId": {
                 "label": "AWS 账号 ID",

@@ -82,7 +82,8 @@
         "addIndex": {
             "id": {
                 "label": "Index ID",
-                "placeholder": "Type id for this index"
+                "placeholder": "Type id for this index",
+                "explain": "Must be less than 300 characters long and only contain alphanumeric characters, \"-\", or \"_\""
             },
             "awsAccountId": {
                 "label": "AWS Account ID",

@@ -13,6 +13,7 @@ i18next
   .init({
     ns: [
       'accounts',
+      'auth',
       'common',
       'data',
       'dashboard',

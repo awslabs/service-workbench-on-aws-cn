@@ -18,7 +18,11 @@ import { observer } from 'mobx-react';
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { Button, Header, Label } from 'semantic-ui-react';
+import i18next from 'i18next';
+import { initReactI18next, withTranslation } from 'react-i18next';
 import { gotoFn } from '../../helpers/routing';
+
+i18next.use(initReactI18next);
 
 // expected props
 // - authenticationProviderConfig
@@ -39,7 +43,9 @@ class AuthenticationProviderCard extends Component {
             </Header>
             <div className="ml-auto">{this.renderActionButtons()}</div>
           </div>
-          <div className="ml3 mb2 mt2 breakout">{authenticationProviderConfig.config.type.description}</div>
+          <div className="ml3 mb2 mt2 breakout">
+            {i18next.t(authenticationProviderConfig.config.type.description, { ns: 'auth' })}
+          </div>
         </div>
       </div>
     );
@@ -80,4 +86,4 @@ class AuthenticationProviderCard extends Component {
   };
 }
 
-export default withRouter(observer(AuthenticationProviderCard));
+export default withTranslation()(withRouter(observer(AuthenticationProviderCard)));

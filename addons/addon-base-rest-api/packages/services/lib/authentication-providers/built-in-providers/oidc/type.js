@@ -17,7 +17,7 @@ const inputSchema = require('./create-oidc-schema');
 module.exports = {
   type: 'oidc',
   title: 'oidc',
-  description: 'Authentication provider for oidc',
+  description: 'description.oidc', // i18next key path
   config: {
     // 'redirect' -- The credentials should be NOT be collected and the user should be redirected directly to the identity provider
     credentialHandlingType: 'redirect',

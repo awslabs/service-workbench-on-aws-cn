@@ -5,5 +5,5 @@
     "envCost30days": "Env Cost for Past 30 Days",
     "envCostYesterday": "Yesterday's Env Cost",
     "indexCostBreakdown30days": "Index Cost Breakdowns for Past 30 Days",
-    "totalCost30days": "Total cost of all research workspaces for the past 30 days: $"
+    "totalCost30days": "Total cost of all research workspaces for the past 30 days: "
 }

@@ -5,5 +5,5 @@
     "envCost30days": "过去30天内的工作区费用",
     "envCostYesterday": "过去24小时内的工作区费用",
     "indexCostBreakdown30days": "过去30天内的索引费用明细",
-    "totalCost30days": "过去30天内的总费用: $"
+    "totalCost30days": "过去30天内的总费用: "
 }

@@ -11,6 +11,35 @@ i18next
   .use(Backend)
   .use(LanguageDetector)
   .init({
+    partialBundledLanguages: true,
+    /* The resources of the utils namespace must be placed here, 
+    because the relevant content will be rendered before the init function completes */
+    resources: {
+      en: {
+        utils: {
+          progress: {
+            header: 'Just one second',
+            subheader: 'Great things are now happening, please wait!',
+          },
+          error: {
+            header: 'We have a problem',
+            subheader: 'See if refreshing the browser will resolve your issue',
+          },
+        },
+      },
+      zh: {
+        utils: {
+          progress: {
+            header: '稍等片刻',
+            subheader: '正在准备中，马上就好！',
+          },
+          error: {
+            header: '我们遇到了一些问题',
+            subheader: '你可以刷新一下试试看能不能解决这个问题',
+          },
+        },
+      },
+    },
     ns: [
       'accounts',
       'auth',

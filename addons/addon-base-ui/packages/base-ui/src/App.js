@@ -19,8 +19,8 @@ import { inject, observer } from 'mobx-react';
 import { getEnv } from 'mobx-state-tree';
 import { Switch, Redirect, withRouter } from 'react-router-dom';
 
+import i18next from 'i18next';
 import { initReactI18next, withTranslation } from 'react-i18next';
-import i18next from './i18next';
 import withAuth from './withAuth';
 import { getRoutes, getMenuItems, getDefaultRouteLocation } from './helpers/plugins-util';
 import MainLayout from './parts/MainLayout';

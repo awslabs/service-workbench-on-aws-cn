@@ -131,7 +131,7 @@ class ConfigurationReview extends React.Component {
     );
 
     let content = <ConfigTable rows={configRows} />;
-    if (empty) content = 'No configuration values are provided';
+    if (empty) content = i18next.t('noConfigValue', { ns: 'auth' });
 
     return (
       <>
@@ -139,7 +139,7 @@ class ConfigurationReview extends React.Component {
           <Segment padded>
             {dimmer && (
               <Dimmer active={processing} inverted>
-                <Loader inverted>Processing</Loader>
+                <Loader inverted>{i18next.t('processing')}</Loader>
               </Dimmer>
             )}
             {content}

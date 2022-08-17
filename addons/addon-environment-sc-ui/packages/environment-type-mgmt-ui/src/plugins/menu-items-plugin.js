@@ -14,7 +14,7 @@
  */
 
 import _ from 'lodash';
-import React from 'react';
+
 /**
  * Adds workflow navigation menu items to the given itemsMap.
  *
@@ -41,13 +41,7 @@ function registerMenuItems(itemsMap, { location, appContext }) {
     [
       '/workspace-types-management',
       {
-        title: (
-          <>
-            Workspace
-            <br />
-            Types
-          </>
-        ),
+        title: 'Workspace Types',
         icon: 'computer',
         shouldShow: isAdmin && showEnvTypeManagement,
       },

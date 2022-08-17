@@ -23,11 +23,15 @@ import { Container, Header, Segment, Icon } from 'semantic-ui-react';
 import { displayError, displayWarning } from '@amzn/base-ui/dist/helpers/notification';
 import ProgressPlaceHolder from '@amzn/base-ui/dist/parts/helpers/BasicProgressPlaceholder';
 
+import i18next from 'i18next';
+import { initReactI18next, withTranslation } from 'react-i18next';
 import { getEnvironments, getEnvironmentCost, getScEnvironments, getScEnvironmentCost } from '../../helpers/api';
 import { enableBuiltInWorkspaces } from '../../helpers/settings';
 
 import { blueDatasets } from './graphs/graph-options';
 import BarGraph from './graphs/BarGraph';
+
+i18next.use(initReactI18next);
 
 class Dashboard extends React.Component {
   constructor(props) {
@@ -100,7 +104,7 @@ class Dashboard extends React.Component {
       <div data-testid="page-title" className="mb3 flex">
         <Header as="h3" className="color-grey mt1 mb0 flex-auto">
           <Icon name="dashboard" className="align-top" />
-          <Header.Content className="left-align">Dashboard</Header.Content>
+          <Header.Content className="left-align">{i18next.t('dashboard', { ns: 'dashboard' })}</Header.Content>
         </Header>
       </div>
     );
@@ -110,7 +114,7 @@ class Dashboard extends React.Component {
     return (
       <div>
         {this.state.isLoading === false && this.state.totalCost === 0 ? (
-          <Segment className="bold">No cost data to show</Segment>
+          <Segment className="bold">{i18next.t('noData', { ns: 'dashboard' })}</Segment>
         ) : (
           <>
             <Segment>{this.renderCostPerIndex()}</Segment>
@@ -118,7 +122,7 @@ class Dashboard extends React.Component {
             <Segment>{this.renderYesterdayCostPerEnv()}</Segment>
             <Segment className="clearfix">{this.renderPastMonthCostPerIndexPerUser()}</Segment>
             <Segment className="bold">
-              Total cost of all research workspaces for the past 30 days: $
+              {i18next.t('totalCost30days', { ns: 'dashboard' })}
               {Math.round(this.state.totalCost * 100) / 100}
             </Segment>
           </>
@@ -131,7 +135,7 @@ class Dashboard extends React.Component {
     if (_.isEmpty(this.state.indexNameToTotalCost)) {
       return <ProgressPlaceHolder />;
     }
-    const title = 'Index Costs for Past 30 Days';
+    const title = i18next.t('indexCost30days', { ns: 'dashboard' });
     const labels = Object.keys(this.state.indexNameToTotalCost);
     const dataPoints = Object.keys(this.state.indexNameToTotalCost).map(indexName => {
       return this.state.indexNameToTotalCost[indexName];
@@ -154,7 +158,7 @@ class Dashboard extends React.Component {
       const total = _.sum(_.values(this.state.envIdToCostInfo[envId].pastMonthCostByUser));
       pastMonthCostTotalArray.push(total);
     });
-    const title = 'Env Cost for Past 30 Days';
+    const title = i18next.t('envCost30days', { ns: 'dashboard' });
     const labels = getLabels(this.state.envIdToCostInfo, this.state.envIdToEnvMetadata, this.state.duplicateEnvNames);
     const dataPoints = pastMonthCostTotalArray;
     const data = {
@@ -169,7 +173,7 @@ class Dashboard extends React.Component {
     if (_.isEmpty(this.state.envIdToCostInfo)) {
       return <ProgressPlaceHolder />;
     }
-    const title = "Yesterday's Env Cost";
+    const title = i18next.t('envCostYesterday', { ns: 'dashboard' });
     const labels = getLabels(this.state.envIdToCostInfo, this.state.envIdToEnvMetadata, this.state.duplicateEnvNames);
     const dataPoints = Object.keys(this.state.envIdToCostInfo).map(envId => {
       return this.state.envIdToCostInfo[envId].yesterdayCost;
@@ -216,7 +220,7 @@ class Dashboard extends React.Component {
     });
     return (
       <>
-        <div className="center bold">Index Cost Breakdowns for Past 30 Days</div>
+        <div className="center bold">{i18next.t('indexCostBreakdown30days', { ns: 'dashboard' })}</div>
         {results}
       </>
     );
@@ -337,5 +341,5 @@ async function getAccumulatedEnvCost(getEnvironmentsFn, getEnvironmentCostFn) {
 // see https://medium.com/@mweststrate/mobx-4-better-simpler-faster-smaller-c1fbc08008da
 decorate(Dashboard, {});
 
-export default inject('userStore')(withRouter(observer(Dashboard)));
+export default withTranslation()(inject('userStore')(withRouter(observer(Dashboard))));
 export { getAccumulatedEnvCost, getCosts, getLabels };

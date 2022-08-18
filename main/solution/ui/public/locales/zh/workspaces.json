@@ -48,14 +48,14 @@
         "workspaceType": "工作区类型",
         "configurationName": "工作区配置",
         "instanceType": "实例类型",
-        "cost": "开销",
+        "cost": "费用",
         "cloudFormationOutput": "CloudFormation的输出",
         "noneIsAvailable": "（没有内容）"
     },
     "cost": {
-        "yesterday": "昨日开销",
+        "yesterday": "昨日费用",
         "showError": "查看错误信息",
-        "error1": "检索开销信息时出错了。",
+        "error1": "检索费用信息时出错了。",
         "error2": "如果此工作区是在新帐户中部署的，请与您的管理员确认已为该帐户启用了Cost Explorer 功能。",
         "error3": "系统返回的错误信息如下所示："
     },

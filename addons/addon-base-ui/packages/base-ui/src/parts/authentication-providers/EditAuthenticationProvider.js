@@ -16,6 +16,8 @@
 import { inject, observer } from 'mobx-react';
 import React, { Component } from 'react';
 import { Breadcrumb, Container, Header, Segment } from 'semantic-ui-react';
+import i18next from 'i18next';
+import { initReactI18next, withTranslation } from 'react-i18next';
 import { displayError, displaySuccess } from '../../helpers/notification';
 
 import { gotoFn } from '../../helpers/routing';
@@ -27,6 +29,7 @@ import ConfigurationReview from '../configuration/ConfigurationReview';
 import BasicProgressPlaceholder from '../helpers/BasicProgressPlaceholder';
 import ErrorBox from '../helpers/ErrorBox';
 
+i18next.use(initReactI18next);
 // expected props
 // - authenticationProviderConfigId (via react router params)
 // - authenticationProviderConfigsStore (via injection)
@@ -66,10 +69,10 @@ class EditAuthenticationProvider extends Component {
       <div>
         <Breadcrumb>
           <Breadcrumb.Section link onClick={() => goto('/authentication-providers')}>
-            Authentication Providers
+            {i18next.t('authProviders', { ns: 'auth' })}
           </Breadcrumb.Section>
           <Breadcrumb.Divider icon="right angle" />
-          <Breadcrumb.Section>Authentication Provider</Breadcrumb.Section>
+          <Breadcrumb.Section>{i18next.t('authProvider', { ns: 'auth' })}</Breadcrumb.Section>
           <Breadcrumb.Divider icon="right angle" />
           <Breadcrumb.Section active>{authenticationProviderConfig.id}</Breadcrumb.Section>
         </Breadcrumb>
@@ -143,4 +146,4 @@ class EditAuthenticationProvider extends Component {
   };
 }
 
-export default inject('authenticationProviderConfigsStore')(observer(EditAuthenticationProvider));
+export default withTranslation()(inject('authenticationProviderConfigsStore')(observer(EditAuthenticationProvider)));

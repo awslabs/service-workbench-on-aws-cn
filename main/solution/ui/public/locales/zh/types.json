@@ -106,7 +106,7 @@
             "explain": "支持 Markdown 语法"
         },
         "estimatedCostInfo": {
-            "label": "预计开销",
+            "label": "预计费用",
             "placeholder": "有关使用此配置时预计的成本信息",
             "explain": "支持 Markdown 语法"
         },

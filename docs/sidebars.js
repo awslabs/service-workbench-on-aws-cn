@@ -221,7 +221,7 @@ module.exports = {
     "中文": [
       { ServiceWorkBench: ["zh/introduction"], },
       {
-        "Service Workbench 安装手册": [
+        "Service Workbench 安装指南": [
           "zh/installation_guide/overview",
           "zh/installation_guide/architecture",
           "zh/installation_guide/components",
@@ -246,7 +246,6 @@ module.exports = {
           {
             "升级 Service Workbench": [
               "zh/installation_guide/upgrading/commandline",
-              "zh/installation_guide/upgrading/solutions",
             ],
           },
           "zh/installation_guide/postupgrade",
@@ -257,7 +256,7 @@ module.exports = {
       {
         "Service Workbench 安装后指南": [
           {
-            "安装后手册": [
+            "安装后指南": [
               "zh/post_deployment/index",
               "zh/post_deployment/account_structure",
               "zh/post_deployment/aws_accounts",
@@ -274,19 +273,19 @@ module.exports = {
           "zh/user_guide/account_structure",
           "zh/user_guide/introduction",
           {
-            Sidebar: [
+            边栏: [
               {
                 "研究员视图": [
                   "zh/user_guide/sidebar/common/dashboard/introduction",
                   {
-                    Studies: [
+                    数据集: [
                       "zh/user_guide/sidebar/common/studies/introduction",
                       "zh/user_guide/sidebar/common/studies/creating_a_study",
                       "zh/user_guide/sidebar/common/studies/data_sources",
                       "zh/user_guide/sidebar/common/studies/studies_page",
                       "zh/user_guide/sidebar/common/studies/sharing_a_study",
                     ],
-                    Workspaces: [
+                    工作区: [
                       "zh/user_guide/sidebar/common/workspaces/introduction",
                       "zh/user_guide/sidebar/common/workspaces/create_workspace_study",
                       "zh/user_guide/sidebar/common/workspaces/accessing_a_workspace",
@@ -315,7 +314,6 @@ module.exports = {
                         ],
                         "AWS 账户": [
                           "zh/user_guide/sidebar/admin/accounts/aws_accounts/introduction",
-                          "zh/user_guide/sidebar/admin/accounts/aws_accounts/create_member_account",
                           "zh/user_guide/sidebar/admin/accounts/aws_accounts/invite_member_account",
                           "zh/user_guide/sidebar/admin/accounts/aws_accounts/set_account_budget",
                           {
@@ -328,14 +326,14 @@ module.exports = {
                       },
                     ],
                     Workflows: ["zh/user_guide/sidebar/admin/workflows/introduction"],
-                    Studies: [
+                    数据集: [
                       "zh/user_guide/sidebar/common/studies/introduction",
                       "zh/user_guide/sidebar/common/studies/creating_a_study",
                       "zh/user_guide/sidebar/common/studies/studies_page",
                       "zh/user_guide/sidebar/common/studies/sharing_a_study",
                       "zh/user_guide/sidebar/common/studies/data_sources",
                     ],
-                    Workspaces: [
+                    工作区: [
                       "zh/user_guide/sidebar/common/workspaces/introduction",
                       "zh/user_guide/sidebar/common/workspaces/create_workspace_study",
                       "zh/user_guide/sidebar/common/workspaces/terminating_a_workspace",
@@ -348,7 +346,7 @@ module.exports = {
         ],
       },
       {
-        "开发手册": ["zh/development/introduction"],
+        "开发指南": ["zh/development/introduction"],
       },
     ],
     动手实践: [

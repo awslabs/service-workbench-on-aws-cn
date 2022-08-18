@@ -6,21 +6,21 @@ sidebar_label: 创建索引和项目
 
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
-现在您已经注册了一个托管帐户，您可以创建与该帐户关联的索引和项目。
+现在您已经注册了一个托管账户，您可以创建与该账户关联的索引和项目。
 
-**Projects** 和 **Indexes** 在 **Accounts** 下形成一个层次结构。 每个账户可以有多个**Indexes**，每个**Index**可以有多个**Projects**。 **Projects** 附加到 **Users**，因此您必须先创建 **Projects**。
+**项目** 和 **索引** 在 **账户** 下形成一个层次结构。 每个账户可以有多个**索引**，每个**索引**可以有多个**项目**。 **项目** 附加到 **用户**，因此您必须先创建 **项目**。
 
-在管理界面的 **Accounts** 选项卡中创建 [Account](/deployment/post_deployment/link_aws_account) 后，通过下拉列表中选择 **Account ID** 创建链接到该帐户的 **Index** 。
+在管理界面的 **账户** 选项卡中创建 [Account](/deployment/post_deployment/link_aws_account) 后，通过下拉列表中选择 **Account ID** 创建链接到该账户的 **索引** 。
 
-1. 在 **Indexes** 选项卡上，选择 **Add Index**。
+1. 在 **索引** 选项卡上，选择 **Add Index**。
 
 <img src={useBaseUrl('img/deployment/post_deployment/create_index_00.jpg')} />
 
-_**图：创建索引**_
+**图：创建索引**
 
-2. 创建一个链接到新索引的**项目**。 在 **Projects** 选项卡中，选择 **Add Project**。
+2. 创建一个链接到新索引的**项目**。 在 **项目** 选项卡中，选择 **Add Project**。
 
 <img src={useBaseUrl('img/deployment/post_deployment/create_index_01.jpg')} />
 
-_**图：创建项目**_
+**图：创建项目**
 

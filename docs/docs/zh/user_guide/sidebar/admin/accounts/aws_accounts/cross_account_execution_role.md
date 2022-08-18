@@ -4,11 +4,9 @@ title: 跨账户执行角色
 sidebar_label: 跨账户执行角色
 ---
 
-此角色驻留在[**Member AWS Account(s)**](introduction)中，由[**Main AWS Account**](introduction)担任。
+此角色驻留在[**托管账户**](introduction)中，由[**主账户**](introduction)担任。
 
-在 [**Master AWS Account(s)**](introduction) 的组织中 [**Creating a Member AWS Account(s)**](create_member_account) 时，此角色由 `solution/packages/ cfn-templates/lib/templates/onboard-account.yaml` 模板。
-
-## Trust Policy
+## 信任策略
 
 ```json
 {
@@ -38,9 +36,9 @@ sidebar_label: 跨账户执行角色
 
 - ApiHandlerRole：主 AWS 账户中与 Service Workbench 后端 API 执行关联的角色。
 - WorkflowLoopRunnerRole：主 AWS 账户中的一个角色，与后端 API 调用启动的后台工作流执行相关联。
-- 会员 AWS 账户本身。
+- 托管账户本身。
 
-## Permissions
+## 权限
 
 这些策略支持运行分析。
 
@@ -77,7 +75,7 @@ sidebar_label: 跨账户执行角色
 ```
 
 :::tip
-You will need to ensure that **Cost Explorer** has been enabled in the member account. [See here for more information](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/ce-enable.html).
+您需要确认**Cost Explorer**在托管账户中已启动。[请参阅更多信息](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/ce-enable.html).
 :::
 
 ### EC2

@@ -89,7 +89,7 @@ class ConfigurationEditor extends React.Component {
             )}
             {empty && (
               <Segment padded className="mb3">
-                No configuration values are provided
+                {i18next.t('noConfigValue', { ns: 'auth' })}
               </Segment>
             )}
 
@@ -120,7 +120,7 @@ class ConfigurationEditor extends React.Component {
                 </Button>
               )}
               <Button floated="right" disabled={processing} onClick={this.handleClear}>
-                Clear
+                {i18next.t('clear')}
               </Button>
               <Button floated="left" disabled={processing} onClick={onCancel}>
                 {i18next.t('cancel')}

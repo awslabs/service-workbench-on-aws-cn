@@ -11,7 +11,7 @@ sidebar_label: 系统升级后处理
 
 1. 登录托管账户的 AWS 管理控制台。
 2. 在该账户的 CloudFormation 控制台中，选择用于加入成员账户的堆栈（通常堆栈名称以 `initial-stack-` 开头）。
-3. 选择Update stack并选择`addons/addon-base-raas/packages/base-raas-cfn-templates/src/templates/onboard-account.cfn.yml`文件。您也可以在这里下载:[onboard -account.cfn.yml](https://github.com/awslabs/service-workbench-on-aws/blob/mainline/addons/addon-base-raas/packages/base-raas-cfn-templates/src/模板/onboard-account.cfn.yml)。该堆栈上的所有现有参数应该仍然有效。
+3. 选择Update stack并选择`addons/addon-base-raas/packages/base-raas-cfn-templates/src/templates/onboard-account.cfn.yml`文件。您也可以在这里下载:[onboard -account.cfn.yml](https://github.com/awslabs/service-workbench-on-aws/blob/mainline/addons/addon-base-raas/packages/base-raas-cfn-templates/src/templates/onboard-account.cfn.yml)。该堆栈上的所有现有参数应该仍然有效。
 
 ### 测试操作
 

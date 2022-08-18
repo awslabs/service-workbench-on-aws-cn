@@ -24,12 +24,17 @@ Service Workbench 部署计算资源到托管账户。
 
 Service Workbench 可以使用 Amazon Cognito 进行身份验证。 Amazon Cognito 可以与不同的身份验证提供商联合，例如 Active Directory、Auth0 或其他身份提供商。
 
-!!! Important "重要提示"
+:::note
     在 Amazon Cognito 不可用的区域，您可以使用 OIDC 提供身份验证。
+:::   
 
 ### 存储
 
 Service Workbench 将数据集分成三种类型：我的数据集、组织的数据集和开放数据。前两种类型是由您或整个组织或团体存储和维护的数据集。开放数据是指通过 [AWS Open Data](https://aws.amazon.com/opendata) 提供的数据。通过不断扫描开放数据集（datasets)可确保用户使用最新的开放数据集。
+
+:::caution
+    AWS Open Data 仅适用于部署在全球区域的情况。
+:::
 
 ### AWS 服务目录
 

@@ -47,7 +47,7 @@ sidebar_label: Master账户角色
 }
 ```
 
-:::注意
+:::warning
 您应将操作限制为 `createAccount`, `describeCreateAccountStatus` 和 `describeAccount`。
 :::
 

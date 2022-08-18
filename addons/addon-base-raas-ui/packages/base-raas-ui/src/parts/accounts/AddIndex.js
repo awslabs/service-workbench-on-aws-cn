@@ -151,7 +151,7 @@ class AddIndex extends React.Component {
         <Header className="mr3 mt0" as="h2" color="grey">
           {i18next.t(label, { ns: 'accounts' })}
         </Header>
-        {hasExplain && <div className="mb2">{explain}</div>}
+        {hasExplain && <div className="mb2">{i18next.t(explain, { ns: 'accounts' })}</div>}
         <div className={`ui big field input block m0 ${hasError ? 'error' : ''}`}>{component}</div>
         {hasError && (
           <div className="ui pointing red basic label">

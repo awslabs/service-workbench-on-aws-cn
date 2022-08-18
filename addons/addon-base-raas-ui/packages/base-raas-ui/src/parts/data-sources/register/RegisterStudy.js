@@ -24,10 +24,14 @@ import { swallowError } from '@amzn/base-ui/dist/helpers/utils';
 import ErrorBox from '@amzn/base-ui/dist/parts/helpers/ErrorBox';
 import ProgressPlaceHolder from '@amzn/base-ui/dist/parts/helpers/BasicProgressPlaceholder';
 
+import i18next from 'i18next';
+import { initReactI18next, withTranslation } from 'react-i18next';
 import InputStep from './InputStep';
 import SubmitStep from './SubmitStep';
 import CfnStep from './CfnStep';
 import StartStep from './StartStep';
+
+i18next.use(initReactI18next);
 
 // expected props
 // - dataSourceAccountsStore (via injection)
@@ -92,7 +96,7 @@ class RegisterStudy extends React.Component {
     return (
       <Header as="h3" className="color-grey mt1 mb3">
         <Icon name="database" className="align-top" />
-        <Header.Content className="left-align">Data Sources</Header.Content>
+        <Header.Content className="left-align">{i18next.t('dataSources', { ns: 'data' })}</Header.Content>
       </Header>
     );
   }
@@ -105,8 +109,6 @@ decorate(RegisterStudy, {
   wizard: computed,
 });
 
-export default inject(
-  'dataSourceAccountsStore',
-  'usersStore',
-  'registerStudyWizard',
-)(withRouter(observer(RegisterStudy)));
+export default withTranslation()(
+  inject('dataSourceAccountsStore', 'usersStore', 'registerStudyWizard')(withRouter(observer(RegisterStudy))),
+);

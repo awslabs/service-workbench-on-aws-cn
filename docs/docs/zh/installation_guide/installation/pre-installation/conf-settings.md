@@ -10,7 +10,7 @@ Stage name 用于允许来自同一账户的多个 Service Workbench 部署。�
 
 ### 可单独部署的组件
 
-Service Workbench 代码分为多个（目前是七个）可单独部署的组件 (SDC)：后端、用户界面、部署后、部署前、edge-lambda、基础设施、机器镜像和 prepare-aster-acc。每个 SDC 在位置 main/solution 中都有一个目录。您可以从根目录运行脚本，也可以使用单独的脚本单独部署每个 SDC。有关更多信息，请参阅 [无服务器框架和项目](/installation_guide/components)。
+Service Workbench 代码分为多个（目前是七个）可单独部署的组件 (SDC)：后端、用户界面、部署后、部署前、edge-lambda、基础设施、机器镜像和 prepare-aster-acc。每个 SDC 在位置 main/solution 中都有一个目录。您可以从根目录运行脚本，也可以使用单独的脚本单独部署每个 SDC。有关更多信息，请参阅 [无服务器框架和项目](../../components.md)。
 
 ### 准备主配置文件
 

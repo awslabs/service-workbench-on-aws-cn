@@ -18,7 +18,8 @@
         "users": "Users",
         "admin": "Admin",
         "readwrite": "Read/Write",
-        "readonly": "Read only"
+        "readonly": "Read only",
+        "notAdmin": "You cannot access permissions as you are not a Study administrator."
     },
     "findAndSelectStudies": {
         "header": "Find & Select Studies",

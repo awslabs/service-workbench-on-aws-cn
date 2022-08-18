@@ -16,4 +16,4 @@ Service Workbench 提供三种类型的数据集。您可以将任何类型的�
 | **组织数据集** |指定可以与其他用户共享的数据集。它包含由组织收集或获得许可的数据。您可以授予或拒绝用户访问此数据，以遵守有关数据的法规或许可限制。 |
 | **开放数据** | Service Workbench 通过频繁扫描 AWS 开放数据集并将新数据集添加到此类别来提供对 [AWS 上的开放数据](https://aws.amazon.com/opendata/) 的访问。这包括通过亚马逊公开提供的 1,000 个基因组和其他数据集。 |
 
-Service Workbench 可以在部署 Service Workbench 的 AWS 账户中创建的 `studydata` 的[S3 Bucket](/deployment/reference/aws_services)中托管我的数据集和组织数据集。该应用程序还可以使用 **Datasets** 页面提供对托管在其他 AWS 账户的外部 S3 存储桶中的数据集的访问。
+Service Workbench 可以在部署 Service Workbench 的 AWS 账户中创建的 `studydata` 的 S3 Bucket 中托管我的数据集和组织数据集。该应用程序还可以使用 **Datasets** 页面提供对托管在其他 AWS 账户的外部 S3 存储桶中的数据集的访问。

@@ -14,7 +14,7 @@ sidebar_label: 搭建 RStudio ALB workspace
 | [在主账户中创建公共托管区域](#hostedzone) |提供有关如何路由域/子域的流量的路由信息​​。 |
 | [在共享域中创建新的名称服务器记录](#nserver) |为托管区域提供名称。在这里，您将复制您在主账户中创建的值（包含路由信息）。 |
 | [在托管区域的主账户中请求公共证书](#pubcert) |在托管区域的主账户中请求公共证书。使用此选项，您向 Amazon 请求公共证书。默认情况下，这些公共证书受浏览器和操作系统的信任。 |
-| [使用最新的 Service Workbench 代码创建staging文件](#staging) |下载最新的 Service Workbench 代码并设置staging文件以部署 RStudio ALB 工作区。有关staging 文件的更多信息，请参阅 [配置设置](/installation_guide/installation/pre-installation/conf-settings)。 |
+| [使用最新的 Service Workbench 代码创建staging文件](#staging) |下载最新的 Service Workbench 代码并设置staging文件以部署 RStudio ALB 工作区。有关staging 文件的更多信息，请参阅 [配置设置](/zh/installation_guide/installation/pre-installation/conf-settings)。 |
 | [创建 AMI](#ami) |提供研究人员用于研究的 RStudio 环境的基础。有关更多信息，请参阅 AWS 合作伙伴的 [README](https://github.com/RLOpenCatalyst/Service_Workbench_Templates/blob/main/RStudio/machine-images/config/infra/README.md)。 |
 | [安装 EC2 RStudio 服务器](#rstudio) |将 RStudio 部署到 Service Workbench 的产品组合中。有关更多信息，请参阅 AWS 合作伙伴的 [README](https://github.com/RLOpenCatalyst/Service_Workbench_Templates/blob/main/RStudio/machine-images/config/infra/README.md)。 |
 | [在托管区域域的成员账户中请求新的公共证书](#newpubcert) |提供有关如何使用 ACM 为成员（托管）账户请求公共证书的步骤。证书包含用于导入产品的 ARN 值。 |

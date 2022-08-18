@@ -6,7 +6,7 @@ sidebar_label: 添加账户
 
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
-首次以 **root** 用户登录后，进入 [SideBar](/user_guide/introduction) 中的“**账户**”页面。 Service Workbench 使用此页面上的 AWS 账户来启动研究工作区。您可以在“**账户**”选项卡上添加现有 AWS 账户或创建新账户。账户负责在 Service Workbench 中部署的资源所产生的费用。
+首次以 **root** 用户登录后，进入 [SideBar](/zh/user_guide/introduction) 中的“**账户**”页面。 Service Workbench 使用此页面上的 AWS 账户来启动研究工作区。您可以在“**账户**”选项卡上添加现有 AWS 账户或创建新账户。账户负责在 Service Workbench 中部署的资源所产生的费用。
 
 * **添加 AWS 账户**：导入现有的 AWS 账户，该账户将负责自己的计费。
 

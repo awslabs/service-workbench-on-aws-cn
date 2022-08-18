@@ -42,7 +42,7 @@ Activate the necessary cost allocation tags in the **AWS Billing & Cost Manageme
 
 :::tip
 
-Tags are automatically created during the solution deployment, but manual activation is still required.
+Tags are automatically created during the solution deployment, please follow below steps to active tags after solution deployed successfully.
 
 :::
 

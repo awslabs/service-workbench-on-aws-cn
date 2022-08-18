@@ -19,7 +19,8 @@ const addIndexFormFields = {
   id: {
     label: 'formFields.addIndex.id.label',
     placeholder: 'formFields.addIndex.id.placeholder',
-    rules: 'required|string|between:1,300',
+    explain: 'formFields.addIndex.id.explain',
+    rules: 'required|string|between:1,300|regex:/^[A-Za-z0-9-_]+$/',
   },
   awsAccountId: {
     label: 'formFields.addIndex.awsAccountId.label',

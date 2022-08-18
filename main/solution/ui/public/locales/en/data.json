@@ -1,0 +1,210 @@
+{
+    "dataSources": "Data Sources",
+    "noDataSources": {
+        "header": "No Data Sources",
+        "subheader": "To create a data source, click Register Studies."
+    },
+    "studies": "Studies",
+    "registerStudies": "Register Studies",
+    "startStep": {
+        "beforeYouStart": {
+            "header": "Before you start",
+            "subheader": "You need to collect some information regarding the studies. The information that you need is:",
+            "p": [
+                "The AWS account id of the account owning the studies and the region where the CloudFormation stack will be deployed",
+                "The bucket name and region containing the studies",
+                "The KMS ARN used to encrypt the bucket (if one is used) or the KMS ARNs used to encrypt each study",
+                "The path of each study to be registered",
+                "The access level desired for each study, can be either read only or read and write"
+            ]
+        },
+        "whatIsNext": {
+            "header": "What to expect next",
+            "p": [
+                "You will be asked to provide the information listed above",
+                "Some fields might be pre-populated for you if you had previously registered the account and/or the bucket",
+                "You will be asked to assign study admins for each study",
+                "Once you enter all the information requested, a CloudFormation template is generated",
+                "You will be able to create/update the stack using the generated CloudFormation template"
+            ]
+        },
+        "limitations": {
+            "header": "Limitations",
+            "p": [
+                "Studies can not contain other studies",
+                "Buckets that restrict access to specific VPC endpoints and/or specific external IP addresses are not supported",
+                "Different studies can be encrypted using different KMS keys, however, objects within the same study must be encrypted with the same key",
+                "Accessing buckets via fips endpoints is not supported",
+                "Buckets with requester pays are not supported"
+            ]
+        }
+    },
+    "addStudy": "Add Study",
+    "addAnotherStudy": "Add Another Study",
+    "bucketInformation": "Bucket Information",
+    "submitStep": {
+        "running": "Registering Studies",
+        "success": "Successfully Registered Studies",
+        "error": "Error Registering Studies"
+    },
+    "permission": {
+        "update": {
+            "succeeded": "Update Succeeded",
+            "failed": "Update Failed"
+        }
+    },
+    "cfnStep": {
+        "whatIsNext": {
+            "header": "What to do next?",
+            "p": [
+                "Review the content of the CloudFormation template to familiarize yourself with the roles and policies that will be created in the account.",
+                "Once provisioned or updated, the stack creates or updates the necessary roles and policies to allow the Service Workbench application access to the studies and make them available to the designated researchers.",
+                "Follow the steps outlined below",
+                "Once you complete the steps below and while the stack is being provisioned or updated, you can click on \"Done\". This will take you to the Data Sources list page where you can test the connection once the stack is finished deploying. You will also be able to view this information from within the Data Sources list page."
+            ]
+        }
+    },
+    "accountCard": {
+        "testConnection": "Test Connection",
+        "accountInformation": "Account Information",
+        "registered": "Registered",
+        "statusChecked": "Status checked",
+        "account": "AWS Account",
+        "stackMismatch": {
+            "stackOutDated": {
+                "header": "Stack is outdated",
+                "subheader": "It seems that the CloudFormation stack \"{{stack}}\" deployed to AWS account \"{{account}}\" is outdated and does not contain the latest changes made. Please use the latest CloudFormation template to update the stack. If you just updated the stack you can run the connection test again."
+            },
+            "incorrectStackName": {
+                "header": "Incorrect stack name",
+                "subheader": "It seems that the correct CloudFormation stack was deployed to AWS account \"{{account}}\" but with an incorrect stack name. Please ensure that you have the latest CloudFormation template deployed with the stack name \"{{stack}}\" in the account. If you just updated the stack you can run the connection test again."
+            }
+        },
+        "accountStatusMsg": {
+            "less": "Less",
+            "more": "More",
+            "available": {
+                "header": "Available",
+                "subheader1": "The account is reachable and available for use.",
+                "subheader2": "The account is reachable but only partially configured. Some studies might be inaccessible.",
+                "subheader3": "This is usually an indication that the CloudFormation stack that is deployed to AWS account #{{account}} is out of sync with the CloudFormation template generated by the SWB application."
+            },
+            "pending": {
+                "header": "Not available yet",
+                "subheader1": "The account is in the process of being connected with the application. It is unreachable until the CloudFormation stack is successfully deploy.",
+                "subheader2": "CloudFormation stack already deployed?",
+                "subheader3": "Message received from the server"
+            },
+            "error": {
+                "header": "Not available",
+                "subheader1": "The account is unreachable. This is usually an indication of a problem during the CloudFormation stack deployment.",
+                "subheader2": "Message received from the server"
+            },
+            "tips": [
+                "Check if the CloudFormation stack is deployed in the correct AWS account #{{account}}",
+                "Check if the CloudFormation stack is deployed in the correct AWS region \"{{region}}\"",
+                "Try the connection check test again"
+            ]
+        },
+        "studyStatusMsg": {
+            "less": "Less",
+            "more": "More",
+            "available": {
+                "header": "Available",
+                "subheader1": "The study is reachable and available for use."
+            },
+            "pending": {
+                "header": "Not available yet",
+                "subheader1": "The study is in the process of being connected with the application. It is unreachable until the CloudFormation stack is successfully deploy.",
+                "subheader2": "CloudFormation stack already deployed?",
+                "subheader3": "Message received from the server"
+            },
+            "error": {
+                "header": "Not available",
+                "subheader1": "The study is unreachable. This is usually an indication of a problem during the CloudFormation stack deployment.",
+                "subheader2": "Message received from the server"
+            },
+            "tips": [
+                "Check if the CloudFormation stack is deployed in the correct AWS account",
+                "Check if the CloudFormation stack is deployed in the correct AWS region",
+                "Try the connection check test again"
+            ]
+        },
+        "accountInfo": {
+            "save": {
+                "success": "Account information updated successfully"
+            }
+        },
+        "studiesList": {
+            "studyId": "Study ID",
+            "path": "Path",
+            "type": "Type",
+            "access": "Access",
+            "empty": {
+                "header": "No registered studies",
+                "subheader": "To add studies, click Register Studies."
+            }
+        },
+        "studyRow": {
+            "notProvided": "Not Provided",
+            "detailTablePart1": {
+                "id": "ID",
+                "name": "Name",
+                "path": "Path"
+            },
+            "detailTablePart2": {
+                "project": "Project",
+                "type": "Type",
+                "access": "Access"
+            },
+            "detailTablePart3": {
+                "defaultEncryption": "Use bucket default encryption",
+                "kmsArn": "KMS Arn",
+                "description": "Description"
+            },
+            "admin": "Admin",
+            "readonly": "Read Only",
+            "readwrite": "Read & Rrite",
+            "Organization": "Organization",
+            "My Studies": "My Studies"
+        },
+        "accountCfnPanel": {
+            "adminOptions": {
+                "admin": "I have admin access",
+                "notAdmin": "I do not have admin access"
+            },
+            "account": "AWS Account",
+            "stack": {
+                "name": "CloudFormation Stack Name",
+                "create": "Stack Create",
+                "update": "Stack Update"
+            },
+            "steps": {
+                "header": "Steps",
+                "create": [
+                    "In a separate browser tab, login to the aws console using the correct account.",
+                    "Attention",
+                    "Ensure that you are logged in to the aws account \"{{account}}\" and region \"{{region}}\"",
+                    "Click on the \"Create Stack\" button, this opens a separate browser tab and takes you to the CloudFormation console where you can review the stack information and provision it.",
+                    "Create Stack",
+                    "While the stack is being provisioned, it is okay to navigate away from this page and come back to the Data Source list page where you can test the connection once the stack is finished deploying."
+                ],
+                "update": [
+                    "In a separate browser tab, login to the aws console using the correct account.",
+                    "Attention",
+                    "Ensure that you are logged in to the aws account \"{{account}}\" and region \"{{region}}\"",
+                    "Go to the ",
+                    "AWS CloudFormation Console",
+                    "You need to visit the AWS CloudFormation console page before you can click on the Update Stack button",
+                    "Click on the \"Update Stack\" button, this opens a separate browser tab and takes you to the CloudFormation console where you can review the stack information and provision it.",
+                    "Update Stack",
+                    "While the stack is being provisioned, it is okay to navigate away from this page and come back to the Data Source list page where you can test the connection once the stack is finished deploying."
+                ],
+                "email": [
+                    "You can use the following email template to send an email to the admin of the account",
+                    "Email Template"
+                ]
+            }
+        }
+    }
+}

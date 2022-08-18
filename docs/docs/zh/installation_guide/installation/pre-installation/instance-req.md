@@ -68,7 +68,7 @@ Service Workbench 部署应用程序必须能够创建 AWS 资源。满足此要
 
 <a name="安装"></a>
 
-1. 在 EC2 实例上安装用于在 AWS 上安装 Service Workbench 的必备软件（无服务器和 pnpm）。
+1. 在 EC2 实例上安装用于在 AWS 上安装 Service Workbench 的必备软件（serverless 和 pnpm）。
 
 ```
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash

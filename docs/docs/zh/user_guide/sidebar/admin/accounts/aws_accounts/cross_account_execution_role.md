@@ -74,7 +74,7 @@ sidebar_label: 跨账户执行角色
 }
 ```
 
-:::提示
+:::tip
 您需要确认**Cost Explorer**在托管账户中已启动。[请参阅更多信息](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/ce-enable.html).
 :::
 

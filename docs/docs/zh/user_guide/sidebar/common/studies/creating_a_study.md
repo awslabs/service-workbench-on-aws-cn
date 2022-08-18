@@ -14,7 +14,7 @@ sidebar_label: 创建一个数据集
 4. 选择 **我的数据集** 或 **组织数据集** 作为您正在创建的数据集类型。
 5. 在 **名称** 字段中输入数据集的名称。
 6. 在 **描述** 字段中输入数据集的描述。
-7. 在 **项目ID** 下拉字段中选择与本数据集相关的 [**项目**](/user_guide/sidebar/admin/accounts/projects/introduction)。
+7. 在 **项目ID** 下拉字段中选择与本数据集相关的 [**项目**](../../admin/accounts/projects/introduction.md)。
 8. 单击**创建数据集**按钮。
 
 创建数据集后，您可以开始向其中上传文件。 有关上传文件的更多信息，请参考[数据集页面](./studies_page.md#creating-a-study-and-uploading-files)。

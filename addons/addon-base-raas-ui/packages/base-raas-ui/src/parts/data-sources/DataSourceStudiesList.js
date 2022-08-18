@@ -31,8 +31,11 @@ import {
 import ErrorBox from '@amzn/base-ui/dist/parts/helpers/ErrorBox';
 import ProgressPlaceHolder from '@amzn/base-ui/dist/parts/helpers/BasicProgressPlaceholder';
 
+import i18next from 'i18next';
+import { initReactI18next, withTranslation } from 'react-i18next';
 import DataSourceStudyRow from './DataSourceStudyRow';
 
+i18next.use(initReactI18next);
 // expected props
 // - account (via prop)
 // - dataSourceAccountsStore (via injection)
@@ -95,11 +98,15 @@ class DataSourceStudiesList extends React.Component {
           <Table.Header>
             <Table.Row>
               <Table.HeaderCell />
-              <Table.HeaderCell width={5}>Study Id</Table.HeaderCell>
-              <Table.HeaderCell width={7}>Path</Table.HeaderCell>
-              <Table.HeaderCell width={2}>Type</Table.HeaderCell>
-              <Table.HeaderCell width={1}>Access</Table.HeaderCell>
-              <Table.HeaderCell width={1}>Status</Table.HeaderCell>
+              <Table.HeaderCell width={5}>
+                {i18next.t('accountCard.studiesList.studyId', { ns: 'data' })}
+              </Table.HeaderCell>
+              <Table.HeaderCell width={6}>{i18next.t('accountCard.studiesList.path', { ns: 'data' })}</Table.HeaderCell>
+              <Table.HeaderCell width={2}>{i18next.t('accountCard.studiesList.type', { ns: 'data' })}</Table.HeaderCell>
+              <Table.HeaderCell width={1}>
+                {i18next.t('accountCard.studiesList.access', { ns: 'data' })}
+              </Table.HeaderCell>
+              <Table.HeaderCell width={2}>{i18next.t('status')}</Table.HeaderCell>
             </Table.Row>
           </Table.Header>
           <Table.Body>
@@ -117,8 +124,8 @@ class DataSourceStudiesList extends React.Component {
       <Segment placeholder>
         <Header icon className="color-grey">
           <Icon name="book" />
-          No registered studies
-          <Header.Subheader>To add studies, click Register Studies.</Header.Subheader>
+          {i18next.t('accountCard.studiesList.empty.header', { ns: 'data' })}
+          <Header.Subheader>{i18next.t('accountCard.studiesList.empty.subheader', { ns: 'data' })}</Header.Subheader>
         </Header>
       </Segment>
     );
@@ -131,4 +138,4 @@ decorate(DataSourceStudiesList, {
   account: computed,
 });
 
-export default inject('dataSourceAccountsStore')(withRouter(observer(DataSourceStudiesList)));
+export default withTranslation()(inject('dataSourceAccountsStore')(withRouter(observer(DataSourceStudiesList))));

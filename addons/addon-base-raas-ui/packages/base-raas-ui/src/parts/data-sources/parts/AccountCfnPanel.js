@@ -23,19 +23,12 @@ import TimeAgo from 'react-timeago';
 import YesNo from '@amzn/base-ui/dist/parts/helpers/fields/YesNo';
 import SelectionButtons from '@amzn/base-ui/dist/parts/helpers/fields/SelectionButtons';
 
+import i18next from 'i18next';
+import { initReactI18next, withTranslation } from 'react-i18next';
 import CopyToClipboard from '../../helpers/CopyToClipboard';
 import { createForm } from '../../../helpers/form';
 
-const adminOptions = [
-  {
-    text: 'I have admin access',
-    value: 'admin',
-  },
-  {
-    text: 'I do not have admin access',
-    value: 'notAdmin',
-  },
-];
+i18next.use(initReactI18next);
 
 // expected props
 // - account (via prop)
@@ -53,8 +46,8 @@ class AccountCfnPanel extends React.Component {
         },
         createOrUpdate: {
           extra: {
-            yesLabel: 'Stack Create',
-            noLabel: 'Stack Update',
+            yesLabel: i18next.t('accountCard.accountCfnPanel.stack.create', { ns: 'data' }),
+            noLabel: i18next.t('accountCard.accountCfnPanel.stack.update', { ns: 'data' }),
             yesValue: 'create',
             noValue: 'update',
             showHeader: false,
@@ -83,6 +76,17 @@ class AccountCfnPanel extends React.Component {
   }
 
   render() {
+    const adminOptions = [
+      {
+        text: i18next.t('accountCard.accountCfnPanel.adminOptions.admin', { ns: 'data' }),
+        value: 'admin',
+      },
+      {
+        text: i18next.t('accountCard.accountCfnPanel.adminOptions.notAdmin', { ns: 'data' }),
+        value: 'notAdmin',
+      },
+    ];
+
     const { id } = this.account;
     const form = this.form;
     const field = form.$('managed');
@@ -94,7 +98,7 @@ class AccountCfnPanel extends React.Component {
           <Divider />
           <div className="flex justify-between">
             <Header as="h4" className="mb0 mt1 flex-auto">
-              AWS Account # {id}
+              {i18next.t('accountCard.accountCfnPanel.account', { ns: 'data' })} # {id}
             </Header>
             <SelectionButtons field={field} options={adminOptions} show="buttonsOnly" className="mb0" />
           </div>
@@ -112,7 +116,7 @@ class AccountCfnPanel extends React.Component {
     return (
       <Form className="mb3">
         <Header as="h4" className="mb2 mt3">
-          CloudFormation Stack Name
+          {i18next.t('accountCard.accountCfnPanel.stack.name', { ns: 'data' })}
         </Header>
         <div className="mb2 flex">
           <div className="flex-auto">
@@ -147,7 +151,7 @@ class AccountCfnPanel extends React.Component {
       <>
         <div className="flex justify-between pt3 pb0 pr3 pl1">
           <Header size="medium" className="mb2">
-            Steps
+            {i18next.t('accountCard.accountCfnPanel.steps.header', { ns: 'data' })}
           </Header>
           {hasUpdateStackUrl && <YesNo field={field} className="mb0 mt0" />}
         </div>
@@ -169,21 +173,24 @@ class AccountCfnPanel extends React.Component {
       <div className="animated fadeIn">
         <List ordered size={textSize}>
           <List.Item>
-            In a separate browser tab, login to the aws console using the correct account.
+            {i18next.t('accountCard.accountCfnPanel.steps.create.0', { ns: 'data' })}
             <Message className="mr3 mt2 mb2">
-              <Message.Header>Attention</Message.Header>
+              <Message.Header>{i18next.t('accountCard.accountCfnPanel.steps.create.1', { ns: 'data' })}</Message.Header>
               <p>
-                Ensure that you are logged in to the aws account # <b>{id}</b> and region <b>{mainRegion}</b>
+                {i18next.t('accountCard.accountCfnPanel.steps.create.2', {
+                  ns: 'data',
+                  account: id,
+                  region: mainRegion,
+                })}
               </p>
             </Message>
           </List.Item>
           <List.Item>
-            Click on the <b>Create Stack</b> button, this opens a separate browser tab and takes you to the
-            CloudFormation console where you can review the stack information and provision it.
+            {i18next.t('accountCard.accountCfnPanel.steps.create.3', { ns: 'data' })}
             <div className="mb0 flex mt2">
               <div className="flex-auto">
                 <Button fluid as="a" target="_blank" href={createStackUrl} color="blue" rel="noopener noreferrer">
-                  Create Stack
+                  {i18next.t('accountCard.accountCfnPanel.steps.create.4', { ns: 'data' })}
                 </Button>
                 {this.renderExpires(stackInfo)}
               </div>
@@ -192,10 +199,7 @@ class AccountCfnPanel extends React.Component {
               </div>
             </div>
           </List.Item>
-          <List.Item>
-            While the stack is being provisioned, it is okay to navigate away from this page and come back to the Data
-            Source list page where you can test the connection once the stack is finished deploying.
-          </List.Item>
+          <List.Item>{i18next.t('accountCard.accountCfnPanel.steps.create.5', { ns: 'data' })}</List.Item>
         </List>
       </div>
     );
@@ -212,32 +216,33 @@ class AccountCfnPanel extends React.Component {
       <div className="animated fadeIn">
         <List ordered size={textSize}>
           <List.Item>
-            In a separate browser tab, login to the aws console using the correct account.
+            {i18next.t('accountCard.accountCfnPanel.steps.update.0', { ns: 'data' })}
             <Message className="mr3 mt2 mb2">
-              <Message.Header>Attention</Message.Header>
+              <Message.Header>{i18next.t('accountCard.accountCfnPanel.steps.update.1', { ns: 'data' })}</Message.Header>
               <p>
-                Ensure that you are logged in to the aws account # <b>{id}</b> and region <b>{mainRegion}</b>
+                {i18next.t('accountCard.accountCfnPanel.steps.update.2', {
+                  ns: 'data',
+                  account: id,
+                  region: mainRegion,
+                })}
               </p>
             </Message>
           </List.Item>
           <List.Item>
-            Go to the{' '}
+            {i18next.t('accountCard.accountCfnPanel.steps.update.3', { ns: 'data' })}
             <a target="_blank" rel="noopener noreferrer" href={cfnConsoleUrl}>
-              AWS CloudFormation Console
+              {i18next.t('accountCard.accountCfnPanel.steps.update.4', { ns: 'data' })}
             </a>
             <Message className="mr3 mt2 mb2">
-              <p>
-                You need to visit the AWS CloudFormation console page before you can click on the Update Stack button
-              </p>
+              <p>{i18next.t('accountCard.accountCfnPanel.steps.update.5', { ns: 'data' })}</p>
             </Message>
           </List.Item>
           <List.Item>
-            Click on the <b>Update Stack</b> button, this opens a separate browser tab and takes you to the
-            CloudFormation console where you can review the stack information and provision it.
+            {i18next.t('accountCard.accountCfnPanel.steps.update.6', { ns: 'data' })}
             <div className="mb0 flex mt2">
               <div className="flex-auto">
                 <Button fluid as="a" target="_blank" href={updateStackUrl} color="blue" rel="noopener noreferrer">
-                  Update Stack
+                  {i18next.t('accountCard.accountCfnPanel.steps.update.7', { ns: 'data' })}
                 </Button>
                 {this.renderExpires(stackInfo)}
               </div>
@@ -246,10 +251,7 @@ class AccountCfnPanel extends React.Component {
               </div>
             </div>
           </List.Item>
-          <List.Item>
-            While the stack is being provisioned, it is okay to navigate away from this page and come back to the Data
-            Source list page where you can test the connection once the stack is finished deploying.
-          </List.Item>
+          <List.Item>{i18next.t('accountCard.accountCfnPanel.steps.update.8', { ns: 'data' })}</List.Item>
         </List>
       </div>
     );
@@ -264,11 +266,11 @@ class AccountCfnPanel extends React.Component {
     return (
       <div className="animated fadeIn">
         <List ordered size={textSize}>
-          <List.Item>You can use the following email template to send an email to the admin of the account</List.Item>
+          <List.Item>{i18next.t('accountCard.accountCfnPanel.steps.email.0', { ns: 'data' })}</List.Item>
           <Form className="mb3">
             <div className="flex justify-between">
               <Header as="h4" className="mb2 mt2">
-                Email Template
+                {i18next.t('accountCard.accountCfnPanel.steps.email.1', { ns: 'data' })}
               </Header>
               <div className="mt2 mr4">{this.renderExpires(stackInfo)}</div>
             </div>
@@ -292,14 +294,14 @@ class AccountCfnPanel extends React.Component {
     if (expired) {
       return (
         <div className="fs-9 center color-red mt1">
-          Expired <TimeAgo date={urlExpiry} />
+          {i18next.t('expired')} <TimeAgo date={urlExpiry} />
         </div>
       );
     }
 
     return (
       <div className="fs-9 center mt1">
-        Expires <TimeAgo date={urlExpiry} />
+        {i18next.t('expires')} <TimeAgo date={urlExpiry} />
       </div>
     );
   }
@@ -314,4 +316,4 @@ decorate(AccountCfnPanel, {
   form: observable,
 });
 
-export default inject()(withRouter(observer(AccountCfnPanel)));
+export default withTranslation()(inject()(withRouter(observer(AccountCfnPanel))));

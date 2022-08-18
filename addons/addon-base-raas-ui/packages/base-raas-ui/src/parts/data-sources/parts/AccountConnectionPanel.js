@@ -22,8 +22,11 @@ import { Progress } from 'semantic-ui-react';
 
 import ErrorBox from '@amzn/base-ui/dist/parts/helpers/ErrorBox';
 
+import i18next from 'i18next';
+import { initReactI18next, withTranslation } from 'react-i18next';
 import AccountStatusMessage from './AccountStatusMessage';
 
+i18next.use(initReactI18next);
 // expected props
 // - onCancel (via props) a call back function when the user clicks on Done
 // - account (via props)
@@ -63,7 +66,7 @@ class AccountConnectionPanel extends React.Component {
     return (
       <div className="mb3">
         <Progress percent={100} active>
-          Checking Connection
+          {i18next.t('checking')}
         </Progress>
       </div>
     );
@@ -98,4 +101,4 @@ decorate(AccountConnectionPanel, {
   handleCancel: action,
 });
 
-export default inject()(withRouter(observer(AccountConnectionPanel)));
+export default withTranslation()(inject()(withRouter(observer(AccountConnectionPanel))));

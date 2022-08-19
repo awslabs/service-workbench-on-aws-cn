@@ -24,15 +24,15 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 1. 从帐户下拉列表中，选择**我的账单仪表盘**。
 
-<img src={useBaseUrl('img/deployment/installation/billing_dashboard.png')} />
+![](./images/billing_dashboard.png)
 
 2. 从边栏中选择 **Cost Explorer**。
 
-<img src={useBaseUrl('img/deployment/installation/cost_explorer1.png')} />
+![](./images/cost_explorer1.png)
 
 3. 选择**启动 Cost Explorer**。
 
-<img src={useBaseUrl('img/deployment/installation/cost_explorer2.png')} />
+![](./images/cost_explorer2.png)
 
 **注意**:初始化可能需要 24 小时；但是，它不必在开始安装过程之前完成。
 
@@ -50,11 +50,11 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 2. 在导航窗格中，选择**成本分配标签**。
 
-<img src={useBaseUrl('img/deployment/installation/cost_atags1.png')} />
+![](./images/cost_atags1.png)
 
 3. 在**用户定义的成本分配标签**下，选择 **createdBy**、**Env** 和 **Proj** 标签。
  
-<img src={useBaseUrl('img/deployment/installation/cost_atags2.png')} />
+![](./images/cost_atags2.png)
 
 **注意**:启用 AWS Cost Explorer 后，这些标签可见之前可能会有延迟。
 

@@ -19,7 +19,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 首次以root用户登录后，进入**账户**页面。
 
-<img src={useBaseUrl('img/deployment/post_deployment/navbar.png')} />
+![](./images/navbar.png)
 
 **图：Service Workbench 导航栏**
 
@@ -38,7 +38,7 @@ Service Workbench 使用此页面上的 AWS 账户来启动研究工作区。您
 
 1. 在 **账户** 页面上，选择 **AWS Accounts**，然后选择 **Add AWS Account**。
 
-     <img src={useBaseUrl('img/deployment/post_deployment/addacc1.png')} />
+     ![](./images/addacc1.png)
  
      **图：添加现有账户**
 
@@ -48,16 +48,14 @@ Service Workbench 使用此页面上的 AWS 账户来启动研究工作区。您
 
 + 输入 **Account Name**、**Account ID**（您要添加的账户的 12 位 AWS 账户 ID）和 **Description**。
 
-<img src={useBaseUrl('img/deployment/post_deployment/addacc2.png')} />
+![](./images/addacc2.png)
 
 **图：指定账户详情**
 
-+ 将显示 **Onboard AWS Account** 窗口，您可以在其中选择以下任一选项：
++ 点击 **Onboard AWS Account** 按钮，随后将显示 **Onboard AWS Account** 窗口：
 
-     - **我有管理员访问权限**：您对正在载入的主机账户具有管理员级别的访问权限。选择此选项然后继续在主机账户中启动 CloudFormation 模板。请注意，选择此选项并继续时，您需要登录到托管账户的 AWS 账户控制台。
-     - **我没有管理员访问权限**：生成 CloudFormation 模板，然后您可以共享该模板以由在您正在加入的 AWS 账户中具有管理员访问权限的一方运行。
- 
-<img src={useBaseUrl('img/deployment/post_deployment/onboardacc.png')} />
+![](./images/onboardacc1.png)
+![](./images/onboardacc2.png)
 
 
 **图：Onboard AWS 账户**

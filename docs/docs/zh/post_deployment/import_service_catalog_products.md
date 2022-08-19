@@ -50,7 +50,7 @@ Service Workbench 使用 [AWS 服务目录 - AWS Service Catalog](https://aws.am
 1. 以**管理员**身份登录 Service Workbench UI。
 2. 导航到“**工作区类型**”选项卡。四个 AWS Service Catalog 产品显示如下。
 
-<img src={useBaseUrl('img/deployment/post_deployment/service_catalog_import_00.png')} />
+![](./images/service_catalog_import_00.png)
 
 ***图：AWS Service Catalog 产品***
 
@@ -86,13 +86,9 @@ Service Workbench 使用 [AWS 服务目录 - AWS Service Catalog](https://aws.am
 
 下图显示了示例 Amazon EC2 Linux 配置。
 
-<img src={useBaseUrl('img/deployment/post_deployment/sc_ec2_linux_00.png')} />
+![](./images/sc_ec2_linux.png)
 
 ***图：Amazon EC2 Linux 的配​​置***
-
-<img src={useBaseUrl('img/deployment/post_deployment/sc_ec2_linux_01.png')} />
-
-***图：Amazon Linux EC2 的配置***
 
 ### Amazon EC2 Windows 的配置
 
@@ -100,15 +96,7 @@ Service Workbench 使用 [AWS 服务目录 - AWS Service Catalog](https://aws.am
 
 下图显示了示例 Amazon EC2 Windows 配置。
 
-<img src={useBaseUrl('img/deployment/post_deployment/swb_param1.png')} />
-
-***图：EC2 Windows 的配置***
-
-<img src={useBaseUrl('img/deployment/post_deployment/swb_param2.png')} />
-
-***图：EC2 Windows 的配置***
-
-<img src={useBaseUrl('img/deployment/post_deployment/swb_param3.png')} />
+![](./images/swb_param.png)
 
 ***图：EC2 Windows 的配置***
 
@@ -118,11 +106,7 @@ Service Workbench 使用 [AWS 服务目录 - AWS Service Catalog](https://aws.am
 
 下图显示了示例 Amazon SageMaker 配置。
 
-<img src={useBaseUrl('img/deployment/post_deployment/sc_sagemaker_00.png')} />
-
-***图：Amazon SageMaker 的配置***
-
-<img src={useBaseUrl('img/deployment/post_deployment/sc_sagemaker_01.png')} />
+![](./images/sc_sagemaker.png)
 
 ***图：Amazon SageMaker 的配置***
 
@@ -141,14 +125,7 @@ Amazon EMR 还需要额外一些在下拉菜单中没有预置值的字段，包
 
 下图显示了示例 Amazon EMR 配置。
 
-<img src={useBaseUrl('img/deployment/post_deployment/sc_emr_00.png')} />
-
-***图：Amazon EMR 的配置***
-
-<img src={useBaseUrl('img/deployment/post_deployment/sc_emr_01.png')} />
-
-***图：Amazon EMR 的配置***
-<img src={useBaseUrl('img/deployment/post_deployment/sc_emr_02.png')} />
+![](./images/sc_emr.png)
 
 ***图：Amazon EMR 的配置***
 

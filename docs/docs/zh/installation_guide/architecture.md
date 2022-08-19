@@ -44,7 +44,7 @@ Service Workbench 的工作区管理最核心的是 [AWS Service Catalog](https:
 
 您不仅可以使用模板配置环境，还可以访问自己的工作区、查看账单详细信息或停用它们。
 
-<img src={useBaseUrl('img/deployment/installation/workspace_management.png')} />
+![](./images/workspace_management.png)
 
 ### 成本控制
 
@@ -56,10 +56,10 @@ Service Workbench 使用 AWS 账户来管理计算工作区。您可以为不同
 
 仪表板将展示您的工作区或项目已累积的使用成本，这有助于您保持在预算内并发现消耗超出预期资源量的工作区。
 
-<img src={useBaseUrl('img/deployment/installation/dashboard.png')} />
+![](./images/dashboard.png)
 
 ### 工作区大小
 
 从模板创建工作区时，除了多种环境选项外，您还可以选择工作区类型。管理员可以预定义这些大小并根据个人权限将它们与用户相关联。
 
-<img src={useBaseUrl('img/deployment/installation/workspace_sizes.png')} />
+![](./images/workspace_sizes.png)

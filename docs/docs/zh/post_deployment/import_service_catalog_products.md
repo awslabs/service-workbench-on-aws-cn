@@ -33,7 +33,7 @@ Service Workbench 使用 [AWS 服务目录 - AWS Service Catalog](https://aws.am
 
 #### 创建 AMI
 
-确保您在部署过程中完成了步骤[部署机器映像 SDC](/deployment/deployment/index#deploy-the-machine-images-sdc)。
+确保您在部署过程中完成了步骤[安装 AMIs](/zh/installation_guide/installation/ami-install)。
 
 您可以检查 AMI 是否已成功创建：
 

@@ -73,7 +73,7 @@ sidebar_label: 访问工作区
 
 ### 连接到 RStudio
 
-您可以使用 AWS [合作伙伴的存储库](https://github.com/RLOpenCatalyst/Service_Workbench_Templates) 中提供的模板和 AMI 连接到 RStudio 工作区类型。有关新 RStudio 增强功能的更多信息，请参阅*Service Workbench 部署后指南* 的 [创建 RStudio ALB 工作区](/deployment/post_deployment/aws_accounts#creating-rstudio-alb-workspace) 部分。
+您可以使用 AWS [合作伙伴的存储库](https://github.com/RLOpenCatalyst/Service_Workbench_Templates) 中提供的模板和 AMI 连接到 RStudio 工作区类型。有关新 RStudio 增强功能的更多信息，请参阅*Service Workbench 部署后指南* 的 [创建 RStudio ALB 工作区](/zh/post_deployment/aws_accounts#creating-rstudio-alb-workspace) 部分。
 
 ### 启动和停止工作区
 

@@ -26,15 +26,16 @@ OpenID Connect (OIDC) IdP 是 [Cognito User Pool][cognito] 的替代方案，用
 
 ####  创建 Authing.cn OIDC 客户端
 1. 登录[认证控制台](https://console.authing.cn/console)。
-2. 如果您没有用户池，请创建一个用户池。
+2. 如果您没有用户池，请创建一个用户池。输入**User Pool Name**，选择**User pool type**，单击 **Confirm** 创建用户池。
+    [![](../../../images/OIDC/create-authing-userpool.png)](../../../images/OIDC/create-authing-userpool.png)
 3. 选择用户池。
 4. 在左侧导航栏，选择**Applications**下的**Self-built App**。
-5. 单击**创建**按钮。
-6. 输入**应用程序名称**和**子域**。
+5. 单击**Create**按钮。
+6. 输入**Application Name**和**Subdomain**，选择**Regular Web APP**，单击**Create** 创建应用.
 7. 将`App ID`（即`client_id`）和`Issuer`保存到Endpoint Information中的一个文本文件中，后面会用到。
     [![](../../../images/OIDC/endpoint-info.png)](../../../images/OIDC/endpoint-info.png)
 
-8. 将`Login Callback URL`和`Logout Callback URL`更新为您的IPC记录的域名。
+8. 将`Login Callback URL`和`Logout Callback URL`更新为您的ICP记录的域名。
    例如，假设 Service Workbench 域名是 `www.swb-example.com`，请在 `Login Callback URL` 和 `Logout Callback URL` 中输入 `https://www.swb-example.com/`。
    :::tip
 
@@ -51,7 +52,7 @@ OpenID Connect (OIDC) IdP 是 [Cognito User Pool][cognito] 的替代方案，用
    [![](../../../images/OIDC/get-cloudfront-domain.png)](../../../images/OIDC/get-cloudfront-domain.png)
     
 
-9. 设置授权配置。
+9. 设置授权配置。请在**Other configuration**的配置选项中按下图所示进行配置
     [![](../../../images/OIDC/authorization-configuration.png)](../../../images/OIDC/authorization-configuration.png)
 
 您已经成功创建了一个身份验证自建应用程序。
@@ -60,12 +61,16 @@ OpenID Connect (OIDC) IdP 是 [Cognito User Pool][cognito] 的替代方案，用
 #### 在Authing.cn创建用户
 
 1. 登录[认证控制台](https://console.authing.cn/console)。
-2. 选择**Users & Roles**, **Users**, **Create User** and **Email**，输入`Email`和`Password`，点击**Confirm**创建用户。
+2. 选择**Users & Roles**, **Users**中单击**Create User**，选择 **Email**，输入`Email`和`Password`，点击**Confirm**创建用户。
 
     [![](../../../images/OIDC/authing-create-user.png)](../../../images/OIDC/authing-create-user.png)
-3. 编辑**个人信息**，确认`Email`、`Given Name`和`Family Name`已经填写完毕。
+3. 选择进入创建的用户，展开**Personal Info**，填写`Email`、`Given Name`和`Family Name`后保存。
 
     [![](../../../images/OIDC/authing-user-config.png)](../../../images/OIDC/authing-user-config.png)
+
+    :::tip
+    如果在**Personal Info** 中没有`Given Name`或`Family Name`，请选择边栏的**Setting**，**Field Management**，将 **Given Name** 和 **Family Name** 设定 **Visible from Console** 为 **Yes**，之后再次进入**Personal Info**进行编辑
+    :::
 
 ### Keycloak on AWS
 
@@ -86,7 +91,7 @@ OpenID Connect (OIDC) IdP 是 [Cognito User Pool][cognito] 的替代方案，用
 
 6. 回到Keycloak控制台，在左侧导航栏选择**Clients**，然后选择**Create**。
 7. 输入客户 ID，必须包含 24 个字母（不区分大小写）或数字。记录后面会用到的**Client ID**。
-8. 更改客户端设置。在 `Valid Redirect URIs` 和 `Web Origins` 中输入您的IPC记录的域名。
+8. 更改客户端设置。在 `Valid Redirect URIs` 和 `Web Origins` 中输入您的ICP记录的域名。
    例如，假设 Service Workbench 域名是 `www.swb-example.com`，请在 `Valid Redirect URIs` 和 `Web Origins` 中输入 `https://www.swb-example.com/`。
    :::tip
 
@@ -127,7 +132,7 @@ OpenID Connect (OIDC) IdP 是 [Cognito User Pool][cognito] 的替代方案，用
 5. 单击**创建**按钮。
 6. 输入**App集成名称**，设置**Grant type**为**Authorization Code**。
     [![](../../../images/OIDC/okta-application-create.png)](../../../images/OIDC/okta-application-create.png)
-7. 将“登录重定向 URI”和“退出重定向 URI”更新为您的 IPC 记录的域名。
+7. 将“登录重定向 URI”和“退出重定向 URI”更新为您的 ICP 记录的域名。
    例如，假设 Service Workbench 域名是 `www.swb-example.com`，请为 `Sign-in redirect URIs` 和 `Sign-out redirect` 输入 `https://www.swb-example.com/` URI。
    :::tip
 

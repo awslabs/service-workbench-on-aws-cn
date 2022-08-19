@@ -35,7 +35,7 @@ sidebar_label: 通过命令行升级Service Workbench
 
 按照配置设置中的步骤操作，其中文件的名称来自存储桶名称 stem 中的Stage name。在配置文件中，进行以下设置：
 
-- `awsRegion`：请参阅 [区域代码映射](/installation_guide/uninstall) 部分以验证区域代码的完整区域名称。例如，为区域代码 va 设置 awsRegion: us-east-1。
+- `awsRegion`：请参阅 [区域代码映射](/zh/installation_guide/uninstall) 部分以验证区域代码的完整区域名称。例如，为区域代码 va 设置 awsRegion: us-east-1。
 - `solutionName`：使用存储桶名称词干中的解决方案名称（例如:solutionName: sw）
 
 ### 升级 Service Workbench
@@ -46,4 +46,4 @@ sidebar_label: 通过命令行升级Service Workbench
 
 `./scripts/environment-deploy.sh ${STAGE_NAME}`
 
-升级后，按照 [系统升级后处理](/installation_guide/postupgrade) 部分中的说明更新 Service Workbench 中的每个账户。
+升级后，按照 [系统升级后处理](/zh/installation_guide/postupgrade) 部分中的说明更新 Service Workbench 中的每个账户。

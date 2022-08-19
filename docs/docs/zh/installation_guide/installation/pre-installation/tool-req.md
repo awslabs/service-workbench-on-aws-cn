@@ -42,7 +42,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 :::tip
 
-标签会在方案部署过程中自动创建，但仍需要手动激活。
+标签会在方案部署过程中自动创建，请在部署完方案后进行下面步骤激活标签。
 
 :::
 

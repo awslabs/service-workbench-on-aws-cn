@@ -13,6 +13,7 @@ awsRegion: cn-northwest-1
 # this name can be changed to ensure they are disambiguated.
 solutionName: workshop
 
+# To use a custom domain name, provide the following two values, the domain name and hostZoneId
 domainName: 
 hostedZoneId: 
 # oidc client id, it should be configured before deploying service workbench
@@ -24,7 +25,7 @@ rootUserEmail:
 # Root user's first name
 rootUserFirstName: 
 # Root user's last name
-rootUserLastName:
+rootUserLastName: 
 
 # The environment name where you want to deploy the solution to. Normally this defaults to
 # the serverless stage name and should be left unchanged here.

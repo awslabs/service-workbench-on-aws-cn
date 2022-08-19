@@ -33,7 +33,7 @@ Follow the steps below to create an OIDC client and , and obtain the `client_id`
 7. Save the `App ID` (that is, `client_id`) and `Issuer` to a text file from Endpoint Information, which will be used later.
     [![](../../../images/OIDC/endpoint-info.png)](../../../images/OIDC/endpoint-info.png)
 
-8. Update the `Login Callback URL` and `Logout Callback URL` to your IPC recorded domain name.
+8. Update the `Login Callback URL` and `Logout Callback URL` to your ICP recorded domain name.
    For example: suppose our Service Workbench domain is `www.swb-example.com`, please input `https://www.swb-example.com/` for both `Login Callback URL` and `Logout Callback URL`.
    :::tip
 
@@ -66,6 +66,10 @@ For more information, please visit [authing doc](https://docs.authing.cn/v2/en/)
 
     [![](../../../images/OIDC/authing-user-config.png)](../../../images/OIDC/authing-user-config.png)
 
+    :::tip
+    If there is no `Given Name` or `Family Name` in **Personal Info**，please choose sidebar **Setting**，**Field Management**，set **Given Name** and **Family Name's** **Visible from Console** as **Yes**，and then edit **Personal Info** again.
+    :::
+
 You have successfully created an user in authing. 
 
 ### Keycloak on AWS
@@ -88,7 +92,7 @@ You have successfully created an user in authing.
 
 6. Go back to Keycloak console and select **Clients** on the left navigation bar, and choose **Create**.
 7. Enter a Client ID, which must contain 24 letters (case-insensitive) or numbers. Record the **Client ID** which will be used later.
-8. Change client settings. Update the `Valid Redirect URIs` and `Web Origins` to your IPC recorded domain name.
+8. Change client settings. Update the `Valid Redirect URIs` and `Web Origins` to your ICP recorded domain name.
    For example: suppose our Service Workbench domain is `www.swb-example.com`, please input `https://www.swb-example.com/` for both `Valid Redirect URIs` and `Web Origins`.
    :::tip
 
@@ -129,7 +133,7 @@ You have successfully created an user in keycloak.
 5. Click the **Create** button.
 6. Enter the **App integration name**, set **Grant type** as **Authorization Code**.
     [![](../../../images/OIDC/okta-application-create.png)](../../../images/OIDC/okta-application-create.png)
-7. Update the `Sign-in redirect URIs` and `Sign-out redirect URIs` to your IPC recorded domain name.
+7. Update the `Sign-in redirect URIs` and `Sign-out redirect URIs` to your ICP recorded domain name.
    For example: suppose our Service Workbench domain is `www.swb-example.com`, please input `https://www.swb-example.com/` for both `Sign-in redirect URIs` and `Sign-out redirect URIs`.
    :::tip
 

@@ -28,6 +28,7 @@ docs/build
 !*/config/settings/.defaults.yml
 !*/config/settings/example*.yml
 !*/config/settings/workshop-cn.yml
+!*/config/settings/workshop-hk.yml
 */*/config/settings/*.yml
 !*/*/config/settings/.defaults.yml
 !*/*/config/settings/example*.yml

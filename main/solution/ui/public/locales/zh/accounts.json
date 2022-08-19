@@ -1,30 +1,30 @@
 {
-    "account#": "AWS 账号 #",
-    "accounts": "AWS 账号",
-    "addAccount": "添加 AWS 账号",
+    "account#": "AWS 账户 #",
+    "accounts": "AWS 账户",
+    "addAccount": "添加 AWS 账户",
     "budgetDetail": "预算明细",
-    "createAccount": "创建 AWS 账号",
-    "updateAccount": "更新 AWS 账号",
-    "refreshAccount": "刷新账号状态",
+    "createAccount": "创建 AWS 账户",
+    "updateAccount": "更新 AWS 账户",
+    "refreshAccount": "刷新账户状态",
     "noAccount": {
         "header": "没有与所选过滤器匹配的帐户。",
         "subheader": "选择“全部”以查看所有帐户"
     },
     "addAccountPage": {
-        "onboardAccount": "添加 AWS 账号",
+        "onboardAccount": "Onboard AWS Account",
         "loading": {
             "header": "加载中...",
             "subheader": "请稍等片刻。"
         }
     },
     "onboard": {
-        "title": "添加 AWS 账号",
+        "title": "Onboard AWS Account",
         "cloudFormationStackName": "CloudFormation 堆栈名称",
         "steps": "步骤",
         "step1": "在一个独立的浏览器标签页中，使用正确的帐户登录到 aws 控制台。",
         "attention": {
             "header": "注意",
-            "subheader": "请确保登录到 AWS 账号 #{{accountId}} 并切换到区域 {{region}}."
+            "subheader": "请确保登录到 AWS 账户 #{{accountId}} 并切换到区域 {{region}}."
         },
         "step2": "点击“创建堆栈”按钮，这一步会打开另一个独立的浏览器标签页并且访问CloudFormation控制台，在那里你可以检查堆栈信息并创建它。",
         "caution": {
@@ -38,8 +38,8 @@
     },
     "updatePermsButton": {
         "updatePermissions": "更新权限",
-        "reOnboardAccount": "重新添加账号",
-        "onboardAccount": "添加账号"
+        "reOnboardAccount": "Re-Onboard AWS Account",
+        "onboardAccount": "Onboard AWS Account"
     },
     "status": {
         "all": "全部",
@@ -63,20 +63,20 @@
     "formFields": {
         "addUpdateBaseAwsAccount": {
             "name": {
-                "label": "账号名",
-                "placeholder": "请输入该账号的名称"
+                "label": "账户名",
+                "placeholder": "请输入该账户的名称"
             },
             "accountId": {
-                "label": "AWS 账号 ID",
-                "placeholder": "请输入12位数字的 AWS 账号 ID"
+                "label": "AWS 账户 ID",
+                "placeholder": "请输入12位数字的 AWS 账户 ID"
             },
             "description": {
                 "label": "描述",
-                "placeholder": "请为该 AWS 账号输入描述"
+                "placeholder": "请为该 AWS 账户输入描述"
             },
             "externalId": {
                 "label": "外部 ID",
-                "placeholder": "请输入该 AWS 账号的外部 ID"
+                "placeholder": "请输入该 AWS 账户的外部 ID"
             }
         },
         "addIndex": {
@@ -86,8 +86,8 @@
                 "explain": "索引 ID 必须少于300个字符，只能包含字母数字, “-” 或 “_”"
             },
             "awsAccountId": {
-                "label": "AWS 账号 ID",
-                "placeholder": "请选择一个 AWS 账号"
+                "label": "AWS 账户 ID",
+                "placeholder": "请选择一个 AWS 账户"
             },
             "description": {
                 "label": "描述",

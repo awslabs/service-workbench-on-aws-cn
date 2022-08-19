@@ -66,10 +66,10 @@
     },
     "accountCard": {
         "testConnection": "连接测试",
-        "accountInformation": "账号信息",
+        "accountInformation": "账户信息",
         "registered": "注册于",
         "statusChecked": "状态检查于",
-        "account": "AWS 账号",
+        "account": "AWS 账户",
         "stackMismatch": {
             "stackOutDated": {
                 "header": "堆栈已过时",

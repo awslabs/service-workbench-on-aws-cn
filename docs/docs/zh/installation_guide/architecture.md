@@ -50,7 +50,7 @@ Service Workbench 的工作区管理最核心的是 [AWS Service Catalog](https:
 
 #### 账户、索引和项目
 
-Service Workbench 使用 AWS 账户来管理计算工作区。您可以为不同的项目、成本中心或其他目的使用不同的账户并管理成本。借助自动创建账号的功能，管理员可以使用 Service Workbench 界面在相同的 AWS 组织下生成新的 AWS 子账户。
+Service Workbench 使用 AWS 账户来管理计算工作区。您可以为不同的项目、成本中心或其他目的使用不同的账户并管理成本。借助自动创建账户的功能，管理员可以使用 Service Workbench 界面在相同的 AWS 组织下生成新的 AWS 子账户。
 
 #### 仪表板
 

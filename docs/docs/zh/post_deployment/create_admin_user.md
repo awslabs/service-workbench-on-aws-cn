@@ -8,7 +8,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 创建[账户](/zh/post_deployment/link_aws_account) 和 [索引、项目](/zh/post_deployment/create_index_project) 后，您必须在“**用户**”选项卡中创建管理员用户。如下图所示。
 
-<img src={useBaseUrl('img/deployment/post_deployment/create_user_00.jpg')} />
+![](./images/create_user_00.png)
 
 **图：创建管理员**
 

@@ -12,15 +12,15 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 在管理界面的 **账户** 选项卡中创建 [Account](/zh/post_deployment/link_aws_account) 后，通过下拉列表中选择 **Account ID** 创建链接到该账户的 **索引** 。
 
-1. 在 **索引** 选项卡上，选择 **Add Index**。
+1. 在 **索引** 选项卡上，选择 **添加索引**。
 
-<img src={useBaseUrl('img/deployment/post_deployment/create_index_00.jpg')} />
+![](./images/create_index_00.png)
 
-**图：创建索引**
+**图：添加索引**
 
-2. 创建一个链接到新索引的**项目**。 在 **项目** 选项卡中，选择 **Add Project**。
+2. 创建一个链接到新索引的**项目**。 在 **项目** 选项卡中，选择 **添加项目**。
 
-<img src={useBaseUrl('img/deployment/post_deployment/create_index_01.jpg')} />
+![](./images/create_index_01.png)
 
-**图：创建项目**
+**图：添加项目**
 

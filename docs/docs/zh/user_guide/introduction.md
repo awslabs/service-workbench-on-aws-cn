@@ -17,7 +17,9 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 <table>
 <tr>
 <td 宽度="150">
-<img src={useBaseUrl('img/deployment/reference/admin_interface_00.jpg')} height="100%" width="100%" />
+
+![](./images/admin_interface.png)
+
 </td>
 <td>
 <b>仪表板</b>

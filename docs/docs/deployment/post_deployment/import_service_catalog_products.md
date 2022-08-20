@@ -101,15 +101,15 @@ For Amazon EC2 Windows, the only two fields that are not available in the drop-d
 
 The following figures display screenshot images that exemplify Amazon EC2 Windows configurations.
 
-<img src={useBaseUrl('img/deployment/post_deployment/swb_param1.png')} />
+<img src={useBaseUrl('img/deployment/post_deployment/SWB_param1.PNG')} />
 
 ***Figure: Configurations for EC2 Windows*** 
 
-<img src={useBaseUrl('img/deployment/post_deployment/swb_param2.png')} />
+<img src={useBaseUrl('img/deployment/post_deployment/SWB_param2.PNG')} />
 
 ***Figure: Configurations for EC2 Windows***
 
-<img src={useBaseUrl('img/deployment/post_deployment/swb_param3.png')} />
+<img src={useBaseUrl('img/deployment/post_deployment/SWB_param3.PNG')} />
 
 ***Figure: Configurations for EC2 Windows*** 
 
@@ -120,10 +120,6 @@ For Amazon SageMaker, the only field that’s not available in the drop-down is 
 The following figures display screenshot images that exemplify Amazon SageMaker configurations.
 
 <img src={useBaseUrl('img/deployment/post_deployment/sc_sagemaker_00.png')} />
-
-***Figure: Configurations for Amazon SageMaker*** 
-
-<img src={useBaseUrl('img/deployment/post_deployment/sc_sagemaker_01.png')} />
 
 ***Figure: Configurations for Amazon SageMaker*** 
 

@@ -39,9 +39,8 @@ const _ = require('lodash');
  *
  * @param dsAccountEntity The data source account entity
  */
-function toAppStackCfnResource(dsAccountEntity, swbMainAccountId) {
+function toAppStackCfnResource(dsAccountEntity, swbMainAccountId, partition) {
   const { id, qualifier, stack, mainRegion } = dsAccountEntity;
-
   const name = `${qualifier}-app-role-stack`;
   // cfn logical id can not have '-'
   const logicalId = `AppRoleStack${_.replace(qualifier, /-/g, '')}`;
@@ -63,7 +62,7 @@ function toAppStackCfnResource(dsAccountEntity, swbMainAccountId) {
                   Sid: 'CfnRelated',
                   Effect: 'Allow',
                   Action: ['cloudformation:DescribeStacks', 'cloudformation:ListStackResources'],
-                  Resource: [`arn:aws:cloudformation:${mainRegion}:${id}:stack/${stack}/*`],
+                  Resource: [`arn:${partition}:cloudformation:${mainRegion}:${id}:stack/${stack}/*`],
                 },
               ],
             },

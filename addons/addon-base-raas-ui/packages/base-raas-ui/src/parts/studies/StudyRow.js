@@ -18,11 +18,15 @@ import { decorate, action, computed, runInAction, observable } from 'mobx';
 import { inject, observer } from 'mobx-react';
 import { Header, Checkbox, Segment, Accordion, Icon, Popup, Label } from 'semantic-ui-react';
 import c from 'classnames';
+import i18next from 'i18next';
+import { initReactI18next, withTranslation } from 'react-i18next';
 import { disableStudyUploadByResearcher } from '../../helpers/settings';
 
 import StudyFilesTable from './StudyFilesTable';
 import StudyPermissionsTable from './StudyPermissionsTable';
 import UploadStudyFiles from './UploadStudyFiles';
+
+i18next.use(initReactI18next);
 
 // expected props
 // - study (via props)
@@ -156,7 +160,7 @@ class StudyRow extends React.Component {
       <Accordion className="mt2">
         <Accordion.Title active={expanded} index={0} onClick={this.handleFilesExpanded}>
           <Icon name="dropdown" />
-          <b>Files</b>
+          <b>{i18next.t('files')}</b>
         </Accordion.Title>
         <Accordion.Content active={expanded}>
           {expanded && study.uploadLocationEnabled && (
@@ -177,7 +181,7 @@ class StudyRow extends React.Component {
       <Accordion className="mt0">
         <Accordion.Title active={expanded} index={0} onClick={this.handlePermissionsExpanded}>
           <Icon name="dropdown" />
-          <b>Permissions</b>
+          <b>{i18next.t('permissions')}</b>
         </Accordion.Title>
         <Accordion.Content active={expanded}>{expanded && <StudyPermissionsTable study={study} />}</Accordion.Content>
       </Accordion>
@@ -195,4 +199,4 @@ decorate(StudyRow, {
   isSelectable: computed,
 });
 
-export default inject('filesSelection')(observer(StudyRow));
+export default withTranslation()(inject('filesSelection')(observer(StudyRow)));

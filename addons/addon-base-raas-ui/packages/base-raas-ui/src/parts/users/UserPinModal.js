@@ -18,7 +18,10 @@ import { decorate, observable, runInAction } from 'mobx';
 import { observer } from 'mobx-react';
 import { Modal, Form, Header, Button } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
+import i18next from 'i18next';
+import { initReactI18next, withTranslation } from 'react-i18next';
 
+i18next.use(initReactI18next);
 class UserPinModal extends React.Component {
   constructor(props) {
     super(props);
@@ -70,7 +73,7 @@ class UserPinModal extends React.Component {
         </Modal.Content>
         <Modal.Actions>
           <Button type="button" content="Close" onClick={this.props.hideModal} />
-          <Button type="submit" color="blue" content="Save" />
+          <Button type="submit" color="blue" content={i18next.t('save')} />
         </Modal.Actions>
       </Modal>
     );
@@ -91,4 +94,4 @@ decorate(UserPinModal, {
   errorMsg: observable,
 });
 
-export default observer(UserPinModal);
+export default withTranslation()(observer(UserPinModal));

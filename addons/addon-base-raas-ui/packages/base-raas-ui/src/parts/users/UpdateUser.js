@@ -29,9 +29,12 @@ import Input from '@amzn/base-ui/dist/parts/helpers/fields/Input';
 import DropDown from '@amzn/base-ui/dist/parts/helpers/fields/DropDown';
 import YesNo from '@amzn/base-ui/dist/parts/helpers/fields/YesNo';
 import { displayError, displaySuccess } from '@amzn/base-ui/dist/helpers/notification';
+import i18next from 'i18next';
+import { initReactI18next, withTranslation } from 'react-i18next';
 import { getUpdateUserConfigForm } from '../../models/forms/UpdateUserConfig';
 import { toIdpFromValue, toIdpOptions } from '../../models/forms/UserFormUtils';
 
+i18next.use(initReactI18next);
 class UpdateUser extends React.Component {
   constructor(props) {
     super(props);
@@ -71,7 +74,9 @@ class UpdateUser extends React.Component {
       <Modal closeIcon trigger={this.renderTrigger()} open={this.modalOpen} onClose={this.handleClose}>
         <div className="mt2 animated fadeIn">
           <Header as="h3" icon textAlign="center" className="mt3" color="grey">
-            User Detail
+            {i18next.t('user', { ns: 'users' })}
+            {i18next.t(' ')}
+            {i18next.t('detail')}
           </Header>
           <div className="mt3 ml3 mr3 animated fadeIn">{content}</div>
         </div>
@@ -90,10 +95,14 @@ class UpdateUser extends React.Component {
   }
 
   renderDetailView() {
-    const getFieldLabel = fieldName => this.form.$(fieldName).label;
+    const getFieldLabel = fieldName => i18next.t(`props.${fieldName}`, { ns: 'users' });
     const toRow = fieldName => {
       const value = _.get(this.getCurrentUser(), fieldName);
-      const displayValue = _.isArray(value) ? _.map(value, (v, k) => <Label key={k} content={v} />) : value;
+      const displayValue = _.isArray(value)
+        ? _.map(value, (v, k) => <Label key={k} content={v} />)
+        : fieldName === 'status'
+        ? i18next.t(`props.${value}`, { ns: 'users' })
+        : value;
       return (
         <>
           <Table.Cell collapsing active>
@@ -140,7 +149,7 @@ class UpdateUser extends React.Component {
     const currentUser = this.getCurrentUser();
 
     const cancelButton = makeButton({
-      label: 'Cancel',
+      label: i18next.t('cancel'),
       floated: 'left',
       color: '',
       onClick: this.handleCancel,
@@ -150,7 +159,9 @@ class UpdateUser extends React.Component {
     const activeButton =
       this.props.user.status === 'pending' || this.props.user.status === 'inactive'
         ? makeButton({
-            label: 'Activate User',
+            label: `${i18next.t('updateUser.activate', { ns: 'users' })}${i18next.t(' ')}${i18next.t('user', {
+              ns: 'users',
+            })}`,
             floated: 'right',
             color: 'blue',
             onClick: () => this.handleApproveDisapproveClick('active'),
@@ -161,7 +172,9 @@ class UpdateUser extends React.Component {
     const deactiveButton =
       this.props.user.status === 'active' || this.props.user.status === 'pending'
         ? makeButton({
-            label: 'Deactivate User',
+            label: `${i18next.t('updateUser.deactivate', { ns: 'users' })}${i18next.t(' ')}${i18next.t('user', {
+              ns: 'users',
+            })}`,
             floated: 'right',
             disabled: this.processing,
             onClick: () => this.handleApproveDisapproveClick('inactive'),
@@ -170,7 +183,12 @@ class UpdateUser extends React.Component {
 
     const editButton =
       currentUser.status === 'active' || currentUser.status === 'inactive' // do not show "edit" button for other status(es) such as "pending"
-        ? makeButton({ label: 'Edit', onClick: this.handleEditClick, floated: 'right', disabled: this.processing })
+        ? makeButton({
+            label: i18next.t('edit'),
+            onClick: this.handleEditClick,
+            floated: 'right',
+            disabled: this.processing,
+          })
         : '';
 
     return this.props.adminMode ? (
@@ -256,10 +274,10 @@ class UpdateUser extends React.Component {
 
               <div className="mt3">
                 <Button floated="right" color="blue" icon disabled={processing} className="ml2" type="submit">
-                  Save
+                  {i18next.t('save')}
                 </Button>
                 <Button floated="right" disabled={processing} onClick={onCancel}>
-                  Cancel
+                  {i18next.t('cancel')}
                 </Button>
               </div>
             </>
@@ -274,7 +292,7 @@ class UpdateUser extends React.Component {
     if (this.props.adminMode) {
       content = (
         <Button size="mini" compact color="blue" onClick={this.handleOpen}>
-          Detail
+          {i18next.t('detail')}
         </Button>
       );
     } else {
@@ -351,7 +369,7 @@ class UpdateUser extends React.Component {
         await usersStore.updateUser(userToUpdate);
       }
       form.clear();
-      displaySuccess('Updated user successfully');
+      displaySuccess(i18next.t('updateUser.successfully', { ns: 'users' }), i18next.t('success'));
 
       // reload the current user's store after user updates, in case the currently
       // logged in user is updated
@@ -467,4 +485,4 @@ decorate(UpdateUser, {
 
   handleFormSubmission: action,
 });
-export default inject('authenticationProviderConfigsStore')(observer(UpdateUser));
+export default withTranslation()(inject('authenticationProviderConfigsStore')(observer(UpdateUser)));

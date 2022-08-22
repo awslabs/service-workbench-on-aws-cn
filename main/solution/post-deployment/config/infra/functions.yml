@@ -43,6 +43,11 @@ postDeployment:
     APP_AUTO_CONFIRM_NATIVE_USERS: ${self:custom.settings.autoConfirmNativeUsers}
     APP_NATIVE_ADMIN_PASSWORD_PARAM_NAME: ${self:custom.settings.nativeAdminPasswordParamName}
     APP_ENV_NAME: ${self:custom.settings.envName}
+    APP_AWS_SUFFIX: ${self:custom.settings.awsSuffix}
+    APP_AWS_PARTITION: ${self:custom.settings.awsPartition}
+    APP_OIDC_CLIENT_ID: ${self:custom.settings.oidcClientId}
+    APP_OIDC_ISSUER: ${self:custom.settings.oidcIssuer}
+    APP_DEFAULT_IDP_TYPE: ${self:custom.settings.defaultIdpType}
 
 egressStoreObjectsHandler:
   role: RoleEgressStoreObjectsHandler
@@ -64,3 +69,4 @@ egressStoreObjectsHandler:
     APP_EGRESS_STORE_BUCKET_NAME: ${self:custom.settings.egressStoreBucketName}
     APP_EGRESS_NOTIFICATION_BUCKET_NAME: ${self:custom.settings.egressNotificationBucketName}
     APP_EGRESS_NOTIFICATION_SNS_TOPIC_ARN: ${self:custom.settings.egressNotificationSnsTopicArn}
+    APP_DEFAULT_IDP_TYPE: ${self:custom.settings.defaultIdpType}

@@ -30,8 +30,12 @@ import {
 import BasicProgressPlaceholder from '@amzn/base-ui/dist/parts/helpers/BasicProgressPlaceholder';
 import ErrorBox from '@amzn/base-ui/dist/parts/helpers/ErrorBox';
 
+import i18next from 'i18next';
+import { initReactI18next, withTranslation } from 'react-i18next';
 import StudyRow from './StudyRow';
 import { categories } from '../../models/studies/categories';
+
+i18next.use(initReactI18next);
 
 // expected props
 // - category (an object with the shape { name, id})
@@ -116,37 +120,21 @@ class StudiesTab extends React.Component {
     const isOrgData = categoryId === categories.organization.id;
     const canCreateStudy = this.canCreateStudy;
 
-    let header = 'No studies';
-    let subheader = canCreateStudy ? (
-      <>
-        To create a study, click on the <b>Create Study</b> button at the top.
-      </>
-    ) : (
-      ''
-    );
+    let header = i18next.t('study.empty.my.header', { ns: 'studies' });
+    let subheader = canCreateStudy ? i18next.t('study.empty.my.subheader', { ns: 'studies' }) : '';
 
     if (isOpenData) {
-      header = 'No studies from the Open Data project';
-      subheader = 'The information in this page is updated once a day, please come back later.';
+      header = i18next.t('study.empty.open.header', { ns: 'studies' });
+      subheader = i18next.t('study.empty.open.subheader', { ns: 'studies' });
     }
 
     if (isOrgData) {
-      header = 'No studies shared with you';
+      header = i18next.t('study.empty.org.header', { ns: 'studies' });
       subheader = (
         <>
-          <div>
-            Studies created at the organization level can be shared but you don&apos;t have any that is shared with you.
-          </div>
-          {canCreateStudy && (
-            <div>
-              You can create one yourself by clicking on the <b>Create Study</b> button at the top.
-            </div>
-          )}
-          {!canCreateStudy && (
-            <div>
-              Consider viewing the Open Data studies by clicking on the <span>Open Data</span> tab above.
-            </div>
-          )}
+          <div>{i18next.t('study.empty.org.subheader', { ns: 'studies' })}</div>
+          {canCreateStudy && <div>{i18next.t('study.empty.org.canCreate', { ns: 'studies' })}</div>}
+          {!canCreateStudy && <div>{i18next.t('study.empty.org.cantCreate', { ns: 'studies' })}</div>}
         </>
       );
     }
@@ -171,4 +159,4 @@ decorate(StudiesTab, {
   isExternalUser: computed,
 });
 
-export default inject('studiesStoresMap', 'userStore')(observer(StudiesTab));
+export default withTranslation()(inject('studiesStoresMap', 'userStore')(observer(StudiesTab)));

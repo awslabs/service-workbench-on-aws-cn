@@ -20,6 +20,9 @@ const { runAndCatch } = require('@amzn/base-services/lib/helpers/utils');
 const { isAdmin, isActive } = require('@amzn/base-services/lib/authorization/authorization-utils');
 const createSchema = require('../schema/create-budget');
 
+const settingKeys = {
+  awsRegion: 'awsRegion',
+};
 class BudgetsService extends Service {
   constructor() {
     super();
@@ -173,13 +176,18 @@ class BudgetsService extends Service {
   }
 
   _formBudgetObject(newBudgetConfig) {
+    const region = this.settings.get(settingKeys.awsRegion);
+    let unit = 'USD';
+    if (region.startsWith('cn-')) {
+      unit = 'CNY';
+    }
     const budget = {
       BudgetName: this.budgetName,
       BudgetType: 'COST',
       TimeUnit: 'ANNUALLY',
       BudgetLimit: {
         Amount: newBudgetConfig.budgetLimit,
-        Unit: 'USD',
+        Unit: unit,
       },
       CostTypes: {
         IncludeCredit: true,
@@ -225,9 +233,18 @@ class BudgetsService extends Service {
   async _getBudgetClientAndAWSAccountId(requestContext, id) {
     const { accessKeyId, secretAccessKey, sessionToken, accountId } = await this._getCredentials(requestContext, id);
     const aws = await this.service('aws');
+    const region = this.settings.get(settingKeys.awsRegion);
+    let budgetsClientRegion = 'us-east-1';
+    let budgetsClientEndpoint = 'budgets.amazonaws.com';
+    if (region.startsWith('cn-')) {
+      budgetsClientRegion = 'cn-northwest-1';
+      budgetsClientEndpoint = 'budgets.amazonaws.com.cn';
+    }
+
     const budgetsClient = new aws.sdk.Budgets({
       apiVersion: '2017-10-25',
-      region: 'us-east-1',
+      region: budgetsClientRegion,
+      endpoint: budgetsClientEndpoint,
       accessKeyId,
       secretAccessKey,
       sessionToken,

@@ -21,7 +21,11 @@ import { Segment, Button, Header, List } from 'semantic-ui-react';
 
 import { gotoFn } from '@amzn/base-ui/dist/helpers/routing';
 
+import i18next from 'i18next';
+import { initReactI18next, withTranslation } from 'react-i18next';
 import AccountCfnPanel from '../parts/AccountCfnPanel';
+
+i18next.use(initReactI18next);
 
 // expected props
 // - wizard (via prop)
@@ -50,7 +54,7 @@ class CfnStep extends React.Component {
     return (
       <>
         <Header as="h3" icon textAlign="center" className="mt2" color="grey">
-          Register Studies
+          {i18next.t('registerStudies', { ns: 'data' })}
         </Header>
         <Segment clearing className="p3">
           {this.renderWhatIsNext()}
@@ -62,28 +66,16 @@ class CfnStep extends React.Component {
   }
 
   renderWhatIsNext() {
+    const content = i18next.t('cfnStep.whatIsNext', { ns: 'data' });
     return (
       <>
         <Header as="h3" className="mb0">
-          What to do next?
+          {content.header}
         </Header>
-
         <List bulleted size="large">
-          <List.Item>
-            Review the content of the CloudFormation template to familiarize yourself with the roles and policies that
-            will be created in the account.
-          </List.Item>
-          <List.Item>
-            Once provisioned or updated, the stack creates or updates the necessary roles and policies to allow the
-            Service Workbench application access to the studies and make them available to the designated researchers.
-          </List.Item>
-          <List.Item>Follow the steps outlined below</List.Item>
-          <List.Item>
-            Once you complete the steps below and while the stack is being provisioned or updated, you can click on{' '}
-            <b>Done</b>. This will take you to the Data Sources list page where you can test the connection once the
-            stack is finished deploying. You will also be able to view this information from within the Data Sources
-            list page.
-          </List.Item>
+          {content.p.map(text => (
+            <List.Item>{text}</List.Item>
+          ))}
         </List>
       </>
     );
@@ -92,7 +84,7 @@ class CfnStep extends React.Component {
   renderButtons() {
     return (
       <div className="mt4">
-        <Button floated="right" className="ml2" primary content="Done" onClick={this.handleNext} />
+        <Button floated="right" className="ml2" primary content={i18next.t('done')} onClick={this.handleNext} />
       </div>
     );
   }
@@ -105,4 +97,4 @@ decorate(CfnStep, {
   handleNext: action,
 });
 
-export default inject()(withRouter(observer(CfnStep)));
+export default withTranslation()(inject()(withRouter(observer(CfnStep))));

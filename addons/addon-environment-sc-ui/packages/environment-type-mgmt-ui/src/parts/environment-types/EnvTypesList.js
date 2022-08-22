@@ -30,10 +30,13 @@ import {
   isStoreNotEmpty,
   isStoreReady,
 } from '@amzn/base-ui/dist/models/BaseStore';
+import i18next from 'i18next';
+import { initReactI18next, withTranslation } from 'react-i18next';
 import { envMgmtRoleName } from '../../helpers/settings';
 import * as EnvTypeStatusEnum from '../../models/environment-types/EnvTypeStatusEnum';
 import EnvTypeCard from './EnvTypeCard';
 
+i18next.use(initReactI18next);
 // expected props
 // - envTypesStore (via injection)
 class EnvTypesList extends React.Component {
@@ -100,16 +103,14 @@ class EnvTypesList extends React.Component {
         <Header as="h3" className="color-grey mt1 mb0 flex-auto">
           <Icon name="computer" className="align-top" />
           <Header.Content className="left-align">
-            Workspace Types
+            {i18next.t('workspaceTypes.header', { ns: 'types' })}
             {renderCount()}
           </Header.Content>
-          <Header.Subheader className="mt2">
-            AWS Service Catalog Product Versions imported as Environment Types
-          </Header.Subheader>
+          <Header.Subheader className="mt2">{i18next.t('workspaceTypes.subheader', { ns: 'types' })}</Header.Subheader>
         </Header>
         <div>
           <Radio
-            label="Approved"
+            label={i18next.t('approved', { ns: 'types' })}
             name="statusFilter"
             checked={EnvTypeStatusEnum.isApproved(this.statusFilter)}
             value={EnvTypeStatusEnum.approved}
@@ -117,7 +118,7 @@ class EnvTypesList extends React.Component {
             className="mr2"
           />
           <Radio
-            label="Not Approved"
+            label={i18next.t('notApproved', { ns: 'types' })}
             name="statusFilter"
             checked={EnvTypeStatusEnum.isNotApproved(this.statusFilter)}
             value={EnvTypeStatusEnum.notApproved}
@@ -125,7 +126,7 @@ class EnvTypesList extends React.Component {
             className="mr2"
           />
           <Radio
-            label="All"
+            label={i18next.t('all', { ns: 'types' })}
             name="statusFilter"
             checked={this.statusFilter === '*'}
             value="*"
@@ -145,17 +146,15 @@ class EnvTypesList extends React.Component {
     const getEmptyMessage = () => {
       let msg;
       if (EnvTypeStatusEnum.isApproved(this.statusFilter)) {
-        msg = <>No approved Environment Types found</>;
+        msg = <>{i18next.t('empty.approved', { ns: 'types' })}</>;
       } else if (EnvTypeStatusEnum.isNotApproved(this.statusFilter)) {
-        msg = <>No Environments Types found that require approval</>;
+        msg = <>{i18next.t('empty.notApproved', { ns: 'types' })}</>;
       } else {
         msg = (
           <>
-            No AWS Service Catalog Product Versions imported yet
+            {i18next.t('empty.all.header', { ns: 'types' })}
             <Header.Subheader className="mt2">
-              Start by importing an AWS Service Catalog Product Version as Environment Type. AWS Service Catalog
-              Products that are part of AWS Service Catalog Portfolio shared with AWS IAM role{' '}
-              <strong>{envMgmtRoleName}</strong> are eligible for importing.
+              {i18next.t('empty.all.subheader', { ns: 'types', roleName: envMgmtRoleName })}
             </Header.Subheader>
           </>
         );
@@ -205,4 +204,4 @@ decorate(EnvTypesList, {
   handleStatusFilterChange: action,
 });
 
-export default inject('envTypesStore')(withRouter(observer(EnvTypesList)));
+export default withTranslation()(inject('envTypesStore')(withRouter(observer(EnvTypesList))));

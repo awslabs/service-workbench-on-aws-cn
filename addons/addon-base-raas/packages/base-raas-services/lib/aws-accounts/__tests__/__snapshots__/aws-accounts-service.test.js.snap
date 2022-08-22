@@ -42,7 +42,7 @@ Object {
       "Effect": "Allow",
       "Principal": Object {
         "AWS": Array [
-          "arn:aws:iam::0123456789:root",
+          "0123456789",
         ],
       },
       "Resource": "arn:aws:s3:::dummyBucket",
@@ -55,7 +55,7 @@ Object {
       "Effect": "Allow",
       "Principal": Object {
         "AWS": Array [
-          "arn:aws:iam::0123456789:root",
+          "0123456789",
         ],
       },
       "Resource": Array [

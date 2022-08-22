@@ -182,7 +182,7 @@ Resources:
           - Effect: 'Allow'
             Principal:
               AWS:
-                - !Join [':', ['arn:aws:iam:', Ref: CentralAccountId, 'root']]
+                - !Ref CentralAccountId
                 - !Ref ApiHandlerArn
                 - !Ref WorkflowRoleArn
             Action:
@@ -191,7 +191,7 @@ Resources:
               StringEquals:
                 sts:ExternalId: !Ref ExternalId
       ManagedPolicyArns:
-        - arn:aws:iam::aws:policy/AWSServiceCatalogAdminFullAccess
+        - !Sub 'arn:${AWS::Partition}:iam::aws:policy/AWSServiceCatalogAdminFullAccess'
       Policies:
         - PolicyName: ec2-access
           PolicyDocument:
@@ -216,7 +216,7 @@ Resources:
               - Effect: Allow
                 Action:
                   - cloudformation:GetTemplate
-                Resource: 'arn:aws:cloudformation:*:*:stack/SC-*/*'
+                Resource: !Sub 'arn:${AWS::Partition}:cloudformation:*:*:stack/SC-*/*'
         - PolicyName: appstream-access
           PolicyDocument:
             Version: '2012-10-17'
@@ -238,7 +238,7 @@ Resources:
                 - ssm:GetParameters
                 - ssm:DeleteParameter
               Resource:
-                - !Sub 'arn:aws:ssm:*:${AWS::AccountId}:parameter/*/sc-environments/*'
+                - !Sub 'arn:${AWS::Partition}:ssm:*:${AWS::AccountId}:parameter/*/sc-environments/*'
         - PolicyName: s3-access
           PolicyDocument:
             Statement:
@@ -246,7 +246,7 @@ Resources:
               Action:
                 - s3:GetObject
               Resource:
-                - 'arn:aws:s3:::cf-templates-*/*'
+                - !Sub 'arn:${AWS::Partition}:s3:::cf-templates-*/*'
         - PolicyName: s3-upload-access
           PolicyDocument:
             Statement:
@@ -254,7 +254,7 @@ Resources:
               Action:
                 - s3:PutObject*
               Resource:
-                - !Sub 'arn:aws:s3:::${Namespace}*/*'
+                - !Sub 'arn:${AWS::Partition}:s3:::${Namespace}*/*'
         - PolicyName: sts-assume-create-presign
           PolicyDocument:
             Statement:
@@ -299,8 +299,8 @@ Resources:
                 - logs:CreateLogStream
                 - logs:PutLogEvents
               Resource:
-                - !Sub 'arn:aws:logs:${AWS::Region}:${AWS::AccountId}:log-group:${Namespace}-*:*'
-                - !Sub 'arn:aws:logs:${AWS::Region}:${AWS::AccountId}:log-group:${Namespace}-*:log-stream:*'
+                - !Sub 'arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:${Namespace}-*:*'
+                - !Sub 'arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:${Namespace}-*:log-stream:*'
         - !If
           - isAppStreamAndCustomDomain
           - PolicyName: route53-access
@@ -310,7 +310,7 @@ Resources:
                   Action:
                     - route53:ChangeResourceRecordSets
                   Resource:
-                    - !Sub 'arn:aws:route53:::hostedzone/${Route53HostedZone}'
+                    - !Sub 'arn:${AWS::Partition}:route53:::hostedzone/${Route53HostedZone}'
           - !Ref 'AWS::NoValue'
       PermissionsBoundary: !Ref CrossAccountEnvMgmtPermissionsBoundary
 
@@ -343,8 +343,8 @@ Resources:
               - logs:CreateLogStream
               - logs:PutLogEvents
             Resource:
-              - !Sub 'arn:aws:logs:${AWS::Region}:${AWS::AccountId}:log-group:${Namespace}-*:*'
-              - !Sub 'arn:aws:logs:${AWS::Region}:${AWS::AccountId}:log-group:${Namespace}-*:log-stream:*'
+              - !Sub 'arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:${Namespace}-*:*'
+              - !Sub 'arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:${Namespace}-*:log-stream:*'
           - Effect: Allow
             Action:
               - iam:PassRole
@@ -399,7 +399,7 @@ Resources:
               Action:
                 - route53:ChangeResourceRecordSets
               Resource:
-                - !Sub 'arn:aws:route53:::hostedzone/${Route53HostedZone}'
+                - !Sub 'arn:${AWS::Partition}:route53:::hostedzone/${Route53HostedZone}'
             - !Ref 'AWS::NoValue'
 
   PolicyCrossAccountExecution:
@@ -416,15 +416,15 @@ Resources:
               - cloudformation:DescribeStacks
               - cloudformation:DescribeStackEvents
             Resource:
-              - !Sub 'arn:aws:cloudformation:${AWS::Region}:${AWS::AccountId}:stack/SC-*'
-              - !Sub 'arn:aws:cloudformation:${AWS::Region}:${AWS::AccountId}:stack/analysis-*' # ALB stack used this pattern
+              - !Sub 'arn:${AWS::Partition}:cloudformation:${AWS::Region}:${AWS::AccountId}:stack/SC-*'
+              - !Sub 'arn:${AWS::Partition}:cloudformation:${AWS::Region}:${AWS::AccountId}:stack/analysis-*' # ALB stack used this pattern
           - Effect: Allow
             Action:
               - sagemaker:CreatePresignedNotebookInstanceUrl
               - sagemaker:StartNotebookInstance
               - sagemaker:StopNotebookInstance
               - sagemaker:DescribeNotebookInstance
-            Resource: !Sub 'arn:aws:sagemaker:${AWS::Region}:${AWS::AccountId}:notebook-instance/basicnotebookinstance-*'
+            Resource: !Sub 'arn:${AWS::Partition}:sagemaker:${AWS::Region}:${AWS::AccountId}:notebook-instance/basicnotebookinstance-*'
           - Effect: Allow
             Action:
               - sagemaker:ListNotebookInstances
@@ -438,7 +438,7 @@ Resources:
               - iam:DeleteRole
               - iam:PassRole
               - iam:PutRolePolicy
-            Resource: !Sub 'arn:aws:iam::${AWS::AccountId}:role/analysis-*'
+            Resource: !Sub 'arn:${AWS::Partition}:iam::${AWS::AccountId}:role/analysis-*'
           - Effect: Allow
             Action:
               - ce:GetCostAndUsage
@@ -447,12 +447,12 @@ Resources:
             Action:
               - budgets:ViewBudget
               - budgets:ModifyBudget
-            Resource: !Sub 'arn:aws:budgets::${AWS::AccountId}:budget/service-workbench-system-generated*'
+            Resource: !Sub 'arn:${AWS::Partition}:budgets::${AWS::AccountId}:budget/service-workbench-system-generated*'
           - Effect: Allow
             Action:
               - ec2:StartInstances
               - ec2:StopInstances
-            Resource: !Sub 'arn:aws:ec2:${AWS::Region}:${AWS::AccountId}:instance/*'
+            Resource: !Sub 'arn:${AWS::Partition}:ec2:${AWS::Region}:${AWS::AccountId}:instance/*'
           - Effect: Allow
             Action:
               - ec2:DescribeInstanceStatus
@@ -477,7 +477,7 @@ Resources:
             Action:
               - ssm:GetParameter
             Resource:
-              - !Sub 'arn:aws:ssm:${AWS::Region}:${AWS::AccountId}:parameter/*'
+              - !Sub 'arn:${AWS::Partition}:ssm:${AWS::Region}:${AWS::AccountId}:parameter/*'
           - Effect: Allow
             Action:
               - ec2:CreateSubnet
@@ -486,8 +486,8 @@ Resources:
               - ec2:AssociateSubnetCidrBlock
               - ec2:DisassociateSubnetCidrBlock
             Resource:
-              - !Sub 'arn:aws:ec2:${AWS::Region}:${AWS::AccountId}:vpc/*'
-              - !Sub 'arn:aws:ec2:${AWS::Region}:${AWS::AccountId}:subnet/*'
+              - !Sub 'arn:${AWS::Partition}:ec2:${AWS::Region}:${AWS::AccountId}:vpc/*'
+              - !Sub 'arn:${AWS::Partition}:ec2:${AWS::Region}:${AWS::AccountId}:subnet/*'
           - Effect: Allow
             Action:
               - ec2:CreateSecurityGroup
@@ -495,8 +495,8 @@ Resources:
               - ec2:AuthorizeSecurityGroup*
               - ec2:RevokeSecurityGroup*
             Resource:
-              - !Sub 'arn:aws:ec2:${AWS::Region}:${AWS::AccountId}:vpc/*'
-              - !Sub 'arn:aws:ec2:${AWS::Region}:${AWS::AccountId}:security-group/*'
+              - !Sub 'arn:${AWS::Partition}:ec2:${AWS::Region}:${AWS::AccountId}:vpc/*'
+              - !Sub 'arn:${AWS::Partition}:ec2:${AWS::Region}:${AWS::AccountId}:security-group/*'
           - Effect: Allow
             Action:
               - elasticloadbalancing:DescribeLoadBalancers
@@ -513,7 +513,7 @@ Resources:
               - elasticloadbalancing:SetSecurityGroups
               - elasticloadbalancing:SetSubnets
             Resource:
-              - !Sub 'arn:aws:elasticloadbalancing:${AWS::Region}:${AWS::AccountId}:loadbalancer/app/analysis-*'
+              - !Sub 'arn:${AWS::Partition}:elasticloadbalancing:${AWS::Region}:${AWS::AccountId}:loadbalancer/app/analysis-*'
           - Effect: Allow
             Action:
               - elasticloadbalancing:CreateListener
@@ -521,21 +521,21 @@ Resources:
               - elasticloadbalancing:AddListenerCertificates
               - elasticloadbalancing:RemoveListenerCertificates
             Resource:
-              - !Sub 'arn:aws:elasticloadbalancing:${AWS::Region}:${AWS::AccountId}:loadbalancer/app/analysis-*'
-              - !Sub 'arn:aws:elasticloadbalancing:${AWS::Region}:${AWS::AccountId}:listener/app/analysis-*'
+              - !Sub 'arn:${AWS::Partition}:elasticloadbalancing:${AWS::Region}:${AWS::AccountId}:loadbalancer/app/analysis-*'
+              - !Sub 'arn:${AWS::Partition}:elasticloadbalancing:${AWS::Region}:${AWS::AccountId}:listener/app/analysis-*'
           - Effect: Allow
             Action:
               - elasticloadbalancing:CreateRule
               - elasticloadbalancing:DeleteRule
               - elasticloadbalancing:ModifyRule
             Resource:
-              - !Sub 'arn:aws:elasticloadbalancing:${AWS::Region}:${AWS::AccountId}:listener/app/analysis-*'
-              - !Sub 'arn:aws:elasticloadbalancing:${AWS::Region}:${AWS::AccountId}:listener-rule/app/analysis-*'
+              - !Sub 'arn:${AWS::Partition}:elasticloadbalancing:${AWS::Region}:${AWS::AccountId}:listener/app/analysis-*'
+              - !Sub 'arn:${AWS::Partition}:elasticloadbalancing:${AWS::Region}:${AWS::AccountId}:listener-rule/app/analysis-*'
           - Effect: Allow
             Action:
               - iam:CreateServiceLinkedRole
             Resource:
-              - !Sub 'arn:aws:iam::${AWS::AccountId}:role/aws-service-role/elasticloadbalancing.amazonaws.com/AWSServiceRoleForElasticLoadBalancing'
+              - !Sub 'arn:${AWS::Partition}:iam::${AWS::AccountId}:role/aws-service-role/elasticloadbalancing.amazonaws.com/AWSServiceRoleForElasticLoadBalancing'
   CrossAccountExecutionRole:
     Type: 'AWS::IAM::Role'
     Properties:
@@ -547,7 +547,7 @@ Resources:
           - Effect: 'Allow'
             Principal:
               AWS:
-                - !Join [':', ['arn:aws:iam:', Ref: CentralAccountId, 'root']]
+                - !Ref CentralAccountId
                 - !Ref ApiHandlerArn
                 - !Ref WorkflowRoleArn
             Action:
@@ -570,7 +570,7 @@ Resources:
           - Effect: 'Allow'
             Principal:
               AWS:
-                - !Join [':', ['arn:aws:iam:', Ref: CentralAccountId, 'root']]
+                - !Ref CentralAccountId
             Action:
               - 'sts:AssumeRole'
             Condition:
@@ -591,7 +591,7 @@ Resources:
             Action:
               - cloudformation:DescribeStacks
               - cloudformation:GetTemplate
-            Resource: !Sub 'arn:aws:cloudformation:${AWS::Region}:${AWS::AccountId}:stack/initial-stack*'
+            Resource: !Sub 'arn:${AWS::Partition}:cloudformation:${AWS::Region}:${AWS::AccountId}:stack/initial-stack*'
 
   # This role is used by `infrastructure-tests`
   InfrastructureTestRole:
@@ -605,7 +605,7 @@ Resources:
           - Effect: 'Allow'
             Principal:
               AWS:
-                - !Join [':', ['arn:aws:iam:', Ref: CentralAccountId, 'root']]
+                - !Ref CentralAccountId
             Action:
               - 'sts:AssumeRole'
             Condition:
@@ -626,7 +626,7 @@ Resources:
             Action:
               - cloudformation:DescribeStacks
               - cloudformation:DescribeStackResources
-            Resource: !Sub 'arn:aws:cloudformation:${AWS::Region}:${AWS::AccountId}:stack/initial-stack*'
+            Resource: !Sub 'arn:${AWS::Partition}:cloudformation:${AWS::Region}:${AWS::AccountId}:stack/initial-stack*'
           - Effect: Allow
             Action:
               - ec2:DescribeSubnets
@@ -741,7 +741,7 @@ Resources:
           - Sid: Allow root access
             Effect: 'Allow'
             Principal:
-              AWS: !Sub arn:aws:iam::${AWS::AccountId}:root
+              AWS: !Ref 'AWS::AccountId'
             Action:
               - 'kms:*'
             Resource: '*'
@@ -1082,7 +1082,7 @@ Resources:
       EnableDefaultInternetAccess: False
       FleetType: !Ref AppStreamFleetType
       IdleDisconnectTimeoutInSeconds: !Ref AppStreamIdleDisconnectTimeoutSeconds
-      ImageArn: !If [amiSharingEnabled, !Sub 'arn:aws:appstream:${AWS::Region}:${DevopsAccountId}:image/${AppStreamImageName}', !Sub 'arn:aws:appstream:${AWS::Region}:${CentralAccountId}:image/${AppStreamImageName}']
+      ImageArn: !If [amiSharingEnabled, !Sub 'arn:${AWS::Partition}:appstream:${AWS::Region}:${DevopsAccountId}:image/${AppStreamImageName}', !Sub 'arn:${AWS::Partition}:appstream:${AWS::Region}:${CentralAccountId}:image/${AppStreamImageName}']
       InstanceType: !Ref AppStreamInstanceType
       MaxUserDurationInSeconds: !Ref AppStreamMaxUserDurationSeconds
       Name: !Sub ${Namespace}-ServiceWorkbenchFleet

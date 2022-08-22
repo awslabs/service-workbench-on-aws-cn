@@ -20,7 +20,11 @@ import { Button, Dimmer, Header, Icon, Segment, Table } from 'semantic-ui-react'
 
 import Form from '@amzn/base-ui/dist/parts/helpers/fields/Form';
 import NameValuesEditor from '@amzn/base-ui/dist/parts/helpers/fields/NameValuesEditor';
+import i18next from 'i18next';
+import { initReactI18next, withTranslation } from 'react-i18next';
 import BaseEnvTypeConfigStep from './BaseEnvTypeConfigStep';
+
+i18next.use(initReactI18next);
 
 class TagsStep extends BaseEnvTypeConfigStep {
   constructor(props) {
@@ -49,11 +53,7 @@ class TagsStep extends BaseEnvTypeConfigStep {
     const tagsField = form.$('tags');
     return (
       <div className="mb3">
-        <div className="ml1 mb2">
-          Click plus (+) button below to add resource tags. These tags will be applied to the environment resources that
-          are launched using this configuration. Additionally, some standard tags for cost allocation will be
-          automatically applied even if you do not configure any other resource tags here.
-        </div>
+        <div className="ml1 mb2">{i18next.t('tag.description', { ns: 'types' })}</div>
         <NameValuesEditor
           field={tagsField}
           onEnterEditMode={this.disableActionButtons}
@@ -63,7 +63,7 @@ class TagsStep extends BaseEnvTypeConfigStep {
               <Table.Cell colSpan={3}>
                 <Header icon className="color-grey">
                   <Icon name="tags" />
-                  No resource tags are added yet
+                  {i18next.t('tag.empty', { ns: 'types' })}
                 </Header>
               </Table.Cell>
             </Table.Row>
@@ -75,7 +75,11 @@ class TagsStep extends BaseEnvTypeConfigStep {
 
   renderActionButtons({ processing, onCancel }) {
     const isUpdating = this.isEditAction();
-    const submitButtonTitle = isUpdating ? 'Save' : this.props.wizardModel.hasNext ? 'Next' : 'Add';
+    const submitButtonTitle = isUpdating
+      ? i18next.t('save')
+      : this.props.wizardModel.hasNext
+      ? i18next.t('next')
+      : i18next.t('add');
     return (
       <div className="clearfix">
         <Button
@@ -93,7 +97,7 @@ class TagsStep extends BaseEnvTypeConfigStep {
           <Button
             className="ml2 mb3"
             primary
-            content="Previous"
+            content={i18next.t('previous')}
             disabled={processing || !this.shouldEnableActionButtons}
             floated="right"
             onClick={this.props.onPrevious}
@@ -106,7 +110,7 @@ class TagsStep extends BaseEnvTypeConfigStep {
           onClick={onCancel}
           floated="left"
         >
-          Cancel
+          {i18next.t('cancel')}
         </Button>
       </div>
     );
@@ -128,4 +132,4 @@ decorate(TagsStep, {
   processing: observable,
   shouldEnableActionButtons: observable,
 });
-export default observer(TagsStep);
+export default withTranslation()(observer(TagsStep));

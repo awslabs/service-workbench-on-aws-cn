@@ -25,6 +25,8 @@ import TimeAgo from 'react-timeago';
 import { niceNumber, swallowError } from '@amzn/base-ui/dist/helpers/utils';
 import { isStoreError, isStoreNew, isStoreLoading } from '@amzn/base-ui/dist/models/BaseStore';
 
+import i18next from 'i18next';
+import { initReactI18next, withTranslation } from 'react-i18next';
 import By from '../helpers/By';
 import DataSourceStudiesList from './DataSourceStudiesList';
 import DataSourceAccountCfn from './DataSourceAccountCfn';
@@ -32,6 +34,8 @@ import DataSourceAccountInfo from './DataSourceAccountInfo';
 import { Operation } from '../../models/helpers/Operation';
 import AccountConnectionPanel from './parts/AccountConnectionPanel';
 import AccountStatusMessage from './parts/AccountStatusMessage';
+
+i18next.use(initReactI18next);
 
 // This component is used with the TabPane to replace the default Segment wrapper since
 // we don't want to display the border.
@@ -99,7 +103,7 @@ class DataSourceAccountCard extends React.Component {
     return (
       <div className="animated fadeIn">
         <Button size="mini" floated="right" color="brown" basic onClick={this.handleCheckConnection}>
-          Test Connection
+          {i18next.t('accountCard.testConnection', { ns: 'data' })}
         </Button>
         {this.renderTitle(account)}
         {this.renderStatus(account)}
@@ -127,7 +131,11 @@ class DataSourceAccountCard extends React.Component {
     const account = this.account;
     const panes = [
       {
-        menuItem: <Menu.Item key="studies">Studies {getMenuItemLabel()}</Menu.Item>,
+        menuItem: (
+          <Menu.Item key="studies">
+            {i18next.t('studies', { ns: 'data' })} {getMenuItemLabel()}
+          </Menu.Item>
+        ),
         render: () => (
           <Tab.Pane attached={false} key="studies" as={TabPaneWrapper}>
             <Observer>{() => <DataSourceStudiesList account={account} />}</Observer>
@@ -143,7 +151,7 @@ class DataSourceAccountCard extends React.Component {
         ),
       },
       {
-        menuItem: 'Account Information',
+        menuItem: i18next.t('accountCard.accountInformation', { ns: 'data' }),
         render: () => (
           <Tab.Pane attached={false} key="accountInfo" as={TabPaneWrapper}>
             <Observer>{() => <DataSourceAccountInfo account={account} />}</Observer>
@@ -161,14 +169,17 @@ class DataSourceAccountCard extends React.Component {
         {account.name}
         <Header.Subheader>
           <span className="fs-8 color-grey mr1">
-            Registered <TimeAgo date={account.createdAt} /> <By uid={account.createdBy} className="mr1" />
+            {i18next.t('accountCard.registered', { ns: 'data' })} <TimeAgo date={account.createdAt} />{' '}
+            <By uid={account.createdBy} className="mr1" />
             &mdash;
           </span>
           <span className="fs-8 color-grey mr1">
-            Status checked <TimeAgo date={account.statusAt} className="mr1" />
+            {i18next.t('accountCard.statusChecked', { ns: 'data' })} <TimeAgo date={account.statusAt} className="mr1" />
             &mdash;
           </span>
-          <span className="fs-8 color-grey">AWS Account # {account.id}</span>
+          <span className="fs-8 color-grey">
+            {i18next.t('accountCard.account', { ns: 'data' })} # {account.id}
+          </span>
         </Header.Subheader>
       </Header>
     );
@@ -178,7 +189,7 @@ class DataSourceAccountCard extends React.Component {
     const { state } = account;
     return (
       <Label attached="top left" size="mini" color={state.color}>
-        {state.display}
+        {i18next.t(state.display.toLowerCase())}
       </Label>
     );
   }
@@ -192,11 +203,15 @@ class DataSourceAccountCard extends React.Component {
     if (incorrectStackNameProvisioned) {
       return (
         <Message warning>
-          <Message.Header>Incorrect stack name</Message.Header>
+          <Message.Header>
+            {i18next.t('accountCard.stackMismatch.incorrectStackName.header', { ns: 'data' })}
+          </Message.Header>
           <p>
-            It seems that the correct CloudFormation stack was deployed to AWS account <b>{account.id}</b> but with an
-            incorrect stack name. Please ensure that you have the latest CloudFormation template deployed with the stack
-            name {account.stack} in the account. If you just updated the stack you can run the connection test again.
+            {i18next.t('accountCard.stackMismatch.incorrectStackName.subheader', {
+              ns: 'data',
+              account: account.id,
+              stack: account.stack,
+            })}
           </p>
         </Message>
       );
@@ -204,11 +219,13 @@ class DataSourceAccountCard extends React.Component {
 
     return (
       <Message warning>
-        <Message.Header>Stack is outdated</Message.Header>
+        <Message.Header>{i18next.t('accountCard.stackMismatch.stackOutDated.header', { ns: 'data' })}</Message.Header>
         <p>
-          It seems that the CloudFormation stack {account.stack} deployed to AWS account <b>{account.id}</b> is outdated
-          and does not contain the latest changes made. Please use the latest CloudFormation template to update the
-          stack. If you just updated the stack you can run the connection test again.
+          {i18next.t('accountCard.stackMismatch.stackOutDated.subheader', {
+            ns: 'data',
+            account: account.id,
+            stack: account.stack,
+          })}
         </p>
       </Message>
     );
@@ -224,4 +241,4 @@ decorate(DataSourceAccountCard, {
   connectionPanel: observable,
 });
 
-export default inject('dataSourceAccountsStore')(withRouter(observer(DataSourceAccountCard)));
+export default withTranslation()(inject('dataSourceAccountsStore')(withRouter(observer(DataSourceAccountCard))));

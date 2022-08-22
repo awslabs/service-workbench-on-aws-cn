@@ -26,10 +26,13 @@ import Form from '@amzn/base-ui/dist/parts/helpers/fields/Form';
 import { displayError } from '@amzn/base-ui/dist/helpers/notification';
 import { awsRegion } from '@amzn/base-ui/dist/helpers/settings';
 
+import i18next from 'i18next';
+import { initReactI18next, withTranslation } from 'react-i18next';
 import { getExternalUserPinForm } from '../../models/forms/ExternalUserPinForm';
 import CfnService from '../../helpers/cfn-service';
 import PinInput from '../helpers/PinInput';
 
+i18next.use(initReactI18next);
 const steps = {
   IAM_USER: 0,
   CREDENTIALS: 1,
@@ -372,13 +375,13 @@ class UserOnboarding extends React.Component {
     const nextDisabled = this.onboardingStep === steps.CREDENTIALS && !this.credentialsValid;
     return (
       <>
-        <Button content="Cancel" className="mr2" onClick={this.onboardingClose} />
+        <Button content={i18next.t('cancel')} className="mr2" onClick={this.onboardingClose} />
         {this.onboardingStep > 0 && (
           <Button content="Prev" icon="left arrow" labelPosition="left" color="blue" onClick={this.onboardingPrev} />
         )}
         {this.onboardingStep < this.onboardingSteps - 1 && (
           <Button
-            content="Next"
+            content={i18next.t('next')}
             icon="right arrow"
             labelPosition="right"
             color="blue"
@@ -387,7 +390,7 @@ class UserOnboarding extends React.Component {
           />
         )}
         {this.onboardingStep === this.onboardingSteps - 1 && (
-          <Button content="Save" color="blue" onClick={this.onboardingSave} />
+          <Button content={i18next.t('save')} color="blue" onClick={this.onboardingSave} />
         )}
       </>
     );
@@ -504,7 +507,7 @@ class UserOnboarding extends React.Component {
                 size="mini"
                 icon="trash alternate outline"
                 color="red"
-                content="Reset"
+                content={i18next.t('reset')}
                 title="Reset attached credentials"
                 onClick={this.handleCredentialsReset}
               />
@@ -721,4 +724,4 @@ decorate(UserOnboarding, {
   onboardingStep: observable,
   onboardingSteps: observable,
 });
-export default inject('userStore', 'usersStore')(withRouter(observer(UserOnboarding)));
+export default withTranslation()(inject('userStore', 'usersStore')(withRouter(observer(UserOnboarding))));

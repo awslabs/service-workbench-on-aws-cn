@@ -1,0 +1,30 @@
+{
+    "user": "User",
+    "users": "Users",
+    "role": "Role",
+    "roles": "Roles",
+    "single": "Single",
+    "multiple": "Multiple",
+    "props": {
+        "username": "Name",
+        "firstName": "First Name",
+        "lastName": "Last Name",
+        "email": "Email",
+        "identityProviderName": "Identity Provider",
+        "type": "Type",
+        "external": "External",
+        "internal": "Internal",
+        "userRole": "Role",
+        "projectId": "Project",
+        "status": "Status",
+        "active": "Active",
+        "inactive": "Inactive",
+        "description": "Description"
+    },
+    "updateUser": {
+        "activate": "Activate",
+        "deactivate": "Deactivate",
+        "successfully": "Updated user successfully"
+    },
+    "csvExample": "CSV Example"
+}

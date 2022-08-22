@@ -22,6 +22,9 @@ const readline = require('readline').createInterface({
   output: process.stdout,
 });
 
+const cnAWSSuffix = 'amazonaws.com.cn';
+const globalAWSSuffix = 'amazonaws.com';
+
 // TODO: Make this a generic build artifact and upload to s3 tool in the future
 // ie - remove the hard-coded go bits and make it more extensible.
 class GoBuildTools {
@@ -66,26 +69,32 @@ class GoBuildTools {
   s3() {
     const provider = this.serverless.getProvider('aws');
     let awsCredentials;
-    let region;
+    let region = provider.getRegion();
     if (
       provider.cachedCredentials &&
       provider.cachedCredentials.accessKeyId &&
       provider.cachedCredentials.secretAccessKey &&
       provider.cachedCredentials.sessionToken
     ) {
-      region = provider.getRegion();
       awsCredentials = {
         accessKeyId: provider.cachedCredentials.accessKeyId,
         secretAccessKey: provider.cachedCredentials.secretAccessKey,
         sessionToken: provider.cachedCredentials.sessionToken,
       };
     } else {
-      region = provider.getCredentials().region;
+      if (provider.getCredentials().region) {
+        region = provider.getCredentials().region;
+      }
       awsCredentials = provider.getCredentials().credentials;
+    }
+    let s3Endpoint = `https://s3.${region}.${globalAWSSuffix}`;
+    if (region === 'cn-north-1' || region === 'cn-northwest-1') {
+      s3Endpoint = `https://s3.${region}.${cnAWSSuffix}`;
     }
     return new provider.sdk.S3({
       region,
       credentials: awsCredentials,
+      endpoint: s3Endpoint,
     });
   }
 

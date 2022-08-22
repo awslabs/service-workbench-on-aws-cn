@@ -18,6 +18,8 @@ import React, { Component } from 'react';
 import { inject, observer } from 'mobx-react';
 import { withRouter } from 'react-router-dom';
 import { Container, Header, Icon, Label, Segment } from 'semantic-ui-react';
+import i18next from 'i18next';
+import { initReactI18next, withTranslation } from 'react-i18next';
 import { gotoFn } from '../../helpers/routing';
 
 import { swallowError } from '../../helpers/utils';
@@ -26,6 +28,7 @@ import BasicProgressPlaceholder from '../helpers/BasicProgressPlaceholder';
 import ErrorBox from '../helpers/ErrorBox';
 import AuthenticationProviderCard from './AuthenticationProviderCard';
 
+i18next.use(initReactI18next);
 // expected props
 // -  authenticationProviderConfigsStore (via injection)
 class AuthenticationProvidersList extends Component {
@@ -92,7 +95,7 @@ class AuthenticationProvidersList extends Component {
         <Header as="h3" className="color-grey mt1 mb0 flex-auto">
           <Icon name="user secret" className="align-top" />
           <Header.Content className="left-align">
-            Authentication Providers
+            {i18next.t('authProviders', { ns: 'auth' })}
             {renderCount()}
           </Header.Content>
         </Header>
@@ -117,4 +120,6 @@ class AuthenticationProvidersList extends Component {
   }
 }
 
-export default inject('authenticationProviderConfigsStore')(withRouter(observer(AuthenticationProvidersList)));
+export default withTranslation()(
+  inject('authenticationProviderConfigsStore')(withRouter(observer(AuthenticationProvidersList))),
+);

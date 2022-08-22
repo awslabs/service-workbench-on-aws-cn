@@ -17,7 +17,6 @@
 
 const _ = require('lodash');
 const Service = require('@amzn/base-services-container/lib/service');
-
 const { retry } = require('../helpers/utils');
 
 const settingKeys = {
@@ -44,11 +43,16 @@ class AwsService extends Service {
         customUserAgent: this.settings.get('customUserAgent'),
       });
     }
-
     // It's possible to get throttling errors during heavy load due to the rate limit of aws apis calls,
     // so slow down and try more often in an attempt to recover from these errors.
     // Make sure to use regional endpoints for STS. Global STS endpoints are deprecated.
-    this._sdk.config.update({ stsRegionalEndpoints: 'regional', maxRetries: 6, retryDelayOptions: { base: 1000 } });
+    const awsRegion = this.settings.get(settingKeys.awsRegion);
+    this._sdk.config.update({
+      stsRegionalEndpoints: 'regional',
+      region: awsRegion,
+      maxRetries: 6,
+      retryDelayOptions: { base: 1000 },
+    });
   }
 
   get sdk() {
@@ -87,7 +91,8 @@ class AwsService extends Service {
    * @returns {Promise<{accessKeyId, secretAccessKey, sessionToken}>}
    */
   async getCredentialsForRole({ roleArn, roleSessionName, externalId }) {
-    const sts = new this.sdk.STS({ apiVersion: '2011-06-15' });
+    const awsRegion = this.settings.get(settingKeys.awsRegion);
+    const sts = new this.sdk.STS({ apiVersion: '2011-06-15', stsRegionalEndpoints: 'regional', region: awsRegion });
     const envName = this.settings.get(settingKeys.envName);
     const params = {
       RoleArn: roleArn,
@@ -97,7 +102,6 @@ class AwsService extends Service {
       params.ExternalId = externalId;
     }
     const { Credentials: creds } = await sts.assumeRole(params).promise();
-
     const { AccessKeyId: accessKeyId, SecretAccessKey: secretAccessKey, SessionToken: sessionToken } = creds;
     return { accessKeyId, secretAccessKey, sessionToken };
   }

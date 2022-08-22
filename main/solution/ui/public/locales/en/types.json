@@ -1,0 +1,145 @@
+{
+    "portfolioId": "Portfolio Id",
+    "serviceCatalogProducts": {
+        "header": "AWS Service Catalog Products",
+        "subheader": "Available AWS Service Catalog Product Versions not imported yet"
+    },
+    "versions": {
+        "all": "All Versions",
+        "latest": "Latest Versions"
+    },
+    "workspaceTypes": {
+        "header": "Workspace Types",
+        "subheader": "AWS Service Catalog Product Versions imported as Environment Types"
+    },
+    "approved": "Approved",
+    "notApproved": "Not Approved",
+    "all": "All",
+    "empty": {
+        "approved": "No approved Environment Types found",
+        "notApproved": "No Environments Types found that require approval",
+        "all": {
+            "header": "No AWS Service Catalog Product Versions imported yet",
+            "subheader": "Start by importing an AWS Service Catalog Product Version as Environment Type. AWS Service Catalog Products that are part of AWS Service Catalog Portfolio shared with AWS IAM role \"{{roleName}}\" are eligible for importing."
+        }
+    },
+    "workspaceType": {
+        "delete": {
+            "header": "Delete Type",
+            "p1": "Are you sure you want to delete type {{name}}?",
+            "p2": "Once you delete environment type, users will not be able launch them. You will need to re-import it from the AWS Service Catalog Product.",
+            "p3": "Is it okay to delete?"
+        },
+        "edit": "Edit Workspace Type",
+        "import": "Import Workspace Type",
+        "save": "Save Workspace Type",
+        "imported": "Imported Workspace Type {{name}} successfully",
+        "updated": "Updated Workspace Type {{name}} successfully",
+        "basicInformation": {
+            "title": "Basic Information",
+            "desc": "Enter basic information about the Environment Type"
+        },
+        "configurations": {
+            "title": "Configurations",
+            "desc": "Define configurations with predefined set of AWS CloudFormation Input Parameter values"
+        }
+    },
+    "workspaceConf": {
+        "delete": {
+            "header": "Delete Configuration",
+            "p1": "Are you sure you want to delete configuration {{name}}?",
+            "p2": "Once you delete environment type configuration, users will not be able launch workspaces using that configuration. You will need to re-create the configuration.",
+            "p3": "Is it okay to delete?"
+        },
+        "empty": {
+            "header": "No Configurations for this Workspace Type yet",
+            "subheader": "Configurations are predefined set of Input Parameter values for the AWS Service Catalog Product. The configurations are presented as preset options when launching workspaces of this type."
+        },
+        "edit": "Edit Configuration",
+        "add": "Add Configuration",
+        "updated": "Updated Workspace Type Configuration {{name}} successfully",
+        "basicInformation": {
+            "title": "Basic Information",
+            "desc": "Enter basic information"
+        },
+        "accessControl": {
+            "title": "Access Control",
+            "desc": "Define who can access"
+        },
+        "inputParams": {
+            "title": "Input Parameters",
+            "desc": "Provide AWS CloudFormation Inputs"
+        },
+        "tags": {
+            "title": "Tags",
+            "desc": "Specify Resource Tags"
+        }
+    },
+    "approve": "Approve",
+    "revoke": "Revoke",
+    "addEnvTypeBasicInfoForm": {
+        "name": {
+            "label": "Name",
+            "placeholder": "Name for this workspace type",
+            "explain": "Easily identifiable name for this workspace type. It must be an alpha numeric string starting with an alphabet and may contain underscore ( _ ) and/or dash ( - )."
+        },
+        "desc": {
+            "label": "Description",
+            "placeholder": "Description for this workspace type",
+            "explain": "Description for this workspace type. Markdown syntax is supported"
+        }
+    },
+    "EnvTypeConfigForm": {
+        "id": {
+            "label": "Id",
+            "placeholder": "Unique identifier for this Configuration",
+            "explain": "Unique identifier for this Configuration. It must be an alpha numeric string between 2 and 128 characters long may contain underscore (_) and/or dash (-)."
+        },
+        "name": {
+            "label": "Name",
+            "placeholder": "Name for this Configuration",
+            "explain": "Easily identifiable name for this Configuration. It must be an alpha numeric string between 2 and 128 characters long may contain space, underscore (_) and/or dash (-)."
+        },
+        "desc": {
+            "label": "Description",
+            "placeholder": "Description for this Configuration",
+            "explain": "Description for this Configuration. Markdown syntax is supported"
+        },
+        "estimatedCostInfo": {
+            "label": "Estimate Costs",
+            "placeholder": "Information about estimated costs when using this Configuration",
+            "explain": "Provide information about estimated cost. Markdown syntax is supported"
+        },
+        "allowRoleIds": {
+            "label": "Roles Allowed",
+            "explain": "User roles allowed to launch workspaces with this Configuration"
+        },
+        "denyRoleIds": {
+            "label": "Roles Not Allowed",
+            "explain": "User roles not allowed to launch workspaces with this Configuration"
+        },
+        "params": {
+            "label": "AWS CloudFormation Input Params"
+        },
+        "tags": {
+            "label": "Resource Tags"
+        }
+    },
+    "tag": {
+        "empty": "No resource tags are added yet",
+        "description": "Click plus (+) button below to add resource tags. These tags will be applied to the environment resources that are launched using this configuration. Additionally, some standard tags for cost allocation will be automatically applied even if you do not configure any other resource tags here.",
+        "name": "Name",
+        "value": "Value",
+        "action": "Action"
+    },
+    "envTypeCardMetaActions": {
+        "noData": {
+            "trigger": "Test launch",
+            "content": "Create a test Workspace"
+        },
+        "withData": {
+            "trigger": "Test launch with data",
+            "content": "Create a test Workspace with data"
+        }
+    }
+}

@@ -18,6 +18,10 @@ import { observer, inject } from 'mobx-react';
 import { decorate } from 'mobx';
 import { withRouter } from 'react-router-dom';
 import c from 'classnames';
+import i18next from 'i18next';
+import { initReactI18next, withTranslation } from 'react-i18next';
+
+i18next.use(initReactI18next);
 
 // expected props
 // - user (via props)
@@ -39,7 +43,9 @@ class By extends React.Component {
     return isSystem ? (
       ''
     ) : (
-      <span className={c(this.props.className)}>by {userDisplayName.getDisplayName({ uid })}</span>
+      <span className={c(this.props.className)}>
+        {i18next.t('by')} {userDisplayName.getDisplayName({ uid })}
+      </span>
     );
   }
 }
@@ -47,4 +53,4 @@ class By extends React.Component {
 // see https://medium.com/@mweststrate/mobx-4-better-simpler-faster-smaller-c1fbc08008da
 decorate(By, {});
 
-export default inject('userDisplayName')(withRouter(observer(By)));
+export default withTranslation()(inject('userDisplayName')(withRouter(observer(By))));

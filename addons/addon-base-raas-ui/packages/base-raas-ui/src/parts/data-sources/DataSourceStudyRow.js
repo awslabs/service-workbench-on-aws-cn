@@ -25,10 +25,13 @@ import { isStoreReady, isStoreLoading, isStoreError, stopHeartbeat } from '@amzn
 import ErrorBox from '@amzn/base-ui/dist/parts/helpers/ErrorBox';
 import ProgressPlaceHolder from '@amzn/base-ui/dist/parts/helpers/BasicProgressPlaceholder';
 
+import i18next from 'i18next';
+import { initReactI18next, withTranslation } from 'react-i18next';
 import { Operation } from '../../models/helpers/Operation';
 import StudyConnectionPanel from './parts/StudyConnectionPanel';
 import StudyStatusMessage from './parts/StudyStatusMessage';
 
+i18next.use(initReactI18next);
 // expected props
 // - study (via prop)
 // - store (via prop) (this the study store)
@@ -103,8 +106,10 @@ class DataSourceStudyRow extends React.Component {
   render() {
     const expanded = this.expanded;
     const item = this.study;
-    const { id, category, folder, friendlyAccessType, state } = item;
-    const value = text => <span>{_.isEmpty(text) ? 'Not Provided' : text}</span>;
+    const { id, category, folder, accessType, state } = item;
+    const value = text => (
+      <span>{_.isEmpty(text) ? i18next.t('accountCard.studyRow.notProvided', { ns: 'data' }) : text}</span>
+    );
     const iconName = expanded ? 'angle down' : 'angle right';
 
     return (
@@ -115,8 +120,12 @@ class DataSourceStudyRow extends React.Component {
           </Table.Cell>
           <Table.Cell className="breakout">{value(id)}</Table.Cell>
           <Table.Cell className="breakout">{value(folder)}</Table.Cell>
-          <Table.Cell className="nowrap">{value(category)}</Table.Cell>
-          <Table.Cell className="nowrap">{value(friendlyAccessType)}</Table.Cell>
+          <Table.Cell className="nowrap">
+            {value(i18next.t(`accountCard.studyRow.${category}`, { ns: 'data' }))}
+          </Table.Cell>
+          <Table.Cell className="nowrap">
+            {value(i18next.t(`accountCard.studyRow.${accessType}`, { ns: 'data' }))}
+          </Table.Cell>
           <Table.Cell>{this.renderStatus(state)}</Table.Cell>
         </Table.Row>
         {expanded && (
@@ -132,7 +141,7 @@ class DataSourceStudyRow extends React.Component {
     return (
       <div className={classnames}>
         <Label size="mini" color={state.color}>
-          {state.display}
+          {i18next.t(state.display.toLowerCase())}
         </Label>
       </div>
     );
@@ -162,7 +171,7 @@ class DataSourceStudyRow extends React.Component {
       <div className="mb2 animated fadeIn">
         <div className="clearfix">
           <Button size="mini" floated="right" basic color="brown" onClick={this.handleCheckConnection}>
-            Test Connection
+            {i18next.t('accountCard.testConnection', { ns: 'data' })}
           </Button>
         </div>
         {!study.reachableState && !showPanel && <StudyStatusMessage study={study} />}
@@ -186,7 +195,7 @@ class DataSourceStudyRow extends React.Component {
     const renderRow = (key, value) => (
       <Table.Row>
         <Table.Cell width={2} className="nowrap">
-          {key}
+          {i18next.t(`accountCard.studyRow.detailTablePart1.${key}`, { ns: 'data' })}
         </Table.Cell>
         <Table.Cell width={14} className="breakout">
           {value}
@@ -199,19 +208,20 @@ class DataSourceStudyRow extends React.Component {
         <Table.Body>
           <Table.Row>
             <Table.Cell width={2} className="nowrap">
-              Status
+              {i18next.t('status')}
             </Table.Cell>
             <Table.Cell width={16} className="flex">
               {this.renderStatus(state, 'flex-auto mr1')}
               <span className="fs-8 color-grey mr1">
-                Status checked <TimeAgo date={statusAt} className="color-grey fs-8" />
+                {i18next.t('accountCard.statusChecked', { ns: 'data' })}{' '}
+                <TimeAgo date={statusAt} className="color-grey fs-8" />
               </span>
             </Table.Cell>
           </Table.Row>
 
-          {renderRow('ID', id)}
-          {renderRow('Name', naIfEmpty(name))}
-          {renderRow('Path', folder)}
+          {renderRow('id', id)}
+          {renderRow('name', naIfEmpty(name))}
+          {renderRow('path', folder)}
         </Table.Body>
       </Table>
     );
@@ -220,12 +230,12 @@ class DataSourceStudyRow extends React.Component {
   renderDetailTablePart2() {
     const store = this.studyStore;
     const study = store.study;
-    const { category, friendlyAccessType, bucket, projectId, region } = study;
+    const { category, accessType, bucket, projectId, region } = study;
     const naIfEmpty = value => (_.isEmpty(value) ? 'N/A' : value);
     const renderRow = (key, value) => (
       <Table.Row>
         <Table.Cell width={2} className="nowrap">
-          {key}
+          {i18next.t(`accountCard.studyRow.detailTablePart2.${key}`, { ns: 'data' })}
         </Table.Cell>
         <Table.Cell width={14} className="breakout">
           {value}
@@ -235,7 +245,7 @@ class DataSourceStudyRow extends React.Component {
     const bucketRow = (
       <Table.Row>
         <Table.Cell width={2} className="nowrap">
-          Bucket
+          {i18next.t('bucket')}
         </Table.Cell>
         <Table.Cell width={16} className="breakout flex">
           <div className="breakout flex-auto mr1">{bucket}</div>
@@ -247,9 +257,9 @@ class DataSourceStudyRow extends React.Component {
     return (
       <Table definition>
         <Table.Body>
-          {renderRow('Project', naIfEmpty(projectId))}
-          {renderRow('Type', category)}
-          {renderRow('Access', friendlyAccessType)}
+          {renderRow('project', naIfEmpty(projectId))}
+          {renderRow('type', i18next.t(`accountCard.studyRow.${category}`, { ns: 'data' }))}
+          {renderRow('access', i18next.t(`accountCard.studyRow.${accessType}`, { ns: 'data' }))}
           {bucketRow}
         </Table.Body>
       </Table>
@@ -260,12 +270,15 @@ class DataSourceStudyRow extends React.Component {
     const store = this.studyStore;
     const study = store.study;
     const { description, kmsScope, kmsArn } = study;
-    const naIfEmpty = value => (_.isEmpty(value) ? 'None' : value);
-    const kms = kmsScope === 'bucket' ? 'Use bucket default encryption' : kmsArn;
+    const naIfEmpty = value => (_.isEmpty(value) ? i18next.t('none') : value);
+    const kms =
+      kmsScope === 'bucket'
+        ? i18next.t('accountCard.studyRow.detailTablePart3.defaultEncryption', { ns: 'data' })
+        : kmsArn;
     const renderRow = (key, value) => (
       <Table.Row>
         <Table.Cell width={2} className="nowrap">
-          {key}
+          {i18next.t(`accountCard.studyRow.detailTablePart3.${key}`, { ns: 'data' })}
         </Table.Cell>
         <Table.Cell width={14} className="breakout">
           {value}
@@ -276,8 +289,8 @@ class DataSourceStudyRow extends React.Component {
     return (
       <Table definition>
         <Table.Body>
-          {renderRow('KMS Arn', naIfEmpty(kms))}
-          {renderRow('Description', naIfEmpty(description))}
+          {renderRow('kmsArn', naIfEmpty(kms))}
+          {renderRow('description', naIfEmpty(description))}
         </Table.Body>
       </Table>
     );
@@ -294,9 +307,9 @@ class DataSourceStudyRow extends React.Component {
     return (
       <Table definition>
         <Table.Body>
-          {this.renderUsersRow('Admin', adminUsers)}
-          {showReadonly && !myStudies && this.renderUsersRow('Read Only', readonlyUsers)}
-          {showReadwrite && !myStudies && this.renderUsersRow('Read & Write', readwriteUsers)}
+          {this.renderUsersRow('admin', adminUsers)}
+          {showReadonly && !myStudies && this.renderUsersRow('readonly', readonlyUsers)}
+          {showReadwrite && !myStudies && this.renderUsersRow('readwrite', readwriteUsers)}
         </Table.Body>
       </Table>
     );
@@ -309,11 +322,11 @@ class DataSourceStudyRow extends React.Component {
     return (
       <Table.Row>
         <Table.Cell width={2} className="nowrap">
-          {title}
+          {i18next.t(`accountCard.studyRow.${title}`, { ns: 'data' })}
         </Table.Cell>
         <Table.Cell width={14} className="breakout">
           {!_.isEmpty(userIds) && <UserLabels users={users} />}
-          {_.isEmpty(userIds) && <span>None</span>}
+          {_.isEmpty(userIds) && <span>{i18next.t('none')}</span>}
         </Table.Cell>
       </Table.Row>
     );
@@ -333,4 +346,6 @@ decorate(DataSourceStudyRow, {
   connectionPanel: observable,
 });
 
-export default inject('dataSourceAccountsStore', 'usersStore')(withRouter(observer(DataSourceStudyRow)));
+export default withTranslation()(
+  inject('dataSourceAccountsStore', 'usersStore')(withRouter(observer(DataSourceStudyRow))),
+);

@@ -20,9 +20,10 @@ const NodeRSA = require('node-rsa');
 const querystring = require('querystring');
 const Service = require('@amzn/base-services-container/lib/service');
 const { retry, linearInterval } = require('@amzn/base-services/lib/helpers/utils');
+const axios = require('axios').default;
 const sshConnectionInfoSchema = require('../../schema/ssh-connection-info-sc');
 const { connectionScheme } = require('./environment-sc-connection-enum');
-const { cfnOutputsToConnections } = require('./helpers/connections-util');
+const { cfnOutputsToConnections, cfnOutputsArrayToObject } = require('./helpers/connections-util');
 
 // Webpack messes with the fetch function import and it breaks in lambda.
 if (typeof fetch !== 'function' && fetch.default && typeof fetch.default === 'function') {
@@ -30,7 +31,9 @@ if (typeof fetch !== 'function' && fetch.default && typeof fetch.default === 'fu
 }
 
 const settingKeys = {
+  awsRegion: 'awsRegion',
   restrictAdminWorkspaceConnection: 'restrictAdminWorkspaceConnection',
+  noEc2ConnectRegions: 'noEc2ConnectRegions',
 };
 
 class EnvironmentScConnectionService extends Service {
@@ -104,9 +107,8 @@ class EnvironmentScConnectionService extends Service {
 
     // TODO: Handle case when connection is about an auto scaling group instead of specific instance
     const result = await cfnOutputsToConnections(outputs);
-
     // Give plugins chance to adjust the connection (such as connection url etc)
-    const adjustedConnections = await Promise.all(
+    let adjustedConnections = await Promise.all(
       _.map(result, async connection => {
         // This is done so that plugins know it was called during list connections cycle
         connection.operation = 'list';
@@ -122,10 +124,18 @@ class EnvironmentScConnectionService extends Service {
           },
           { requestContext, container: this.container },
         );
-
         return _.get(pluginsResult, 'connection', connection);
       }),
     );
+    // filter out ssh connection for those regions which do not support ec2-connect feature
+    const noEc2ConnectRegionList = this.settings.optionalObject('noEc2ConnectRegions', []);
+    const region = this.settings.get(settingKeys.awsRegion);
+    adjustedConnections = adjustedConnections.filter(connect => {
+      if (connect.scheme === 'ssh' && noEc2ConnectRegionList.indexOf(region) > -1) {
+        return false;
+      }
+      return true;
+    });
     return adjustedConnections;
   }
 
@@ -170,7 +180,6 @@ class EnvironmentScConnectionService extends Service {
 
     // Write audit event
     await this.audit(requestContext, { action: 'env-presigned-url-requested', body: { id: envId, connection } });
-
     if (!_.isEmpty(connection.url)) {
       // if connection already has url then just return it
       return connection;
@@ -218,6 +227,90 @@ class EnvironmentScConnectionService extends Service {
     );
 
     return _.get(result, 'connection') || connection;
+  }
+
+  async createConnectionSSMUrl(requestContext, envId, connectionId) {
+    const [environmentScService, pluginRegistryService] = await this.service([
+      'environmentScService',
+      'pluginRegistryService',
+    ]);
+
+    const connection = await this.mustFindConnection(requestContext, envId, connectionId);
+
+    // Write audit event
+    await this.audit(requestContext, { action: 'ssm-url-requested', body: { id: envId, connection } });
+
+    const { outputs } = await environmentScService.mustFind(requestContext, { id: envId });
+
+    const [aws] = await this.service(['aws']);
+
+    const { WorkspaceSSMRoleArn, Ec2WorkspaceInstanceId, SessionDuration } = cfnOutputsArrayToObject(outputs);
+
+    const { accessKeyId, secretAccessKey, sessionToken } = await aws.getCredentialsForRole({
+      roleArn: WorkspaceSSMRoleArn,
+    });
+
+    connection.url = await this.generateSigninSSMConsoleLink(
+      accessKeyId,
+      secretAccessKey,
+      sessionToken,
+      Ec2WorkspaceInstanceId,
+      SessionDuration,
+    );
+
+    // This is done so that plugins know it was called during create URL cycle
+    connection.operation = 'create';
+    // Give plugins chance to adjust the connection (such as connection url etc)
+    const result = await pluginRegistryService.visitPlugins(
+      'env-sc-connection-url',
+      'createConnectionUrl',
+      {
+        payload: {
+          envId,
+          connection,
+        },
+      },
+      { requestContext, container: this.container },
+    );
+
+    return _.get(result, 'connection') || connection;
+  }
+
+  async generateSigninSSMConsoleLink(accessKeyId, secretAccessKey, sessionToken, instanceId, inputSessionDuration) {
+    const session = {
+      sessionId: accessKeyId,
+      sessionKey: secretAccessKey,
+      sessionToken,
+    };
+
+    let sessionDuration = 3599; // default session duration, 59:59
+    if (Number(inputSessionDuration) > 0 && Number(inputSessionDuration) < 3599) {
+      sessionDuration = Number(inputSessionDuration);
+    }
+    const params = {
+      Action: 'getSigninToken',
+      SessionDuration: sessionDuration,
+      Session: session,
+    };
+
+    const region = this.settings.get(settingKeys.awsRegion);
+
+    let consoleDomainSuffix;
+    if (region.startsWith('cn-')) {
+      consoleDomainSuffix = 'amazonaws.cn';
+    } else {
+      consoleDomainSuffix = 'aws.amazon.com';
+    }
+
+    const getSigninTokenURL = `https://${region}.signin.${consoleDomainSuffix}/federation`;
+
+    const response = await axios.get(getSigninTokenURL, { params });
+
+    const signinToken = response.data.SigninToken;
+
+    const ssmConsoleUrl = `https://${region}.signin.${consoleDomainSuffix}/federation?Action=login&Destination=https://${region}.console.${consoleDomainSuffix}/systems-manager/session-manager/${instanceId}?region=${region}&SigninToken=${signinToken}`;
+
+    return ssmConsoleUrl;
   }
 
   async getRStudioUrl(requestContext, id, connection) {

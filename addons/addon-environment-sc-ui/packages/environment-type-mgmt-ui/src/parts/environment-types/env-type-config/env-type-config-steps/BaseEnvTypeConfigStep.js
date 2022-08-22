@@ -18,6 +18,10 @@ import { runInAction } from 'mobx';
 import { Button, Segment } from 'semantic-ui-react';
 
 import Form from '@amzn/base-ui/dist/parts/helpers/fields/Form';
+import i18next from 'i18next';
+import { initReactI18next } from 'react-i18next';
+
+i18next.use(initReactI18next);
 
 class BaseEnvTypeConfigStep extends React.Component {
   constructor(props) {
@@ -46,7 +50,11 @@ class BaseEnvTypeConfigStep extends React.Component {
 
   renderActionButtons({ processing, onCancel }) {
     const isUpdating = this.isEditAction();
-    const submitButtonTitle = isUpdating ? 'Save' : this.props.wizardModel.hasNext ? 'Next' : 'Add';
+    const submitButtonTitle = isUpdating
+      ? i18next.t('save')
+      : this.props.wizardModel.hasNext
+      ? i18next.t('next')
+      : i18next.t('add');
     return (
       <div>
         <Button
@@ -61,14 +69,14 @@ class BaseEnvTypeConfigStep extends React.Component {
           <Button
             className="ml2 mb2"
             primary
-            content="Previous"
+            content={i18next.t('previous')}
             disabled={processing}
             floated="right"
             onClick={this.props.onPrevious}
           />
         )}
         <Button data-testid="cancel-button" basic color="grey" disabled={processing} onClick={onCancel} floated="left">
-          Cancel
+          {i18next.t('cancel')}
         </Button>
       </div>
     );

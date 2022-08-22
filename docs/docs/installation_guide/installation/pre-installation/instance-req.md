@@ -62,8 +62,8 @@ When creating a new Amazon EC2 instance, an instance profile may be assigned to 
 To add a role to an Amazon EC2 instance that is already running:
 
 1. Select the Amazon EC2 instance in the EC2 console. 
-2. On the **Actions** menu, choose **Instance Settings, Attach/Replace IAM Role**. 
-3. In the **Attach/Replace IAM Role** screen, select the role you created and choose **Apply**.
+2. On the **Actions** menu, choose **Security, Modify IAM role**.
+3. In the **Modify IAM role** screen, select the role you created and choose **Update IAM role**.
  
 ### Installing the required software on EC2 instance
 
@@ -74,10 +74,15 @@ To add a role to an Amazon EC2 instance that is already running:
 ```
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
 source ~/.bashrc
-nvm install 12
-npm install -g serverless pnpm hygen
+nvm install 14
+npm install -g pnpm@5.18.9
+npm install -g serverless hygen
 ```
 
 2. Run the following command to display the version of the serverless package:
 
-`serverless –v`
+`serverless -v`
+
+3. If you want to deploy Windows workspaces within Service Workbench, you must have Go lang installed before deployment.
+   `sudo yum install golang`
+   After installation completed, please run `go version` to check the version, the version should be `1.13.7` or later.

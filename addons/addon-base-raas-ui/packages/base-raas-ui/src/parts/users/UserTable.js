@@ -18,7 +18,10 @@ import { withRouter } from 'react-router-dom';
 import { observer } from 'mobx-react';
 // Import React Table
 import ReactTable from 'react-table';
+import i18next from 'i18next';
+import { initReactI18next, withTranslation } from 'react-i18next';
 
+i18next.use(initReactI18next);
 // eslint-disable-next-line react/prefer-stateless-function
 class UserTable extends React.Component {
   render() {
@@ -29,15 +32,15 @@ class UserTable extends React.Component {
           data={userData}
           columns={[
             {
-              Header: 'Email',
+              Header: i18next.t('props.email', { ns: 'users' }),
               accessor: 'email',
             },
             {
-              Header: 'User Role',
+              Header: i18next.t('props.userRole', { ns: 'users' }),
               accessor: 'userRole',
             },
             {
-              Header: 'Identity Provider',
+              Header: i18next.t('props.identityProviderName', { ns: 'users' }),
               accessor: 'identityProviderName',
             },
           ]}
@@ -50,4 +53,4 @@ class UserTable extends React.Component {
   }
 }
 
-export default withRouter(observer(UserTable));
+export default withTranslation()(withRouter(observer(UserTable)));

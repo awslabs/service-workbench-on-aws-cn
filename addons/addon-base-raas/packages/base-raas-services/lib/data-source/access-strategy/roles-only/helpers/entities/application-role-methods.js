@@ -156,8 +156,7 @@ function newAppRoleEntity(accountEntity = {}, bucketEntity = {}, studyEntity = {
  * @param appRoleEntity The application role entity
  */
 function toRoleCfnResource(appRoleEntity, swbMainAccountId) {
-  const { name, accountId, qualifier, boundaryPolicyArn } = appRoleEntity;
-
+  const { name, accountId, qualifier, boundaryPolicyArn, awsPartition } = appRoleEntity;
   // cfn logical id can not have '-'
   const logicalId = `AppRole${_.replace(name, /-/g, '')}`;
   return {
@@ -201,15 +200,15 @@ function toRoleCfnResource(appRoleEntity, swbMainAccountId) {
                     'iam:GetRolePolicy',
                   ],
                   Resource: [
-                    `arn:aws:iam::${accountId}:role/${qualifier}-fs-*`,
-                    `arn:aws:iam::${accountId}:policy/${qualifier}-fs-*`,
+                    `arn:${awsPartition}:iam::${accountId}:role/${qualifier}-fs-*`,
+                    `arn:${awsPartition}:iam::${accountId}:policy/${qualifier}-fs-*`,
                   ],
                 },
                 {
                   Sid: 'RoleCreation',
                   Effect: 'Allow',
                   Action: 'iam:CreateRole',
-                  Resource: `arn:aws:iam::${accountId}:role/${qualifier}-fs-*`,
+                  Resource: `arn:${awsPartition}:iam::${accountId}:role/${qualifier}-fs-*`,
                   Condition: {
                     StringEquals: {
                       'iam:PermissionsBoundary': boundaryPolicyArn,

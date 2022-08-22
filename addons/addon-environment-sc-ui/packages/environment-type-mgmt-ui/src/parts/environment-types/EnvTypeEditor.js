@@ -27,8 +27,12 @@ import BasicProgressPlaceholder from '@amzn/base-ui/dist/parts/helpers/BasicProg
 import { isStoreLoading, isStoreReady } from '@amzn/base-ui/dist/models/BaseStore';
 import { gotoFn } from '@amzn/base-ui/dist/helpers/routing';
 import { createWizard } from '@amzn/base-ui/dist/models/Wizard';
+import i18next from 'i18next';
+import { initReactI18next, withTranslation } from 'react-i18next';
 import BasicInfoStep from './env-type-editor-steps/BasicInfoStep';
 import ConfigStep from './env-type-editor-steps/ConfigStep';
+
+i18next.use(initReactI18next);
 
 // This component is used with the TabPane to replace the default Segment wrapper since
 // we don't want to display the border.
@@ -44,14 +48,14 @@ class EnvTypeEditor extends React.Component {
       this.wizardModel = createWizard([
         {
           key: 'basic_information',
-          title: 'Basic Information',
-          desc: 'Enter basic information about the Environment Type',
+          title: 'workspaceType.basicInformation.title',
+          desc: 'workspaceType.basicInformation.desc',
           isComplete: false,
         },
         {
           key: 'configurations',
-          title: 'Configurations',
-          desc: 'Define configurations with predefined set of AWS CloudFormation Input Parameter values',
+          title: 'workspaceType.configurations.title',
+          desc: 'workspaceType.configurations.desc',
           isComplete: false,
         },
       ]);
@@ -84,7 +88,9 @@ class EnvTypeEditor extends React.Component {
         <Header as="h3" className="color-grey mt1 mb0 flex-auto">
           <Icon name="computer" className="align-top" />
           <Header.Content className="left-align">
-            {this.isEditAction() ? 'Edit' : 'Import'} Workspace Type
+            {this.isEditAction()
+              ? i18next.t('workspaceType.edit', { ns: 'types' })
+              : i18next.t('workspaceType.import', { ns: 'types' })}
           </Header.Content>
           <Header.Subheader className="mt2">{_.get(this.envType, 'name')}</Header.Subheader>
         </Header>
@@ -122,8 +128,8 @@ class EnvTypeEditor extends React.Component {
           return (
             <Step {...stepAttribs}>
               <Step.Content>
-                <Step.Title>{step.title}</Step.Title>
-                <Step.Description>{step.desc}</Step.Description>
+                <Step.Title>{i18next.t(step.title, { ns: 'types' })}</Step.Title>
+                <Step.Description>{i18next.t(step.desc, { ns: 'types' })}</Step.Description>
               </Step.Content>
             </Step>
           );
@@ -134,7 +140,7 @@ class EnvTypeEditor extends React.Component {
 
   renderStepTabs = () => {
     const stepPanes = _.map(this.wizardModel.steps, step => ({
-      menuItem: step.title,
+      menuItem: i18next.t(step.title, { ns: 'types' }),
       render: () => (
         <Tab.Pane attached={false} key={step.key} as={TabPaneWrapper}>
           <Observer>{() => this.renderEnvTypeStep(step.key)}</Observer>
@@ -239,4 +245,6 @@ decorate(EnvTypeEditor, {
   currentStepNo: observable,
 });
 
-export default inject('envTypesStore', 'envTypeCandidatesStore')(withRouter(observer(EnvTypeEditor)));
+export default withTranslation()(
+  inject('envTypesStore', 'envTypeCandidatesStore')(withRouter(observer(EnvTypeEditor))),
+);

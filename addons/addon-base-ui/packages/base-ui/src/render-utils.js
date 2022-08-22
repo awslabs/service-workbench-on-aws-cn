@@ -19,7 +19,10 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'mobx-react';
 import { BrowserRouter } from 'react-router-dom';
 import { Message, Icon, Container } from 'semantic-ui-react';
+import { initReactI18next } from 'react-i18next';
+import i18next from './i18next';
 
+i18next.use(initReactI18next);
 // Render the AppContainer component which will then ask plugins to provide the App component
 function renderAppContainer(AppContainer, appContext) {
   ReactDOM.render(
@@ -36,8 +39,8 @@ function renderAppContainer(AppContainer, appContext) {
 function renderProgress(
   progressContent = (
     <Message.Content>
-      <Message.Header>Just one second</Message.Header>
-      Great things are now happening, please wait!
+      <Message.Header>{i18next.t('progress.header', { ns: 'utils' })}</Message.Header>
+      {i18next.t('progress.subheader', { ns: 'utils' })}
     </Message.Content>
   ),
 ) {
@@ -58,9 +61,9 @@ function renderError(err) {
   ReactDOM.render(
     <Container text className="pt4">
       <Message negative>
-        <Message.Header>We have a problem</Message.Header>
+        <Message.Header>{i18next.t('error.header', { ns: 'utils' })}</Message.Header>
         <p>{error}</p>
-        <p>See if refreshing the browser will resolve your issue</p>
+        <p>{i18next.t('error.subheader', { ns: 'utils' })}</p>
       </Message>
     </Container>,
     document.getElementById('root'),

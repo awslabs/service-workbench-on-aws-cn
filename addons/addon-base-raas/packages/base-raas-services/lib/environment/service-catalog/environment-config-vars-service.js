@@ -24,6 +24,7 @@ const settingKeys = {
   enableEgressStore: 'enableEgressStore',
   environmentInstanceFiles: 'environmentInstanceFiles',
   isAppStreamEnabled: 'isAppStreamEnabled',
+  apiHandlerArn: 'apiHandlerArn',
 };
 
 /**
@@ -275,6 +276,7 @@ class EnvironmentConfigVarsService extends Service {
 
     // This value is a string
     const isAppStreamEnabled = this.settings.get(settingKeys.isAppStreamEnabled);
+    const apiHandlerArn = this.settings.get(settingKeys.apiHandlerArn);
     const result = {
       envId,
       envTypeId,
@@ -291,7 +293,7 @@ class EnvironmentConfigVarsService extends Service {
       encryptionKeyArn,
       xAccEnvMgmtRoleArn,
       externalId,
-
+      apiHandlerArn,
       s3Mounts: JSON.stringify(s3Mounts),
       iamPolicyDocument: JSON.stringify(iamPolicyDocument),
       environmentInstanceFiles: this.settings.get(settingKeys.environmentInstanceFiles),

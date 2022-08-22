@@ -22,9 +22,13 @@ import BasicProgressPlaceholder from '@amzn/base-ui/dist/parts/helpers/BasicProg
 import { swallowError } from '@amzn/base-ui/dist/helpers/utils';
 import ErrorBox from '@amzn/base-ui/dist/parts/helpers/ErrorBox';
 import { isStoreError, isStoreLoading, isStoreReady } from '@amzn/base-ui/dist/models/BaseStore';
+import i18next from 'i18next';
+import { initReactI18next, withTranslation } from 'react-i18next';
 import { toIdpOptions } from '../../models/forms/UserFormUtils';
 import DragDrop from './DragDrop';
 import AddSingleUser from './AddSingleUser';
+
+i18next.use(initReactI18next);
 
 // expected props
 // - authenticationProviderConfigsStore (via injection)
@@ -57,7 +61,11 @@ class AddUser extends React.Component {
       <div className="mb3 flex">
         <Header as="h3" className="color-grey mt1 mb0 flex-auto">
           <Icon name="user" className="align-top" />
-          <Header.Content className="left-align">Add User</Header.Content>
+          <Header.Content className="left-align">
+            {i18next.t('add')}
+            {i18next.t(' ')}
+            {i18next.t('user', { ns: 'users' })}
+          </Header.Content>
         </Header>
       </div>
     );
@@ -67,7 +75,9 @@ class AddUser extends React.Component {
     const identityProviderOptions = this.getIdentityProviderOptions();
     const panes = [
       {
-        menuItem: 'Add Single User',
+        menuItem: `${i18next.t('add')}${i18next.t(' ')}${i18next.t('single', { ns: 'users' })}${i18next.t(
+          ' ',
+        )}${i18next.t('user', { ns: 'users' })}`,
         render: () => (
           <Tab.Pane basic attached={false}>
             <div className="mt3 animated fadeIn">
@@ -77,7 +87,9 @@ class AddUser extends React.Component {
         ),
       },
       {
-        menuItem: 'Add Multiple Users',
+        menuItem: `${i18next.t('add')}${i18next.t(' ')}${i18next.t('multiple', { ns: 'users' })}${i18next.t(
+          ' ',
+        )}${i18next.t('user', { ns: 'users' })}`,
         render: () => (
           <Tab.Pane basic attached={false}>
             <DragDrop identityProviderOptions={identityProviderOptions} />
@@ -103,4 +115,4 @@ class AddUser extends React.Component {
   }
 }
 
-export default inject('authenticationProviderConfigsStore')(withRouter(observer(AddUser)));
+export default withTranslation()(inject('authenticationProviderConfigsStore')(withRouter(observer(AddUser))));

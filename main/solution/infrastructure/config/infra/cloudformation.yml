@@ -8,8 +8,20 @@ Conditions:
     - !Not
       - !Equals ['${self:custom.settings.domainName}', '']
     - !Equals ['${self:custom.settings.hostedZoneId}', '']
+    - !Equals ['${self:custom.settings.customDomainInR53}', true]
+  IsHongkongRegion: !Equals ['${self:custom.settings.awsRegion}', 'ap-east-1']
+  CustomDomainInR53: !And
+    - !Not [!Equals ['${self:custom.settings.domainName}', '']]
+    - !Equals ['${self:custom.settings.customDomainInR53}', true]
+  IsChinaMainlandRegion: !Or
+    - !Equals ['${self:custom.settings.awsRegion}', 'cn-north-1']
+    - !Equals ['${self:custom.settings.awsRegion}', 'cn-northwest-1']
+  AcmCertificateBind: !And
+    - !Not [!Equals ['${self:custom.settings.domainName}', '']]
+    - !Not [!Equals ['${self:custom.settings.awsRegion}', 'cn-north-1']]
+    - !Not [!Equals ['${self:custom.settings.awsRegion}', 'cn-northwest-1']]
 
-Description: (SO0144) Service Workbench on AWS Solution
+Description: (SO0144-ext) Service Workbench on AWS Solution
 
 Mappings:
   ELBAccountIDMapping:
@@ -114,15 +126,15 @@ Resources:
           - Sid: ELB Logging permissions
             Effect: Allow
             Principal:
-              AWS: !Join ['', ['arn:aws:iam::', !FindInMap [ELBAccountIDMapping, !Ref 'AWS::Region', Id], ':root']]
+              AWS: !Join ['', ['arn:', !Ref 'AWS::Partition', ':iam::', !FindInMap [ELBAccountIDMapping, !Ref 'AWS::Region', Id], ':root']]
             Action: s3:PutObject
-            Resource: !Join ['', ['arn:aws:s3:::', !Ref LoggingBucket, '/elb/AWSLogs/*/*']]
+            Resource: !Join ['', ['arn:', !Ref 'AWS::Partition', ':s3:::', !Ref LoggingBucket, '/elb/AWSLogs/*/*']]
           - Sid: ELB Logging permissions
             Effect: Allow
             Principal:
               Service: delivery.logs.amazonaws.com
             Action: s3:PutObject
-            Resource: !Join ['', ['arn:aws:s3:::', !Ref LoggingBucket, '/elb/AWSLogs/*/*']]
+            Resource: !Join ['', ['arn:', !Ref 'AWS::Partition', ':s3:::', !Ref LoggingBucket, '/elb/AWSLogs/*/*']]
             Condition:
               StringEquals:
                 s3:x-amz-acl: bucket-owner-full-control
@@ -131,7 +143,7 @@ Resources:
             Principal:
               Service: delivery.logs.amazonaws.com
             Action: s3:GetBucketAcl
-            Resource: !Join ['', ['arn:aws:s3:::', !Ref LoggingBucket]]
+            Resource: !Join ['', ['arn:', !Ref 'AWS::Partition', ':s3:::', !Ref LoggingBucket]]
 
   # S3 Bucket for the static website
   WebsiteBucket:
@@ -164,9 +176,9 @@ Resources:
               - 's3:GetObject'
             Effect: Allow
             Principal:
-              AWS: !Join ['', ['arn:aws:iam::cloudfront:user/CloudFront Origin Access Identity ', !Ref 'CloudFrontOAI']]
+              AWS: !Join ['', ['arn:', !Ref 'AWS::Partition', ':iam::cloudfront:user/CloudFront Origin Access Identity ', !Ref 'CloudFrontOAI']]
             Resource:
-              - !Join ['', ['arn:aws:s3:::', !Ref 'WebsiteBucket', '/*']]
+              - !Join ['', ['arn:', !Ref 'AWS::Partition', ':s3:::', !Ref 'WebsiteBucket', '/*']]
           - Sid: Deny requests that do not use TLS/HTTPS
             Effect: Deny
             Principal: '*'
@@ -209,7 +221,7 @@ Resources:
           - ['${self:custom.settings.domainName}']
           - !Ref AWS::NoValue
         ViewerCertificate: !If
-          - UseCustomDomain
+          - AcmCertificateBind
           - AcmCertificateArn: ${self:custom.settings.certificateArn}
             MinimumProtocolVersion: TLSv1.2_2018
             SslSupportMethod: sni-only
@@ -239,10 +251,13 @@ Resources:
             Cookies:
               Forward: none
           ViewerProtocolPolicy: redirect-to-https
-        PriceClass: PriceClass_100
-        Logging:
-          Bucket: ${self:custom.settings.loggingBucketName}.s3.amazonaws.com
-          Prefix: cloudfront/
+        PriceClass: PriceClass_All
+        Logging: !If
+          - IsHongkongRegion
+          - !Ref AWS::NoValue
+          - Bucket: ${self:custom.settings.loggingBucketName}.s3.${self:custom.settings.awsSuffix}
+            Prefix: cloudfront/
+
 
   CloudFrontOAI:
     Type: AWS::CloudFront::CloudFrontOriginAccessIdentity
@@ -263,7 +278,7 @@ Resources:
 
   DomainRecord:
     Type: AWS::Route53::RecordSetGroup
-    Condition: UseCustomDomain
+    Condition: CustomDomainInR53
     Properties:
       # Blank hosted zone ID in stage file creates a new one
       # This is to ensure backwards compatibility
@@ -275,7 +290,10 @@ Resources:
         - Name: ${self:custom.settings.domainName}
           Type: A
           AliasTarget:
-            HostedZoneId: Z2FDTNDATAQYW2 # This is a required hard-coded string that is to be used for AWS
+            HostedZoneId: !If
+              - IsChinaMainlandRegion
+              - Z3RFFRIM2A3IF5
+              - Z2FDTNDATAQYW2
             DNSName: !GetAtt WebsiteCloudFront.DomainName
 
 Outputs:
@@ -301,7 +319,7 @@ Outputs:
   HostedZoneId:
     Description: Id of the hosted zone created when a custom domain is used
     Value: !If
-      - UseCustomDomain
+      - CustomDomainInR53
       - !If
         - UseHostedZoneId
         - ${self:custom.settings.hostedZoneId}

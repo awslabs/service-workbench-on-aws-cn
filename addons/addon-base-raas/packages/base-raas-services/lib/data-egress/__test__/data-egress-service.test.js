@@ -254,6 +254,9 @@ describe('DataEgressService', () => {
           if (settingName === 'egressStoreKmsKeyAliasArn') {
             return 'test-egressStoreKmsKeyAliasArn';
           }
+          if (settingName === 'awsPartition') {
+            return 'aws';
+          }
           if (settingName === 'egressStoreBucketName') {
             return 'test-egressStoreBucketName';
           }
@@ -898,6 +901,9 @@ describe('DataEgressService', () => {
         get: settingName => {
           if (settingName === 'egressNotificationBucketName') {
             return 'test-egressNotificationBucketName';
+          }
+          if (settingName === 'awsPartition') {
+            return 'aws';
           }
           if (settingName === 'egressNotificationSnsTopicArn') {
             return 'test-egressNotificationSnsTopicArn';

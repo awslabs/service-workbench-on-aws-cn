@@ -20,11 +20,14 @@ import { decorate, observable, action, runInAction } from 'mobx';
 import { Button, Dimmer, Header, List, Loader, Radio, Segment } from 'semantic-ui-react';
 import _ from 'lodash';
 
+import i18next from 'i18next';
+import { initReactI18next, withTranslation } from 'react-i18next';
 import { getAddUserForm, getAddUserFormFields } from '../../models/forms/AddUserForm';
 import { displayError } from '../../helpers/notification';
 import { createLink } from '../../helpers/routing';
 import validate from '../../models/forms/Validate';
 
+i18next.use(initReactI18next);
 class AddUser extends React.Component {
   constructor(props) {
     super(props);
@@ -42,7 +45,9 @@ class AddUser extends React.Component {
     return (
       <div className="mt2 animated fadeIn">
         <Header as="h2" icon textAlign="center" className="mt3" color="grey">
-          Add User
+          {i18next.t('add')}
+          {i18next.t(' ')}
+          {i18next.t('user', { ns: 'users' })}
         </Header>
         <div className="mt3 ml3 mr3 animated fadeIn">{this.renderAddUserForm()}</div>
       </div>
@@ -163,10 +168,12 @@ class AddUser extends React.Component {
     return (
       <div className="mt3">
         <Button floated="right" color="blue" icon disabled={processing} className="ml2" onClick={this.handleSubmit}>
-          Add User
+          {i18next.t('add')}
+          {i18next.t(' ')}
+          {i18next.t('user', { ns: 'users' })}
         </Button>
         <Button floated="right" disabled={processing} onClick={this.handleCancel}>
-          Cancel
+          {i18next.t('cancel')}
         </Button>
       </div>
     );
@@ -253,4 +260,4 @@ decorate(AddUser, {
   user: observable,
   validationErrors: observable,
 });
-export default inject('userStore', 'usersStore')(withRouter(observer(AddUser)));
+export default withTranslation()(inject('userStore', 'usersStore')(withRouter(observer(AddUser))));

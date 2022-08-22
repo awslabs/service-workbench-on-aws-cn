@@ -59,6 +59,7 @@ const AuthenticationProviderPublicConfig = types
   .model('AuthenticationProviderPublicConfig', {
     id: '',
     title: types.identifier,
+    providerConfigId: '',
     type: '',
     credentialHandlingType: '',
     signInUri: '',
@@ -125,7 +126,7 @@ const AuthenticationProviderPublicConfig = types
       return undefined;
     },
 
-    logout: async ({ autoLogout = false } = {}) => {
+    logout: async (idToken, { autoLogout = false } = {}) => {
       const pluginRegistry = getEnv(self).pluginRegistry;
       // Notify each authentication plugins of explicit logout attempt.
       // Explicit logout may be explicitly initiated
@@ -139,7 +140,8 @@ const AuthenticationProviderPublicConfig = types
         // (such as SAML logout url in case of identity federation) just redirect to the specified url.
         // The authentication plugins will be notified of 'logoutDetected' in this case after the logout process is
         // complete by the "initialization-plugin"
-        window.location = self.absoluteSignOutUrl;
+        const signOutUriWithToken = self.signOutUri.replace('ID_TOKEN_PLACE_HOLDER', idToken);
+        window.location = adjustRedirectUri(toAbsoluteUrl(signOutUriWithToken), 'logout');
       } else {
         const cleaner = getEnv(self).cleaner;
         await cleaner.cleanup();
@@ -164,9 +166,6 @@ const AuthenticationProviderPublicConfig = types
       //  pick appropriate auth provider impl and give it a chance to adjust variables or create derived variables
 
       return adjustRedirectUri(toAbsoluteUrl(self.signInUri));
-    },
-    get absoluteSignOutUrl() {
-      return adjustRedirectUri(toAbsoluteUrl(self.signOutUri), 'logout');
     },
   }));
 

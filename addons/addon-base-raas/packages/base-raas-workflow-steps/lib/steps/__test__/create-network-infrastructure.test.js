@@ -41,6 +41,9 @@ describe('CreateNetworkInfra', () => {
       if (key === 'customUserAgent') {
         return 'AwsLabs/SO0144/X.Y.Z';
       }
+      if (key === 'awsRegion') {
+        return 'us-east-1';
+      }
       throw new Error('Unexpected key');
     });
 

@@ -90,7 +90,7 @@ class ProjectsList extends React.Component {
               Cell: observer(row => {
                 const project = row.original;
                 const projectAdminUsers = project.projectAdminUsers;
-                return _.map(projectAdminUsers, u => u.username).join(', ') || '<<none>>';
+                return _.map(projectAdminUsers, u => u.username).join(', ') || `(${i18next.t('empty')})`;
               }),
             },
             {

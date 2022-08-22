@@ -369,7 +369,7 @@ class UpdateUser extends React.Component {
         await usersStore.updateUser(userToUpdate);
       }
       form.clear();
-      displaySuccess('Updated user successfully');
+      displaySuccess(i18next.t('updateUser.successfully', { ns: 'users' }), i18next.t('success'));
 
       // reload the current user's store after user updates, in case the currently
       // logged in user is updated

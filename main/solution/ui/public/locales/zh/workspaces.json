@@ -11,7 +11,7 @@
             "header": "没有与所选过滤器匹配的工作区",
             "subheader": "选择“全部”来查看所有的工作区"
         },
-        "beingProvisioned": "该工作区已就绪"
+        "beingProvisioned": "该工作区正在创建中"
     },
     "selectCompute": {
         "header": "选择计算类型",

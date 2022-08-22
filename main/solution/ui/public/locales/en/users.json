@@ -23,7 +23,8 @@
     },
     "updateUser": {
         "activate": "Activate",
-        "deactivate": "Deactivate"
+        "deactivate": "Deactivate",
+        "successfully": "Updated user successfully"
     },
     "csvExample": "CSV Example"
 }

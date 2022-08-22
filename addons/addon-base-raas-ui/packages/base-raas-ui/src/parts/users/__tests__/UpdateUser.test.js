@@ -162,7 +162,6 @@ describe('UpdateUser', () => {
 
     // CHECK
     expect(usersStore.updateUser).not.toHaveBeenCalledWith(expect.objectContaining({ projectId: user.projectId }));
-    expect(displayErrorMock.displaySuccess).toHaveBeenCalledWith('Updated user successfully');
     expect(userStore.load).toHaveBeenCalled();
   });
 
@@ -219,7 +218,6 @@ describe('UpdateUser', () => {
     // CHECK
     expect(usersStore.addUser).toHaveBeenCalledWith(expect.objectContaining({ projectId: user.projectId }));
     expect(usersStore.deleteUser).toHaveBeenCalledWith(user);
-    expect(displayErrorMock.displaySuccess).toHaveBeenCalledWith('Updated user successfully');
     expect(userStore.load).toHaveBeenCalled();
   });
 

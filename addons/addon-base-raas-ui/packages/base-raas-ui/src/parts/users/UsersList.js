@@ -205,7 +205,7 @@ class UsersList extends React.Component {
               style: { whiteSpace: 'unset' },
               Cell: row => {
                 const user = row.original;
-                return user.projectId.join(', ') || '<<none>>';
+                return user.projectId.join(', ') || `(${i18next.t('empty')})`;
               },
             },
             {

@@ -23,7 +23,8 @@
     },
     "updateUser": {
         "activate": "激活",
-        "deactivate": "停用"
+        "deactivate": "停用",
+        "successfully": "用户更新成功"
     },
     "csvExample": "CSV 文件示例"
 }

@@ -47,5 +47,13 @@
             }
         },
         "name_s": "Studies"
+    },
+    "missAssociation": {
+        "header": "Missing association with one or more projects!",
+        "subheader": "You won't be able to select or create studies because you currently don't have any association with one or more projects, please contact your administrator."
+    },
+    "limitedAccess": {
+        "header": "Limited access",
+        "subheader": "You currently have limited access and will not be able to select studies to proceed to the next step."
     }
 }

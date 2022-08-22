@@ -174,9 +174,8 @@ class StudiesPage extends React.Component {
 
     if (empty && canCreateStudy && canSelectStudy && !hasProjects) {
       return this.renderWarning({
-        header: 'Missing association with one or more projects!',
-        content:
-          "You won't be able to select or create studies because you currently don't have any association with one or more projects, please contact your administrator.",
+        header: i18next.t('missAssociation.header', { ns: 'studies' }),
+        content: i18next.t('missAssociation.subheader', { ns: 'studies' }),
       });
     }
 
@@ -188,9 +187,8 @@ class StudiesPage extends React.Component {
 
     if (empty) {
       return this.renderWarning({
-        header: 'Limited access',
-        content:
-          'You currently have limited access and will not be able to select studies to proceed to the next step.',
+        header: i18next.t('limitedAccess.header', { ns: 'studies' }),
+        content: i18next.t('limitedAccess.subheader', { ns: 'studies' }),
       });
     }
 

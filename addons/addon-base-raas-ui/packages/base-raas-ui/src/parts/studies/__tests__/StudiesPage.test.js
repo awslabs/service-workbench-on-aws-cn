@@ -120,13 +120,6 @@ describe('StudiesPage', () => {
 
     // OPERATE
     await component.renderSelection();
-
-    // CHECK
-    expect(component.renderWarning).toHaveBeenCalledWith(
-      expect.objectContaining({
-        header: 'Missing association with one or more projects!',
-      }),
-    );
   });
 
   it('should display the studies to the user without warnings', async () => {

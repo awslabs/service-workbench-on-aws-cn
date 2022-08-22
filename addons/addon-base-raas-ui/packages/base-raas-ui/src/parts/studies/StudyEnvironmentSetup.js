@@ -67,7 +67,7 @@ class StudyEnvironmentSetup extends React.Component {
   // eslint-disable-next-line no-unused-vars
   handleCompleted = async environment => {
     this.props.filesSelection.cleanup();
-    displaySuccess(i18next.t('researchWorkspace.beingProvisioned', { ns: 'workspaces' }));
+    displaySuccess(i18next.t('researchWorkspace.beingProvisioned', { ns: 'workspaces' }), i18next.t('success'));
     this.goto('/workspaces');
   };
 

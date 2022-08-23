@@ -33,164 +33,167 @@ Service Workbench on AWS 的详细介绍请参考[Service Workbench](/zh/introdu
 
   :::
 
-- 准备 [OIDC](https://openid.net/connect/) 供应商, 目前方案支持[Authing](https://www.authing.cn/)，[KeyCloak on AWS](https://www.amazonaws.cn/en/solutions/keycloak-on-aws/) 和 [Okta](https://www.okta.com/sg/) 作为IdP 供应商，本次动手实践以 Authing 为OIDC 供应商进行，请参考[Authing申请](/zh/installation_guide/installation/pre-installation/oidc-providers#authing-option-authingcn-oidc-客户端) 创建一个 **Authing application** 和 **root user**。
+- 准备 [OIDC](https://openid.net/connect/) 供应商, 目前方案支持[Authing](https://www.authing.cn/)，[KeyCloak on AWS](https://www.amazonaws.cn/en/solutions/keycloak-on-aws/) 和 [Okta](https://www.okta.com/sg/) 作为IdP 供应商，推荐使用 Authing 为OIDC 供应商进行，请参考[Authing申请](/zh/installation_guide/installation/pre-installation/oidc-providers#authing-option-authingcn-oidc-客户端) 创建一个 **Authing application** 和 **root user**。
   :::tip
 
   本步骤完成后，请保存`App ID`，`Issuer`，`Email`，`Given Name` 和 `Family Name`的值，在部署Service Workbench时需要。
 
   :::   
 
-## 准备部署Service Workbench的工作环境
+## Step 1：准备部署Service Workbench的工作环境
 
-- 准备部署Service Workbench的工作环境，您需要在 **cn-northwest-1** 或 **ap-east-1** 区域准备一个 Linux EC2 Instance，并在 EC2 instance 上安装所需要的软件，后续将通过该 EC2 instance 部署 Service Workbench。
+Service Workbench是一个开源的解决方案，通过shell脚本进行安装，您需要为此准备一个工作环境，将 Github 上的 Service Workbench 源代码下载到此工作环境，并在此工作环境上安装一些所需的软件。 由于网络原因，无论您准备在 **cn-northwest-1** 区域或 **ap-east-1** 区域部署Service Workbench，都推荐您在Standard 区域创建EC2 instance工作环境，譬如**ap-east-1** 区域。
 
-    - 通过[cn-northwest-1 AWS EC2 Console](https://cn-northwest-1.console.amazonaws.cn/ec2/v2/home?region=cn-northwest-1#LaunchInstanceWizard:) 或 [ap-east-1 AWS EC2 Console](https://ap-east-1.console.aws.amazon.com/ec2/v2/home?region=ap-east-1#LaunchInstanceWizard:) 启动一个Linux EC2 Instance
-        - AMI选择 **Amazon Linux 2 AMI (HVM) - Kernel 5.10, SSD Volume Type**
-        - 类型: **t3.large**
-        - EBS size: 建议40 GB
-    - 通过[China AWS IAM Console](https://console.amazonaws.cn/iamv2/home#/users) 或 [Global AWS IAM Console](https://us-east-1.console.aws.amazon.com/iamv2/home?region=us-east-1#/users) 创建一个IAM user，授权**AdministratorAccess** 权限，保存Access key ID 和 Secret access key
-    - 使用 **ec2-user** SSH 到 EC2 Instance, 执行下面命令配置aws config 和 credentials
-        ```
-        aws configure
-        ```
-       [![](img/aws-configure.png)](img/aws-configure.png)
-
-    - 安装必要的软件
-        - 安装nvm
-        ```
-        curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
-        source ~/.bashrc
-        ```
-        :::tip
-
-        如果上面命令由于网络原因执行失败，请重复执行，或者使用镜像站替代：
-        ```
-        wget -qO- https://raw.staticdn.net/nvm-sh/nvm/v0.35.3/install.sh | bash
-        source ~/.bashrc
-        ```
-        :::
-
-        - 安装nodejs，pnpm，serverless 和 hygen
-        ```
-        nvm install 14
-        npm install -g pnpm@5.18.9
-        npm install -g serverless hygen
-        ```
-        - 安装 golang
-        ```
-        sudo yum install -y golang
-        ```
-
-        - 验证软件是否安装成功
-        ```
-        node --version
-        pnpm --version
-        serverless -v
-        go version
-        ```
-
-## 部署 Service Workbench
-
-- 通过 EC2 Instance 部署 Service Workbench
-    - 安装git
-    ```
-    sudo yum install -y git
-    ```
-    - 获取 Service Workbench 源码
-    ```
-    cd ~
-    git clone https://github.com/awslabs/service-workbench-on-aws-cn.git
-    ```
-    :::tip
-    如果由于网络原因获取源码失败，请重复执行，或者使用镜像站替代：
-    ```
-    git clone https://gitee.com/mirrors_awslabs/service-workbench-on-aws-cn.git
-    ```
-    :::    
-
-    - 准备Stage Name环境变量和Stage配置文件:
-
-      Stage name 用于允许来自同一帐户的多个 Service Workbench 部署, 它代表配置文件的名称。您可以选择自己的stage name, 但是不得超过五个字符。在本次实践中，我们将Stage name定义为 **dev**
-    
+  - 进入[ap-east-1 AWS EC2 Console](https://ap-east-1.console.aws.amazon.com/ec2/v2/home?region=ap-east-1#LaunchInstanceWizard:) 启动一个Linux EC2 Instance
+    - AMI选择 **Amazon Linux 2 AMI (HVM) - Kernel 5.10, SSD Volume Type**
+    - 类型: **t3.large**
+    - EBS size: 建议40 GB
+  - 创建IAM user，并授权**AdministratorAccess** 权限，保存Access key ID 和 Secret access key。 此IAM user为 Service Workbench所部署区域的IAM user，与EC2 instance工作环境无关。
+    - 如果在**cn-northwest-1**部署，请选择通过[China AWS IAM Console](https://console.amazonaws.cn/iamv2/home#/users) 创建 IAM user。
+    - 如果在**ap-east-1**部署，请选择通过[Global AWS IAM Console](https://us-east-1.console.aws.amazon.com/iamv2/home?region=us-east-1#/users) 创建IAM user。
+  - 使用 **ec2-user** SSH 到 EC2 Instance工作环境, 执行下面命令配置aws config 和 credentials， 其中**Default region name** 请填入 Service Workbench 所部署区域。
       ```
-      echo 'export STAGE_NAME=dev' >> ~/.bashrc
+      aws configure
+      ```
+      [![](img/aws-configure.png)](img/aws-configure.png)
+
+  - 安装必要的软件
+      - 安装nvm
+      ```
+      curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
       source ~/.bashrc
       ```
+      :::tip
 
-      - 对于 **cn-northwest-1** 区域 :
+      如果工作环境在 cn-northwest-1 区域，上面命令可能会因为网络原因执行失败，请重复执行，或者使用镜像站替代：
+      ```
+      wget -qO- https://raw.staticdn.net/nvm-sh/nvm/v0.35.3/install.sh | bash
+      source ~/.bashrc
+      ```
+      :::
 
+      - 安装nodejs，pnpm，serverless 和 hygen
+      ```
+      nvm install 14
+      npm install -g pnpm@5.18.9
+      npm install -g serverless hygen
+      ```
+      - 安装 golang
+      ```
+      sudo yum install -y golang
+      ```
+
+      - 验证软件是否安装成功
+      ```
+      node --version
+      pnpm --version
+      serverless -v
+      go version
+      ```
+
+## Step 2：部署 Service Workbench
+使用 **ec2-user** SSH 到 EC2 Instance 工作环境，按下列步骤执行：
+  - 安装git
+  ```
+  sudo yum install -y git
+  ```
+  - 获取 Service Workbench 源码
+  ```
+  cd ~
+  git clone https://github.com/awslabs/service-workbench-on-aws-cn.git
+  ```
+  :::tip
+  如果工作环境在 cn-northwest-1 区域，上面命令可能会因为网络原因执行失败，请重复执行，或者使用镜像站替代：
+  ```
+  git clone https://gitee.com/mirrors_awslabs/service-workbench-on-aws-cn.git
+  ```
+  :::    
+
+  - 准备Stage Name环境变量:
+
+    Stage name 用于允许来自同一帐户的多个 Service Workbench 部署, 它代表配置文件的名称。您可以选择自己的stage name, 但是不得超过五个字符。在本次实践中，我们将Stage name定义为 **dev**
+  
+    ```
+    echo 'export STAGE_NAME=dev' >> ~/.bashrc
+    source ~/.bashrc
+    ```
+
+  - 为 **cn-northwest-1** 区域准备Stage配置文件：
+
+    ```
+    cd ~/service-workbench-on-aws-cn/main/config/settings
+    cp workshop-cn.yml ${STAGE_NAME}.yml
+    ```
+    - 编辑 ${STAGE_NAME}.yml 文件,设定如下配置：
+
+      ```
+      oidcClientId: xxx
+      oidcIssuer: xxx
+      rootUserEmail: xxx
+      rootUserFirstName: xxx
+      rootUserLastName: xxx
+
+      hostedZoneId: 
+      domainName: 
+      ```
+
+      - `oidcClientId`, `oidcIssuer`, `rootUserEmail`, `rootUserFirstName`和 `rootUserLastName` 分别对应 `前提条件` 步骤中保存的 `App ID`，`Issuer`，`Email`，`Given Name` 和 `Family Name`
+
+      - `hostedZoneId` 和 `domainName` 为 `前提条件` 步骤中保存的`hostedZoneId` 和 `domainName`
+
+  - 为 **ap-east-1** 区域准备Stage配置文件：
+    ```
+    cd ~/service-workbench-on-aws-cn/main/config/settings
+    cp workshop-hk.yml ${STAGE_NAME}.yml
+    ```
+
+    - 设定OIDC的相关配置，编辑 ${STAGE_NAME}.yml 文件，设定下列配置项：
         ```
-        cd ~/service-workbench-on-aws-cn/main/config/settings
-        cp workshop-cn.yml ${STAGE_NAME}.yml
+        oidcClientId: xxx
+        oidcIssuer: xxx
+        rootUserEmail: xxx
+        rootUserFirstName: xxx
+        rootUserLastName: xxx
         ```
-        - 编辑 ${STAGE_NAME}.yml 文件,设定如下配置：
+        - `oidcClientId`, `oidcIssuer`, `rootUserEmail`, `rootUserFirstName`和 `rootUserLastName` 分别对应 `前提条件` 步骤中保存的 `App ID`，`Issuer`，`Email`，`Given Name` 和 `Family Name`
 
+        :::tip
+
+        对于香港区域，方案部署完成后会提供可以直接访问的Cloudfront域名，如果需要使用本账户的Route 53管理域名，请按照下面步骤配置 `hostedZoneId`，`domainName` 和 `ACM证书`，如果不需要自定义域名，可直接开始部署Service Workbench阶段
+        
+        如果需要使用Rstudio workspace，域名是必须的。
+
+        :::
+    - 配置域名及证书：
+        - 在 Amazon ACM 中生成证书，此证书提供给CloudFront，需要在**us-east-1**创建：
+          - 访问[Amazon Certificate Manager](https://us-east-1.console.aws.amazon.com/acm/home?region=us-east-1#/certificates/list)， 创建一个证书。
+              在`Fully qualified domain name`添加 `Service Workbench Domain`.
+          - 点击进入证书，点击 **Create records in Route 53** 按钮
+          [![](img/create-r53-record.png)](img/create-r53-record.png)
+          - 等待证书状态变成`已颁发`状态
+        - 编辑 ${STAGE_NAME}.yml 文件，底部添加下列配置项：
           ```
-          oidcClientId: xxx
-          oidcIssuer: xxx
-          rootUserEmail: xxx
-          rootUserFirstName: xxx
-          rootUserLastName: xxx
-
           hostedZoneId: 
           domainName: 
+          certificateArn: 
           ```
 
-          - `oidcClientId`, `oidcIssuer`, `rootUserEmail`, `rootUserFirstName`和 `rootUserLastName` 分别对应 `前提条件` 步骤中保存的 `App ID`，`Issuer`，`Email`，`Given Name` 和 `Family Name`
+          - `hostedZoneId` 和 `domainName` 为 `前提条件` 步骤中保存的`hostedZoneId` 和 `domainName`，`certificateArn` 为在Amazon ACM中生成的证书的ARN。
 
-          - `hostedZoneId` 和 `domainName` 为 `前提条件` 步骤中保存的`hostedZoneId` 和 `domainName`
+  - 部署Service Workbench：执行下面命令开始Service Workbench的部署
 
-      - 对于 **ap-east-1** 区域:
-        ```
-        cd ~/service-workbench-on-aws-cn/main/config/settings
-        cp workshop-hk.yml ${STAGE_NAME}.yml
-        ```
+      ```
+      cd ~/service-workbench-on-aws-cn
+      go env -w GO111MODULE=on
+      go env -w GOPROXY=https://goproxy.cn,direct    
+      ./scripts/environment-deploy.sh ${STAGE_NAME}
+      ```
 
-        - 设定OIDC的相关配置，编辑 ${STAGE_NAME}.yml 文件，设定下列配置项：
-            ```
-            oidcClientId: xxx
-            oidcIssuer: xxx
-            rootUserEmail: xxx
-            rootUserFirstName: xxx
-            rootUserLastName: xxx
-            ```
-            - `oidcClientId`, `oidcIssuer`, `rootUserEmail`, `rootUserFirstName`和 `rootUserLastName` 分别对应 `前提条件` 步骤中保存的 `App ID`，`Issuer`，`Email`，`Given Name` 和 `Family Name`
+      部署大概15 ~ 20分钟，如果出现下面的输出，代码Service Workbench部署完成
+      [![](img/swb-deploy-success.png)](img/swb-deploy-success.png)
 
-            :::tip
-
-            对于香港区域，方案部署完成后会提供可以直接访问的Cloudfront域名，如果需要使用本账户的Route 53管理域名，请按照下面步骤配置 `hostedZoneId`，`domainName` 和 `ACM证书`，如果不需要自定义域名，可直接开始部署Service Workbench阶段
-
-            :::
-        - 配置域名及证书：
-            - 在 Amazon ACM 中生成证书：
-              - 访问[Amazon Certificate Manager](https://us-east-1.console.aws.amazon.com/acm/home?region=us-east-1#/certificates/list)， 创建一个证书。
-                  在`Fully qualified domain name`添加 `Service Workbench Domain`.
-              - 点击进入证书，将`Domains` 中的`CNAME name` 和 `CNAME value` 保存。
-              - 访问[Route 53](https://us-east-1.console.aws.amazon.com/route53/v2/hostedzones), 在之前创建好的Host Zone中创建一个 CNAME 类型的记录，记录名为上面创建的证书中的`CNAME name`，值为`CNAME value`.
-              - 返回[Amazon Certificate Manager](https://us-east-1.console.aws.amazon.com/acm/home?region=us-east-1#/certificates/list)，等待证书状态变成`已颁发`状态
-            - 编辑 ${STAGE_NAME}.yml 文件，底部添加下列配置项：
-              ```
-              hostedZoneId: 
-              domainName: 
-              certificateArn: 
-              ```
-
-              - `hostedZoneId` 和 `domainName` 为 `前提条件` 步骤中保存的`hostedZoneId` 和 `domainName`，`certificateArn` 为在Amazon ACM中生成的证书的ARN。
-
-    - 部署Service Workbench：执行下面命令开始Service Workbench的部署
-
-        ```
-        cd ~/service-workbench-on-aws-cn
-        go env -w GO111MODULE=on
-        go env -w GOPROXY=https://goproxy.cn,direct    
-        ./scripts/environment-deploy.sh ${STAGE_NAME}
-        ```
-
-        部署大概15 ~ 20分钟，如果出现下面的输出，代码Service Workbench部署完成
-        [![](img/swb-deploy-success.png)](img/swb-deploy-success.png)
-
-        部署完成后访问`Website URL` 域名，并忽略HTTPS证书无效的错误。随后，如果出现下面登录页面则代表部署成功：
-        [![](img/swb-login-page.png)](img/swb-login-page.png)
+      部署完成后访问`Website URL` 域名，并忽略HTTPS证书无效的错误。随后，如果出现下面登录页面则代表部署成功：
+      [![](img/swb-login-page.png)](img/swb-login-page.png)
 
 ## 使用 Service Workbench
 - 使用的`rootUserEmail`登录Service Workbench.
@@ -205,7 +208,7 @@ Service Workbench on AWS 的详细介绍请参考[Service Workbench](/zh/introdu
 
 <a name="import_type"></a>
 
-- 导入内置的Sagemaker 工作区类型, 参考[导入Sagemaker](/zh/post_deployment/import_service_catalog_products#amazon-sagemaker-的配置)
+- 导入内置的Sagemaker 工作区类型
     - 选择导入**SageMaker Notebook** 工作区类型, 左侧菜单导航到 **工作区类型**，选择**SageMaker Notebook** 导入。
     [![](img/choose-sagemaker-workspace.png)](img/choose-sagemaker-workspace.png)
     - 点击 **添加配置**， 根据页面提示对工作区类型进行基本配置
@@ -221,7 +224,7 @@ Service Workbench on AWS 的详细介绍请参考[Service Workbench](/zh/introdu
 
 :::tip
 
-请确保**Username**是电子邮件格式， **UserRole**选择 **researcher**， 选择**项目**
+请确保**Username**是电子邮件格式， **UserRole**选择 **researcher**， 选择 **项目**
 
 :::  
 
@@ -237,7 +240,7 @@ Service Workbench on AWS 的详细介绍请参考[Service Workbench](/zh/introdu
 
 - 结束workspace， 参考[结束Workspace](/zh/user_guide/sidebar/common/workspaces/terminating_a_workspace)
 
-## 深入体验Service Workbench
+# 深入体验Service Workbench
   以上为Service Workbench的基本功能，后面可以继续深入体验Service Workbench的其他功能，主要包括:
 - 生成自定义的AMIs
 - 创建和启动 Rstudio Workspace
@@ -245,7 +248,7 @@ Service Workbench on AWS 的详细介绍请参考[Service Workbench](/zh/introdu
 
   如果不继续深入体验Service Workbench的其他功能，可直接跳至[删除Service Workbench](/workshop/workshop_guide/#删除-service-workbench) 清理Service Workbench的相关资源
 
-## 生成自定义的AMIs，创建EC2 Windows 和 EC2 Linux 工作区类型
+## Step 4: 生成自定义的AMIs，创建EC2 Windows 和 EC2 Linux 工作区类型
 本章节介绍如何通过 packer生成AMIs，包括 EC2 Linux和 EC2 Windows，详细说明参考[安装AMIs](/zh/installation_guide/installation/ami-install)
 - 安装 Packer
 ```
@@ -261,7 +264,7 @@ pnpx sls build-image -s ${STAGE_NAME}
 
 - 导入和创建EC2 Windows 和 EC2 Linux 工作区，参考[导入工作区类型](/zh/post_deployment/import_service_catalog_products) 和 [创建工作区](/zh/user_guide/sidebar/common/workspaces/create_workspace_study)
 
-## 创建 Rstudio Workspace
+## Step 5: 创建 Rstudio Workspace
 RStudio workspace type 使用了AWS合作伙伴提供的模版和AMI，详细内容请[Rstudio Workspace](/zh/installation_guide/installation/rstudio.md)
 - 获取 Rstudio 代码
 ```
@@ -321,12 +324,12 @@ vi secret.txt
     访问 [cn-northwest-1 service Catalog Portfolio](https://cn-northwest-1.console.amazonaws.cn/servicecatalog/home?region=cn-northwest-1#portfolios/?activeTab=localAdminPortfolios) 或 [ap-east-1 service Catalog Portfolio](https://ap-east-1.console.aws.amazon.com/servicecatalog/home?region=ap-east-1#portfolios?activeTab=localAdminPortfolios)， 查看`EC2-RStudio-Server`是否已经添加成功
 
 - 配置Rstudio Workspace type
-    - 为Rstudio创建 ACM 证书
+    - 为Rstudio创建 ACM 证书，此证书将与RStudio workspace 的 application loadbalancer关联，需要在Service Workbench所在区域创建
       - 访问[cn-northwest-1 Amazon Certificate Manager](https://cn-northwest-1.console.amazonaws.cn/acm/home?region=cn-northwest-1#/certificates/list) 或 [ap-east-1 Amazon Certificate Manager](https://ap-east-1.console.aws.amazon.com/acm/home?region=ap-east-1#/certificates/list)， 创建一个证书。
           在`Fully qualified domain name`添加 `Service Workbench Domain`和`*.Service Workbench Domain`.
-      - 点击进入证书，将`Domains` 中的`CNAME name` 和 `CNAME value` 保存。
-      - 访问[cn-northwest-1 Route 53](https://cn-northwest-1.console.amazonaws.cn/route53/v2/hostedzones) 或 [Global Route 53](https://us-east-1.console.aws.amazon.com/route53/v2/hostedzones), 在之前创建好的Hosted Zone中创建一个 CNAME 类型的记录，记录名为上面创建的证书中的`CNAME name`，值为`CNAME value`.
-      - 返回[cn-northwest-1 Amazon Certificate Manager](https://cn-northwest-1.console.amazonaws.cn/acm/home?region=cn-northwest-1#/certificates/list) 或 [ap-east-1 Amazon Certificate Manager](https://ap-east-1.console.aws.amazon.com/acm/home?region=ap-east-1#/certificates/list)，等待证书状态变成`已颁发`状态
+      - 点击进入证书，点击 **Create records in Route 53** 按钮
+          [![](img/create-r53-record.png)](img/create-r53-record.png)
+      - 等待证书状态变成`已颁发`状态
     - 参考 [导入 Workspace type](#import_type)，将EC2-RStudio-Server Workspace type导入，并配置Workspace Type, 需要填入下列配置：
     ```
     ACMSSLCertARN
@@ -334,8 +337,8 @@ vi secret.txt
     InstanceType
     ```
 
-## 导入自定义的 workspace 模版
-Service Workbench 除了内置的workspace template以外，还支持客户自定义workspace template，本章节将动手添加一个workspace template。
+## Step 6: 导入自定义的 workspace 模版
+Service Workbench 除了内置的workspace template以外，还支持客户自定义workspace template，本章节介绍如何添加一个自定义的workspace template。
 跟随手动实践创建一个内置反欺诈实验的Sagemaker Workspace Type
 - 准备定制的workspace 模版
 
@@ -421,7 +424,7 @@ Service Workbench 除了内置的workspace template以外，还支持客户自�
       },
     ```
 
-    - 将新创建的导入到Service Workbench中
+    - 执行部署Service Workbench脚本，将新创建的导入到Service Workbench中
     ```
     cd ~/service-workbench-on-aws-cn
     ./scripts/environment-deploy.sh ${STAGE_NAME}
@@ -431,5 +434,5 @@ Service Workbench 除了内置的workspace template以外，还支持客户自�
     部署完成之后以Admin的身份访问Service Workbench， 进入`Workspace Types`, 如果页面显示`Sagemaker Customize` Workspace type, 代表定制的模版已经部署到了Service Workbench，参考 [导入 Workspace type](#import_type) 导入workspace type 进行即可。
 
 
-## 删除 Service Workbench
+## Step 7: 删除 Service Workbench
 参考[卸载 Service Workbench](/zh/installation_guide/uninstall) 卸载Service Workbench

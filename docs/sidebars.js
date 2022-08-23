@@ -1,7 +1,7 @@
 module.exports = {
   serviceWorkbenchSidebar: {
     "English": [
-      { ServiceWorkBench: ["introduction"], },
+      { "Service Workbench": ["introduction"], },
       {
         "Service Workbench Installation Guide": [
           "installation_guide/overview",
@@ -219,7 +219,7 @@ module.exports = {
       },
     ],
     "中文": [
-      { ServiceWorkBench: ["zh/introduction"], },
+      { "Service Workbench": ["zh/introduction"], },
       {
         "Service Workbench 安装指南": [
           "zh/installation_guide/overview",

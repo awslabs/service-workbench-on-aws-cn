@@ -29,6 +29,8 @@ const regionNames = [
   'ap-northeast-3',
   'ap-southeast-1',
   'ap-southeast-2',
+  'cn-north-1',
+  'cn-northwest-1',
   'ca-central-1',
   'eu-central-1',
   'eu-north-1',

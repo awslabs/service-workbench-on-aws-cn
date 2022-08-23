@@ -46,6 +46,21 @@ class AuthenticationProviderConfigService extends Service {
     return _.map(dbResults, toProviderConfig);
   }
 
+  async clearAllAuthenticationProviderConfigs() {
+    const dbService = await this.service('dbService');
+    const table = this.settings.get(settingKeys.tableName);
+
+    const providerConfigs = await this.getAuthenticationProviderConfigs();
+
+    _.forEach(providerConfigs, providerConfig => {
+      dbService.helper
+        .deleter()
+        .table(table)
+        .key({ id: providerConfig.id })
+        .delete();
+    });
+  }
+
   async getAuthenticationProviderConfig(providerId, fields = []) {
     if (providerId === 'internal') {
       throw this.boom.badRequest(

@@ -20,6 +20,8 @@ import { withRouter } from 'react-router-dom';
 import { decorate, observable, runInAction, action } from 'mobx';
 import { inject, observer } from 'mobx-react';
 
+import i18next from 'i18next';
+import { initReactI18next, withTranslation } from 'react-i18next';
 import { swallowError } from '@amzn/base-ui/dist/helpers/utils';
 import { isStoreError, isStoreLoading } from '@amzn/base-ui/dist/models/BaseStore';
 import { createLink } from '@amzn/base-ui/dist/helpers/routing';
@@ -27,6 +29,8 @@ import BasicProgressPlaceholder from '@amzn/base-ui/dist/parts/helpers/BasicProg
 import ErrorBox from '@amzn/base-ui/dist/parts/helpers/ErrorBox';
 import AccountCard from './AccountCard';
 import AccountsFilterButtons from './AccountsFilterButtons';
+
+i18next.use(initReactI18next);
 
 class AwsAccountsList extends React.Component {
   constructor(props) {
@@ -95,8 +99,8 @@ class AwsAccountsList extends React.Component {
           <Segment placeholder>
             <Header icon className="color-grey">
               <Icon name="user x" />
-              No accounts matching the selected filter.
-              <Header.Subheader>Select &apos;All&apos; to view all accounts</Header.Subheader>
+              {i18next.t('noAccount.header', { ns: 'accounts' })}
+              <Header.Subheader>{i18next.t('noAccount.subheader', { ns: 'accounts' })}</Header.Subheader>
             </Header>
           </Segment>
         )}
@@ -133,18 +137,18 @@ class AwsAccountsList extends React.Component {
         <Header as="h3" className="color-grey mt1 mb0 flex-auto">
           <Icon name="amazon" className="align-top" />
           <Header.Content className="left-align">
-            AWS Accounts
+            {i18next.t('accounts', { ns: 'accounts' })}
             {this.renderTotal()}
           </Header.Content>
         </Header>
         <Button color="blue" size="medium" basic onClick={this.handleCreateAwsAccount}>
-          Create AWS Account
+          {i18next.t('createAccount', { ns: 'accounts' })}
         </Button>
         <Button className="ml2" color="blue" size="medium" basic onClick={this.handleAddAwsAccount}>
-          Add AWS Account
+          {i18next.t('addAccount', { ns: 'accounts' })}
         </Button>
         <Button className="ml2" color="blue" size="medium" basic onClick={this.handleCheckAccountStatus}>
-          Refresh Account Status
+          {i18next.t('refreshAccount', { ns: 'accounts' })}
         </Button>
       </div>
     );
@@ -217,4 +221,4 @@ decorate(AwsAccountsList, {
   handleSelectedFilter: action,
 });
 
-export default inject('awsAccountsStore', 'accountsStore')(withRouter(observer(AwsAccountsList)));
+export default withTranslation()(inject('awsAccountsStore', 'accountsStore')(withRouter(observer(AwsAccountsList))));

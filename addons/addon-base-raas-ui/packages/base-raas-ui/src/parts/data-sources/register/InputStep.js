@@ -29,11 +29,14 @@ import SelectionButtons from '@amzn/base-ui/dist/parts/helpers/fields/SelectionB
 import YesNo from '@amzn/base-ui/dist/parts/helpers/fields/YesNo';
 import { gotoFn } from '@amzn/base-ui/dist/helpers/routing';
 
+import i18next from 'i18next';
+import { initReactI18next, withTranslation } from 'react-i18next';
 import { regionOptions } from '../../../models/constants/aws-regions';
 import { encryptionOptions } from '../../../models/constants/bucket';
 import { getRegisterStudyForm } from '../../../models/forms/RegisterStudyForm';
 import { enableEgressStore, disableAdminBYOBSelfAssignment } from '../../../helpers/settings';
 
+i18next.use(initReactI18next);
 const fieldRuleKey = (container, name) => `${container.key}-${name}`;
 
 // expected props
@@ -233,7 +236,7 @@ class InputStep extends React.Component {
     return (
       <>
         <Header as="h3" icon textAlign="center" className="mt2" color="grey">
-          Register Studies
+          {i18next.t('registerStudies', { ns: 'data' })}
         </Header>
         <Segment clearing className="p3">
           {this.renderForm()}
@@ -252,7 +255,8 @@ class InputStep extends React.Component {
     const bucketOptions = wizard.getDropdownBucketOptions(accountId);
     const showKmsArn = bucketField.$('sse').value === 'kms';
     const studiesSize = studies.size;
-    const addButtonLabel = studiesSize > 0 ? 'Add Another Study' : 'Add Study';
+    const addButtonLabel =
+      studiesSize > 0 ? i18next.t('addAnotherStudy', { ns: 'data' }) : i18next.t('addStudy', { ns: 'data' });
 
     return (
       <Form form={form} onCancel={this.handleCancel} onSuccess={this.handleSave}>
@@ -284,7 +288,7 @@ class InputStep extends React.Component {
             <TextArea field={accountField.$('contactInfo')} className="mb3" />
 
             <Divider horizontal className="mt4 mb4">
-              Bucket Information
+              {i18next.t('bucketInformation', { ns: 'data' })}
             </Divider>
 
             <div className="clearfix">
@@ -320,7 +324,7 @@ class InputStep extends React.Component {
             {showKmsArn && <Input field={bucketField.$('kmsArn')} className="mb3" />}
 
             <Divider horizontal className="mt4 mb4">
-              Studies
+              {i18next.t('studies', { ns: 'data' })}
             </Divider>
 
             {studies.map(field => this.renderStudyField({ field }))}
@@ -334,11 +338,17 @@ class InputStep extends React.Component {
               primary
               icon="right arrow"
               labelPosition="right"
-              content="Save &amp; Continue"
+              content={i18next.t('saveAndContinue')}
               disabled={processing || !accountIdValid}
               type="submit"
             />
-            <Button floated="right" className="ml2" content="Cancel" disabled={processing} onClick={onCancel} />
+            <Button
+              floated="right"
+              className="ml2"
+              content={i18next.t('cancel')}
+              disabled={processing}
+              onClick={onCancel}
+            />
           </>
         )}
       </Form>
@@ -415,4 +425,4 @@ decorate(InputStep, {
   form: observable,
 });
 
-export default inject('userStore', 'usersStore')(withRouter(observer(InputStep)));
+export default withTranslation()(inject('userStore', 'usersStore')(withRouter(observer(InputStep))));

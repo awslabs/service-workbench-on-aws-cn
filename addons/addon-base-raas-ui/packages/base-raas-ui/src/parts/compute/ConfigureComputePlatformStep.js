@@ -19,9 +19,12 @@ import { decorate, computed, action } from 'mobx';
 import { observer, inject } from 'mobx-react';
 import { Icon, Header, Segment, Button } from 'semantic-ui-react';
 
+import i18next from 'i18next';
+import { initReactI18next, withTranslation } from 'react-i18next';
 import CreateInternalPlatformForm from './parts/CreateInternalPlatformForm';
 import CreateExternalPlatformForm from './parts/CreateExternalPlatformForm';
 
+i18next.use(initReactI18next);
 // expected props
 // - onPrevious (via props)
 // - onCompleted (via props) a function is called after a call to create a workspace is performed
@@ -165,13 +168,19 @@ class ConfigureComputePlatformStep extends React.Component {
   renderButtons({ nextDisabled = true } = {}) {
     return (
       <div className="mt3">
-        <Button floated="right" className="ml2" primary content="Create Research Workspace" disabled={nextDisabled} />
+        <Button
+          floated="right"
+          className="ml2"
+          primary
+          content={i18next.t('researchWorkspace.create', { ns: 'workspaces' })}
+          disabled={nextDisabled}
+        />
         <Button
           floated="right"
           icon="left arrow"
           labelPosition="left"
           className="ml2"
-          content="Previous"
+          content={i18next.t('previous')}
           onClick={this.handlePrevious}
         />
       </div>
@@ -193,9 +202,11 @@ decorate(ConfigureComputePlatformStep, {
   studyIds: computed,
 });
 
-export default inject(
-  'userStore',
-  'computePlatformsStore',
-  'clientInformationStore',
-  'environmentsStore',
-)(observer(ConfigureComputePlatformStep));
+export default withTranslation()(
+  inject(
+    'userStore',
+    'computePlatformsStore',
+    'clientInformationStore',
+    'environmentsStore',
+  )(observer(ConfigureComputePlatformStep)),
+);

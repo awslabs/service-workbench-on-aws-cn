@@ -21,8 +21,11 @@ import { Icon, Divider, Button, Segment, Header } from 'semantic-ui-react';
 
 import Form from '@amzn/base-ui/dist/parts/helpers/fields/Form';
 import Toggle from '@amzn/base-ui/dist/parts/helpers/fields/Toggle';
+import i18next from 'i18next';
+import { initReactI18next, withTranslation } from 'react-i18next';
 import PropertyTable from '../../../workflow-templates/PropertyTable';
 
+i18next.use(initReactI18next);
 // expected props
 // - stepEditor - a WorkflowStepEditor or aWorkflowTemplateStepEditor model instance (via props)
 // - onSave - called when the props are saved (via props)
@@ -126,10 +129,10 @@ class WorkflowCommonStepPropsEditor extends React.Component {
                   disabled={processing}
                   className="ml2"
                   type="submit"
-                  content="Save"
+                  content={i18next.t('save')}
                 />
                 <Button floated="left" disabled={processing} onClick={onCancel}>
-                  Cancel
+                  {i18next.t('cancel')}
                 </Button>
               </div>
             </div>
@@ -148,4 +151,4 @@ decorate(WorkflowCommonStepPropsEditor, {
   handleSave: action,
 });
 
-export default inject()(observer(WorkflowCommonStepPropsEditor));
+export default withTranslation()(inject()(observer(WorkflowCommonStepPropsEditor)));

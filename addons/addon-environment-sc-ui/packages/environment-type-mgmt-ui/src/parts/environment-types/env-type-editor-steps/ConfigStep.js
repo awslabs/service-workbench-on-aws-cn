@@ -30,9 +30,12 @@ import {
 } from '@amzn/base-ui/dist/models/BaseStore';
 import BasicProgressPlaceholder from '@amzn/base-ui/dist/parts/helpers/BasicProgressPlaceholder';
 import { swallowError } from '@amzn/base-ui/dist/helpers/utils';
+import i18next from 'i18next';
+import { initReactI18next, withTranslation } from 'react-i18next';
 import EnvTypeConfigCard from '../env-type-config/EnvTypeConfigCard';
 import EnvTypeConfigEditor from '../env-type-config/EnvTypeConfigEditor';
 
+i18next.use(initReactI18next);
 class ConfigStep extends React.Component {
   constructor(props) {
     super(props);
@@ -71,14 +74,11 @@ class ConfigStep extends React.Component {
           <Segment placeholder>
             <Header icon className="color-grey">
               <Icon name="settings" />
-              No Configurations for this Workspace Type yet
+              {i18next.t('workspaceConf.empty.header', { ns: 'types' })}
               <Header.Subheader className="mt2">
-                <p>
-                  Configurations are predefined set of Input Parameter values for the AWS Service Catalog Product. The
-                  configurations are presented as preset options when launching workspaces of this type.
-                </p>
+                <p>{i18next.t('workspaceConf.empty.subheader', { ns: 'types' })}</p>
                 <Button data-testid="add-config-button" basic color="blue" onClick={this.showEnvTypeConfigDialog}>
-                  Add Configuration
+                  {i18next.t('workspaceConf.add', { ns: 'types' })}
                 </Button>
               </Header.Subheader>
             </Header>
@@ -87,7 +87,7 @@ class ConfigStep extends React.Component {
         {this.shouldShowEnvTypeConfigDialog && this.renderConfigEditorDialog()}
         <div className="right-align">
           <Button basic color="grey" onClick={this.props.onCancel}>
-            Cancel
+            {i18next.t('cancel')}
           </Button>
         </div>
       </>
@@ -107,7 +107,7 @@ class ConfigStep extends React.Component {
               floated="right"
               onClick={this.showEnvTypeConfigDialog}
             >
-              Add Configuration
+              {i18next.t('workspaceConf.add', { ns: 'types' })}
             </Button>
           )}
           {this.renderEnvTypeConfigs()}
@@ -176,9 +176,9 @@ class ConfigStep extends React.Component {
       <div className="mt3">
         <div className="right-align">
           <Button data-testid="cancel-button" basic color="grey" onClick={onCancel}>
-            Cancel
+            {i18next.t('cancel')}
           </Button>
-          <Button className="ml2" primary content="Done" disabled={processing} onClick={this.onNext} />
+          <Button className="ml2" primary content={i18next.t('done')} disabled={processing} onClick={this.onNext} />
         </div>
       </div>
     );
@@ -212,4 +212,4 @@ decorate(ConfigStep, {
   hideEnvTypeConfigDialog: action,
 });
 
-export default withRouter(observer(ConfigStep));
+export default withTranslation()(withRouter(observer(ConfigStep)));

@@ -22,8 +22,11 @@ import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import c from 'classnames';
 import { displayError, displaySuccess } from '@amzn/base-ui/dist/helpers/notification';
 
+import i18next from 'i18next';
+import { initReactI18next, withTranslation } from 'react-i18next';
 import AddStepDropDown from '../../../workflow-step-templates/AddStepDropDown';
 
+i18next.use(initReactI18next);
 // expected props
 // - editor (via prop) an instance of the WorkflowTemplateDraftEditor model or WorkflowDraftEditor model
 // - stepEditor (vai props) an instance of the WorkflowTemplateStepEditor react component or WorkflowStepEditor reactComponent
@@ -224,7 +227,7 @@ class WorkflowCommonDraftStepsEditor extends React.Component {
               labelPosition="right"
               disabled={processing}
               className="ml2"
-              content="Next"
+              content={i18next.t('next')}
               onClick={this.handleNext}
             />
             {hasPrevious && (
@@ -245,11 +248,11 @@ class WorkflowCommonDraftStepsEditor extends React.Component {
               labelPosition="left"
               disabled={processing}
               className="ml2"
-              content="Save"
+              content={i18next.t('save')}
               onClick={this.handleSave}
             />
             <Button floated="left" disabled={processing} onClick={this.handleCancel}>
-              Cancel
+              {i18next.t('cancel')}
             </Button>
           </div>
         )}
@@ -320,4 +323,4 @@ decorate(WorkflowCommonDraftStepsEditor, {
   processing: observable,
 });
 
-export default inject()(observer(WorkflowCommonDraftStepsEditor));
+export default withTranslation()(inject()(observer(WorkflowCommonDraftStepsEditor)));

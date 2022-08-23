@@ -23,7 +23,11 @@ import Stores from '@amzn/base-ui/dist/models/Stores';
 import { swallowError } from '@amzn/base-ui/dist/helpers/utils';
 import ErrorBox from '@amzn/base-ui/dist/parts/helpers/ErrorBox';
 import BasicProgressPlaceholder from '@amzn/base-ui/dist/parts/helpers/BasicProgressPlaceholder';
+import i18next from 'i18next';
+import { initReactI18next, withTranslation } from 'react-i18next';
 import { getAddProjectFormFields, getAddProjectForm } from '../../models/forms/AddProjectForm';
+
+i18next.use(initReactI18next);
 
 class ProjectConfigure extends React.Component {
   constructor(props) {
@@ -99,7 +103,7 @@ class ProjectConfigure extends React.Component {
       return (
         <>
           <Table.Cell collapsing active>
-            {getFieldLabel(fieldName)}
+            {i18next.t(getFieldLabel(fieldName), { ns: 'accounts' })}
           </Table.Cell>
           <Table.Cell>{displayValue}</Table.Cell>
         </>
@@ -123,7 +127,7 @@ class ProjectConfigure extends React.Component {
   renderTrigger() {
     return (
       <Button size="mini" compact color="blue" onClick={this.handleModalOpen}>
-        Detail
+        {i18next.t('detail')}
       </Button>
     );
   }
@@ -155,7 +159,7 @@ class ProjectConfigure extends React.Component {
       <Modal closeIcon trigger={this.renderTrigger()} open={this.modalOpen} onClose={this.handleModalClose}>
         <div className="mt2 animated fadeIn">
           <Header as="h3" icon textAlign="center" className="mt3" color="grey">
-            Project Detail
+            {i18next.t('project.projectDetail', { ns: 'accounts' })}
           </Header>
           <div className="mt3 ml3 mr3 animated fadeIn">{content}</div>
         </div>
@@ -176,7 +180,7 @@ class ProjectConfigure extends React.Component {
           <input
             type={type}
             defaultValue={this.currentProject[attributeName]}
-            placeholder={fields[attributeName].placeholder || ''}
+            placeholder={i18next.t(fields[attributeName].placeholder || '', { ns: 'accounts' })}
             onChange={handleChange}
           />
         </div>
@@ -186,7 +190,7 @@ class ProjectConfigure extends React.Component {
     return (
       <Segment basic className="ui fluid form">
         <Dimmer active={processing} inverted>
-          <Loader inverted>Checking</Loader>
+          <Loader inverted>{i18next.t('checking')}</Loader>
         </Dimmer>
         {this.renderField('id', toEditableInput('id', 'id'))}
         <div className="mb2" />
@@ -254,12 +258,14 @@ class ProjectConfigure extends React.Component {
       );
     };
 
-    const editButton = this.view === 'detail' ? makeButton({ label: 'Edit', onClick: this.handleClickEditButton }) : '';
+    const editButton =
+      this.view === 'detail' ? makeButton({ label: i18next.t('edit'), onClick: this.handleClickEditButton }) : '';
 
-    const saveButton = this.view === 'edit' ? makeButton({ label: 'Save', onClick: this.handleClickSubmitButton }) : '';
+    const saveButton =
+      this.view === 'edit' ? makeButton({ label: i18next.t('save'), onClick: this.handleClickSubmitButton }) : '';
 
     const cancelButton = makeButton({
-      label: 'Cancel',
+      label: i18next.t('cancel'),
       floated: 'right',
       color: 'grey',
       onClick: this.handleClickCancelButton,
@@ -312,7 +318,7 @@ class ProjectConfigure extends React.Component {
     return (
       <div>
         <Header className="mr3 mt0" as="h4" color="grey">
-          {label}
+          {i18next.t(label, { ns: 'accounts' })}
         </Header>
         {hasExplain && (
           <div className="mb2">
@@ -363,4 +369,4 @@ decorate(ProjectConfigure, {
 
   handleClickSubmitButton: action,
 });
-export default observer(ProjectConfigure);
+export default withTranslation()(observer(ProjectConfigure));

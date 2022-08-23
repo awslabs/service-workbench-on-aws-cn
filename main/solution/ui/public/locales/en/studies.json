@@ -1,0 +1,59 @@
+{
+    "category": {
+        "my-studies": "My Studies",
+        "organization": "Organization",
+        "open-data": "Open Data"
+    },
+    "fileTable": {
+        "filename": "Filename",
+        "size": "Size",
+        "lastModified": "Last Modified",
+        "empty": {
+            "header": "No files",
+            "subheader": "No files are uploaded yet for this study"
+        }
+    },
+    "permissionTable": {
+        "level": "Permission Level",
+        "users": "Users",
+        "admin": "Admin",
+        "readwrite": "Read/Write",
+        "readonly": "Read only",
+        "notAdmin": "You cannot access permissions as you are not a Study administrator."
+    },
+    "findAndSelectStudies": {
+        "header": "Find & Select Studies",
+        "subheader": "Select the desired studies"
+    },
+    "selectedStudies": "Selected studies",
+    "selectToProceed": "Select one or more studies to proceed to the next step.",
+    "selectToProceedOrCreate": "Select one or more studies to proceed to the next step or create a study by clicking on \"Create Study\" button at the top.",
+    "study": {
+        "create": "Create Study",
+        "empty": {
+            "my": {
+                "header": "No studies",
+                "subheader": "To create a study, click on the \"Create Study\" button at the top."
+            },
+            "open": {
+                "header": "No studies from the Open Data project",
+                "subheader": "The information in this page is updated once a day, please come back later."
+            },
+            "org": {
+                "header": "No studies shared with you",
+                "subheader": "Studies created at the organization level can be shared but you don't have any that is shared with you.",
+                "canCreate": "You can create one yourself by clicking on the \"Create Study\" button at the top.",
+                "cantCreate": "Consider viewing the Open Data studies by clicking on the Open Data tab above."
+            }
+        },
+        "name_s": "Studies"
+    },
+    "missAssociation": {
+        "header": "Missing association with one or more projects!",
+        "subheader": "You won't be able to select or create studies because you currently don't have any association with one or more projects, please contact your administrator."
+    },
+    "limitedAccess": {
+        "header": "Limited access",
+        "subheader": "You currently have limited access and will not be able to select studies to proceed to the next step."
+    }
+}

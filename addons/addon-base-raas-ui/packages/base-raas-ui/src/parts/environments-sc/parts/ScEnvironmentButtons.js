@@ -7,10 +7,14 @@ import { Button, Modal } from 'semantic-ui-react';
 import { gotoFn } from '@amzn/base-ui/dist/helpers/routing';
 import { displayError } from '@amzn/base-ui/dist/helpers/notification';
 
+import i18next from 'i18next';
+import { initReactI18next, withTranslation } from 'react-i18next';
 import ScEnvironmentConnections from './ScEnvironmentConnections';
 import ScEnvironmentUpdateCidrs from './ScEnvironmentUpdateCidrs';
 import { enableEgressStore, isAppStreamEnabled, restrictAdminWorkspaceConnection } from '../../../helpers/settings';
 import ScEnvironmentEgressStoreDetail from './ScEnvironmentEgressStoreDetail';
+
+i18next.use(initReactI18next);
 
 const PROCESSING_STATUS_CODE = 'PROCESSING';
 const WORKSPACE_TERMINATION_ERROR_MESSAGE =
@@ -171,14 +175,14 @@ class ScEnvironmentButtons extends React.Component {
                   className="mt1 mb1"
                   loading={processing}
                 >
-                  Terminate
+                  {i18next.t('terminate')}
                 </Button>
               }
-              header="Are you sure?"
-              content="This action can not be reverted."
+              header={i18next.t('areYouSure.header', { ns: 'workspaces' })}
+              content={i18next.t('areYouSure.subheader', { ns: 'workspaces' })}
               actions={[
-                'Cancel',
-                { key: 'terminate', content: 'Terminate', negative: true, onClick: this.handleTerminate },
+                i18next.t('cancel'),
+                { key: 'terminate', content: i18next.t('terminate'), negative: true, onClick: this.handleTerminate },
               ]}
               size="mini"
             />
@@ -194,7 +198,7 @@ class ScEnvironmentButtons extends React.Component {
               onClick={this.handleStart}
               loading={processing}
             >
-              Start
+              {i18next.t('start')}
             </Button>
           )}
           {canStop && (
@@ -208,7 +212,7 @@ class ScEnvironmentButtons extends React.Component {
               onClick={this.handleStop}
               loading={processing}
             >
-              Stop
+              {i18next.t('stop')}
             </Button>
           )}
 
@@ -227,12 +231,12 @@ class ScEnvironmentButtons extends React.Component {
               onClick={this.handleToggle}
               data-testid="sc-environment-connection-button"
             >
-              Connections
+              {i18next.t('connections', { ns: 'workspaces' })}
             </Button>
           )}
           {showDetailButton && (
             <Button floated="left" basic size="mini" className="mt1 mb1 ml2" onClick={this.handleViewDetail}>
-              View Detail
+              {i18next.t('viewDetail', { ns: 'workspaces' })}
             </Button>
           )}
           {!isAppStreamEnabled && state.canTerminate && !state.key.includes('FAILED') && (
@@ -245,7 +249,7 @@ class ScEnvironmentButtons extends React.Component {
               active={editCidrButtonActive}
               onClick={this.handleCidrEditToggle}
             >
-              Edit CIDRs
+              {i18next.t('connection.editCIDRs', { ns: 'workspaces' })}
             </Button>
           )}
           {enableEgressStore && state.canTerminate && !state.key.includes('FAILED') && (
@@ -287,5 +291,6 @@ decorate(ScEnvironmentButtons, {
 });
 
 // eslint-disable-next-line import/no-mutable-exports
-const exportable = inject('scEnvironmentsStore', 'userStore')(withRouter(observer(ScEnvironmentButtons)));
-export default exportable;
+export default withTranslation()(
+  inject('scEnvironmentsStore', 'userStore')(withRouter(observer(ScEnvironmentButtons))),
+);

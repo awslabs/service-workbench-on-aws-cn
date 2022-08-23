@@ -254,17 +254,59 @@ describe('AwsAccountService', () => {
         }
         throw Error(`${key} not found`);
       });
+      settings.get = jest.fn(key => {
+        if (key === 'awsRegion') {
+          return 'us-east-1';
+        }
+        return undefined;
+      });
       const res = await service.getAndUploadTemplateForAccount(requestContext, mockAccount.id);
       const expCfnInfo = {
         accountId: mockAccount.accountId,
         name: mockAccount.cfnStackName,
-        cfnConsoleUrl: 'https://console.aws.amazon.com/cloudformation/home?region=undefined',
+        cfnConsoleUrl: 'https://console.aws.amazon.com/cloudformation/home?region=us-east-1',
         template: mockYmlResponse,
       };
       expect(res).toMatchObject(expCfnInfo);
       expect(res.createStackUrl).toBeDefined();
       expect(res.createStackUrl).toBe(
-        'https://console.aws.amazon.com/cloudformation/home?region=undefined#/stacks/create/review/?' +
+        'https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/create/review/?' +
+          'templateURL=undefined&stackName=HAPPY_STACK&param_Namespace=HAPPY_STACK&' +
+          'param_CentralAccountId=undefined&param_ExternalId=test-externalid&param_ApiHandlerArn=undefined&' +
+          'param_WorkflowRoleArn=undefined&param_AppStreamFleetType=ON_DEMAND&' +
+          'param_AppStreamDisconnectTimeoutSeconds=60&param_AppStreamFleetDesiredInstances=2&' +
+          'param_AppStreamIdleDisconnectTimeoutSeconds=600&param_AppStreamImageName=&' +
+          'param_AppStreamInstanceType=&param_AppStreamMaxUserDurationSeconds=86400&' +
+          'param_EnableAppStream=false&param_EnableFlowLogs=true&param_DomainName=&' +
+          'param_EnableAmiSharing=false&param_DevopsAccountId=',
+      );
+    });
+
+    it('should create a cfn template info object in beijing region', async () => {
+      awsAccountsService.mustFind.mockImplementation(() => mockAccount);
+      settings.optional = jest.fn((key, defaultVal) => {
+        if (key === 'domainName') {
+          return defaultVal;
+        }
+        throw Error(`${key} not found`);
+      });
+      settings.get = jest.fn(key => {
+        if (key === 'awsRegion') {
+          return 'cn-north-1';
+        }
+        return undefined;
+      });
+      const res = await service.getAndUploadTemplateForAccount(requestContext, mockAccount.id);
+      const expCfnInfo = {
+        accountId: mockAccount.accountId,
+        name: mockAccount.cfnStackName,
+        cfnConsoleUrl: 'https://console.amazonaws.cn/cloudformation/home?region=cn-north-1',
+        template: mockYmlResponse,
+      };
+      expect(res).toMatchObject(expCfnInfo);
+      expect(res.createStackUrl).toBeDefined();
+      expect(res.createStackUrl).toBe(
+        'https://console.amazonaws.cn/cloudformation/home?region=cn-north-1#/stacks/create/review/?' +
           'templateURL=undefined&stackName=HAPPY_STACK&param_Namespace=HAPPY_STACK&' +
           'param_CentralAccountId=undefined&param_ExternalId=test-externalid&param_ApiHandlerArn=undefined&' +
           'param_WorkflowRoleArn=undefined&param_AppStreamFleetType=ON_DEMAND&' +
@@ -284,11 +326,20 @@ describe('AwsAccountService', () => {
         }
         throw Error(`${key} not found`);
       });
+      settings.get = jest.fn(key => {
+        if (key === 'awsRegion') {
+          return 'us-east-1';
+        }
+        if (key === 'awsPartition') {
+          return 'aws';
+        }
+        return undefined;
+      });
       const res = await service.getAndUploadTemplateForAccount(requestContext, mockAccount.id);
       const expCfnInfo = {
         accountId: mockAccount.accountId,
         name: mockAccount.cfnStackName,
-        cfnConsoleUrl: 'https://console.aws.amazon.com/cloudformation/home?region=undefined',
+        cfnConsoleUrl: 'https://console.aws.amazon.com/cloudformation/home?region=us-east-1',
         template: mockYmlResponse,
       };
       const update = {
@@ -302,7 +353,7 @@ describe('AwsAccountService', () => {
       expect(res).toMatchObject(expCfnInfo);
       expect(res.createStackUrl).toBeDefined();
       expect(res.createStackUrl).toBe(
-        'https://console.aws.amazon.com/cloudformation/home?region=undefined#/stacks/create/review/?' +
+        'https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/create/review/?' +
           'templateURL=undefined&stackName=HAPPY_STACK&param_Namespace=HAPPY_STACK&' +
           'param_CentralAccountId=undefined&param_ExternalId=test-externalid&param_ApiHandlerArn=undefined&' +
           'param_WorkflowRoleArn=undefined&param_AppStreamFleetType=ON_DEMAND&' +

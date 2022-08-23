@@ -41,11 +41,11 @@ async function registerServices(container, pluginRegistry) {
   await registerLoggerService(container, plugins, settingsService, pluginRegistry);
 
   // Finally, register all other services
-  await registerOtherServices(container, plugins, pluginRegistry);
+  await registerOtherServices(container, plugins, pluginRegistry, settingsService);
 }
 
-async function registerOtherServices(container, plugins, pluginRegistry) {
-  await visitPlugins(plugins, 'registerServices', container, pluginRegistry);
+async function registerOtherServices(container, plugins, pluginRegistry, settingsService) {
+  await visitPlugins(plugins, 'registerServices', container, pluginRegistry, settingsService);
 }
 
 async function registerSettingsService(container, plugins, pluginRegistry) {

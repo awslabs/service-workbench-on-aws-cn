@@ -21,6 +21,10 @@ import { Label, Popup, Statistic, Placeholder } from 'semantic-ui-react';
 
 import { isStoreError, isStoreReady } from '@amzn/base-ui/dist/models/BaseStore';
 import { swallowError, nicePrice } from '@amzn/base-ui/dist/helpers/utils';
+import i18next from 'i18next';
+import { initReactI18next, withTranslation } from 'react-i18next';
+
+i18next.use(initReactI18next);
 
 // expected props
 // - envId (via prop)
@@ -72,7 +76,7 @@ class ScEnvironmentCost extends React.Component {
         <div className="center breakout">
           <Statistic color={isError ? 'red' : 'black'} size="mini">
             <Statistic.Value>{isError ? 'N/A' : `$${nicePrice(previousCost)}`}</Statistic.Value>
-            <Statistic.Label>Yesterday&apos;s Cost</Statistic.Label>
+            <Statistic.Label>{i18next.t('cost.yesterday', { ns: 'workspaces' })}</Statistic.Label>
           </Statistic>
         </div>
         {isError && this.renderErrorPopup(envCost.error)}
@@ -86,18 +90,15 @@ class ScEnvironmentCost extends React.Component {
         <Popup
           trigger={
             <Label size="mini" basic color="red">
-              Show Error
+              {i18next.t('cost.showError', { ns: 'workspaces' })}
             </Label>
           }
           basic
         >
           <div className="color-red">
-            <p>An error occurred while retrieving the cost information.</p>
-            <p>
-              If this workspace is provisioned in a new account, verify with your administer that the cost explorer
-              feature is enabled for the account.
-            </p>
-            <p>The system returned this error message:</p>
+            <p>{i18next.t('cost.error1', { ns: 'workspaces' })}</p>
+            <p>{i18next.t('cost.error2', { ns: 'workspaces' })}</p>
+            <p>{i18next.t('cost.error3', { ns: 'workspaces' })}</p>
             <p>{error}</p>
           </div>
         </Popup>
@@ -112,4 +113,4 @@ decorate(ScEnvironmentCost, {
   envId: computed,
 });
 
-export default inject('scEnvironmentCostsStore')(withRouter(observer(ScEnvironmentCost)));
+export default withTranslation()(inject('scEnvironmentCostsStore')(withRouter(observer(ScEnvironmentCost))));

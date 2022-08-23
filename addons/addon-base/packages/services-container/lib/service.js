@@ -55,6 +55,11 @@ const Boom = require('./boom');
  * }
  * ```
  */
+
+const settingKeys = {
+  awsSuffix: 'awsSuffix',
+  awsPartition: 'awsPartition',
+};
 class Service {
   /**
    * In general, you want to override the constructor to declare the service dependency by calling `dependency()` from within
@@ -180,6 +185,14 @@ class Service {
     if (!this.initializationPromise)
       throw new Error('You tried to reference "settings" in a service but the service has not been initialized.');
     return this._settings;
+  }
+
+  get awsPartition() {
+    return this.settings.get(settingKeys.awsPartition);
+  }
+
+  get awsSuffix() {
+    return this.settings.get(settingKeys.awsSuffix);
   }
 
   /**

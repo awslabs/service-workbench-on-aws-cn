@@ -37,7 +37,7 @@ If you used AWS Cloud9 to deploy Service Workbench, you can delete this environm
 Use the following script to uninstall Service Workbench:
 
 ```
-https://github.com/awslabs/service-workbench-on-aws/blob/mainline/scripts/environment-delete.sh 
+https://github.com/awslabs/service-workbench-on-aws-cn/blob/develop/scripts/environment-delete.sh
 ```
 
 

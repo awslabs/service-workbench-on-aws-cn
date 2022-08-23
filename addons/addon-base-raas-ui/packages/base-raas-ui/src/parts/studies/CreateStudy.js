@@ -24,9 +24,12 @@ import Input from '@amzn/base-ui/dist/parts/helpers/fields/Input';
 import TextArea from '@amzn/base-ui/dist/parts/helpers/fields/TextArea';
 import YesNo from '@amzn/base-ui/dist/parts/helpers/fields/YesNo';
 
+import i18next from 'i18next';
+import { initReactI18next, withTranslation } from 'react-i18next';
 import { getCreateStudyForm } from '../../models/forms/CreateStudy';
 import { getCategoryById } from '../../models/studies/categories';
 
+i18next.use(initReactI18next);
 // expected props
 // - userStore (via injection)
 // - studiesStoresMap (via injection)
@@ -79,7 +82,7 @@ class CreateStudy extends React.Component {
       <Modal closeIcon trigger={this.renderTrigger()} open={this.modalOpen} onClose={this.cleanModal}>
         <div className="mt2">
           <Header as="h3" icon textAlign="center" className="mt3" color="grey">
-            Create Study
+            {i18next.t('study.create', { ns: 'studies' })}
           </Header>
           <div className="mx3">{this.renderCreateStudyForm()}</div>
         </div>
@@ -96,7 +99,7 @@ class CreateStudy extends React.Component {
           this.modalOpen = true;
         })}
       >
-        Create Study
+        {i18next.t('study.create', { ns: 'studies' })}
       </Button>
     );
   }
@@ -117,10 +120,10 @@ class CreateStudy extends React.Component {
               <Dropdown field={form.$('projectId')} options={projectIds} fluid selection />
 
               <Button className="ml2" floated="right" color="blue" icon disabled={processing} type="submit">
-                Create Study
+                {i18next.t('study.create', { ns: 'studies' })}
               </Button>
               <Button floated="right" disabled={processing} onClick={onCancel}>
-                Cancel
+                {i18next.t('cancel')}
               </Button>
             </>
           )}
@@ -138,4 +141,4 @@ decorate(CreateStudy, {
   handleFormSubmission: action,
 });
 
-export default inject('userStore', 'studiesStoresMap')(observer(CreateStudy));
+export default withTranslation()(inject('userStore', 'studiesStoresMap')(observer(CreateStudy)));

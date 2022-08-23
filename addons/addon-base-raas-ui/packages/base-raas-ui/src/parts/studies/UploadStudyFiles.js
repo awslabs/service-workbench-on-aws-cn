@@ -18,9 +18,13 @@ import { observer } from 'mobx-react';
 import { action, decorate, observable, runInAction } from 'mobx';
 import { Button, Header, Modal } from 'semantic-ui-react';
 
+import i18next from 'i18next';
+import { initReactI18next, withTranslation } from 'react-i18next';
 import FileUpload from '../files/FileUpload';
 import { getPresignedStudyUploadRequests } from '../../helpers/api';
 import upload from '../../helpers/xhr-upload';
+
+i18next.use(initReactI18next);
 
 // expected props
 // - studyId
@@ -80,7 +84,7 @@ class UploadStudyFiles extends React.Component {
       >
         <div className="mt2 animated fadeIn">
           <Header as="h3" icon textAlign="center" className="mt3" color="grey">
-            Upload Study Files
+            {i18next.t('upload.uploadFiles')}
           </Header>
           <div className="mx3 animated fadeIn">
             <FileUpload resourceId={this.props.studyId} fileUploadHandler={this.fileUploadHandler} />
@@ -100,7 +104,7 @@ class UploadStudyFiles extends React.Component {
           this.modalOpen = true;
         })}
       >
-        Upload Files
+        {i18next.t('upload.uploadFiles')}
       </Button>
     );
   }
@@ -110,4 +114,4 @@ decorate(UploadStudyFiles, {
   modalOpen: observable,
 });
 
-export default observer(UploadStudyFiles);
+export default withTranslation()(observer(UploadStudyFiles));

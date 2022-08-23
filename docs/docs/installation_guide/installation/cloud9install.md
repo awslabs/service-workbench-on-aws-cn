@@ -80,7 +80,7 @@ To install long-term support version, enter:
 ### Cloning the Git directory
 <a name="git"></a>
 
-`git clone https://github.com/awslabs/service-workbench-on-aws.git`
+`git clone https://github.com/awslabs/service-workbench-on-aws-cn.git`
 
 ### Making a copy of the environment file
 

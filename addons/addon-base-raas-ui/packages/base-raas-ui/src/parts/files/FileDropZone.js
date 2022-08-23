@@ -21,6 +21,10 @@ import toastr from 'toastr';
 
 import { Segment, Header, Divider, Button, Icon } from 'semantic-ui-react';
 import uuidv4 from 'uuid/v4';
+import i18next from 'i18next';
+import { initReactI18next, withTranslation } from 'react-i18next';
+
+i18next.use(initReactI18next);
 
 /**
  * A reusable file input component.
@@ -133,8 +137,8 @@ class FileDropZone extends React.Component {
           {this.props.state === 'PENDING' ? (
             <>
               <Icon name="upload" className="mb2" />
-              Drag and drop files
-              <Divider horizontal>Or</Divider>
+              {i18next.t('dragAndDrop', { ns: 'files' })}
+              <Divider horizontal>{i18next.t('or', { ns: 'files' })}</Divider>
               <Button
                 basic
                 color="blue"
@@ -144,9 +148,9 @@ class FileDropZone extends React.Component {
                   }
                 }}
               >
-                Upload Files
+                {i18next.t('uploadFiles', { ns: 'files' })}
               </Button>
-              <Divider horizontal>Or</Divider>
+              <Divider horizontal>{i18next.t('or', { ns: 'files' })}</Divider>
               <Button
                 basic
                 color="blue"
@@ -156,18 +160,18 @@ class FileDropZone extends React.Component {
                   }
                 }}
               >
-                Upload Folder
+                {i18next.t('uploadFolder', { ns: 'files' })}
               </Button>
             </>
           ) : this.props.state === 'UPLOADING' ? (
             <>
               <Icon loading name="circle notch" className="mb2" />
-              Uploading
+              {i18next.t('uploading', { ns: 'files' })}
             </>
           ) : this.props.state === 'COMPLETE' ? (
             <>
               <Icon name="check" className="mb2" />
-              Upload Complete
+              {i18next.t('uploadComplete', { ns: 'files' })}
             </>
           ) : null}
         </Header>
@@ -187,4 +191,4 @@ FileDropZone.defaultProps = {
 decorate(FileDropZone, {
   setHighlight: observable,
 });
-export default observer(FileDropZone);
+export default withTranslation()(observer(FileDropZone));

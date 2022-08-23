@@ -24,6 +24,10 @@ import { isStoreError, isStoreLoading } from '@amzn/base-ui/dist/models/BaseStor
 import ErrorBox from '@amzn/base-ui/dist/parts/helpers/ErrorBox';
 import { createLink } from '@amzn/base-ui/dist/helpers/routing';
 import BasicProgressPlaceholder from '@amzn/base-ui/dist/parts/helpers/BasicProgressPlaceholder';
+import i18next from 'i18next';
+import { initReactI18next, withTranslation } from 'react-i18next';
+
+i18next.use(initReactI18next);
 
 class RolesList extends React.Component {
   constructor(props) {
@@ -67,16 +71,17 @@ class RolesList extends React.Component {
           }}
           columns={[
             {
-              Header: 'User Role Name',
+              Header: i18next.t('props.userRole', { ns: 'users' }),
               accessor: 'id',
             },
             {
-              Header: 'Description',
+              Header: i18next.t('props.description', { ns: 'users' }),
               accessor: 'description',
             },
             {
-              Header: 'User Type',
+              Header: i18next.t('props.type', { ns: 'users' }),
               accessor: 'userType',
+              Cell: observer(row => i18next.t(`props.${row.original.userType.toLowerCase()}`, { ns: 'users' })),
             },
           ]}
         />
@@ -101,7 +106,9 @@ class RolesList extends React.Component {
         <Header as="h3" className="color-grey mt1 mb0 flex-auto">
           <Icon name="id badge" className="align-top" />
           <Header.Content className="left-align">
-            User Roles
+            {i18next.t('user', { ns: 'users' })}
+            {i18next.t(' ')}
+            {i18next.t('roles', { ns: 'users' })}
             {this.renderTotal()}
           </Header.Content>
         </Header>
@@ -138,4 +145,4 @@ decorate(RolesList, {
   formProcessing: observable,
 });
 
-export default inject('userRolesStore')(withRouter(observer(RolesList)));
+export default withTranslation()(inject('userRolesStore')(withRouter(observer(RolesList))));

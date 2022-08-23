@@ -15,6 +15,7 @@
 
 import _ from 'lodash';
 import { getEnv, types } from 'mobx-state-tree';
+import parseUrl from 'parse-url';
 
 import jwtDecode from 'jwt-decode';
 import { storage, getFragmentParam, removeFragmentParams } from '../../helpers/utils';
@@ -90,11 +91,13 @@ const Authentication = types
       // Then store auth token as appIdToken on client
       let newIdToken;
       if (authCode) {
-        const mainUrl = document.location.href.split('?code')[0];
+        const parse = parseUrl(document.location.href);
+        const mainUrl = `${parse.protocol}://${parse.resource}${parse.pathname}/`;
         newIdToken = await getIdToken({
           code: authCode,
           pkce: pkceCodeVerifier,
           mainUrl,
+          authProviderId: self.selectedAuthenticationProvider.providerConfigId,
         });
 
         // we remove the code from the url for a good security measure
@@ -172,8 +175,9 @@ const Authentication = types
       }
     },
     async logout({ autoLogout = false } = {}) {
+      const idToken = storage.getItem(localStorageKeys.appIdToken);
       self.cleanup();
-      return self.selectedAuthenticationProvider.logout({ autoLogout });
+      return self.selectedAuthenticationProvider.logout(idToken, { autoLogout });
     },
   }))
   .views(self => ({

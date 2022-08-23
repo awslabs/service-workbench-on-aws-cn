@@ -23,7 +23,11 @@ import { CopyToClipboard } from 'react-copy-to-clipboard';
 import By from '@amzn/base-ui/dist/parts/helpers/By';
 import { displaySuccess } from '@amzn/base-ui/dist/helpers/notification';
 
+import i18next from 'i18next';
+import { initReactI18next, withTranslation } from 'react-i18next';
 import KeyPairButtons from './parts/KeyPairButtons';
+
+i18next.use(initReactI18next);
 
 // This component is used with the TabPane to replace the default Segment wrapper since
 // we don't want to display the border.
@@ -48,7 +52,7 @@ class KeyPairCard extends React.Component {
       <>
         {this.renderStatus(keyPair)}
         {this.renderTitle(keyPair)}
-        {keyPair.desc || 'No description was provided.'}
+        {keyPair.desc || i18next.t('noDescription', { ns: 'ssh' })}
         {this.renderTabs(keyPair)}
       </>
     );
@@ -61,7 +65,7 @@ class KeyPairCard extends React.Component {
   renderTabs(keyPair) {
     const panes = [
       {
-        menuItem: 'Public Key',
+        menuItem: i18next.t('public', { ns: 'ssh' }),
         render: () => (
           <Tab.Pane attached={false} key="public-key" as={TabPaneWrapper}>
             <Observer>{() => this.renderPublicKey(keyPair)}</Observer>
@@ -69,7 +73,7 @@ class KeyPairCard extends React.Component {
         ),
       },
       {
-        menuItem: 'Private Key',
+        menuItem: i18next.t('private', { ns: 'ssh' }),
         render: () => (
           <Tab.Pane attached={false} key="private-key" as={TabPaneWrapper}>
             <Observer>{() => this.renderPrivateKey()}</Observer>
@@ -82,7 +86,7 @@ class KeyPairCard extends React.Component {
   }
 
   renderDesc(keyPair) {
-    return <p>{keyPair.desc || 'No description was provided.'}</p>;
+    return <p>{keyPair.desc || i18next.t('noDescription', { ns: 'ssh' })}</p>;
   }
 
   renderPublicKey(keyPair) {
@@ -91,13 +95,13 @@ class KeyPairCard extends React.Component {
         <Form className="flex">
           <TextArea className="flex-auto" rows={10} value={keyPair.publicKey} />
           <Popup
-            content="Copy"
+            content={i18next.t('copy')}
             trigger={
               <CopyToClipboard
                 className="ml2 mr0 mt2"
                 text={keyPair.publicKey}
                 style={{ cursor: 'pointer' }}
-                onCopy={() => displaySuccess('Copied to clipboard', 'Done')}
+                onCopy={() => displaySuccess(i18next.t('copied'), i18next.t('done'))}
               >
                 <Icon name="copy outline" size="large" />
               </CopyToClipboard>
@@ -113,29 +117,27 @@ class KeyPairCard extends React.Component {
       <Segment placeholder>
         <Header icon className="color-grey">
           <Icon name="key" />
-          Not Available
-          <Header.Subheader>
-            The private key is only available for download at the time of creating a key. This application does not
-            store the private key.
-          </Header.Subheader>
+          {i18next.t('notAvailable.header', { ns: 'ssh' })}
+          <Header.Subheader>{i18next.t('notAvailable.subheader', { ns: 'ssh' })}</Header.Subheader>
         </Header>
       </Segment>
     );
   }
 
   renderStatus(keyPair) {
-    const status = keyPair.statusInfo;
+    const status = keyPair.status;
+    const color = keyPair.statusInfo.color;
 
     return (
       <div style={{ cursor: 'default' }}>
         <Popup
           trigger={
-            <Label attached="top left" size="mini" color={status.color}>
-              {status.display}
+            <Label attached="top left" size="mini" color={color}>
+              {i18next.t(`status.${status}.display`, { ns: 'ssh' })}
             </Label>
           }
         >
-          {status.tip}
+          {i18next.t(`status.${status}.tip`, { ns: 'ssh' })}
         </Popup>
       </div>
     );
@@ -148,7 +150,7 @@ class KeyPairCard extends React.Component {
           {keyPair.name}
           <Header.Subheader>
             <span className="fs-8 color-grey">
-              Created <TimeAgo date={keyPair.createdAt} className="mr2" />{' '}
+              {i18next.t('created')} <TimeAgo date={keyPair.createdAt} className="mr2" />{' '}
               <By uid={keyPair.createdBy} className="mr2" />
             </span>
             <span className="fs-8 color-grey mr2"> {keyPair.id}</span>
@@ -165,4 +167,4 @@ decorate(KeyPairCard, {
   keyPair: computed,
 });
 
-export default inject()(withRouter(observer(KeyPairCard)));
+export default withTranslation()(inject()(withRouter(observer(KeyPairCard))));

@@ -24,11 +24,15 @@ import { displayError } from '@amzn/base-ui/dist/helpers/notification';
 import { createLink } from '@amzn/base-ui/dist/helpers/routing';
 import validate from '@amzn/base-ui/dist/models/forms/Validate';
 
+import i18next from 'i18next';
+import { initReactI18next, withTranslation } from 'react-i18next';
 import {
   getCreateAwsAccountForm,
   getCreateBaseAwsAccountFormFields,
   getCreateAwsAccountAppStreamFormFields,
 } from '../../models/forms/CreateAwsAccountForm';
+
+i18next.use(initReactI18next);
 
 class CreateAwsAccount extends React.Component {
   constructor(props) {
@@ -108,7 +112,7 @@ class CreateAwsAccount extends React.Component {
           Create AWS Account
         </Button>
         <Button floated="right" disabled={processing} onClick={this.handleCancel}>
-          Cancel
+          {i18next.t('cancel')}
         </Button>
       </div>
     );
@@ -195,4 +199,4 @@ decorate(CreateAwsAccount, {
   user: observable,
   validationErrors: observable,
 });
-export default inject('usersStore', 'awsAccountsStore')(withRouter(observer(CreateAwsAccount)));
+export default withTranslation()(inject('usersStore', 'awsAccountsStore')(withRouter(observer(CreateAwsAccount))));

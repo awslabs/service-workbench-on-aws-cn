@@ -1,0 +1,22 @@
+{
+    "or": "或",
+    "dragAndDrop": "拖放文件",
+    "uploadFiles": "上传文件",
+    "uploadFolder": "上传文件夹",
+    "uploading": "上传中",
+    "uploadComplete": "上传完毕",
+    "uploadMoreFiles": "上传更多文件",
+    "start": {
+        "es": "文件上传已完成，但出现 {{n}} 个错误",
+        "e": "文件上传失败",
+        "s": "文件上传成功！",
+        "err": "文件上传失败: {{error}}"
+    },
+    "uploadTable": {
+        "folder": "文件夹",
+        "filename": "文件名",
+        "size": "大小",
+        "status": "状态"
+    },
+    "files": "文件"
+}

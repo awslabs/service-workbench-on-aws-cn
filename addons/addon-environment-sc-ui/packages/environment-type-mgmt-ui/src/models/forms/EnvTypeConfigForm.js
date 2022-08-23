@@ -14,9 +14,8 @@
  */
 
 import _ from 'lodash';
-import { createForm } from '@amzn/base-ui/dist/helpers/form';
 
-function getEnvTypeConfigForm(envTypeConfig) {
+function getEnvTypeConfigFormFields(envTypeConfig) {
   const fields = {
     id: {
       label: 'Id',
@@ -88,8 +87,8 @@ function getEnvTypeConfigForm(envTypeConfig) {
     },
   };
 
-  return createForm(fields);
+  return fields;
 }
 
 // eslint-disable-next-line import/prefer-default-export
-export { getEnvTypeConfigForm };
+export { getEnvTypeConfigFormFields };

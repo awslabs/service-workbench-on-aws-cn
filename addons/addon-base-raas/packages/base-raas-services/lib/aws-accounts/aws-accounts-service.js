@@ -88,9 +88,11 @@ class AwsAccountsService extends Service {
     const environmentInstanceUri = this.settings.get(settingKeys.environmentInstanceFiles);
     const { s3BucketName, s3Key: s3Prefix } = s3Service.parseS3Details(environmentInstanceUri);
 
+    const partition = this.awsPartition;
+
     const accountList = await this.list({ fields: ['accountId'] });
 
-    const accountArns = accountList.map(({ accountId }) => `arn:aws:iam::${accountId}:root`);
+    const accountArns = accountList.map(({ accountId }) => `${accountId}`);
 
     // Update S3 bucket policy
     const s3Client = s3Service.api;
@@ -105,7 +107,7 @@ class AwsAccountsService extends Service {
           Effect: 'Deny',
           Principal: '*',
           Action: 's3:*',
-          Resource: [`arn:aws:s3:::${s3BucketName}/*`, `arn:aws:s3:::${s3BucketName}`],
+          Resource: [`arn:${partition}:s3:::${s3BucketName}/*`, `arn:${partition}:s3:::${s3BucketName}`],
           Condition: { Bool: { 'aws:SecureTransport': false } },
         },
         {
@@ -113,7 +115,7 @@ class AwsAccountsService extends Service {
           Effect: 'Deny',
           Principal: '*',
           Action: 's3:*',
-          Resource: `arn:aws:s3:::${s3BucketName}/*`,
+          Resource: `arn:${partition}:s3:::${s3BucketName}/*`,
           Condition: {
             StringNotEquals: {
               's3:signatureversion': 'AWS4-HMAC-SHA256',
@@ -126,7 +128,7 @@ class AwsAccountsService extends Service {
         Effect: 'Allow',
         Principal: { AWS: accountArns },
         Action: 's3:ListBucket',
-        Resource: `arn:aws:s3:::${s3BucketName}`,
+        Resource: `arn:${partition}:s3:::${s3BucketName}`,
         Condition: {
           StringLike: {
             's3:prefix': [`${s3Prefix}*`],
@@ -138,7 +140,7 @@ class AwsAccountsService extends Service {
         Effect: 'Allow',
         Principal: { AWS: accountArns },
         Action: ['s3:GetObject'],
-        Resource: [`arn:aws:s3:::${s3BucketName}/${s3Prefix}*`],
+        Resource: [`arn:${partition}:s3:::${s3BucketName}/${s3Prefix}*`],
       };
 
       const Policy = JSON.stringify({
@@ -313,18 +315,15 @@ class AwsAccountsService extends Service {
       { action: 'update', conditions: [allowIfActive, allowIfAdmin] },
       rawData,
     );
-
     // Validate input
     const [validationService] = await this.service(['jsonSchemaValidationService']);
     await validationService.ensureValid(rawData, updateSchema);
-
     // For now, we assume that 'updatedBy' is always a user and not a group
     const by = _.get(requestContext, 'principalIdentifier.uid');
     const { id, rev } = rawData;
 
     // Verify active Non-AppStream environments do not exist
     await this.checkForActiveNonAppStreamEnvs(requestContext, id);
-
     const awsAccount = await this.mustFind(requestContext, { id });
     const accountId = awsAccount.accountId;
     const appStreamImageName = rawData.appStreamImageName;

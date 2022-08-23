@@ -7,8 +7,11 @@ import { Button, Table, List, Label } from 'semantic-ui-react';
 
 import { displayError } from '@amzn/base-ui/dist/helpers/notification';
 
+import i18next from 'i18next';
+import { initReactI18next, withTranslation } from 'react-i18next';
 import CopyToClipboard from '../../helpers/CopyToClipboard';
 
+i18next.use(initReactI18next);
 const openWindow = (url, windowFeatures) => {
   return window.open(url, '_blank', windowFeatures);
 };
@@ -310,4 +313,4 @@ decorate(ScEnvironmentRdpConnectionRow, {
   toggleShowPassword: action,
 });
 
-export default inject('scEnvironmentsStore')(withRouter(observer(ScEnvironmentRdpConnectionRow)));
+export default withTranslation()(inject('scEnvironmentsStore')(withRouter(observer(ScEnvironmentRdpConnectionRow))));

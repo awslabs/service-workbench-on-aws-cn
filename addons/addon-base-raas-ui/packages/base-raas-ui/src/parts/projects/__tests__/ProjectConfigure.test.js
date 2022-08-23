@@ -15,6 +15,17 @@
 
 import ProjectConfigure from '../ProjectConfigure';
 
+jest.mock('react-i18next', () => ({
+  withTranslation: () => Component => {
+    Component.defaultProps = { ...Component.defaultProps, t: () => '' };
+    return Component;
+  },
+  initReactI18next: {
+    type: '3rdParty',
+    init: jest.fn(),
+  },
+}));
+
 jest.mock('@amzn/base-ui/dist/helpers/notification');
 const notificationMock = require('@amzn/base-ui/dist/helpers/notification');
 

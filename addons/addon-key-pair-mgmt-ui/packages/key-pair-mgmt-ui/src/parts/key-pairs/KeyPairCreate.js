@@ -19,7 +19,11 @@ import { withRouter } from 'react-router-dom';
 import { Container, Breadcrumb, Segment } from 'semantic-ui-react';
 import { gotoFn } from '@amzn/base-ui/dist/helpers/routing';
 
+import i18next from 'i18next';
+import { initReactI18next, withTranslation } from 'react-i18next';
 import KeyPairCreateForm from './parts/KeyPairCreateForm';
+
+i18next.use(initReactI18next);
 
 // expected props
 class KeyPairCreate extends React.Component {
@@ -51,10 +55,10 @@ class KeyPairCreate extends React.Component {
     return (
       <Breadcrumb className="block mb3">
         <Breadcrumb.Section link onClick={() => goto('/key-pair-management')}>
-          SSH Keys
+          {i18next.t('name_s', { ns: 'ssh' })}
         </Breadcrumb.Section>
         <Breadcrumb.Divider icon="right angle" />
-        <Breadcrumb.Section active>Create Key</Breadcrumb.Section>
+        <Breadcrumb.Section active>{i18next.t('create', { ns: 'ssh' })}</Breadcrumb.Section>
       </Breadcrumb>
     );
   }
@@ -63,4 +67,4 @@ class KeyPairCreate extends React.Component {
 // see https://medium.com/@mweststrate/mobx-4-better-simpler-faster-smaller-c1fbc08008da
 decorate(KeyPairCreate, {});
 
-export default inject()(withRouter(observer(KeyPairCreate)));
+export default withTranslation()(inject()(withRouter(observer(KeyPairCreate))));

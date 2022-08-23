@@ -20,11 +20,15 @@ import { decorate, observable, action, runInAction } from 'mobx';
 import { Button, Dimmer, Header, List, Loader, Dropdown, Segment } from 'semantic-ui-react';
 import _ from 'lodash';
 
+import i18next from 'i18next';
+import { initReactI18next, withTranslation } from 'react-i18next';
 import { displayError } from '@amzn/base-ui/dist/helpers/notification';
 import { createLink } from '@amzn/base-ui/dist/helpers/routing';
 import validate from '@amzn/base-ui/dist/models/forms/Validate';
 
 import { getAddProjectForm, getAddProjectFormFields } from '../../models/forms/AddProjectForm';
+
+i18next.use(initReactI18next);
 
 class AddProject extends React.Component {
   constructor(props) {
@@ -61,7 +65,7 @@ class AddProject extends React.Component {
     return (
       <div className="mt2 animated fadeIn">
         <Header as="h2" icon textAlign="center" className="mt3" color="grey">
-          Add Project
+          {i18next.t('project.addProject', { ns: 'accounts' })}
         </Header>
         <div className="mt3 ml3 mr3 animated fadeIn">{this.renderAddProjectForm()}</div>
       </div>
@@ -87,7 +91,7 @@ class AddProject extends React.Component {
           <input
             type={type}
             defaultValue={this.project[attributeName]}
-            placeholder={fields[attributeName].placeholder || ''}
+            placeholder={i18next.t(fields[attributeName].placeholder || '', { ns: 'accounts' })}
             onChange={handleChange}
           />
         </div>
@@ -97,7 +101,7 @@ class AddProject extends React.Component {
     return (
       <Segment basic className="ui fluid form">
         <Dimmer active={processing} inverted>
-          <Loader inverted>Checking</Loader>
+          <Loader inverted>{i18next.t('checking')}</Loader>
         </Dimmer>
         {this.renderField('id', toEditableInput('id', 'id'))}
         <div className="mb4" />
@@ -121,7 +125,7 @@ class AddProject extends React.Component {
     return (
       <Dropdown
         options={projectAdminsOption}
-        placeholder={placeholder}
+        placeholder={i18next.t(placeholder, { ns: 'accounts' })}
         fluid
         multiple
         selection
@@ -143,10 +147,10 @@ class AddProject extends React.Component {
     return (
       <div className="mt3">
         <Button floated="right" color="blue" icon disabled={processing} className="ml2" onClick={this.handleSubmit}>
-          Add Project
+          {i18next.t('project.addProject', { ns: 'accounts' })}
         </Button>
         <Button floated="right" disabled={processing} onClick={this.handleCancel}>
-          Cancel
+          {i18next.t('cancel')}
         </Button>
       </div>
     );
@@ -157,7 +161,7 @@ class AddProject extends React.Component {
     return (
       <Dropdown
         options={indexIdOption}
-        placeholder="Please assign indexes to this project"
+        placeholder={i18next.t('formFields.addProject.indexId.placeholder', { ns: 'accounts' })}
         fluid
         selection
         onChange={this.handleIndexSelection}
@@ -178,7 +182,7 @@ class AddProject extends React.Component {
     return (
       <div>
         <Header className="mr3 mt0" as="h2" color="grey">
-          {label}
+          {i18next.t(label, { ns: 'accounts' })}
         </Header>
         {hasExplain && <div className="mb2">{explain}</div>}
         <div className={`ui big field input block m0 ${hasError ? 'error' : ''}`}>{component}</div>
@@ -243,4 +247,6 @@ decorate(AddProject, {
   user: observable,
   validationErrors: observable,
 });
-export default inject('usersStore', 'indexesStore', 'projectsStore')(withRouter(observer(AddProject)));
+export default withTranslation()(
+  inject('usersStore', 'indexesStore', 'projectsStore')(withRouter(observer(AddProject))),
+);

@@ -20,6 +20,10 @@ import { withRouter } from 'react-router-dom';
 import { Header, Segment, List, Button } from 'semantic-ui-react';
 
 import { gotoFn } from '@amzn/base-ui/dist/helpers/routing';
+import i18next from 'i18next';
+import { initReactI18next, withTranslation } from 'react-i18next';
+
+i18next.use(initReactI18next);
 
 // expected props
 // wizard (via props)
@@ -47,12 +51,12 @@ class StartStep extends React.Component {
     return (
       <>
         <Header as="h3" icon textAlign="center" className="mt2" color="grey">
-          Register Studies
+          {i18next.t('registerStudies', { ns: 'data' })}
         </Header>
         <Segment clearing className="pt4 pr4 pl4 pb3">
-          {this.renderBeforeYouStart()}
-          {this.renderWhatIsNext()}
-          {this.renderLimitations()}
+          {this.renderContent('beforeYouStart')}
+          {this.renderContent('whatIsNext')}
+          {this.renderContent('limitations')}
 
           <div className="mt4">
             <Button
@@ -61,81 +65,42 @@ class StartStep extends React.Component {
               primary
               icon="right arrow"
               labelPosition="right"
-              content="Next"
+              content={i18next.t('next')}
               onClick={this.handleNext}
             />
-            <Button floated="right" className="ml2" content="Cancel" onClick={this.handleCancel} />
+            <Button floated="right" className="ml2" content={i18next.t('cancel')} onClick={this.handleCancel} />
           </div>
         </Segment>
       </>
     );
   }
 
-  renderBeforeYouStart() {
-    return (
-      <>
-        <Header as="h3" className="mb0">
-          Before you start
-        </Header>
-        <p className="ui large list mt2">
-          You need to collect some information regarding the studies. The information that you need is:
-        </p>
-        <List bulleted size="large">
-          <List.Item>
-            The AWS account id of the account owning the studies and the region where the CloudFormation stack will be
-            deployed
-          </List.Item>
-          <List.Item>The bucket name and region containing the studies</List.Item>
-          <List.Item>
-            The KMS ARN used to encrypt the bucket (if one is used) or the KMS ARNs used to encrypt each study
-          </List.Item>
-          <List.Item>The path of each study to be registered</List.Item>
-          <List.Item>The access level desired for each study, can be either read only or read and write</List.Item>
-        </List>
-      </>
+  renderContent(key) {
+    const startStep = i18next.t('startStep', { ns: 'data' });
+    if (startStep[key] === undefined) {
+      return <></>;
+    }
+    const content = startStep[key];
+    const header = (
+      <Header as="h3" className="mb0">
+        {content.header}
+      </Header>
     );
-  }
-
-  renderWhatIsNext() {
-    return (
-      <>
-        <Header as="h3" className="mb0">
-          What to expect next
-        </Header>
-
-        <List bulleted size="large">
-          <List.Item>You will be asked to provide the information listed above</List.Item>
-          <List.Item>
-            Some fields might be pre-populated for you if you had previously registered the account and/or the bucket
-          </List.Item>
-          <List.Item>You will be asked to assign study admins for each study</List.Item>
-          <List.Item>Once you enter all the information requested, a CloudFormation template is generated</List.Item>
-          <List.Item>You will be able to create/update the stack using the generated CloudFormation template</List.Item>
-        </List>
-      </>
+    const subheader =
+      content.subheader === undefined ? <></> : <p className="ui large list mt2">{content.subheader}</p>;
+    const list = (
+      <List bulleted size="large">
+        {content.p.map(text => (
+          <List.Item>{text}</List.Item>
+        ))}
+      </List>
     );
-  }
 
-  renderLimitations() {
     return (
       <>
-        <Header as="h3" className="mb0">
-          Limitations
-        </Header>
-
-        <List bulleted size="large">
-          <List.Item>Studies can not contain other studies</List.Item>
-          <List.Item>
-            Buckets that restrict access to specific VPC endpoints and/or specific external IP addresses are not
-            supported
-          </List.Item>
-          <List.Item>
-            Different studies can be encrypted using different KMS keys, however, objects within the same study must be
-            encrypted with the same key
-          </List.Item>
-          <List.Item>Accessing buckets via fips endpoints is not supported</List.Item>
-          <List.Item>Buckets with requester pays are not supported</List.Item>
-        </List>
+        {header}
+        {subheader}
+        {list}
       </>
     );
   }
@@ -148,4 +113,4 @@ decorate(StartStep, {
   handleNext: action,
 });
 
-export default inject()(withRouter(observer(StartStep)));
+export default withTranslation()(inject()(withRouter(observer(StartStep))));

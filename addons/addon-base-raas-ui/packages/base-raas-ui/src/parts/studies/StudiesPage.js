@@ -24,11 +24,14 @@ import { niceNumber } from '@amzn/base-ui/dist/helpers/utils';
 import { gotoFn } from '@amzn/base-ui/dist/helpers/routing';
 
 import { isStoreError, isStoreNew, isStoreLoading } from '@amzn/base-ui/dist/models/BaseStore';
+import i18next from 'i18next';
+import { initReactI18next, withTranslation } from 'react-i18next';
 import { categories } from '../../models/studies/categories';
 import StudiesTab from './StudiesTab';
 import CreateStudy from './CreateStudy';
 import StudyStepsProgress from './StudyStepsProgress';
 
+i18next.use(initReactI18next);
 // This component is used with the TabPane to replace the default Segment wrapper since
 // we don't want to display the border.
 // eslint-disable-next-line react/prefer-stateless-function
@@ -102,7 +105,7 @@ class StudiesPage extends React.Component {
       <div className="flex">
         <Header as="h3" className="color-grey mt1 mb0 flex-auto">
           <Icon name="book" className="align-top" />
-          <Header.Content className="left-align">Studies</Header.Content>
+          <Header.Content className="left-align">{i18next.t('study.name_s', { ns: 'studies' })}</Header.Content>
         </Header>
         {canCreateStudy && hasProjects && <CreateStudy />}
       </div>
@@ -134,7 +137,7 @@ class StudiesPage extends React.Component {
     const studyPanes = _.map(applicableCategories, category => ({
       menuItem: (
         <Menu.Item data-testid="table-tab" key={category.id}>
-          {category.name} {getMenuItemLabel(category)}
+          {i18next.t(`category.${category.id}`, { ns: 'studies' })} {getMenuItemLabel(category)}
         </Menu.Item>
       ),
       render: () => (
@@ -165,41 +168,34 @@ class StudiesPage extends React.Component {
 
     if (empty && canCreateStudy && canSelectStudy && hasProjects) {
       return this.renderWarningWithButton({
-        content: (
-          <>
-            Select one or more studies to proceed to the next step or create a study by clicking on <b>Create Study</b>{' '}
-            button at the top.
-          </>
-        ),
+        content: i18next.t('selectToProceedOrCreate', { ns: 'studies' }),
       });
     }
 
     if (empty && canCreateStudy && canSelectStudy && !hasProjects) {
       return this.renderWarning({
-        header: 'Missing association with one or more projects!',
-        content:
-          "You won't be able to select or create studies because you currently don't have any association with one or more projects, please contact your administrator.",
+        header: i18next.t('missAssociation.header', { ns: 'studies' }),
+        content: i18next.t('missAssociation.subheader', { ns: 'studies' }),
       });
     }
 
     if (empty && canSelectStudy && !canCreateStudy) {
       return this.renderWarningWithButton({
-        content: 'Select one or more studies to proceed to the next step.',
+        content: i18next.t('selectToProceed', { ns: 'studies' }),
       });
     }
 
     if (empty) {
       return this.renderWarning({
-        header: 'Limited access',
-        content:
-          'You currently have limited access and will not be able to select studies to proceed to the next step.',
+        header: i18next.t('limitedAccess.header', { ns: 'studies' }),
+        content: i18next.t('limitedAccess.subheader', { ns: 'studies' }),
       });
     }
 
     return (
       <Message visible className="clearfix" info>
         <Button icon labelPosition="right" className="ml2" floated="right" onClick={this.handleNext} color="blue">
-          Next
+          {i18next.t('next')}
           <Icon name="right arrow" />
         </Button>
         {// If envTypeId is present then it means we landed on this page after
@@ -211,13 +207,13 @@ class StudiesPage extends React.Component {
             icon="left arrow"
             labelPosition="left"
             className="ml2"
-            content="Previous"
+            content={i18next.t('previous')}
             onClick={this.handlePrevious}
           />
         )}
         <div className="mt1">
           <span>
-            Selected studies
+            {i18next.t('selectedStudies', { ns: 'studies' })}
             <Label circular color="blue" className="ml1">
               {niceNumber(count)}
             </Label>{' '}
@@ -243,7 +239,7 @@ class StudiesPage extends React.Component {
     return (
       <Message visible className="clearfix" warning>
         <Button icon labelPosition="right" className="ml2" floated="right" disabled>
-          Next
+          {i18next.t('next')}
           <Icon name="right arrow" />
         </Button>
         {// If envTypeId is present then it means we landed on this page after
@@ -255,7 +251,7 @@ class StudiesPage extends React.Component {
             icon="left arrow"
             labelPosition="left"
             className="ml2"
-            content="Previous"
+            content={i18next.t('previous')}
             onClick={this.handlePrevious}
           />
         )}
@@ -282,4 +278,6 @@ decorate(StudiesPage, {
   handleNext: action,
 });
 
-export default inject('filesSelection', 'studiesStoresMap', 'userStore')(withRouter(observer(StudiesPage)));
+export default withTranslation()(
+  inject('filesSelection', 'studiesStoresMap', 'userStore')(withRouter(observer(StudiesPage))),
+);

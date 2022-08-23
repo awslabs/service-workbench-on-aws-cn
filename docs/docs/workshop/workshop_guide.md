@@ -66,6 +66,7 @@ Service Workbench on AWS 的详细介绍请参考[Service Workbench](/zh/introdu
         如果上面命令由于网络原因执行失败，请重复执行，或者使用镜像站替代：
         ```
         wget -qO- https://raw.staticdn.net/nvm-sh/nvm/v0.35.3/install.sh | bash
+        source ~/.bashrc
         ```
         :::
 
@@ -77,7 +78,7 @@ Service Workbench on AWS 的详细介绍请参考[Service Workbench](/zh/introdu
         ```
         - 安装 golang
         ```
-        sudo yum install golang
+        sudo yum install -y golang
         ```
 
         - 验证软件是否安装成功
@@ -188,11 +189,11 @@ Service Workbench on AWS 的详细介绍请参考[Service Workbench](/zh/introdu
         部署大概15 ~ 20分钟，如果出现下面的输出，代码Service Workbench部署完成
         [![](img/swb-deploy-success.png)](img/swb-deploy-success.png)
 
-        部署完成后访问`Website URL` 域名，如果出现下面登陆页面则代表部署成功：
+        部署完成后访问`Website URL` 域名，并忽略HTTPS证书无效的错误。随后，如果出现下面登录页面则代表部署成功：
         [![](img/swb-login-page.png)](img/swb-login-page.png)
 
 ## 使用 Service Workbench
-- 使用的`rootUserEmail`登陆Service Workbench.
+- 使用的`rootUserEmail`登录Service Workbench.
 
 - 添加一个 AWS 账户，参考[添加一个AWS 账户](/zh/user_guide/sidebar/admin/accounts/aws_accounts/invite_member_account)
 
@@ -228,7 +229,7 @@ Service Workbench on AWS 的详细介绍请参考[Service Workbench](/zh/introdu
 
 - 编辑已经创建的Study，选择**权限**, 授予 Researcher 读写权限，参考[更改组织数据集的权限](/zh/user_guide/sidebar/common/studies/studies_page#更改组织数据集的权限)
 
-- Logout root user, 使用上面创建的 Researcher 用户登陆。
+- Logout root user, 使用上面创建的 Researcher 用户登录。
 
 - 选择一个数据集和上面导入的 Sagemaker workspace type, 创建workspace，创建成功后数据集会自动mount到workspace中。参考[创建工作区](/zh/user_guide/sidebar/common/workspaces/create_workspace_study)
 

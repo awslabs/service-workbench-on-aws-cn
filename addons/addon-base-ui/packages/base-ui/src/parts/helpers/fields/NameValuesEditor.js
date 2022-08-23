@@ -18,7 +18,11 @@ import { observer } from 'mobx-react';
 import { action, decorate, observable, runInAction } from 'mobx';
 import { Button, Icon, Table } from 'semantic-ui-react';
 
+import i18next from 'i18next';
+import { initReactI18next, withTranslation } from 'react-i18next';
 import EditableNameValueRow from './EditableNameValueRow';
+
+i18next.use(initReactI18next);
 
 // expected props
 // - field (via props) -- this is the mobx form field object. The field's value is a JSON string representation
@@ -52,9 +56,13 @@ class NameValuesEditor extends React.Component {
   }
 
   render() {
-    const nameHeader = _.isNil(this.props.nameHeader) ? 'Name' : this.props.nameHeader;
-    const valueHeader = _.isNil(this.props.valueHeader) ? 'Value' : this.props.valueHeader;
-    const actionHeader = _.isNil(this.props.actionHeader) ? 'Action' : this.props.actionHeader;
+    const nameHeader = _.isNil(this.props.nameHeader) ? i18next.t('tag.name', { ns: 'types' }) : this.props.nameHeader;
+    const valueHeader = _.isNil(this.props.valueHeader)
+      ? i18next.t('tag.value', { ns: 'types' })
+      : this.props.valueHeader;
+    const actionHeader = _.isNil(this.props.actionHeader)
+      ? i18next.t('tag.action', { ns: 'types' })
+      : this.props.actionHeader;
 
     const rows = _.map(this.nameValues, ({ name, value }, rowIdx) => this.renderNameValueLine({ rowIdx, name, value }));
 
@@ -197,4 +205,4 @@ decorate(NameValuesEditor, {
   handleNameValueDelete: action,
 });
 
-export default observer(NameValuesEditor);
+export default withTranslation()(observer(NameValuesEditor));

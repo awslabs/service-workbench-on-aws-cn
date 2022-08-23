@@ -22,8 +22,11 @@ import { action, computed, decorate, observable, runInAction } from 'mobx';
 import { displayError } from '@amzn/base-ui/dist/helpers/notification';
 import { gotoFn } from '@amzn/base-ui/dist/helpers/routing';
 
+import i18next from 'i18next';
+import { initReactI18next, withTranslation } from 'react-i18next';
 import * as EnvTypeStatusEnum from '../../models/environment-types/EnvTypeStatusEnum';
 
+i18next.use(initReactI18next);
 class EnvTypeCard extends Component {
   constructor(props) {
     super(props);
@@ -59,7 +62,7 @@ class EnvTypeCard extends Component {
         size="mini"
         disabled={this.processing}
       >
-        Edit
+        {i18next.t('edit')}
       </Button>,
       <Button
         key="env-type-mgmt-action-delete"
@@ -70,7 +73,7 @@ class EnvTypeCard extends Component {
         size="mini"
         disabled={this.processing}
       >
-        Delete
+        {i18next.t('delete')}
       </Button>,
       this.renderDeleteConfirmation(envType),
       <Button
@@ -82,7 +85,7 @@ class EnvTypeCard extends Component {
         size="mini"
         disabled={this.processing}
       >
-        {isApproved ? 'Revoke' : 'Approve'}
+        {isApproved ? i18next.t('revoke', { ns: 'types' }) : i18next.t('approve', { ns: 'types' })}
       </Button>,
     ];
     const mgmtActions = pluginRegistry.visitPlugins(
@@ -101,7 +104,7 @@ class EnvTypeCard extends Component {
           <Card.Meta className="flex">
             <span className="fs-8 color-grey mr2">{envType.id}</span>
             <Label className="ml1" size="mini" color={isApproved ? 'green' : 'red'}>
-              {isApproved ? 'Approved' : 'Not Approved'}
+              {isApproved ? i18next.t('approved', { ns: 'types' }) : i18next.t('notApproved', { ns: 'types' })}
             </Label>
           </Card.Meta>
           {_.map(metaActions, c => c)}
@@ -129,14 +132,13 @@ class EnvTypeCard extends Component {
         onClose={this.hideDeleteDialog}
         closeOnDimmerClick={!processing}
       >
-        <Modal.Header>Delete {envType.name}</Modal.Header>
+        <Modal.Header>
+          {i18next.t('workspaceType.delete.header', { ns: 'types' })}: <strong>{envType.name}</strong>
+        </Modal.Header>
         <Modal.Content>
-          <p>Are you sure you want to delete {envType.name}?</p>
-          <p>
-            Once you delete environment type, users will not be able launch them. You will need to re-import it from the
-            AWS Service Catalog Product.
-          </p>
-          <p>Is it okay to delete?</p>
+          <p>{i18next.t('workspaceType.delete.p1', { ns: 'types', name: envType.name })}</p>
+          <p>{i18next.t('workspaceType.delete.p2', { ns: 'types' })}</p>
+          <p>{i18next.t('workspaceType.delete.p3', { ns: 'types' })}</p>
         </Modal.Content>
         <Modal.Actions>
           <Button
@@ -149,7 +151,7 @@ class EnvTypeCard extends Component {
             onClick={this.hideDeleteDialog}
           >
             <Icon name="close" />
-            Cancel
+            {i18next.t('cancel')}
           </Button>
           <Button
             basic
@@ -160,7 +162,7 @@ class EnvTypeCard extends Component {
             disabled={this.processing}
             onClick={() => this.handleDeleteClick(envType.id)}
           >
-            <Icon name="trash" /> Delete
+            <Icon name="trash" /> {i18next.t('delete')}
           </Button>
         </Modal.Actions>
       </Modal>
@@ -229,4 +231,4 @@ decorate(EnvTypeCard, {
   showDeleteDialog: action,
   hideDeleteDialog: action,
 });
-export default inject('pluginRegistry')(withRouter(observer(EnvTypeCard)));
+export default withTranslation()(inject('pluginRegistry')(withRouter(observer(EnvTypeCard))));

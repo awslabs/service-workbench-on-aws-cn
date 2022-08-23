@@ -22,6 +22,10 @@ import { formatBytes, swallowError } from '@amzn/base-ui/dist/helpers/utils';
 import { isStoreError, isStoreLoading, isStoreEmpty, stopHeartbeat } from '@amzn/base-ui/dist/models/BaseStore';
 import BasicProgressPlaceholder from '@amzn/base-ui/dist/parts/helpers/BasicProgressPlaceholder';
 import ErrorBox from '@amzn/base-ui/dist/parts/helpers/ErrorBox';
+import i18next from 'i18next';
+import { initReactI18next, withTranslation } from 'react-i18next';
+
+i18next.use(initReactI18next);
 
 // expected props
 // - study
@@ -65,9 +69,9 @@ class StudyFilesTable extends React.Component {
         <Table striped>
           <Table.Header>
             <Table.Row>
-              <Table.HeaderCell>Filename</Table.HeaderCell>
-              <Table.HeaderCell>Size</Table.HeaderCell>
-              <Table.HeaderCell>Last Modified</Table.HeaderCell>
+              <Table.HeaderCell>{i18next.t('fileTable.filename', { ns: 'studies' })}</Table.HeaderCell>
+              <Table.HeaderCell>{i18next.t('fileTable.size', { ns: 'studies' })}</Table.HeaderCell>
+              <Table.HeaderCell>{i18next.t('fileTable.lastModified', { ns: 'studies' })}</Table.HeaderCell>
             </Table.Row>
           </Table.Header>
 
@@ -90,8 +94,8 @@ class StudyFilesTable extends React.Component {
       <Segment placeholder className="mt0">
         <Header icon className="color-grey">
           <Icon name="file outline" />
-          No files
-          <Header.Subheader>No files are uploaded yet for this study</Header.Subheader>
+          {i18next.t('fileTable.empty.header', { ns: 'studies' })}
+          <Header.Subheader>{i18next.t('fileTable.empty.subheader', { ns: 'studies' })}</Header.Subheader>
         </Header>
       </Segment>
     );
@@ -102,4 +106,4 @@ decorate(StudyFilesTable, {
   filesStore: observable,
 });
 
-export default observer(StudyFilesTable);
+export default withTranslation()(observer(StudyFilesTable));

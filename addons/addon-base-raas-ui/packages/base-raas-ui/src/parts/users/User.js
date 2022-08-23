@@ -17,17 +17,20 @@ import React from 'react';
 import { Tab, Segment, Container } from 'semantic-ui-react';
 import { inject, observer } from 'mobx-react';
 import { withRouter } from 'react-router-dom';
+import i18next from 'i18next';
+import { initReactI18next, withTranslation } from 'react-i18next';
 import RolesList from './RolesList';
 import UsersList from './UsersList';
 
-const panes = [
-  { menuItem: 'Users', render: () => <UsersList /> },
-  { menuItem: 'Roles', render: () => <RolesList /> },
-];
+i18next.use(initReactI18next);
 
 // eslint-disable-next-line react/prefer-stateless-function
 class User extends React.Component {
   render() {
+    const panes = [
+      { menuItem: i18next.t('users', { ns: 'users' }), render: () => <UsersList /> },
+      { menuItem: i18next.t('roles', { ns: 'users' }), render: () => <RolesList /> },
+    ];
     if (!this.props.userStore.cloneUser.isAdmin) {
       this.props.history.push('/');
     }
@@ -41,4 +44,4 @@ class User extends React.Component {
   }
 }
 
-export default inject('userStore')(withRouter(observer(User)));
+export default withTranslation()(inject('userStore')(withRouter(observer(User))));

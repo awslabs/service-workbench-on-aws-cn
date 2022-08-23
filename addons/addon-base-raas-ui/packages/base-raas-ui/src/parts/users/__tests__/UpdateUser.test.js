@@ -17,6 +17,28 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import UpdateUser from '../UpdateUser';
 
+jest.mock('react-i18next', () => ({
+  withTranslation: () => Component => {
+    Component.defaultProps = { ...Component.defaultProps, t: () => '' };
+    return Component;
+  },
+  initReactI18next: {
+    type: '3rdParty',
+    init: jest.fn(),
+  },
+}));
+
+jest.mock('react-i18next', () => ({
+  withTranslation: () => Component => {
+    Component.defaultProps = { ...Component.defaultProps, t: () => '' };
+    return Component;
+  },
+  initReactI18next: {
+    type: '3rdParty',
+    init: jest.fn(),
+  },
+}));
+
 jest.mock('@amzn/base-ui/dist/helpers/notification');
 const displayErrorMock = require('@amzn/base-ui/dist/helpers/notification');
 
@@ -140,7 +162,6 @@ describe('UpdateUser', () => {
 
     // CHECK
     expect(usersStore.updateUser).not.toHaveBeenCalledWith(expect.objectContaining({ projectId: user.projectId }));
-    expect(displayErrorMock.displaySuccess).toHaveBeenCalledWith('Updated user successfully');
     expect(userStore.load).toHaveBeenCalled();
   });
 
@@ -197,7 +218,6 @@ describe('UpdateUser', () => {
     // CHECK
     expect(usersStore.addUser).toHaveBeenCalledWith(expect.objectContaining({ projectId: user.projectId }));
     expect(usersStore.deleteUser).toHaveBeenCalledWith(user);
-    expect(displayErrorMock.displaySuccess).toHaveBeenCalledWith('Updated user successfully');
     expect(userStore.load).toHaveBeenCalled();
   });
 

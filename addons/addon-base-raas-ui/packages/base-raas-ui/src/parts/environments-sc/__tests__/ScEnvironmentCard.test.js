@@ -16,6 +16,17 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
+jest.mock('react-i18next', () => ({
+  withTranslation: () => Component => {
+    Component.defaultProps = { ...Component.defaultProps, t: () => '' };
+    return Component;
+  },
+  initReactI18next: {
+    type: '3rdParty',
+    init: jest.fn(),
+  },
+}));
+
 // Mock buttons to avoid error
 jest.mock('../parts/ScEnvironmentButtons', () => ({
   __ScEnvironmentButtons: true,

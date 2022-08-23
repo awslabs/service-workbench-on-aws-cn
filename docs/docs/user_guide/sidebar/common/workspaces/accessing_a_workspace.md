@@ -20,7 +20,8 @@ after a short delay.
 > Note: the password for EMR instance is 'go-research-on-aws'
 
 ### Connect to EC2 Linux
-
+Currently, Service Workbench supports two ways to connect EC2 Linux, SSH and Session Manager.
+#### SSH
 1. Click the connections button shown in EC2 Linux instance
 2. Click Create Key button, download the key file (This is the only chance to download the key file)
 3. Save the key file locally and run `chmod 600` to restrict access to the key file
@@ -28,6 +29,12 @@ after a short delay.
 5. If the 60 seconds count down on the page times out, simply click ‘Use this SSH Key’ button again and continue
 6. SSH to the EC2 Linux machine using the command shown on the screen. Note that you may need to adjust the path of the private key on your local machine.
 7. Once you SSH, the selected studies will show up as mounted directories on the EC2 Linux instance. These study directories will contain files uploaded to the corresponding study. Any files uploaded to the study from the Service Workbench will automatically appear in the mounted study directories after a short delay.
+
+#### Session Manager
+1. Click the connections button shown in EC2 Linux instance
+2. Choose `SSM Connections`, click `Connect` to access EC2 Linux as `ssm-user` user.
+3. Run `sudo su ec2-user` to change to `ec2-user` user.
+4. The selected studies will show up as mounted directories on the EC2 Linux instance `/home/ec2-user` folder. These study directories will contain files uploaded to the corresponding study. Any files uploaded to the study from the Service Workbench will automatically appear in the mounted study directories after a short delay.
 
 ### Connect to EC2 Windows
 

@@ -10,7 +10,7 @@ You can select your own stage name. If you are planning to deploy the solution o
 
 ### Separately deployable components
 
-The Service Workbench code is divided into multiple (currently seven) separately deployable components (SDCs): backend, UI, post-deployment, edge-lambda, infrastructure, machine-images, and prepare-aster-acc. Each SDC has a directory in the location, main/solution. You can run the script either from the root directory or also deploy each SDC separately using individual scripts.  For more information, see  [serverless framework and projects](/installation_guide/components).
+The Service Workbench code is divided into multiple (currently seven) separately deployable components (SDCs): backend, UI, post-deployment, pre-deployment, edge-lambda, infrastructure, machine-images, and prepare-aster-acc. Each SDC has a directory in the location, main/solution. You can run the script either from the root directory or also deploy each SDC separately using individual scripts.  For more information, see  [serverless framework and projects](/installation_guide/components).
 
 ### Prepare the main configuration file
 
@@ -27,6 +27,19 @@ To create a custom (stage-named) settings file, in the directory, `main/config/s
 | `envType`      | `prod`       |
 | `enableExternalResearchers`   | `false`        |
 
+### Custom Identity Provider
+The Service Workbench built-in IdP is Cognito User Pool, if you don't want to use Cognito User Pool as IdP or the deployment region does not support Cognito User Pool, such as Beijing, Ningxia and Hongkong. You can use external OIDC IdPs, such as Keycloak, Authing and Okta to integrate with Service Workbench.
+
+To use OIDC IdP, you need install or apply OIDC IdP at first, refer [OIDC Providers Settings](./oidc-providers), and then add below configurations in `<stage>.yml` file:
+```
+defaultIdpType: oidc
+oidcIssuer: xxx
+oidcClientId: xxx
+rootUserEmail: xxx
+rootUserFirstName: xxx
+rootUserLastName: xxx
+```
+
 ### Custom domain names
 
 To use a custom domain name, enter the domain name and the ARN for the manually created TLS certificate.
@@ -34,8 +47,9 @@ To use a custom domain name, enter the domain name and the ARN for the manually 
 domainName: host.domain.toplevel
 certificateArn: <ARN>
 ```
-**Note**: The current implementation assumes that DNS is handled elsewhere. A future improvement will automatically handle creation of the cert and Route 53 entries.
-**Note**: This is an optional step during Service Workbench installation.
+* **Note**: The current implementation assumes that DNS is handled elsewhere. A future improvement will automatically handle creation of the cert and Route 53 entries.
+* **Note**: This is an optional step during Service Workbench installation. For Beijing/Ningxia regions, `domainName` configuration is mandatory. please refer [China Regions Prerequisites](./china-prerequisites) to create ICP licensed domain.
+* **Note**: If DNS resolution is not managed in current aws account Route 53, please set `customDomainInR53` config as `false`.
 
 ### Namespace
 
@@ -45,6 +59,14 @@ The names of many deployed resources include a namespace string such as `mystage
 + Region short name (for example: `va` for US-East-1, or for US-West-2, defined in `.defaults.yml`)
 + Solution name
 
+### Other configurations for Beijing/Ningxia regions
+Please set below configurations in `<stage>.yml` file if you deploy Service Workbench in Beijing/Ningxia region.
+
+```
+awsPartition: aws-cn
+awsSuffix: amazonaws.com.cn
+```
+
 ### Prepare SDC configuration files
 
 Each SDC has a `config/settings` directory, where you can place customized settings. Settings files are named after the stage name `<mystagename.yml>`. Some of the SDC settings directories contain an `example.yml` file that may be copied and renamed as a settings file for that SDC. Otherwise, a default file `.defaults.yml` in that directory is read and used regardless of the stage name.
@@ -53,8 +75,7 @@ Each SDC has a `config/settings` directory, where you can place customized setti
 
 ### Accessing the Service Workbench source code
 
-Download the latest source code by using [this link](https://github.com/awslabs/service-workbench-on-aws/tags) and run the following command:
-`curl -o serviceworkbench.zip <URL>`
+Download the latest source code by using [this link](https://github.com/awslabs/service-workbench-on-aws-cn/tags), copy `Source code (zip)` link address, and run the following command: `wget <URL>`, then run `unzip` to decompress code package
 
 **Note**: Setting the configuration is required. If you are deploying an installation, you can use the default configuration.
 
@@ -77,4 +98,7 @@ The following regions support all the AWS services and features needed to run Se
 + Europe (Paris)
 + Europe (Stockholm)
 + South America (São Paulo)
++ China (Beijing) Region Operated by Sinnet
++ China (Ningxia) Region operated by NWCD
++ Asia Pacific (Hong Kong)
 

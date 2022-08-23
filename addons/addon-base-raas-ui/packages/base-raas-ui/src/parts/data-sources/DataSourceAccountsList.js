@@ -32,8 +32,11 @@ import {
 import ErrorBox from '@amzn/base-ui/dist/parts/helpers/ErrorBox';
 import ProgressPlaceHolder from '@amzn/base-ui/dist/parts/helpers/BasicProgressPlaceholder';
 
+import i18next from 'i18next';
+import { initReactI18next, withTranslation } from 'react-i18next';
 import DataSourceAccountCard from './DataSourceAccountCard';
 
+i18next.use(initReactI18next);
 // expected props
 // - dataSourceAccountsStore (via injection)
 class DataSourceAccountsList extends React.Component {
@@ -107,8 +110,8 @@ class DataSourceAccountsList extends React.Component {
       <Segment data-testid="data-sources-accounts" placeholder>
         <Header icon className="color-grey">
           <Icon name="database" />
-          No data sources
-          <Header.Subheader>To create a data source, click Register Studies.</Header.Subheader>
+          {i18next.t('noDataSources.header', { ns: 'data' })}
+          <Header.Subheader>{i18next.t('noDataSources.subheader', { ns: 'data' })}</Header.Subheader>
         </Header>
       </Segment>
     );
@@ -119,11 +122,13 @@ class DataSourceAccountsList extends React.Component {
       <div className="mb3 flex">
         <Header as="h3" className="color-grey mt1 mb0 flex-auto">
           <Icon name="database" className="align-top" />
-          <Header.Content className="left-align">Data Sources {this.renderTotal()}</Header.Content>
+          <Header.Content className="left-align">
+            {i18next.t('dataSources', { ns: 'data' })} {this.renderTotal()}
+          </Header.Content>
         </Header>
         <div>
           <Button data-testid="register-data-studies" color="blue" size="medium" onClick={this.handleRegisterStudies}>
-            Register Studies
+            {i18next.t('registerStudies', { ns: 'data' })}
           </Button>
         </div>
       </div>
@@ -144,4 +149,4 @@ decorate(DataSourceAccountsList, {
   handleRegisterStudies: action,
 });
 
-export default inject('dataSourceAccountsStore')(withRouter(observer(DataSourceAccountsList)));
+export default withTranslation()(inject('dataSourceAccountsStore')(withRouter(observer(DataSourceAccountsList))));

@@ -16,6 +16,10 @@
 const _ = require('lodash');
 const Service = require('@amzn/base-services-container/lib/service');
 
+const settingKeys = {
+  awsRegion: 'awsRegion',
+};
+
 /**
  * Post deployment step implementation that configures cloudFront interceptor (Lambda@Edge) to the website
  * cloudFront distribution.
@@ -31,6 +35,13 @@ class CreateCloudFrontInterceptor extends Service {
   }
 
   async execute() {
+    // skip this execution if the regions are not support lambdaedge
+    const region = this.settings.get(settingKeys.awsRegion);
+
+    if (region.startsWith('cn-')) {
+      return;
+    }
+
     /*
      * Pseudo Code:
      * -- Get latest Lambda@Edge function ARN that needs to be configured from the settings

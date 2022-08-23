@@ -22,9 +22,12 @@ import { Button, Header, Dimmer, Loader } from 'semantic-ui-react';
 import { displayError, displaySuccess } from '@amzn/base-ui/dist/helpers/notification';
 import { gotoFn } from '@amzn/base-ui/dist/helpers/routing';
 
+import i18next from 'i18next';
+import { initReactI18next, withTranslation } from 'react-i18next';
 import getUIState from '../../../workflow-common/component-states/WorkflowCommonCardState';
 import WorkflowTemplateCardTabs from '../../WorkflowTemplateCardTabs';
 
+i18next.use(initReactI18next);
 // expected props
 // - editor (via prop) an instance of the WorkflowTemplateDraftEditor model
 // - uiEventBus (via props)
@@ -142,7 +145,7 @@ class WorkflowTemplateDraftPublisher extends React.Component {
             onClick={this.handlePrevious}
           />
           <Button floated="left" disabled={processing} onClick={this.handleCancel}>
-            Cancel
+            {i18next.t('cancel')}
           </Button>
         </div>
       </>
@@ -158,4 +161,4 @@ decorate(WorkflowTemplateDraftPublisher, {
   processing: observable,
 });
 
-export default inject('uiEventBus')(withRouter(observer(WorkflowTemplateDraftPublisher)));
+export default withTranslation()(inject('uiEventBus')(withRouter(observer(WorkflowTemplateDraftPublisher))));

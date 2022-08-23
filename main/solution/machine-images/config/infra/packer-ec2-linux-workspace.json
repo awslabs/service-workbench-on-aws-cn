@@ -20,13 +20,15 @@
       "source_ami_filter": {
         "filters": {
           "virtualization-type": "hvm",
-          "name": "amzn2-ami-hvm-*-x86_64-gp2",
+          "name": "amzn2-ami-kernel-5.10-hvm-*-x86_64-gp2",
           "root-device-type": "ebs"
         },
-        "owners": ["amazon"],
+        "owners": [
+          "amazon"
+        ],
         "most_recent": true
       },
-      "instance_type": "t2.medium",
+      "instance_type": "t3.medium",
       "ssh_username": "ec2-user",
       "ami_name": "{{user `ec2LinuxAmiPrefix`}}-{{timestamp}}"
     }

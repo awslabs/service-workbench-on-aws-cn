@@ -17,7 +17,6 @@ const PluginRegistryService = require('@amzn/base-services/lib/plugin-registry/p
 const UserService = require('@amzn/base-raas-services/lib/user/user-service');
 const UserAuthzService = require('@amzn/base-raas-services/lib/user/user-authz-service');
 const UserRoleService = require('@amzn/base-raas-services/lib/user-roles/user-roles-service');
-const UserAttributesMapperService = require('@amzn/base-raas-services/lib/user/user-attributes-mapper-service');
 
 const settingKeys = {
   tablePrefix: 'dbPrefix',
@@ -36,7 +35,6 @@ async function registerServices(container, pluginRegistry) {
   // The base authn provider uses username by concatenating username with auth provider name and idp name
   // In Service Workbench, the email address should be used as username so register custom UserAttributesMapperService that maps
   // attribs from decoded token to user
-  container.register('userAttributesMapperService', new UserAttributesMapperService());
   container.register('userRolesService', new UserRoleService());
   container.register('pluginRegistryService', new PluginRegistryService(pluginRegistry), { lazy: false });
   container.register('raasUserAuthzService', new UserAuthzService());

@@ -22,7 +22,10 @@ import { Segment, Button, Icon, Header, Progress, Message } from 'semantic-ui-re
 
 import { swallowError } from '@amzn/base-ui/dist/helpers/utils';
 import { gotoFn } from '@amzn/base-ui/dist/helpers/routing';
+import i18next from 'i18next';
+import { initReactI18next, withTranslation } from 'react-i18next';
 
+i18next.use(initReactI18next);
 // expected props
 // - wizard (via prop)
 class SubmitStep extends React.Component {
@@ -77,7 +80,7 @@ class SubmitStep extends React.Component {
     return (
       <>
         <Header as="h3" icon textAlign="center" className="mt2" color="grey">
-          Register Studies
+          {i18next.t('registerStudies', { ns: 'data' })}
         </Header>
         <Segment clearing className="p3">
           {this.renderContent()}
@@ -97,17 +100,17 @@ class SubmitStep extends React.Component {
         <div>
           {running && (
             <Header className="mb3" as="h3" color="grey">
-              Registering Studies
+              {i18next.t('submitStep.running', { ns: 'data' })}
             </Header>
           )}
           {success && (
             <Header className="mb3" as="h3" color="grey">
-              Successfully Registered Studies
+              {i18next.t('submitStep.success', { ns: 'data' })}
             </Header>
           )}
           {error && (
             <Header className="mb3" as="h3" color="grey">
-              Error Registering Studies
+              {i18next.t('submitStep.error', { ns: 'data' })}
             </Header>
           )}
         </div>
@@ -196,7 +199,7 @@ class SubmitStep extends React.Component {
             primary
             icon="right arrow"
             labelPosition="right"
-            content="Next"
+            content={i18next.t('next')}
             loading={running}
             disabled={disabled}
             onClick={this.handleNext}
@@ -208,7 +211,7 @@ class SubmitStep extends React.Component {
             floated="right"
             color="red"
             className="ml2"
-            content="Retry"
+            content={i18next.t('retry')}
             loading={running}
             disabled={disabled}
             onClick={this.handleRetry}
@@ -216,13 +219,19 @@ class SubmitStep extends React.Component {
         )}
 
         {showCancel && (
-          <Button floated="right" className="ml2" content="Cancel" disabled={disabled} onClick={this.handleCancel} />
+          <Button
+            floated="right"
+            className="ml2"
+            content={i18next.t('cancel')}
+            disabled={disabled}
+            onClick={this.handleCancel}
+          />
         )}
         {showPrevious && (
           <Button
             floated="right"
             className="ml2"
-            content="Previous"
+            content={i18next.t('previous')}
             disabled={disabled}
             onClick={this.handlePrevious}
           />
@@ -245,4 +254,4 @@ decorate(SubmitStep, {
   handleNext: action,
 });
 
-export default inject()(withRouter(observer(SubmitStep)));
+export default withTranslation()(inject()(withRouter(observer(SubmitStep))));

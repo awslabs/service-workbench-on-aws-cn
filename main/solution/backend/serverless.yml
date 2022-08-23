@@ -8,10 +8,11 @@ package:
 
 provider:
   name: aws
-  runtime: nodejs12.x
+  runtime: nodejs16.x
   region: ${self:custom.settings.awsRegion}
   profile: ${self:custom.settings.awsProfile}
   stackName: ${self:custom.settings.envName}-${self:service}
+  endpointType: REGIONAL
   deploymentBucket:
     name: ${self:custom.settings.deploymentBucketName}
     serverSideEncryption: AES256
@@ -84,8 +85,10 @@ custom:
           environment:
             APP_LOCAL_ROLE_ARN: ${cfnOutput('DataSourceReachabilityHandlerRoleArn')} # Use same role arn as the one above (used for more frequent cron lambda)
   s3Sync:
-    - bucketName: ${self:custom.settings.externalCfnTemplatesBucketName} # required
-      localDir: ../../../addons/addon-base-raas/packages/base-raas-cfn-templates/src/templates/external
+    endpoint: https://s3.${self:custom.settings.awsRegion}.${self:custom.settings.awsSuffix}
+    buckets:
+      - bucketName: ${self:custom.settings.externalCfnTemplatesBucketName} # required
+        localDir: ../../../addons/addon-base-raas/packages/base-raas-cfn-templates/src/templates/external
 
 functions: ${file(./config/infra/functions.yml)}
 
@@ -107,17 +110,17 @@ resources:
                 Action:
                   - apigateway:GET
                   - apigateway:PATCH
-                Resource: 'arn:aws:apigateway:${self:custom.settings.awsRegion}::/account'
+                Resource: !Sub 'arn:${AWS::Partition}:apigateway:${self:custom.settings.awsRegion}::/account'
               - Effect: Allow
                 Action:
                   - iam:CreateRole
                   - iam:AttachRolePolicy
                   - iam:ListAttachedRolePolicies
                   - iam:PassRole
-                Resource: 'arn:aws:iam::${self:custom.settings.awsAccountInfo.awsAccountId}:role/serverlessApiGatewayCloudWatchRole'
+                Resource: !Sub 'arn:${AWS::Partition}:iam::${self:custom.settings.awsAccountInfo.awsAccountId}:role/serverlessApiGatewayCloudWatchRole'
                 Condition:
                   ArnEqualsIfExists:
-                    iam:PolicyARN: 'arn:aws:iam::aws:policy/service-role/AmazonAPIGatewayPushToCloudWatchLogs'
+                    iam:PolicyARN: !Sub 'arn:${AWS::Partition}:iam::aws:policy/service-role/AmazonAPIGatewayPushToCloudWatchLogs'
   - extensions:
       # Add custom permission boundary to role serverless uses for creating Cloudwatch publishing role
       IamRoleCustomResourcesLambdaExecution:

@@ -22,9 +22,13 @@ import { swallowError } from '@amzn/base-ui/dist/helpers/utils';
 import BasicProgressPlaceholder from '@amzn/base-ui/dist/parts/helpers/BasicProgressPlaceholder';
 import ErrorBox from '@amzn/base-ui/dist/parts/helpers/ErrorBox';
 
+import i18next from 'i18next';
+import { initReactI18next, withTranslation } from 'react-i18next';
 import UserOnboarding from '../users/UserOnboarding';
 import SelectComputePlatformStep from './SelectComputePlatformStep';
 import ConfigureComputePlatformStep from './ConfigureComputePlatformStep';
+
+i18next.use(initReactI18next);
 
 // expected props
 // - onPrevious (via props)
@@ -212,11 +216,8 @@ class ComputePlatformSetup extends React.Component {
         <Segment placeholder className="mt2">
           <Header icon className="color-grey">
             <Icon name="lock" />
-            Missing association with projects
-            <Header.Subheader>
-              You currently do not have permissions to use any projects for the workspace. please contact your
-              administrator.
-            </Header.Subheader>
+            {i18next.t('missingAssociation.header', { ns: 'workspaces' })}
+            <Header.Subheader>{i18next.t('missingAssociation.subheader', { ns: 'workspaces' })}</Header.Subheader>
           </Header>
         </Segment>
         {this.renderButtons()}
@@ -259,7 +260,7 @@ class ComputePlatformSetup extends React.Component {
           labelPosition="right"
           className="ml2"
           primary
-          content="Next"
+          content={i18next.t('next')}
           disabled
         />
         <Button
@@ -267,7 +268,7 @@ class ComputePlatformSetup extends React.Component {
           icon="left arrow"
           labelPosition="left"
           className="ml2"
-          content="Previous"
+          content={i18next.t('previous')}
           onClick={this.handlePrevious}
         />
       </div>
@@ -290,4 +291,6 @@ decorate(ComputePlatformSetup, {
   onboardingOpen: observable,
 });
 
-export default inject('userStore', 'computePlatformsStore', 'clientInformationStore')(observer(ComputePlatformSetup));
+export default withTranslation()(
+  inject('userStore', 'computePlatformsStore', 'clientInformationStore')(observer(ComputePlatformSetup)),
+);

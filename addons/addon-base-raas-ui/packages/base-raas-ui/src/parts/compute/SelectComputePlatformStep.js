@@ -26,6 +26,10 @@ import { isStoreLoading, isStoreError, isStoreEmpty } from '@amzn/base-ui/dist/m
 import BasicProgressPlaceholder from '@amzn/base-ui/dist/parts/helpers/BasicProgressPlaceholder';
 import { gotoFn } from '@amzn/base-ui/dist/helpers/routing';
 import ErrorBox from '@amzn/base-ui/dist/parts/helpers/ErrorBox';
+import i18next from 'i18next';
+import { initReactI18next, withTranslation } from 'react-i18next';
+
+i18next.use(initReactI18next);
 
 // expected props
 // - onPrevious (via props)
@@ -193,7 +197,7 @@ class SelectComputePlatformStep extends React.Component {
           labelPosition="right"
           className="ml2"
           primary
-          content="Next"
+          content={i18next.t('next')}
           loading={processing}
           disabled={nextDisabled || processing}
           onClick={this.handleNext}
@@ -203,7 +207,7 @@ class SelectComputePlatformStep extends React.Component {
           icon="left arrow"
           labelPosition="left"
           className="ml2"
-          content="Previous"
+          content={i18next.t('previous')}
           disabled={processing}
           onClick={this.handlePrevious}
         />
@@ -223,4 +227,6 @@ decorate(SelectComputePlatformStep, {
   selectedPlatformId: observable,
 });
 
-export default inject('userStore', 'computePlatformsStore')(withRouter(observer(SelectComputePlatformStep)));
+export default withTranslation()(
+  inject('userStore', 'computePlatformsStore')(withRouter(observer(SelectComputePlatformStep))),
+);

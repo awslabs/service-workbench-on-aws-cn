@@ -4,6 +4,7 @@
 **/node_modules
 **/npm-debug.log
 **/pnpm-debug.log
+**/.pnpm-debug.log
 **/.docusaurus
 
 .pnpm-store/*
@@ -28,6 +29,8 @@ docs/build
 */config/settings/*.yml
 !*/config/settings/.defaults.yml
 !*/config/settings/example*.yml
+!*/config/settings/workshop-cn.yml
+!*/config/settings/workshop-hk.yml
 */*/config/settings/*.yml
 !*/*/config/settings/.defaults.yml
 !*/*/config/settings/example*.yml

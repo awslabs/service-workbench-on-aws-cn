@@ -7,7 +7,7 @@ sidebar_label: Installation using EC2 instance
 1. Download the Service Workbench on AWS source code using this link and then run the following commands:
 ```
 sudo yum install -y git
-git clone https://github.com/awslabs/service-workbench-on-aws.git
+git clone https://github.com/awslabs/service-workbench-on-aws-cn.git
 ```
 
 2. Create a main Service Workbench on AWS conﬁguration ﬁle for your installation. To do this:
@@ -28,9 +28,9 @@ git clone https://github.com/awslabs/service-workbench-on-aws.git
        - solutionName (for example: `sw`): The solutionName is used in S3 bucket names so must be S3-compatible.<br />
        **Note**: Ensure that there is no leading space before the value name.
 
-3. Run the main installation script. This takes up to 15 minutes and can be run in parallel with the next step (installing AMIs).
+3. Run the main installation script. This takes around 20 minutes.
 `./scripts/environment-deploy.sh ${STAGE_NAME}`
 4. Once the preceding step has completed, capture the root password and website URL. You can display the URL and root password again by running the following command:
 `scripts/get-info.sh ${STAGE_NAME}`
-5. Verify that Service Workbench is running by using the URL and root password, using the user `root`.
+5. Verify that Service Workbench is running by using the URL and root password, using the user `root@example.com`.
 

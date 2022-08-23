@@ -24,10 +24,14 @@ import { isStoreLoading, isStoreNotEmpty, isStoreError } from '@amzn/base-ui/dis
 import ErrorBox from '@amzn/base-ui/dist/parts/helpers/ErrorBox';
 import ProgressPlaceHolder from '@amzn/base-ui/dist/parts/helpers/BasicProgressPlaceholder';
 
+import i18next from 'i18next';
+import { initReactI18next, withTranslation } from 'react-i18next';
 import { isAppStreamEnabled } from '../../helpers/settings';
 import By from '../helpers/By';
 import ScEnvironmentButtons from './parts/ScEnvironmentButtons';
 import ScEnvironmentCost from './parts/ScEnvironmentCost';
+
+i18next.use(initReactI18next);
 
 // expected props
 // - scEnvironment (via prop)
@@ -131,12 +135,24 @@ class ScEnvironmentCard extends React.Component {
     return (
       <Table data-testid="environment-card-details-table" definition>
         <Table.Body>
-          {renderRow('Owner', <By uid={env.createdBy} skipPrefix />)}
-          {renderRow('Studies', studyCount === 0 ? 'No studies linked to this workspace' : niceNumber(studyCount))}
-          {renderRow('Project', _.isEmpty(env.projectId) ? 'N/A' : env.projectId)}
-          {renderRow('Workspace Type', envType.name)}
-          {renderRow('Configuration Name', config !== undefined ? config.name : 'Unavailable')}
-          {renderRow('Instance Type', config !== undefined ? config.instanceType : 'Unavailable')}
+          {renderRow(i18next.t('detailPage.owner', { ns: 'workspaces' }), <By uid={env.createdBy} skipPrefix />)}
+          {renderRow(
+            i18next.t('detailPage.studies', { ns: 'workspaces' }),
+            studyCount === 0 ? i18next.t('detailPage.noStudies', { ns: 'workspaces' }) : niceNumber(studyCount),
+          )}
+          {renderRow(
+            i18next.t('detailPage.project', { ns: 'workspaces' }),
+            _.isEmpty(env.projectId) ? 'N/A' : env.projectId,
+          )}
+          {renderRow(i18next.t('detailPage.workspaceType', { ns: 'workspaces' }), envType.name)}
+          {renderRow(
+            i18next.t('detailPage.configurationName', { ns: 'workspaces' }),
+            config !== undefined ? config.name : i18next.t('detailPage.unavailable'),
+          )}
+          {renderRow(
+            i18next.t('detailPage.instanceType', { ns: 'workspaces' }),
+            config !== undefined ? config.instanceType : i18next.t('detailPage.unavailable'),
+          )}
         </Table.Body>
       </Table>
     );
@@ -153,11 +169,11 @@ class ScEnvironmentCard extends React.Component {
           trigger={
             <Label attached="top left" size="mini" color={state.color}>
               {state.spinner && <Icon name="spinner" loading />}
-              {state.display}
+              {i18next.t(`ScEnvironment.state.${state.key}.display`, { ns: 'workspaces' })}
             </Label>
           }
         >
-          {state.tip}
+          {i18next.t(`ScEnvironment.state.${state.key}.tip`, { ns: 'workspaces' })}
         </Popup>
       </div>
     );
@@ -169,7 +185,8 @@ class ScEnvironmentCard extends React.Component {
         {env.name}
         <Header.Subheader>
           <span className="fs-8 color-grey">
-            Created <TimeAgo date={env.createdAt} className="mr2" /> <By uid={env.createdBy} className="mr2" />
+            {i18next.t('created')} <TimeAgo date={env.createdAt} className="mr2" />{' '}
+            <By uid={env.createdBy} className="mr2" />
           </span>
           <span className="fs-8 color-grey mr2"> {env.id}</span>
         </Header.Subheader>
@@ -238,4 +255,4 @@ decorate(ScEnvironmentCard, {
   envType: computed,
 });
 
-export default inject('envTypesStore')(withRouter(observer(ScEnvironmentCard)));
+export default withTranslation()(inject('envTypesStore')(withRouter(observer(ScEnvironmentCard))));

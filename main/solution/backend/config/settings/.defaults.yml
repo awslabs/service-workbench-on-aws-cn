@@ -42,7 +42,7 @@ externalCfnTemplatesBucketName: ${self:custom.settings.globalNamespace}-external
 studyDataKmsKeyAlias: ${self:custom.settings.globalNamespace}/s3/studydata
 
 # The arn of the KMS Key alias
-studyDataKmsKeyAliasArn: arn:aws:kms:${self:custom.settings.awsRegion}:${self:custom.settings.awsAccountInfo.awsAccountId}:alias/${self:custom.settings.studyDataKmsKeyAlias}
+studyDataKmsKeyAliasArn: arn:${self:custom.settings.awsPartition}:kms:${self:custom.settings.awsRegion}:${self:custom.settings.awsAccountInfo.awsAccountId}:alias/${self:custom.settings.studyDataKmsKeyAlias}
 
 # The statement ID in the generated KMS key's key policy that controls which workspaces
 #   can decrypt data in the study data bucket
@@ -52,7 +52,7 @@ studyDataKmsPolicyWorkspaceSid: Allow workspace environments to retrieve S3 obje
 apiHandlerRoleName: ${self:custom.settings.namespace}-ApiHandler
 
 # The IAM role arn for the Lambda API handler, we need to define it in the settings because it is being passed to lambdas as an env var
-apiHandlerRoleArn: 'arn:aws:iam::${self:custom.settings.awsAccountInfo.awsAccountId}:role/${self:custom.settings.apiHandlerRoleName}'
+apiHandlerRoleArn: 'arn:${self:custom.settings.awsPartition}:iam::${self:custom.settings.awsAccountInfo.awsAccountId}:role/${self:custom.settings.apiHandlerRoleName}'
 
 # S3 bucket used to store environment type configurations (the config objects that define small, medium, large etc.
 # env launch options)
@@ -65,13 +65,13 @@ workflowsEnabled: true
 workflowStateMachineName: ${self:custom.settings.namespace}-workflow
 
 # The workflow state machine arn, we need to define it in the settings because it is being passed to lambdas as an env var
-workflowStateMachineArn: 'arn:aws:states:${self:custom.settings.awsRegion}:${self:custom.settings.awsAccountInfo.awsAccountId}:stateMachine:${self:custom.settings.workflowStateMachineName}'
+workflowStateMachineArn: 'arn:${self:custom.settings.awsPartition}:states:${self:custom.settings.awsRegion}:${self:custom.settings.awsAccountInfo.awsAccountId}:stateMachine:${self:custom.settings.workflowStateMachineName}'
 
 # The name of the IAM role created for the workflow Lambda function
 workflowLoopRunnerRoleName: ${self:custom.settings.namespace}-WorkflowLoopRunner
 
 # The IAM role arn for the Lambda API handler, we need to define it in the settings because it is being passed to lambdas as an env var
-workflowLoopRunnerRoleArn: 'arn:aws:iam::${self:custom.settings.awsAccountInfo.awsAccountId}:role/${self:custom.settings.workflowLoopRunnerRoleName}'
+workflowLoopRunnerRoleArn: 'arn:${self:custom.settings.awsPartition}:iam::${self:custom.settings.awsAccountInfo.awsAccountId}:role/${self:custom.settings.workflowLoopRunnerRoleName}'
 
 # The prefix of the ami used to create environments
 # This component expects these AMIs to exists in the account where the platform is deployed
@@ -280,7 +280,7 @@ egressStoreBucketName: ${self:custom.settings.globalNamespace}-egress-store
 egressStoreKmsKeyAlias: ${self:custom.settings.globalNamespace}/s3/egressstore
 
 # The arn of the egress store KMS Key alias
-egressStoreKmsKeyAliasArn: arn:aws:kms:${self:custom.settings.awsRegion}:${self:custom.settings.awsAccountInfo.awsAccountId}:alias/${self:custom.settings.egressStoreKmsKeyAlias}
+egressStoreKmsKeyAliasArn: arn:${self:custom.settings.awsPartition}:kms:${self:custom.settings.awsRegion}:${self:custom.settings.awsAccountInfo.awsAccountId}:alias/${self:custom.settings.egressStoreKmsKeyAlias}
 
 # The statement ID in the generated KMS key's key policy that controls which workspaces
 #   can decrypt data in the egress store data bucket

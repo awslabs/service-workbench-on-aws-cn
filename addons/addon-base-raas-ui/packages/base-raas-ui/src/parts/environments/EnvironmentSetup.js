@@ -21,11 +21,15 @@ import { Icon, Container, Header } from 'semantic-ui-react';
 import { gotoFn } from '@amzn/base-ui/dist/helpers/routing';
 import { displaySuccess } from '@amzn/base-ui/dist/helpers/notification';
 
+import i18next from 'i18next';
+import { initReactI18next, withTranslation } from 'react-i18next';
 import { enableBuiltInWorkspaces } from '../../helpers/settings';
 import { CurrentStep } from '../compute/helpers/CurrentStep';
 import ComputePlatformSetup from '../compute/ComputePlatformSetup';
 import SetupStepsProgress from '../environments-builtin/SetupStepsProgress';
 import ScEnvironmentSetup from '../environments-sc/setup/ScEnvironmentSetup';
+
+i18next.use(initReactI18next);
 
 // expected props
 class EnvironmentSetup extends React.Component {
@@ -63,7 +67,7 @@ class EnvironmentSetup extends React.Component {
 
   // eslint-disable-next-line no-unused-vars
   handleCompleted = async environment => {
-    displaySuccess('The research workspace is being provisioned');
+    displaySuccess(i18next.t('researchWorkspace.beingProvisioned', { ns: 'workspaces' }), i18next.t('success'));
     this.goto('/workspaces');
   };
 
@@ -82,7 +86,9 @@ class EnvironmentSetup extends React.Component {
       <div className="flex">
         <Header as="h3" className="color-grey mt1 mb0 flex-auto">
           <Icon name="server" className="align-top" />
-          <Header.Content className="left-align">Research Workspaces</Header.Content>
+          <Header.Content className="left-align">
+            {i18next.t('researchWorkspace.name_s', { ns: 'workspaces' })}
+          </Header.Content>
         </Header>
       </div>
     );
@@ -129,4 +135,4 @@ decorate(EnvironmentSetup, {
   currentStep: observable,
 });
 
-export default inject()(withRouter(observer(EnvironmentSetup)));
+export default withTranslation()(inject()(withRouter(observer(EnvironmentSetup))));

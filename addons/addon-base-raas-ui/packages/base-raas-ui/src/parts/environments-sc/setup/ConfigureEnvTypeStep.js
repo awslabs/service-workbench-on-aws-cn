@@ -22,8 +22,11 @@ import { swallowError } from '@amzn/base-ui/dist/helpers/utils';
 import { isStoreEmpty, isStoreError, isStoreLoading } from '@amzn/base-ui/dist/models/BaseStore';
 import BasicProgressPlaceholder from '@amzn/base-ui/dist/parts/helpers/BasicProgressPlaceholder';
 import ErrorBox from '@amzn/base-ui/dist/parts/helpers/ErrorBox';
+import i18next from 'i18next';
+import { initReactI18next, withTranslation } from 'react-i18next';
 import CreateInternalEnvForm from './CreateInternalEnvForm';
 
+i18next.use(initReactI18next);
 // expected props
 // - onPrevious (via props)
 // - onCompleted (via props) a function is called after a call to create a workspace is performed
@@ -183,11 +186,8 @@ class ConfigureEnvTypeStep extends React.Component {
         <Segment placeholder className="mt2">
           <Header icon className="color-grey">
             <Icon name="server" />
-            No workspace configurations
-            <Header.Subheader>
-              There are no workspace configurations to choose from. Your role might be restricted. Please contact your
-              administrator.
-            </Header.Subheader>
+            {i18next.t('noWorkspaceConfs.header', { ns: 'workspaces' })}
+            <Header.Subheader>{i18next.t('noWorkspaceConfs.subheader', { ns: 'workspaces' })}</Header.Subheader>
           </Header>
         </Segment>
         {this.renderButtons()}
@@ -198,13 +198,19 @@ class ConfigureEnvTypeStep extends React.Component {
   renderButtons({ nextDisabled = true } = {}) {
     return (
       <div className="mt3">
-        <Button floated="right" className="ml2" primary content="Create Research Workspace" disabled={nextDisabled} />
+        <Button
+          floated="right"
+          className="ml2"
+          primary
+          content={i18next.t('researchWorkspace.create', { ns: 'workspaces' })}
+          disabled={nextDisabled}
+        />
         <Button
           floated="right"
           icon="left arrow"
           labelPosition="left"
           className="ml2"
-          content="Previous"
+          content={i18next.t('previous')}
           onClick={this.handlePrevious}
         />
       </div>
@@ -227,9 +233,6 @@ decorate(ConfigureEnvTypeStep, {
   studyIds: computed,
 });
 
-export default inject(
-  'userStore',
-  'envTypesStore',
-  'scEnvironmentsStore',
-  'clientInformationStore',
-)(observer(ConfigureEnvTypeStep));
+export default withTranslation()(
+  inject('userStore', 'envTypesStore', 'scEnvironmentsStore', 'clientInformationStore')(observer(ConfigureEnvTypeStep)),
+);

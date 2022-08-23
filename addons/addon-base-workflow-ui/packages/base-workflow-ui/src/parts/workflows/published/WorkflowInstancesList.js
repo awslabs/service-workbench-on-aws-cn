@@ -28,9 +28,12 @@ import Form from '@amzn/base-ui/dist/parts/helpers/fields/Form';
 import TextArea from '@amzn/base-ui/dist/parts/helpers/fields/TextArea';
 import ErrorBox from '@amzn/base-ui/dist/parts/helpers/ErrorBox';
 
+import i18next from 'i18next';
+import { initReactI18next, withTranslation } from 'react-i18next';
 import getTriggerWorkflowForm from '../../../models/forms/TriggerWorkflowForm';
 import ProgressPlaceHolder from '../../workflow-common/ProgressPlaceholder';
 
+i18next.use(initReactI18next);
 // expected props
 // - workflowVersion (via props)
 // - workflowsStore (via injection)
@@ -252,7 +255,7 @@ class WorkflowInstancesList extends React.Component {
                   Trigger
                 </Button>
                 <Button floated="right" disabled={processing} onClick={onCancel}>
-                  Cancel
+                  {i18next.t('cancel')}
                 </Button>
               </div>
             </>
@@ -272,4 +275,6 @@ decorate(WorkflowInstancesList, {
   handleFormSubmission: action,
 });
 
-export default inject('workflowsStore', 'userDisplayName')(withRouter(observer(WorkflowInstancesList)));
+export default withTranslation()(
+  inject('workflowsStore', 'userDisplayName')(withRouter(observer(WorkflowInstancesList))),
+);

@@ -40,6 +40,12 @@ To enable AWS Cost Explorer in the account into which you will be deploying Serv
 
 Activate the necessary cost allocation tags in the **AWS Billing & Cost Management Dashboard**:
 
+:::tip
+
+Tags are automatically created during the solution deployment, please follow below steps to active tags after solution deployed successfully.
+
+:::
+
 1. Sign in to the AWS Management Console and open the **Billing & Cost Management Dashboard** [here](https://console.aws.amazon.com/billing/).
 
 2. In the navigation pane, choose **Cost allocation tags**.

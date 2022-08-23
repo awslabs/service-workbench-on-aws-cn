@@ -47,17 +47,17 @@ module.exports = {
       // The token validation locator is used to validate token upon each request.
       // Unlike the tokenIssuerLocator which is only used for authentication being performed via application APIs, the
       // tokenValidatorLocator is used in all cases
-      tokenValidatorLocator: 'locator:service:cognitoUserPoolAuthenticationProviderService/validateToken',
+      tokenValidatorLocator: 'locator:service:authenticationProviderService/validateToken',
 
       // Similar to the tokenIssuerLocator mentioned above but used for token revocation instead of issuing token.
       // The token revocation locator is used to revoke a token upon logout.
-      tokenRevokerLocator: 'locator:service:cognitoUserPoolAuthenticationProviderService/revokeToken',
+      tokenRevokerLocator: 'locator:service:authenticationProviderService/revokeToken',
 
       // Similar to above locators. The provisionerLocator identifies an implementation that takes care of provisioning the authentication provider.
       // In case of Internal Authentication Provider this "provisioning" step may be as simple as adding authentication provider configuration in Data Base.
       // In case of other auth providers, this step may be more elaborate (for example, in case of Cognito + SAML, the provisioner has to create Cognito User Pool,
       // configure cognito client application, configure SAML identity providers in the Cognito User Pool etc.
-      provisionerLocator: 'locator:service:cognitoUserPoolAuthenticationProvisionerService/provision',
+      provisionerLocator: 'locator:service:authenticationProvisionerService/provision',
     },
   },
 };

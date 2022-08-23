@@ -22,6 +22,8 @@ import { getSnapshot } from 'mobx-state-tree';
 import { inject, observer } from 'mobx-react';
 import ReactTable from 'react-table';
 
+import i18next from 'i18next';
+import { initReactI18next, withTranslation } from 'react-i18next';
 import { isStoreError, isStoreLoading, isStoreReady } from '../../models/BaseStore';
 import ErrorBox from '../helpers/ErrorBox';
 import { createLink } from '../../helpers/routing';
@@ -29,6 +31,7 @@ import { displayError } from '../../helpers/notification';
 import BasicProgressPlaceholder from '../helpers/BasicProgressPlaceholder';
 import { swallowError } from '../../helpers/utils';
 
+i18next.use(initReactI18next);
 class UsersList extends React.Component {
   constructor(props) {
     super(props);
@@ -83,7 +86,9 @@ class UsersList extends React.Component {
         </Header>
         <Segment.Inline>
           <Button color="blue" onClick={this.handleAddUser}>
-            Add Users
+            {i18next.t('add')}
+            {i18next.t(' ')}
+            {i18next.t('users', { ns: 'users' })}
           </Button>
           <Button color="teal" onClick={this.handleAddAuthenticationProvider}>
             Configure Auth Provider
@@ -99,12 +104,14 @@ class UsersList extends React.Component {
         <Header as="h3" className="color-grey mt1 mb0 flex-auto">
           <Icon name="users" className="align-top" />
           <Header.Content className="left-align">
-            Users
+            {i18next.t('user', { ns: 'users' })}
             {this.renderTotal()}
           </Header.Content>
         </Header>
         <Button color="blue" size="medium" basic onClick={this.handleAddUser}>
-          Add User
+          {i18next.t('add')}
+          {i18next.t(' ')}
+          {i18next.t('user', { ns: 'users' })}
         </Button>
       </div>
     );
@@ -398,4 +405,4 @@ decorate(UsersList, {
   formProcessing: observable,
 });
 
-export default inject('userStore', 'usersStore')(withRouter(observer(UsersList)));
+export default withTranslation()(inject('userStore', 'usersStore')(withRouter(observer(UsersList))));

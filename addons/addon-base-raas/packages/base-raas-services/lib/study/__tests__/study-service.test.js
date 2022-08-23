@@ -1437,6 +1437,12 @@ describe('studyService', () => {
           }
           return undefined;
         },
+        get: settingName => {
+          if (settingName === 'awsPartition') {
+            return 'aws';
+          }
+          return undefined;
+        },
       };
       const sid = 'doppelganger';
       const uid = 'u-currentUserId';

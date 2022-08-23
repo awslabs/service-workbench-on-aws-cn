@@ -1,0 +1,210 @@
+{
+    "dataSources": "数据源",
+    "noDataSources": {
+        "header": "没有数据源",
+        "subheader": "点击\"创建数据集\"按钮来创建一个数据源"
+    },
+    "studies": "数据集",
+    "registerStudies": "创建数据集",
+    "startStep": {
+        "beforeYouStart": {
+            "header": "在您开始之前",
+            "subheader": "您需要收集以下有关数据集的一系列信息:",
+            "p": [
+                "拥有数据集的账户的 AWS 账户 ID 以及将部署 CloudFormation 堆栈的区域",
+                "包含数据集的存储桶名称和区域",
+                "用于加密存储桶的 KMS ARN（如果使用的话）或用于加密每个数据集的 KMS ARN",
+                "要注册的每个数据集的路径",
+                "每个数据集所需的访问级别，可以是只读或读写"
+            ]
+        },
+        "whatIsNext": {
+            "header": "接下来会发生什么",
+            "p": [
+                "您将被要求提供上述信息",
+                "如果您之前注册了帐户和/或存储桶，可能会为您预先填充某些字段",
+                "您将被要求为每项数据集分配数据集管理员",
+                "一旦您输入了所有请求的信息，就会生成一个 CloudFormation 模板",
+                "您将能够使用生成的 CloudFormation 模板创建/更新堆栈"
+            ]
+        },
+        "limitations": {
+            "header": "限制",
+            "p": [
+                "数据集不能包含其他数据集",
+                "不支持限制访问特定 VPC 端点和/或特定外部 IP 地址的存储桶",
+                "不同的数据集可以使用不同的 KMS 密钥加密，但是，同一数据集中的对象必须使用相同的密钥加密",
+                "不支持通过 fips 端点访问存储桶",
+                "不支持请求者付款的存储桶"
+            ]
+        }
+    },
+    "addStudy": "添加数据集",
+    "addAnotherStudy": "添加另一个数据集",
+    "bucketInformation": "桶信息",
+    "submitStep": {
+        "running": "数据集注册中",
+        "success": "数据集注册成功！",
+        "error": "数据集注册失败"
+    },
+    "permission": {
+        "update": {
+            "succeeded": "更新成功",
+            "failed": "更新失败"
+        }
+    },
+    "cfnStep": {
+        "whatIsNext": {
+            "header": "",
+            "p": [
+                "查看 CloudFormation 模板的内容以熟悉将在帐户中创建的角色和策略。",
+                "一旦配置或更新，堆栈将创建或更新必要的角色和策略，以允许 Service Workbench 应用程序访问数据集并将其提供给指定的数据集人员。",
+                "按照下面概述的步骤",
+                "完成以下步骤并在配置或更新堆栈时，您可以单击\"完成\"。这将带您进入数据源列表页面，您可以在堆栈完成部署后测试连接。 您还可以从数据源列表页面中查看此信息。"
+            ]
+        }
+    },
+    "accountCard": {
+        "testConnection": "连接测试",
+        "accountInformation": "账户信息",
+        "registered": "注册于",
+        "statusChecked": "状态检查于",
+        "account": "AWS 账户",
+        "stackMismatch": {
+            "stackOutDated": {
+                "header": "堆栈已过时",
+                "subheader": "部署到 AWS 账户 \"{{account}}\" 的 CloudFormation 堆栈 \"{{stack}}\" 似乎已过时，并且不包含所做的最新更改。请使用最新的 CloudFormation 模板来更新堆栈。如果您刚刚更新了堆栈，您可以再次运行连接测试。"
+            },
+            "incorrectStackName": {
+                "header": "堆栈名称不正确",
+                "subheader": "似乎正确的 CloudFormation 堆栈已部署到 AWS 帐户 \"{{account}}\" 但堆栈名称不正确。请确保您在帐户中部署了最新的 CloudFormation 模板，堆栈名称为 \"{{stack}}\"。如果您刚刚更新了堆栈，您可以再次运行连接测试。"
+            }
+        },
+        "accountStatusMsg": {
+            "less": "收缩",
+            "more": "展开",
+            "available": {
+                "header": "可用",
+                "subheader1": "该帐号可访问并可使用。",
+                "subheader2": "该帐户可访问，但缺少部分配置。某些数据集可能无法访问。",
+                "subheader3": "这通常表明部署到 AWS 账户 #{{account}} 的 CloudFormation 堆栈与 SWB 应用程序生成的 CloudFormation 模板不同步。"
+            },
+            "pending": {
+                "header": "不可用",
+                "subheader1": "账户正在与应用程序连接，直到CloudFormation堆栈部署成功后才能访问。",
+                "subheader2": "CloudFormation 堆栈已经部署了吗？",
+                "subheader3": "从服务器收到的消息"
+            },
+            "error": {
+                "header": "不可用",
+                "subheader1": "该帐户无法访问。这通常表示 CloudFormation 堆栈部署期间出现问题。",
+                "subheader2": "从服务器收到的消息"
+            },
+            "tips": [
+                "检查 CloudFormation 堆栈是否部署在正确的 AWS 账户 #{{account}} 中",
+                "检查 CloudFormation 堆栈是否部署在正确的 AWS 区域 \"{{region}}\"",
+                "再次尝试连接检查测试"
+            ]
+        },
+        "studyStatusMsg": {
+            "less": "收缩",
+            "more": "展开",
+            "available": {
+                "header": "可用",
+                "subheader1": "该数据集可访问并可使用。"
+            },
+            "pending": {
+                "header": "不可用",
+                "subheader1": "数据集正在与应用程序连接过程中。直到CloudFormation堆栈部署成功后才可访问。",
+                "subheader2": "CloudFormation 堆栈已经部署了吗？",
+                "subheader3": "从服务器收到的消息"
+            },
+            "error": {
+                "header": "不可用",
+                "subheader1": "该数据集无法访问。这通常表明 CloudFormation 堆栈部署期间出现问题。",
+                "subheader2": "从服务器收到的消息"
+            },
+            "tips": [
+                "检查 CloudFormation 堆栈是否部署在正确的 AWS 账户中",
+                "检查 CloudFormation 堆栈是否部署在正确的 AWS 区域中",
+                "再次尝试连接检查测试"
+            ]
+        },
+        "accountInfo": {
+            "save": {
+                "success": "账户信息更新成功"
+            }
+        },
+        "studiesList": {
+            "studyId": "数据集 ID",
+            "path": "路径",
+            "type": "类型",
+            "access": "权限",
+            "empty": {
+                "header": "没有数据集",
+                "subheader": "点击\"创建数据集\"来创建一个数据集"
+            }
+        },
+        "studyRow": {
+            "notProvided": "(没有数据)",
+            "detailTablePart1": {
+                "id": "ID",
+                "name": "名称",
+                "path": "路径"
+            },
+            "detailTablePart2": {
+                "project": "项目",
+                "type": "类型",
+                "access": "权限"
+            },
+            "detailTablePart3": {
+                "defaultEncryption": "使用存储桶默认加密",
+                "kmsArn": "KMS Arn",
+                "description": "描述"
+            },
+            "admin": "管理员",
+            "readonly": "只读",
+            "readwrite": "读写",
+            "Organization": "组织数据集",
+            "My Studies": "我的数据集"
+        },
+        "accountCfnPanel": {
+            "adminOptions": {
+                "admin": "我有管理员权限",
+                "notAdmin": "我没有管理员权限"
+            },
+            "account": "AWS 账户",
+            "stack": {
+                "name": "CloudFormation 堆栈名称",
+                "create": "创建堆栈",
+                "update": "更新堆栈"
+            },
+            "steps": {
+                "header": "步骤",
+                "create": [
+                    "在单独的浏览器选项卡中，使用正确的帐户登录到 aws 控制台。",
+                    "请注意",
+                    "确保您登录到 aws 帐户 \"{{account}}\" 和区域 \"{{region}}\"",
+                    "单击\"创建堆栈\"按钮，这将打开一个单独的浏览器选项卡，并将您带到 CloudFormation 控制台，您可以在其中查看堆栈信息并进行配置。",
+                    "创建堆栈",
+                    "在配置堆栈时，可以离开此页面并返回数据源列表页面，一旦堆栈完成部署，您可以在其中测试连接。"
+                ],
+                "update": [
+                    "在单独的浏览器选项卡中，使用正确的帐户登录到 aws 控制台。",
+                    "请注意",
+                    "确保您登录到 aws 帐户 \"{{account}}\" 和区域 \"{{region}}\"",
+                    "前往",
+                    "AWS CloudFormation 控制台",
+                    "您需要先访问 AWS CloudFormation 控制台页面，然后才能单击更新堆栈按钮",
+                    "单击\"更新堆栈\"按钮，这将打开一个单独的浏览器选项卡，并将您带到 CloudFormation 控制台，您可以在其中查看堆栈信息并进行配置。",
+                    "更新堆栈",
+                    "在配置堆栈时，可以离开此页面并返回数据源列表页面，一旦堆栈完成部署，您可以在其中测试连接。"
+                ],
+                "email": [
+                    "您可以使用以下电子邮件模板向帐户管理员发送电子邮件",
+                    "邮件模板"
+                ]
+            }
+        }
+    }
+}

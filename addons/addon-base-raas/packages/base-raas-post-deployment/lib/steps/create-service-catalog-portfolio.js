@@ -64,6 +64,7 @@ const deploymentItemId = 'default-SC-portfolio-1';
 
 const settingKeys = {
   createServiceCatalogPortfolio: 'createServiceCatalogPortfolio',
+  awsRegion: 'awsRegion',
   namespace: 'namespace',
   deploymentBucketName: 'deploymentBucketName',
   envMgmtRoleName: 'envMgmtRoleName',
@@ -282,6 +283,8 @@ class CreateServiceCatalogPortfolio extends Service {
   }
 
   async createProductArtifact(productId, productFileName, latestVersionInSC) {
+    const awsRegion = this.settings.get(settingKeys.awsRegion);
+    const awsSuffix = this.awsSuffix;
     const aws = await this.service('aws');
     const servicecatalog = new aws.sdk.ServiceCatalog({ apiVersion: '2015-12-10' });
     const s3BucketName = this.settings.get(settingKeys.deploymentBucketName);
@@ -290,7 +293,7 @@ class CreateServiceCatalogPortfolio extends Service {
     const params = {
       Parameters: {
         Info: {
-          LoadTemplateFromURL: `https://${s3BucketName}.s3.amazonaws.com/service-catalog-products/${productFileName}.cfn.yml`,
+          LoadTemplateFromURL: `https://${s3BucketName}.s3.${awsRegion}.${awsSuffix}/service-catalog-products/${productFileName}.cfn.yml`,
         },
         DisableTemplateValidation: true,
         Type: 'CLOUD_FORMATION_TEMPLATE',
@@ -416,6 +419,8 @@ class CreateServiceCatalogPortfolio extends Service {
 
   _getProductParam(productToCreate) {
     const s3BucketName = this.settings.get(settingKeys.deploymentBucketName);
+    const awsRegion = this.settings.get(settingKeys.awsRegion);
+    const awsSuffix = this.awsSuffix;
     const product = {
       Name: productToCreate.displayName || productToCreate.filename, // If user chose not to provide custom display name
       Description: autoCreateDesc,
@@ -424,7 +429,7 @@ class CreateServiceCatalogPortfolio extends Service {
       ProvisioningArtifactParameters: {
         DisableTemplateValidation: true,
         Info: {
-          LoadTemplateFromURL: `https://${s3BucketName}.s3.amazonaws.com/service-catalog-products/${productToCreate.filename}.cfn.yml`,
+          LoadTemplateFromURL: `https://${s3BucketName}.s3.${awsRegion}.${awsSuffix}/service-catalog-products/${productToCreate.filename}.cfn.yml`,
         },
         Type: 'CLOUD_FORMATION_TEMPLATE',
         Name: autoCreateVersion, // Could be used as a version id in the future, for now, just a placeholder

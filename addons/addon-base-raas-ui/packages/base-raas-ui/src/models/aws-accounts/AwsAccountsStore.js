@@ -30,12 +30,12 @@ import { BudgetStore } from './BudgetStore';
 import Budget from './Budget';
 
 const filterNames = {
-  ALL: 'All',
-  CURRENT: 'Up-to-Date',
-  UPDATEME: 'Needs Update',
-  NEW: 'Needs Onboarding',
-  ERRORED: 'Errored',
-  PENDING: 'Pending',
+  ALL: 'all',
+  CURRENT: 'upToDate',
+  UPDATEME: 'needsUpdate',
+  NEW: 'needsOnboarding',
+  ERRORED: 'errored',
+  PENDING: 'pending',
 };
 
 // A map, with the key being the filter name and the value being the function that will be used to filter the workspace

@@ -252,9 +252,9 @@ const cognitoType = {
     inputManifestForCreate: inputManifestForCreateCognito,
     inputManifestForUpdate: inputManifestForUpdateCognito,
     impl: {
-      tokenValidatorLocator: 'locator:service:cognitoUserPoolAuthenticationProviderService/validateToken',
-      tokenRevokerLocator: 'locator:service:cognitoUserPoolAuthenticationProviderService/revokeToken',
-      provisionerLocator: 'locator:service:cognitoUserPoolAuthenticationProvisionerService/provision',
+      tokenValidatorLocator: 'locator:service:authenticationProviderService/validateToken',
+      tokenRevokerLocator: 'locator:service:authenticationProviderService/revokeToken',
+      provisionerLocator: 'locator:service:authenticationProvisionerService/provision',
     },
   },
 };
@@ -323,6 +323,7 @@ const configurations = [
 const publicConfigurations = [
   {
     id: 'https://cognito-idp.us-east-1.amazonaws.com/us-east-1_poolId1',
+    providerConfigId: 'https://cognito-idp.us-east-1.amazonaws.com/us-east-1_poolId1',
     title: 'Login using Active Directory',
     type: 'cognito_user_pool',
     credentialHandlingType: 'redirect',
@@ -334,6 +335,7 @@ const publicConfigurations = [
   },
   {
     id: 'datalake.example.com',
+    providerConfigId: 'https://cognito-idp.us-east-1.amazonaws.com/us-east-1_poolId1',
     title: 'Login using Active Directory',
     type: 'cognito_user_pool_federated_idp',
     credentialHandlingType: 'redirect',
@@ -345,6 +347,7 @@ const publicConfigurations = [
   {
     id: 'https://cognito-idp.us-east-1.amazonaws.com/us-east-1_poolId2',
     title: 'Login using Active Directory 2',
+    providerConfigId: 'https://cognito-idp.us-east-1.amazonaws.com/us-east-1_poolId2',
     type: 'cognito_user_pool',
     credentialHandlingType: 'redirect',
     signOutUri:
@@ -355,6 +358,7 @@ const publicConfigurations = [
   },
   {
     id: 'datalake2.example.com',
+    providerConfigId: 'https://cognito-idp.us-east-1.amazonaws.com/us-east-1_poolId2',
     title: 'Login using Active Directory 2',
     type: 'cognito_user_pool_federated_idp',
     credentialHandlingType: 'redirect',
@@ -362,6 +366,43 @@ const publicConfigurations = [
       'https://test-raas2.auth.us-east-1.amazoncognito.com/login?response_type=token&client_id=28888888888882&redirect_uri=https://12345.cloudfront.net&idp_identifier=datalake2.example.com',
     signOutUri:
       'https://test-raas2.auth.us-east-1.amazoncognito.com/logout?client_id=28888888888882&logout_uri=https://12345.cloudfront.net',
+  },
+];
+
+const oidcConfiguration = [
+  {
+    createdAt: '2020-02-14T22:34:22.185Z',
+    id: 'https://oidc-domain.com/auth/realms/realm',
+    config: {
+      id: 'https://oidc-domain.com/auth/realms/realm',
+      title: 'oidc',
+      signInUri:
+        'https://oidc-domain.com/auth/realms/realm/protocol/openid-connect/auth?client_id=oidc-client&redirect_uri=https://service-workbench.example.com/&scope=openid profile email&code_challenge_method=S256&code_challenge=TEMP_PKCE_VERIFIER&state=TEMP_STATE_VERIFIER&response_type=code',
+      signOutUri:
+        'https://oidc-domain.com/auth/realms/realm/protocol/openid-connect/logout?client_id=oidc-client&response_type=code&redirect_uri=https://service-workbench.example.com',
+      type: {
+        type: 'oidc',
+        title: 'oidc',
+        description: 'Authentication provider for oidc',
+        config: {
+          credentialHandlingType: 'redirect',
+        },
+      },
+    },
+  },
+];
+
+const oidcPublicConfigurations = [
+  {
+    id: 'https://oidc-domain.com/auth/realms/realm',
+    providerConfigId: 'https://oidc-domain.com/auth/realms/realm',
+    title: 'oidc',
+    type: 'oidc',
+    credentialHandlingType: 'redirect',
+    signInUri:
+      'https://oidc-domain.com/auth/realms/realm/protocol/openid-connect/auth?client_id=oidc-client&redirect_uri=https://service-workbench.example.com/&scope=openid profile email&code_challenge_method=S256&code_challenge=TEMP_PKCE_VERIFIER&state=TEMP_STATE_VERIFIER&response_type=code',
+    signOutUri:
+      'https://oidc-domain.com/auth/realms/realm/protocol/openid-connect/logout?client_id=oidc-client&response_type=code&redirect_uri=https://service-workbench.example.com',
   },
 ];
 
@@ -374,4 +415,8 @@ module.exports = {
 
     return `${entry.config.signInUri}&identity_provider=COGNITO`;
   },
+
+  // For oidc test
+  getOidcConfiguration: () => _.cloneDeep(oidcConfiguration),
+  getOidcPublicConfiguration: () => _.cloneDeep(oidcPublicConfigurations),
 };

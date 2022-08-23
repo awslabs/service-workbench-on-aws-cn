@@ -1,0 +1,124 @@
+{
+    "researchWorkspace": {
+        "name": "工作区",
+        "name_s": "工作区",
+        "create": "创建工作区",
+        "empty": {
+            "header": "尚未创建任何工作区",
+            "subheader": "如果希望创建一个工作区，点击右上角的“创建工作区”按钮"
+        },
+        "no_match": {
+            "header": "没有与所选过滤器匹配的工作区",
+            "subheader": "选择“全部”来查看所有的工作区"
+        },
+        "beingProvisioned": "该工作区正在创建中"
+    },
+    "selectCompute": {
+        "header": "选择计算类型",
+        "subheader": "选择一个计算平台"
+    },
+    "createWorkspace": {
+        "header": "创建工作区",
+        "subheader": "创建工作区"
+    },
+    "noWorkspaceTypes": {
+        "header": "没有可用的工作区模板",
+        "subheader": "暂无任何可用的工作区模板。你可能被分配了一个受限的用户角色。请联系你的管理员。"
+    },
+    "missingAssociation": {
+        "header": "缺少与项目的关联",
+        "subheader": "您当前无权在任何项目下创建工作区。请联系您的管理员。"
+    },
+    "noWorkspaceConfs": {
+        "header": "没有可用的工作区配置",
+        "subheader": "暂无任何可用的工作区配置。你可能被分配了一个受限的用户角色。请联系你的管理员。"
+    },
+    "areYouSure": {
+        "header": "你确定吗？",
+        "subheader": "这个动作无法被撤回。"
+    },
+    "connections": "连接",
+    "viewDetail": "详细信息",
+    "detailPage": {
+        "status": "状态",
+        "owner": "所有者",
+        "studies": "数据集",
+        "noStudies": "该工作区未连接至任何数据集",
+        "project": "项目",
+        "workspaceType": "工作区类型",
+        "configurationName": "工作区配置",
+        "instanceType": "实例类型",
+        "cost": "费用",
+        "cloudFormationOutput": "CloudFormation的输出",
+        "noneIsAvailable": "（没有内容）"
+    },
+    "cost": {
+        "yesterday": "昨日费用",
+        "showError": "查看错误信息",
+        "error1": "检索费用信息时出错了。",
+        "error2": "如果此工作区是在新帐户中部署的，请与您的管理员确认已为该帐户启用了Cost Explorer 功能。",
+        "error3": "系统返回的错误信息如下所示："
+    },
+    "ScEnvironment": {
+        "state": {
+            "COMPLETED": {
+                "display": "可用",
+                "tip": "这个工作区已经可以使用了。"
+            },
+            "PENDING": {
+                "display": "等待中",
+                "tip": "这个工作区正在准备中，这也许会花费一点时间。"
+            },
+            "STOPPED": {
+                "display": "已停止",
+                "tip": "这个工作区已经停止了。"
+            },
+            "STOPPING": {
+                "display": "停止中",
+                "tip": "这个工作区正在停止中。"
+            },
+            "STARTING": {
+                "display": "启动中",
+                "tip": "这个工作区正在启动中。"
+            },
+            "TAINTED": {
+                "display": "被污染",
+                "tip": "这个工作区已经可以使用，但是最新的一次配置更新似乎不太成功。"
+            },
+            "FAILED": {
+                "display": "失败",
+                "tip": "出问题了。"
+            },
+            "TERMINATING": {
+                "display": "终止中",
+                "tip": "这个工作区正在终止中，这也许会花费一点时间。"
+            },
+            "TERMINATED": {
+                "display": "已终止",
+                "tip": "这个工作区已经完全终止，不再可用了。"
+            },
+            "TERMINATING_FAILED": {
+                "display": "终止失败",
+                "tip": "这个工作区没有正确地终止，也许会有一些计算与存储资源尚未被删除。"
+            },
+            "UNKNOWN": {
+                "display": "未知状态",
+                "tip": "有些不对劲。 这需要管理员进一步调查。"
+            }
+        }
+    },
+    "filterNames": {
+        "all": "全部",
+        "available": "可用",
+        "stopped": "已停止",
+        "pending": "创建中",
+        "errored": "出错",
+        "terminated": "已终止"
+    },
+    "connection": {
+        "addMyIp": "添加我的IP地址",
+        "editCIDRs": "编辑 CIDR",
+        "http": "HTTP 连接",
+        "ssm": "SSM 连接"
+    }
+}

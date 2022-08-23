@@ -5,7 +5,7 @@ Description: Service-Workbench-on-AWS SageMaker-Jupyter
 Parameters:
   SolutionNamespace:
     Type: String
-    Description: The namespace value provided when onboarding the Member account
+    Description: The namespace value provided when onboarding the Member account   
   Namespace:
     Type: String
     Description: An environment name that will be prefixed to resource names
@@ -116,7 +116,7 @@ Resources:
           - Effect: Allow
             Action:
               - 'sts:AssumeRole'
-            Resource: 'arn:aws:iam::*:role/swb-*'
+            Resource: !Sub 'arn:${AWS::Partition}:iam::*:role/swb-*'
           - Effect: Allow
             Action:
               - sagemaker:DescribeNotebookInstance
@@ -134,7 +134,7 @@ Resources:
         Statement:
           - Effect: 'Allow'
             Principal:
-              AWS: !Sub arn:aws:iam::${AWS::AccountId}:root
+              AWS: !Sub arn:${AWS::Partition}:iam::${AWS::AccountId}:root
             Action:
               - 'sts:AssumeRole'
       Policies:
@@ -185,13 +185,13 @@ Resources:
               - Effect: 'Allow'
                 Action: 's3:GetObject'
                 Resource: !Sub
-                  - 'arn:aws:s3:::${S3Location}/*'
+                  - 'arn:${AWS::Partition}:s3:::${S3Location}/*'
                   # Remove "s3://" prefix from EnvironmentInstanceFiles
                   - S3Location: !Select [1, !Split ['s3://', !Ref EnvironmentInstanceFiles]]
               - Effect: 'Allow'
                 Action: 's3:ListBucket'
                 Resource: !Sub
-                  - 'arn:aws:s3:::${S3Bucket}'
+                  - 'arn:${AWS::Partition}:s3:::${S3Bucket}'
                   - S3Bucket: !Select [2, !Split ['/', !Ref EnvironmentInstanceFiles]]
                 Condition:
                   StringLike:
@@ -208,7 +208,7 @@ Resources:
                 - logs:PutLogEvents
                 - logs:CreateLogGroup
               Resource:
-                - !Sub arn:aws:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/sagemaker/*
+                - !Sub arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/sagemaker/*
       PermissionsBoundary: !Ref InstanceRolePermissionBoundary
 
   # This policy is attached to the role after the instance is created
@@ -257,14 +257,14 @@ Resources:
             Fn::Base64: !Sub |
               #!/usr/bin/env bash
               # Download and execute bootstrap script
-              aws s3 cp "${EnvironmentInstanceFiles}/get_bootstrap.sh" "/tmp"
+              aws s3 cp --region "${AWS::Region}" "${EnvironmentInstanceFiles}/get_bootstrap.sh" "/tmp"
               chmod 500 "/tmp/get_bootstrap.sh"
-              /tmp/get_bootstrap.sh "${EnvironmentInstanceFiles}" '${S3Mounts}'
+              /tmp/get_bootstrap.sh "${EnvironmentInstanceFiles}" '${S3Mounts}' "${AWS::Region}"
 
               # Stop Idle Script
               if [ "${AutoStopIdleTimeInMinutes}" != "0" ]; then
                 echo "Fetching the autostop script"
-                aws s3 cp "${EnvironmentInstanceFiles}/offline-packages/sagemaker/autostop.py" "/usr/local/bin"
+                aws s3 cp --region "${AWS::Region}" "${EnvironmentInstanceFiles}/offline-packages/sagemaker/autostop.py" "/usr/local/bin"
                 chmod a+x /usr/local/bin/autostop.py
                 IDLE_TIME=`expr ${AutoStopIdleTimeInMinutes} \* 60`
                 echo "Starting the SageMaker autostop script in cron"

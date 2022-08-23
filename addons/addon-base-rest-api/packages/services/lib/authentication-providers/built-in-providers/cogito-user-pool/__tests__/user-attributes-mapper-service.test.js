@@ -24,6 +24,7 @@ describe('UserAttributeMapperService', () => {
     it('should map a Cognito username', () => {
       const decodedToken = {
         'cognito:username': 'johndoe@example.com',
+        'email': 'johndoe@example.com',
       };
 
       const result = service.getUsername(decodedToken);
@@ -34,36 +35,40 @@ describe('UserAttributeMapperService', () => {
     it('should map an ADFS username', () => {
       const decodedToken = {
         'cognito:username': 'ADFS\\123abc',
+        'email': 'johndoe@example.com',
       };
 
       const result = service.getUsername(decodedToken);
-      expect(result.username).toEqual('ADFS_123abc');
+      expect(result.username).toEqual('johndoe@example.com');
       expect(result.usernameInIdp).toEqual('123abc');
     });
 
     it('should map an Auth0 username', () => {
       const decodedToken = {
         'cognito:username': 'Auth0_auth0|5ef37c962da',
+        'email': 'johndoe@example.com',
       };
 
       const result = service.getUsername(decodedToken);
-      expect(result.username).toEqual('Auth0_auth0_5ef37c962da');
+      expect(result.username).toEqual('johndoe@example.com');
       expect(result.usernameInIdp).toEqual('5ef37c962da');
     });
 
     it('should map an Auth0+Google username', () => {
       const decodedToken = {
         'cognito:username': 'Auth0_google-oauth2|10285875304827',
+        'email': 'johndoe@example.com',
       };
 
       const result = service.getUsername(decodedToken);
-      expect(result.username).toEqual('Auth0_google-oauth2_10285875304827');
+      expect(result.username).toEqual('johndoe@example.com');
       expect(result.usernameInIdp).toEqual('10285875304827');
     });
 
     it('should map a Cognito username from cognito:username since identities structure is incomplete', () => {
       const decodedToken = {
         'cognito:username': 'johndoe@example.com',
+        'email': 'johndoe@example.com',
         'identities': [
           {
             userId: 'johndoe_from_identities@example.com',
@@ -79,6 +84,7 @@ describe('UserAttributeMapperService', () => {
     it('should map a Cognito username from cognito:username since there are multiple identities', () => {
       const decodedToken = {
         'cognito:username': 'johndoe@example.com',
+        'email': 'johndoe@example.com',
         'identities': [
           {
             userId: 'johndoe_from_identities_1@example.com',
@@ -99,6 +105,7 @@ describe('UserAttributeMapperService', () => {
     it('should map a AWS SSO username from identities structure', () => {
       const decodedToken = {
         'cognito:username': 'AWS-SSO_johndoe@example.com',
+        'email': 'johndoe@example.com',
         'identities': [
           {
             userId: 'johndoe@example.com',
@@ -115,6 +122,7 @@ describe('UserAttributeMapperService', () => {
     it('should map an ADFS username from identities structure', () => {
       const decodedToken = {
         'cognito:username': 'provider_ADFS\\123abc',
+        'email': 'johndoe@example.com',
         'identities': [
           {
             userId: 'ADFS\\123abc',
@@ -124,13 +132,14 @@ describe('UserAttributeMapperService', () => {
       };
 
       const result = service.getUsername(decodedToken);
-      expect(result.username).toEqual('ADFS_123abc');
+      expect(result.username).toEqual('johndoe@example.com');
       expect(result.usernameInIdp).toEqual('123abc');
     });
 
     it('should map an Auth0 username from identities structure', () => {
       const decodedToken = {
         'cognito:username': 'Auth0_auth0|5ef37c962da',
+        'email': 'johndoe@example.com',
         'identities': [
           {
             userId: 'auth0|5ef37c962da',
@@ -140,7 +149,7 @@ describe('UserAttributeMapperService', () => {
       };
 
       const result = service.getUsername(decodedToken);
-      expect(result.username).toEqual('auth0_5ef37c962da');
+      expect(result.username).toEqual('johndoe@example.com');
       expect(result.usernameInIdp).toEqual('5ef37c962da');
     });
 

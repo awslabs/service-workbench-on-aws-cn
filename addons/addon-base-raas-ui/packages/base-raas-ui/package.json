@@ -5,6 +5,10 @@
   "author": "Amazon Web Services",
   "license": "Apache-2.0",
   "dependencies": {
+    "i18next": "^21.8.10",
+    "i18next-browser-languagedetector": "^6.1.4",
+    "i18next-http-backend": "^1.4.1",
+    "react-i18next": "^11.17.2",
     "@auth0/auth0-spa-js": "^1.2.3",
     "@amzn/base-ui": "workspace:*",
     "@amzn/base-services": "workspace:*",

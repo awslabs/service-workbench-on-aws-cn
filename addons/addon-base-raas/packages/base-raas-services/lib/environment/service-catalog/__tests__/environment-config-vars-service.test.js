@@ -315,10 +315,12 @@ describe('EnvironmentSCService', () => {
         environmentInstanceFiles: '{}',
         isAppStreamEnabled: 'true',
         solutionNamespace: 'initial-stack-1625689755737',
+        apiHandlerArn: 'arn:aws:iam::xxx:role/apiHandler-role',
       });
       const expectedResponse = {
         accountId: '123456789012',
         adminKeyPairName: '',
+        apiHandlerArn: 'arn:aws:iam::xxx:role/apiHandler-role',
         cidr: '192.168.xx.yy',
         description: 'env-desc',
         egressStoreIamPolicyDocument: '{}',
@@ -357,6 +359,7 @@ describe('EnvironmentSCService', () => {
         isAppStreamEnabled: 'true',
         solutionNamespace: 'initial-stack-1625689755737',
         enableEgressStore: true,
+        apiHandlerArn: 'arn:aws:iam::xxx:role/apiHandler-role',
       });
       const requestContext = createAdminContext();
       const envId = 'sampleEnvId';
@@ -416,6 +419,7 @@ describe('EnvironmentSCService', () => {
         adminKeyPairName: '',
         cidr: '192.168.xx.yy',
         description: 'env-desc',
+        apiHandlerArn: 'arn:aws:iam::xxx:role/apiHandler-role',
         encryptionKeyArn: 'UltraSecureEncryptionKey',
         envId: 'sampleEnvId',
         envTypeConfigId: 'sampleEnvTypeConfigId',

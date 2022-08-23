@@ -25,6 +25,10 @@ import { isStoreLoading, isStoreError, isStoreEmpty } from '@amzn/base-ui/dist/m
 import BasicProgressPlaceholder from '@amzn/base-ui/dist/parts/helpers/BasicProgressPlaceholder';
 import { gotoFn } from '@amzn/base-ui/dist/helpers/routing';
 import ErrorBox from '@amzn/base-ui/dist/parts/helpers/ErrorBox';
+import i18next from 'i18next';
+import { initReactI18next, withTranslation } from 'react-i18next';
+
+i18next.use(initReactI18next);
 
 // expected props
 // - onPrevious (via props)
@@ -181,11 +185,8 @@ class SelectEnvTypeStep extends React.Component {
         <Segment placeholder className="mt2">
           <Header icon className="color-grey">
             <Icon name="server" />
-            No workspace types
-            <Header.Subheader>
-              There are no workspace types to choose from. Your role might be restricted. Please contact your
-              administrator.
-            </Header.Subheader>
+            {i18next.t('noWorkspaceTypes.header', { ns: 'workspaces' })}
+            <Header.Subheader>{i18next.t('noWorkspaceTypes.subheader', { ns: 'workspaces' })}</Header.Subheader>
           </Header>
         </Segment>
         {this.renderButtons()}
@@ -203,7 +204,7 @@ class SelectEnvTypeStep extends React.Component {
           labelPosition="right"
           className="ml2"
           primary
-          content="Next"
+          content={i18next.t('next')}
           loading={processing}
           disabled={nextDisabled || processing}
           onClick={this.handleNext}
@@ -213,7 +214,7 @@ class SelectEnvTypeStep extends React.Component {
           icon="left arrow"
           labelPosition="left"
           className="ml2"
-          content="Previous"
+          content={i18next.t('previous')}
           disabled={processing}
           onClick={this.handlePrevious}
         />
@@ -233,4 +234,4 @@ decorate(SelectEnvTypeStep, {
   selectedEnvTypeId: observable,
 });
 
-export default inject('userStore', 'envTypesStore')(withRouter(observer(SelectEnvTypeStep)));
+export default withTranslation()(inject('userStore', 'envTypesStore')(withRouter(observer(SelectEnvTypeStep))));

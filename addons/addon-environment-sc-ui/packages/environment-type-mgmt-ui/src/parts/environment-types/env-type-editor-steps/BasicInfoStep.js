@@ -23,19 +23,32 @@ import TextArea from '@amzn/base-ui/dist/parts/helpers/fields/TextArea';
 import Form from '@amzn/base-ui/dist/parts/helpers/fields/Form';
 
 import { displayError, displaySuccess } from '@amzn/base-ui/dist/helpers/notification';
-import { getAddEnvTypeBasicInfoForm } from '../../../models/forms/EnvTypeBasicInfoForm';
+import i18next from 'i18next';
+import { initReactI18next, withTranslation } from 'react-i18next';
+import { createForm } from '@amzn/base-ui/dist/helpers/form';
+import { getAddEnvTypeBasicInfoFormFields } from '../../../models/forms/EnvTypeBasicInfoForm';
 import EnvTypeStatusEnum from '../../../models/environment-types/EnvTypeStatusEnum';
 
+i18next.use(initReactI18next);
 class BasicInfoStep extends React.Component {
   constructor(props) {
     super(props);
     runInAction(() => {
-      this.form = getAddEnvTypeBasicInfoForm(props.envType);
+      const fields = getAddEnvTypeBasicInfoFormFields(props.envType);
+      this.fields = fields;
     });
   }
 
   render() {
-    const form = this.form;
+    const fields = this.fields;
+    fields.name.label = i18next.t('addEnvTypeBasicInfoForm.name.label', { ns: 'types' });
+    fields.name.placeholder = i18next.t('addEnvTypeBasicInfoForm.name.placeholder', { ns: 'types' });
+    fields.name.extra.explain = i18next.t('addEnvTypeBasicInfoForm.name.explain', { ns: 'types' });
+    fields.desc.label = i18next.t('addEnvTypeBasicInfoForm.desc.label', { ns: 'types' });
+    fields.desc.placeholder = i18next.t('addEnvTypeBasicInfoForm.desc.placeholder', { ns: 'types' });
+    fields.desc.extra.explain = i18next.t('addEnvTypeBasicInfoForm.desc.explain', { ns: 'types' });
+
+    const form = createForm(fields);
     return (
       <Segment clearing className="mt3 p3">
         <Form form={form} onCancel={this.props.onCancel} onSuccess={this.handleFormSubmission}>
@@ -55,12 +68,16 @@ class BasicInfoStep extends React.Component {
     return (
       <div className="right-align">
         <Button basic color="grey" disabled={processing} onClick={onCancel}>
-          Cancel
+          {i18next.t('cancel')}
         </Button>
         <Button
           className="ml2"
           primary
-          content={isEditing ? 'Save Workspace Type' : 'Import Workspace Type'}
+          content={
+            isEditing
+              ? i18next.t('workspaceType.save', { ns: 'types' })
+              : i18next.t('workspaceType.import', { ns: 'types' })
+          }
           disabled={processing}
           // Every wizard step page has has it's own form
           // The submit handler is responsible for saving the information and/or navigating to the next step (if there is next step)
@@ -109,7 +126,7 @@ class BasicInfoStep extends React.Component {
           provisioningArtifact: envType.provisioningArtifact,
           params: envType.params,
         });
-        displaySuccess(`Imported Workspace Type ${envType.name} successfully`);
+        displaySuccess(i18next.t('workspaceType.imported', { ns: 'types', name: envType.name }), i18next.t('success'));
 
         // Navigate to next step (if there is) or call onEnvTypeSaveComplete to notify
         // that this was last step and we are done creating env type
@@ -127,7 +144,7 @@ class BasicInfoStep extends React.Component {
           name,
           desc,
         });
-        displaySuccess(`Updated Workspace Type ${envType.name} successfully`);
+        displaySuccess(i18next.t('workspaceType.updated', { ns: 'types', name: envType.name }), i18next.t('success'));
 
         await this.props.onEnvTypeSaveComplete(savedEnvType);
       }
@@ -136,4 +153,4 @@ class BasicInfoStep extends React.Component {
     }
   };
 }
-export default observer(BasicInfoStep);
+export default withTranslation()(observer(BasicInfoStep));

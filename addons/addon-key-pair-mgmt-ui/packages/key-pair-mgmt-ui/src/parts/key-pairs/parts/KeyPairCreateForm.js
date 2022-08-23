@@ -22,8 +22,11 @@ import Form from '@amzn/base-ui/dist/parts/helpers/fields/Form';
 import Input from '@amzn/base-ui/dist/parts/helpers/fields/Input';
 import TextArea from '@amzn/base-ui/dist/parts/helpers/fields/TextArea';
 
+import i18next from 'i18next';
+import { initReactI18next, withTranslation } from 'react-i18next';
 import { getKeyPairCreateForm } from '../../../models/forms/KeyPairCreateForm';
 
+i18next.use(initReactI18next);
 // expected props
 // - onCancel (via props) a function is called with the user clicks on cancel or done
 // - keyPairsStore (via injection)
@@ -83,8 +86,21 @@ class KeyPairCreateForm extends React.Component {
             <Input field={form.$('name')} className="mb3" />
             <TextArea field={form.$('desc')} />
 
-            <Button floated="right" className="ml2" primary content="Create Key" disabled={processing} type="submit" />
-            <Button floated="right" className="ml2" content="Cancel" disabled={processing} onClick={onCancel} />
+            <Button
+              floated="right"
+              className="ml2"
+              primary
+              content={i18next.t('create', { ns: 'ssh' })}
+              disabled={processing}
+              type="submit"
+            />
+            <Button
+              floated="right"
+              className="ml2"
+              content={i18next.t('cancel')}
+              disabled={processing}
+              onClick={onCancel}
+            />
           </>
         )}
       </Form>
@@ -94,17 +110,20 @@ class KeyPairCreateForm extends React.Component {
   renderPrivateKey() {
     return (
       <>
-        <Header>Private Key</Header>
+        <Header>{i18next.t('private', { ns: 'ssh' })}</Header>
         <Message warning>
-          <Message.Header>Warning!</Message.Header>
-          <p>
-            This is your only chance to download the private key. The private key is secret information that should not
-            be shared with others. It should be stored and handled carefully.{' '}
-          </p>
+          <Message.Header>{i18next.t('warning.header', { ns: 'ssh' })}</Message.Header>
+          <p>{i18next.t('warning.subheader', { ns: 'ssh' })}</p>
         </Message>
         <div className="clearfix">
-          <Button floated="right" className="ml2" content="Done" onClick={this.handleCancel} />
-          <Button floated="left" primary className="mr2" content="Download" onClick={this.handleDownload} />
+          <Button floated="right" className="ml2" content={i18next.t('done')} onClick={this.handleCancel} />
+          <Button
+            floated="left"
+            primary
+            className="mr2"
+            content={i18next.t('download')}
+            onClick={this.handleDownload}
+          />
         </div>
       </>
     );
@@ -121,4 +140,4 @@ decorate(KeyPairCreateForm, {
   handleDownload: action,
 });
 
-export default inject('keyPairsStore')(withRouter(observer(KeyPairCreateForm)));
+export default withTranslation()(inject('keyPairsStore')(withRouter(observer(KeyPairCreateForm))));

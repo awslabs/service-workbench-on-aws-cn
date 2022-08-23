@@ -25,6 +25,8 @@ import Dotdotdot from 'react-dotdotdot';
 import { displayError } from '@amzn/base-ui/dist/helpers/notification';
 import { storage } from '@amzn/base-ui/dist/helpers/utils';
 
+import i18next from 'i18next';
+import { initReactI18next, withTranslation } from 'react-i18next';
 import EnvironmentStatusIcon from './EnvironmentStatusIcon';
 import By from '../helpers/By';
 import EnvironmentConnectButton from './EnvironmentConnectButton';
@@ -34,6 +36,7 @@ import emrIcon from '../../../images/marketplace/emr-icon.svg';
 import ec2Icon from '../../../images/marketplace/ec2-icon.svg';
 import rstudioIcon from '../../../images/marketplace/rstudio-icon.svg';
 
+i18next.use(initReactI18next);
 const UPDATE_INTERVAL_MS = 20000;
 
 // expected props
@@ -120,7 +123,7 @@ class EnvironmentCard extends React.Component {
         </Modal.Content>
         <Modal.Actions>
           <Button disabled={progress} onClick={this.hideTerminateDialog}>
-            Cancel
+            {i18next.t('cancel')}
           </Button>
           <Button loading={progress} disabled={progress} color="red" onClick={this.handleTerminateEnvironment}>
             <Icon name="remove" /> Terminate
@@ -375,4 +378,4 @@ decorate(EnvironmentCard, {
   terminationInProgress: observable,
 });
 
-export default inject('userDisplayName')(withRouter(observer(EnvironmentCard)));
+export default withTranslation()(inject('userDisplayName')(withRouter(observer(EnvironmentCard))));

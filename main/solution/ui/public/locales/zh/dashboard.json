@@ -1,0 +1,9 @@
+{
+    "dashboard": "仪表板",
+    "noData": "没有可展示的费用数据",
+    "indexCost30days": "过去30天内的索引费用",
+    "envCost30days": "过去30天内的工作区费用",
+    "envCostYesterday": "过去24小时内的工作区费用",
+    "indexCostBreakdown30days": "过去30天内的索引费用明细",
+    "totalCost30days": "过去30天内的总费用: "
+}

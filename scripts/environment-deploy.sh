@@ -63,7 +63,15 @@ else
 fi
 
 componentDeploy "backend" "Backend"
-componentDeploy "edge-lambda" "Edge-Lambda"
+
+SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" &> /dev/null && pwd)
+
+REGION=$(cat "$SCRIPT_DIR"/../main/config/settings/"$STAGE".yml | grep ^awsRegion)
+echo $REGION
+if [[ "$REGION" != *"cn-"* ]]; then
+  echo "deploy lambdaedge"
+  componentDeploy "edge-lambda" "Edge-Lambda"
+fi
 componentDeploy "post-deployment" "Post-Deployment"
 goComponentDeploy "environment-tools" "Environment-Tools"
 

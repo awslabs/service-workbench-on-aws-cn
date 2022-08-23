@@ -16,7 +16,6 @@
 const PluginRegistryService = require('@amzn/base-services/lib/plugin-registry/plugin-registry-service');
 const UserAuthzService = require('@amzn/base-raas-services/lib/user/user-authz-service');
 const UserService = require('@amzn/base-raas-services/lib/user/user-service');
-const UserAttributesMapperService = require('@amzn/base-raas-services/lib/user/user-attributes-mapper-service');
 const StudyService = require('@amzn/base-raas-services/lib/study/study-service');
 const StorageGatewayService = require('@amzn/base-raas-services/lib/storage-gateway/storage-gateway-service');
 const StudyPermissionService = require('@amzn/base-raas-services/lib/study/study-permission-service');
@@ -79,7 +78,6 @@ async function registerServices(container, pluginRegistry) {
   // The base authn provider uses username by concatenating username with auth provider name and idp name
   // In Service Workbench, the email address should be used as username so register custom UserAttributesMapperService that maps
   // attribs from decoded token to user
-  container.register('userAttributesMapperService', new UserAttributesMapperService());
   container.register('userRolesService', new UserRolesService());
   container.register('studyService', new StudyService());
   container.register('studyPermissionService', new StudyPermissionService());

@@ -1,0 +1,44 @@
+{
+    "definitions": {},
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "http://example.com/root.json",
+    "type": "object",
+    "required": [
+        "title"
+    ],
+    "additionalProperties": false,
+    "properties": {
+        "id": {
+            "$id": "#/properties/id",
+            "type": "string"
+        },
+        "title": {
+            "$id": "#/properties/title",
+            "type": "string"
+        },
+        "clientId": {
+            "$id": "#/properties/clientId",
+            "type": "string"
+        },
+        "signInUri": {
+            "$id": "#/properties/signInUri",
+            "type": "string"
+        },
+        "authCodeTokenExchangeUri": {
+            "$id": "#/properties/authCodeTokenExchangeUri",
+            "type": "string"
+        },
+        "signOutUri": {
+            "$id": "#/properties/signOutUri",
+            "type": "string"
+        },
+        "enableNativeUserPoolUsers": {
+            "$id": "#/properties/enableNativeUserPoolUsers",
+            "type": "boolean"
+        },
+        "jwksUri": {
+            "$id": "#/properties/jwksUri",
+            "type": "string"
+        }
+    }
+}

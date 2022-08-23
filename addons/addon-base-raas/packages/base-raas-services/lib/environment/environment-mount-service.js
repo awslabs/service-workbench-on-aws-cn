@@ -32,20 +32,6 @@ const readWritePermissionLevel = 'readwrite';
 const readWriteStatementId = 'S3StudyReadWriteAccess';
 const readOnlyStatementId = 'S3StudyReadAccess';
 
-const parseS3Arn = arn => {
-  const path = arn.slice('arn:aws:s3:::'.length);
-  const slashIndex = path.indexOf('/');
-  return slashIndex !== -1
-    ? {
-        bucket: path.slice(0, slashIndex),
-        prefix: arn.slice(arn.indexOf('/') + 1),
-      }
-    : {
-        bucket: path,
-        prefix: '/',
-      };
-};
-
 /**
  * DEPRECATED DEPRECATED DEPRECATED DEPRECATED DEPRECATED DEPRECATED DEPRECATED DEPRECATED DEPRECATED DEPRECATED
  * DEPRECATED DEPRECATED DEPRECATED DEPRECATED DEPRECATED DEPRECATED DEPRECATED DEPRECATED DEPRECATED DEPRECATED
@@ -64,6 +50,21 @@ class EnvironmentMountService extends Service {
       'iamService',
       'storageGatewayService',
     ]);
+  }
+
+  _parseS3Arn(arn) {
+    const partition = this.awsPartition;
+    const path = arn.slice(`arn:${partition}:s3:::`.length);
+    const slashIndex = path.indexOf('/');
+    return slashIndex !== -1
+      ? {
+          bucket: path.slice(0, slashIndex),
+          prefix: arn.slice(arn.indexOf('/') + 1),
+        }
+      : {
+          bucket: path,
+          prefix: '/',
+        };
   }
 
   async getCfnStudyAccessParameters(requestContext, rawDataV1) {
@@ -93,7 +94,7 @@ class EnvironmentMountService extends Service {
         return;
       }
       _.forEach(study.resources, resource => {
-        const { bucket, prefix } = parseS3Arn(resource.arn);
+        const { bucket, prefix } = this._parseS3Arn(resource.arn);
         const entry = { ..._.omit(item, ['resources']), bucket, prefix };
         if (!isOpenData(study)) {
           entry.kmsKeyId = studyDataKmsKeyArn;
@@ -259,14 +260,14 @@ class EnvironmentMountService extends Service {
     const listSid = `List:${prefix}`;
     const getSid = `Get:${prefix}`;
     const putSid = `Put:${prefix}`;
-
+    const partition = this.awsPartition;
     // Define default statements to be used if we can't find existing ones
     const listStatement = {
       Sid: listSid,
       Effect: 'Allow',
       Principal: { AWS: [] },
       Action: 's3:ListBucket',
-      Resource: `arn:aws:s3:::${s3BucketName}`,
+      Resource: `arn:${partition}:s3:::${s3BucketName}`,
       Condition: {
         StringLike: {
           's3:prefix': [`${prefix}*`],
@@ -279,7 +280,7 @@ class EnvironmentMountService extends Service {
       Effect: 'Allow',
       Principal: { AWS: [] },
       Action: ['s3:GetObject'],
-      Resource: [`arn:aws:s3:::${s3BucketName}/${prefix}*`],
+      Resource: [`arn:${partition}:s3:::${s3BucketName}/${prefix}*`],
     };
     // Write Permission
     const putStatement = {
@@ -293,7 +294,7 @@ class EnvironmentMountService extends Service {
         's3:PutObjectAcl',
         's3:DeleteObject',
       ],
-      Resource: [`arn:aws:s3:::${s3BucketName}/${prefix}*`],
+      Resource: [`arn:${partition}:s3:::${s3BucketName}/${prefix}*`],
     };
 
     return [listStatement, getStatement, putStatement];
@@ -854,6 +855,7 @@ class EnvironmentMountService extends Service {
   }
 
   _getObjectPathArns(studyInfo) {
+    const partition = this.awsPartition;
     // Collect study resources
     const objectPathArns = _.flatten(
       _.map(studyInfo, info =>
@@ -861,7 +863,7 @@ class EnvironmentMountService extends Service {
           // Pull out resource ARNs
           .map(resource => resource.arn)
           // Only grab S3 ARNs
-          .filter(arn => arn.startsWith('arn:aws:s3:'))
+          .filter(arn => arn.startsWith(`arn:${partition}:s3:`))
           // Normalize the ARNs by ensuring they end with "/*"
           .map(arn => {
             switch (arn.slice(-1)) {
@@ -923,13 +925,13 @@ class EnvironmentMountService extends Service {
       // Create map of buckets whose paths need list access
       const bucketPaths = {};
       this._getObjectPathArns(studyInfo).forEach(arn => {
-        const { bucket, prefix } = parseS3Arn(arn);
+        const { bucket, prefix } = this._parseS3Arn(arn);
         if (!(bucket in bucketPaths)) {
           bucketPaths[bucket] = [];
         }
         bucketPaths[bucket].push(prefix);
       });
-
+      const partition = this.awsPartition;
       // Add bucket list permissions to statements
       let bucketCtr = 1;
       Object.keys(bucketPaths).forEach(bucketName => {
@@ -937,7 +939,7 @@ class EnvironmentMountService extends Service {
           Sid: `studyListS3Access${bucketCtr}`,
           Effect: 'Allow',
           Action: 's3:ListBucket',
-          Resource: `arn:aws:s3:::${bucketName}`,
+          Resource: `arn:${partition}:s3:::${bucketName}`,
           Condition: {
             StringLike: {
               's3:prefix': bucketPaths[bucketName],

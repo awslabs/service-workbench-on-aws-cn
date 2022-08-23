@@ -21,17 +21,21 @@ import { Header, Segment, Accordion, Icon, Label, Table, Button } from 'semantic
 import c from 'classnames';
 import { createLink } from '@amzn/base-ui/dist/helpers/routing';
 import { displayWarning } from '@amzn/base-ui/dist/helpers/notification';
+import i18next from 'i18next';
+import { initReactI18next, withTranslation } from 'react-i18next';
 import { isAppStreamEnabled } from '../../helpers/settings';
+
+i18next.use(initReactI18next);
 
 const { getAccountIdsOfActiveEnvironments } = require('./AccountUtils');
 
 const statusDisplay = {
-  CURRENT: { color: 'green', display: 'Up-to-Date', spinner: false },
-  NEEDS_UPDATE: { color: 'orange', display: 'Needs Update', spinner: false },
-  NEEDS_ONBOARD: { color: 'purple', display: 'Needs Onboarding', spinner: false },
-  ERRORED: { color: 'red', display: 'Error', spinner: false },
-  PENDING: { color: 'yellow', display: 'Pending', spinner: true },
-  UNKNOWN: { color: 'grey', display: 'Unknown', spinner: false },
+  CURRENT: { color: 'green', display: 'upToDate', spinner: false },
+  NEEDS_UPDATE: { color: 'orange', display: 'needsUpdate', spinner: false },
+  NEEDS_ONBOARD: { color: 'purple', display: 'needsOnboarding', spinner: false },
+  ERRORED: { color: 'red', display: 'error', spinner: false },
+  PENDING: { color: 'yellow', display: 'pending', spinner: true },
+  UNKNOWN: { color: 'grey', display: 'unknown', spinner: false },
 };
 
 // expected props
@@ -138,7 +142,10 @@ class AccountCard extends React.Component {
         <Header as="h3" color="blue" className={c('mt2', isSelectable ? 'cursor-pointer' : '')} {...onClickAttr}>
           {account.name}
           <Header.Subheader>
-            <span className="pt1 fs-8 color-grey">AWS Account #{idReadable}</span>
+            <span className="pt1 fs-8 color-grey">
+              {i18next.t('account#', { ns: 'accounts' })}
+              {idReadable}
+            </span>
           </Header.Subheader>
         </Header>
       </div>
@@ -154,7 +161,7 @@ class AccountCard extends React.Component {
     return (
       <Label attached="top left" size="mini" color={state.color}>
         {state.spinner && <Icon name="spinner" loading />}
-        {state.display}
+        {i18next.t(`status.${state.display}`, { ns: 'accounts' })}
       </Label>
     );
   }
@@ -166,7 +173,7 @@ class AccountCard extends React.Component {
       <Accordion className="mt2">
         <Accordion.Title active={isExpanded} index={0} onClick={this.handleDetailsExpanded}>
           <Icon name="dropdown" />
-          <b>Details</b>
+          <b>{i18next.t('details')}</b>
         </Accordion.Title>
         <Accordion.Content active={isExpanded}>
           {isExpanded && (
@@ -200,7 +207,7 @@ class AccountCard extends React.Component {
       <Accordion className="mt2">
         <Accordion.Title active={isExpanded} index={0} onClick={this.handleDetailsExpanded}>
           <Icon name="dropdown" />
-          <b>Details</b>
+          <b>{i18next.t('details')}</b>
         </Accordion.Title>
         <Accordion.Content active={isExpanded}>
           {isExpanded && errored && (
@@ -233,7 +240,7 @@ class AccountCard extends React.Component {
   renderBudgetButton() {
     return (
       <Button floated="right" color="blue" onClick={this.handleBudgetButton}>
-        Budget Detail
+        {i18next.t('budgetDetail', { ns: 'accounts' })}
       </Button>
     );
   }
@@ -270,17 +277,17 @@ class AccountCard extends React.Component {
     let buttonArgs;
     if (permissionStatus === 'NEEDS_UPDATE' || permissionStatus === 'ERRORED')
       buttonArgs = {
-        message: 'Update Permissions',
+        message: i18next.t('updatePermsButton.updatePermissions', { ns: 'accounts' }),
         color: 'orange',
       };
     else if (permissionStatus === 'PENDING' || permissionStatus === 'UNKNOWN')
       buttonArgs = {
-        message: 'Re-Onboard Account',
+        message: i18next.t('updatePermsButton.reOnboardAccount', { ns: 'accounts' }),
         color: 'red',
       };
     else
       buttonArgs = {
-        message: 'Onboard Account',
+        message: i18next.t('updatePermsButton.onboardAccount', { ns: 'accounts' }),
         color: 'purple',
       };
 
@@ -312,9 +319,6 @@ decorate(AccountCard, {
   permButtonLoading: observable,
 });
 
-export default inject(
-  'awsAccountsStore',
-  'scEnvironmentsStore',
-  'indexesStore',
-  'projectsStore',
-)(withRouter(observer(AccountCard)));
+export default withTranslation()(
+  inject('awsAccountsStore', 'scEnvironmentsStore', 'indexesStore', 'projectsStore')(withRouter(observer(AccountCard))),
+);

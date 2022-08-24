@@ -6,38 +6,40 @@ sidebar_label: 卸载 Service Workbench
 
 按照下面的步骤删除各个组件以卸载 Service Workbench:
 
-**CloudFormation 堆栈**
+## 1. 终止所有已启动的工作区
 
-+ 对于正在运行的工作区，在成功删除堆栈之前手动删除 PVRE 角色添加。
-+ 在删除堆栈之前清空每个存储桶。
-+ 必须手动删除 S3 存储桶。
-
-**来自 AWS Service Catalog 的产品**
-
-+ 选择 portfolio，删除每个产品，删除组、角色和用户中的条目，然后删除portfolio。
-+ 转到**产品**并从列表中删除产品。 AMI 和 snapshots
-+ 转到 EC2 控制台，在左侧菜单中选择 AMI，选择所有 AMI（来自 SWB），然后选择 **Deregister**。
-+ 选择所有快照并选择**删除**。
-
-**Lambda 函数**
-
-删除与 Service Workbench 相关的 Lambda 函数。
-
-**CloudWatch 日志组**
-
-转到 CloudWatch 控制台，然后选择并删除日志组。或者，设置保留时间，自动删除日志组。
-
-**AWS Cloud9 IDE**
-
-如果您使用 AWS Cloud9 部署 Service Workbench，则可以删除此环境。
-
-**使用卸载脚本**
+## 2. 使用卸载脚本
 
 使用以下脚本卸载 Service Workbench:
 
 ```
-https://github.com/awslabs/service-workbench-on-aws-cn/blob/develop/scripts/environment-delete.sh
+cd ~/service-workbench-on-aws-cn
+sudo yum install epel-release -y
+sudo yum install jq -y
+echo 'export STAGE="$STAGE_NAME"' >> ~/.bashrc
+source ~/.bashrc
+./scripts/environment-delete.sh
 ```
+
+## 3. 检查和手动删除的CloudFormation Stack
+检查步骤2中没有删除成功的 CloudFormation Stack，手动删除。
++ 在删除堆栈之前清空每个存储桶。
++ 必须手动删除 S3 存储桶。
++ 手动删除 CloudFormation Stack
+
+## 4. 检查和删除 AWS Service Catalog 的产品
+检查步骤2中没有删除成功的 portfolio 和 产品，手动删除。
++ 选择 portfolio，删除每个产品，删除组、角色和用户中的条目，然后删除portfolio。
++ 转到 **产品** 并从列表中删除产品。 
+
+## 5. 删除 AMI 和 快照
+
++ 转到 EC2 控制台，在左侧菜单中选择 AMI，选择所有 AMI（来自 SWB），然后选择 **Deregister**。
++ 如果有快照，选择所有快照并选择**删除**。
+
+**AWS Cloud9 IDE**
+
+如果您使用 AWS Cloud9 部署 Service Workbench，则可以删除此环境。
 
 **区域代码映射**
 

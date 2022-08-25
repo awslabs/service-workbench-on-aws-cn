@@ -195,7 +195,7 @@ Service Workbench是一个开源的解决方案，通过shell脚本进行安装�
       部署完成后访问`Website URL` 域名，并忽略HTTPS证书无效的错误。随后，如果出现下面登录页面则代表部署成功：
       [![](img/swb-login-page.png)](img/swb-login-page.png)
 
-## 使用 Service Workbench
+## Step 3：使用 Service Workbench
 - 使用的`rootUserEmail`登录Service Workbench.
 
 - 添加一个 AWS 账户，参考[添加一个AWS 账户](/zh/user_guide/sidebar/admin/accounts/aws_accounts/invite_member_account)

@@ -23,6 +23,7 @@ openDataScrapeHandler:
     APP_IS_APP_STREAM_ENABLED: ${self:custom.settings.isAppStreamEnabled}
     APP_DEFAULT_IDP_TYPE: ${self:custom.settings.defaultIdpType}
     APP_DISABLE_STUDY_UPLOAD_BY_RESEARCHER: ${self:custom.settings.disableStudyUploadByResearcher}
+    APP_AWS_PARTITION: ${self:custom.settings.awsPartition}
 
   events:
     - schedule:

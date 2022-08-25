@@ -31,7 +31,7 @@ sidebar_label: 访问工作区
 
 #### Session Manager
 1. 单击 EC2 Linux 实例中显示的连接按钮。
-2. 选择`SSM Connections`, 单击`Connect`, 直接跳转到一个Session Manager 页面并且以`ssm-user`身份登陆进EC2 Linux 实例。
+2. 选择`SSM Connections`, 单击`Connect`, 直接跳转到一个Session Manager 页面并且以`ssm-user`身份登录进EC2 Linux 实例。
 3. 执行 `sudo su ec2-user` 切换到 `ec2-user` 用户。
 4. 所选数据集将显示为 EC2 Linux 实例上`/home/ec2-user`目录下的挂载目录。这些数据集目录将包含上传到下相应数据集的文件。任何从 Service Workbench 上传到数据集的文件都会在短暂延迟后自动出现在挂载的数据集目录中。
 

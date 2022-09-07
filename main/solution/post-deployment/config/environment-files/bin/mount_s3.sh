@@ -76,7 +76,7 @@ do
         if [ "$s3_role_arn" == "null" ]
         then
             printf 'Mounting internal study "%s" at "%s"\n' "$study_id" "$study_dir"
-            goofys --region $region --acl "bucket-owner-full-control" "${s3_bucket}:${s3_prefix}" "$study_dir"
+            goofys --acl "bucket-owner-full-control" "${s3_bucket}:${s3_prefix}" "$study_dir"
         else
             bucket_region="$(printf "%s" "$mounts" | jq -r ".[$study_idx].region" -)"
             # BYOB studies have a region specified, but in case it isn't use the default region

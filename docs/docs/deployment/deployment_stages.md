@@ -8,12 +8,12 @@ sidebar_label: Deployment Stages
 
 The Service Workbench deployment is categorized into the following stages:
 
-1. [Pre Deployment](/deployment/pre_deployment/pre_deployment/)
+1. [Pre Deployment](/installation_guide/installation/pre-installation/overview)
 
-2. [Deploying Service Workbench](/deployment/deployment/index)
+2. [Deploying Service Workbench](/installation_guide/installation/ec2install)
 
-3. [Post Deployment](/deployment/post_deployment/index)
+3. [Post Deployment](/deployment/post_deployment/)
 
-4. [Configuration](/deployment/configuration/auth/configuring_idp)
+4. [Configuration](/configuration_guide/overview)
 
 5. [Deploying Updates](/deployment/redeployment)

@@ -1,6 +1,6 @@
 AWSTemplateFormatVersion: 2010-09-09
 
-Description: This stack provisions resources necessary to use this AWS account with Service Workbench.
+Description: (SO0144-ext) This stack provisions resources necessary to use this AWS account with Service Workbench.
 
 Parameters:
   EnableAppStream:

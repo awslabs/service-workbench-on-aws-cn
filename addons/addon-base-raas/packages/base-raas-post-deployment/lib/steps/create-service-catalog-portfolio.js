@@ -56,6 +56,11 @@ const productsToCreate = [
     displayName: 'EC2 Windows',
     description: `* An EC2 Windows instance with RDP access \n* Secure compute in the cloud`,
   },
+  {
+    filename: 'sagemaker-notebook-instance-workshop',
+    displayName: 'SageMaker Notebook Workshop',
+    description: `An Amazon SageMaker Jupyter Notebook`,
+  },
 ];
 
 const autoCreateVersion = 'v1';

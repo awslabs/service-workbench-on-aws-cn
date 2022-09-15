@@ -76,6 +76,11 @@ const productsToCreate = [
     displayName: 'EC2 Windows with Matlab-1',
     description: `* An EC2 Windows instance with RDP access \n* Secure compute in the cloud`,
   },
+  {
+    filename: 'sagemaker-notebook-instance-tianjin',
+    displayName: 'Tianjin Uninversity SageMaker Traning',
+    description: `An Amazon SageMaker Jupyter Notebook`,
+  },
 ];
 
 const autoCreateVersion = 'v1';

@@ -92,7 +92,6 @@ function handlerFactory({ registerServices, registerRoutes }) {
         method: req.method,
         url: req.url,
         query: req.query,
-        body: req.body,
       });
       next();
     });

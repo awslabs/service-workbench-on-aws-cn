@@ -70,13 +70,17 @@ class AuthenticationProviderConfigService extends Service {
     }
     const dbService = await this.service('dbService');
     const table = this.settings.get(settingKeys.tableName);
-    const dbResult = await dbService.helper
-      .getter()
-      .table(table)
-      .key({ id: providerId })
-      .projection(fields)
-      .get();
-    return dbResult && toProviderConfig(dbResult);
+    try {
+      const dbResult = await dbService.helper
+        .getter()
+        .table(table)
+        .key({ id: providerId })
+        .projection(fields)
+        .get();
+      return dbResult && toProviderConfig(dbResult);
+    } catch (error) {
+      return null;
+    }
   }
 
   async exists(providerId) {

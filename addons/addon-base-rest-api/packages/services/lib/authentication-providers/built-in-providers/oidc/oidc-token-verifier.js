@@ -33,8 +33,12 @@ async function getOidcTokenVerifier(jwksUri) {
   // eslint-disable-next-line
   function getSigningKey(header = decoded.header, callback) {
     keyClient.getSigningKey(header.kid, function(err, key) {
-      const signingKey = key.publicKey || key.rsaPublicKey;
-      callback(null, signingKey);
+      try {
+        const signingKey = key.publicKey || key.rsaPublicKey;
+        callback(null, signingKey);
+      } catch (error) {
+        callback(null, '');
+      }
     });
   }
 

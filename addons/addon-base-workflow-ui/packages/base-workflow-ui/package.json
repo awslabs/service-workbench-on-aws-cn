@@ -10,7 +10,7 @@
     "i18next-http-backend": "^1.4.1",
     "react-i18next": "^11.17.2",
     "@amzn/base-ui": "workspace:*",
-    "aws-sdk": "^2.1000.0",
+    "aws-sdk": "^2.1233.0",
     "chart.js": "^2.9.4",
     "classnames": "^2.2.6",
     "jwt-decode": "^2.2.0",

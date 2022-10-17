@@ -9,7 +9,7 @@
     "@amzn/base-api-services": "workspace:*",
     "@amzn/base-services": "workspace:*",
     "@amzn/base-services-container": "workspace:*",
-    "aws-sdk": "^2.1000.0",
+    "aws-sdk": "^2.1233.0",
     "generate-password": "^1.5.0",
     "lodash": "^4.17.21"
   },

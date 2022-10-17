@@ -16,7 +16,7 @@
     "@amzn/key-pair-mgmt-services": "workspace:*",
     "@amzn/base-raas-rest-api": "workspace:*",
     "@amzn/internal-auth-dep-check": "workspace:*",
-    "aws-sdk": "^2.1000.0",
+    "aws-sdk": "^2.1233.0",
     "lodash": "^4.17.21",
     "services": "workspace:*"
   },

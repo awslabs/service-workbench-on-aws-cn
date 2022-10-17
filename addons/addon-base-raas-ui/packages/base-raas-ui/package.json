@@ -13,7 +13,7 @@
     "@amzn/base-ui": "workspace:*",
     "@amzn/base-services": "workspace:*",
     "@amzn/key-pair-mgmt-ui": "workspace:*",
-    "aws-sdk": "^2.1000.0",
+    "aws-sdk": "^2.1233.0",
     "chart.js": "^2.9.4",
     "classnames": "^2.2.6",
     "crypto-browserify": "^3.12.0",

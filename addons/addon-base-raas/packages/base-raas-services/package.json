@@ -14,7 +14,7 @@
     "js-yaml": "^4.0.0",
     "lodash": "^4.17.21",
     "moment": "^2.29.4",
-    "nanoid": "^3.1.16",
+    "nanoid": "^3.1.31",
     "node-cache": "^4.2.1",
     "node-fetch": "^2.6.7",
     "node-rsa": "^1.1.1",

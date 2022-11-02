@@ -16,7 +16,7 @@
 const _ = require('lodash');
 const Service = require('@amzn/base-services-container/lib/service');
 const { runAndCatch } = require('@amzn/base-services/lib/helpers/utils');
-const { allowIfActive, allowIfAdmin } = require('@amzn/base-services/lib/authorization/authorization-utils');
+const { allowIfActive, allowIfAdminOrResearcher } = require('@amzn/base-services/lib/authorization/authorization-utils');
 
 const registerSchema = require('../schema/register-data-source-bucket');
 const { bucketIdCompositeKey } = require('./helpers/composite-keys');
@@ -56,7 +56,7 @@ class DataSourceBucketService extends Service {
     // Perform default condition checks to make sure the user is active and is admin
     await this.assertAuthorized(
       requestContext,
-      { action: 'read', conditions: [allowIfActive, allowIfAdmin] },
+      { action: 'read', conditions: [allowIfActive, allowIfAdminOrResearcher] },
       { accountId, name },
     );
 
@@ -82,7 +82,7 @@ class DataSourceBucketService extends Service {
     // Perform default condition checks to make sure the user is active and is admin
     await this.assertAuthorized(
       requestContext,
-      { action: 'register', conditions: [allowIfActive, allowIfAdmin] },
+      { action: 'register', conditions: [allowIfActive, allowIfAdminOrResearcher] },
       rawData,
     );
 

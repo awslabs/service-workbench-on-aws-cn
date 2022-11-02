@@ -179,7 +179,7 @@ class WorkflowDraftService extends Service {
     const originalDraft = await this.mustFindDraft({ id: draft.id });
 
     // Check if the owner of this draft is the same entity that is trying to update the draft
-    if (originalDraft.uid !== by) throw this.boom.forbidden('You are not authorized to perform this operation', true);
+    if (originalDraft.uid !== by) throw this.boom.forbidden('You are not authorized to perform this operation 5', true);
 
     const originalWorkflow = originalDraft.workflow;
     if (workflow.id !== originalWorkflow.id || workflow.v !== originalWorkflow.v) {
@@ -281,7 +281,7 @@ class WorkflowDraftService extends Service {
     const originalDraft = await this.mustFindDraft({ id });
 
     // Check if the owner of this draft is the same entity that is trying to delete the draft
-    if (originalDraft.uid !== uid) throw this.boom.forbidden('You are not authorized to perform this operation', true);
+    if (originalDraft.uid !== uid) throw this.boom.forbidden('You are not authorized to perform this operation 6', true);
 
     // Lets now remove the draft from the database
     const dbService = await this.service('dbService');

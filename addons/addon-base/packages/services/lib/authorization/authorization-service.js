@@ -128,7 +128,7 @@ class AuthorizationService extends Service {
     if (_.toLower(result.effect) !== 'allow') {
       const isSafe = _.get(result, 'reason.safe');
       const reasonMessage = _.get(result, 'reason.message');
-      const errorMessage = isSafe && reasonMessage ? reasonMessage : 'You are not authorized to perform this operation';
+      const errorMessage = isSafe && reasonMessage ? reasonMessage : 'You are not authorized to perform this operation !!!';
       if (!isSafe) {
         // Make sure to log the original authorization result with denial for troubleshooting, if
         // the denial reason message is not safe to propagate beyond service boundary.

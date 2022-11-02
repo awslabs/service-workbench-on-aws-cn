@@ -16,7 +16,7 @@
 /* eslint-disable no-template-curly-in-string */
 const _ = require('lodash');
 const Service = require('@amzn/base-services-container/lib/service');
-const { isAllow, allowIfActive, allowIfAdmin } = require('@amzn/base-services/lib/authorization/authorization-utils');
+const { isAllow, allowIfActive, allowIfAdminOrResearcher } = require('@amzn/base-services/lib/authorization/authorization-utils');
 
 const createEnvTypeConfigSchema = require('./schema/create-or-update-env-type-config');
 
@@ -87,7 +87,7 @@ class EnvTypeConfigService extends Service {
     // env type configs
     const allowedToListAllConfigs = await this.isAuthorized(requestContext, {
       action: 'list-all-configs',
-      conditions: [allowIfActive, allowIfAdmin],
+      conditions: [allowIfActive, allowIfAdminOrResearcher],
     });
     if (!allowedToListAllConfigs) {
       return usableConfigs;
@@ -121,7 +121,7 @@ class EnvTypeConfigService extends Service {
     // Perform default condition checks to make sure the user is active and is admin
     await this.assertAuthorized(
       requestContext,
-      { action: 'create-config', conditions: [allowIfActive, allowIfAdmin] },
+      { action: 'create-config', conditions: [allowIfActive, allowIfAdminOrResearcher] },
       envTypeId,
       config,
     );
@@ -184,7 +184,7 @@ class EnvTypeConfigService extends Service {
     // Perform default condition checks to make sure the user is active and is admin
     await this.assertAuthorized(
       requestContext,
-      { action: 'update-config', conditions: [allowIfActive, allowIfAdmin] },
+      { action: 'update-config', conditions: [allowIfActive, allowIfAdminOrResearcher] },
       envTypeId,
       config,
     );
@@ -279,7 +279,7 @@ class EnvTypeConfigService extends Service {
     // Perform default condition checks to make sure the user is active and is admin
     await this.assertAuthorized(
       requestContext,
-      { action: 'delete-config', conditions: [allowIfActive, allowIfAdmin] },
+      { action: 'delete-config', conditions: [allowIfActive, allowIfAdminOrResearcher] },
       envTypeId,
       configId,
     );

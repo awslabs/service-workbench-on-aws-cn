@@ -19,6 +19,11 @@ function isAdmin(requestContext) {
   return _.get(requestContext, 'principal.isAdmin', false);
 }
 
+function isResearcher(requestContext) {
+  console.log('mingtong test isResearcher: ', requestContext);
+  return _.get(requestContext, 'principal.userRole') === 'researcher';
+}
+
 function isCurrentUser(requestContext, { uid }) {
   return _.get(requestContext, 'principalIdentifier.uid') === uid;
 }
@@ -97,6 +102,13 @@ async function allowIfAdmin(requestContext, { action }) {
   return allow();
 }
 
+async function allowIfAdminOrResearcher(requestContext, { action }) {
+  if (!isAdmin(requestContext) && !isResearcher(requestContext)) {
+    return deny(`Cannot perform the specified action "${action}". Only admins and researcher can.`);
+  }
+  return allow();
+}
+
 async function allowIfRoot(requestContext, { action }) {
   if (!isRoot(requestContext)) {
     return deny(`Cannot perform the specified action "${action}". Only root user can.`);
@@ -128,6 +140,7 @@ module.exports = {
   allowIfCurrentUser,
   allowIfActive,
   allowIfAdmin,
+  allowIfAdminOrResearcher,
   allowIfRoot,
   allowIfSystem,
 

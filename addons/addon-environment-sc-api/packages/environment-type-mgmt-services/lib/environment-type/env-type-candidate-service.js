@@ -15,7 +15,7 @@
 
 const _ = require('lodash');
 const Service = require('@amzn/base-services-container/lib/service');
-const { allowIfActive, allowIfAdmin } = require('@amzn/base-services/lib/authorization/authorization-utils');
+const { allowIfActive, allowIfAdmin, allowIfAdminOrResearcher } = require('@amzn/base-services/lib/authorization/authorization-utils');
 const { retry } = require('@amzn/base-services/lib/helpers/utils');
 
 const envTypeCandidateStatusEnum = require('./helpers/env-type-candidate-status-enum');
@@ -58,7 +58,7 @@ class EnvTypeCandidateService extends Service {
   ) {
     // ensure that the caller has permissions to list raw environment types (AWS Service Catalog Products not yet imported into "app store")
     // Perform default condition checks to make sure the user is active and is admin
-    await this.assertAuthorized(requestContext, { action: 'list', conditions: [allowIfActive, allowIfAdmin] });
+    await this.assertAuthorized(requestContext, { action: 'list', conditions: [allowIfActive, allowIfAdminOrResearcher] });
 
     const filterStatuses = filter.status || [envTypeCandidateStatusEnum.notImported];
     const versionFilter = filter.version || versionFilterEnum.latest;

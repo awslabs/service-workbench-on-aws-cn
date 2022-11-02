@@ -16,7 +16,7 @@
 /* eslint-disable no-await-in-loop */
 const _ = require('lodash');
 const Service = require('@amzn/base-services-container/lib/service');
-const { ensureAdmin } = require('@amzn/base-services/lib/authorization/assertions');
+const { ensureAdminOrResearcher } = require('@amzn/base-services/lib/authorization/assertions');
 const { toVersionString, parseVersionString, runAndCatch } = require('@amzn/base-services/lib/helpers/utils');
 
 const PropsOverrideOption = require('./helpers/props-override-option');
@@ -56,8 +56,7 @@ class WorkflowService extends Service {
 
   async createVersion(requestContext, manifest = {}, { isLatest = true, tableName } = {}) {
     const [jsonSchemaValidationService] = await this.service(['jsonSchemaValidationService']);
-
-    await ensureAdmin(requestContext);
+    await ensureAdminOrResearcher(requestContext);
     // Validate input
     await jsonSchemaValidationService.ensureValid(manifest, inputSchema);
 
@@ -66,12 +65,10 @@ class WorkflowService extends Service {
     const { id, v } = manifest;
     const logPrefix = `The workflow "${id}" with ver "${v}" and rev "0"`;
     const preparedWorkflow = await this.prepareWorkflow(_.cloneDeep(manifest));
-
     const dbObject = toDbObject(preparedWorkflow);
 
     // For now, we assume that 'createdBy' and 'updatedBy' are always users and not groups
     const by = _.get(requestContext, 'principalIdentifier.uid');
-
     // TODO: we need to wrap the creation of the version and the update of the latest record in a transaction
     const result = await runAndCatch(
       async () => {
@@ -87,7 +84,6 @@ class WorkflowService extends Service {
         throw this.boom.badRequest(`${logPrefix} already exist`, true);
       },
     );
-
     if (isLatest) {
       await runAndCatch(
         async () => {
@@ -113,7 +109,6 @@ class WorkflowService extends Service {
 
     // Write audit event
     await this.audit(requestContext, { action: 'create-workflow-version', body: dataObjectResult });
-
     return dataObjectResult;
   }
 
@@ -266,14 +261,12 @@ class WorkflowService extends Service {
     // This function can accept a different tableName to use for the lookup, this is useful in places
     // such as post deployment
     const table = tableName || this.tableName;
-
     const result = await dbService.helper
       .getter()
       .table(table)
       .key({ id, ver: toVersionString(v) })
       .projection(fields)
       .get();
-
     return toDataObject(result);
   }
 

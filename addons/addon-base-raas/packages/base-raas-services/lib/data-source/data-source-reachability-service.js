@@ -15,7 +15,7 @@
 
 const _ = require('lodash');
 const Service = require('@amzn/base-services-container/lib/service');
-const { allowIfActive, allowIfAdmin } = require('@amzn/base-services/lib/authorization/authorization-utils');
+const { allowIfActive, allowIfAdminOrResearcher } = require('@amzn/base-services/lib/authorization/authorization-utils');
 const { processInBatches } = require('@amzn/base-services/lib/helpers/utils');
 const attemptReachSchema = require('../schema/attempt-reach-data-source');
 
@@ -75,7 +75,6 @@ class DataSourceReachabilityService extends Service {
   async reachDsAccount(requestContext, { id, type }, { forceCheckAll = false } = {}) {
     const accountService = await this.service('dataSourceAccountService');
     const dataSourceAccount = await accountService.mustFind(requestContext, { id });
-
     const prevStatus = dataSourceAccount.status;
     let newStatus;
     let statusMsg;
@@ -84,9 +83,7 @@ class DataSourceReachabilityService extends Service {
       requestContext,
       dataSourceAccount,
     );
-
     const stackInfo = await this.getAccountStackInfo(requestContext, dataSourceAccount);
-
     if (reachable) {
       newStatus = 'reachable';
       statusMsg = '';
@@ -98,9 +95,7 @@ class DataSourceReachabilityService extends Service {
       newStatus = 'error';
       statusMsg = `ERR|||Error getting information from data source account ${id}`;
     }
-
     await accountService.updateStackInfo(requestContext, id, stackInfo);
-
     if (prevStatus !== newStatus || forceCheckAll) {
       const workflowTriggerService = await this.service('workflowTriggerService');
       await workflowTriggerService.triggerWorkflow(
@@ -113,7 +108,6 @@ class DataSourceReachabilityService extends Service {
         },
       );
     }
-
     if (!_.isEmpty(unreachableAppRoles)) {
       statusMsg = `ERR|||Error getting information from ${unreachableAppRoles.length} application roles. 
       It is possible that the cloudformation stack deployed in the data source account ${id} is outdated`;
@@ -123,13 +117,11 @@ class DataSourceReachabilityService extends Service {
       status: newStatus,
       statusMsg,
     });
-
     // Write audit event
     await this.audit(requestContext, {
       action: 'check-dsAccount-reachability',
       body: { id, type },
     });
-
     return entity;
   }
 
@@ -266,7 +258,7 @@ class DataSourceReachabilityService extends Service {
 
     await accountService.assertAuthorized(
       requestContext,
-      { action: 'update', conditions: [allowIfActive, allowIfAdmin] },
+      { action: 'update', conditions: [allowIfActive, allowIfAdminOrResearcher] },
       { id, status, type },
     );
 
@@ -295,7 +287,6 @@ class DataSourceReachabilityService extends Service {
     } else if (type === 'study') {
       outputVal = await this.reachStudy(requestContext, { id, type });
     }
-
     return outputVal;
   }
 

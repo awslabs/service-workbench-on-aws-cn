@@ -179,7 +179,7 @@ class StudyService extends Service {
   // WARNING!! This method is not meant to be called directly from a controller,
   // if you need to do that, use dataSourceRegistrationService.registerStudy() instead.
   async register(requestContext, accountEntity, bucketEntity, rawStudyEntity) {
-    if (!isAdmin(requestContext)) {
+    if (!isAdmin(requestContext) && !isInternalResearcher(requestContext)) {
       throw this.boom.forbidden('Only admins are authorized to register studies.', true);
     }
 
@@ -478,7 +478,7 @@ class StudyService extends Service {
    * message.
    */
   async updateStatus(requestContext, studyEntity, { status, statusMsg } = {}) {
-    if (!isAdmin(requestContext)) {
+    if (!isAdmin(requestContext) && !isInternalResearcher(requestContext)) {
       throw this.boom.forbidden("You don't have permissions to update the status", true);
     }
 
@@ -562,7 +562,7 @@ class StudyService extends Service {
   }
 
   async listStudiesForAccount(requestContext, { accountId }, fields = []) {
-    if (!isAdmin(requestContext)) {
+    if (!isAdmin(requestContext) && !isInternalResearcher(requestContext)) {
       throw this.boom.forbidden("You don't have permissions to call this method", true);
     }
 

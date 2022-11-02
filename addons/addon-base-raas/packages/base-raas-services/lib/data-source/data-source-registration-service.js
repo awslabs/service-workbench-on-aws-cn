@@ -149,7 +149,6 @@ class DataSourceRegistrationService extends Service {
 
     // Include the app role stack that allows us to query the stack information
     cfnTemplate.addResource(toAppStackCfnResource(accountEntity, swbMainAccountId, this.awsPartition));
-
     // We give a chance to the plugins to participate in the logic of creating the account cfn. This helps us
     // have different study access strategies
     const pluginRegistryService = await this.service('pluginRegistryService');
@@ -161,10 +160,8 @@ class DataSourceRegistrationService extends Service {
         cfnTemplate,
       },
     });
-
     cfnTemplate = result.cfnTemplate;
     let templateStr = JSON.stringify(cfnTemplate.toJson()); // This one does not yet have the Outputs section
-
     // Prepare the account template information. The id of the template is actually the hash of the content
     // of the template
     const accountTemplateInfo = {
@@ -180,7 +177,6 @@ class DataSourceRegistrationService extends Service {
     hash.update(templateStr);
     const templateId = hash.digest('hex');
     accountTemplateInfo.id = templateId;
-
     // Now that we have a template id, we can declare the Outputs section in the template
     cfnTemplate.addOutput(
       'swbTemplateInfo',
@@ -188,7 +184,6 @@ class DataSourceRegistrationService extends Service {
     );
     accountTemplateInfo.template = cfnTemplate.toJson();
     templateStr = JSON.stringify(accountTemplateInfo.template);
-
     // Upload to S3
     const bucket = this.settings.get(settingKeys.envBootstrapBucket);
     const key = `data-sources/acct-${id}/cfn/region/${mainRegion}/${accountTemplateInfo.id}.json`;
@@ -215,13 +210,11 @@ class DataSourceRegistrationService extends Service {
 
     // Store the template id in the data source account entity
     await accountService.updateStackInfo(requestContext, id, { templateIdExpected: templateId });
-
     // Write audit event
     await this.audit(requestContext, {
       action: 'create-account-cfn',
       body: { accountEntity: result.accountEntity, accountTemplateInfo },
     });
-
     return accountTemplateInfo;
   }
 

@@ -48,7 +48,6 @@ class WorkflowTemplateDraftService extends Service {
     { isNewTemplate = true, templateId: templateIdRaw, templateTitle, templateVer = 0 } = {},
   ) {
     const [workflowTemplateService] = await this.service(['workflowTemplateService']);
-
     await ensureAdmin(requestContext);
     // For now, we assume that 'createdBy' and 'updatedBy' are always users and not groups
     const by = _.get(requestContext, 'principalIdentifier.uid');
@@ -128,7 +127,6 @@ class WorkflowTemplateDraftService extends Service {
       'jsonSchemaValidationService',
       'workflowTemplateService',
     ]);
-
     await ensureAdmin(requestContext);
     // For now, we assume that 'createdBy' and 'updatedBy' are always users and not groups
     const by = _.get(requestContext, 'principalIdentifier.uid');
@@ -137,7 +135,7 @@ class WorkflowTemplateDraftService extends Service {
     const originalDraft = await this.mustFindDraft({ id: draft.id });
 
     // Check if the owner of this draft is the same entity that is trying to update the draft
-    if (originalDraft.uid !== by) throw this.boom.forbidden('You are not authorized to perform this operation', true);
+    if (originalDraft.uid !== by) throw this.boom.forbidden('You are not authorized to perform this operation 7', true);
 
     if (!_.isObject(template)) throw this.boom.badRequest('The provided template is not a valid JSON object', true);
     if (_.isUndefined(template.id)) throw this.boom.badRequest('The provided template is missing an id', true);
@@ -250,7 +248,7 @@ class WorkflowTemplateDraftService extends Service {
     const originalDraft = await this.mustFindDraft({ id });
 
     // Check if the owner of this draft is the same entity that is trying to delete the draft
-    if (originalDraft.uid !== by) throw this.boom.forbidden('You are not authorized to perform this operation', true);
+    if (originalDraft.uid !== by) throw this.boom.forbidden('You are not authorized to perform this operation 8', true);
 
     // Lets now remove the draft from the database
     const dbService = await this.service('dbService');

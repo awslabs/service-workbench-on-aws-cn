@@ -18,6 +18,8 @@ const newSetupAuthContextMiddleware = require('../middlewares/setup-auth-context
 const prepareContextFn = require('../middlewares/prepare-context');
 const ensureActiveFn = require('../middlewares/ensure-active');
 const ensureAdminFn = require('../middlewares/ensure-admin');
+const ensureAdminOrReseacherFn = require('../middlewares/ensure-adminOrReseacher');
+
 // base controllers
 const authenticationProviderController = require('../authentication-provider-controller');
 const authenticationProviderPublicController = require('../authentication-provider-public-controller');
@@ -54,6 +56,7 @@ async function getBaseRoutes(routesMap, pluginRegistry) {
         prepareContextFn,
         ensureActiveFn,
         ensureAdminFn,
+        ensureAdminOrReseacherFn,
         authenticationProviderController,
       ],
     ],

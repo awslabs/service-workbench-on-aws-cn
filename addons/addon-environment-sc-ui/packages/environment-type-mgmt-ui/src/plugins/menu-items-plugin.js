@@ -35,6 +35,7 @@ import _ from 'lodash';
 // eslint-disable-next-line no-unused-vars
 function registerMenuItems(itemsMap, { location, appContext }) {
   const isAdmin = _.get(appContext, 'userStore.user.isAdmin');
+  const isInternalResearcher = _.get(appContext, 'userStore.user.isInternalResearcher');
   const showEnvTypeManagement = _.get(appContext, 'showEnvTypeManagement', true);
   const items = new Map([
     ...itemsMap,
@@ -43,7 +44,7 @@ function registerMenuItems(itemsMap, { location, appContext }) {
       {
         title: 'Workspace Types',
         icon: 'computer',
-        shouldShow: isAdmin && showEnvTypeManagement,
+        shouldShow: (isAdmin || isInternalResearcher) && showEnvTypeManagement,
       },
     ],
   ]);

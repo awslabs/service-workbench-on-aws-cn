@@ -76,7 +76,7 @@ class InputStep extends React.Component {
     _.forEach(list, user => {
       if (!user.isActive) return;
       if ((user.isAdmin || user.userRole === 'admin') && disableAdminBYOBSelfAssignment === true) return;
-      if (user.isAdmin || user.isInternalResearcher || user.userRole === 'admin') {
+      if (user.isAdmin || user.isInternalResearcher || user.userRole === 'admin' || user.userRole === 'researcher') {
         result.push({
           key: user.id,
           value: user.id,

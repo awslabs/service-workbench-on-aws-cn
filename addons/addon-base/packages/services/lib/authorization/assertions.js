@@ -25,7 +25,7 @@ function isCurrentUser(requestContext, { uid }) {
 async function ensureCurrentUserOrAdmin(requestContext, { uid }) {
   const isCurrentUserOrAdmin = isCurrentUser(requestContext, { uid }) || requestContext.principal.isAdmin;
   if (!isCurrentUserOrAdmin) {
-    throw boom.forbidden('You are not authorized to perform this operation', true);
+    throw boom.forbidden('You are not authorized to perform this operation 1', true);
   }
 }
 
@@ -38,20 +38,29 @@ async function ensureCurrentUser(requestContext, { uid }) {
 async function ensureAdmin(requestContext) {
   const isAdmin = _.get(requestContext, 'principal.isAdmin', false);
   if (!isAdmin) {
-    throw boom.forbidden('You are not authorized to perform this operation', true);
+    throw boom.forbidden('You are not authorized to perform this operation 2', true);
+  }
+}
+
+async function ensureAdminOrResearcher(requestContext) {
+  const isAdmin = _.get(requestContext, 'principal.isAdmin', false);
+  const isResearcher = _.get(requestContext, 'principal.userRole') === 'researcher';
+  if (!isAdmin && !isResearcher) {
+    throw boom.forbidden('You are not authorized to perform this operation 2', true);
   }
 }
 
 async function ensureRoot(requestContext) {
   const isRoot = _.get(requestContext, 'principal.userType') === 'root';
   if (!isRoot) {
-    throw boom.forbidden('You are not authorized to perform this operation', true);
+    throw boom.forbidden('You are not authorized to perform this operation 3', true);
   }
 }
 
 module.exports = {
   ensureCurrentUserOrAdmin,
   ensureAdmin,
+  ensureAdminOrResearcher,
   isCurrentUser,
   ensureCurrentUser,
   ensureRoot,

@@ -161,8 +161,10 @@ class UserService extends BaseUserService {
 
     const isAdmin = _.get(requestContext, 'principal.isAdmin', false);
 
+    const isResearcher = _.get(requestContext, 'principal.userRole') === 'researcher';
+
     let sanitizedUsers = [];
-    if (isAdmin) {
+    if (isAdmin || isResearcher) {
       sanitizedUsers = users.map(user => _.omit(user, ['encryptedCreds']));
     } else {
       sanitizedUsers = users.map(user => _.pick(user, ['firstName', 'lastName', 'email', 'uid', 'username']));

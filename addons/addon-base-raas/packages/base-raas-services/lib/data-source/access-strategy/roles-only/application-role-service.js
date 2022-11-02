@@ -16,7 +16,7 @@
 const _ = require('lodash');
 const Service = require('@amzn/base-services-container/lib/service');
 const { runAndCatch } = require('@amzn/base-services/lib/helpers/utils');
-const { allowIfActive, allowIfAdmin } = require('@amzn/base-services/lib/authorization/authorization-utils');
+const { allowIfActive, allowIfAdminOrResearcher } = require('@amzn/base-services/lib/authorization/authorization-utils');
 
 const { appRoleIdCompositeKey } = require('./helpers/composite-keys');
 const {
@@ -68,7 +68,7 @@ class ApplicationRoleService extends Service {
     // Perform default condition checks to make sure the user is active
     await this.assertAuthorized(
       requestContext,
-      { action: 'read', conditions: [allowIfActive, allowIfAdmin] },
+      { action: 'read', conditions: [allowIfActive, allowIfAdminOrResearcher] },
       { accountId, arn },
     );
 
@@ -115,7 +115,7 @@ class ApplicationRoleService extends Service {
     // Perform default condition checks to make sure the user is active
     await this.assertAuthorized(
       requestContext,
-      { action: 'allocate', conditions: [allowIfActive, allowIfAdmin] },
+      { action: 'allocate', conditions: [allowIfActive, allowIfAdminOrResearcher] },
       studyEntity,
     );
     const { accountId, id: studyId, bucket } = studyEntity;
@@ -173,7 +173,7 @@ class ApplicationRoleService extends Service {
   async updateStatus(requestContext, appRoleEntity, { status, statusMsg } = {}) {
     await this.assertAuthorized(
       requestContext,
-      { action: 'update-status', conditions: [allowIfActive, allowIfAdmin] },
+      { action: 'update-status', conditions: [allowIfActive, allowIfAdminOrResearcher] },
       { appRoleEntity, status, statusMsg },
     );
 
@@ -222,7 +222,7 @@ class ApplicationRoleService extends Service {
    * of the application role entity.
    */
   async list(requestContext, accountId, { bucket, fields = [] } = {}) {
-    await this.assertAuthorized(requestContext, { action: 'list', conditions: [allowIfActive, allowIfAdmin] });
+    await this.assertAuthorized(requestContext, { action: 'list', conditions: [allowIfActive, allowIfAdminOrResearcher] });
 
     const dbEntities = await this._query()
       .key('pk', appRoleIdCompositeKey.pk(accountId))
@@ -246,7 +246,7 @@ class ApplicationRoleService extends Service {
    * @param accountId The data source account id where the application roles will be provisioned
    */
   async provideCfnResources(requestContext, cfnTemplate, accountId) {
-    await this.assertAuthorized(requestContext, { action: 'list', conditions: [allowIfActive, allowIfAdmin] });
+    await this.assertAuthorized(requestContext, { action: 'list', conditions: [allowIfActive, allowIfAdminOrResearcher] });
 
     // Logic
     // - Get a list of all applications roles for the account

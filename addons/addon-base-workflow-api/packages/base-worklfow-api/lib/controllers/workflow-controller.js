@@ -175,7 +175,6 @@ async function configure(context) {
       const manifest = req.body;
 
       if (manifest.id !== id) throw boom.badRequest('The workflow ids do not match', true);
-
       const result = await workflowService.createVersion(requestContext, manifest);
       res.status(200).json(result);
     }),

@@ -37,7 +37,6 @@ class StepTemplateService extends Service {
 
   async createVersion(requestContext, manifest = {}, { isLatest = true, tableName } = {}) {
     const [jsonSchemaValidationService] = await this.service(['jsonSchemaValidationService']);
-
     await ensureAdmin(requestContext);
 
     // TODO - validation does not check for additional props that are not supported, we need to fix it
@@ -96,7 +95,6 @@ class StepTemplateService extends Service {
 
   async updateVersion(requestContext, manifest = {}, { isLatest = true, tableName } = {}) {
     const [jsonSchemaValidationService] = await this.service(['jsonSchemaValidationService']);
-
     await ensureAdmin(requestContext);
 
     // Validate input

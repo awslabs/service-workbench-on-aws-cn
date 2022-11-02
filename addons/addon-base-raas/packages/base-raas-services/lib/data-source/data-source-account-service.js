@@ -16,7 +16,7 @@
 const _ = require('lodash');
 const Service = require('@amzn/base-services-container/lib/service');
 const { runAndCatch } = require('@amzn/base-services/lib/helpers/utils');
-const { allowIfActive, allowIfAdmin } = require('@amzn/base-services/lib/authorization/authorization-utils');
+const { allowIfActive, allowIfAdminOrResearcher } = require('@amzn/base-services/lib/authorization/authorization-utils');
 
 const { generateId } = require('../helpers/utils');
 const registerSchema = require('../schema/register-data-source-account');
@@ -56,7 +56,7 @@ class DataSourceAccountService extends Service {
   async find(requestContext, { id, fields = [] }) {
     // ensure that the caller has permissions to read this account information
     // Perform default condition checks to make sure the user is active and is admin
-    await this.assertAuthorized(requestContext, { action: 'read', conditions: [allowIfActive, allowIfAdmin] }, { id });
+    await this.assertAuthorized(requestContext, { action: 'read', conditions: [allowIfActive, allowIfAdminOrResearcher] }, { id });
 
     const result = await this._getter()
       .key(accountIdCompositeKey.encode({ id }))
@@ -77,7 +77,7 @@ class DataSourceAccountService extends Service {
     // Perform default condition checks to make sure the user is active and is admin
     await this.assertAuthorized(
       requestContext,
-      { action: 'register', conditions: [allowIfActive, allowIfAdmin] },
+      { action: 'register', conditions: [allowIfActive, allowIfAdminOrResearcher] },
       rawAccountEntity,
     );
 
@@ -144,7 +144,7 @@ class DataSourceAccountService extends Service {
     // Perform default condition checks to make sure the user is active and is admin
     await this.assertAuthorized(
       requestContext,
-      { action: 'update', conditions: [allowIfActive, allowIfAdmin] },
+      { action: 'update', conditions: [allowIfActive, allowIfAdminOrResearcher] },
       rawAccountEntity,
     );
 
@@ -207,7 +207,7 @@ class DataSourceAccountService extends Service {
   async updateStatus(requestContext, dsAccountEntity, { status, statusMsg } = {}) {
     await this.assertAuthorized(
       requestContext,
-      { action: 'update-account', conditions: [allowIfActive, allowIfAdmin] },
+      { action: 'update-account', conditions: [allowIfActive, allowIfAdminOrResearcher] },
       { dsAccountEntity, status, statusMsg },
     );
 
@@ -249,7 +249,7 @@ class DataSourceAccountService extends Service {
   async updateStackInfo(requestContext, accountId, stackInfo = {}) {
     await this.assertAuthorized(
       requestContext,
-      { action: 'update-account-stack-info', conditions: [allowIfActive, allowIfAdmin] },
+      { action: 'update-account-stack-info', conditions: [allowIfActive, allowIfAdminOrResearcher] },
       { stackInfo },
     );
 
@@ -289,7 +289,7 @@ class DataSourceAccountService extends Service {
   async queryStack(requestContext, accountEntity) {
     await this.assertAuthorized(
       requestContext,
-      { action: 'query-stack', conditions: [allowIfActive, allowIfAdmin] },
+      { action: 'query-stack', conditions: [allowIfActive, allowIfAdminOrResearcher] },
       { accountEntity },
     );
 
@@ -322,14 +322,12 @@ class DataSourceAccountService extends Service {
   }
 
   async list(requestContext, { fields = [] } = {}) {
-    await this.assertAuthorized(requestContext, { action: 'list', conditions: [allowIfActive, allowIfAdmin] });
-
+    await this.assertAuthorized(requestContext, { action: 'list', conditions: [allowIfActive, allowIfAdminOrResearcher] });
     // Remember doing a scan is not a good idea if millions of accounts
     const output = await this._scanner()
       .limit(1000)
       .projection(fields)
       .scan();
-
     // The output array above has a mix entries of accounts and buckets, what we want is to build
     // the result as an array of [ {...accountEntity, buckets = [ bucketEntities] ] }, ...]
     const accountMap = {};
@@ -339,7 +337,6 @@ class DataSourceAccountService extends Service {
       accountMap[`${accountId}`] = entry;
       return entry;
     };
-
     const result = [];
     _.forEach(output, item => {
       let entry;
@@ -354,7 +351,6 @@ class DataSourceAccountService extends Service {
         result.push(accountEntry);
       }
     });
-
     return result;
   }
 

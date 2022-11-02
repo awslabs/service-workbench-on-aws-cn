@@ -34,6 +34,7 @@ import _ from 'lodash';
 // eslint-disable-next-line no-unused-vars
 function registerMenuItems(itemsMap, { location, appContext }) {
   const isAdmin = _.get(appContext, 'userStore.user.isAdmin');
+  const isInternalResearcher = _.get(appContext, 'userStore.user.isInternalResearcher');
   const canCreateWorkspaces = _.get(appContext, 'userStore.user.capabilities.canCreateWorkspace');
   const canViewDashboard = _.get(appContext, 'userStore.user.capabilities.canViewDashboard');
   const items = new Map([
@@ -41,7 +42,7 @@ function registerMenuItems(itemsMap, { location, appContext }) {
       if (item[0] === '/dashboard' && !canViewDashboard) return false;
       return true;
     }),
-    ['/data-sources', { title: 'Data Sources', icon: 'database', shouldShow: isAdmin }],
+    ['/data-sources', { title: 'Data Sources', icon: 'database', shouldShow: isAdmin || isInternalResearcher }],
     ['/accounts', { title: 'Accounts', icon: 'sitemap', shouldShow: isAdmin }],
     ['/studies', { title: 'Studies', icon: 'book', shouldShow: true }],
     ['/workspaces', { title: 'Workspaces', icon: 'server', shouldShow: canCreateWorkspaces }],

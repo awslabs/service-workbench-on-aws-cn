@@ -30,10 +30,8 @@ class AddWorkflows extends Service {
 
   async execute() {
     const [registryService] = await this.service(['workflowRegistryService']);
-
     // workflows = [ { id, v, yaml }]
     const workflows = await registryService.listWorkflows();
-
     /* eslint-disable no-restricted-syntax */
     for (const workflow of workflows) {
       const { id, v, yaml } = workflow;

@@ -15,7 +15,7 @@
 
 const _ = require('lodash');
 const Service = require('@amzn/base-services-container/lib/service');
-const { isAllow, allowIfActive, allowIfAdmin } = require('@amzn/base-services/lib/authorization/authorization-utils');
+const { isAllow, allowIfActive, allowIfAdminOrResearcher } = require('@amzn/base-services/lib/authorization/authorization-utils');
 const { runAndCatch, retry } = require('@amzn/base-services/lib/helpers/utils');
 
 const { getServiceCatalogClient } = require('./helpers/env-type-service-catalog-helper');
@@ -120,7 +120,7 @@ class EnvTypeService extends Service {
     // Perform default condition checks to make sure the user is active and is admin
     const allowedToListNotApproved = await this.isAuthorized(requestContext, {
       action: 'list-not-approved',
-      conditions: [allowIfActive, allowIfAdmin],
+      conditions: [allowIfActive, allowIfAdminOrResearcher],
     });
     if (includeAll && allowedToListNotApproved) {
       // if asked to return all env types then no need to do any further filtering
@@ -156,7 +156,7 @@ class EnvTypeService extends Service {
       // Perform default condition checks to make sure the user is active and is admin
       await this.assertAuthorized(requestContext, {
         action: 'read-not-approved',
-        conditions: [allowIfActive, allowIfAdmin],
+        conditions: [allowIfActive, allowIfAdminOrResearcher],
       });
     }
 
@@ -256,7 +256,7 @@ class EnvTypeService extends Service {
     // Make sure the user has permissions to create the environment type
     await this.assertAuthorized(
       requestContext,
-      { action: 'create', conditions: [allowIfActive, allowIfAdmin] },
+      { action: 'create', conditions: [allowIfActive, allowIfAdminOrResearcher] },
       environmentType,
     );
 
@@ -301,7 +301,7 @@ class EnvTypeService extends Service {
     // Perform default condition checks to make sure the user is active and is admin
     await this.assertAuthorized(
       requestContext,
-      { action: 'update', conditions: [allowIfActive, allowIfAdmin] },
+      { action: 'update', conditions: [allowIfActive, allowIfAdminOrResearcher] },
       environmentType,
     );
 
@@ -352,7 +352,7 @@ class EnvTypeService extends Service {
     // Perform default condition checks to make sure the user is active and is admin
     await this.assertAuthorized(
       requestContext,
-      { action: 'delete', conditions: [allowIfActive, allowIfAdmin] },
+      { action: 'delete', conditions: [allowIfActive, allowIfAdminOrResearcher] },
       { id },
     );
 

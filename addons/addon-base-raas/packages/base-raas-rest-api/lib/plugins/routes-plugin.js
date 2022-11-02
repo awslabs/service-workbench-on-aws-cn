@@ -18,6 +18,7 @@ const setupAuthContext = require('@amzn/base-controllers/lib/middlewares/setup-a
 const prepareContext = require('@amzn/base-controllers/lib/middlewares/prepare-context');
 const ensureActive = require('@amzn/base-controllers/lib/middlewares/ensure-active');
 const ensureAdmin = require('@amzn/base-controllers/lib/middlewares/ensure-admin');
+const ensureAdminOrResearcher = require('@amzn/base-controllers/lib/middlewares/ensure-adminOrReseacher');
 const userController = require('@amzn/base-controllers/lib/user-controller');
 
 const usersController = require('../controllers/users-controller');
@@ -86,7 +87,7 @@ async function getRoutes(routesMap, pluginRegistry) {
     // PROTECTED APIS accessible only to logged in active, admin users
     ['/api/accounts', [setupAuthContext, prepareContext, ensureActive, ensureAdmin, accountsController]],
     ['/api/budgets', [setupAuthContext, prepareContext, ensureActive, ensureAdmin, budgetsController]],
-    ['/api/data-sources', [setupAuthContext, prepareContext, ensureActive, ensureAdmin, dataSourceController]],
+    ['/api/data-sources', [setupAuthContext, prepareContext, ensureActive, ensureAdminOrResearcher, dataSourceController]],
     ['/api/migrate', [setupAuthContext, prepareContext, ensureActive, ensureAdmin, migrationController]],
   ]);
   return routes;

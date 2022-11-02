@@ -16,7 +16,7 @@
 const _ = require('lodash');
 const Service = require('@amzn/base-services-container/lib/service');
 const { runAndCatch } = require('@amzn/base-services/lib/helpers/utils');
-const { allowIfActive, allowIfAdmin } = require('@amzn/base-services/lib/authorization/authorization-utils');
+const { allowIfActive, allowIfAdminOrResearcher } = require('@amzn/base-services/lib/authorization/authorization-utils');
 
 const { isExternalGuest, isExternalResearcher, isInternalGuest } = require('../helpers/is-role');
 const createSchema = require('../schema/create-account');
@@ -57,7 +57,7 @@ class AccountService extends Service {
   async find(requestContext, { id, fields = [] }) {
     // ensure that the caller has permissions to read this account information
     // Perform default condition checks to make sure the user is active and is admin
-    await this.assertAuthorized(requestContext, { action: 'read', conditions: [allowIfActive, allowIfAdmin] }, { id });
+    await this.assertAuthorized(requestContext, { action: 'read', conditions: [allowIfActive, allowIfAdminOrResearcher] }, { id });
 
     const result = await this._getter()
       .key({ id })
@@ -78,7 +78,7 @@ class AccountService extends Service {
     // Perform default condition checks to make sure the user is active and is admin
     await this.assertAuthorized(
       requestContext,
-      { action: 'provision', conditions: [allowIfActive, allowIfAdmin] },
+      { action: 'provision', conditions: [allowIfActive, allowIfAdminOrResearcher] },
       rawData,
     );
 
@@ -200,7 +200,7 @@ class AccountService extends Service {
     // Perform default condition checks to make sure the user is active and is admin
     await this.assertAuthorized(
       requestContext,
-      { action: 'update', conditions: [allowIfActive, allowIfAdmin] },
+      { action: 'update', conditions: [allowIfActive, allowIfAdminOrResearcher] },
       rawData,
     );
 
@@ -244,7 +244,7 @@ class AccountService extends Service {
     // Perform default condition checks to make sure the user is active and is admin
     await this.assertAuthorized(
       requestContext,
-      { action: 'delete', conditions: [allowIfActive, allowIfAdmin] },
+      { action: 'delete', conditions: [allowIfActive, allowIfAdminOrResearcher] },
       { id },
     );
 

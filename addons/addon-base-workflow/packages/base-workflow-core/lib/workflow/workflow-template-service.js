@@ -79,7 +79,6 @@ class WorkflowTemplateService extends Service {
 
   async createVersion(requestContext, manifest = {}, { isLatest = true, tableName } = {}) {
     const [jsonSchemaValidationService] = await this.service(['jsonSchemaValidationService']);
-
     await ensureAdmin(requestContext);
     manifest = this.applyDefaults(manifest);
     // Validate input
@@ -145,7 +144,6 @@ class WorkflowTemplateService extends Service {
 
   async updateVersion(requestContext, manifest = {}, { isLatest = true, tableName } = {}) {
     const [jsonSchemaValidationService] = await this.service(['jsonSchemaValidationService']);
-
     await ensureAdmin(requestContext);
     manifest = this.applyDefaults(manifest);
 

@@ -42,7 +42,6 @@ class WorkflowTriggerService extends Service {
       'workflowService',
       'workflowInstanceService',
     ]);
-
     // Get the latest version, if not provided
     if (meta && !meta.workflowVer) {
       const wfLatestVersion = workflowService.findVersion({ id: meta.workflowId });
@@ -51,7 +50,6 @@ class WorkflowTriggerService extends Service {
 
     // Validate input
     await jsonSchemaValidationService.ensureValid(meta, metaSchema);
-
     const instance = await workflowInstanceService.createInstance(requestContext, meta, input);
     const target = instance.runSpec.target;
 
@@ -63,7 +61,6 @@ class WorkflowTriggerService extends Service {
       default:
         throw this.boom.badRequest(`The run target "${target}" is not supported yet`);
     }
-
     return result;
   }
 }

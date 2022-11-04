@@ -40,6 +40,11 @@ const productsToCreate = [
     description: `* An EC2 Linux instance with SSH access \n* Secure compute in the cloud`,
   },
   {
+    filename: 'ec2-linux-instance-spot',
+    displayName: 'EC2 Linux Spot',
+    description: `* An EC2 Linux instance with SSM \n* Secure compute in the cloud`,
+  },
+  {
     filename: 'sagemaker-notebook-instance',
     displayName: 'SageMaker Notebook',
     description: `An Amazon SageMaker Jupyter Notebook that comes with: \n* TensorFlow \n* Apache MXNet \n* Scikit-learn

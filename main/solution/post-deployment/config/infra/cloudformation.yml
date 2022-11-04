@@ -457,6 +457,9 @@ Resources:
               - Effect: Allow
                 Action:
                   - ec2:RunInstances # RunInstances involves 6 different resource types, it's hard to narrow it down
+                  - ec2:CreateLaunchTemplate
+                  - ec2:CreateLaunchTemplateVersion
+                  - ec2:DeleteLaunchTemplate
                   - ec2:DescribeInstances # DescribeInstances does not support specifying resources
                 Resource: '*'
               - Effect: Allow

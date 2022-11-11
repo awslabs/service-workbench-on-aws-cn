@@ -1,0 +1,29 @@
+service: ${self:custom.settings.awsRegionShortName}-${self:custom.settings.solutionName}-lambda-website
+
+package:
+  individually: true
+  excludeDevDependencies: true
+
+provider:
+  name: aws
+  ecr:
+    images:
+      swb-lambda-website-image:
+        path: ./docker-website
+  region: ${self:custom.settings.awsRegion}
+  profile: ${self:custom.settings.awsProfile}
+
+functions:
+  SWBWebsite:
+    image:
+      name: swb-lambda-website-image
+
+custom:
+  settings: ${file(./config/settings/.settings.js):merged}        
+
+resources:
+  Outputs:
+    SWBWebsiteLambdaFunctionArn:
+      Export:
+        Name: ${self:custom.settings.awsRegionShortName}-${self:custom.settings.solutionName}-${self:custom.settings.envName}-lambda-website-arn
+      Value: !GetAtt SWBWebsiteLambdaFunction.Arn

@@ -26,6 +26,7 @@ function componentDeploy {
 
   pushd "$SOLUTION_DIR/$COMPONENT_DIR" > /dev/null
   printf "\nDeploying component: %s ...\n\n" "$COMPONENT_NAME"
+  # $EXEC sls deploy -s "$STAGE"
   $EXEC sls deploy -s "$STAGE"
   printf "\nDeployed component: %s successfully \n\n" "$COMPONENT_NAME"
   popd > /dev/null
@@ -97,6 +98,33 @@ printf "\nDeploying website UI\n\n"
 $EXEC sls deploy-ui --invalidate-cache=true -s "$STAGE"
 printf "\nDeployed website UI successfully\n\n"
 popd > /dev/null
+
+ENABLE_ALB=$( get_stage_value "enableAlb" )
+echo ENABLE_ALB:$ENABLE_ALB
+if [[ "$ENABLE_ALB" = true ]]; then
+  echo "start create alb for website"
+  # copy website static files to lambda website folder
+
+  cp -rf $SOLUTION_DIR/ui/build/ $SOLUTION_DIR/lambda-website/docker-website/website 
+
+  componentDeploy "lambda-website" "Lambda-Website"
+
+  componentDeploy "alb" "ALB"
+
+  # add weburl config
+  pushd "$(dirname "${BASH_SOURCE[0]}")" > /dev/null
+  source ./setAlbDnsAsWebsiteUrl.sh "$@"
+  popd > /dev/null 
+
+  componentDeploy "backend" "Backend"
+  # componentDeploy "post-deployment" "Post-Deployment"
+
+  # remove the last line which is added in the setAlbDnsAsWebsiteUrl.sh script
+  awk -v n=1 'NR==FNR{total=NR;next} FNR==total-n+1{exit} 1' main/config/settings/"$STAGE".yml main/config/settings/"$STAGE".yml | tee main/config/settings/"$STAGE"_temp.yml
+  mv -f main/config/settings/"$STAGE"_temp.yml main/config/settings/"$STAGE".yml
+  rm -rf $SOLUTION_DIR/lambda-website/docker-website/website 
+ 
+fi
 
 printf "\n----- ENVIRONMENT DEPLOYED SUCCESSFULLY 🎉 -----\n\n"
 pushd "$(dirname "${BASH_SOURCE[0]}")" > /dev/null

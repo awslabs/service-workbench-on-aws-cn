@@ -65,12 +65,36 @@ function get_info() {
   export WEBSITE_URL="${website_url}"
   export API_ENDPOINT="${api_endpoint}"
 
+  ENABLE_ALB=$( get_stage_value "enableAlb" )
+  if [[ "$ENABLE_ALB" = true ]]; then
+    set +e
+    pushd "$SOLUTION_DIR/alb" > /dev/null
+    stack_name_alb=$($EXEC sls info -s "$STAGE" | grep 'stack:' --ignore-case | sed 's/ //g' | cut -d':' -f2 | tr -d '\012\015')
+    popd > /dev/null    
+    aws_region="$(cat "$CONFIG_DIR/settings/$STAGE.yml" "$CONFIG_DIR/settings/.defaults.yml" 2> /dev/null | grep '^awsRegion:' -m 1 --ignore-case | sed 's/ //g' | cut -d':' -f2 | tr -d '\012\015')"
+    aws_profile="$(cat "$CONFIG_DIR/settings/$STAGE.yml" "$CONFIG_DIR/settings/.defaults.yml" 2> /dev/null | grep '^awsProfile:' -m 1 | sed 's/ //g' | cut -d':' -f2 | tr -d '\012\015')"
+    set -e
+
+    if [ "$aws_profile" ]; then
+      website_url="$(aws cloudformation describe-stacks --stack-name "$stack_name_alb" --output text --region "$aws_region" --profile "$aws_profile" --query 'Stacks[0].Outputs[?OutputKey==`LoadBalancerDNSNAme`].OutputValue')"
+    else
+      # shellcheck disable=SC2016
+      website_url="$(aws cloudformation describe-stacks --stack-name "$stack_name_alb" --output text --region "$aws_region" --query 'Stacks[0].Outputs[?OutputKey==`LoadBalancerDNSNAme`].OutputValue')"
+    fi 
+    lowerWebUrl=$(awk '{print tolower($0)}' <<<"${website_url}")
+    ALB_PORT=$( get_stage_value "albPort" )
+    export ALB_ENDPOINT=http://"${lowerWebUrl}":"${ALB_PORT}"
+  fi
+
   echo "-------------------------------------------------------------------------"
   echo "Summary:"
   echo "-------------------------------------------------------------------------"
   echo "Env Name                           : ${ENV_NAME}"
   echo "Solution                           : ${solution_name}"
   echo "Website URL                        : ${WEBSITE_URL}"
+  if [[ "$ENABLE_ALB" = true ]]; then
+    echo "Alb URL                            : ${ALB_ENDPOINT}"
+  fi
   echo "API Endpoint                       : ${API_ENDPOINT}"
 
   # only show profile and root password when running in an interactive terminal

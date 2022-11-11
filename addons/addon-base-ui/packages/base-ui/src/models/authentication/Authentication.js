@@ -92,7 +92,12 @@ const Authentication = types
       let newIdToken;
       if (authCode) {
         const parse = parseUrl(document.location.href);
-        const mainUrl = `${parse.protocol}://${parse.resource}${parse.pathname}`;
+        let mainUrl;
+        if (parse.port) {
+          mainUrl = `${parse.protocol}://${parse.resource}:${parse.port}${parse.pathname}`;
+        } else {
+          mainUrl = `${parse.protocol}://${parse.resource}${parse.pathname}`;
+        }
         newIdToken = await getIdToken({
           code: authCode,
           pkce: pkceCodeVerifier,

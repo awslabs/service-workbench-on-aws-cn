@@ -51,6 +51,24 @@ certificateArn: <ARN>
 * **Note**: This is an optional step during Service Workbench installation. For Beijing/Ningxia regions, `domainName` configuration is mandatory. please refer [China Regions Prerequisites](./china-prerequisites) to create ICP licensed domain.
 * **Note**: If DNS resolution is not managed in current aws account Route 53, please set `customDomainInR53` config as `false`.
 
+### Accessing Web Portal through Applicaiton Load Balancer
+
+Service Workbench allows customer to deploy it without domain through Amazon Application Load Balancer(ALB) exposing web portal.
+To use ALB to expose web portal, you need to add below configurations into `<stage>.yml` file:
+
+```
+enableAlb: true
+albSubnetIdList: 'subnet-xxx,subnet-xxx'
+albVpcId: 'vpc-xxx'
+albPort: 8000
+```
+* **enableAlb**: Set the value of this configuration as true to enable ALB exposing web portal feature. The default value is false if you don't add **enableAlb** into `<stage>.yml` file
+* **albSubnetIdList**: This configuration works when **enableAlb** is true. The ALB will be created in these subnets.
+* **albVpcId**: This configuration works when **enableAlb** is true. The ALB will be created in specified VPC.
+* **albPort**: The listening port of the ALB. The default value is 8000.
+
+If you enable ALB feature, after you deployed the solution, you will get the **Alb URL** in terminal output. You also can get **Alb URL** info through scripts/get-info.sh script.
+
 ### Namespace
 
 The names of many deployed resources include a namespace string such as `mystage-va-sw`. This string is made by concatenating the following:

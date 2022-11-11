@@ -253,6 +253,17 @@ customDomainInR53: true
 # value: oidc/cognito_user_pool
 defaultIdpType: cognito_user_pool
 
+# Determine whether use Application Load balancer to expose website
+# default value is false
+enableAlb: false
+
+# Application load balancer default port
+albPort: 8000
+
+# Application load balancer Subnet and VPC
+albSubnetIdList: ''
+albVpcId: ''
+
 # ==================== AMI Sharing Feature Settings ====================
 enableAmiSharing: false
 devopsProfile: devops

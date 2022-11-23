@@ -236,6 +236,7 @@ Resources:
       InstanceType: !Ref InstanceType
       RoleArn: !GetAtt IAMRole.Arn
       SubnetId: !Ref Subnet
+      PlatformIdentifier: notebook-al1-v1      
       SecurityGroupIds:
         - !Ref SecurityGroup
         - !If

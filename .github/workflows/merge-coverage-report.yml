@@ -7,7 +7,7 @@ name: Push Merge Commit Coverage Report
 on:
   push:
     branches:
-      - develop
+      - mainline
 jobs:
   codecov:
     name: Send merge commit coverage report

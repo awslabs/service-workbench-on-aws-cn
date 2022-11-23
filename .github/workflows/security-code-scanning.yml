@@ -7,7 +7,7 @@ name: Security Code Scanning
 on:
   pull_request:
     branches:
-      - develop
+      - mainline
       - "feat-*"
     paths-ignore:
       - '**/*.md'
@@ -16,7 +16,7 @@ on:
     - cron: '0 0 * * *'
   push:
     branches:
-      - develop
+      - mainline
       - "feat-*"
 jobs:
   CodeQL-Analyze:

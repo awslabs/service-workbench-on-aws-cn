@@ -61,6 +61,11 @@ const productsToCreate = [
     displayName: 'EC2 Windows',
     description: `* An EC2 Windows instance with RDP access \n* Secure compute in the cloud`,
   },
+  {
+    filename: 'sagemaker-notebook-instance-yanshan',
+    displayName: 'Yanshan Uninversity Sagemaker Training',
+    description: `An Amazon SageMaker Jupyter Notebook that comes with: \n* TensorFlow \n* Apache MXNet \n* Scikit-learn`,
+  },
 ];
 
 const autoCreateVersion = 'v1';

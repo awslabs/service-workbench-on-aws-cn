@@ -1,0 +1,12 @@
+{
+  "name": "ALB",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Alb",
+  "author": "Amazon Web Services",
+  "license": "Apache 2.0",
+  "devDependencies": {
+    "@amzn/base-serverless-settings-helper": "workspace:*",
+    "serverless": "^2.71.0"
+  }
+}

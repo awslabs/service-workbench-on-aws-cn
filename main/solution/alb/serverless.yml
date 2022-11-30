@@ -1,0 +1,18 @@
+# For full config options, see docs.serverless.com
+# Note that most settings in here come from config/settings/*.yaml
+service: ${self:custom.settings.awsRegionShortName}-${self:custom.settings.solutionName}-alb
+
+package:
+  individually: true
+
+provider:
+  name: aws
+  region: ${self:custom.settings.awsRegion}
+  profile: ${self:custom.settings.awsProfile}
+
+custom:
+  settings: ${file(./config/settings/.settings.js):merged}  
+
+resources:
+  - Description: Service-Workbench-on-AWS ${self:custom.settings.version} ${self:custom.settings.solutionName} ${self:custom.settings.envName} Alb-Website-Deployment
+  - ${file(./config/infra/cloudformation.yml)}

@@ -52,6 +52,24 @@ certificateArn: <ARN>
 * **说明**：安装 Service Workbench 时，该步骤是可选的。对于由西云数据运营的亚马逊云科技中国（宁夏）区域（cn-northwest-1）或由光环新网运营的亚马逊云科技中国（北京）区域（cn-north-1），必须配置“域名”。请参考[部署到中国区域的先决条件](./china-prerequisites)创建ICP许可域。
 * **说明**：如果当前 AWS 账户 Route 53 中未管理 DNS 解析，请将 `customDomainInR53` 配置设置为 `false`。
 
+### 使用Application Load Balancer 接入该方案
+
+Service Workbench 允许客户在没有自定义域名的情况下部署该方案，通过Amazon Application Load Balancer(ALB) 访问本方案的页面.
+您需要在`<stage>.yml`文件中设定如下配置来开启ALB的功能：
+
+```
+enableAlb: true
+albSubnetIdList: 'subnet-xxx,subnet-xxx'
+albVpcId: 'vpc-xxx'
+albPort: 8000
+```
+* **enableAlb**: 用于标记ALB的功能是否开启，**true**为开启此功能，**false**为关闭此功能。如果您不在`<stage>.yml`文件中添加此配置，默认值为**false**。
+* **albSubnetIdList**: 此配置选项只有在**enableAlb**配置为**true**时才生效，指定ALB被创建在这些子网里。
+* **albVpcId**: 此配置选项只有在**enableAlb**配置为**true**时才生效，指定ALB被创建在这此VPC里。
+* **albPort**: 指定ALB的监听端口，默认值为8000。
+
+如果您开启了ALB功能，当部署完成后，您能在终端的输出信息里获得**Alb URL**的信息，也可以通过scripts/get-info.sh脚本获得此**Alb URL**信息。
+
 ### 命名空间
 
 许多已部署资源的名称都包含一个命名空间字符串，例如“mystage-va-sw”。该字符串是通过连接以下内容组成的:

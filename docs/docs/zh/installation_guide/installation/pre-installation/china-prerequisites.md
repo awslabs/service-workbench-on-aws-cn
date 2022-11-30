@@ -10,5 +10,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 ## 准备一个 ICP 许可域
 准备一个 [ICP][icp] 许可域名。 Service Workbench 控制台通过 CloudFront 分发提供服务，该分发被视为 Internet 信息服务。 它被称为**Service Workbench 控制台域**。
 
+**Note** 如果您想要在没有域名的前提下部署和使用Service Workbench，请参考[通过ALB接入Serivce Workbench](/zh/installation_guide/installation/pre-installation/conf-settings#使用application-load-balancer-接入该方案) configurations.
+
 
 [icp]:https://www.amazonaws.cn/en/support/icp/?nc2=h_l2_su

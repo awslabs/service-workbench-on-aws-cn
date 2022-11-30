@@ -1,0 +1,6 @@
+# # The stack name of the 'backend' serverless service
+lambdaWebsiteStackName: ${self:custom.settings.awsRegionShortName}-${self:custom.settings.solutionName}-lambda-website-${self:custom.settings.envName}
+
+lambdaWebsiteFunctionArn: ${cf:${self:custom.settings.lambdaWebsiteStackName}.SWBWebsiteLambdaFunctionArn}
+
+

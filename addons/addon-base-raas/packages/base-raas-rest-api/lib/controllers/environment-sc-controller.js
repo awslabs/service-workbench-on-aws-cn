@@ -157,6 +157,25 @@ async function configure(context) {
   );
 
   // ===============================================================
+  //  POST /:id/connections/:connectionId/dcv-url (mounted to /api/workspaces/service-catalog)
+  // ===============================================================
+  router.post(
+    '/:id/connections/:connectionId/dcv-url',
+    wrap(async (req, res) => {
+      const id = req.params.id;
+      const connectionId = req.params.connectionId;
+      const requestContext = res.locals.requestContext;
+      if (!_.isEmpty(req.body)) {
+        throw boom.badRequest(`Invalid request. This API does not expect a request body.`, true);
+      }
+
+      const [environmentScConnectionService] = await context.service(['environmentScConnectionService']);
+      const result = await environmentScConnectionService.createConnectionDcvUrl(requestContext, id, connectionId);
+      res.status(200).json(result);
+    }),
+  );
+
+  // ===============================================================
   //  GET  /:id/connections/:connectionId/windows-rdp-info (mounted to /api/workspaces/service-catalog)
   // ===============================================================
   router.get(
@@ -168,6 +187,26 @@ async function configure(context) {
 
       const [environmentScConnectionService] = await context.service(['environmentScConnectionService']);
       const result = await environmentScConnectionService.getWindowsPasswordDataForRdp(
+        requestContext,
+        id,
+        connectionId,
+      );
+      res.status(200).json(result);
+    }),
+  );
+
+  // ===============================================================
+  //  GET  /:id/connections/:connectionId/windows-dcv-info (mounted to /api/workspaces/service-catalog)
+  // ===============================================================
+  router.get(
+    '/:id/connections/:connectionId/windows-dcv-info',
+    wrap(async (req, res) => {
+      const id = req.params.id;
+      const connectionId = req.params.connectionId;
+      const requestContext = res.locals.requestContext;
+
+      const [environmentScConnectionService] = await context.service(['environmentScConnectionService']);
+      const result = await environmentScConnectionService.getWindowsPasswordDataForDcv(
         requestContext,
         id,
         connectionId,

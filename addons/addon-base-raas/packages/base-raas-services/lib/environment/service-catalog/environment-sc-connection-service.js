@@ -313,6 +313,43 @@ class EnvironmentScConnectionService extends Service {
     return ssmConsoleUrl;
   }
 
+  async createConnectionDcvUrl(requestContext, envId, connectionId) {
+    const [environmentScService, pluginRegistryService] = await this.service([
+      'environmentScService',
+      'pluginRegistryService',
+    ]);
+
+    const connection = await this.mustFindConnection(requestContext, envId, connectionId);
+
+    // Write audit event
+    await this.audit(requestContext, { action: 'dcv-url-requested', body: { id: envId, connection } });
+
+    const { outputs } = await environmentScService.mustFind(requestContext, { id: envId });
+
+    const [aws] = await this.service(['aws']);
+
+    const { Ec2WorkspaceDnsName } = cfnOutputsArrayToObject(outputs);
+
+    connection.url = `https://${Ec2WorkspaceDnsName}:8443`
+
+    // This is done so that plugins know it was called during create URL cycle
+    connection.operation = 'create';
+    // Give plugins chance to adjust the connection (such as connection url etc)
+    const result = await pluginRegistryService.visitPlugins(
+      'env-sc-connection-url',
+      'createConnectionUrl',
+      {
+        payload: {
+          envId,
+          connection,
+        },
+      },
+      { requestContext, container: this.container },
+    );
+
+    return _.get(result, 'connection') || connection;
+  }
+
   async getRStudioUrl(requestContext, id, connection) {
     if (_.toLower(_.get(connection, 'type', '')) === 'rstudio')
       throw this.boom.badRequest(
@@ -492,6 +529,57 @@ class EnvironmentScConnectionService extends Service {
 
     return { password, networkInterfaces: this.toNetworkInterfaces(instanceInfo) };
   }
+
+  async getWindowsPasswordDataForDcv(requestContext, envId, connectionId) {
+    const [environmentScService, environmentScKeypairService] = await this.service([
+      'environmentScService',
+      'environmentScKeypairService',
+    ]);
+
+    // Verify environment is linked to an AppStream project when application has AppStream enabled
+    const { projectId } = await environmentScService.mustFind(requestContext, { id: envId });
+
+    // The following will succeed only if the user has permissions to access the specified environment
+    // and connection
+    const connection = await this.mustFindConnection(requestContext, envId, connectionId);
+
+    if (connection.scheme !== connectionScheme.dcv) {
+      throw this.boom.badRequest(
+        `The connection "${connectionId}" does not support DCV. Cannot retrieve windows password. The retrieval of windows password is only supported for DCV connections. Please contact your administrator.`,
+        true,
+      );
+    }
+    if (_.isEmpty(connection.instanceId)) {
+      throw this.boom.badRequest(
+        `Could not determine the EC2 instance to DCV to for the connection "${connectionId}". This is most likely due to incorrect AWS CloudFormation output. Please contact your administrator.`,
+        true,
+      );
+    }
+
+    const ec2 = await environmentScService.getClientSdkWithEnvMgmtRole(
+      requestContext,
+      { id: envId },
+      { clientName: 'EC2', options: { apiVersion: '2016-11-15' } },
+    );
+
+    const { PasswordData: passwordData } = await ec2.getPasswordData({ InstanceId: connection.instanceId }).promise();
+    const { privateKey } = await environmentScKeypairService.mustFind(requestContext, envId);
+
+    const password = crypto
+      .privateDecrypt(
+        { key: privateKey, padding: crypto.constants.RSA_PKCS1_PADDING },
+        Buffer.from(passwordData, 'base64'),
+      )
+      .toString('utf8');
+
+    // Write audit event
+    await this.audit(requestContext, { action: 'env-windows-password-requested', body: { id: envId, connection } });
+
+    const data = await ec2.describeInstances({ InstanceIds: [connection.instanceId] }).promise();
+    const instanceInfo = _.get(data, 'Reservations[0].Instances[0]');
+
+    return { password, networkInterfaces: this.toNetworkInterfaces(instanceInfo) };
+  }  
 
   async createPrivateSageMakerUrl(requestContext, envId, connection, presign_retries = 10) {
     const lockService = await this.service('lockService');

@@ -66,6 +66,10 @@ const productsToCreate = [
     displayName: 'Yanshan Uninversity Sagemaker Training',
     description: `An Amazon SageMaker Jupyter Notebook that comes with: \n* TensorFlow \n* Apache MXNet \n* Scikit-learn`,
   },
+    filename: 'ec2-windows-instance-dcv',
+    displayName: 'EC2 Windows with DCV',
+    description: `* An EC2 Windows instance with RDP access \n* Secure compute in the cloud`,
+  },
 ];
 
 const autoCreateVersion = 'v1';

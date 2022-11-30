@@ -309,6 +309,14 @@ function getWindowsRpInfo(envId, connectionId) {
   return httpApiGet(`api/workspaces/service-catalog/${envId}/connections/${connectionId}/windows-rdp-info`);
 }
 
+function getWindowsDcvInfo(envId, connectionId) {
+  return httpApiGet(`api/workspaces/service-catalog/${envId}/connections/${connectionId}/windows-dcv-info`);
+}
+
+function createScEnvironmentDcvConnectionUrl(envId, connectionId) {
+  return httpApiPost(`api/workspaces/service-catalog/${envId}/connections/${connectionId}/dcv-url`);
+}
+
 function getDataSourceAccounts() {
   return httpApiGet(`api/data-sources/accounts/`);
 }
@@ -439,6 +447,8 @@ export {
   updateScEnvironmentCidrs,
   sendSshKey,
   getWindowsRpInfo,
+  getWindowsDcvInfo,
+  createScEnvironmentDcvConnectionUrl,
   getDataSourceAccounts,
   getDataSourceStudies,
   checkStudyReachability,

@@ -21,6 +21,8 @@ import {
   getScEnvironmentConnections,
   sendSshKey,
   getWindowsRpInfo,
+  getWindowsDcvInfo,
+  createScEnvironmentDcvConnectionUrl,
   createScEnvironmentConnectionUrl,
   createScEnvironmentSSMConnectionUrl,
 } from '../../helpers/api';
@@ -62,6 +64,15 @@ const ScEnvConnectionStore = BaseStore.named('ScEnvConnectionStore')
       async getWindowsRdpInfo(connectionId) {
         return getWindowsRpInfo(self.envId, connectionId);
       },
+
+      async getWindowsDcvInfo(connectionId) {
+        return getWindowsDcvInfo(self.envId, connectionId);
+      },
+
+      async createDcvConnectionUrl(connectionId) {
+        const urlObj = await createScEnvironmentDcvConnectionUrl(self.envId, connectionId);
+        return urlObj;
+      },      
 
       cleanup: () => {
         superCleanup();

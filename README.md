@@ -25,7 +25,7 @@ It mainly provides below additional features,
 
 Service Workbench integrates existing AWS services, such as [Amazon CloudFront](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Introduction.html), [AWS Lambda](https://docs.aws.amazon.com/lambda/latest/dg/welcome.html), and [AWS Step Functions](https://docs.aws.amazon.com/lambda/latest/dg/lambda-stepfunctions.html). Service Workbench enables you to create your own custom templates and share those templates with other organizations. To provide cost transparency, Service Workbench has been integrated with [AWS Cost Explorer](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/ce-getting-started.html), [AWS Budgets](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/budgets-managing-costs.html), and [AWS Organizations](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/consolidated-billing.html).
 
-There are three types of Studies available in Service Workbench: My Studies, Organizational Studies and Open Data. Once you have created a Study you can upload files to it. Organizational Studies can be shared with other members in the organization. Owners of a study can amend the permissions of the study to grant access to other users. Once you have found the study or studies in which you are interested to perform research, you can deploy a workspace to attach the data to and conduct your research. 
+There are three types of Studies available in Service Workbench: My Studies, Organizational Studies and Open Data. Once you have created a Study you can upload files to it. Organizational Studies can be shared with other members in the organization. Owners of a study can amend the permissions of the study to grant access to other users. Once you have found the study or studies in which you are interested to perform research, you can deploy a workspace to attach the data to and conduct your research.
 
 ### Main account
 
@@ -44,32 +44,26 @@ This is the account where compute resources are deployed.
 Service Workbench contains the following components.You can find these components under the <service_workbench>/main/solution folder.
 
 **Infrastructure**: The following AWS resources are created as part of this component deployment:
-+ S3 bucket is used for logging the following actions:
-     + Study data uploads
-     + Accessing CloudFormation templates bucket
-     + Accessing Cloudfront distribution service
-     + To host the static Service Workbench website.
-+ Cloudfront distribution service to accelerate Service Workbench website access based on user location.
-**Backend**: Once the environment has been deployed, the backend component creates and configures the following AWS resources:
- + S3 bucket: 
-     + To store uploaded study data. This bucket also receives an encryption key from AWS Key Management Service for encrypting this data and making it available to the Service Workbench website.
-     + To store bootstrap scripts. These scripts will be used to launch the workspace instances like SageMaker, EC2, EMR.
-     + This component also sets up some IAM roles and policies for accessing lambda functions and invoking step functions.
-     + DynamoDB: This database will be used to store information concerning user authentication, AWS accounts, workflows, access tokens, study data etc. 
- This component is also responsible for deploying the following lambda functions/services:
-     + Authentication layer handler - Handles the authentication layer for API handlers.
-	+ Open data scrape handler - Handles scraping the metadata from the AWS open data registry.
-     + API handler - Provides a path for public and protected APIs.
-     + Workflow loop runner - Invoked by AWS step functions.
-**Edge Lambda**: An inline Javascript interceptor function that adds security headers to the Cloudfront output response. This function is declared inline because the code requires API Gateway URL for the backend APIs.
-**Machine images**: Deploys spot instances using machine images for EC2 and EMR templates.
-**Prepare master accounts**: Creates a master IAM role for organization access.
-**Post Deployment**: Creates an IAM role for the post deployment function with policies granting permission to S3 buckets, DynamoDB tables, KMS encryption key, Cloudfront and lambda functions.
-**User Interface**: Contains code used to create and support the UI functionality of the application.
+
+- S3 bucket is used for logging the following actions:
+  - Study data uploads
+  - Accessing CloudFormation templates bucket
+  - Accessing Cloudfront distribution service
+  - To host the static Service Workbench website.
+- Cloudfront distribution service to accelerate Service Workbench website access based on user location.
+  **Backend**: Once the environment has been deployed, the backend component creates and configures the following AWS resources:
+- S3 bucket: + To store uploaded study data. This bucket also receives an encryption key from AWS Key Management Service for encrypting this data and making it available to the Service Workbench website. + To store bootstrap scripts. These scripts will be used to launch the workspace instances like SageMaker, EC2, EMR. + This component also sets up some IAM roles and policies for accessing lambda functions and invoking step functions. + DynamoDB: This database will be used to store information concerning user authentication, AWS accounts, workflows, access tokens, study data etc.
+  This component is also responsible for deploying the following lambda functions/services: + Authentication layer handler - Handles the authentication layer for API handlers. + Open data scrape handler - Handles scraping the metadata from the AWS open data registry. + API handler - Provides a path for public and protected APIs. + Workflow loop runner - Invoked by AWS step functions.
+  **Edge Lambda**: An inline Javascript interceptor function that adds security headers to the Cloudfront output response. This function is declared inline because the code requires API Gateway URL for the backend APIs.
+  **Machine images**: Deploys spot instances using machine images for EC2 and EMR templates.
+  **Prepare master accounts**: Creates a master IAM role for organization access.
+  **Post Deployment**: Creates an IAM role for the post deployment function with policies granting permission to S3 buckets, DynamoDB tables, KMS encryption key, Cloudfront and lambda functions.
+  **User Interface**: Contains code used to create and support the UI functionality of the application.
 
 The solution also includes a Continuous Integration/Continuous Delivery feature:
-+ main/cicd/cicd-pipeline
-+ main/cicd/cicd-source
+
+- main/cicd/cicd-pipeline
+- main/cicd/cicd-source
 
 ## Installing Service Workbench
 

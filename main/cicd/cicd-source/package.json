@@ -8,8 +8,8 @@
   "devDependencies": {
     "@amzn/base-serverless-settings-helper": "workspace:*",
     "aws-sdk": "^2.1233.0",
-    "serverless": "^1.63.0",
-    "serverless-deployment-bucket": "^1.1.0"
+    "serverless": "^3.22.0",
+    "serverless-deployment-bucket": "^1.6.0"
   },
   "optionalDependencies": {
     "fsevents": "*"

@@ -4,15 +4,13 @@ title: Instance requirements
 sidebar_label: Instance requirements
 ---
 
-
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
-| Section      | Description |
-| ----------- | ----------- |
-| [Creating an EC2 instance](#createinst)      | Provides information on selecting the EC2 instance size for Service Workbench installation.      |
-| [Configuring an EC2 instance](#confinst)  | Describes the procedure of configuring an EC2 instance, creating an IAM role, and assigning the administrator role to the EC2 instance.              |
-| [Installing the required software on EC2 instance](#install)   | Describes the commands to clone Git directory that contains Service Workbench installation.       |
-
+| Section                                                      | Description                                                                                                                             |
+| ------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------- |
+| [Creating an EC2 instance](#createinst)                      | Provides information on selecting the EC2 instance size for Service Workbench installation.                                             |
+| [Configuring an EC2 instance](#confinst)                     | Describes the procedure of configuring an EC2 instance, creating an IAM role, and assigning the administrator role to the EC2 instance. |
+| [Installing the required software on EC2 instance](#install) | Describes the commands to clone Git directory that contains Service Workbench installation.                                             |
 
 ### Creating an EC2 instance
 
@@ -20,12 +18,12 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 You can create an EC2 instance with the following specifications:
 
-+ Amazon EC2 instance type: Use a `T2.medium` Amazon EC2 instance or larger. Larger machines have faster networking and larger disks have higher performance. 
+- Amazon EC2 instance type: Use a `T2.medium` Amazon EC2 instance or larger. Larger machines have faster networking and larger disks have higher performance.
 
 **Important**: 40 GB is the suggested disk drive size needed for installation.
 
-+ VPC and subnets: Use the default VPC and subnet.
-+ AWS IAM role: Attach it to your instance an AWS IAM role with sufficient permission, such as the administrator access. 
+- VPC and subnets: Use the default VPC and subnet.
+- AWS IAM role: Attach it to your instance an AWS IAM role with sufficient permission, such as the administrator access.
 
 ### Configuring an EC2 instance
 
@@ -36,10 +34,9 @@ The Service Workbench deployment application must be able to create AWS resource
 
 #### Creating a new IAM role
 
+When creating a new Amazon EC2 instance, an instance profile may be assigned to the Amazon EC2 instance.
 
-When creating a new Amazon EC2 instance, an instance profile may be assigned to the Amazon EC2 instance. 
-
-1. Choose **Create a new IAM role** located next to the AWS IAM role drop-down.  To continue the process, highlight Amazon EC2 and proceed to permissions.
+1. Choose **Create a new IAM role** located next to the AWS IAM role drop-down. To continue the process, highlight Amazon EC2 and proceed to permissions.
 
 <img src={useBaseUrl('img/deployment/installation/iam1.png')} />
 
@@ -48,10 +45,10 @@ When creating a new Amazon EC2 instance, an instance profile may be assigned to 
 <img src={useBaseUrl('img/deployment/installation/iam2.png')} />
 
 3. In the **Review** page, enter the role name.
- 
+
 <img src={useBaseUrl('img/deployment/installation/iam3.png')} />
 
-4. Return to the **Amazon EC2** tab, refresh the **IAM role** drop-down, and choose your administrator role to attach to the new Amazon EC2 instance. 
+4. Return to the **Amazon EC2** tab, refresh the **IAM role** drop-down, and choose your administrator role to attach to the new Amazon EC2 instance.
 
 <img src={useBaseUrl('img/deployment/installation/iam4.png')} />
 
@@ -64,7 +61,7 @@ To add a role to an Amazon EC2 instance that is already running:
 1. Select the Amazon EC2 instance in the EC2 console. 
 2. On the **Actions** menu, choose **Security, Modify IAM role**.
 3. In the **Modify IAM role** screen, select the role you created and choose **Update IAM role**.
- 
+
 ### Installing the required software on EC2 instance
 
 <a name="install"></a>

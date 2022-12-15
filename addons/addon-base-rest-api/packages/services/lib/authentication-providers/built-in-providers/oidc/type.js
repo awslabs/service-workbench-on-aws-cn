@@ -12,7 +12,7 @@
  *  express or implied. See the License for the specific language governing
  *  permissions and limitations under the License.
  */
-const inputSchema = require('./create-oidc-schema');
+const inputSchema = require('./create-oidc-schema.json');
 
 module.exports = {
   type: 'oidc',

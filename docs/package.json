@@ -17,6 +17,8 @@
     "react-dom": "^16.8.4"
   },
   "resolutions": {
+    "loader-utils": "^2.0.4",
+    "minimatch": "^3.0.5",
     "got": "^11.8.5",
     "follow-redirects": "^1.14.8",
     "prismjs": "^1.27.0",

@@ -2,6 +2,35 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [5.2.5](https://github.com/awslabs/service-workbench-on-aws/compare/v5.2.4...v5.2.5) (2022-12-09)
+
+
+### Bug Fixes
+
+* Sagemaker compatability fix with AL2. Fix issue in which Sagemaker instances running on AL2 could not mount dataset and autostop ([#1079](https://github.com/awslabs/service-workbench-on-aws/issues/1079)) ([dea1c89](https://github.com/awslabs/service-workbench-on-aws/commit/dea1c8963860829a5a637756626af901b926b72a))
+
+### [5.2.4](https://github.com/awslabs/service-workbench-on-aws/compare/v5.2.3...v5.2.4) (2022-12-07)
+
+
+### Features
+
+* Add integration tests for users and user-roles controllers ([#1057](https://github.com/awslabs/service-workbench-on-aws/issues/1057)) ([5e9e813](https://github.com/awslabs/service-workbench-on-aws/commit/5e9e81306db7c2da220b2f04007b884e0dbdcde3))
+
+
+### Bug Fixes
+
+* fix input validation and escape html on popups ([#1075](https://github.com/awslabs/service-workbench-on-aws/issues/1075)) ([bbe1e20](https://github.com/awslabs/service-workbench-on-aws/commit/bbe1e2067c9297dc5f288307bd48ec8170fe8304))
+* minimatch alert ([#1058](https://github.com/awslabs/service-workbench-on-aws/issues/1058)) ([3eb90c9](https://github.com/awslabs/service-workbench-on-aws/commit/3eb90c950be3521c5c4ca5b3f82e8a40ac1c7edf))
+
+### [5.2.3](https://github.com/awslabs/service-workbench-on-aws/compare/v5.2.2...v5.2.3) (2022-10-12)
+
+
+### Bug Fixes
+
+* upgrade lambda nodejs to 16x and Serverless Framework to v3([#1047](https://github.com/awslabs/service-workbench-on-aws/pull/1047))([a0c7eee](https://github.com/awslabs/service-workbench-on-aws/commit/a0c7eeed34eea02ec56f49411cf499d1c59f0d3a))
+* tre egress store data updated S3 return ([#1054](https://github.com/awslabs/service-workbench-on-aws/issues/1054)) ([a80aa7e](https://github.com/awslabs/service-workbench-on-aws/commit/a80aa7eac48ed4052e17627b8e369b38ffa9ae31))
+* use "" as default profile if no awsProfile ([#1050](https://github.com/awslabs/service-workbench-on-aws/issues/1050)) ([863cb06](https://github.com/awslabs/service-workbench-on-aws/commit/863cb06588084ea3026b0dd08dbf71ee3f4ffb80))
+
 ### [5.2.2](https://github.com/awslabs/service-workbench-on-aws/compare/v5.2.1...v5.2.2) (2022-09-02)
 
 
@@ -240,7 +269,6 @@ To learn more about the new process, refer to the updated [instructions](https:/
 
 **Important Notes:**
 
-<<<<<<< HEAD
 
 - If you have already onboarded a member account for your Service Workbench installation, and this account has active or stopped workspaces, the safest course would be to terminate all workspaces prior to the update. We did test a scenario with active and stopped workspaces and observed no impact during testing, but because this update is a major release, we recommend the safest course.
 - # Any member accounts that were onboarded prior to this update will need to be updated through the Service Workbench user interface, and you will be prompted to do so when visiting the new “Accounts” page in Service Workbench. This update is necessary because there is a new capability that will check to see if the member and main account code versions are in sync, and provide a visual indicator if not, allowing you a clear indication of update.
@@ -249,7 +277,6 @@ To learn more about the new process, refer to the updated [instructions](https:/
 * After updating the member account, delete the old workspace types and import the new workspace types. This is needed because the old workspace types may not work correctly with Service Workbench 4.0.0.
 * Any member accounts that were onboarded prior to this update will need to be updated through the Service Workbench user interface, and you will be prompted to do so when visiting the new “Accounts” page in Service Workbench. This update is necessary because there is a new capability that will check to see if the member and main account code versions are in sync, and provide a visual indicator if not, allowing you a clear indication of update.
 
-> > > > > > > ea93a8cb23c69da9fe2508bdf681e5bc4db0e870
 
 #### 2. Enabling secure desktop
 

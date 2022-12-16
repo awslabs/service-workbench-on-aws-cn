@@ -17,12 +17,12 @@ import React from 'react';
 import { decorate, observable, runInAction } from 'mobx';
 import { observer } from 'mobx-react';
 import PropTypes from 'prop-types';
-import toastr from 'toastr';
 
 import { Segment, Header, Divider, Button, Icon } from 'semantic-ui-react';
 import uuidv4 from 'uuid/v4';
 import i18next from 'i18next';
 import { initReactI18next, withTranslation } from 'react-i18next';
+import { displayWarning } from '@amzn/base-ui/dist/helpers/notification';
 
 i18next.use(initReactI18next);
 
@@ -65,7 +65,7 @@ class FileDropZone extends React.Component {
     if (this.props.onSelectFiles) {
       const fileList = event.currentTarget.files || [];
       if (fileList.length > this.props.maximumUploadFilesLimit) {
-        toastr.warning(
+        displayWarning(
           `There are currently ${fileList.length} files selected. Please select less than ${this.props.maximumUploadFilesLimit} files.`,
         );
       } else {

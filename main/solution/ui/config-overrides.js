@@ -5,7 +5,7 @@ module.exports = function override(config) {
   config.optimization.splitChunks = {
     chunks: 'async',
     minSize: 500000,
-    maxSize: 1000000,
+    maxSize: 800000,
     minChunks: 1,
     maxAsyncRequests: 5,
     maxInitialRequests: 3,

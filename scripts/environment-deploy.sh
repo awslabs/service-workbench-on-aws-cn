@@ -114,7 +114,7 @@ popd > /dev/null
 
 if [[ "$ENABLE_ALB" = true ]]; then
   # copy website static files to lambda website folder
-  cp -rf $SOLUTION_DIR/ui/build/ $SOLUTION_DIR/lambda-website/docker-website/website
+  cp -rf $SOLUTION_DIR/ui/build/* $SOLUTION_DIR/lambda-website/docker-website/website
   
   componentDeploy "lambda-website" "Lambda-Website"
   # remove the last line which is added in the setAlbDnsAsWebsiteUrl.sh script

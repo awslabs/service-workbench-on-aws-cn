@@ -11,7 +11,7 @@ provider:
       swb-lambda-website-image:
         path: ./docker-website
   region: ${self:custom.settings.awsRegion}
-  profile: ${self:custom.settings.awsProfile}
+  profile: ${self:custom.settings.awsProfile, ""}
 
 functions:
   SWBWebsite:

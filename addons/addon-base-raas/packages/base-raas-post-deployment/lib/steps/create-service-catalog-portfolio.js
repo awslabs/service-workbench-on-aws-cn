@@ -46,6 +46,11 @@ const productsToCreate = [
   `,
   },
   {
+    filename: 'braket-notebook-instance',
+    displayName: 'SageMaker Notebook For Braket',
+    description: `An Amazon SageMaker Jupyter Notebook that comes with: \n* Braket`,
+  },
+  {
     filename: 'emr-cluster',
     displayName: 'EMR',
     description: `An Amazon EMR research workspace that comes with: \n* Hail 0.2 \n* Jupyter Lab \n* Spark 2.4.4 \n* Hadoop 2.8.5

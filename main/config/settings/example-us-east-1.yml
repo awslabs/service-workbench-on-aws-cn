@@ -1,0 +1,10 @@
+awsRegion: us-east-1
+solutionName: swb
+awsPartition: aws
+awsSuffix: amazonaws.com
+defaultIdpType: cognito_user_pool
+rootUserEmail: mingtong@amazon.com
+rootUserFirstName: root
+rootUserLastName: root
+oidcClientId: placeholder
+oidcIssuer: placeholder

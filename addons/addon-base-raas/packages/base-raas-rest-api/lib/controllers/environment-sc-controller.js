@@ -157,6 +157,25 @@ async function configure(context) {
   );
 
   // ===============================================================
+  //  POST /:id/connections/:connectionId/ubuntu-dcv-url (mounted to /api/workspaces/service-catalog)
+  // ===============================================================
+  router.post(
+    '/:id/connections/:connectionId/ubuntu-dcv-url',
+    wrap(async (req, res) => {
+      const id = req.params.id;
+      const connectionId = req.params.connectionId;
+      const requestContext = res.locals.requestContext;
+      if (!_.isEmpty(req.body)) {
+        throw boom.badRequest(`Invalid request. This API does not expect a request body.`, true);
+      }
+
+      const [environmentScConnectionService] = await context.service(['environmentScConnectionService']);
+      const result = await environmentScConnectionService.createConnectionUbuntuDcvUrl(requestContext, id, connectionId);
+      res.status(200).json(result);
+    }),
+  );  
+
+  // ===============================================================
   //  GET  /:id/connections/:connectionId/windows-rdp-info (mounted to /api/workspaces/service-catalog)
   // ===============================================================
   router.get(

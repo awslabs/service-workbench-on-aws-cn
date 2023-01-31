@@ -33,6 +33,7 @@ import ProgressPlaceHolder from '@amzn/base-ui/dist/parts/helpers/BasicProgressP
 import ScEnvironmentHttpConnections from './ScEnvironmentHttpConnections';
 import ScEnvironmentSshConnections from './ScEnvironmentSshConnections';
 import ScEnvironmentRdpConnections from './ScEnvironmentRdpConnections';
+import ScEnvironmentUbuntuDcvConnections from './ScEnvironmentUbuntuDcvConnections';
 import ScEnvironmentSsmConnections from './ScEnvironmentSsmConnections';
 
 // expected props
@@ -86,10 +87,12 @@ class ScEnvironmentConnections extends React.Component {
     const isHttp = scheme => scheme === 'http' || scheme === 'https' || _.isEmpty(scheme);
     const isSsh = scheme => scheme === 'ssh';
     const isRdp = scheme => scheme === 'rdp';
+    const isUbuntuDcv = scheme => scheme === 'ubuntudcv';
     const isSsm = scheme => scheme === 'ssm';
     const hasHttp = !_.isEmpty(env.getConnections(item => isHttp(item.scheme)));
     const hasSsh = !_.isEmpty(env.getConnections(item => isSsh(item.scheme)));
     const hasRdp = !_.isEmpty(env.getConnections(item => isRdp(item.scheme)));
+    const hasUbuntuDcv = !_.isEmpty(env.getConnections(item => isUbuntuDcv(item.scheme)));
     const hasSsm = !_.isEmpty(env.getConnections(item => isSsm(item.scheme)));
 
     return (
@@ -99,6 +102,7 @@ class ScEnvironmentConnections extends React.Component {
         {hasHttp && <ScEnvironmentHttpConnections scEnvironment={env} />}
         {hasRdp && <ScEnvironmentRdpConnections scEnvironment={env} />}
         {hasSsh && <ScEnvironmentSshConnections scEnvironment={env} />}
+        {hasUbuntuDcv && <ScEnvironmentUbuntuDcvConnections scEnvironment={env} />}
         {hasSsm && <ScEnvironmentSsmConnections scEnvironment={env} />}
       </>
     );

@@ -313,6 +313,41 @@ class EnvironmentScConnectionService extends Service {
     return ssmConsoleUrl;
   }
 
+  async createConnectionUbuntuDcvUrl(requestContext, envId, connectionId) {
+    const [environmentScService, pluginRegistryService] = await this.service([
+      'environmentScService',
+      'pluginRegistryService',
+    ]);
+
+    const connection = await this.mustFindConnection(requestContext, envId, connectionId);
+
+    // Write audit event
+    await this.audit(requestContext, { action: 'dcv-url-requested', body: { id: envId, connection } });
+
+    const { outputs } = await environmentScService.mustFind(requestContext, { id: envId });
+
+    const { Ec2WorkspaceDnsName } = cfnOutputsArrayToObject(outputs);
+
+    connection.url = `https://${Ec2WorkspaceDnsName}:8443`
+
+    // This is done so that plugins know it was called during create URL cycle
+    connection.operation = 'create';
+    // Give plugins chance to adjust the connection (such as connection url etc)
+    const result = await pluginRegistryService.visitPlugins(
+      'env-sc-connection-url',
+      'createConnectionUrl',
+      {
+        payload: {
+          envId,
+          connection,
+        },
+      },
+      { requestContext, container: this.container },
+    );
+
+    return _.get(result, 'connection') || connection;
+  }  
+
   async getRStudioUrl(requestContext, id, connection) {
     if (_.toLower(_.get(connection, 'type', '')) === 'rstudio')
       throw this.boom.badRequest(
@@ -491,7 +526,7 @@ class EnvironmentScConnectionService extends Service {
     const instanceInfo = _.get(data, 'Reservations[0].Instances[0]');
 
     return { password, networkInterfaces: this.toNetworkInterfaces(instanceInfo) };
-  }
+  } 
 
   async createPrivateSageMakerUrl(requestContext, envId, connection, presign_retries = 10) {
     const lockService = await this.service('lockService');

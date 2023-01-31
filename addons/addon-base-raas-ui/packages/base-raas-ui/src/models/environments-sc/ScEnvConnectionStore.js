@@ -23,6 +23,7 @@ import {
   getWindowsRpInfo,
   getWindowsDcvInfo,
   createScEnvironmentDcvConnectionUrl,
+  createScEnvironmentUbuntuDcvConnectionUrl,
   createScEnvironmentConnectionUrl,
   createScEnvironmentSSMConnectionUrl,
 } from '../../helpers/api';
@@ -72,6 +73,11 @@ const ScEnvConnectionStore = BaseStore.named('ScEnvConnectionStore')
       async createDcvConnectionUrl(connectionId) {
         const urlObj = await createScEnvironmentDcvConnectionUrl(self.envId, connectionId);
         return urlObj;
+      },
+
+      async createUbuntuDcvConnectionUrl(connectionId) {
+        const dcvUrlObj = await createScEnvironmentUbuntuDcvConnectionUrl(self.envId, connectionId);
+        return dcvUrlObj;
       },      
 
       cleanup: () => {

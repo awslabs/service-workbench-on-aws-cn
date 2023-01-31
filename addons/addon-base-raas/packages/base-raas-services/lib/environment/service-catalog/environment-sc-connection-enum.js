@@ -20,6 +20,7 @@ const connectionScheme = {
   https: 'https',
   rdp: 'rdp',
   dcv: 'dcv',
+  ubuntudcv: 'ubuntudcv',
   ssh: 'ssh',
 };
 const supportedConnectionSchemes = _.values(connectionScheme);

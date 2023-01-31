@@ -324,9 +324,41 @@ class EnvironmentScConnectionService extends Service {
     // Write audit event
     await this.audit(requestContext, { action: 'dcv-url-requested', body: { id: envId, connection } });
 
-    const { outputs } = await environmentScService.mustFind(requestContext, { id: envId });
+    const { outputs } = await environmentScService.mustFind(requestContext, { id: envId }); 
+    const { Ec2WorkspaceDnsName } = cfnOutputsArrayToObject(outputs);
 
-    const [aws] = await this.service(['aws']);
+    connection.url = `https://${Ec2WorkspaceDnsName}:8443`
+
+    // This is done so that plugins know it was called during create URL cycle
+    connection.operation = 'create';
+    // Give plugins chance to adjust the connection (such as connection url etc)
+    const result = await pluginRegistryService.visitPlugins(
+      'env-sc-connection-url',
+      'createConnectionUrl',
+      {
+        payload: {
+          envId,
+          connection,
+        },
+      },
+      { requestContext, container: this.container },
+    );
+
+    return _.get(result, 'connection') || connection;
+  }       
+
+  async createConnectionUbuntuDcvUrl(requestContext, envId, connectionId) {
+    const [environmentScService, pluginRegistryService] = await this.service([
+      'environmentScService',
+      'pluginRegistryService',
+    ]);
+
+    const connection = await this.mustFindConnection(requestContext, envId, connectionId);
+
+    // Write audit event
+    await this.audit(requestContext, { action: 'dcv-url-requested', body: { id: envId, connection } });
+
+    const { outputs } = await environmentScService.mustFind(requestContext, { id: envId });
 
     const { Ec2WorkspaceDnsName } = cfnOutputsArrayToObject(outputs);
 
@@ -528,7 +560,7 @@ class EnvironmentScConnectionService extends Service {
     const instanceInfo = _.get(data, 'Reservations[0].Instances[0]');
 
     return { password, networkInterfaces: this.toNetworkInterfaces(instanceInfo) };
-  }
+  } 
 
   async getWindowsPasswordDataForDcv(requestContext, envId, connectionId) {
     const [environmentScService, environmentScKeypairService] = await this.service([

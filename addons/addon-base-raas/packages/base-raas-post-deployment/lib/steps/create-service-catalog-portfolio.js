@@ -45,6 +45,11 @@ const productsToCreate = [
     description: `* An EC2 Linux instance with SSM \n* Secure compute in the cloud`,
   },
   {
+    filename: 'ec2-ubuntu-instance-openfoam',
+    displayName: 'EC2 Ubuntu For Open Foam',
+    description: `* Access EC2 Ubuntu instance with session manager \n* Access throught DCV`,
+  },
+  {
     filename: 'sagemaker-notebook-instance',
     displayName: 'SageMaker Notebook',
     description: `An Amazon SageMaker Jupyter Notebook that comes with: \n* TensorFlow \n* Apache MXNet \n* Scikit-learn

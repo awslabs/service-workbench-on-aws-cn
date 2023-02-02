@@ -121,42 +121,58 @@ apiHandler:
         cors: true
     # Protected APIs
     - http:
-        authorizer: authenticationLayerHandler
+        authorizer:
+          name: authenticationLayerHandler
+          resultTtlInSeconds: 10
         path: /api
         method: GET
         cors: true
     - http:
-        authorizer: authenticationLayerHandler
+        authorizer:
+          name: authenticationLayerHandler
+          resultTtlInSeconds: 10
         path: /api/{proxy+}
         method: GET
         cors: true
     - http:
-        authorizer: authenticationLayerHandler
+        authorizer:
+          name: authenticationLayerHandler
+          resultTtlInSeconds: 10
         path: /api
         method: POST
         cors: true
     - http:
-        authorizer: authenticationLayerHandler
+        authorizer:
+          name: authenticationLayerHandler
+          resultTtlInSeconds: 10
         path: /api/{proxy+}
         method: POST
         cors: true
     - http:
-        authorizer: authenticationLayerHandler
+        authorizer:
+          name: authenticationLayerHandler
+          resultTtlInSeconds: 10
         path: /api
         method: PUT
         cors: true
     - http:
-        authorizer: authenticationLayerHandler
+        authorizer:
+          name: authenticationLayerHandler
+          resultTtlInSeconds: 10
         path: /api/{proxy+}
         method: PUT
         cors: true
     - http:
-        authorizer: authenticationLayerHandler
+        authorizer:
+          name: authenticationLayerHandler
+          resultTtlInSeconds: 10
         path: /api
         method: DELETE
         cors: true
     - http:
-        authorizer: authenticationLayerHandler
+        authorizer:
+          name: authenticationLayerHandler
+          resultTtlInSeconds: 10
         path: /api/{proxy+}
         method: DELETE
         cors: true

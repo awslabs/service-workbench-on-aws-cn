@@ -5,6 +5,7 @@
 
 **/npm-debug.log
 **/pnpm-debug.log
+**/.pnpm-debug.log
 
 # Serverless directories
 .serverless

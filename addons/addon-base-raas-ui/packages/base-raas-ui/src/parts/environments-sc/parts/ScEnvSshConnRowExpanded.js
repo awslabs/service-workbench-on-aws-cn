@@ -96,8 +96,7 @@ class ScEnvSshConnRowExpanded extends React.Component {
         const urlObj = await store.createConnectionUrl(id);
         const appStreamUrl = urlObj.url;
         if (appStreamUrl) {
-          const newTab = openWindow('about:blank');
-          newTab.location = appStreamUrl;
+          openWindow(appStreamUrl, 'noopener,noreferrer');
         } else {
           throw Error('AppStream URL was not returned by the API');
         }

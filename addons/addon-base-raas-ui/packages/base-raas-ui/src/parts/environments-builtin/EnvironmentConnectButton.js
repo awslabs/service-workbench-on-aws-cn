@@ -26,13 +26,13 @@ class EnvironmentConnectButton extends React.Component {
   handleConnectClick = async event => {
     event.preventDefault();
     event.stopPropagation();
-    const newTab = window.open('about:blank', '_blank');
 
     const environment = this.props.environment;
 
     const url = await this.getUrl(environment);
-    // Change to the notebook
-    newTab.location = url;
+
+    window.open(url, '_blank', 'noopener,noreferrer');
+
     environment.setFetchingUrl(false);
   };
 

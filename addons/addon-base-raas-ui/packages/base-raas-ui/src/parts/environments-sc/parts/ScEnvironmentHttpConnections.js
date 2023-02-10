@@ -112,8 +112,7 @@ class ScEnvironmentHttpConnections extends React.Component {
               document.body.appendChild(mapForm);
               mapForm.submit();
             } else {
-              const newTab = openWindow('about:blank');
-              newTab.location = url;
+              openWindow(url, 'noopener,noreferrer');
             }
           }
         }
@@ -133,8 +132,7 @@ class ScEnvironmentHttpConnections extends React.Component {
           this.appStreamConnectingId = id;
         });
         if (url) {
-          const newTab = openWindow('about:blank');
-          newTab.location = url;
+          openWindow(url, 'noopener,noreferrer');
         }
       } catch (error) {
         displayError(error);

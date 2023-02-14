@@ -2,6 +2,7 @@ authenticationLayerHandler:
   handler: src/lambdas/authentication-layer-handler/handler.handler
   role: RoleAuthenticationLayerHandler
   tags: ${self:custom.tags}
+  timeout: 30
   description: Handles the authentication layer for API handlers.
   environment:
     APP_PARAM_STORE_JWT_SECRET: ${self:custom.settings.paramStoreJwtSecret}

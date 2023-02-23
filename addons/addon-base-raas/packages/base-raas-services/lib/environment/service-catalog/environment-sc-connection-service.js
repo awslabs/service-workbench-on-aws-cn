@@ -21,7 +21,7 @@ const querystring = require('querystring');
 const Service = require('@amzn/base-services-container/lib/service');
 const { retry, linearInterval } = require('@amzn/base-services/lib/helpers/utils');
 const axios = require('axios').default;
-const sshConnectionInfoSchema = require('../../schema/ssh-connection-info-sc.json');
+const sshConnectionInfoSchema = require('../../schema/ssh-connection-info-sc');
 const { connectionScheme } = require('./environment-sc-connection-enum');
 const { cfnOutputsToConnections, cfnOutputsArrayToObject } = require('./helpers/connections-util');
 

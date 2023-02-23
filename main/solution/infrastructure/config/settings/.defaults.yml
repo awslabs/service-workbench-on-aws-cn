@@ -3,3 +3,6 @@ websiteBucketName: ${self:custom.settings.globalNamespace}-website
 
 # The S3 bucket name to be used for S3 access logging
 loggingBucketName: ${self:custom.settings.globalNamespace}-logging
+
+# The customized Response Headers Policy Name
+responseHeadersPolicyName: ${self:custom.settings.globalNamespace}-response-header-policy

@@ -202,9 +202,9 @@ class EnvironmentResourceService extends Service {
     const addToMounts = mount => s3Mounts.push(mount);
 
     _.forEach(studies, study => {
-      const { id, resources = [], envPermission = {} } = study;
+      const { id, category, resources = [], envPermission = {} } = study;
       const { read, write } = envPermission;
-      const item = { id, readable: read, writeable: write };
+      const item = { id, readable: read, writeable: write, category };
       const getBucketAndPrefix = (resource = {}) => {
         const { bucket, prefix } = parseS3Arn(resource.arn) || {};
         return { bucket, prefix };

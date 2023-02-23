@@ -74,8 +74,7 @@ class ScEnvironmentSsmConnections extends React.Component {
           url = urlObj.url;
 
           if (url) {
-            const newTab = openWindow('about:blank');
-            newTab.location = url;
+            openWindow(url, 'noopener,noreferrer');
           }
         }
       } catch (error) {

@@ -202,10 +202,22 @@ Resources:
   # CloudFront
   # =============================================================================================
 
+  ResponseHeadersPolicy:
+    Type: AWS::CloudFront::ResponseHeadersPolicy
+    Properties:
+      ResponseHeadersPolicyConfig:
+        Name: Cache-Control-Response-Headers-Policy
+        Comment: Add Cache-Control header to responses
+        CustomHeadersConfig:
+          Items:
+            - Header: Cache-Control
+              Value: no-store, no-cache
+              Override: true
   WebsiteCloudFront:
     Type: AWS::CloudFront::Distribution
     DependsOn:
       - WebsiteBucket
+      - ResponseHeadersPolicy
     Properties:
       DistributionConfig:
         Comment: 'CloudFront Distribution pointing to ${self:custom.settings.websiteBucketName}'
@@ -251,6 +263,7 @@ Resources:
             Cookies:
               Forward: none
           ViewerProtocolPolicy: redirect-to-https
+          ResponseHeadersPolicyId: !Ref ResponseHeadersPolicy
         PriceClass: PriceClass_All
         Logging: !If
           - IsHongkongRegion

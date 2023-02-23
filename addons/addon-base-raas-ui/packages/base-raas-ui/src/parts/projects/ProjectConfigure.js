@@ -79,6 +79,7 @@ class ProjectConfigure extends React.Component {
         indexId,
         projectAdmins,
       };
+      this.currentProject = this.updateProject;
       this.formProcessing = false;
       this.modalOpen = false;
       this.view = 'detail';
@@ -125,8 +126,9 @@ class ProjectConfigure extends React.Component {
   }
 
   renderTrigger() {
+    const testid = `${this.props.project.id}-detail-button`;
     return (
-      <Button size="mini" compact color="blue" onClick={this.handleModalOpen}>
+      <Button size="mini" compact color="blue" onClick={this.handleModalOpen} data-testid={testid}>
         {i18next.t('detail')}
       </Button>
     );
@@ -173,7 +175,7 @@ class ProjectConfigure extends React.Component {
     const toEditableInput = (attributeName, type = 'text') => {
       const handleChange = action(event => {
         event.preventDefault();
-        this.updateProject[attributeName] = event.target.value;
+        this.currentProject[attributeName] = event.target.value;
       });
       return (
         <div className="ui focus input">
@@ -252,7 +254,7 @@ class ProjectConfigure extends React.Component {
 
     const makeButton = ({ label = '', color = 'blue', floated = 'left', ...props }) => {
       return (
-        <Button color={color} floated={floated} disabled={processing} className="ml2" {...props}>
+        <Button color={color} floated={floated} disabled={processing} className="ml2" data-testid={label} {...props}>
           {label}
         </Button>
       );

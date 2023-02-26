@@ -55,8 +55,7 @@ const schema = {
     kmsArn: {
       type: 'string',
       maxLength: 90,
-      pattern:
-        'arn:(aws|aws-cn)[a-zA-Z-]*:kms:[a-z]{2}((-gov)|(-iso(b?)))?-[a-z]+-[0-9]{1}:[0-9]{12}:key[/]{1}[a-zA-Z0-9-]+',
+      pattern: 'arn:(aws|aws-cn)[a-zA-Z-]*:kms:[a-z]{2}((-gov)|(-iso(b?)))?-[a-z]+-[0-9]{1}:[0-9]{12}:key[/]{1}[a-zA-Z0-9-]+',
     },
     kmsScope: {
       enum: ['bucket', 'study', 'none'],

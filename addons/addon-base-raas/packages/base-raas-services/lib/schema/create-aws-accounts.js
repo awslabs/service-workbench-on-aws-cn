@@ -69,7 +69,7 @@ const schema = {
     },
     encryptionKeyArn: {
       type: 'string',
-      pattern: '^arn:aws:kms:.*$',
+      pattern: '^arn:(aws|aws-cn):kms:.*$',
     },
     appStreamStackName: {
       type: 'string',
@@ -110,7 +110,7 @@ const schema = {
     onboardStatusRoleArn: {
       type: 'string',
       minLength: 10,
-      pattern: '^arn:aws:iam::.*$',
+      pattern: '^arn:(aws|aws-cn):iam::.*$',
     },
     cfnStackName: {
       type: 'string',
@@ -119,7 +119,7 @@ const schema = {
     cfnStackId: {
       type: 'string',
       maxLength: 255,
-      pattern: '^arn:aws:cloudformation:.*$',
+      pattern: '^arn:(aws|aws-cn):cloudformation:.*$',
     },
     permissionStatus: {
       type: 'string',

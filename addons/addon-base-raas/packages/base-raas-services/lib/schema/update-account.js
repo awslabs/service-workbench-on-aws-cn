@@ -44,18 +44,18 @@ const schema = {
         },
         crossAccountExecutionRoleArn: {
           type: 'string',
-          pattern: '^arn:aws:iam::.*$',
+          pattern: '^arn:(aws|aws-cn):iam::.*$',
         },
         crossAccountEnvMgmtRoleArn: {
           type: 'string',
-          pattern: '^arn:aws:iam::.*$',
+          pattern: '^arn:(aws|aws-cn):iam::.*$',
         },
         stackId: {
           type: 'string',
         },
         encryptionKeyArn: {
           type: 'string',
-          pattern: '^arn:aws:kms:.*$',
+          pattern: '^arn:(aws|aws-cn):kms:.*$',
         },
       },
     },

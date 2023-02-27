@@ -49,7 +49,7 @@ const schema = {
     appRoleArn: {
       type: 'string',
       maxLength: 2048,
-      pattern: '^(arn:aws[a-zA-Z-]*:iam::[0-9]{12}:role[/]{1}[a-zA-Z0-9-]+)$',
+      pattern: '^(arn:(aws|aws-cn)[a-zA-Z-]*:iam::[0-9]{12}:role[/]{1}[a-zA-Z0-9-]+)$',
     },
     resources: {
       type: 'array',
@@ -61,12 +61,12 @@ const schema = {
             arn: {
               type: 'string',
               maxLength: 2048,
-              pattern: '^(arn:aws[a-zA-Z-]*:[a-zA-Z0-9-/.:_?*]+)$',
+              pattern: '^(arn:(aws|aws-cn)[a-zA-Z-]*:[a-zA-Z0-9-/.:_?*]+)$',
             },
             fileShareArn: {
               type: 'string',
               maxLength: 2048,
-              pattern: '^(arn:aws[a-zA-Z-]*:[a-zA-Z0-9-/.:_?*]+)$',
+              pattern: '^(arn:(aws|aws-cn)[a-zA-Z-]*:[a-zA-Z0-9-/.:_?*]+)$',
             },
           },
         },

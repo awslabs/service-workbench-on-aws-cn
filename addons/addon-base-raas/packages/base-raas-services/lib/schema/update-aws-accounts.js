@@ -46,7 +46,7 @@ const schema = {
     cfnStackId: {
       type: 'string',
       maxLength: 255,
-      pattern: '^arn:aws:cloudformation:.*$',
+      pattern: '^arn:(aws|aws-cn):cloudformation:.*$',
     },
     cfnStackName: {
       type: 'string',
@@ -59,7 +59,7 @@ const schema = {
     onboardStatusRoleArn: {
       type: 'string',
       minLength: 10,
-      pattern: '^arn:aws:iam::.*$',
+      pattern: '^arn:(aws|aws-cn):iam::.*$',
     },
     xAccEnvMgmtRoleArn: {
       type: 'string',
@@ -79,7 +79,7 @@ const schema = {
     },
     encryptionKeyArn: {
       type: 'string',
-      pattern: '^arn:aws:kms:.*$',
+      pattern: '^arn:(aws|aws-cn):kms:.*$',
     },
     permissionStatus: {
       type: 'string',

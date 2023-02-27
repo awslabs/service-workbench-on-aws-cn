@@ -65,7 +65,7 @@ const schema = {
             arn: {
               type: 'string',
               maxLength: 2048,
-              pattern: '^(arn:aws[a-zA-Z-]*:[a-zA-Z0-9-/.:_?*]+)$',
+              pattern: '^(arn:(aws|aws-cn)[a-zA-Z-]*:[a-zA-Z0-9-/.:_?*]+)$',
             },
           },
         },

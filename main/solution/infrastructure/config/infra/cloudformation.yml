@@ -206,7 +206,7 @@ Resources:
     Type: AWS::CloudFront::ResponseHeadersPolicy
     Properties:
       ResponseHeadersPolicyConfig:
-        Name: Cache-Control-Response-Headers-Policy
+        Name: ${self:custom.settings.responseHeadersPolicyName}
         Comment: Add Cache-Control header to responses
         CustomHeadersConfig:
           Items:

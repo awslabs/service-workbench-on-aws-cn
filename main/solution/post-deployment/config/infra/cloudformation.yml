@@ -5,6 +5,7 @@ Conditions:
   WithLambdaEdge: !And
     - !Not [!Equals ['${self:custom.settings.awsRegion}', 'cn-north-1']]
     - !Not [!Equals ['${self:custom.settings.awsRegion}', 'cn-northwest-1']]
+    - !Not [!Equals ['${self:custom.settings.enableLambdaEdge}', 'false']]
 
 Resources:
   # =============================================================================================

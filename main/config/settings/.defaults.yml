@@ -259,6 +259,10 @@ defaultIdpType: cognito_user_pool
 # default value is false
 enableAlb: false
 
+# Determine whether use lambda@Edge to add security header
+# default value is true
+enableLambdaEdge: true
+
 # Application load balancer default port
 albPort: 8000
 

@@ -69,6 +69,18 @@ albPort: 8000
 
 If you enable ALB feature, after you deployed the solution, you will get the **Alb URL** in terminal output. You also can get **Alb URL** info through scripts/get-info.sh script.
 
+### Disable Lambda@Edge
+
+Service Workbench allows customer to disable lambda@edge to reduce lambda function calling.
+To disable lambda@edge, please add below configuration into `<stage>.yml` file:
+
+```
+enableLambdaEdge: false
+```
+* **enableLambdaEdge**: Set the value of this configuration as **false** to disable lambda@edge. The default value is **true** if you don't add **enableLambdaEdge** into `<stage>.yml` file
+
+lambda@edge is responsible for adding some security header in http response. Please refer to [code](https://github.com/awslabs/service-workbench-on-aws-cn/blob/mainline/main/solution/edge-lambda/config/infra/cloudformation.yml#L52-L94) snippet to learn about what security headers are included.
+
 ### Namespace
 
 The names of many deployed resources include a namespace string such as `mystage-va-sw`. This string is made by concatenating the following:

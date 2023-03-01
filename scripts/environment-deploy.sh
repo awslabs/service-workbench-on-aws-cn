@@ -82,7 +82,9 @@ SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" &> /dev/null && pwd)
 
 REGION=$(cat "$SCRIPT_DIR"/../main/config/settings/"$STAGE".yml | grep ^awsRegion)
 echo $REGION
-if [[ "$REGION" != *"cn-"* ]]; then
+ENABLE_LAMBDA_EDGE=$( get_stage_value "enableLambdaEdge" )
+echo ENABLE_LAMBDA_EDGE:$ENABLE_LAMBDA_EDGE
+if [[ "$REGION" != *"cn-"* ]] && [[ "$ENABLE_LAMBDA_EDGE" = true ]]; then
   echo "deploy lambdaedge"
   componentDeploy "edge-lambda" "Edge-Lambda"
 fi

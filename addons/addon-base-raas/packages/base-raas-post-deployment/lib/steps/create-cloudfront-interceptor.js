@@ -18,6 +18,7 @@ const Service = require('@amzn/base-services-container/lib/service');
 
 const settingKeys = {
   awsRegion: 'awsRegion',
+  enableLambdaEdge: 'enableLambdaEdge',
 };
 
 /**
@@ -37,8 +38,9 @@ class CreateCloudFrontInterceptor extends Service {
   async execute() {
     // skip this execution if the regions are not support lambdaedge
     const region = this.settings.get(settingKeys.awsRegion);
+    const enableLambdaEdge = this.settings.getBoolean(settingKeys.enableLambdaEdge);
 
-    if (region.startsWith('cn-')) {
+    if (region.startsWith('cn-') || !enableLambdaEdge) {
       return;
     }
 

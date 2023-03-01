@@ -45,8 +45,9 @@ postDeployment:
     APP_ENV_NAME: ${self:custom.settings.envName}
     APP_AWS_SUFFIX: ${self:custom.settings.awsSuffix}
     APP_AWS_PARTITION: ${self:custom.settings.awsPartition}
-    APP_OIDC_CLIENT_ID: ${self:custom.settings.oidcClientId}
-    APP_OIDC_ISSUER: ${self:custom.settings.oidcIssuer}
+    APP_OIDC_CLIENT_ID: ${self:custom.settings.oidcClientId, ""}
+    APP_OIDC_ISSUER: ${self:custom.settings.oidcIssuer, ""}
+    APP_ENABLE_LAMBDA_EDGE: ${self:custom.settings.enableLambdaEdge}
     APP_DEFAULT_IDP_TYPE: ${self:custom.settings.defaultIdpType}
 
 egressStoreObjectsHandler:

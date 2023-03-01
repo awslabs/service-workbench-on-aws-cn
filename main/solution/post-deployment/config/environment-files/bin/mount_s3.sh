@@ -67,6 +67,7 @@ do
     s3_prefix="$(printf "%s" "$mounts" | jq -r ".[$study_idx].prefix" -)"
     s3_role_arn="$(printf "%s" "$mounts" | jq -r ".[$study_idx].roleArn" -)"
     kms_arn="$(printf "%s" "$mounts" | jq -r ".[$study_idx].kmsArn" -)"
+    category="$(printf "%s" "$mounts" | jq -r ".[$study_idx].category" -)"
 
     # Mount S3 location if not already mounted
     study_dir="${MOUNT_DIR}/${study_id}"
@@ -74,10 +75,17 @@ do
     if [ $? -ne 0 ]
     then
         mkdir -p "$study_dir"
+        ADDITONAL_PARAMETER=""
         if [ "$s3_role_arn" == "null" ]
         then
-            printf 'Mounting internal study "%s" at "%s"\n' "$study_id" "$study_dir"
-            goofys --region $region --acl "bucket-owner-full-control" "${s3_bucket}:${s3_prefix}" "$study_dir"
+            if [ "$category" == "Open Data" ]
+            then
+                printf 'Mounting open data "%s" at "%s"\n' "$study_id" "$study_dir"
+            else
+                printf 'Mounting internal study "%s" at "%s"\n' "$study_id" "$study_dir"
+                ADDITONAL_PARAMETER="--region $region"
+            fi
+            goofys $ADDITONAL_PARAMETER --acl "bucket-owner-full-control" "${s3_bucket}:${s3_prefix}" "$study_dir"
         else
             bucket_region="$(printf "%s" "$mounts" | jq -r ".[$study_idx].region" -)"
             # BYOB studies have a region specified, but in case it isn't use the default region

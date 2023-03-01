@@ -161,7 +161,7 @@ module.exports = {
       mergedSettingsObj.additionalAwsRegion = mergedSettingsObj.awsRegion;
       mergedSettingsObj.awsRegion = 'us-east-1';
     }
-    if (mergedSettingsObj.awsRegion.startsWith('cn-')) {
+    if (mergedSettingsObj.awsRegion.startsWith('cn-') || !mergedSettingsObj.enableLambdaEdge) {
       mergedSettingsObj.edgeLambdaStackName = '';
       mergedSettingsObj.edgeLambdaArn = '';
     }

@@ -70,6 +70,18 @@ albPort: 8000
 
 如果您开启了ALB功能，当部署完成后，您能在终端的输出信息里获得**Alb URL**的信息，也可以通过scripts/get-info.sh脚本获得此**Alb URL**信息。
 
+### 禁用 Lambda@Edge
+
+Service Workbench 允许客户禁用lambda@edge来减少调用lambda function的次数。
+您需要在`<stage>.yml`文件中设定如下配置来禁用lambda@edge：
+
+```
+enableLambdaEdge: false
+```
+* **enableLambdaEdge**: 用于标记lambda@edge是否启用，**false**为禁用lambda@edge. 如果您不在`<stage>.yml`文件中添加此配置，默认值为**true**。
+
+lambda@edge 负责往cloudfront的http response中添加一些security header。想要了解security headers的详情，请参考[code](https://github.com/awslabs/service-workbench-on-aws-cn/blob/mainline/main/solution/edge-lambda/config/infra/cloudformation.yml#L52-L94)。
+
 ### 命名空间
 
 许多已部署资源的名称都包含一个命名空间字符串，例如“mystage-va-sw”。该字符串是通过连接以下内容组成的:

@@ -35,6 +35,8 @@ Service Workbench 使用 [AWS 服务目录 - AWS Service Catalog](https://aws.am
 
 确保您在部署过程中完成了步骤[安装 AMIs](/zh/installation_guide/installation/ami-install)。
 
+**注意**：对于Amazon EC2 Linux和Amazon EC2 Windows，如果没有定制AMI的需求，也可以使用AWS官方提供的AMI。
+
 您可以检查 AMI 是否已成功创建：
 
 1. 导航到 Amazon EC2。

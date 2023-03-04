@@ -351,6 +351,9 @@ module.exports = {
     ],
     动手实践: [
       "workshop/workshop_guide"
+    ],
+    快速部署: [
+      "quick_installation_guide/global_installation_guide"
     ]
   },
 };

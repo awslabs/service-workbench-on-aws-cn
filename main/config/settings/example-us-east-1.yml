@@ -1,0 +1,17 @@
+# Target AWS region, defaults to us-east-1 if not provided.  Note that some global system components
+awsRegion: us-east-1
+
+# The short solution name is used to namespace a few AWS resources. Try to keep this
+# setting short to avoid hitting long strings issues; the default should be fine in most cases,
+# but if multiple separate instances of the system are deployed within a single account,
+# this name can be changed to ensure they are disambiguated.
+solutionName: swb
+
+# root user email, the root user should be created in installed oidc before deploying service workbench
+rootUserEmail: root@example.com
+
+# Root user's first name
+rootUserFirstName: root
+
+# Root user's last name
+rootUserLastName: root

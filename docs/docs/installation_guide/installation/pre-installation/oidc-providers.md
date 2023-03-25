@@ -25,7 +25,8 @@ Follow the steps below to create an OIDC client and , and obtain the `client_id`
 #### Creating Authing.cn OIDC client
 
 1. Go to the [Authing console](https://console.authing.cn/console).
-2. Create a user pool if you don't have one.
+2. Create a user pool if you don't have one. Note: **if you need a long-term free user pool, please do not check the 30-day trial checkbox**
+    [![](../../../images/OIDC/create-authing-userpool-en.png)](../../../images/OIDC/create-authing-userpool-en.png)
 3. Select the user pool.
 4. On the left navigation bar, select **Self-built App** under **Applications**. 
 5. Click the **Create** button.

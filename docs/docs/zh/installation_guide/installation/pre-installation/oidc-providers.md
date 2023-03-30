@@ -26,7 +26,7 @@ OpenID Connect (OIDC) IdP 是 [Cognito User Pool][cognito] 的替代方案，用
 
 ####  创建 Authing.cn OIDC 客户端
 1. 登录[认证控制台](https://console.authing.cn/console)。
-2. 如果您没有用户池，请创建一个用户池。输入**User Pool Name**，选择**User pool type**，单击 **Confirm** 创建用户池。
+2. 如果您没有用户池，请创建一个用户池。请选择 **To C** 类型，如果想使用长期免费的用户池，请**不要勾选** “开启体验期，30 天体验所有功能。体验到期未升级，用户池将不能访问。”选项。单击 **创建用户池** 按钮创建用户池。
     [![](../../../images/OIDC/create-authing-userpool.png)](../../../images/OIDC/create-authing-userpool.png)
 3. 选择用户池。
 4. 在左侧导航栏，选择**Applications**下的**Self-built App**。

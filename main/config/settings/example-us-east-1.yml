@@ -15,3 +15,5 @@ rootUserFirstName: root
 
 # Root user's last name
 rootUserLastName: root
+
+enableLambdaEdge: false

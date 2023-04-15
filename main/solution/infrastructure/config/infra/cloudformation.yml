@@ -86,7 +86,6 @@ Resources:
     Type: AWS::S3::Bucket
     Properties:
       BucketName: ${self:custom.settings.loggingBucketName}
-      AccessControl: LogDeliveryWrite
       BucketEncryption:
         ServerSideEncryptionConfiguration:
           - ServerSideEncryptionByDefault:
@@ -265,11 +264,6 @@ Resources:
           ViewerProtocolPolicy: redirect-to-https
           ResponseHeadersPolicyId: !Ref ResponseHeadersPolicy
         PriceClass: PriceClass_All
-        Logging: !If
-          - IsHongkongRegion
-          - !Ref AWS::NoValue
-          - Bucket: ${self:custom.settings.loggingBucketName}.s3.${self:custom.settings.awsSuffix}
-            Prefix: cloudfront/
 
 
   CloudFrontOAI:

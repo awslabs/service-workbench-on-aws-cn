@@ -157,7 +157,7 @@ module.exports = {
     // it must be deployed to us-east-1, so modify the destination region setting here, and save the
     // original region to the "additional region" setting, which will be used below
     // to pull in cross-region CloudFormation outputs
-    if (globalDeployment && !mergedSettingsObj.awsRegion.startsWith('cn-')) {
+    if (globalDeployment && !mergedSettingsObj.awsRegion.startsWith('cn-') && mergedSettingsObj.enableLambdaEdge) {
       mergedSettingsObj.additionalAwsRegion = mergedSettingsObj.awsRegion;
       mergedSettingsObj.awsRegion = 'us-east-1';
     }
@@ -169,7 +169,11 @@ module.exports = {
     // If the destination region is not us-east-1, we still need access to CloudFormation
     // outputs in us-east-1 for any global deployments, so use the "addtional region"
     // setting to pull them in
-    if (mergedSettingsObj.awsRegion !== 'us-east-1' && !mergedSettingsObj.awsRegion.startsWith('cn-')) {
+    if (
+      mergedSettingsObj.awsRegion !== 'us-east-1' &&
+      !mergedSettingsObj.awsRegion.startsWith('cn-') &&
+      mergedSettingsObj.enableLambdaEdge
+    ) {
       mergedSettingsObj.additionalAwsRegion = 'us-east-1';
     }
 
